@@ -11,7 +11,7 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
     <div className="flex h-full ">
       <Sidebar />
 
-      <div className="flex flex-1 flex-col bg-white px-8 py-12 dark:bg-gray-900">{children}</div>
+      <div className="flex flex-1 flex-col bg-white px-5 py-16 dark:bg-gray-900 lg:px-6">{children}</div>
     </div>
   )
 }
