@@ -1,6 +1,5 @@
 # TODOS
 
-- netlify
 - firebase or supabase (supabase can be setup via cli which is amazing)
 - auth
 - team and user management

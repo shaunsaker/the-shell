@@ -1,8 +1,8 @@
 # Ultimate B2B SAAS Boilerplate
 
-[![Main](https://github.com/shaunsaker/ultimate-react-boilerplate/actions/workflows/main.yml/badge.svg)](https://github.com/shaunsaker/ultimate-react-boilerplate/actions/workflows/main.yml)
+[![Build](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/build.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/build.yml)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c0394429-94d6-485f-bc84-eaa36f5bc040/deploy-status)](https://app.netlify.com/sites/ultimate-react-boilerplate/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c8c1ba1d-4e53-4628-bbc5-dfb539f1fca1/deploy-status)](https://app.netlify.com/sites/stunning-manatee-5e7d37/deploys)
 
 ## What is it?
 

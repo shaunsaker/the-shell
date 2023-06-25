@@ -1,6 +1,6 @@
 {
   "name": "ultimate-b2b-saas-boilerplate",
-  "description": "The ultimate boilerplate for building SaaS applications with React, Firebase, Tailwind CSS and TypeScript.",
+  "description": "The ultimate boilerplate for building SaaS applications with React, Supabase, Tailwind CSS and TypeScript.",
   "version": "0.0.0",
   "app": {
     "displayName": "Ultimate B2B SAAS Boilerplate",
