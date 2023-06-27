@@ -1,50 +1,64 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, Cog6ToothIcon, HomeModernIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Button } from '@tremor/react'
 import { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
-import Logo from '../../assets/logo.svg'
-import { useNavigation } from '../../store/navigation/useNavigation'
+import { routes } from '../../routes'
 import { Backdrop } from '../backdrop/Backdrop'
+import { Logo } from '../logo/Logo'
+
+type NavigationItem = {
+  name: string
+  href: string
+  icon: any
+  isActive: (pathname: string) => boolean
+}
+
+const navigation: NavigationItem[] = [
+  {
+    name: 'Dashboard',
+    href: routes.dashboard,
+    icon: HomeModernIcon,
+    isActive: (pathname: string) => pathname === routes.dashboard,
+  },
+  {
+    name: 'Settings',
+    href: routes.settings,
+    icon: Cog6ToothIcon,
+    isActive: (pathname: string) => pathname.startsWith(routes.settings),
+  },
+]
 
 export default function Sidebar() {
-  const [navigation] = useNavigation()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const location = useLocation()
 
   const sidebar = (
-    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-teal-600 px-6">
+    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-tremor-brand px-6 dark:bg-dark-tremor-brand">
       <div className="flex h-16 shrink-0 items-center">
-        <Logo className="h-8 w-auto fill-white" />
+        <Logo className="fill-tremor-brand-inverted dark:fill-dark-tremor-brand-inverted" />
       </div>
 
       <nav className="flex flex-1 flex-col">
-        <ul className="flex flex-1 flex-col gap-y-7">
-          <li>
-            <ul className="-mx-2 space-y-1">
-              {navigation.map(item => (
-                <li key={item.name}>
-                  <Link
-                    to={item.href}
-                    className={twMerge(
-                      item.current ? 'bg-teal-700 text-white' : 'text-teal-200 hover:bg-teal-700 hover:text-white',
-                      'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
-                    )}
-                  >
-                    <item.icon
-                      className={twMerge(
-                        item.current ? 'text-white' : 'text-teal-200 group-hover:text-white',
-                        'h-6 w-6 shrink-0'
-                      )}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </li>
+        <ul className="-mx-2 flex flex-1 flex-col space-y-1">
+          {navigation.map(item => (
+            <li key={item.name}>
+              <Link
+                to={item.href}
+                className={twMerge(
+                  item.isActive(location.pathname)
+                    ? 'bg-tremor-brand-emphasis text-tremor-brand-inverted dark:bg-dark-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted'
+                    : 'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
+                  'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-colors'
+                )}
+              >
+                <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                {item.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>

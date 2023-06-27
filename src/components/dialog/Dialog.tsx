@@ -9,17 +9,20 @@ type DialogProps = {
   title?: string
   description?: string
   confirmText?: string
+  confirmIsDangerous?: boolean
   cancelText?: string
   children?: ReactNode
   onConfirmClick?: () => void
   onClose: () => void
 }
 
+// TODO: SS replace Transition with framer-motion
 export const Dialog = ({
   open,
   title,
   description,
   confirmText = 'Confirm',
+  confirmIsDangerous,
   cancelText = 'Cancel',
   children,
   onConfirmClick,
@@ -41,7 +44,7 @@ export const Dialog = ({
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full items-center justify-center p-4">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -51,11 +54,13 @@ export const Dialog = ({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <DialogPrimitive.Panel className="relative overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all dark:bg-gray-900 sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+              <DialogPrimitive.Panel className="relative w-full max-w-lg overflow-hidden rounded-lg bg-tremor-background p-4 text-left shadow-xl dark:bg-dark-tremor-background lg:p-6">
                 <div>
                   <DialogPrimitive.Title as={Title}>{title}</DialogPrimitive.Title>
 
-                  <DialogPrimitive.Description as={Text}>{description}</DialogPrimitive.Description>
+                  <DialogPrimitive.Description className="mt-4" as={Text}>
+                    {description}
+                  </DialogPrimitive.Description>
 
                   {children}
 
@@ -64,7 +69,9 @@ export const Dialog = ({
                       {cancelText}
                     </Button>
 
-                    <Button onClick={onConfirmClick}>{confirmText}</Button>
+                    <Button color={confirmIsDangerous ? 'red' : undefined} onClick={onConfirmClick}>
+                      {confirmText}
+                    </Button>
                   </div>
                 </div>
               </DialogPrimitive.Panel>

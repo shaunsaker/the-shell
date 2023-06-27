@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'simple-import-sort', 'tailwindcss'],
   rules: {
-    '@typescript-eslint/no-unused-vars': [ERROR, { args: 'all', argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': [ERROR, { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     '@typescript-eslint/no-explicit-any': OFF,
     'simple-import-sort/imports': ERROR,
     'simple-import-sort/exports': ERROR,

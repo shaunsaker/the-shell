@@ -8,14 +8,14 @@ import { useLink } from '../../hooks/useLink'
 import { routes } from '../../routes'
 
 export const ErrorBoundary = (): ReactElement => {
-  const error = useRouteError() as { status: number; statusText: string; error: Error } | Error
+  const error = useRouteError() as { status: number; statusText: string; error: Error } | Error | undefined
   const navigate = useNavigate()
   const link = useLink()
 
   const errorIsError = error instanceof Error
-  const status = errorIsError ? 500 : error.status
-  const statusText = errorIsError ? 'Internal Server Error' : error.statusText
-  const errorMessage = errorIsError ? error.message : error.error?.message
+  const status = errorIsError ? 500 : error ? error.status : '500'
+  const statusText = errorIsError || !error ? 'Internal Server Error' : error.statusText
+  const errorMessage = errorIsError ? error.message : error ? error.error?.message : ''
 
   return (
     <div className="flex h-full flex-col items-center justify-center">

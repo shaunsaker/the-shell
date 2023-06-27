@@ -1,12 +1,15 @@
-import { Metric } from '@tremor/react'
 import React, { ReactElement } from 'react'
 
+import { Headerbar } from '../../components/headerbar/Headerbar'
 import { Layout } from '../../components/layout/Layout'
+import { PageContent } from '../../components/pageContent/PageContent'
 
 export const Dashboard = (): ReactElement => {
   return (
     <Layout>
-      <Metric className="">Dashboard</Metric>
+      <Headerbar />
+
+      <PageContent></PageContent>
     </Layout>
   )
 }

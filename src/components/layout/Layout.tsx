@@ -8,10 +8,10 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps): ReactElement => {
   return (
-    <div className="flex h-full ">
+    <div className="flex h-full">
       <Sidebar />
 
-      <div className="flex flex-1 flex-col bg-white px-5 py-16 dark:bg-gray-900 lg:px-6">{children}</div>
+      <div className="flex flex-1 flex-col bg-tremor-background dark:bg-dark-tremor-background">{children}</div>
     </div>
   )
 }
