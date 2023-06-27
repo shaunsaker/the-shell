@@ -7,7 +7,6 @@ import { supabase } from '../../../../services/supabase'
 import { useAuthSession } from '../../../../store/user/useAuthSession'
 import { validateEmail } from '../../../../utils/validateEmail'
 
-// TODO: SS test this with remote db
 export const ChangeEmailSection = (): ReactElement => {
   const { session } = useAuthSession()
   const email = session?.user.email || ''
@@ -24,7 +23,14 @@ export const ChangeEmailSection = (): ReactElement => {
   const onSave = useCallback(async () => {
     setLoading(true)
 
-    const { error } = await supabase.auth.updateUser({ email: newEmail })
+    const { error } = await supabase.auth.updateUser(
+      {
+        email: newEmail,
+      },
+      {
+        emailRedirectTo: window.location.href,
+      }
+    )
 
     if (error) {
       toast.error(error.message)

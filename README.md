@@ -94,7 +94,13 @@ cp .env.example .env.development && cp .env.example .env.production
 supabase status
 ```
 
-1. [Grab your remote project url and anon key](https://app.supabase.com/project/_/settings/api) and pop them into `.env.production`.
+1. [Grab your production project url and anon key](https://app.supabase.com/project/_/settings/api) and pop them into `.env.production`.
+
+1. [Connect your repo to Netlify](https://app.netlify.com/start).
+
+1. Add your`.env.production` file to your site in Netlify so that the productino builds connects to your remote Supabase instance.
+
+1. Add your [site url to Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration) (for now just use your Netlify domain but when you add a custom domain, be sure to update this again).
 
 1. Setup your db (TODO: SS test that this works):
 
@@ -141,10 +147,6 @@ If you applied changes to the remote db and need to apply them locally, you can 
 ```
 yarn db:pull
 ```
-
-## Deployment
-
-I'd recommend using [Netlify](netlify.com) for deployment and connecting the site to your Github repo so that new deploys are triggered on every push to `master`.
 
 ## Generating Public Assets
 

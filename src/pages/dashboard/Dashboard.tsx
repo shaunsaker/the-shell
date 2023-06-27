@@ -1,3 +1,4 @@
+import { Metric, Text } from '@tremor/react'
 import React, { ReactElement } from 'react'
 
 import { Headerbar } from '../../components/headerbar/Headerbar'
@@ -9,7 +10,11 @@ export const Dashboard = (): ReactElement => {
     <Layout>
       <Headerbar />
 
-      <PageContent></PageContent>
+      <PageContent>
+        <Metric>Dashboard</Metric>
+
+        <Text className="mt-4">Pricing coming soon!</Text>
+      </PageContent>
     </Layout>
   )
 }

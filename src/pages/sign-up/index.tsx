@@ -36,6 +36,7 @@ export default function SignUp() {
         email,
         password,
         options: {
+          emailRedirectTo: window.location.href,
           data: {
             first_name: firstName,
             last_name: lastName,
@@ -45,6 +46,8 @@ export default function SignUp() {
 
       if (error) {
         toast.error(error.message)
+      } else {
+        toast.success('A confirmation email has been sent to your inbox.')
       }
 
       setLoading(false)
