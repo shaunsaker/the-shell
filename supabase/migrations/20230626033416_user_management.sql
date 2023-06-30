@@ -1,5 +1,6 @@
 create table "public"."users" (
-    "id" uuid not null,
+    -- UUID from auth.users
+    id uuid references auth.users not null primary key,
     "updated_at" timestamp with time zone,
     "first_name" text,
     "last_name" text
@@ -7,29 +8,19 @@ create table "public"."users" (
 
 alter table "public"."users" enable row level security;
 
-CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id);
-
-alter table "public"."users" add constraint "users_pkey" PRIMARY KEY using index "users_pkey";
-
-alter table "public"."users" add constraint "users_id_fkey" FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE not valid;
-
-alter table "public"."users" validate constraint "users_id_fkey";
-
-set check_function_bodies = off;
-
-create policy "Users can view their own profile."
+create policy "Users can view their own data."
 on "public"."users"
 for select
 using (auth.uid() = id);
 
-create policy "Users can insert their own profile."
+create policy "Users can insert their own data."
 on "public"."users"
 as permissive
 for insert
 to public
 with check (auth.uid() = id);
 
-create policy "Users can update own profile."
+create policy "Users can update own data."
 on "public"."users"
 as permissive
 for update

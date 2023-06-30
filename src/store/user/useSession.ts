@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 
 import { supabase } from '../../services/supabase'
 
-export const useAuthSession = () => {
+export const useSession = () => {
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -14,6 +14,7 @@ export const useAuthSession = () => {
       setLoading(false)
     })
 
+    // TODO: SS this ain't working
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
     })

@@ -1,20 +1,22 @@
 import React, { ReactElement } from 'react'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
 
-import { ErrorBoundary } from './components/errorBoundary/PageNotFound'
+import { ErrorBoundary } from './components/errorBoundary/ErrorBoundary'
 import { Loading } from './components/loading/Loading'
 import { SettingsLayout } from './components/settingsLayout/SettingsLayout'
 import { Dashboard } from './pages/dashboard/Dashboard'
 import ForgotPassword from './pages/forgot-password'
 import { SettingsAccount } from './pages/settings/account/SettingsAccount'
+import { SettingsBilling } from './pages/settings/billing/SettingsBilling'
 import SignIn from './pages/sign-in'
 import SignUp from './pages/sign-up'
 import { routes } from './routes'
-import { useAuthSession } from './store/user/useAuthSession'
+import { useSubscription } from './store/subscription/useSubscription'
+import { useSession } from './store/user/useSession'
 
 const errorElement = <ErrorBoundary />
 
-const authRouter = createBrowserRouter([
+const unauthorisedRoutes: RouteObject[] = [
   {
     path: routes.signUp,
     element: <SignUp />,
@@ -31,14 +33,9 @@ const authRouter = createBrowserRouter([
     errorElement,
   },
   { path: '*', element: <Navigate to={routes.signIn} /> },
-])
+]
 
-const router = createBrowserRouter([
-  {
-    path: routes.dashboard,
-    element: <Dashboard />,
-    errorElement,
-  },
+const settingsRoutes: RouteObject[] = [
   {
     element: <SettingsLayout />,
     children: [
@@ -52,17 +49,41 @@ const router = createBrowserRouter([
         element: <SettingsAccount />,
         errorElement,
       },
+      {
+        path: routes.settingsBilling,
+        element: <SettingsBilling />,
+        errorElement,
+      },
     ],
+    errorElement,
+  },
+]
+
+export const subscribedRoutes: RouteObject[] = [
+  {
+    path: routes.dashboard,
+    element: <Dashboard />,
+    errorElement,
   },
   { path: '*', element: <Navigate to={routes.dashboard} /> },
+]
+
+const unauthorisedRouter = createBrowserRouter([...unauthorisedRoutes])
+const unsubscribedRouter = createBrowserRouter([
+  ...settingsRoutes,
+  { path: '*', element: <Navigate to={routes.settingsBilling} /> },
 ])
+const subscribedRouter = createBrowserRouter([...subscribedRoutes, ...settingsRoutes])
 
 export const Router = (): ReactElement => {
-  const { session, loading } = useAuthSession()
+  const { session, loading: sessionLoading } = useSession()
+  const { subscription, loading: subscriptionLoading } = useSubscription()
 
-  if (loading) {
+  if (sessionLoading || subscriptionLoading) {
     return <Loading />
   }
 
-  return <RouterProvider router={session ? router : authRouter} />
+  return (
+    <RouterProvider router={session ? (subscription ? subscribedRouter : unsubscribedRouter) : unauthorisedRouter} />
+  )
 }

@@ -1,11 +1,10 @@
 {
   "name": "ultimate-b2b-saas-boilerplate",
-  "description": "The ultimate boilerplate for building SaaS applications with React, Supabase, Tailwind CSS and TypeScript.",
+  "description": "The ultimate boilerplate for building SAAS applications with React, Supabase, Stripe, Tailwind CSS and TypeScript.",
   "version": "0.0.0",
   "app": {
     "displayName": "Ultimate B2B SAAS Boilerplate",
-    "themeColor": "#FEE048",
-    "backgroundColor": "#010009",
+    "themeColor": "#14b8a6",
     "supportEmail": "sakershaun@gmail.com"
   },
   "private": true,
@@ -24,19 +23,25 @@
     "db:migration": "supabase db diff -f",
     "db:commit": "supabase db push",
     "db:reset": "supabase db reset",
-    "db:pull": "supabase db remote commit && yarn db:reset"
+    "db:pull": "supabase db remote commit && yarn db:reset",
+    "stripe:listen": "stripe listen --forward-to http://localhost:54321/functions/v1/ -H 'Stripe-Version: 2022-11-15'",
+    "stripe:trigger": "stripe trigger",
+    "functions:serve:stripe-webhook": "supabase functions serve --no-verify-jwt stripe-webhook --env-file ./supabase/functions/stripe-webhook/.env.development",
+    "functions:deploy:stripe-webhook": "supabase functions deploy --no-verify-jwt stripe-webhook"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@supabase/supabase-js": "^2.26.0",
     "@tremor/react": "^3.2.3",
+    "dayjs": "^1.11.8",
     "framer-motion": "^10.12.17",
     "jotai": "^1.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
-    "react-router-dom": "^6.6.1"
+    "react-router-dom": "^6.6.1",
+    "stripe": "^12.10.0"
   },
   "devDependencies": {
     "@expo/spawn-async": "^1.7.0",

@@ -4,10 +4,10 @@ import { toast } from 'react-hot-toast'
 
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
 import { supabase } from '../../../../services/supabase'
-import { useAuthSession } from '../../../../store/user/useAuthSession'
+import { useSession } from '../../../../store/user/useSession'
 
 export const ChangeNameSection = (): ReactElement => {
-  const { session } = useAuthSession()
+  const { session } = useSession()
   const firstName = session?.user?.user_metadata?.first_name || ''
   const lastName = session?.user?.user_metadata?.last_name || ''
   const [newFirstName, setNewFirstName] = useState(firstName)

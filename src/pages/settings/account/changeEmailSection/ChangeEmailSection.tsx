@@ -4,11 +4,11 @@ import { toast } from 'react-hot-toast'
 
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
 import { supabase } from '../../../../services/supabase'
-import { useAuthSession } from '../../../../store/user/useAuthSession'
+import { useSession } from '../../../../store/user/useSession'
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const ChangeEmailSection = (): ReactElement => {
-  const { session } = useAuthSession()
+  const { session } = useSession()
   const email = session?.user.email || ''
   const [newEmail, setNewEmail] = useState(email)
   const [loading, setLoading] = useState(false)

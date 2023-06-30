@@ -19,6 +19,11 @@ const navigation: NavigationItem[] = [
     href: routes.settingsAccount,
     isActive: (pathname: string) => pathname === routes.settingsAccount,
   },
+  {
+    name: 'Billing',
+    href: routes.settingsBilling,
+    isActive: (pathname: string) => pathname === routes.settingsBilling,
+  },
 ]
 
 export const SettingsNavbar = (): ReactElement => {
@@ -35,7 +40,7 @@ export const SettingsNavbar = (): ReactElement => {
 
   return (
     <Headerbar>
-      <ul className="h-full flex-1 overflow-x-auto">
+      <ul className="flex h-full flex-1 gap-x-4 overflow-x-auto">
         {navigation.map(item => (
           <li key={item.name} className="h-full">
             <Link

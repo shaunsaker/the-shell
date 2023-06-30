@@ -1,7 +1,8 @@
-import { Button, Text } from '@tremor/react'
+import { Text } from '@tremor/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactElement } from 'react'
 import { resolveValue, useToaster } from 'react-hot-toast'
+import { twMerge } from 'tailwind-merge'
 
 export const Snackbar = (): ReactElement => {
   const { toasts, handlers } = useToaster()
@@ -32,11 +33,14 @@ export const Snackbar = (): ReactElement => {
                   transition: { delay: 1, duration: 0.2 },
                 }}
               >
-                <Button className="mt-2" color={toast.type === 'success' ? 'emerald' : 'red'}>
-                  <Text className="text-tremor-content-inverted dark:text-dark-tremor-content-inverted">
-                    {resolveValue(toast.message, toast)}
-                  </Text>
-                </Button>
+                <div
+                  className={twMerge(
+                    'mt-2 max-w-lg rounded px-4 py-2 shadow-lg',
+                    toast.type === 'success' ? 'bg-emerald-500' : 'bg-red-500'
+                  )}
+                >
+                  <Text className="text-white">{resolveValue(toast.message, toast)}</Text>
+                </div>
               </motion.div>
             )
           })}

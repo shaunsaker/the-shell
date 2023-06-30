@@ -23,7 +23,6 @@ export default defineConfig({
         title: pkg.app.displayName,
         description: pkg.description,
         themeColor: pkg.app.themeColor,
-        backgroundColor: pkg.app.backgroundColor,
       },
     }),
   ],

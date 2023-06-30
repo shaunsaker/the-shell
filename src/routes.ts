@@ -5,4 +5,5 @@ export const routes = {
   dashboard: '/',
   settings: '/settings',
   settingsAccount: '/settings/account',
+  settingsBilling: '/settings/billing',
 }

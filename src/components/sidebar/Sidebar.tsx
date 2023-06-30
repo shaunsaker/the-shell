@@ -2,10 +2,12 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Bars3Icon, Cog6ToothIcon, HomeModernIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Button } from '@tremor/react'
 import { Fragment, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
+import { subscribedRoutes } from '../../Router'
 import { routes } from '../../routes'
+import { useSubscription } from '../../store/subscription/useSubscription'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Logo } from '../logo/Logo'
 
@@ -34,6 +36,8 @@ const navigation: NavigationItem[] = [
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
+  const { subscription } = useSubscription()
 
   const sidebar = (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-tremor-brand px-6 dark:bg-dark-tremor-brand">
@@ -43,22 +47,29 @@ export default function Sidebar() {
 
       <nav className="flex flex-1 flex-col">
         <ul className="-mx-2 flex flex-1 flex-col space-y-1">
-          {navigation.map(item => (
-            <li key={item.name}>
-              <Link
-                to={item.href}
-                className={twMerge(
-                  item.isActive(location.pathname)
-                    ? 'bg-tremor-brand-emphasis text-tremor-brand-inverted dark:bg-dark-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted'
-                    : 'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
-                  'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 transition-colors'
-                )}
-              >
-                <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
-                {item.name}
-              </Link>
-            </li>
-          ))}
+          {navigation.map(item => {
+            const disabled = !subscription && subscribedRoutes.some(route => route.path === item.href)
+
+            return (
+              <li key={item.name}>
+                <Button
+                  icon={item.icon}
+                  disabled={disabled}
+                  className={twMerge(
+                    item.isActive(location.pathname)
+                      ? 'bg-tremor-brand-emphasis text-tremor-brand-inverted dark:bg-dark-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted'
+                      : 'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
+                    'w-full justify-start'
+                  )}
+                  onClick={() => {
+                    navigate(item.href)
+                  }}
+                >
+                  {item.name}
+                </Button>
+              </li>
+            )
+          })}
         </ul>
       </nav>
     </div>
