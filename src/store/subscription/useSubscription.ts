@@ -15,12 +15,12 @@ const useSubscriptionAtom = () => useAtom(atom)
 export const useSubscription = () => {
   const [subscription, setSubscription] = useSubscriptionAtom()
   const { session } = useSession()
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    setLoading(true)
-
     if (session) {
+      setLoading(true)
+
       fetchSubscriptionForUser(session.user.id).then(({ data }) => {
         // don't handle the error, it's possible that there is no subscription for the user
 
