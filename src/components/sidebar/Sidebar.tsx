@@ -37,7 +37,7 @@ export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const { subscription } = useSubscription()
+  const { data: subscription } = useSubscription()
 
   const sidebar = (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-tremor-brand px-6 dark:bg-dark-tremor-brand">

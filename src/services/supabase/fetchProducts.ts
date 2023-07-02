@@ -2,7 +2,7 @@ import { supabase } from '.'
 
 // fetches the products from the database, attach the related prices and order by price low to high
 export const fetchProducts = async () => {
-  const response = await supabase
+  const { data, error } = await supabase
     .from('products')
     .select('*, prices(*)')
     .eq('active', true)
@@ -10,5 +10,9 @@ export const fetchProducts = async () => {
     .order('metadata->index')
     .order('unit_amount', { foreignTable: 'prices' })
 
-  return response
+  if (error) {
+    throw error
+  }
+
+  return data
 }

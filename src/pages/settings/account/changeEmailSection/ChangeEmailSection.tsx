@@ -8,8 +8,8 @@ import { useSession } from '../../../../store/user/useSession'
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const ChangeEmailSection = (): ReactElement => {
-  const { session } = useSession()
-  const email = session?.user.email || ''
+  const { data: session } = useSession()
+  const email = session?.session?.user.email || ''
   const [newEmail, setNewEmail] = useState(email)
   const [loading, setLoading] = useState(false)
 

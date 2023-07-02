@@ -7,9 +7,9 @@ import { supabase } from '../../../../services/supabase'
 import { useSession } from '../../../../store/user/useSession'
 
 export const ChangeNameSection = (): ReactElement => {
-  const { session } = useSession()
-  const firstName = session?.user?.user_metadata?.first_name || ''
-  const lastName = session?.user?.user_metadata?.last_name || ''
+  const { data: session } = useSession()
+  const firstName = session?.session?.user?.user_metadata?.first_name || ''
+  const lastName = session?.session?.user?.user_metadata?.last_name || ''
   const [newFirstName, setNewFirstName] = useState(firstName)
   const [newLastName, setNewLastName] = useState(lastName)
   const [loading, setLoading] = useState(false)

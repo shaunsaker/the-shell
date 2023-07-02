@@ -76,8 +76,8 @@ const unsubscribedRouter = createBrowserRouter([
 const subscribedRouter = createBrowserRouter([...subscribedRoutes, ...settingsRoutes])
 
 export const Router = (): ReactElement => {
-  const { session, loading: sessionLoading } = useSession()
-  const { subscription, loading: subscriptionLoading } = useSubscription()
+  const { data: session, isLoading: sessionLoading } = useSession()
+  const { data: subscription, isLoading: subscriptionLoading } = useSubscription()
 
   if (sessionLoading || subscriptionLoading) {
     return <Loading />

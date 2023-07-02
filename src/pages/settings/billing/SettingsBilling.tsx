@@ -1,6 +1,6 @@
 import { Badge, Button, Metric, Text } from '@tremor/react'
 import dayjs from 'dayjs'
-import React, { ReactElement, useCallback, useState } from 'react'
+import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { RadioGroup } from '../../../components/radioGroup/RadioGroup'
@@ -9,12 +9,12 @@ import { useLink } from '../../../hooks/useLink'
 import { createCheckoutSession } from '../../../services/stripe/createCheckoutSession'
 import { createOrRetrieveCustomer } from '../../../services/stripe/createOrRetrieveCustomer'
 import { createBillingPortalSession } from '../../../services/stripe/createPortalSession'
-import { BillingInterval, useProducts } from '../../../store/products/useProducts'
+import { useProducts } from '../../../store/products/useProducts'
 import { useSubscription } from '../../../store/subscription/useSubscription'
 import { useSession } from '../../../store/user/useSession'
 import { PricingCard } from './pricingCard/PricingCard'
 
-const billingIntervalValueToLabel = (value: BillingInterval): string => {
+const billingIntervalValueToLabel = (value: string): string => {
   switch (value) {
     case 'day':
       return 'Daily'
@@ -30,24 +30,27 @@ const billingIntervalValueToLabel = (value: BillingInterval): string => {
 }
 
 export const SettingsBilling = (): ReactElement => {
-  const { session, loading: sessionLoading } = useSession()
-  const { subscription, loading: subscriptionLoading } = useSubscription()
-  const { products, loading: productsLoading } = useProducts()
+  const { data: session, isLoading: sessionLoading } = useSession()
+  const { data: subscription, isLoading: subscriptionLoading } = useSubscription()
+  const { data: products, isLoading: productsLoading } = useProducts()
   const [stripeLoading, setStripeLoading] = useState(false)
   const link = useLink()
 
   const loading = sessionLoading || subscriptionLoading || productsLoading
 
-  // using the subscription, if it exists, find the active product
-  const activeProduct =
-    subscription && products.filter(product => product.prices.some(price => price.id === subscription.price_id))[0]
+  // find the active product
+  const activeProduct = products?.filter(product =>
+    product.prices.some(price => price.id === subscription?.price_id)
+  )[0]
   const activePrice = activeProduct?.prices?.filter(price => price.id === subscription?.price_id)?.[0]
 
   // get the unique billing intervals from the prices
   const billingIntervals = Array.from(
-    new Set(products.flatMap(product => product?.prices?.map(price => price?.interval)))
+    new Set(products?.flatMap(product => product?.prices?.map(price => price?.interval)))
   ).filter(Boolean)
-  const [billingInterval, setBillingInterval] = React.useState(activePrice?.interval || billingIntervals[0])
+
+  // Note: we set the billingInterval in a useEffect when the products and s
+  const [billingInterval, setBillingInterval] = React.useState<string>('')
 
   // transform the billing interval into radio group options
   const billingIntervalValue = { label: billingIntervalValueToLabel(billingInterval), value: billingInterval }
@@ -56,16 +59,31 @@ export const SettingsBilling = (): ReactElement => {
     value: billingInterval,
   }))
 
+  useEffect(
+    () => {
+      // when the products or subscription updates, set the billing interval
+      if (products) {
+        setBillingInterval(activePrice?.interval || billingIntervals[0])
+      }
+    },
+    // billingIntervals is excluded because it updates on every render and we don't want it to run this effect
+    // eslint-disable-next-line
+    [activePrice?.interval, products]
+  )
+
   const onPricingCardClick = useCallback(
     async (priceId: string) => {
-      if (!session?.user) throw new Error('User is not authenticated!')
+      if (!session?.session?.user) throw new Error('User is not authenticated!')
 
       setStripeLoading(true)
 
       let customerId = ''
 
       try {
-        customerId = await createOrRetrieveCustomer({ email: session?.user.email || '', uuid: session?.user.id })
+        customerId = await createOrRetrieveCustomer({
+          email: session?.session.user.email || '',
+          uuid: session?.session.user.id,
+        })
       } catch (error) {
         toast.error((error as Error).message)
       }
@@ -98,7 +116,7 @@ export const SettingsBilling = (): ReactElement => {
 
       setStripeLoading(false)
     },
-    [link, session?.user, subscription]
+    [link, session?.session?.user, subscription]
   )
 
   return (
@@ -133,7 +151,7 @@ export const SettingsBilling = (): ReactElement => {
         label="Select payment frequency"
         value={billingIntervalValue}
         options={billingIntervalOptions}
-        onChange={option => setBillingInterval(option.value as BillingInterval)}
+        onChange={option => setBillingInterval(option.value)}
       />
 
       <div className="mt-12 flex w-full flex-wrap gap-4 lg:flex-nowrap">
@@ -142,7 +160,7 @@ export const SettingsBilling = (): ReactElement => {
         ) : (
           products
             // sort by lowest price to highest price
-            .sort((productA, productB) => {
+            ?.sort((productA, productB) => {
               // get the prices for the current billing interval
               const priceA = productA.prices?.filter(price => price.interval === billingInterval)[0]
               const priceB = productB.prices?.filter(price => price.interval === billingInterval)[0]
