@@ -10,6 +10,7 @@ export const copyBillingDetailsToCustomer = async (uuid: string, payment_method:
 
   if (!name || !phone || !address) return
 
+  // @ts-expect-error FIXME: stripe types in Deno are currently broken
   await stripe.customers.update(customer, { name, phone, address })
 
   const { error } = await supabase
@@ -20,5 +21,7 @@ export const copyBillingDetailsToCustomer = async (uuid: string, payment_method:
     })
     .eq('id', uuid)
 
-  if (error) throw error
+  if (error) {
+    throw error
+  }
 }

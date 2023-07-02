@@ -1,4 +1,5 @@
-create table "public"."users" (
+drop table if exists users;
+create table users (
     -- UUID from auth.users
     id uuid references auth.users not null primary key,
     "updated_at" timestamp with time zone,
@@ -40,4 +41,4 @@ end;
 $function$
 ;
 
-CREATE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION handle_new_user();
+CREATE OR REPLACE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION handle_new_user();

@@ -25,7 +25,6 @@
     "db:reset": "supabase db reset",
     "db:pull": "supabase db remote commit && yarn db:reset",
     "stripe:listen": "stripe listen --forward-to http://localhost:54321/functions/v1/ -H 'Stripe-Version: 2022-11-15'",
-    "stripe:trigger": "stripe trigger",
     "functions:serve:stripe-webhook": "supabase functions serve --no-verify-jwt stripe-webhook --env-file ./supabase/functions/stripe-webhook/.env.development",
     "functions:deploy:stripe-webhook": "supabase functions deploy --no-verify-jwt stripe-webhook"
   },
@@ -41,7 +40,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.6.1",
-    "stripe": "^12.10.0"
+    "stripe": "^12.11.0"
   },
   "devDependencies": {
     "@expo/spawn-async": "^1.7.0",

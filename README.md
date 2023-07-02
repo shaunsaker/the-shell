@@ -60,10 +60,6 @@ cd PROJECT_NAME
 yarn
 ```
 
-2. [Create a Stripe account](https://stripe.com/).
-
-3. Enable Test mode in Stripe.
-
 4. [Create a Supabase account](https://supabase.com/dashboard/sign-up).
 
 5. [Install Supabase](https://supabase.com/docs/guides/cli#installation).
@@ -120,11 +116,17 @@ supabase status
 
 14. [Grab your production Project URL and anon API key](https://app.supabase.com/project/_/settings/api) and pop them into `.env.production`.
 
-15. [Grab your test Stripe Secret key](https://dashboard.stripe.com/test/apikeys) and pop it into `.env.development` and `.env.production`. When you're ready to go live, you can add your live Secret key as `VITE_STRIPE_SECRET_KEY_LIVE` to `.env.production`.
+15. [Create a Stripe account](https://stripe.com/).
 
-16. [Connect your repo to Netlify](https://app.netlify.com/start).
+16. Enable Test mode in Stripe.
 
-// TODO: SS we can use the netlify cli for this 17. Add your`.env.production` file to your site in Netlify so that the production builds connects to your remote Supabase instance.
+17. [Grab your test Stripe Secret key](https://dashboard.stripe.com/test/apikeys) and pop it into `.env.development` and `.env.production`. When you're ready to go live, you can add your live Secret key as `VITE_STRIPE_SECRET_KEY_LIVE` to `.env.production`.
+
+18. [Connect your repo to Netlify](https://app.netlify.com/start).
+
+// TODO: SS we can use the netlify cli for this
+
+17. Add your`.env.production` file to your site in Netlify so that the production builds connects to your remote Supabase instance.
 
 18. Add your [site url to Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration) (for now just use your Netlify domain but when you add a custom domain, be sure to update this again).
 
@@ -138,7 +140,7 @@ yarn db:commit // this will apply the same changes to your remote db
 
 ### Setup Stripe Webhook
 
-The Stripe webhook will ensure that any activity in Stripe is updated in your Supabase db, e.g. if a new customer is created in Stripe, add them to customers in the Supabase db.
+The Stripe webhook will ensure that any activity in Stripe is updated in your Supabase db's, e.g. if a new customer is created in Stripe, add them to customers in the Supabase db's.
 
 1. Copy the env files:
 
@@ -188,13 +190,13 @@ supabase start
 
 2. Open the Supabase dashboard by clicking the `Studio URL` from the output above.
 
-3. Start the Stripe listener so that api events are forwarded to your local supabase instance:
+3. Start the Stripe listener so that api events from products/subscriptions/customers created/updated in Stripe are forwarded to your local supabase instance:
 
 ```
 yarn stripe:listen
 ```
 
-4. Serve the stripe-webhook function locally:
+4. Serve the stripe-webhook function locally to handle any Stripe api events:
 
 ```
 functions:serve:stripe-webhook

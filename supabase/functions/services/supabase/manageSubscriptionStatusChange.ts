@@ -21,10 +21,11 @@ export const manageSubscriptionStatusChange = async (
 
   const uuid = customerData?.id
 
+  // @ts-expect-error FIXME: stripe types in Deno are currently broken
   const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
     expand: ['default_payment_method'],
   })
-  console.log({ subscription })
+
   // Upsert the latest status of the subscription object.
   const subscriptionData = {
     id: subscription.id,
@@ -45,11 +46,16 @@ export const manageSubscriptionStatusChange = async (
   }
 
   const { error } = await supabase.from('subscriptions').upsert([subscriptionData])
-  if (error) throw error
+
+  if (error) {
+    throw error
+  }
+
   console.log(`Inserted/updated subscription [${subscription.id}] for user [${uuid}]`)
 
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.
-  if (createAction && subscription.default_payment_method && uuid)
+  if (createAction && subscription.default_payment_method && uuid) {
     await copyBillingDetailsToCustomer(uuid, subscription.default_payment_method as any)
+  }
 }

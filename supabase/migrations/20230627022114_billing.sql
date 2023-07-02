@@ -7,6 +7,7 @@ add column payment_method jsonb;
 /**
 * CUSTOMERS
 */
+drop table if exists customers;
 create table customers (
   -- UUID from auth.users
   id uuid references auth.users not null primary key,
@@ -31,6 +32,7 @@ with check (auth.uid() = id);
 * PRODUCTS
 * Note: products are created and managed in Stripe and synced to our DB via Stripe webhooks.
 */
+drop table if exists products;
 create table products (
   -- Product ID from Stripe, e.g. prod_1234.
   id text primary key,
@@ -52,12 +54,17 @@ create policy "Allow public read-only access." on products for select using (tru
 * PRICES
 * Note: prices are created and managed in Stripe and synced to our DB via Stripe webhooks.
 */
+drop type if exists pricing_type;
 create type pricing_type as enum ('one_time', 'recurring');
+
+drop type if exists pricing_plan_interval;
 create type pricing_plan_interval as enum ('day', 'week', 'month', 'year');
+
+drop table if exists prices;
 create table prices (
   -- Price ID from Stripe, e.g. price_1234.
   id text primary key,
-  -- The ID of the prduct that this price belongs to.
+  -- The ID of the product that this price belongs to.
   product_id text references products, 
   -- Whether the price can be used for new purchases.
   active boolean,
@@ -85,7 +92,10 @@ create policy "Allow public read-only access." on prices for select using (true)
 * SUBSCRIPTIONS
 * Note: subscriptions are created and managed in Stripe and synced to our DB via Stripe webhooks.
 */
+drop type if exists subscription_status;
 create type subscription_status as enum ('trialing', 'active', 'canceled', 'incomplete', 'incomplete_expired', 'past_due', 'unpaid', 'paused');
+
+drop table if exists subscriptions;
 create table subscriptions (
   -- Subscription ID from Stripe, e.g. sub_1234.
   id text primary key,
@@ -119,10 +129,3 @@ create table subscriptions (
 );
 alter table subscriptions enable row level security;
 create policy "Can only view own subs data." on subscriptions for select using (auth.uid() = user_id);
-
-/**
- * REALTIME SUBSCRIPTIONS
- * Only allow realtime listening on public tables.
- */
-drop publication if exists supabase_realtime;
-create publication supabase_realtime for table products, prices;

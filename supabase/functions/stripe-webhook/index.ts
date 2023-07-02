@@ -25,14 +25,16 @@ const relevantEvents = new Set([
 ])
 
 // This handler will be called for every incoming request.
-serve(async request => {
+serve(async (request): Promise<Response> => {
   const signature = request.headers.get('Stripe-Signature')
 
   // First step is to verify the event. The .text() method must be used as the
   // verification relies on the raw request body rather than the parsed JSON.
   const body = await request.text()
+
   let event
   try {
+    // @ts-expect-error FIXME: stripe types in Deno are currently broken
     event = await stripe.webhooks.constructEventAsync(
       body,
       signature,
@@ -40,47 +42,67 @@ serve(async request => {
       undefined,
       cryptoProvider
     )
-  } catch (err) {
-    return new Response(err.message, { status: 400 })
+  } catch (error) {
+    console.error(error)
+    return new Response(error.message, { status: 400 })
   }
 
-  if (relevantEvents.has(event.type)) {
+  // We use this event to query the Stripe API in order to avoid
+  // handling any forged event. If available, we use the idempotency key.
+  const requestOptions =
+    event.request && event.request.idempotency_key
+      ? {
+          idempotencyKey: event.request.idempotency_key,
+        }
+      : {}
+
+  let retrievedEvent
+  try {
+    // @ts-expect-error FIXME: stripe types in Deno are currently broken
+    retrievedEvent = await stripe.events.retrieve(event.id, requestOptions)
+  } catch (error) {
+    return new Response(error.message, { status: 400 })
+  }
+
+  if (relevantEvents.has(retrievedEvent.type)) {
     try {
-      switch (event.type) {
+      switch (retrievedEvent.type) {
         case 'product.created':
         case 'product.updated':
-          await upsertProductRecord(event.data.object)
+          await upsertProductRecord(retrievedEvent.data.object)
           break
         case 'product.deleted':
-          await deleteProductRecord(event.data.object.id)
+          await deleteProductRecord(retrievedEvent.data.object.id)
           break
         case 'price.created':
         case 'price.updated':
-          await upsertPriceRecord(event.data.object)
+          await upsertPriceRecord(retrievedEvent.data.object)
           break
         case 'customer.subscription.created':
         case 'customer.subscription.updated':
         // eslint-disable-next-line
         case 'customer.subscription.deleted':
-          const subscription = event.data.object
+          const subscription = retrievedEvent.data.object
+
           await manageSubscriptionStatusChange(
             subscription.id,
             subscription.customer as string,
-            event.type === 'customer.subscription.created'
+            retrievedEvent.type === 'customer.subscription.created'
           )
           break
         case 'checkout.session.completed':
-          const checkoutSession = event.data.object
+          const checkoutSession = retrievedEvent.data.object
           if (checkoutSession.mode === 'subscription') {
             const subscriptionId = checkoutSession.subscription
             await manageSubscriptionStatusChange(subscriptionId as string, checkoutSession.customer as string, true)
           }
           break
         default:
+          console.error('Unhandled relevant event!', retrievedEvent.type)
           throw new Error('Unhandled relevant event!')
       }
     } catch (error) {
-      console.log(error)
+      console.error(retrievedEvent.type, error)
       return new Response('Webhook handler failed. View logs.', {
         status: 400,
       })
