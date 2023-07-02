@@ -1,6 +1,6 @@
 import { supabase } from '.'
 
-// fetches the products from the database and attach the related prices
+// fetches the products from the database, attach the related prices and order by price low to high
 export const fetchProducts = async () => {
   const response = await supabase
     .from('products')

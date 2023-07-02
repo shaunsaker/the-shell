@@ -140,37 +140,51 @@ export const SettingsBilling = (): ReactElement => {
         {loading ? (
           <SkeletonLoader className="mx-auto h-80 w-80 max-w-lg" />
         ) : (
-          products.map((product, index) => {
-            const price = product.prices?.filter(price => price.interval === billingInterval)[0]
-            const active = activePrice?.id === price?.id
-            const highlight = Boolean((subscription && active) || (!subscription && index === 1))
+          products
+            // sort by lowest price to highest price
+            .sort((productA, productB) => {
+              // get the prices for the current billing interval
+              const priceA = productA.prices?.filter(price => price.interval === billingInterval)[0]
+              const priceB = productB.prices?.filter(price => price.interval === billingInterval)[0]
 
-            // @ts-expect-error features exists on metadata and if it doesn't exist, it's an empty array
-            const features = (JSON.parse(product.metadata?.features) || []) as string[]
+              return priceA?.unit_amount && priceB?.unit_amount && priceA?.unit_amount > priceB?.unit_amount ? 1 : -1
+            })
+            .map((product, index) => {
+              // get the price for the current billing interval
+              const price = product.prices?.filter(price => price.interval === billingInterval)[0]
 
-            return (
-              <PricingCard
-                key={product.id}
-                title={product.name || ''}
-                description={product.description || ''}
-                price={price?.unit_amount || 0}
-                currency={price?.currency || ''}
-                interval={price?.interval || ''}
-                features={features}
-                highlight={highlight}
-                active={active}
-              >
-                <Button
-                  variant={highlight ? 'primary' : 'secondary'}
-                  disabled={stripeLoading}
-                  loading={stripeLoading}
-                  onClick={() => onPricingCardClick(price?.id || '')}
+              // check if the current price is the active price
+              const active = activePrice?.id === price?.id
+
+              // highlight the active product or the second product if there is no active product
+              const highlight = Boolean((subscription && active) || (!subscription && index === 1))
+
+              // @ts-expect-error features exists on metadata and if it doesn't exist, it's an empty array
+              const features = (JSON.parse(product.metadata?.features) || []) as string[]
+
+              return (
+                <PricingCard
+                  key={product.id}
+                  title={product.name || ''}
+                  description={product.description || ''}
+                  price={price?.unit_amount || 0}
+                  currency={price?.currency || ''}
+                  interval={price?.interval || ''}
+                  features={features}
+                  highlight={highlight}
+                  active={active}
                 >
-                  {active ? 'Manage subscription' : 'Buy plan'}
-                </Button>
-              </PricingCard>
-            )
-          })
+                  <Button
+                    variant={highlight ? 'primary' : 'secondary'}
+                    disabled={stripeLoading}
+                    loading={stripeLoading}
+                    onClick={() => onPricingCardClick(price?.id || '')}
+                  >
+                    {active ? 'Manage subscription' : 'Buy plan'}
+                  </Button>
+                </PricingCard>
+              )
+            })
         )}
       </div>
     </main>
