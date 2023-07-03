@@ -147,12 +147,12 @@ The Stripe webhook will ensure that any activity in Stripe is updated in your Su
 1. Copy the env files:
 
 ```
-cp ./supabase/functions/stripe-webhook/.env.example ./supabase/functions/stripe-webhook/.env.development && cp ./supabase/functions/stripe-webhook/.env.example ./supabase/functions/stripe-webhook/.env.production
+cp ./supabase/functions/.env.example ./supabase/functions/.env.development && cp ./supabase/functions/.env.example ./supabase/functions/.env.production
 ```
 
-2. Grab your Stripe API key and pop it into `./supabase/functions/stripe-webhook/.env.development` and `./supabase/functions/stripe-webhook/.env.production`.
+2. Grab your Stripe API key and pop it into `./supabase/functions/.env.development` and `./supabase/functions/.env.production`.
 
-3. Run the Stripe listener once, copy the Stripe Webhook Signing Secret and pop it into `./supabase/functions/stripe-webhook/.env.development`.
+3. Run the Stripe listener once, copy the Stripe Webhook Signing Secret and pop it into `./supabase/functions/.env.development`.
 
 4. Deploy stripe-webhook function to your remote Supabase instance:
 
@@ -164,12 +164,12 @@ yarn functions:deploy:stripe-webhook
 
 6. In [Stripe Webhooks](https://dashboard.stripe.com/test/webhooks/create), paste the `Endpoint URL` above, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
 
-7. Once your Stripe webhook is created, copy the Signing secret and pop it into `./supabase/functions/stripe-webhook/.env.production` as `STRIPE_WEBHOOK_SIGNING_SECRET`.
+7. Once your Stripe webhook is created, copy the Signing secret and pop it into `./supabase/functions/.env.production` as `STRIPE_WEBHOOK_SIGNING_SECRET`.
 
 8. Deploy your production env file to Supabase:
 
 ```
-supabase secrets set --env-file ./supabase/functions/stripe-webhook/.env.production
+supabase secrets set --env-file ./supabase/functions/.env.production
 ```
 
 ---

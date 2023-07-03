@@ -6,9 +6,8 @@ import { toast } from 'react-hot-toast'
 import { RadioGroup } from '../../../components/radioGroup/RadioGroup'
 import { SkeletonLoader } from '../../../components/skeletonLoader/SkeletonLoader'
 import { useLink } from '../../../hooks/useLink'
-import { createCheckoutSession } from '../../../services/stripe/createCheckoutSession'
-import { createOrRetrieveCustomer } from '../../../services/stripe/createOrRetrieveCustomer'
-import { createBillingPortalSession } from '../../../services/stripe/createPortalSession'
+import { createCheckoutSession } from '../../../services/supabase/createCheckoutSession'
+import { createPortalSession } from '../../../services/supabase/createPortalSession'
 import { useSession } from '../../../store/auth/useSession'
 import { useProducts } from '../../../store/products/useProducts'
 import { useSubscriptions } from '../../../store/subscriptions/useSubscriptions'
@@ -80,38 +79,29 @@ export const SettingsBilling = (): ReactElement => {
 
       setStripeLoading(true)
 
-      let customerId = ''
-
-      try {
-        customerId = await createOrRetrieveCustomer({
-          email: session.user.email || '',
-          uuid: session.user.id,
-        })
-      } catch (error) {
-        toast.error((error as Error).message)
-      }
-
       if (subscription) {
         try {
-          const session = await createBillingPortalSession(customerId)
+          // TODO: SS move to mutation
+          const portalSession = await createPortalSession()
 
-          if (!session.url) {
+          if (!portalSession.url) {
             throw new Error("Couldn't create a billing portal session")
           }
 
-          link(session.url, '_self')
+          link(portalSession.url, '_self')
         } catch (error) {
           toast.error((error as Error).message)
         }
       } else {
         try {
-          const session = await createCheckoutSession({ customerId, priceId })
+          // TODO: SS move to mutation
+          const checkoutSession = await createCheckoutSession(priceId)
 
-          if (!session.url) {
+          if (!checkoutSession.url) {
             throw new Error("Couldn't create a checkout session")
           }
 
-          link(session.url, '_self')
+          link(checkoutSession.url, '_self')
         } catch (error) {
           toast.error((error as Error).message)
         }

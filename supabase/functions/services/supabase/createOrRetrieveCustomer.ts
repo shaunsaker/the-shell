@@ -1,7 +1,5 @@
-import Stripe from 'stripe'
-
-import { supabase } from '../supabase'
-import { stripe } from '.'
+import { stripe } from '../stripe/index.ts'
+import { supabase } from './index.ts'
 
 export const createOrRetrieveCustomer = async ({ email, uuid }: { email: string; uuid: string }) => {
   const { data, error } = await supabase.from('customers').select('stripe_customer_id').eq('id', uuid).single()
@@ -16,9 +14,10 @@ export const createOrRetrieveCustomer = async ({ email, uuid }: { email: string;
 
     if (email) customerData.email = email
 
-    let customer: Stripe.Customer
+    let customer
 
     try {
+      // @ts-expect-error FIXME: stripe types in Deno are currently broken
       customer = await stripe.customers.create(customerData)
     } catch (error) {
       throw error

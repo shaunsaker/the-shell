@@ -6,12 +6,12 @@ import { useSession } from '../auth/useSession'
 export const useSubscriptions = () => {
   const { data: session } = useSession()
 
-  const uuid = session?.user.id
+  const userId = session?.user.id
 
   const query = useQuery({
     queryKey: ['subscription'],
-    queryFn: () => (uuid ? fetchSubscriptionForUser(uuid) : undefined),
-    enabled: Boolean(uuid),
+    queryFn: () => (userId ? fetchSubscriptionForUser(userId) : undefined),
+    enabled: Boolean(userId),
   })
 
   return {
