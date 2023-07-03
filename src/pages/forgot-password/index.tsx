@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom'
 
 import { FullPage } from '../../components/fullPage/FullPage'
 import { Logo } from '../../components/logo/Logo'
+import { useAuthEmail } from '../../hooks/auth/useAuthEmail'
+import { useResetPasswordForEmail } from '../../hooks/auth/useResetPasswordForEmail'
 import { routes } from '../../routes'
-import { useAuthEmail } from '../../store/auth/useAuthEmail'
-import { useResetPasswordForEmail } from '../../store/auth/useResetPasswordForEmail'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function ForgotPassword() {

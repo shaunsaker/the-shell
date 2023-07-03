@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom'
 
 import { FullPage } from '../../components/fullPage/FullPage'
 import { Logo } from '../../components/logo/Logo'
+import { useAuthEmail } from '../../hooks/auth/useAuthEmail'
+import { useSignInWithPassword } from '../../hooks/auth/useSignInWithPassword'
 import { routes } from '../../routes'
-import { useAuthEmail } from '../../store/auth/useAuthEmail'
-import { useSignInWithPassword } from '../../store/auth/useSignInWithPassword'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function SignIn() {

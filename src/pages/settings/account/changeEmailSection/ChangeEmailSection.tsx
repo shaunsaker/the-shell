@@ -2,8 +2,8 @@ import { Button, Text, TextInput } from '@tremor/react'
 import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
-import { useSession } from '../../../../store/auth/useSession'
-import { useUpdateUserEmail } from '../../../../store/auth/useUpdateUserEmail'
+import { useSession } from '../../../../hooks/auth/useSession'
+import { useUpdateUserEmail } from '../../../../hooks/auth/useUpdateUserEmail'
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const ChangeEmailSection = (): ReactElement => {

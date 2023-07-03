@@ -2,8 +2,8 @@ import { Button, Text, TextInput } from '@tremor/react'
 import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
-import { useSession } from '../../../../store/auth/useSession'
-import { useUpdateUserData } from '../../../../store/auth/useUpdateUserData'
+import { useSession } from '../../../../hooks/auth/useSession'
+import { useUpdateUserData } from '../../../../hooks/auth/useUpdateUserData'
 
 export const ChangeNameSection = (): ReactElement => {
   const { data: session } = useSession()

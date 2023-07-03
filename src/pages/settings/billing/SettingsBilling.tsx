@@ -3,14 +3,14 @@ import dayjs from 'dayjs'
 import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 
+import { createBillingPortalSession } from '../../../api/billing/createBillingPortalSession'
+import { createCheckoutSession } from '../../../api/billing/createCheckoutSession'
 import { RadioGroup } from '../../../components/radioGroup/RadioGroup'
 import { SkeletonLoader } from '../../../components/skeletonLoader/SkeletonLoader'
-import { useLink } from '../../../hooks/useLink'
-import { createCheckoutSession } from '../../../services/supabase/createCheckoutSession'
-import { createPortalSession } from '../../../services/supabase/createPortalSession'
-import { useSession } from '../../../store/auth/useSession'
-import { useProducts } from '../../../store/products/useProducts'
-import { useSubscriptions } from '../../../store/subscriptions/useSubscriptions'
+import { useSession } from '../../../hooks/auth/useSession'
+import { useProducts } from '../../../hooks/products/useProducts'
+import { useSubscriptions } from '../../../hooks/subscriptions/useSubscriptions'
+import { useLink } from '../../../hooks/utils/useLink'
 import { PricingCard } from './pricingCard/PricingCard'
 
 const billingIntervalValueToLabel = (value: string): string => {
@@ -82,7 +82,7 @@ export const SettingsBilling = (): ReactElement => {
       if (subscription) {
         try {
           // TODO: SS move to mutation
-          const portalSession = await createPortalSession()
+          const portalSession = await createBillingPortalSession()
 
           if (!portalSession.url) {
             throw new Error("Couldn't create a billing portal session")

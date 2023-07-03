@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
 import pkg from '../../../package.json'
-import { useLink } from '../../hooks/useLink'
+import { useLink } from '../../hooks/utils/useLink'
 import { routes } from '../../routes'
 
 export const ErrorBoundary = (): ReactElement => {

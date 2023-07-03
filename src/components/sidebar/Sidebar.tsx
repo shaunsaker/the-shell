@@ -5,9 +5,9 @@ import { Fragment, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
+import { useSubscriptions } from '../../hooks/subscriptions/useSubscriptions'
 import { subscribedRoutes } from '../../Router'
 import { routes } from '../../routes'
-import { useSubscriptions } from '../../store/subscriptions/useSubscriptions'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Logo } from '../logo/Logo'
 

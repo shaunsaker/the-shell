@@ -3,7 +3,7 @@ import React, { ReactElement, useCallback, useState } from 'react'
 
 import { Dialog } from '../../../../components/dialog/Dialog'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
-import { useDeleteUserAccount } from '../../../../store/auth/useDeleteUserAccount'
+import { useDeleteUserAccount } from '../../../../hooks/auth/useDeleteUserAccount'
 
 export const DeleteAccountSection = (): ReactElement => {
   const [dialogOpen, setDialogOpen] = useState(false)

@@ -4,6 +4,9 @@ import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'reac
 import { ErrorBoundary } from './components/errorBoundary/ErrorBoundary'
 import { Loading } from './components/loading/Loading'
 import { SettingsLayout } from './components/settingsLayout/SettingsLayout'
+import { useOnAuthStateChange } from './hooks/auth/useOnAuthStateChange'
+import { useSession } from './hooks/auth/useSession'
+import { useSubscriptions } from './hooks/subscriptions/useSubscriptions'
 import { Dashboard } from './pages/dashboard/Dashboard'
 import ForgotPassword from './pages/forgot-password'
 import { SettingsAccount } from './pages/settings/account/SettingsAccount'
@@ -11,9 +14,6 @@ import { SettingsBilling } from './pages/settings/billing/SettingsBilling'
 import SignIn from './pages/sign-in'
 import SignUp from './pages/sign-up'
 import { routes } from './routes'
-import { useOnAuthStateChange } from './store/auth/useOnAuthStateChange'
-import { useSession } from './store/auth/useSession'
-import { useSubscriptions } from './store/subscriptions/useSubscriptions'
 
 const errorElement = <ErrorBoundary />
 

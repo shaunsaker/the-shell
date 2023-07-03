@@ -1,10 +1,10 @@
 import { Button } from '@tremor/react'
-import React, { ReactElement, useCallback, useState } from 'react'
+import React, { ReactElement, useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
+import { useSignOut } from '../../hooks/auth/useSignOut'
 import { routes } from '../../routes'
-import { supabase } from '../../services/supabase'
 import { Headerbar } from '../headerbar/Headerbar'
 
 type NavigationItem = {
@@ -28,15 +28,12 @@ const navigation: NavigationItem[] = [
 
 export const SettingsNavbar = (): ReactElement => {
   const location = useLocation()
-  const [loading, setLoading] = useState(false)
+
+  const { mutate: signOut, isLoading } = useSignOut()
 
   const onSignOut = useCallback(async () => {
-    setLoading(true)
-
-    await supabase.auth.signOut()
-
-    setLoading(false)
-  }, [])
+    await signOut()
+  }, [signOut])
 
   return (
     <Headerbar>
@@ -58,7 +55,7 @@ export const SettingsNavbar = (): ReactElement => {
         ))}
       </ul>
 
-      <Button variant="light" loading={loading} onClick={onSignOut}>
+      <Button variant="light" loading={isLoading} onClick={onSignOut}>
         Sign Out
       </Button>
     </Headerbar>
