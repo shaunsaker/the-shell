@@ -1,18 +1,18 @@
 import { Button, Text, TextInput } from '@tremor/react'
 import React, { ReactElement, useCallback, useEffect, useState } from 'react'
-import { toast } from 'react-hot-toast'
 
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
-import { supabase } from '../../../../services/supabase'
-import { useSession } from '../../../../store/user/useSession'
+import { useSession } from '../../../../store/auth/useSession'
+import { useUpdateUserEmail } from '../../../../store/auth/useUpdateUserEmail'
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const ChangeEmailSection = (): ReactElement => {
   const { data: session } = useSession()
-  const email = session?.session?.user.email || ''
+  const email = session?.user.email || ''
   const [newEmail, setNewEmail] = useState(email)
-  const [loading, setLoading] = useState(false)
+  const { mutate: updateUserEmail, isLoading } = useUpdateUserEmail()
 
+  // disable the save button if the email is the same as the current email or if the email is invalid
   const disabled = email === newEmail || !validateEmail(newEmail)
 
   useEffect(() => {
@@ -21,28 +21,8 @@ export const ChangeEmailSection = (): ReactElement => {
   }, [email])
 
   const onSave = useCallback(async () => {
-    setLoading(true)
-
-    const { error } = await supabase.auth.updateUser(
-      {
-        email: newEmail,
-      },
-      {
-        emailRedirectTo: window.location.href,
-      }
-    )
-
-    if (error) {
-      toast.error(error.message)
-    } else {
-      // update the email in the store
-      setNewEmail(newEmail)
-
-      toast.success('A confirmation email has been sent to your new email address.')
-    }
-
-    setLoading(false)
-  }, [newEmail, setNewEmail])
+    await updateUserEmail({ email: newEmail })
+  }, [newEmail, updateUserEmail])
 
   return (
     <SettingsSection title="Change email" description="Update your email address associated with your account.">
@@ -61,7 +41,7 @@ export const ChangeEmailSection = (): ReactElement => {
       </div>
 
       <div>
-        <Button disabled={disabled} loading={loading} onClick={onSave}>
+        <Button disabled={disabled} loading={isLoading} onClick={onSave}>
           Save
         </Button>
       </div>

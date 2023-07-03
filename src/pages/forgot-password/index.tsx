@@ -1,20 +1,19 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { Button, Card, Metric, Text, TextInput } from '@tremor/react'
-import { useCallback, useState } from 'react'
-import { toast } from 'react-hot-toast'
+import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { FullPage } from '../../components/fullPage/FullPage'
 import { Logo } from '../../components/logo/Logo'
 import { routes } from '../../routes'
-import { supabase } from '../../services/supabase'
-import { useAuthEmail } from '../../store/user/useAuthEmail'
+import { useAuthEmail } from '../../store/auth/useAuthEmail'
+import { useResetPasswordForEmail } from '../../store/auth/useResetPasswordForEmail'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function ForgotPassword() {
   const [email, setEmail] = useAuthEmail()
-  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const { mutate: resetPasswordForEmail, isLoading } = useResetPasswordForEmail()
 
   const isEmailValid = validateEmail(email)
   const disabled = !email || !isEmailValid
@@ -27,19 +26,9 @@ export default function ForgotPassword() {
         return
       }
 
-      setLoading(true)
-
-      const { error } = await supabase.auth.resetPasswordForEmail(email)
-
-      if (error) {
-        toast.error(error.message)
-      } else {
-        toast.success('Password reset email sent')
-      }
-
-      setLoading(false)
+      await resetPasswordForEmail(email)
     },
-    [disabled, email]
+    [disabled, email, resetPasswordForEmail]
   )
 
   return (
@@ -67,7 +56,7 @@ export default function ForgotPassword() {
             />
           </div>
 
-          <Button type="submit" disabled={disabled} loading={loading}>
+          <Button type="submit" disabled={disabled} loading={isLoading}>
             Send password reset email
           </Button>
         </form>

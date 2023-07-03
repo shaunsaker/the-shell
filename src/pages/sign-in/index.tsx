@@ -1,19 +1,18 @@
 import { Button, Card, Metric, Text, TextInput } from '@tremor/react'
 import { useCallback, useState } from 'react'
-import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import { FullPage } from '../../components/fullPage/FullPage'
 import { Logo } from '../../components/logo/Logo'
 import { routes } from '../../routes'
-import { supabase } from '../../services/supabase'
-import { useAuthEmail } from '../../store/user/useAuthEmail'
+import { useAuthEmail } from '../../store/auth/useAuthEmail'
+import { useSignInWithPassword } from '../../store/auth/useSignInWithPassword'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function SignIn() {
   const [email, setEmail] = useAuthEmail()
   const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
+  const { mutate: signInWithPassword, isLoading } = useSignInWithPassword()
   const navigate = useNavigate()
 
   const isEmailValid = validateEmail(email)
@@ -27,17 +26,9 @@ export default function SignIn() {
         return
       }
 
-      setLoading(true)
-
-      const { error } = await supabase.auth.signInWithPassword({ email, password })
-
-      if (error) {
-        toast.error(error.message)
-      }
-
-      setLoading(false)
+      await signInWithPassword({ email, password })
     },
-    [disabled, email, password]
+    [disabled, email, password, signInWithPassword]
   )
 
   return (
@@ -91,7 +82,7 @@ export default function SignIn() {
             />
           </div>
 
-          <Button type="submit" disabled={disabled} loading={loading}>
+          <Button type="submit" disabled={disabled} loading={isLoading}>
             Sign in
           </Button>
         </form>

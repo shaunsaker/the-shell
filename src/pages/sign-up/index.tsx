@@ -1,14 +1,13 @@
 import { Button, Card, Metric, Text, TextInput } from '@tremor/react'
 import { useCallback, useState } from 'react'
-import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 import pkg from '../../../package.json'
 import { FullPage } from '../../components/fullPage/FullPage'
 import { Logo } from '../../components/logo/Logo'
 import { routes } from '../../routes'
-import { supabase } from '../../services/supabase'
-import { useAuthEmail } from '../../store/user/useAuthEmail'
+import { useAuthEmail } from '../../store/auth/useAuthEmail'
+import { useSignUpWithPassword } from '../../store/auth/useSignUpWithPassword'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function SignUp() {
@@ -16,7 +15,7 @@ export default function SignUp() {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useAuthEmail()
   const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
+  const { mutate: signUpWithPassword, isLoading } = useSignUpWithPassword()
   const navigate = useNavigate()
 
   const isEmailValid = validateEmail(email)
@@ -30,9 +29,7 @@ export default function SignUp() {
         return
       }
 
-      setLoading(true)
-
-      const { error } = await supabase.auth.signUp({
+      await signUpWithPassword({
         email,
         password,
         options: {
@@ -43,16 +40,8 @@ export default function SignUp() {
           },
         },
       })
-
-      if (error) {
-        toast.error(error.message)
-      } else {
-        toast.success('A confirmation email has been sent to your inbox.')
-      }
-
-      setLoading(false)
     },
-    [disabled, email, firstName, lastName, password]
+    [disabled, email, firstName, lastName, password, signUpWithPassword]
   )
 
   return (
@@ -120,7 +109,7 @@ export default function SignUp() {
             />
           </div>
 
-          <Button type="submit" disabled={disabled} loading={loading}>
+          <Button type="submit" disabled={disabled} loading={isLoading}>
             Sign up
           </Button>
         </form>

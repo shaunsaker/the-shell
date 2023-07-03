@@ -1,31 +1,19 @@
 import { Button } from '@tremor/react'
 import React, { ReactElement, useCallback, useState } from 'react'
-import { toast } from 'react-hot-toast'
 
 import { Dialog } from '../../../../components/dialog/Dialog'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
-import { supabase } from '../../../../services/supabase'
+import { useDeleteUserAccount } from '../../../../store/auth/useDeleteUserAccount'
 
 export const DeleteAccountSection = (): ReactElement => {
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const { mutate: deleteUserAccount, isLoading } = useDeleteUserAccount()
 
   const onDeleteAccount = useCallback(async () => {
-    setLoading(true)
+    await deleteUserAccount
 
-    const { error } = await supabase.rpc('delete_user')
-
-    if (error) {
-      toast.error(error.message)
-    } else {
-      await supabase.auth.signOut()
-
-      toast.success('Your account has been deleted')
-    }
-
-    setLoading(false)
     setDialogOpen(false)
-  }, [])
+  }, [deleteUserAccount])
 
   return (
     <>
@@ -37,7 +25,7 @@ export const DeleteAccountSection = (): ReactElement => {
         <div>
           <Button
             color="red"
-            loading={loading}
+            loading={isLoading}
             onClick={() => {
               setDialogOpen(true)
             }}

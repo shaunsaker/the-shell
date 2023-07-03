@@ -7,11 +7,11 @@ export const fetchSubscriptionForUser = async (userId: string) => {
     .eq('user_id', userId)
     .eq('status', 'active')
     .order('created', { ascending: false })
-    .single()
 
   if (error) {
     throw error
   }
 
+  // return the latest subscription, if it exists
   return data
 }

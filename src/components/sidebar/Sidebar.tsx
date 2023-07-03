@@ -7,7 +7,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { subscribedRoutes } from '../../Router'
 import { routes } from '../../routes'
-import { useSubscription } from '../../store/subscription/useSubscription'
+import { useSubscriptions } from '../../store/subscriptions/useSubscriptions'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Logo } from '../logo/Logo'
 
@@ -37,7 +37,9 @@ export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const { data: subscription } = useSubscription()
+  const { data: subscriptions } = useSubscriptions()
+
+  const hasSubscription = subscriptions && subscriptions.length > 0
 
   const sidebar = (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-tremor-brand px-6 dark:bg-dark-tremor-brand">
@@ -48,7 +50,7 @@ export default function Sidebar() {
       <nav className="flex flex-1 flex-col">
         <ul className="-mx-2 flex flex-1 flex-col space-y-1">
           {navigation.map(item => {
-            const disabled = !subscription && subscribedRoutes.some(route => route.path === item.href)
+            const disabled = !hasSubscription && subscribedRoutes.some(route => route.path === item.href)
 
             return (
               <li key={item.name}>

@@ -9,9 +9,9 @@ import { useLink } from '../../../hooks/useLink'
 import { createCheckoutSession } from '../../../services/stripe/createCheckoutSession'
 import { createOrRetrieveCustomer } from '../../../services/stripe/createOrRetrieveCustomer'
 import { createBillingPortalSession } from '../../../services/stripe/createPortalSession'
+import { useSession } from '../../../store/auth/useSession'
 import { useProducts } from '../../../store/products/useProducts'
-import { useSubscription } from '../../../store/subscription/useSubscription'
-import { useSession } from '../../../store/user/useSession'
+import { useSubscriptions } from '../../../store/subscriptions/useSubscriptions'
 import { PricingCard } from './pricingCard/PricingCard'
 
 const billingIntervalValueToLabel = (value: string): string => {
@@ -31,12 +31,15 @@ const billingIntervalValueToLabel = (value: string): string => {
 
 export const SettingsBilling = (): ReactElement => {
   const { data: session, isLoading: sessionLoading } = useSession()
-  const { data: subscription, isLoading: subscriptionLoading } = useSubscription()
+  const { data: subscriptions, isLoading: subscriptionsLoading } = useSubscriptions()
   const { data: products, isLoading: productsLoading } = useProducts()
   const [stripeLoading, setStripeLoading] = useState(false)
   const link = useLink()
 
-  const loading = sessionLoading || subscriptionLoading || productsLoading
+  const loading = sessionLoading || subscriptionsLoading || productsLoading
+
+  // get the latest subscription, if it exists
+  const subscription = subscriptions && subscriptions[0]
 
   // find the active product
   const activeProduct = products?.filter(product =>
@@ -73,7 +76,7 @@ export const SettingsBilling = (): ReactElement => {
 
   const onPricingCardClick = useCallback(
     async (priceId: string) => {
-      if (!session?.session?.user) throw new Error('User is not authenticated!')
+      if (!session?.user) throw new Error('User is not authenticated!')
 
       setStripeLoading(true)
 
@@ -81,8 +84,8 @@ export const SettingsBilling = (): ReactElement => {
 
       try {
         customerId = await createOrRetrieveCustomer({
-          email: session?.session.user.email || '',
-          uuid: session?.session.user.id,
+          email: session.user.email || '',
+          uuid: session.user.id,
         })
       } catch (error) {
         toast.error((error as Error).message)
@@ -116,7 +119,7 @@ export const SettingsBilling = (): ReactElement => {
 
       setStripeLoading(false)
     },
-    [link, session?.session?.user, subscription]
+    [link, session?.user, subscription]
   )
 
   return (

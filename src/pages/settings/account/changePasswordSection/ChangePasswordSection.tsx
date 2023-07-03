@@ -1,29 +1,18 @@
 import { Button, Text, TextInput } from '@tremor/react'
 import React, { ReactElement, useCallback, useState } from 'react'
-import { toast } from 'react-hot-toast'
 
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
-import { supabase } from '../../../../services/supabase'
+import { useUpdateUserPassword } from '../../../../store/auth/useUpdateUserPassword'
 
 export const ChangePasswordSection = (): ReactElement => {
   const [newUserPassword, setNewUserPassword] = useState('')
-  const [loading, setLoading] = useState(false)
+  const { mutate: updateUserPassword, isLoading } = useUpdateUserPassword()
 
   const disabled = !newUserPassword
 
   const onSave = useCallback(async () => {
-    setLoading(true)
-
-    const { error } = await supabase.auth.updateUser({ password: newUserPassword })
-
-    if (error) {
-      toast.error(error.message)
-    } else {
-      toast.success('Your password has been updated')
-    }
-
-    setLoading(false)
-  }, [newUserPassword])
+    await updateUserPassword({ password: newUserPassword })
+  }, [newUserPassword, updateUserPassword])
 
   return (
     <SettingsSection title="Change password" description="Update your password associated with your account.">
@@ -41,7 +30,7 @@ export const ChangePasswordSection = (): ReactElement => {
       </div>
 
       <div>
-        <Button disabled={disabled} loading={loading} onClick={onSave}>
+        <Button disabled={disabled} loading={isLoading} onClick={onSave}>
           Save
         </Button>
       </div>

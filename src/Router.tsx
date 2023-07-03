@@ -11,8 +11,9 @@ import { SettingsBilling } from './pages/settings/billing/SettingsBilling'
 import SignIn from './pages/sign-in'
 import SignUp from './pages/sign-up'
 import { routes } from './routes'
-import { useSubscription } from './store/subscription/useSubscription'
-import { useSession } from './store/user/useSession'
+import { useOnAuthStateChange } from './store/auth/useOnAuthStateChange'
+import { useSession } from './store/auth/useSession'
+import { useSubscriptions } from './store/subscriptions/useSubscriptions'
 
 const errorElement = <ErrorBoundary />
 
@@ -76,14 +77,17 @@ const unsubscribedRouter = createBrowserRouter([
 const subscribedRouter = createBrowserRouter([...subscribedRoutes, ...settingsRoutes])
 
 export const Router = (): ReactElement => {
+  useOnAuthStateChange()
   const { data: session, isLoading: sessionLoading } = useSession()
-  const { data: subscription, isLoading: subscriptionLoading } = useSubscription()
+  const { data: subscriptions, isLoading: subscriptionLoading } = useSubscriptions()
+
+  const hasSubscription = subscriptions && subscriptions.length > 0
 
   if (sessionLoading || subscriptionLoading) {
     return <Loading />
   }
 
   return (
-    <RouterProvider router={session ? (subscription ? subscribedRouter : unsubscribedRouter) : unauthorisedRouter} />
+    <RouterProvider router={session ? (hasSubscription ? subscribedRouter : unsubscribedRouter) : unauthorisedRouter} />
   )
 }

@@ -20,31 +20,33 @@ TODO: SS add a video of project setup in action
 
 ## What's in the box?
 
-- [vite](https://vitejs.dev/) for blazingly fast development 🚀
 - [Typescript](https://www.typescriptlang.org/) 📘
-- [Supabase](https://supabase.com/) for the backend ⚡️
-- [Stripe](https://stripe.com/) integration ([that actually works](https://github.com/vercel/nextjs-subscription-payments/issues)) 💳
 - [React](https://reactjs.org/) ⚛️
 - [tailwindcss](https://tailwindcss.com/) for super easy styling 🎨
-- Looks ~~good~~ **farking beautiful** out of the box ✨
+- [vite](https://vitejs.dev/) for blazingly fast development 🚀
+- [Supabase](https://supabase.com/) for the backend ⚡️
+- Auth flows, dashboard and settings management ✅
+- [Stripe](https://stripe.com/) integration ([that actually works](https://github.com/vercel/nextjs-subscription-payments/issues)) 💳
+- [react-router-dom](https://reactrouter.com/en/main) for routing with a pre-configured Router 🧭
+- [react-query](https://tanstack.com/query/latest/) for declarative query management 🦅
+- [jotai](https://jotai.org/) for super simple state management 👻
+- [tremor](https://www.tremor.so/) and [headless UI](https://headlessui.com/) components 🔀
+- [framer-motion](framer.com/motion/) animations 🎬
 - Automatic light and dark modes 🌓
 - Mobile friendly 📱
-- [Asset and theme generation](#generating-public-assets) 🖼️
-- [tremor](https://www.tremor.so/) and [headless UI](https://headlessui.com/) components 🔀
-- [jotai](https://jotai.org/) for super simple state management 👻
-- [react-router-dom](https://reactrouter.com/en/main) for routing with a pre-configured Router 🧭
-- Auth flows, dashboard and settings management ✅
-- [framer-motion](framer.com/motion/) animations 🎬
+- Looks ~~good~~ **farking beautiful** out of the box ✨
 - [Mixpanel](https://mixpanel.com/) for analytics 📊
 - [Sentry](https://sentry.io/) for error logging 🪲
 - [prettier](https://prettier.io/) for consistent formatting 💅
 - [eslint](https://eslint.org/) for linting 🕵️‍♂️
-- [vitest](https://github.com/vitest-dev/vitest) for testing 🔎
-- [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) for integration testing 🐙
-- [Cypress](https://www.cypress.io/) for E2E testing 🌲
 - [husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/okonet/lint-staged) for staged linting 🚫💩
 - [Github Actions](https://github.com/features/actions) for CI running `lint`, `test` and `build` on every commit 🔄
+- [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) for integration testing 🐙
+- [Cypress](https://www.cypress.io/) for E2E testing 🌲
+- [vitest](https://github.com/vitest-dev/vitest) for testing 🔎
+- [Asset and theme generation](#generating-public-assets) 🖼️
 - [vite-plugin-svgr](https://github.com/pd4d10/vite-plugin-svgr) for svg support 🔗
+- [react-hot-toast](https://react-hot-toast.com/) for easy to use toast notifications 🍞
 
 ---
 
