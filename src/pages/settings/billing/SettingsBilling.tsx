@@ -1,16 +1,13 @@
 import { Badge, Button, Metric, Text } from '@tremor/react'
 import dayjs from 'dayjs'
-import React, { ReactElement, useCallback, useEffect, useState } from 'react'
-import { toast } from 'react-hot-toast'
+import React, { ReactElement, useCallback, useEffect } from 'react'
 
-import { createBillingPortalSession } from '../../../api/billing/createBillingPortalSession'
-import { createCheckoutSession } from '../../../api/billing/createCheckoutSession'
 import { RadioGroup } from '../../../components/radioGroup/RadioGroup'
 import { SkeletonLoader } from '../../../components/skeletonLoader/SkeletonLoader'
-import { useSession } from '../../../hooks/auth/useSession'
+import { useCreateBillingPortalSession } from '../../../hooks/billing/useCreateBillingPortalSession'
+import { useCreateCheckoutSession } from '../../../hooks/billing/useCreateCheckoutSession'
 import { useProducts } from '../../../hooks/products/useProducts'
 import { useSubscriptions } from '../../../hooks/subscriptions/useSubscriptions'
-import { useLink } from '../../../hooks/utils/useLink'
 import { PricingCard } from './pricingCard/PricingCard'
 
 const billingIntervalValueToLabel = (value: string): string => {
@@ -29,13 +26,14 @@ const billingIntervalValueToLabel = (value: string): string => {
 }
 
 export const SettingsBilling = (): ReactElement => {
-  const { data: session, isLoading: sessionLoading } = useSession()
   const { data: subscriptions, isLoading: subscriptionsLoading } = useSubscriptions()
   const { data: products, isLoading: productsLoading } = useProducts()
-  const [stripeLoading, setStripeLoading] = useState(false)
-  const link = useLink()
+  const { mutate: createBillingPortalSession, isLoading: createBillingPortalSessionLoading } =
+    useCreateBillingPortalSession()
+  const { mutate: createCheckoutSession, isLoading: createCheckoutSessionLoading } = useCreateCheckoutSession()
 
-  const loading = sessionLoading || subscriptionsLoading || productsLoading
+  const dataLoading = subscriptionsLoading || productsLoading
+  const billingLoading = createBillingPortalSessionLoading || createCheckoutSessionLoading
 
   // get the latest subscription, if it exists
   const subscription = subscriptions && subscriptions[0]
@@ -75,41 +73,13 @@ export const SettingsBilling = (): ReactElement => {
 
   const onPricingCardClick = useCallback(
     async (priceId: string) => {
-      if (!session?.user) throw new Error('User is not authenticated!')
-
-      setStripeLoading(true)
-
       if (subscription) {
-        try {
-          // TODO: SS move to mutation
-          const portalSession = await createBillingPortalSession()
-
-          if (!portalSession.url) {
-            throw new Error("Couldn't create a billing portal session")
-          }
-
-          link(portalSession.url, '_self')
-        } catch (error) {
-          toast.error((error as Error).message)
-        }
+        await createBillingPortalSession()
       } else {
-        try {
-          // TODO: SS move to mutation
-          const checkoutSession = await createCheckoutSession(priceId)
-
-          if (!checkoutSession.url) {
-            throw new Error("Couldn't create a checkout session")
-          }
-
-          link(checkoutSession.url, '_self')
-        } catch (error) {
-          toast.error((error as Error).message)
-        }
+        await createCheckoutSession(priceId)
       }
-
-      setStripeLoading(false)
     },
-    [link, session?.user, subscription]
+    [createBillingPortalSession, createCheckoutSession, subscription]
   )
 
   return (
@@ -148,7 +118,7 @@ export const SettingsBilling = (): ReactElement => {
       />
 
       <div className="mt-12 flex w-full flex-wrap gap-4 lg:flex-nowrap">
-        {loading ? (
+        {dataLoading ? (
           <SkeletonLoader className="mx-auto h-80 w-80 max-w-lg" />
         ) : (
           products
@@ -187,8 +157,8 @@ export const SettingsBilling = (): ReactElement => {
                 >
                   <Button
                     variant={highlight ? 'primary' : 'secondary'}
-                    disabled={stripeLoading}
-                    loading={stripeLoading}
+                    disabled={billingLoading}
+                    loading={billingLoading}
                     onClick={() => onPricingCardClick(price?.id || '')}
                   >
                     {active ? 'Manage subscription' : 'Buy plan'}
