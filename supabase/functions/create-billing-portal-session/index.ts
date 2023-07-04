@@ -1,9 +1,9 @@
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts'
 
 import { corsHeaders } from '../_shared/cors.ts'
-import { createBillingPortalSession } from '../services/stripe/createBillingPortalSession.ts'
-import { createOrRetrieveCustomer } from '../services/supabase/createOrRetrieveCustomer.ts'
-import { getAuthUser } from '../services/supabase/getAuthUser.ts'
+import { createBillingPortalSession } from '../_shared/stripe/createBillingPortalSession.ts'
+import { createOrRetrieveCustomer } from '../_shared/supabase/createOrRetrieveCustomer.ts'
+import { getAuthUser } from '../_shared/supabase/getAuthUser.ts'
 
 console.log('Hello from Create Billing Portal Session!')
 

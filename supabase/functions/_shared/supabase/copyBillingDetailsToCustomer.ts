@@ -1,5 +1,5 @@
 import { stripe } from '../stripe/index.ts'
-import { supabase } from './index.ts'
+import { supabaseAdmin } from './supabaseAdmin.ts'
 
 /**
  * Copies the billing details from the payment method to the customer object.
@@ -13,7 +13,7 @@ export const copyBillingDetailsToCustomer = async (uuid: string, payment_method:
   // @ts-expect-error FIXME: stripe types in Deno are currently broken
   await stripe.customers.update(customer, { name, phone, address })
 
-  const { error } = await supabase
+  const { error } = await supabaseAdmin
     .from('users')
     .update({
       billing_address: { ...address },

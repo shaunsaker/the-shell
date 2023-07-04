@@ -1,11 +1,11 @@
 // deno-lint-ignore-file no-case-declarations no-fallthrough
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts'
 
-import { Stripe, stripe } from '../services/stripe/index.ts'
-import { deleteProductRecord } from '../services/supabase/deleteProductRecord.ts'
-import { manageSubscriptionStatusChange } from '../services/supabase/manageSubscriptionStatusChange.ts'
-import { upsertPriceRecord } from '../services/supabase/upsertPriceRecord.ts'
-import { upsertProductRecord } from '../services/supabase/upsertProductRecord.ts'
+import { Stripe, stripe } from '../_shared/stripe/index.ts'
+import { deleteProductRecord } from '../_shared/supabase/deleteProductRecord.ts'
+import { manageSubscriptionStatusChange } from '../_shared/supabase/manageSubscriptionStatusChange.ts'
+import { upsertPriceRecord } from '../_shared/supabase/upsertPriceRecord.ts'
+import { upsertProductRecord } from '../_shared/supabase/upsertProductRecord.ts'
 
 // This is needed in order to use the Web Crypto API in Deno.
 const cryptoProvider = Stripe.createSubtleCryptoProvider()

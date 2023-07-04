@@ -1,4 +1,4 @@
-import { supabase } from './index.ts'
+import { supabaseAdmin } from './supabaseAdmin.ts'
 
 export const upsertProductRecord = async (product: any) => {
   const productData = {
@@ -10,7 +10,7 @@ export const upsertProductRecord = async (product: any) => {
     metadata: product.metadata,
   }
 
-  const { error } = await supabase.from('products').upsert([productData])
+  const { error } = await supabaseAdmin.from('products').upsert([productData])
   if (error) throw error
   console.log(`Product inserted/updated: ${product.id}`)
 }

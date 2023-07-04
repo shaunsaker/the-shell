@@ -1,9 +1,9 @@
 import { serve } from 'https://deno.land/std@0.177.0/http/server.ts'
 
 import { corsHeaders } from '../_shared/cors.ts'
-import { createCheckoutSession } from '../services/stripe/createCheckoutSession.ts'
-import { createOrRetrieveCustomer } from '../services/supabase/createOrRetrieveCustomer.ts'
-import { supabaseClient } from '../services/supabase/index.ts'
+import { createCheckoutSession } from '../_shared/stripe/createCheckoutSession.ts'
+import { createOrRetrieveCustomer } from '../_shared/supabase/createOrRetrieveCustomer.ts'
+import { supabaseClient } from '../_shared/supabase/supabaseClient.ts'
 
 console.log('Hello from Create Checkout Session!')
 

@@ -1,8 +1,8 @@
 import { stripe } from '../stripe/index.ts'
-import { supabase } from './index.ts'
+import { supabaseAdmin } from './supabaseAdmin.ts'
 
 export const createOrRetrieveCustomer = async ({ email, uuid }: { email: string; uuid: string }) => {
-  const { data, error } = await supabase.from('customers').select('stripe_customer_id').eq('id', uuid).single()
+  const { data, error } = await supabaseAdmin.from('customers').select('stripe_customer_id').eq('id', uuid).single()
 
   if (error || !data?.stripe_customer_id) {
     // No customer record found, let's create one.
@@ -24,7 +24,7 @@ export const createOrRetrieveCustomer = async ({ email, uuid }: { email: string;
     }
 
     // Now insert the customer ID into our Supabase mapping table.
-    const { error: supabaseError } = await supabase
+    const { error: supabaseError } = await supabaseAdmin
       .from('customers')
       .insert([{ id: uuid, stripe_customer_id: customer.id }])
 

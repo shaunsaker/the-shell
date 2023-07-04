@@ -2,7 +2,7 @@ import dayjs from 'https://deno.land/x/deno_dayjs@v0.3.0/mod.ts'
 
 import { stripe } from '../stripe/index.ts'
 import { copyBillingDetailsToCustomer } from './copyBillingDetailsToCustomer.ts'
-import { supabase } from './index.ts'
+import { supabaseAdmin } from './supabaseAdmin.ts'
 
 export const manageSubscriptionStatusChange = async (
   subscriptionId: string,
@@ -10,7 +10,7 @@ export const manageSubscriptionStatusChange = async (
   createAction = false
 ) => {
   // Get customer's UUID from mapping table.
-  const { data: customerData, error: noCustomerError } = await supabase
+  const { data: customerData, error: noCustomerError } = await supabaseAdmin
     .from('customers')
     .select('id')
     .eq('stripe_customer_id', customerId)
@@ -45,13 +45,15 @@ export const manageSubscriptionStatusChange = async (
     trial_end: subscription.trial_end ? dayjs(subscription.trial_end * 1000).toISOString() : null,
   }
 
-  const { error } = await supabase.from('subscriptions').upsert([subscriptionData])
+  const { error } = await supabaseAdmin.from('subscriptions').upsert([subscriptionData])
 
   if (error) {
     throw error
   }
 
   console.log(`Inserted/updated subscription [${subscription.id}] for user [${uuid}]`)
+
+  console.log(createAction, subscription.default_payment_method, uuid)
 
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.
