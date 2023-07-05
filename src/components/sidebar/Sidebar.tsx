@@ -5,7 +5,7 @@ import { Fragment, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
-import { useSubscriptions } from '../../hooks/subscriptions/useSubscriptions'
+import { useSubscriptions } from '../../hooks/db/useSubscriptions'
 import { subscribedRoutes } from '../../Router'
 import { routes } from '../../routes'
 import { Backdrop } from '../backdrop/Backdrop'

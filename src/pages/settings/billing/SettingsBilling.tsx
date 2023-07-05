@@ -1,13 +1,16 @@
-import { Badge, Button, Metric, Text } from '@tremor/react'
-import dayjs from 'dayjs'
+import { Button, List, ListItem, Metric, Text } from '@tremor/react'
 import React, { ReactElement, useCallback, useEffect } from 'react'
 
 import { RadioGroup } from '../../../components/radioGroup/RadioGroup'
 import { SkeletonLoader } from '../../../components/skeletonLoader/SkeletonLoader'
 import { useCreateBillingPortalSession } from '../../../hooks/billing/useCreateBillingPortalSession'
 import { useCreateCheckoutSession } from '../../../hooks/billing/useCreateCheckoutSession'
-import { useProducts } from '../../../hooks/products/useProducts'
-import { useSubscriptions } from '../../../hooks/subscriptions/useSubscriptions'
+import { useProducts } from '../../../hooks/db/useProducts'
+import { useSubscriptions } from '../../../hooks/db/useSubscriptions'
+import { useUser } from '../../../hooks/db/useUser'
+import { formatBillingAddress } from '../../../utils/formatBillingAddress'
+import { formatDate } from '../../../utils/formatDate'
+import { validatePaymentMethod } from '../../../utils/validatePaymentMethod'
 import { PricingCard } from './pricingCard/PricingCard'
 
 const billingIntervalValueToLabel = (value: string): string => {
@@ -28,11 +31,12 @@ const billingIntervalValueToLabel = (value: string): string => {
 export const SettingsBilling = (): ReactElement => {
   const { data: subscriptions, isLoading: subscriptionsLoading } = useSubscriptions()
   const { data: products, isLoading: productsLoading } = useProducts()
+  const { data: user, isLoading: userLoading } = useUser()
   const { mutate: createBillingPortalSession, isLoading: createBillingPortalSessionLoading } =
     useCreateBillingPortalSession()
   const { mutate: createCheckoutSession, isLoading: createCheckoutSessionLoading } = useCreateCheckoutSession()
 
-  const dataLoading = subscriptionsLoading || productsLoading
+  const dataLoading = subscriptionsLoading || productsLoading || userLoading
   const billingLoading = createBillingPortalSessionLoading || createCheckoutSessionLoading
 
   // get the latest subscription, if it exists
@@ -87,19 +91,43 @@ export const SettingsBilling = (): ReactElement => {
       <div className="w-full max-w-lg text-center">
         <Text className="text-tremor-brand dark:text-dark-tremor-brand">Pricing</Text>
 
-        <Metric className="mt-4">{subscription ? 'Manage your plan' : 'Pricing plans for teams of all sizes'}</Metric>
+        <Metric className="mt-4">{subscription ? 'Your plan details' : 'Pricing plans for teams of all sizes'}</Metric>
 
-        <div className="mt-6">
+        <div className="mt-8">
           {subscription ? (
-            <div className="flex justify-center gap-x-4">
-              <Badge color="gray">Last payment {dayjs(subscription.current_period_start).format('DD MMMM YYYY')}</Badge>
+            <List>
+              <ListItem>
+                <span>Last payment</span>
 
-              <Badge color="gray">
-                {subscription.cancel_at_period_end
-                  ? `Cancels on ${dayjs(subscription.cancel_at).format('DD MMMM YYYY')}`
-                  : `Renews on ${dayjs(subscription.current_period_end).format('DD MMMM YYYY')}`}
-              </Badge>
-            </div>
+                <span>{formatDate(subscription.current_period_start)}</span>
+              </ListItem>
+
+              {subscription.cancel_at_period_end ? (
+                <ListItem>
+                  <span>Cancels on</span>
+
+                  <span>{formatDate(subscription.canceled_at)}</span>
+                </ListItem>
+              ) : (
+                <ListItem>
+                  <span>Renews on</span>
+
+                  <span>{formatDate(subscription.current_period_end)}</span>
+                </ListItem>
+              )}
+
+              <ListItem>
+                <span>Last 4 digits of card</span>
+
+                <span>{validatePaymentMethod(user?.payment_method) ? user?.payment_method.last4 : ''}</span>
+              </ListItem>
+
+              <ListItem>
+                <span className="mr-8">Billing address</span>
+
+                <span className="overflow-hidden text-ellipsis">{formatBillingAddress(user?.billing_address)}</span>
+              </ListItem>
+            </List>
           ) : (
             <Text>
               Choose an affordable plan that&apos;s packed with the best features for engaging your audience, creating
@@ -110,14 +138,14 @@ export const SettingsBilling = (): ReactElement => {
       </div>
 
       <RadioGroup
-        className="mt-6"
+        className="mt-8"
         label="Select payment frequency"
         value={billingIntervalValue}
         options={billingIntervalOptions}
         onChange={option => setBillingInterval(option.value)}
       />
 
-      <div className="mt-12 flex w-full flex-wrap gap-4 lg:flex-nowrap">
+      <div className="mt-8 flex w-full flex-wrap gap-4 lg:flex-nowrap">
         {dataLoading ? (
           <SkeletonLoader className="mx-auto h-80 w-80 max-w-lg" />
         ) : (
@@ -161,7 +189,7 @@ export const SettingsBilling = (): ReactElement => {
                     loading={billingLoading}
                     onClick={() => onPricingCardClick(price?.id || '')}
                   >
-                    {active ? 'Manage subscription' : 'Buy plan'}
+                    {active ? 'Manage plan' : 'Buy plan'}
                   </Button>
                 </PricingCard>
               )
