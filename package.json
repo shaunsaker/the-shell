@@ -24,10 +24,8 @@
     "db:commit": "supabase db push",
     "db:reset": "supabase db reset",
     "db:pull": "supabase db remote commit && yarn db:reset",
-    "stripe:listen": "stripe listen --forward-to http://localhost:54321/functions/v1/ -H 'Stripe-Version: 2022-11-15'",
-    "functions:serve:stripe-webhook": "supabase functions serve --no-verify-jwt stripe-webhook --env-file ./supabase/functions/.env.development",
-    "functions:serve:create-checkout-session": "supabase functions serve --no-verify-jwt create-checkout-session --env-file ./supabase/functions/.env.development",
-    "functions:serve:create-billing-portal-session": "supabase functions serve --no-verify-jwt create-billing-portal-session --env-file ./supabase/functions/.env.development",
+    "stripe:listen": "stripe listen --forward-to http://localhost:54321/functions/v1/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
+    "functions:serve": "supabase functions serve --no-verify-jwt --env-file ./supabase/functions/.env.development",
     "functions:deploy:stripe-webhook": "supabase functions deploy --no-verify-jwt stripe-webhook",
     "functions:deploy:create-checkout-session": "supabase functions deploy --no-verify-jwt create-checkout-session",
     "functions:deploy:create-billing-portal-session": "supabase functions deploy --no-verify-jwt create-billing-portal-session"

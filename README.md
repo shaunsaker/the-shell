@@ -172,6 +172,13 @@ yarn functions:deploy:stripe-webhook
 supabase secrets set --env-file ./supabase/functions/.env.production
 ```
 
+### Deploy the rest of your Edge functions
+
+```
+yarn functions:deploy:create-checkout-session
+yarn functions:deploy:create-billing-portal-session
+```
+
 ---
 
 ### Make it your own
@@ -198,10 +205,10 @@ supabase start
 yarn stripe:listen
 ```
 
-4. Serve the stripe-webhook function locally to handle any Stripe api events:
+4. Serve the Supabase functions locally:
 
 ```
-functions:serve:stripe-webhook
+yarn functions:serve
 ```
 
 5. Run the app:
