@@ -10,7 +10,7 @@
 
 The ultimate boilerplate for building SAAS applications with React, Supabase, Stripe, Tailwind CSS and TypeScript. 😛 Set up your next project/prototype with minimal input, so you can do what you do best, build and test amazing new products 🔥
 
-Transform `10 days` of development into `1 hour` 🚀
+Transform `15 days` of development into `1 hour` 🚀
 
 You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.app/).
 
@@ -122,17 +122,19 @@ supabase status
 
 16. Enable Test mode in Stripe.
 
-17. [Grab your test Stripe Secret key](https://dashboard.stripe.com/test/apikeys) and pop it into `.env.development` and `.env.production`. When you're ready to go live, you can add your live Secret key as `VITE_STRIPE_SECRET_KEY_LIVE` to `.env.production`.
+17. [Upgrade the Stripe API version](https://dashboard.stripe.com/test/developers) to `2022-11-15`.
 
-18. [Connect your repo to Netlify](https://app.netlify.com/start).
+18. [Grab your test Stripe Secret key](https://dashboard.stripe.com/test/apikeys) and pop it into `.env.development` and `.env.production`. When you're ready to go live, you can add your live Secret key as `VITE_STRIPE_SECRET_KEY_LIVE` to `.env.production`.
+
+19. [Connect your repo to Netlify](https://app.netlify.com/start).
 
 // TODO: SS we can use the netlify cli for this
 
-17. Add your`.env.production` file to your site in Netlify so that the production builds connects to your remote Supabase instance.
+20. Add your`.env.production` file to your site in Netlify so that the production builds connects to your remote Supabase instance.
 
-18. Add your [site url to Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration) (for now just use your Netlify domain but when you add a custom domain, be sure to update this again).
+21. Add your [site url to Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration) (for now just use your Netlify domain but when you add a custom domain, be sure to update this again).
 
-19. Setup your remote Supabase db (TODO: SS test that this works):
+22. Setup your remote Supabase db (TODO: SS test that this works):
 
 ```
 mv ./migrations/* ./supabase/migrations // TODO: SS do we need this?
@@ -237,29 +239,9 @@ If you applied changes to the remote db and need to apply them locally, you can 
 yarn db:pull
 ```
 
-### Testing Stripe Webhooks Locally
-
-1. Serve the `stripe-webhook` function locally:
-
-```
-yarn functions:serve:stripe-webhook
-```
-
-2. In another terminal, serve the stripe listener:
-
-```
-yarn stripe:listen
-```
-
-3. In another terminal, trigger a stripe webhook:
-
-```
-yarn stripe:trigger payment_intent.succeeded
-``
-
 ---
 
-## Generating Public Assets
+### Generating Public Assets
 
 After spending many hours building an app, I've found that having to manually generate public assets is one of the most annoying things ever! So I created a script to do this for you 😛 All you need to do is:
 
@@ -278,4 +260,19 @@ And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
 Here it is in action:
 
 ![Generating assets](https://github.com/shaunsaker/ultimate-react-boilerplate/blob/master/assets/generate-assets.gif?raw=true)
+
+```
+
+```
+
+## Creating Products in Stripe
+
+Before creating products in Stripe, ensure that you're running the stripe listener and supabase functions locally so that your local db is populated with the same Stripe products and prices.
+
+When adding features, we do not use Stripe's `Feature list` property but rather the product's metadata as follows:
+
+```ts
+{
+  features: string[];
+}
 ```
