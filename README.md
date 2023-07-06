@@ -27,6 +27,7 @@ TODO: SS add a video of project setup in action
 - [Supabase](https://supabase.com/) for the backend ⚡️
 - Auth flows, dashboard and settings management ✅
 - [Stripe](https://stripe.com/) integration ([that actually works](https://github.com/vercel/nextjs-subscription-payments/issues)) 💳
+- [Netlify](https://www.netlify.com/) deployment 🛰️
 - [react-router-dom](https://reactrouter.com/en/main) for routing with a pre-configured Router 🧭
 - [react-query](https://tanstack.com/query/latest/) for declarative query management 🦅
 - [jotai](https://jotai.org/) for super simple state management 👻
@@ -52,7 +53,19 @@ TODO: SS add a video of project setup in action
 
 ## Setup
 
-Obvious note: Replace "PROJECT_NAME" with your own project's name 😉
+### Prequisites
+
+- [git](https://git-scm.com/downloads)
+- [yarn](https://classic.yarnpkg.com/lang/en/docs/install)
+- [Node.js](https://nodejs.org/en)
+- [Supabase account](https://supabase.com/dashboard/sign-up)
+- [Supabase cli](https://supabase.com/docs/guides/cli#installation)
+- [Stripe account](https://dashboard.stripe.com/register)
+- [Stripe cli](https://stripe.com/docs/stripe-cli#install)
+- [Netlify account](https://app.netlify.com/teams/shaunsaker/overview)
+- [Github cli](https://github.com/cli/cli#installation)
+
+### Basic Setup
 
 1. Clone the project:
 
@@ -62,132 +75,240 @@ cd PROJECT_NAME
 yarn
 ```
 
-4. [Create a Supabase account](https://supabase.com/dashboard/sign-up).
-
-5. [Install Supabase](https://supabase.com/docs/guides/cli#installation).
-
-6. Login to the Supabase cli
+2. Create a new project in Github and push.
 
 ```
-supabase login
+git add .
+git commit -m "Init"
+git remote add origin NEW_GITHUB_REMOTE
+git push -u origin master
 ```
 
-7. Create a Supabase project:
+3. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
 
 ```
-supabase projects create PROJECT_NAME -i
-```
-
-8. Initialise the Supabase project:
-
-TODO: SS how does this affect the checked in migrations?
-
-```
-supabase init
-```
-
-9. Grab your Supabase project id:
-
-```
-supabase projects list
-```
-
-10. Link the local Supabase project to the remote:
-
-```
-supabase link --project-ref SUPABASE_PROJECT_ID
-```
-
-11. Start the Supabase container:
-
-```
-supabase start
-```
-
-12. Copy the env files:
-
-```
-cp .env.example .env.development && cp .env.example .env.production
-```
-
-13. Grab your `API URL` and `anon key` and pop them into `.env.development`:
-
-```
-supabase status
-```
-
-14. [Grab your production Project URL and anon API key](https://app.supabase.com/project/_/settings/api) and pop them into `.env.production`.
-
-15. [Create a Stripe account](https://stripe.com/).
-
-16. Enable Test mode in Stripe.
-
-17. [Upgrade the Stripe API version](https://dashboard.stripe.com/test/developers) to `2022-11-15`.
-
-18. [Grab your test Stripe Secret key](https://dashboard.stripe.com/test/apikeys) and pop it into `.env.development` and `.env.production`. When you're ready to go live, you can add your live Secret key as `VITE_STRIPE_SECRET_KEY_LIVE` to `.env.production`.
-
-19. [Connect your repo to Netlify](https://app.netlify.com/start).
-
-// TODO: SS we can use the netlify cli for this
-
-20. Add your`.env.production` file to your site in Netlify so that the production builds connects to your remote Supabase instance.
-
-21. Add your [site url to Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration) (for now just use your Netlify domain but when you add a custom domain, be sure to update this again).
-
-22. Setup your remote Supabase db (TODO: SS test that this works):
-
-```
-mv ./migrations/* ./supabase/migrations // TODO: SS do we need this?
-yarn db:reset // this will apply the migrations above to your local db
-yarn db:commit // this will apply the same changes to your remote db
-```
-
-### Setup Stripe Webhook
-
-The Stripe webhook will ensure that any activity in Stripe is updated in your Supabase db's, e.g. if a new customer is created in Stripe, add them to customers in the Supabase db's.
-
-1. Copy the env files:
-
-```
-cp ./supabase/functions/.env.example ./supabase/functions/.env.development && cp ./supabase/functions/.env.example ./supabase/functions/.env.production
-```
-
-2. Grab your Stripe API key and pop it into `./supabase/functions/.env.development` and `./supabase/functions/.env.production`.
-
-3. Run the Stripe listener once, copy the Stripe Webhook Signing Secret and pop it into `./supabase/functions/.env.development`.
-
-4. Deploy stripe-webhook function to your remote Supabase instance:
-
-```
-yarn functions:deploy:stripe-webhook
-```
-
-5. The above command will a url where you can inspect your deployment. Visit that url and copy the `Endpoint URL`.
-
-6. In [Stripe Webhooks](https://dashboard.stripe.com/test/webhooks/create), paste the `Endpoint URL` above, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
-
-7. Once your Stripe webhook is created, copy the Signing secret and pop it into `./supabase/functions/.env.production` as `STRIPE_WEBHOOK_SIGNING_SECRET`.
-
-8. Deploy your production env file to Supabase:
-
-```
-supabase secrets set --env-file ./supabase/functions/.env.production
-```
-
-### Deploy the rest of your Edge functions
-
-```
-yarn functions:deploy:create-checkout-session
-yarn functions:deploy:create-billing-portal-session
+git checkout -b develop
+git push -u origin develop
 ```
 
 ---
 
 ### Make it your own
 
-4. Update the theme colors in `tailwind.config.js`.
+TODO: SS update `app.json` with your app name, theme color and support email.
 
-5. [Generate public assets](#generating-public-assets).
+#### Generating Public Assets
+
+1. Update `./src/assets/logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+2. Run the script:
+
+```
+yarn dev:node ./scripts/generateAssets
+```
+
+And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
+
+Here it is in action:
+
+![Generating assets](https://github.com/shaunsaker/ultimate-react-boilerplate/blob/master/assets/generate-assets.gif?raw=true)
+
+---
+
+### Setup Supabase
+
+1. Login to the Supabase cli
+
+```
+supabase login
+```
+
+2. Create Supabase projects for staging and production:
+
+```
+supabase projects create PROJECT_NAME-staging -i
+supabase projects create PROJECT_NAME-production -i
+```
+
+Note your staging and production project ids and db passwords, you will use them later.
+
+3. Start the Supabase container:
+
+```
+supabase start
+```
+
+4. Copy the env files:
+
+```
+cp .env.example .env.local
+```
+
+7. Grab your Supabase local `API URL` and `anon key` and pop them into `.env.local`:
+
+```
+supabase status
+```
+
+8. Setup your local Supabase db:
+
+```
+yarn db:reset
+```
+
+9. [Create a Supabase access token](https://supabase.com/dashboard/account/tokens).
+
+10. Add your Supabase access token (obtained above) and db passwords and project ids (obtained in step 2) to your Github repo:
+
+```
+gh auth login
+gh secret set SUPABASE_ACCESS_TOKEN --body "VALUE"
+gh secret set SUPABASE_DB_PASSWORD_STAGING --body "VALUE"
+gh secret set SUPABASE_PROJECT_ID_STAGING --body "VALUE"
+gh secret set SUPABASE_DB_PASSWORD_PRODUCTION --body "VALUE"
+gh secret set SUPABASE_PROJECT_ID_PRODUCTION --body "VALUE"
+```
+
+---
+
+### Setup Stripe
+
+1. Enable Test mode in Stripe.
+
+2. [Upgrade the Stripe API version](https://dashboard.stripe.com/test/developers) to the latest version. By doing this, we ensure that our functions use the same version of stripe.
+
+---
+
+#### Stripe webhooks
+
+The Stripe webhook will ensure that any activity in Stripe is updated in your Supabase db's, e.g. if a new customer is created in Stripe, add them to customers in the Supabase db's.
+
+1. Copy the env files:
+
+```
+cp ./supabase/functions/.env.example ./supabase/functions/.env.local
+```
+
+2. Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key) and pop it into `./supabase/functions/.env.local`
+
+---
+
+##### Connect test Stripe webhook to local
+
+Run the local Stripe listener once, copy the Stripe Webhook Signing Secret and pop it into `./supabase/functions/.env.local`.
+
+```
+yarn stripe:listen
+```
+
+---
+
+##### Connect test Stripe webhook to staging
+
+The following steps will setup your Supabase staging environment with your Stripe test environment.
+
+1. Grab your SUPABASE_STAGING_PROJECT_ID for use in the next step:
+
+```
+supabase projects list
+```
+
+2. Deploy stripe-webhook function to your Supabase remote staging instance:
+
+```
+yarn functions:deploy:stripe-webhook --project-ref SUPABASE_STAGING_PROJECT_ID
+```
+
+3. The above command will generate a url where you can inspect your deployment. Visit that url and copy the `Endpoint URL`.
+
+4. In [test Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste the `Endpoint URL` above, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+
+5. Once your Stripe webhook is created, copy the Signing secret.
+
+6. Add the `STRIPE_API_KEY_STAGING` (from `./supabase/functions/.env.local`) and `STRIPE_WEBHOOK_SIGNING_SECRET_STAGING` (from above) secrets to your Github repo:
+
+```
+gh auth login
+gh secret set STRIPE_API_KEY_STAGING --body "VALUE"
+gh secret set STRIPE_WEBHOOK_SIGNING_SECRET_STAGING --body "VALUE"
+```
+
+---
+
+##### Connect live Stripe webhook to production
+
+The following steps will setup your Supabase production environment with your Stripe live environment.
+
+1. Grab your SUPABASE_PRODUCTION_PROJECT_ID for use in the next step:
+
+```
+supabase projects list
+```
+
+2. Deploy stripe-webhook function to your Supabase remote production instance:
+
+```
+yarn functions:deploy:stripe-webhook --project-ref SUPABASE_PRODUCTION_PROJECT_ID
+```
+
+3. The above command will generate a url where you can inspect your deployment. Visit that url and copy the `Endpoint URL`.
+
+4. In [live Stripe webhooks](https://dashboard.stripe.com/webhooks/create), paste the `Endpoint URL` above, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+
+5. Once your Stripe webhook is created, copy the Signing secret.
+
+6. Copy your [live Stripe API key](https://dashboard.stripe.com/apikeys) (Secret key).
+
+7. Add the `STRIPE_API_KEY_PRODUCTION` (from above) and `STRIPE_WEBHOOK_SIGNING_SECRET_PRODUCTION` (from above) secrets to your Github repo:
+
+```
+gh auth login
+gh secret set STRIPE_API_KEY_PRODUCTION --body "VALUE"
+gh secret set STRIPE_WEBHOOK_SIGNING_SECRET_PRODUCTION --body "VALUE"
+```
+
+---
+
+#### Creating products in Stripe
+
+Before creating products in Stripe, ensure that you're running the stripe listener and supabase functions locally so that your local db is populated with the same Stripe products and prices.
+
+When adding features, we do not use Stripe's `Feature list` property but rather the product's **metadata** as follows:
+
+```ts
+{
+  features: string[];
+}
+```
+
+---
+
+### Setup Netlify
+
+1. Create a new site on Netlify and connect your repo to it:
+
+```
+netlify init
+```
+
+3. From the above command, grab your `URL`and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration). Note: When you add a custom domain to Netlify, you will need to update this again.
+
+4. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
+
+5. Grab your Supabase **staging** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the staging deployment):
+
+```
+yarn netlify env:set VITE_SUPABASE_URL STAGING_PROJECT URL --context branch-deploy
+yarn netlify env:set VITE_SUPABASE_ANON_KEY STAGING_ANON_KEY --context branch-deploy
+```
+
+6. Grab your Supabase **production** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the production deployment):
+
+```
+yarn netlify env:set VITE_SUPABASE_URL API PRODUCTION_PROJECT_URL --context production
+yarn netlify env:set VITE_SUPABASE_ANON_KEY PRODCUTION_ANON_KEY --context production
+```
+
+Now every time you push to `master`, production will be built and when you push to `develop`, staging will be built 🎉
 
 ---
 
@@ -219,7 +340,9 @@ yarn functions:serve
 yarn dev
 ```
 
-### Database Migrations
+---
+
+### Database migrations
 
 It's considered best practice to first make db changes to your local db and then to push them to the remote. With Supabase, we do this with [migrations](https://supabase.com/docs/guides/getting-started/local-development#database-migrations). After making changes to your local database, to get the diff as a migration run:
 
@@ -227,52 +350,6 @@ It's considered best practice to first make db changes to your local db and then
 yarn db:migration MIGRATION_NAME
 ```
 
-You can then commit this to the remote db using:
-
-```
-yarn db:commit
-```
-
-If you applied changes to the remote db and need to apply them locally, you can do that using the command:
-
-```
-yarn db:pull
-```
+Your Github actions will take care of applying the migration to staging and production once it's merged into `develop` and `master` respectively.
 
 ---
-
-### Generating Public Assets
-
-After spending many hours building an app, I've found that having to manually generate public assets is one of the most annoying things ever! So I created a script to do this for you 😛 All you need to do is:
-
-1. Update `./src/assets/logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move with life. It should be a **square svg**, size does not count in this case 😉
-1. Customise `./package.json`.
-1. Run the script:
-
-```
-
-yarn dev:node ./scripts/generateAssets
-
-```
-
-And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
-
-Here it is in action:
-
-![Generating assets](https://github.com/shaunsaker/ultimate-react-boilerplate/blob/master/assets/generate-assets.gif?raw=true)
-
-```
-
-```
-
-## Creating Products in Stripe
-
-Before creating products in Stripe, ensure that you're running the stripe listener and supabase functions locally so that your local db is populated with the same Stripe products and prices.
-
-When adding features, we do not use Stripe's `Feature list` property but rather the product's metadata as follows:
-
-```ts
-{
-  features: string[];
-}
-```

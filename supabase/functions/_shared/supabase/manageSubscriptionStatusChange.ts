@@ -1,5 +1,3 @@
-import dayjs from 'https://deno.land/x/deno_dayjs@v0.3.0/mod.ts'
-
 import { stripe } from '../stripe/index.ts'
 import { copyBillingDetailsToCustomer } from './copyBillingDetailsToCustomer.ts'
 import { supabaseAdmin } from './supabaseAdmin.ts'
@@ -35,14 +33,14 @@ export const manageSubscriptionStatusChange = async (
     price_id: subscription.items.data[0].price.id,
     quantity: subscription.quantity,
     cancel_at_period_end: subscription.cancel_at_period_end,
-    cancel_at: subscription.cancel_at ? dayjs(subscription.cancel_at * 1000).toISOString() : null,
-    canceled_at: subscription.canceled_at ? dayjs(subscription.canceled_at * 1000).toISOString() : null,
-    current_period_start: dayjs(subscription.current_period_start * 1000).toISOString(),
-    current_period_end: dayjs(subscription.current_period_end * 1000).toISOString(),
-    created: dayjs(subscription.created * 1000).toISOString(),
-    ended_at: subscription.ended_at ? dayjs(subscription.ended_at * 1000).toISOString() : null,
-    trial_start: subscription.trial_start ? dayjs(subscription.trial_start * 1000).toISOString() : null,
-    trial_end: subscription.trial_end ? dayjs(subscription.trial_end * 1000).toISOString() : null,
+    cancel_at: subscription.cancel_at ? subscription.cancel_at * 1000 : null,
+    canceled_at: subscription.canceled_at ? subscription.canceled_at * 1000 : null,
+    current_period_start: subscription.current_period_start * 1000,
+    current_period_end: subscription.current_period_end * 1000,
+    created: subscription.created * 1000,
+    ended_at: subscription.ended_at ? subscription.ended_at * 1000 : null,
+    trial_start: subscription.trial_start ? subscription.trial_start * 1000 : null,
+    trial_end: subscription.trial_end ? subscription.trial_end * 1000 : null,
   }
 
   const { error } = await supabaseAdmin.from('subscriptions').upsert([subscriptionData])

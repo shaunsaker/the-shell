@@ -21,14 +21,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "db:migration": "supabase db diff -f",
-    "db:commit": "supabase db push",
-    "db:reset": "supabase db reset",
-    "db:pull": "supabase db remote commit && yarn db:reset",
     "stripe:listen": "stripe listen --forward-to http://localhost:54321/functions/v1/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
-    "functions:serve": "supabase functions serve --no-verify-jwt --env-file ./supabase/functions/.env.development",
-    "functions:deploy:stripe-webhook": "supabase functions deploy --no-verify-jwt stripe-webhook",
-    "functions:deploy:create-checkout-session": "supabase functions deploy --no-verify-jwt create-checkout-session",
-    "functions:deploy:create-billing-portal-session": "supabase functions deploy --no-verify-jwt create-billing-portal-session"
+    "functions:serve": "supabase functions serve --no-verify-jwt --env-file ./supabase/functions/.env.local"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
@@ -70,6 +64,7 @@
     "husky": "^8.0.2",
     "jsdom": "^20.0.3",
     "lint-staged": "^13.1.0",
+    "netlify-cli": "^15.8.0",
     "npm-run-all": "^4.1.5",
     "png-to-ico": "^2.1.8",
     "postcss": "^8.4.24",

@@ -1,5 +1,4 @@
 # Supabase
 .branches
 .temp
-.env.development
-.env.production
+.env.local
