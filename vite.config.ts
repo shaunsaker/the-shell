@@ -1,9 +1,10 @@
 import react from '@vitejs/plugin-react'
+import colors from 'tailwindcss/colors'
 import { defineConfig } from 'vite'
 import handlebars from 'vite-plugin-handlebars'
 import svgr from 'vite-plugin-svgr'
 
-import pkg from './package.json'
+import app from './app.json'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,12 +18,12 @@ export default defineConfig({
       },
     }),
 
-    // @ts-expect-error vite-plugin-handlebars types incorrect
+    // @ts-expect-error vite-plugin-handlebars types are incorrect
     handlebars({
       context: {
-        title: pkg.app.displayName,
-        description: pkg.description,
-        themeColor: pkg.app.themeColor,
+        title: app.displayName,
+        description: app.description,
+        themeColor: colors[app.baseColor as keyof typeof colors][500],
       },
     }),
   ],

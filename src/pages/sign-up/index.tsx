@@ -2,7 +2,7 @@ import { Button, Card, Metric, Text, TextInput } from '@tremor/react'
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import pkg from '../../../package.json'
+import app from '../../../app.json'
 import { FullPage } from '../../components/fullPage/FullPage'
 import { Logo } from '../../components/logo/Logo'
 import { useAuthEmail } from '../../hooks/auth/useAuthEmail'
@@ -49,7 +49,7 @@ export default function SignUp() {
       <div className="flex w-full max-w-lg flex-col text-center">
         <Logo />
 
-        <Metric className="mt-4">Sign up to {pkg.app.displayName}</Metric>
+        <Metric className="mt-4">Sign up to {app.displayName}</Metric>
       </div>
 
       <Card className="mt-10 w-full max-w-lg">

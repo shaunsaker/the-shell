@@ -2,16 +2,11 @@
   "name": "ultimate-b2b-saas-boilerplate",
   "description": "The ultimate boilerplate for building SAAS applications with React, Supabase, Stripe, Tailwind CSS and TypeScript.",
   "version": "0.0.0",
-  "app": {
-    "displayName": "Ultimate B2B SAAS Boilerplate",
-    "themeColor": "#14b8a6",
-    "supportEmail": "sakershaun@gmail.com"
-  },
   "private": true,
   "scripts": {
     "prepare": "husky install",
     "dev": "vite",
-    "dev:node": "vite-node",
+    "dev:node": "tsx",
     "lint": "npm-run-all --parallel lint:*",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
@@ -20,6 +15,8 @@
     "test:watch": "vitest",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "gen:theme": "yarn dev:node ./scripts/generateTheme",
+    "gen:assets": "yarn dev:node ./scripts/generateAssets",
     "db:migration": "supabase db diff -f",
     "stripe:listen": "stripe listen --forward-to http://localhost:54321/functions/v1/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
     "functions:serve": "supabase functions serve --no-verify-jwt --env-file ./supabase/functions/.env.local"
@@ -74,12 +71,13 @@
     "tailwind-merge": "^1.13.2",
     "tailwindcss": "^3.3.2",
     "ts-node": "^10.9.1",
+    "tsx": "^3.12.7",
     "typescript": "^5.1.6",
     "vite": "^4.0.0",
-    "vite-node": "^0.32.2",
     "vite-plugin-handlebars": "^1.6.0",
     "vite-plugin-svgr": "^2.4.0",
-    "vitest": "^0.26.2"
+    "vitest": "^0.26.2",
+    "yargs": "^17.7.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

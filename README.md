@@ -95,15 +95,20 @@ git push -u origin develop
 
 ### Make it your own
 
-TODO: SS update `app.json` with your app name, theme color and support email.
+1. Update `app.json` with your app name, description and support email.
 
-#### Generating Public Assets
-
-1. Update `./src/assets/logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
-2. Run the script:
+2. Generate your theme colors where `baseColor` and `themeColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
 
 ```
-yarn dev:node ./scripts/generateAssets
+yarn gen:theme --baseColor teal --neutralColor gray
+```
+
+3. Update `./src/assets/logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+
+4. Run the script:
+
+```
+yarn gen:assets
 ```
 
 And boom 💣🎆, you have all the optimised public assets you'll need 😎✅

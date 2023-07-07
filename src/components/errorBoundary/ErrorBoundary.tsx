@@ -3,7 +3,7 @@ import { Button, Metric, Text, Title } from '@tremor/react'
 import React, { ReactElement } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
-import pkg from '../../../package.json'
+import app from '../../../app.json'
 import { useLink } from '../../hooks/utils/useLink'
 import { routes } from '../../routes'
 
@@ -38,7 +38,7 @@ export const ErrorBoundary = (): ReactElement => {
           variant="light"
           icon={ArrowRightIcon}
           iconPosition="right"
-          onClick={() => link(`mailto:${pkg.app.supportEmail}`, '_blank')}
+          onClick={() => link(`mailto:${app.supportEmail}`, '_blank')}
         >
           Contact support
         </Button>

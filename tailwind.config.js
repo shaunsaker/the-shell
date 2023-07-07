@@ -1,3 +1,5 @@
+import themeColors from './themeColors.json'
+
 module.exports = {
   content: [
     './index.html',
@@ -10,68 +12,10 @@ module.exports = {
     transparent: 'transparent',
     current: 'currentColor',
     extend: {
-      colors: {
-        // light mode
-        tremor: {
-          brand: {
-            faint: '#f0fdfa', // teal-50
-            muted: '#99f6e4', // teal-200
-            subtle: '#2dd4bf', // teal-400
-            DEFAULT: '#14b8a6', // teal-500
-            emphasis: '#0f766e', // teal-700
-            inverted: '#ffffff', // white
-          },
-          background: {
-            muted: '#f9fafb', // gray-50
-            subtle: '#f3f4f6', // gray-100
-            DEFAULT: '#ffffff', // white
-            emphasis: '#374151', // gray-700
-          },
-          border: {
-            DEFAULT: '#e5e7eb', // gray-200
-          },
-          ring: {
-            DEFAULT: '#e5e7eb', // gray-200
-          },
-          content: {
-            subtle: '#9ca3af', // gray-400
-            DEFAULT: '#6b7280', // gray-500
-            emphasis: '#374151', // gray-700
-            strong: '#111827', // gray-900
-            inverted: '#ffffff', // white
-          },
-        },
-        // dark mode
-        'dark-tremor': {
-          brand: {
-            faint: '#0B1229', // custom
-            muted: '#042f2e', // teal-950
-            subtle: '#115e59', // teal-800
-            DEFAULT: '#14b8a6', // teal-500
-            emphasis: '#2dd4bf', // teal-400
-            inverted: '#030712', // gray-950
-          },
-          background: {
-            muted: '#131A2B', // custom
-            subtle: '#1f2937', // gray-800
-            DEFAULT: '#111827', // gray-900
-            emphasis: '#d1d5db', // gray-300
-          },
-          border: {
-            DEFAULT: '#1f2937', // gray-800
-          },
-          ring: {
-            DEFAULT: '#1f2937', // gray-800
-          },
-          content: {
-            subtle: '#4b5563', // gray-600
-            DEFAULT: '#6b7280', // gray-600
-            emphasis: '#e5e7eb', // gray-200
-            strong: '#f9fafb', // gray-50
-            inverted: '#111827', // gray-900
-          },
-        },
-      },
+      // we extract the colors to themeColors so that we can change them easily using our helper script
+      // yarn gen:theme --baseColor teal --neutralColor gray
+      // but if you would prefer to hardcode the colors, you can do that too
+      colors: themeColors,
       boxShadow: {
         // light
         'tremor-input': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
