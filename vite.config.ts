@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 import react from '@vitejs/plugin-react'
 import colors from 'tailwindcss/colors'
 import { defineConfig } from 'vite'
@@ -8,6 +9,10 @@ import app from './app.json'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    sourcemap: true,
+  },
+
   plugins: [
     react(),
     svgr({
@@ -17,8 +22,6 @@ export default defineConfig({
         icon: '1em',
       },
     }),
-
-    // @ts-expect-error vite-plugin-handlebars types are incorrect
     handlebars({
       context: {
         title: app.displayName,
@@ -26,11 +29,11 @@ export default defineConfig({
         themeColor: colors[app.baseColor as keyof typeof colors][500],
       },
     }),
+    sentryVitePlugin({
+      // Note: these values are set via environment variables in Netlify
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+    }),
   ],
-
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/test/setup.ts',
-  },
 })

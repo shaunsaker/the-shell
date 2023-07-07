@@ -64,6 +64,7 @@ TODO: SS add a video of project setup in action
 - [Stripe cli](https://stripe.com/docs/stripe-cli#install)
 - [Netlify account](https://app.netlify.com/teams/shaunsaker/overview)
 - [Github cli](https://github.com/cli/cli#installation)
+- [Sentry account](https://sentry.io/signup/)
 
 ### Basic Setup
 
@@ -148,21 +149,21 @@ supabase start
 cp .env.example .env.local
 ```
 
-7. Grab your Supabase local `API URL` and `anon key` and pop them into `.env.local`:
+5. Grab your Supabase local `API URL` and `anon key` and pop them into `.env.local`:
 
 ```
 supabase status
 ```
 
-8. Setup your local Supabase db:
+6. Setup your local Supabase db:
 
 ```
 yarn db:reset
 ```
 
-9. [Create a Supabase access token](https://supabase.com/dashboard/account/tokens).
+7. [Create a Supabase access token](https://supabase.com/dashboard/account/tokens).
 
-10. Add your Supabase access token (obtained above) and db passwords and project ids (obtained in step 2) to your Github repo:
+8. Add your Supabase access token (obtained above) and db passwords and project ids (obtained in step 2) to your Github repo:
 
 ```
 gh auth login
@@ -295,27 +296,59 @@ When adding features, we do not use Stripe's `Feature list` property but rather 
 netlify init
 ```
 
-3. From the above command, grab your `URL`and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration). Note: When you add a custom domain to Netlify, you will need to update this again.
+2. From the above command, grab your `URL`and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration). Note: When you add a custom domain to Netlify, you will need to update this again.
 
-4. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
+3. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
 
-5. Grab your Supabase **staging** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the staging deployment):
+4. Grab your Supabase **staging** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the staging deployment):
 
 ```
 yarn netlify env:set VITE_SUPABASE_URL STAGING_PROJECT URL --context branch-deploy
 yarn netlify env:set VITE_SUPABASE_ANON_KEY STAGING_ANON_KEY --context branch-deploy
 ```
 
-6. Grab your Supabase **production** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the production deployment):
+5. Grab your Supabase **production** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the production deployment):
 
 ```
 yarn netlify env:set VITE_SUPABASE_URL API PRODUCTION_PROJECT_URL --context production
-yarn netlify env:set VITE_SUPABASE_ANON_KEY PRODCUTION_ANON_KEY --context production
+yarn netlify env:set VITE_SUPABASE_ANON_KEY PRODUCTION_ANON_KEY --context production
 ```
 
 Now every time you push to `master`, production will be built and when you push to `develop`, staging will be built 🎉
 
 ---
+
+### Setup Sentry
+
+1. Create a new React project in [Sentry](https://sentry.io/projects/new/).
+
+2. Copy the `dsn` key. This is your `VITE_SENTRY_DSN`.
+
+3. Grab your "Organization Slug" from [Settings](https://sentry.io/settings/organization/). This is your `SENTRY_ORG`.
+
+4. Grab your "Project Slug" from https://sentry.io/settings/projects/ and clicking on the project. In the url that loads next, e.g. https://SENTRY_ORG.sentry.io/settings/projects/X/, X is your `SENTRY_PROJECT`.
+
+5. Push the secrets to Netlify.
+
+```
+yarn netlify env:set VITE_SENTRY_DSN VALUE
+yarn netlify env:set VITE_SENTRY_ENV staging --context branch-deploy
+yarn netlify env:set VITE_SENTRY_ENV production --context production
+yarn netlify env:set SENTRY_AUTH_TOKEN VALUE
+yarn netlify env:set SENTRY_ORG VALUE
+yarn netlify env:set SENTRY_PROJECT VALUE
+```
+
+6. Push the secrets to Github.
+
+```
+gh auth login
+gh secret set SENTRY_AUTH_TOKEN --body "VALUE"
+gh secret set SENTRY_ORG --body "VALUE"
+gh secret set SENTRY_PROJECT --body "VALUE"
+```
+
+7. [Connect your Github repo to Sentry](https://private-zj.sentry.io/settings/integrations/github/).
 
 ## Development
 

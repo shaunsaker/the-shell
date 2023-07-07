@@ -1,11 +1,12 @@
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import { Button, Metric, Text, Title } from '@tremor/react'
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
 import app from '../../../app.json'
 import { useLink } from '../../hooks/utils/useLink'
 import { routes } from '../../routes'
+import { sentry } from '../../sentry'
 
 export const ErrorBoundary = (): ReactElement => {
   const error = useRouteError() as { status: number; statusText: string; error: Error } | Error | undefined
@@ -16,6 +17,12 @@ export const ErrorBoundary = (): ReactElement => {
   const status = errorIsError ? 500 : error ? error.status : '500'
   const statusText = errorIsError || !error ? 'Internal Server Error' : error.statusText
   const errorMessage = errorIsError ? error.message : error ? error.error?.message : ''
+
+  useEffect(() => {
+    if (error) {
+      sentry.captureException(error)
+    }
+  }, [error])
 
   return (
     <div className="flex h-full flex-col items-center justify-center">
