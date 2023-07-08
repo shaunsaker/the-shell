@@ -3,6 +3,7 @@ import { serve } from 'https://deno.land/std@0.177.0/http/server.ts'
 import { corsHeaders } from '../_shared/cors.ts'
 import { createCheckoutSession } from '../_shared/stripe/createCheckoutSession.ts'
 import { createOrRetrieveCustomer } from '../_shared/supabase/createOrRetrieveCustomer.ts'
+import { getProductByPriceId } from '../_shared/supabase/getProductByPriceId.ts'
 import { supabaseClient } from '../_shared/supabase/supabaseClient.ts'
 
 console.log('Hello from Create Checkout Session!')
@@ -55,11 +56,16 @@ serve(async (request): Promise<Response> => {
       email: user?.email || '',
     })
 
+    // 3.5. Get the product using the priceId from supabase and pass product.metadata.freeTrialDays to createCheckoutSession
+    const product = await getProductByPriceId(priceId)
+    const freeTrialDays = product.metadata.freeTrialDays ? parseInt(product.metadata.freeTrialDays) : undefined
+
     // 4. Create a checkout session in Stripe
     const session = await createCheckoutSession({
       customerId,
       priceId,
       quantity,
+      freeTrialDays,
       metadata,
       successUrl,
       cancelUrl,

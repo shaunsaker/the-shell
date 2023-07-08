@@ -5,7 +5,7 @@ export const fetchSubscriptionForUser = async (userId: string) => {
     .from('subscriptions')
     .select()
     .eq('user_id', userId)
-    .eq('status', 'active')
+    .in('status', ['trialing', 'active'])
     .order('created', { ascending: false })
 
   if (error) {

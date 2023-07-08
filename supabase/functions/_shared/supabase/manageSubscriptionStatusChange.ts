@@ -1,4 +1,5 @@
 import { stripe } from '../stripe/index.ts'
+import { getISOString } from '../utils/getISOString.ts'
 import { copyBillingDetailsToCustomer } from './copyBillingDetailsToCustomer.ts'
 import { supabaseAdmin } from './supabaseAdmin.ts'
 
@@ -33,14 +34,14 @@ export const manageSubscriptionStatusChange = async (
     price_id: subscription.items.data[0].price.id,
     quantity: subscription.quantity,
     cancel_at_period_end: subscription.cancel_at_period_end,
-    cancel_at: subscription.cancel_at ? subscription.cancel_at * 1000 : null,
-    canceled_at: subscription.canceled_at ? subscription.canceled_at * 1000 : null,
-    current_period_start: subscription.current_period_start * 1000,
-    current_period_end: subscription.current_period_end * 1000,
-    created: subscription.created * 1000,
-    ended_at: subscription.ended_at ? subscription.ended_at * 1000 : null,
-    trial_start: subscription.trial_start ? subscription.trial_start * 1000 : null,
-    trial_end: subscription.trial_end ? subscription.trial_end * 1000 : null,
+    cancel_at: subscription.cancel_at ? getISOString(subscription.cancel_at * 1000) : null,
+    canceled_at: subscription.canceled_at ? getISOString(subscription.canceled_at * 1000) : null,
+    current_period_start: getISOString(subscription.current_period_start * 1000),
+    current_period_end: getISOString(subscription.current_period_end * 1000),
+    created: getISOString(subscription.created * 1000),
+    ended_at: subscription.ended_at ? getISOString(subscription.ended_at * 1000) : null,
+    trial_start: subscription.trial_start ? getISOString(subscription.trial_start * 1000) : null,
+    trial_end: subscription.trial_end ? getISOString(subscription.trial_end * 1000) : null,
   }
 
   const { error } = await supabaseAdmin.from('subscriptions').upsert([subscriptionData])
@@ -50,8 +51,6 @@ export const manageSubscriptionStatusChange = async (
   }
 
   console.log(`Inserted/updated subscription [${subscription.id}] for user [${uuid}]`)
-
-  console.log(createAction, subscription.default_payment_method, uuid)
 
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.

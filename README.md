@@ -188,13 +188,7 @@ gh secret set SUPABASE_PROJECT_ID_PRODUCTION --body "VALUE"
 
 The Stripe webhook will ensure that any activity in Stripe is updated in your Supabase db's, e.g. if a new customer is created in Stripe, add them to customers in the Supabase db's.
 
-1. Copy the env files:
-
-```
-cp ./supabase/functions/.env.example ./supabase/functions/.env.local
-```
-
-2. Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key) and pop it into `./supabase/functions/.env.local`
+Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key) and pop it into `./supabase/functions/.env.local`
 
 ---
 
@@ -278,11 +272,23 @@ gh secret set STRIPE_WEBHOOK_SIGNING_SECRET_PRODUCTION --body "VALUE"
 
 Before creating products in Stripe, ensure that you're running the stripe listener and supabase functions locally so that your local db is populated with the same Stripe products and prices.
 
+###### Features
+
 When adding features, we do not use Stripe's `Feature list` property but rather the product's **metadata** as follows:
 
 ```ts
 {
   features: string[];
+}
+```
+
+###### Free trials
+
+We support free trials out of the box. To add a free trial to a product, simply add the `freeTrialDays` property to the relevant product's metadata:
+
+```ts
+{
+  freeTrialDays: number
 }
 ```
 

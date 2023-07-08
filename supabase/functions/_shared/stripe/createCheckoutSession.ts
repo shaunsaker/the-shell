@@ -4,6 +4,7 @@ export const createCheckoutSession = async ({
   customerId,
   priceId,
   quantity,
+  freeTrialDays,
   metadata,
   successUrl,
   cancelUrl,
@@ -11,6 +12,7 @@ export const createCheckoutSession = async ({
   customerId: string
   priceId: string
   quantity?: number
+  freeTrialDays?: number
   metadata?: Record<string, string>
   successUrl: string
   cancelUrl: string
@@ -32,7 +34,7 @@ export const createCheckoutSession = async ({
     mode: 'subscription',
     allow_promotion_codes: true,
     subscription_data: {
-      trial_from_plan: false,
+      trial_period_days: freeTrialDays,
       metadata,
     },
     success_url: successUrl,

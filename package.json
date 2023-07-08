@@ -18,7 +18,7 @@
     "gen:theme": "yarn dev:node ./scripts/generateTheme",
     "gen:assets": "yarn dev:node ./scripts/generateAssets",
     "db:migration": "supabase db diff -f",
-    "stripe:listen": "stripe listen --forward-to http://localhost:54321/functions/v1/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
+    "stripe:listen": "stripe listen --forward-to localhost:54321/functions/v1/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
     "functions:serve": "supabase functions serve --no-verify-jwt --env-file ./supabase/functions/.env.local"
   },
   "dependencies": {

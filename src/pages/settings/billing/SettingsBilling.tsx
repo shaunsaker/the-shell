@@ -10,8 +10,26 @@ import { useSubscriptions } from '../../../hooks/db/useSubscriptions'
 import { useUser } from '../../../hooks/db/useUser'
 import { formatBillingAddress } from '../../../utils/formatBillingAddress'
 import { formatDate } from '../../../utils/formatDate'
-import { validatePaymentMethod } from '../../../utils/validatePaymentMethod'
+import { parsePaymentMethod } from '../../../utils/parsePaymentMethod'
+import { parseProductMetadata } from '../../../utils/parseProductMetadata'
 import { PricingCard } from './pricingCard/PricingCard'
+
+const subscriptionStatusToLabel = (status: string | null): string => {
+  switch (status) {
+    case 'trialing':
+      return 'Trial'
+    case 'active':
+      return 'Active'
+    case 'past_due':
+      return 'Past due'
+    case 'canceled':
+      return 'Canceled'
+    case 'unpaid':
+      return 'Unpaid'
+    default:
+      return ''
+  }
+}
 
 const billingIntervalValueToLabel = (value: string): string => {
   switch (value) {
@@ -91,16 +109,34 @@ export const SettingsBilling = (): ReactElement => {
       <div className="w-full max-w-lg text-center">
         <Text className="text-tremor-brand dark:text-dark-tremor-brand">Pricing</Text>
 
-        <Metric className="mt-4">{subscription ? 'Your plan details' : 'Pricing plans for teams of all sizes'}</Metric>
+        <Metric className="mt-4">
+          {subscription && user ? 'Your plan details' : 'Pricing plans for teams of all sizes'}
+        </Metric>
 
         <div className="mt-8">
-          {subscription ? (
+          {subscription && user ? (
             <List>
               <ListItem>
-                <span>Last payment</span>
+                <span>Status</span>
 
-                <span>{formatDate(subscription.current_period_start)}</span>
+                <span>{subscriptionStatusToLabel(subscription.status)}</span>
               </ListItem>
+
+              {subscription.status === 'trialing' && (
+                <ListItem>
+                  <span>Trial started</span>
+
+                  <span>{formatDate(subscription.trial_start)}</span>
+                </ListItem>
+              )}
+
+              {subscription.status === 'active' && (
+                <ListItem>
+                  <span>Last payment</span>
+
+                  <span>{formatDate(subscription.current_period_start)}</span>
+                </ListItem>
+              )}
 
               {subscription.cancel_at_period_end ? (
                 <ListItem>
@@ -119,13 +155,13 @@ export const SettingsBilling = (): ReactElement => {
               <ListItem>
                 <span>Last 4 digits of card</span>
 
-                <span>{validatePaymentMethod(user?.payment_method) ? user?.payment_method.last4 : ''}</span>
+                <span>{parsePaymentMethod(user.payment_method).last4}</span>
               </ListItem>
 
               <ListItem>
                 <span className="mr-8">Billing address</span>
 
-                <span className="overflow-hidden text-ellipsis">{formatBillingAddress(user?.billing_address)}</span>
+                <span className="overflow-hidden text-ellipsis">{formatBillingAddress(user.billing_address)}</span>
               </ListItem>
             </List>
           ) : (
@@ -168,8 +204,7 @@ export const SettingsBilling = (): ReactElement => {
               // highlight the active product or the second product if there is no active product
               const highlight = Boolean((subscription && active) || (!subscription && index === 1))
 
-              // @ts-expect-error features exists on metadata and if it doesn't exist, it's an empty array
-              const features = (JSON.parse(product.metadata?.features) || []) as string[]
+              const { features, freeTrialDays } = parseProductMetadata(product.metadata)
 
               return (
                 <PricingCard
@@ -189,7 +224,7 @@ export const SettingsBilling = (): ReactElement => {
                     loading={billingLoading}
                     onClick={() => onPricingCardClick(price?.id || '')}
                   >
-                    {active ? 'Manage plan' : 'Buy plan'}
+                    {active ? 'Manage plan' : freeTrialDays ? `Start ${freeTrialDays} day free trial` : 'Buy plan'}
                   </Button>
                 </PricingCard>
               )

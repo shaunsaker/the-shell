@@ -7,7 +7,7 @@ type BillingAddress = {
   postal_code: string
 }
 
-export const validateBillingAddress = (object: unknown): object is BillingAddress => {
+const validateBillingAddress = (object: unknown): object is BillingAddress => {
   if (!object) {
     return false
   }
@@ -39,4 +39,12 @@ export const validateBillingAddress = (object: unknown): object is BillingAddres
   }
 
   return true
+}
+
+export const parseBillingAddress = (billingAddress?: any): BillingAddress => {
+  if (!validateBillingAddress(billingAddress)) {
+    throw new Error('Invalid billing address')
+  }
+
+  return billingAddress
 }
