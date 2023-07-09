@@ -1,7 +1,9 @@
 import { CheckIcon } from '@heroicons/react/24/outline'
-import { Badge, Card, Metric, Text, Title } from '@tremor/react'
-import React, { ReactElement, ReactNode } from 'react'
+import { Badge, Button, Card, Metric, Text, Title } from '@tremor/react'
+import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
+
+import { formatCurrency } from '../../../../../utils/formatCurrency'
 
 type PricingCardProps = {
   title: string
@@ -10,9 +12,10 @@ type PricingCardProps = {
   currency: string
   interval: string
   features: string[]
+  freeTrialDays?: number
   highlight: boolean
-  active: boolean
-  children: ReactNode
+  loading: boolean
+  onClick: () => void
 }
 
 export const PricingCard = ({
@@ -22,9 +25,10 @@ export const PricingCard = ({
   currency,
   interval,
   features,
+  freeTrialDays,
   highlight,
-  active,
-  children,
+  loading,
+  onClick,
 }: PricingCardProps): ReactElement => {
   return (
     <Card
@@ -36,25 +40,20 @@ export const PricingCard = ({
       <div className="flex justify-between gap-x-4">
         <Title className={highlight ? 'text-tremor-brand dark:text-tremor-brand' : ''}>{title}</Title>
 
-        {highlight && <Badge size="xs">{active ? 'Current plan' : 'Most popular'}</Badge>}
+        {highlight && <Badge size="xs">Most popular</Badge>}
       </div>
 
       <Text>{description}</Text>
 
       <div className="flex items-end">
-        <Metric>
-          {currency &&
-            new Intl.NumberFormat('en-US', {
-              style: 'currency',
-              currency,
-              minimumFractionDigits: 0,
-            }).format(price / 100)}
-        </Metric>
+        <Metric>{currency && formatCurrency(price / 100, currency)}</Metric>
 
         <Text className="mb-1 ml-1">/ {interval}</Text>
       </div>
 
-      {children}
+      <Button variant={highlight ? 'primary' : 'secondary'} disabled={loading} loading={loading} onClick={onClick}>
+        {freeTrialDays ? `Start ${freeTrialDays} day free trial` : 'Buy plan'}
+      </Button>
 
       <ul className="flex flex-col gap-y-2">
         {features.map(feature => (

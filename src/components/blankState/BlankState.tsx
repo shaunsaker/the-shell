@@ -11,14 +11,14 @@ type BlankStateProps = {
 
 export const BlankState = ({ Icon, title, description, buttonText, buttonAction }: BlankStateProps): ReactElement => {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center">
-      <Icon className="h-8 w-8 text-tremor-content-subtle dark:text-dark-tremor-content-subtle" />
+    <div className="mx-auto flex max-w-lg flex-1 flex-col items-center justify-center">
+      <Icon className="h-16 w-16 text-tremor-content-subtle dark:text-dark-tremor-content-subtle" />
 
-      <Title className="mt-2">{title}</Title>
+      <Title className="mt-4">{title}</Title>
 
-      <Text>{description}</Text>
+      <Text className="mt-2 text-center">{description}</Text>
 
-      <Button className="mt-4" onClick={buttonAction}>
+      <Button className="mt-8" onClick={buttonAction}>
         {buttonText}
       </Button>
     </div>

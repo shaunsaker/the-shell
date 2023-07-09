@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
 
 import { ErrorBoundary } from './components/errorBoundary/ErrorBoundary'
-import { Loading } from './components/loading/Loading'
+import { ScreenLoading } from './components/screenLoading'
 import { SettingsLayout } from './components/settingsLayout/SettingsLayout'
 import { useOnAuthStateChange } from './hooks/auth/useOnAuthStateChange'
 import { useSession } from './hooks/auth/useSession'
@@ -84,7 +84,7 @@ export const Router = (): ReactElement => {
   const hasSubscription = subscriptions && subscriptions.length > 0
 
   if (sessionLoading || subscriptionLoading) {
-    return <Loading />
+    return <ScreenLoading />
   }
 
   return (
