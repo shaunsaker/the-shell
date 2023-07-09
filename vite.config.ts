@@ -7,10 +7,12 @@ import svgr from 'vite-plugin-svgr'
 
 import app from './app.json'
 
+const SHOULD_USE_SENTRY = Boolean(process.env.SENTRY_AUTH_TOKEN && process.env.SENTRY_ORG && process.env.SENTRY_PROJECT)
+
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    sourcemap: true,
+    sourcemap: SHOULD_USE_SENTRY,
   },
 
   plugins: [
@@ -29,11 +31,14 @@ export default defineConfig({
         themeColor: colors[app.baseColor as keyof typeof colors][500],
       },
     }),
-    sentryVitePlugin({
-      // Note: these values are set via environment variables in Netlify
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-      org: process.env.SENTRY_ORG,
-      project: process.env.SENTRY_PROJECT,
-    }),
+    {
+      ...(SHOULD_USE_SENTRY &&
+        sentryVitePlugin({
+          // Note: these values are set via environment variables in Netlify
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          org: process.env.SENTRY_ORG,
+          project: process.env.SENTRY_PROJECT,
+        })),
+    },
   ],
 })
