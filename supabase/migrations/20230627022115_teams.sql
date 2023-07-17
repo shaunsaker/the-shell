@@ -3,12 +3,17 @@ CREATE TABLE IF NOT EXISTS teams (
   id SERIAL PRIMARY KEY,
   NAME TEXT NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::TEXT, NOW()),
-  -- Note we do not reference the users table here because if a user is deleted, we want to keep the team
-  created_by UUID
+  created_by UUID REFERENCES users(id)
 );
 
 /* Note: teams and team_members are selected and updated using supabase functions to remove complexity in creating policies */
 ALTER TABLE teams ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow authenticated users to create their own teams." ON teams AS PERMISSIVE FOR
+INSERT TO PUBLIC WITH CHECK (auth.uid() = created_by);
+
+CREATE POLICY "Allow team owners to view their teams." ON teams AS PERMISSIVE FOR
+SELECT USING (auth.uid() = created_by);
 
 DROP TYPE IF EXISTS team_member_role;
 
@@ -29,6 +34,41 @@ CREATE TABLE IF NOT EXISTS team_members (
 );
 
 ALTER TABLE team_members ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow team owners to insert team_members to their teams." ON team_members AS PERMISSIVE FOR
+INSERT TO PUBLIC WITH CHECK (
+    auth.uid() = user_id
+    AND EXISTS (
+      SELECT 1
+      FROM teams
+      WHERE teams.id = team_members.team_id
+        AND teams.created_by = auth.uid()
+    )
+  );
+
+CREATE POLICY "Allow team owners to view team_members in their teams." ON team_members AS PERMISSIVE FOR
+SELECT USING (
+    auth.uid() = user_id
+    AND EXISTS (
+      SELECT 1
+      FROM teams
+      WHERE teams.id = team_members.team_id
+        AND teams.created_by = auth.uid()
+    )
+  );
+
+CREATE
+OR replace FUNCTION get_teams_with_admin_role_for_authenticated_user() returns setof INT LANGUAGE SQL security definer AS $$
+SELECT team_id
+FROM team_members
+WHERE user_id = auth.uid()
+  AND role = 'admin' $$;
+
+CREATE policy "Team admins can insert team members" ON team_members FOR ALL USING (
+  team_id IN (
+    SELECT get_teams_with_admin_role_for_authenticated_user()
+  )
+);
 
 /* When a user confirms their email, if they have any team member records, change the status to active */
 CREATE

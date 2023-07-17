@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom'
 
 import { Dialog } from '../../../../components/dialog/Dialog'
 import { TextInput } from '../../../../components/textInput/TextInput'
+import { useSession } from '../../../../hooks/auth/useSession'
 import { useCreateTeam } from '../../../../hooks/teams/useCreateTeam'
 import { routes } from '../../../../routes'
 
 export const SettingsAddTeam = (): ReactElement => {
   const navigate = useNavigate()
   const [name, setName] = useState('')
+  const { data: session } = useSession()
   const { mutate: createTeam, isLoading } = useCreateTeam()
 
   const disabled = !name || isLoading
@@ -22,7 +24,9 @@ export const SettingsAddTeam = (): ReactElement => {
       confirmDisabled={disabled}
       confirmLoading={isLoading}
       onConfirmClick={() => {
-        createTeam({ name })
+        if (session?.user.id) {
+          createTeam({ name, userId: session.user.id })
+        }
       }}
       onClose={() => {
         navigate(routes.settingsTeams)

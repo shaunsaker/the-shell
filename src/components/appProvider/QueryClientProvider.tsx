@@ -25,7 +25,7 @@ const queryClient = new QueryClient({
       console.error(error)
 
       // if the user is unauthorised, sign them out
-      if ((error as PostgrestError).message === 'JWT expired') {
+      if ((error as PostgrestError).message === 'Unauthorized' || (error as PostgrestError).message === 'JWT expired') {
         signOut()
       } else {
         sentry.captureException(error)
