@@ -2,11 +2,7 @@ import { supabase } from '..'
 import { handleApiError } from '../utils/handleApiError'
 
 export const deleteTeamMember = async (id: number) => {
-  const { data, error } = await supabase.functions.invoke('delete-team-member', {
-    body: {
-      id,
-    },
-  })
+  const { data, error } = await supabase.from('team_members').delete().eq('id', id)
 
   if (error) {
     await handleApiError(error)
