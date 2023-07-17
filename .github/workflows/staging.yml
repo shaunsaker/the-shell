@@ -28,9 +28,7 @@ jobs:
 
       - run: supabase link --project-ref $SUPABASE_PROJECT_ID
       - run: supabase db push
-      - run: supabase functions deploy --no-verify-jwt stripe-webhook
-      - run: supabase functions deploy --no-verify-jwt create-checkout-session
-      - run: supabase functions deploy --no-verify-jwt create-billing-portal-session
+      - run: supabase functions deploy --no-verify-jwt
 
       - name: Get package version
         id: package-version
