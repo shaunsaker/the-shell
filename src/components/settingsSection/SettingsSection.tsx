@@ -6,10 +6,19 @@ type SettingsSectionProps = {
   className?: string
   title: string
   description: string
+  action?: ReactNode
   children?: ReactNode
+  fullWidth?: boolean
 }
 
-export const SettingsSection = ({ className, title, description, children }: SettingsSectionProps): ReactElement => {
+export const SettingsSection = ({
+  className,
+  title,
+  description,
+  action,
+  children,
+  fullWidth,
+}: SettingsSectionProps): ReactElement => {
   return (
     <section
       className={twMerge(
@@ -17,11 +26,15 @@ export const SettingsSection = ({ className, title, description, children }: Set
         className
       )}
     >
-      <div className="flex w-full max-w-lg flex-col gap-y-8">
-        <div>
-          <Title>{title}</Title>
+      <div className={`flex w-full flex-col gap-y-8 ${fullWidth ? '' : 'max-w-lg'}`}>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <Title>{title}</Title>
 
-          <Text className="mt-2">{description}</Text>
+            <Text className="mt-2">{description}</Text>
+          </div>
+
+          {action}
         </div>
 
         {children}

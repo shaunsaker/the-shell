@@ -10,7 +10,7 @@ export const Snackbar = (): ReactElement => {
 
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 top-0 z-30 flex flex-col items-center pt-2"
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 flex flex-col items-center pt-2"
       onMouseEnter={startPause}
       onMouseLeave={endPause}
     >
@@ -39,7 +39,7 @@ export const Snackbar = (): ReactElement => {
                     toast.type === 'success' ? 'bg-emerald-500' : 'bg-red-500'
                   )}
                 >
-                  <Text className="text-white">{resolveValue(toast.message, toast)}</Text>
+                  <Text className="text-center text-white">{resolveValue(toast.message, toast)}</Text>
                 </div>
               </motion.div>
             )

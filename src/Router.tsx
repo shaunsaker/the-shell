@@ -1,23 +1,29 @@
 import React, { ReactElement } from 'react'
-import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
 import { ErrorBoundary } from './components/errorBoundary/ErrorBoundary'
+import { MainLayout } from './components/mainLayout/MainLayout'
 import { ScreenLoading } from './components/screenLoading'
 import { SettingsLayout } from './components/settingsLayout/SettingsLayout'
-import { useOnAuthStateChange } from './hooks/auth/useOnAuthStateChange'
 import { useSession } from './hooks/auth/useSession'
-import { useSubscriptions } from './hooks/db/useSubscriptions'
-import { Dashboard } from './pages/dashboard/Dashboard'
-import ForgotPassword from './pages/forgot-password'
-import { SettingsAccount } from './pages/settings/account/SettingsAccount'
-import { SettingsBilling } from './pages/settings/billing/SettingsBilling'
-import SignIn from './pages/sign-in'
-import SignUp from './pages/sign-up'
+import { Dashboard } from './pages/dashboard'
+import ForgotPassword from './pages/forgotPassword'
+import { SettingsAccount } from './pages/settings/account'
+import { SettingsBilling } from './pages/settings/billing'
+import { SettingsTeams } from './pages/settings/teams'
+import { SettingsAddTeam } from './pages/settings/teams/addTeam'
+import { SettingsEditTeam } from './pages/settings/teams/editTeam'
+import { SettingsDeleteTeam } from './pages/settings/teams/editTeam/deleteTeam'
+import { SettingsEditTeamMember } from './pages/settings/teams/editTeamMember'
+import { SettingsRemoveTeamMember } from './pages/settings/teams/editTeamMember/removeTeamMember'
+import { SettingsInviteTeamMembers } from './pages/settings/teams/inviteTeamMembers/SettingsInviteTeamMembers'
+import SignIn from './pages/signIn'
+import SignUp from './pages/signUp'
 import { routes } from './routes'
 
 const errorElement = <ErrorBoundary />
 
-const unauthorisedRoutes: RouteObject[] = [
+const unauthorisedRouter = createBrowserRouter([
   {
     path: routes.signUp,
     element: <SignUp />,
@@ -34,60 +40,91 @@ const unauthorisedRoutes: RouteObject[] = [
     errorElement,
   },
   { path: '*', element: <Navigate to={routes.signIn} /> },
-]
+])
 
-const settingsRoutes: RouteObject[] = [
+const authorisedRouter = createBrowserRouter([
   {
-    element: <SettingsLayout />,
+    element: <MainLayout />,
     children: [
       {
-        path: routes.settings,
-        element: <Navigate to={routes.settingsAccount} />,
+        path: routes.dashboard,
+        element: <Dashboard />,
         errorElement,
       },
       {
-        path: routes.settingsAccount,
-        element: <SettingsAccount />,
+        element: <SettingsLayout />,
+        children: [
+          {
+            path: routes.settings,
+            element: <Navigate to={routes.settingsAccount} />,
+            errorElement,
+          },
+          {
+            path: routes.settingsAccount,
+            element: <SettingsAccount />,
+            errorElement,
+          },
+          {
+            path: routes.settingsBilling,
+            element: <SettingsBilling />,
+            errorElement,
+          },
+          {
+            path: routes.settingsTeams,
+            element: <SettingsTeams />,
+            children: [
+              {
+                path: routes.settingsAddTeam,
+                element: <SettingsAddTeam />,
+                errorElement,
+              },
+            ],
+            errorElement,
+          },
+          {
+            path: routes.settingsEditTeam,
+            element: <SettingsEditTeam />,
+            children: [
+              {
+                path: routes.settingsDeleteTeam,
+                element: <SettingsDeleteTeam />,
+                errorElement,
+              },
+            ],
+            errorElement,
+          },
+          {
+            path: routes.settingsInviteTeamMembers,
+            element: <SettingsInviteTeamMembers />,
+            errorElement,
+          },
+          {
+            path: routes.settingsEditTeamMember,
+            element: <SettingsEditTeamMember />,
+            children: [
+              {
+                path: routes.settingsRemoveTeamMember,
+                element: <SettingsRemoveTeamMember />,
+                errorElement,
+              },
+            ],
+            errorElement,
+          },
+          { path: '*', element: <Navigate to={routes.settingsAccount} /> },
+        ],
         errorElement,
       },
-      {
-        path: routes.settingsBilling,
-        element: <SettingsBilling />,
-        errorElement,
-      },
+      { path: '*', element: <Navigate to={routes.dashboard} /> },
     ],
-    errorElement,
   },
-]
-
-export const subscribedRoutes: RouteObject[] = [
-  {
-    path: routes.dashboard,
-    element: <Dashboard />,
-    errorElement,
-  },
-  { path: '*', element: <Navigate to={routes.dashboard} /> },
-]
-
-const unauthorisedRouter = createBrowserRouter([...unauthorisedRoutes])
-const unsubscribedRouter = createBrowserRouter([
-  ...settingsRoutes,
-  { path: '*', element: <Navigate to={routes.settingsBilling} /> },
 ])
-const subscribedRouter = createBrowserRouter([...subscribedRoutes, ...settingsRoutes])
 
 export const Router = (): ReactElement => {
-  useOnAuthStateChange()
   const { data: session, isLoading: sessionLoading } = useSession()
-  const { data: subscriptions, isLoading: subscriptionLoading } = useSubscriptions()
 
-  const hasSubscription = subscriptions && subscriptions.length > 0
-
-  if (sessionLoading || subscriptionLoading) {
+  if (sessionLoading) {
     return <ScreenLoading />
   }
 
-  return (
-    <RouterProvider router={session ? (hasSubscription ? subscribedRouter : unsubscribedRouter) : unauthorisedRouter} />
-  )
+  return <RouterProvider router={session ? authorisedRouter : unauthorisedRouter} />
 }

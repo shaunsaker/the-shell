@@ -5,6 +5,7 @@ import {
   QueryClient,
   QueryClientProvider as QueryClientProviderPrimitive,
 } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ReactElement, ReactNode } from 'react'
 import { toast } from 'react-hot-toast'
 
@@ -48,5 +49,11 @@ const queryClient = new QueryClient({
 type Props = { children: ReactNode }
 
 export const QueryClientProvider = ({ children }: Props): ReactElement => {
-  return <QueryClientProviderPrimitive client={queryClient}>{children}</QueryClientProviderPrimitive>
+  return (
+    <QueryClientProviderPrimitive client={queryClient}>
+      {children}
+
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" panelPosition="right" />
+    </QueryClientProviderPrimitive>
+  )
 }

@@ -3,7 +3,7 @@ import { serve } from 'https://deno.land/std@0.177.0/http/server.ts'
 import { corsHeaders } from '../_shared/cors.ts'
 import { createCheckoutSession } from '../_shared/stripe/createCheckoutSession.ts'
 import { createOrRetrieveCustomer } from '../_shared/supabase/createOrRetrieveCustomer.ts'
-import { getProductByPriceId } from '../_shared/supabase/getProductByPriceId.ts'
+import { fetchProductByPriceId } from '../_shared/supabase/fetchProductByPriceId.ts'
 import { supabaseClient } from '../_shared/supabase/supabaseClient.ts'
 
 console.log('Hello from Create Checkout Session!')
@@ -26,11 +26,8 @@ serve(async (request): Promise<Response> => {
     })
   }
 
-  // 1. Destructure the data from the POST body
-  const { priceId, quantity = 1, successUrl, cancelUrl, metadata = {} } = await request.json()
-
   try {
-    // 2. Retrieve the logged in user
+    // Retrieve the logged in user
     const {
       data: { user },
     } = await supabaseClient(request).auth.getUser()
@@ -50,17 +47,20 @@ serve(async (request): Promise<Response> => {
       )
     }
 
-    // 3. Retrieve or create the customer in Stripe
+    // Retrieve or create the customer in Stripe
     const customerId = await createOrRetrieveCustomer({
       uuid: user?.id || '',
       email: user?.email || '',
     })
 
-    // 3.5. Get the product using the priceId from supabase and pass product.metadata.freeTrialDays to createCheckoutSession
-    const product = await getProductByPriceId(priceId)
+    // Destructure the data from the POST body
+    const { priceId, quantity = 1, successUrl, cancelUrl, metadata = {} } = await request.json()
+
+    // Get the product using the priceId from supabase and pass product.metadata.freeTrialDays to createCheckoutSession
+    const product = await fetchProductByPriceId(priceId)
     const freeTrialDays = product.metadata.freeTrialDays ? parseInt(product.metadata.freeTrialDays) : undefined
 
-    // 4. Create a checkout session in Stripe
+    // Create a checkout session in Stripe
     const session = await createCheckoutSession({
       customerId,
       priceId,
@@ -94,7 +94,7 @@ serve(async (request): Promise<Response> => {
       )
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return new Response(JSON.stringify(error), {
       headers: {
         ...corsHeaders,

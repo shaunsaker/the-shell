@@ -10,7 +10,7 @@ export const SkeletonLoader = ({ className }: SkeletonLoaderProps): ReactElement
   return (
     <motion.div
       className={twMerge(
-        'rounded-tremor-default bg-tremor-background-subtle dark:bg-dark-tremor-background-subtle',
+        'h-8 w-full rounded-tremor-default bg-tremor-background-subtle dark:bg-dark-tremor-background-subtle',
         className
       )}
       initial={{ opacity: 1, scale: 1 }}

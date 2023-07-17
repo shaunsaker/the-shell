@@ -104,11 +104,11 @@ export const tremorTheme = {
     background: {
       muted: {
         color: 'neutral',
-        shade: '900',
+        shade: '800',
       },
       subtle: {
         color: 'neutral',
-        shade: '800',
+        shade: '700',
       },
       DEFAULT: {
         color: 'neutral',

@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { getSession } from '../../api/auth/getSession'
-
-export const SESSION_QUERY_KEY = 'session'
+import { QueryKeys } from '../../models'
 
 export const useSession = () => {
   return useQuery({
-    queryKey: [SESSION_QUERY_KEY],
+    queryKey: [QueryKeys.Session],
     queryFn: getSession,
   })
 }

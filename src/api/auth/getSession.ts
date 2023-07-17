@@ -1,4 +1,5 @@
 import { supabase } from '..'
+import { handleApiError } from '../utils/handleApiError'
 
 export const getSession = async () => {
   const {
@@ -7,7 +8,7 @@ export const getSession = async () => {
   } = await supabase.auth.getSession()
 
   if (error) {
-    throw error
+    await handleApiError(error)
   }
 
   return session

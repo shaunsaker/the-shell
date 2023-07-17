@@ -1,44 +1,62 @@
-drop table if exists users;
-create table users (
-    -- UUID from auth.users
-    id uuid references auth.users not null primary key,
-    "updated_at" timestamp with time zone,
-    "first_name" text,
-    "last_name" text
+CREATE TABLE IF NOT EXISTS users (
+  -- UUID from auth.users
+  id UUID REFERENCES auth.users NOT NULL PRIMARY KEY,
+  first_name TEXT,
+  last_name TEXT,
+  email TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::TEXT, NOW())
 );
 
-alter table "public"."users" enable row level security;
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 
-create policy "Users can view their own data."
-on "public"."users"
-for select
-using (auth.uid() = id);
+CREATE POLICY "Users can view their own data." ON users FOR
+SELECT USING (auth.uid() = id);
 
-create policy "Users can insert their own data."
-on "public"."users"
-as permissive
-for insert
-to public
-with check (auth.uid() = id);
+CREATE POLICY "Users can insert their own data." ON users AS PERMISSIVE FOR
+INSERT TO PUBLIC WITH CHECK (auth.uid() = id);
 
-create policy "Users can update own data."
-on "public"."users"
-as permissive
-for update
-to public
-using (auth.uid() = id);
+CREATE POLICY "Users can update own data." ON users AS PERMISSIVE FOR
+UPDATE TO PUBLIC USING (auth.uid() = id);
 
-CREATE OR REPLACE FUNCTION public.handle_new_user()
- RETURNS trigger
- LANGUAGE plpgsql
- SECURITY DEFINER
-AS $function$
-begin
-  insert into public.users (id, first_name, last_name)
-  values (new.id, new.raw_user_meta_data->>'first_name', new.raw_user_meta_data->>'last_name');
-  return new;
-end;
-$function$
-;
+/* On user signup, save their details in the users table */
+CREATE
+OR REPLACE FUNCTION handle_auth_user_created() RETURNS TRIGGER LANGUAGE plpgsql SECURITY DEFINER AS $$
+BEGIN
+INSERT INTO PUBLIC .users (id, first_name, last_name, email)
+VALUES (
+    NEW .id,
+    NEW .raw_user_meta_data->>'first_name',
+    NEW .raw_user_meta_data->>'last_name',
+    NEW .email
+  );
 
-CREATE OR REPLACE TRIGGER on_auth_user_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION handle_new_user();
+RETURN NEW;
+
+END;
+
+$$;
+
+CREATE
+OR REPLACE TRIGGER on_auth_user_created AFTER
+INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION handle_auth_user_created();
+
+/* When a user updates their details, update the user's details in the users table */
+-- TODO: This doesn't trigger when a user signs up after being invited by supabase admin
+CREATE
+OR REPLACE FUNCTION handle_auth_user_updated() RETURNS TRIGGER LANGUAGE plpgsql SECURITY DEFINER AS $$
+BEGIN
+UPDATE PUBLIC .users
+SET first_name = NEW .raw_user_meta_data->>'first_name',
+  last_name = NEW .raw_user_meta_data->>'last_name',
+  email = NEW .email
+WHERE id = NEW .id;
+
+RETURN NEW;
+
+END;
+
+$$;
+
+CREATE
+OR REPLACE TRIGGER on_auth_user_updated AFTER
+UPDATE ON auth.users FOR EACH ROW EXECUTE FUNCTION handle_auth_user_updated();

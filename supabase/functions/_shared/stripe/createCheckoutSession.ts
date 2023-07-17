@@ -29,6 +29,9 @@ export const createCheckoutSession = async ({
       {
         price: priceId,
         quantity,
+        adjustable_quantity: {
+          enabled: true,
+        },
       },
     ],
     mode: 'subscription',

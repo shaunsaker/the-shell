@@ -1,12 +1,12 @@
-import { Dialog, Transition } from '@headlessui/react'
-import { Bars3Icon, Cog6ToothIcon, HomeModernIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Dialog } from '@headlessui/react'
+import { Cog6ToothIcon, HomeModernIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Button } from '@tremor/react'
-import { Fragment, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
-import { useSubscriptions } from '../../hooks/db/useSubscriptions'
-import { subscribedRoutes } from '../../Router'
+import { useSubscription } from '../../hooks/subscriptions/useSubscription'
+import { useSidebarOpen } from '../../hooks/utils/useSidebarOpen'
 import { routes } from '../../routes'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Logo } from '../logo/Logo'
@@ -34,12 +34,10 @@ const navigation: NavigationItem[] = [
 ]
 
 export default function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useSidebarOpen()
   const location = useLocation()
   const navigate = useNavigate()
-  const { data: subscriptions } = useSubscriptions()
-
-  const hasSubscription = subscriptions && subscriptions.length > 0
+  const { data: subscription } = useSubscription()
 
   const sidebar = (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-tremor-brand px-6 dark:bg-dark-tremor-brand">
@@ -50,7 +48,7 @@ export default function Sidebar() {
       <nav className="flex flex-1 flex-col">
         <ul className="-mx-2 flex flex-1 flex-col space-y-1">
           {navigation.map(item => {
-            const disabled = !hasSubscription && subscribedRoutes.some(route => route.path === item.href)
+            const disabled = item.href === routes.dashboard && !subscription // TODO: SS when we introduce features, disable the Dashboard if there is no subscription
 
             return (
               <li key={item.name}>
@@ -61,10 +59,13 @@ export default function Sidebar() {
                     item.isActive(location.pathname)
                       ? 'bg-tremor-brand-emphasis text-tremor-brand-inverted dark:bg-dark-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted'
                       : 'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
-                    'w-full justify-start'
+                    'w-full justify-start border-none shadow-none'
                   )}
                   onClick={() => {
-                    navigate(item.href)
+                    // navigate to the route if we're not already on that route
+                    if (!item.isActive(location.pathname)) {
+                      navigate(item.href)
+                    }
                   }}
                 >
                   {item.name}
@@ -79,74 +80,40 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile menu */}
-      <Button
-        variant="light"
-        color="gray"
-        className="fixed left-0 top-0 -m-2.5 p-7 lg:hidden"
-        onClick={() => setSidebarOpen(true)}
-      >
-        <span className="sr-only">Open sidebar</span>
-
-        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-      </Button>
-
-      <Transition.Root show={sidebarOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
-          <Transition.Child
-            as={Fragment}
-            enter="transition-opacity ease-linear duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
+      <AnimatePresence>
+        <Dialog as="div" open={sidebarOpen} className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <Backdrop />
-          </Transition.Child>
+          </motion.div>
 
           <div className="fixed inset-0 flex">
-            <Transition.Child
-              as={Fragment}
-              enter="transition ease-in-out duration-300 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in-out duration-300 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
+            <motion.div
+              className="flex w-full flex-col"
+              initial={{ opacity: 0, transform: 'translateX(-100%)' }}
+              animate={{ opacity: 1, transform: 'translateX(0%)' }}
+              exit={{ opacity: 0, transform: 'translateX(-100%)' }}
             >
               <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-in-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in-out duration-300"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                    <Button
-                      variant="light"
-                      className="-m-2.5 p-2.5 text-white hover:text-gray-300"
-                      onClick={() => setSidebarOpen(false)}
-                    >
-                      <span className="sr-only">Close sidebar</span>
+                <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
+                  <Button
+                    variant="light"
+                    className="-m-2.5 p-2.5 text-white hover:text-gray-300"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <span className="sr-only">Close sidebar</span>
 
-                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                    </Button>
-                  </div>
-                </Transition.Child>
+                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                  </Button>
+                </div>
 
                 {sidebar}
               </Dialog.Panel>
-            </Transition.Child>
+            </motion.div>
           </div>
         </Dialog>
-      </Transition.Root>
+      </AnimatePresence>
 
-      {/* Static sidebar for desktop */}
-      <div className="hidden lg:flex lg:w-72 lg:flex-col">{sidebar}</div>
+      <div className="hidden shrink-0 lg:flex lg:w-72 lg:flex-col">{sidebar}</div>
     </>
   )
 }

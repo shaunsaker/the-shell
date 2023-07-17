@@ -1,6 +1,21 @@
 import { supabaseAdmin } from './supabaseAdmin.ts'
 
-export const upsertPriceRecord = async (price: any) => {
+export const upsertPriceRecord = async (price: {
+  id: string
+  product: string
+  active: boolean
+  currency: string
+  type: string
+  unit_amount: number
+  interval_count: number
+  recurring: {
+    interval: string
+    trial_period_days: number
+  }
+  metadata: {
+    [key: string]: string
+  }
+}) => {
   const priceData = {
     id: price.id,
     product_id: price.product,
@@ -15,6 +30,10 @@ export const upsertPriceRecord = async (price: any) => {
   }
 
   const { error } = await supabaseAdmin.from('prices').upsert([priceData])
-  if (error) throw error
+
+  if (error) {
+    throw error
+  }
+
   console.log(`Price inserted/updated: ${price.id}`)
 }

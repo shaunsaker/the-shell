@@ -16,7 +16,9 @@ export const manageSubscriptionStatusChange = async (
     .single()
 
   // if no customer was returned and we are updating or deleting a subscription, throw an error
-  if (noCustomerError) throw noCustomerError
+  if (noCustomerError) {
+    throw noCustomerError
+  }
 
   const uuid = customerData?.id
 
@@ -55,6 +57,6 @@ export const manageSubscriptionStatusChange = async (
   // For a new subscription copy the billing details to the customer object.
   // NOTE: This is a costly operation and should happen at the very end.
   if (createAction && subscription.default_payment_method && uuid) {
-    await copyBillingDetailsToCustomer(uuid, subscription.default_payment_method as any)
+    await copyBillingDetailsToCustomer(uuid, subscription.default_payment_method)
   }
 }

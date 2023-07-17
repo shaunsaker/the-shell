@@ -1,5 +1,5 @@
 import { Button } from '@tremor/react'
-import React, { ReactElement, useCallback } from 'react'
+import React, { ReactElement } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
@@ -17,12 +17,17 @@ const navigation: NavigationItem[] = [
   {
     name: 'Account',
     href: routes.settingsAccount,
-    isActive: (pathname: string) => pathname === routes.settingsAccount,
+    isActive: (pathname: string) => pathname.includes(routes.settingsAccount),
   },
   {
     name: 'Billing',
     href: routes.settingsBilling,
-    isActive: (pathname: string) => pathname === routes.settingsBilling,
+    isActive: (pathname: string) => pathname.includes(routes.settingsBilling),
+  },
+  {
+    name: 'Teams',
+    href: routes.settingsTeams,
+    isActive: (pathname: string) => pathname.includes(routes.settingsTeams),
   },
 ]
 
@@ -31,13 +36,9 @@ export const SettingsNavbar = (): ReactElement => {
 
   const { mutate: signOut, isLoading } = useSignOut()
 
-  const onSignOut = useCallback(async () => {
-    await signOut()
-  }, [signOut])
-
   return (
     <Headerbar>
-      <ul className="flex h-full flex-1 gap-x-4 overflow-x-auto">
+      <ul className="mr-8 flex h-full flex-1 gap-x-4 overflow-x-auto">
         {navigation.map(item => (
           <li key={item.name} className="h-full">
             <Link
@@ -55,7 +56,13 @@ export const SettingsNavbar = (): ReactElement => {
         ))}
       </ul>
 
-      <Button variant="light" loading={isLoading} onClick={onSignOut}>
+      <Button
+        variant="light"
+        loading={isLoading}
+        onClick={() => {
+          signOut()
+        }}
+      >
         Sign Out
       </Button>
     </Headerbar>

@@ -10,7 +10,7 @@
 
 The ultimate boilerplate for building SAAS applications with React, Supabase, Stripe, Tailwind CSS and TypeScript. 😛 Set up your next project/prototype with minimal input, so you can do what you do best, build and test amazing new products 🔥
 
-Transform `15 days` of development into `1 hour` 🚀
+Transform `6 weeks` of development into `1 hour` 🚀
 
 You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.app/).
 
@@ -173,6 +173,8 @@ gh secret set SUPABASE_PROJECT_ID_STAGING --body "VALUE"
 gh secret set SUPABASE_DB_PASSWORD_PRODUCTION --body "VALUE"
 gh secret set SUPABASE_PROJECT_ID_PRODUCTION --body "VALUE"
 ```
+
+9. We use webhooks to update the user's subscription. For the client to receive subscription updates automagically, [enable realtime database updates](https://supabase.com/dashboard/project/_/database/replication) for the `subscriptions` table in your local, staging and production dashboards.
 
 ---
 

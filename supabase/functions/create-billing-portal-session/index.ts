@@ -22,11 +22,8 @@ serve(async (request): Promise<Response> => {
     })
   }
 
-  // 1. Destructure the data from the POST body
-  const { returnUrl } = await request.json()
-
   try {
-    // 2. Retrieve the logged in user
+    // Retrieve the logged in user
     const {
       data: { user },
     } = await getAuthUser(request)
@@ -46,13 +43,16 @@ serve(async (request): Promise<Response> => {
       )
     }
 
-    // 3. Retrieve or create the customer in Stripe
+    // Retrieve or create the customer in Stripe
     const customerId = await createOrRetrieveCustomer({
       uuid: user?.id || '',
       email: user?.email || '',
     })
 
-    // 4. Create a billing potral session in Stripe
+    // Destructure the data from the POST body
+    const { returnUrl } = await request.json()
+
+    // Create a billing potral session in Stripe
     const session = await createBillingPortalSession({ customerId, returnUrl })
 
     if (session) {
@@ -78,7 +78,7 @@ serve(async (request): Promise<Response> => {
       )
     }
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return new Response(JSON.stringify(error), {
       headers: {
         ...corsHeaders,

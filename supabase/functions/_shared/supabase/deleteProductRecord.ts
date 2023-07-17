@@ -11,6 +11,10 @@ export const deleteProductRecord = async (id: string) => {
   }
 
   const { error } = await supabaseAdmin.from('products').delete().eq('id', id)
-  if (error) throw error
+
+  if (error) {
+    throw error
+  }
+
   console.log(`Product deleted: ${id}`)
 }
