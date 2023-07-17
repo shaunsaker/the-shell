@@ -399,3 +399,11 @@ yarn db:migration MIGRATION_NAME
 Your Github actions will take care of applying the migration to staging and production once it's merged into `develop` and `master` respectively.
 
 ---
+
+### Generating types
+
+After making changes to your db schema, you can generate Typescript types with the following command:
+
+```
+yarn db:types
+```
