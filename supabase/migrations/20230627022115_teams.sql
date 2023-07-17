@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS teams (
   id SERIAL PRIMARY KEY,
   NAME TEXT NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::TEXT, NOW()),
-  created_by UUID REFERENCES users(id)
+  created_by UUID REFERENCES users(id) NOT NULL
 );
 
 /* Note: teams and team_members are selected and updated using supabase functions to remove complexity in creating policies */
@@ -26,8 +26,8 @@ CREATE TYPE team_member_status AS ENUM ('active', 'invited');
 /* TEAM MEMBERS */
 CREATE TABLE IF NOT EXISTS team_members (
   id SERIAL PRIMARY KEY,
-  team_id INT REFERENCES teams(id),
-  user_id UUID REFERENCES users(id),
+  team_id INT REFERENCES teams(id) ON DELETE CASCADE NOT NULL,
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE NOT NULL,
   role team_member_role NOT NULL,
   status team_member_status NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::TEXT, NOW())
@@ -46,17 +46,6 @@ INSERT TO PUBLIC WITH CHECK (
     )
   );
 
-CREATE POLICY "Allow team owners to view team_members in their teams." ON team_members AS PERMISSIVE FOR
-SELECT USING (
-    auth.uid() = user_id
-    AND EXISTS (
-      SELECT 1
-      FROM teams
-      WHERE teams.id = team_members.team_id
-        AND teams.created_by = auth.uid()
-    )
-  );
-
 CREATE
 OR replace FUNCTION get_teams_with_admin_role_for_authenticated_user() returns setof INT LANGUAGE SQL security definer AS $$
 SELECT team_id
@@ -64,7 +53,13 @@ FROM team_members
 WHERE user_id = auth.uid()
   AND role = 'admin' $$;
 
-CREATE policy "Team admins can insert team members" ON team_members FOR ALL USING (
+CREATE POLICY "Team admins can manage teams" ON teams FOR ALL TO PUBLIC USING (
+  id IN (
+    SELECT get_teams_with_admin_role_for_authenticated_user()
+  )
+);
+
+CREATE POLICY "Team admins can manage team members" ON team_members FOR ALL TO PUBLIC USING (
   team_id IN (
     SELECT get_teams_with_admin_role_for_authenticated_user()
   )

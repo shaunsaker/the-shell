@@ -8,7 +8,7 @@ ADD COLUMN payment_method JSONB;
  */
 CREATE TABLE IF NOT EXISTS customers (
   -- UUID from auth.users
-  id UUID REFERENCES auth.users NOT NULL PRIMARY KEY,
+  id UUID REFERENCES auth.users ON DELETE CASCADE NOT NULL PRIMARY KEY,
   -- The user's customer ID in Stripe. User must only be allowed to create and not update this.
   stripe_customer_id TEXT
 );
@@ -107,7 +107,7 @@ CREATE TYPE subscription_status AS ENUM (
 CREATE TABLE IF NOT EXISTS subscriptions (
   -- Subscription ID from Stripe, e.g. sub_1234.
   id TEXT PRIMARY KEY,
-  user_id UUID REFERENCES auth.users NOT NULL,
+  user_id UUID REFERENCES users(id) ON DELETE CASCADE NOT NULL,
   -- The status of the subscription object, one of subscription_status type above.
   status subscription_status,
   -- Set of key-value pairs, used to store additional information about the object in a structured format.
