@@ -368,19 +368,21 @@ supabase start
 
 2. Open the Supabase dashboard by clicking the `Studio URL` from the output above.
 
-3. Start the Stripe listener so that api events from products/subscriptions/customers created/updated in Stripe are forwarded to your local supabase instance:
+3. Open the [Inbucket](https://inbucket.org/) url, your local email server.
+
+4. Start the Stripe listener so that api events from products/subscriptions/customers created/updated in Stripe are forwarded to your local supabase instance:
 
 ```
 yarn stripe:listen
 ```
 
-4. Serve the Supabase functions locally:
+5. Serve the Supabase functions locally:
 
 ```
 yarn functions:serve
 ```
 
-5. Run the app:
+6. Run the app:
 
 ```
 yarn dev
