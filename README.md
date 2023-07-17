@@ -174,8 +174,6 @@ gh secret set SUPABASE_DB_PASSWORD_PRODUCTION --body "VALUE"
 gh secret set SUPABASE_PROJECT_ID_PRODUCTION --body "VALUE"
 ```
 
-9. We use webhooks to update the user's subscription. For the client to receive subscription updates automagically, [enable realtime database updates](https://supabase.com/dashboard/project/_/database/replication) for the `subscriptions` table in your local, staging and production dashboards.
-
 ---
 
 ### Setup Stripe

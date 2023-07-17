@@ -140,3 +140,15 @@ ALTER TABLE subscriptions ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Can only view own subs data." ON subscriptions FOR
 SELECT USING (auth.uid() = user_id);
+
+/* ENABLE REALTIME FOR THE SUBSCRIPTIONS TABLE */
+BEGIN;
+
+DROP publication IF EXISTS supabase_realtime;
+
+CREATE publication supabase_realtime;
+
+COMMIT;
+
+ALTER publication supabase_realtime
+ADD TABLE subscriptions;
