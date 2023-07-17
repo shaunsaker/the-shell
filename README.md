@@ -48,6 +48,7 @@ TODO: SS add a video of project setup in action
 - [Asset and theme generation](#generating-public-assets) 🖼️
 - [vite-plugin-svgr](https://github.com/pd4d10/vite-plugin-svgr) for svg support 🔗
 - [react-hot-toast](https://react-hot-toast.com/) for easy to use toast notifications 🍞
+- [heroicons](https://heroicons.com/) for beautiful icons 🙂
 
 ---
 

@@ -1,11 +1,13 @@
 import { Dialog } from '@headlessui/react'
-import { Cog6ToothIcon, HomeModernIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Cog6ToothIcon, HomeModernIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Button } from '@tremor/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
+import app from '../../../app.json'
 import { useSubscription } from '../../hooks/subscriptions/useSubscription'
+import { useLink } from '../../hooks/utils/useLink'
 import { useSidebarOpen } from '../../hooks/utils/useSidebarOpen'
 import { routes } from '../../routes'
 import { Backdrop } from '../backdrop/Backdrop'
@@ -37,6 +39,7 @@ export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useSidebarOpen()
   const location = useLocation()
   const navigate = useNavigate()
+  const link = useLink()
   const { data: subscription } = useSubscription()
 
   const sidebar = (
@@ -46,7 +49,7 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex flex-1 flex-col">
-        <ul className="-mx-2 flex flex-1 flex-col space-y-1">
+        <ul className="-mx-2 flex flex-col space-y-1">
           {navigation.map(item => {
             const disabled = item.href === routes.dashboard && !subscription // TODO: SS when we introduce features, disable the Dashboard if there is no subscription
 
@@ -73,6 +76,21 @@ export default function Sidebar() {
               </li>
             )
           })}
+
+          <li>
+            <Button
+              icon={QuestionMarkCircleIcon}
+              className={twMerge(
+                'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
+                'w-full justify-start border-none shadow-none'
+              )}
+              onClick={() => {
+                link(`mailto:${app.supportEmail}`, '_blank')
+              }}
+            >
+              Support
+            </Button>
+          </li>
         </ul>
       </nav>
     </div>
