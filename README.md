@@ -300,10 +300,10 @@ We support free trials out of the box. To add a free trial to a product, simply 
 1. Create a new site on Netlify and connect your repo to it:
 
 ```
-netlify init
+yarn netlify init
 ```
 
-2. From the above command, grab your `URL`and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration). Note: When you add a custom domain to Netlify, you will need to update this again.
+2. From the above command, grab your `Site URL`. For your staging Supabase project, prefix `develop--` to it, e.g. "https://ultimate-b2b-saas-boilerplate.netlify.app" becomes "https://ultimate-b2b-saas-boilerplate.netlify.app" and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration). Do the same for your production Supabase project except leave out the prefix. Note: When you add a custom domain to Netlify, you will need to update this again.
 
 3. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
 
