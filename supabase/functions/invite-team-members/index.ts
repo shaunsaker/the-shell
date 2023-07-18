@@ -80,10 +80,7 @@ serve(async (request): Promise<Response> => {
 
     // If any of the emails, have a user account, we send them an email saying they have been added to the team
     // otherwise, we send them an email with a link to sign up
-    const users = (await fetchUsersByEmails(newEmails))
-      // exclude users that are waiting for verification
-      // FIXME: this could be improved by checking if the user has a verified_at date
-      .filter(user => user.first_name && user.last_name)
+    const users = await fetchUsersByEmails(newEmails)
 
     // // TODO: SS notify the users above via email that they have been added to the team
     // for (const user of users) {
@@ -94,6 +91,9 @@ serve(async (request): Promise<Response> => {
       userId: user.id,
       role: 'member',
       status: 'active',
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
     }))
 
     // If not, send them an email with a link to sign up
@@ -110,6 +110,9 @@ serve(async (request): Promise<Response> => {
           userId: user.user.id,
           role: 'member',
           status: 'invited',
+          firstName: '',
+          lastName: '',
+          email: invitee,
         })
       }
     }

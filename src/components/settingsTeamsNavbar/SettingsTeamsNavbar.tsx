@@ -35,16 +35,19 @@ export const SettingsTeamsNavbar = (): ReactElement => {
   }
 
   if (teamMember) {
-    const name = formatTeamMemberName(teamMember) || teamMember.user?.email
-    const href = routes.settingsEditTeamMember
-      .replace(TEAM_ID_PARAM, team?.id.toString() || '')
-      .replace(TEAM_MEMBER_ID_PARAM, teamMember.id.toString())
+    const name = formatTeamMemberName(teamMember) || teamMember.email
 
-    BREADCRUMBS.push({
-      name,
-      href,
-      isActive: (pathname: string) => href === pathname,
-    })
+    if (name) {
+      const href = routes.settingsEditTeamMember
+        .replace(TEAM_ID_PARAM, team?.id.toString() || '')
+        .replace(TEAM_MEMBER_ID_PARAM, teamMember.id.toString())
+
+      BREADCRUMBS.push({
+        name,
+        href,
+        isActive: (pathname: string) => href === pathname,
+      })
+    }
   }
 
   return <Breadcrumbs pages={BREADCRUMBS} />

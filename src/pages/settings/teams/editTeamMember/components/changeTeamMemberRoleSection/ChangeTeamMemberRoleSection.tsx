@@ -7,6 +7,7 @@ import { useTeamMember } from '../../../../../../hooks/teams/useTeamMember'
 import { useUpdateTeamMember } from '../../../../../../hooks/teams/useUpdateTeamMember'
 import { TeamMemberRole } from '../../../../../../models'
 import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRole'
+import { parseTeamMemberRole } from '../../../../../../utils/parseTeamMemberRole'
 
 const TEAM_MEMBER_ROLES: TeamMemberRole[] = ['admin', 'member']
 
@@ -40,8 +41,8 @@ export const ChangeTeamMemberRoleSection = (): ReactElement => {
           loading={updateTeamMemberLoading}
           disabled={disabled}
           onClick={() => {
-            if (teamMember && teamMember.team_id && role) {
-              updateTeamMember({ id: teamMember.id, teamId: teamMember.team_id, role })
+            if (teamMember && role) {
+              updateTeamMember({ id: teamMember.id, role: parseTeamMemberRole(role) })
             }
           }}
         >

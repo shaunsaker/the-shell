@@ -21,9 +21,9 @@ export const SettingsRemoveTeamMember = (): ReactElement => {
     <Dialog
       open
       title="Remove team member"
-      description={`Are you sure you want to remove ${
-        formatTeamMemberName(teamMember) || teamMember?.user.email
-      } from the ${team?.name} team? This action cannot be undone.`}
+      description={`Are you sure you want to remove ${formatTeamMemberName(teamMember) || teamMember?.email} from the ${
+        team?.name
+      } team? This action cannot be undone.`}
       confirmDisabled={disabled}
       confirmLoading={isLoading}
       confirmIsDangerous

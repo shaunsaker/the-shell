@@ -6,6 +6,9 @@ export const insertTeamMemberRecords = async (
     userId: string
     role: string
     status: string
+    firstName: string
+    lastName: string
+    email: string
   }[]
 ) => {
   const teamMembersData = teamMembers.map(teamMember => ({
@@ -13,6 +16,9 @@ export const insertTeamMemberRecords = async (
     user_id: teamMember.userId,
     role: teamMember.role,
     status: teamMember.status,
+    first_name: teamMember.firstName,
+    last_name: teamMember.lastName,
+    email: teamMember.email,
   }))
 
   const { data, error } = await supabaseAdmin.from('team_members').insert(teamMembersData).select()

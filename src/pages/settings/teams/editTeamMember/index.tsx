@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
-import { SettingsTeamsNavbar } from '../../../../components/settingsTeamsNavbar/SetttingsTeamsNavbar'
+import { SettingsTeamsNavbar } from '../../../../components/settingsTeamsNavbar/SettingsTeamsNavbar'
 import { useRestrictedTeamAdminRoute } from '../../../../hooks/teams/useRestrictedTeamAdminRoute'
 import { useTeamMember } from '../../../../hooks/teams/useTeamMember'
 import { ChangeTeamMemberRoleSection } from './components/changeTeamMemberRoleSection/ChangeTeamMemberRoleSection'

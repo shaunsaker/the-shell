@@ -9,7 +9,7 @@ export const ResendTeamInviteSection = (): ReactElement => {
   const { data: teamMember } = useTeamMember()
   const { mutate: resendTeamInvite, isLoading } = useResendTeamInvite()
 
-  const disabled = !teamMember?.team_id || !teamMember?.user.email
+  const disabled = !teamMember?.team_id || !teamMember?.email
 
   return (
     <SettingsSection
@@ -21,8 +21,8 @@ export const ResendTeamInviteSection = (): ReactElement => {
           disabled={disabled}
           loading={isLoading}
           onClick={() => {
-            if (teamMember?.team_id && teamMember?.user.email) {
-              resendTeamInvite({ teamId: teamMember?.team_id, email: teamMember?.user.email })
+            if (teamMember?.team_id && teamMember?.email) {
+              resendTeamInvite({ teamId: teamMember.team_id, email: teamMember.email })
             }
           }}
         >

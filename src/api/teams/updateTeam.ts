@@ -2,12 +2,7 @@ import { supabase } from '..'
 import { handleApiError } from '../utils/handleApiError'
 
 export const updateTeam = async ({ id, name }: { id: number; name: string }) => {
-  const { data, error } = await supabase.functions.invoke('update-team', {
-    body: {
-      id,
-      name,
-    },
-  })
+  const { data, error } = await supabase.from('teams').update({ name }).eq('id', id)
 
   if (error) {
     await handleApiError(error)
