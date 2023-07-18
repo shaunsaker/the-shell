@@ -2,7 +2,7 @@ import { Button, TextInput } from '@tremor/react'
 import React, { ReactElement, useEffect, useState } from 'react'
 
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
-import { useProducts } from '../../../../../hooks/products/useProducts'
+import { useProducts } from '../../../../../hooks/subscriptions/useProducts'
 import { useSubscription } from '../../../../../hooks/subscriptions/useSubscription'
 import { useUpdateSubscriptionQuantity } from '../../../../../hooks/subscriptions/useUpdateSubscriptionQuantity'
 import { Price } from '../../../../../models'
