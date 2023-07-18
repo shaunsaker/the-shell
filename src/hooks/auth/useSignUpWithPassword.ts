@@ -8,7 +8,7 @@ export const useSignUpWithPassword = () => {
     mutationFn: signUp,
     onSuccess: () => {
       if (!import.meta.env.DEV) {
-        // in development, the local server will not send a confirmation email so we manually redirect to the dashboard
+        // in development, the local server will not send a confirmation email
         toast.success('A confirmation email has been sent to your inbox.')
       }
     },
