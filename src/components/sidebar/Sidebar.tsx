@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../app.json'
-import { useSubscription } from '../../hooks/subscriptions/useSubscription'
+import { useSubscription } from '../../hooks/subscription/useSubscription'
 import { useLink } from '../../hooks/utils/useLink'
 import { useSidebarOpen } from '../../hooks/utils/useSidebarOpen'
 import { routes } from '../../routes'

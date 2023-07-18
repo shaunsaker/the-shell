@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { fetchSubscriptionForUser } from '../../api/subscriptions/fetchSubscriptionForUser'
+import { fetchSubscriptionForUser } from '../../api/subscription/fetchSubscriptionForUser'
 import { QueryKeys } from '../../models'
 import { useSession } from '../auth/useSession'
 

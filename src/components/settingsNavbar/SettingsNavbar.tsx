@@ -20,9 +20,9 @@ const navigation: NavigationItem[] = [
     isActive: (pathname: string) => pathname.includes(routes.settingsAccount),
   },
   {
-    name: 'Billing',
-    href: routes.settingsBilling,
-    isActive: (pathname: string) => pathname.includes(routes.settingsBilling),
+    name: 'Subscription',
+    href: routes.settingsSubscription,
+    isActive: (pathname: string) => pathname.includes(routes.settingsSubscription),
   },
   {
     name: 'Teams',

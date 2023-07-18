@@ -8,7 +8,7 @@ export const routes = {
   dashboard: '/',
   settings: '/settings',
   settingsAccount: '/settings/account',
-  settingsBilling: '/settings/billing',
+  settingsSubscription: '/settings/subscription',
   settingsTeams: '/settings/teams',
   settingsAddTeam: '/settings/teams/add',
   settingsEditTeam: `/settings/teams/${TEAM_ID_PARAM}`,

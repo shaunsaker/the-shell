@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 
-import { updateSubscriptionQuantity } from '../../api/subscriptions/updateSubscriptionQuantity'
+import { updateSubscriptionQuantity } from '../../api/subscription/updateSubscriptionQuantity'
 
 export const useUpdateSubscriptionQuantity = () => {
   return useMutation({

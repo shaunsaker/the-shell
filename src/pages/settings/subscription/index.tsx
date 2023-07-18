@@ -3,12 +3,12 @@ import React, { ReactElement } from 'react'
 
 import { Loading } from '../../../components/loading/Loading'
 import { SettingsList } from '../../../components/settingsList/SettingsList'
-import { useSubscription } from '../../../hooks/subscriptions/useSubscription'
+import { useSubscription } from '../../../hooks/subscription/useSubscription'
 import { Pricing } from './components/pricing/Pricing'
 import { SubscriptionDetailsSection } from './components/subscriptionDetailsSection/SubscriptionDetailsSection'
 import { SubscriptionSeatsSection } from './components/subscriptionSeatsSection/SubscriptionSeatsSection'
 
-export const SettingsBilling = (): ReactElement => {
+export const SettingsSubscription = (): ReactElement => {
   const { data: subscription } = useSubscription()
   const isFetching = useIsFetching()
 

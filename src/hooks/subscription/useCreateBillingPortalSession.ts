@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { createBillingPortalSession } from '../../api/subscriptions/createBillingPortalSession'
+import { createBillingPortalSession } from '../../api/subscription/createBillingPortalSession'
 import { useLink } from '../utils/useLink'
 
 export const useCreateBillingPortalSession = () => {

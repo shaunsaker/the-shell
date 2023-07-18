@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 
-import { listenSubscriptionForUser } from '../../api/subscriptions/listenSubscriptionForUser'
+import { listenSubscriptionForUser } from '../../api/subscription/listenSubscriptionForUser'
 import { QueryKeys } from '../../models'
 import { useSession } from '../auth/useSession'
 

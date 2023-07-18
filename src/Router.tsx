@@ -9,7 +9,7 @@ import { useSession } from './hooks/auth/useSession'
 import { Dashboard } from './pages/dashboard'
 import ForgotPassword from './pages/forgotPassword'
 import { SettingsAccount } from './pages/settings/account'
-import { SettingsBilling } from './pages/settings/billing'
+import { SettingsSubscription } from './pages/settings/subscription'
 import { SettingsTeams } from './pages/settings/teams'
 import { SettingsAddTeam } from './pages/settings/teams/addTeam'
 import { SettingsEditTeam } from './pages/settings/teams/editTeam'
@@ -65,8 +65,8 @@ const authorisedRouter = createBrowserRouter([
             errorElement,
           },
           {
-            path: routes.settingsBilling,
-            element: <SettingsBilling />,
+            path: routes.settingsSubscription,
+            element: <SettingsSubscription />,
             errorElement,
           },
           {
