@@ -1,9 +1,9 @@
 import { Button } from '@tremor/react'
 import React, { ReactElement, useState } from 'react'
 
-import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
-import { TextInput } from '../../../../../components/textInput/TextInput'
-import { useUpdateUserPassword } from '../../../../../hooks/auth/useUpdateUserPassword'
+import { useUpdateUserPassword } from '../../hooks/auth/useUpdateUserPassword'
+import { SettingsSection } from '../settingsSection/SettingsSection'
+import { TextInput } from '../textInput/TextInput'
 
 export const ChangePasswordSection = (): ReactElement => {
   const [newUserPassword, setNewUserPassword] = useState('')

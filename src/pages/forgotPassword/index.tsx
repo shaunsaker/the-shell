@@ -27,7 +27,10 @@ export default function ForgotPassword() {
         return
       }
 
-      await resetPasswordForEmail(email)
+      await resetPasswordForEmail({
+        email,
+        redirectTo: window.location.href.replace(routes.forgotPassword, routes.settingsResetPassword),
+      })
     },
     [disabled, email, resetPasswordForEmail]
   )
