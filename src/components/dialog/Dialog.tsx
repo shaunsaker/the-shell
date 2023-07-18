@@ -35,6 +35,10 @@ export const Dialog = ({
 }: DialogProps): ReactElement | null => {
   // Handle Enter key as confirm click
   useKeypress('Enter', () => {
+    if (!open) {
+      return
+    }
+
     if (confirmDisabled) {
       return
     }
