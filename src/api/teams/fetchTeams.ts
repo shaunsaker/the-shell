@@ -3,7 +3,7 @@ import { supabase } from '..'
 import { handleApiError } from '../utils/handleApiError'
 
 export const fetchTeams = async () => {
-  const { data, error } = await supabase.functions.invoke('fetch-teams')
+  const { data, error } = await supabase.from('teams').select('*, team_members(*)')
 
   if (error) {
     await handleApiError(error)

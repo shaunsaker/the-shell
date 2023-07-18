@@ -171,27 +171,36 @@ export interface Database {
       team_members: {
         Row: {
           created_at: string | null
+          email: string | null
+          first_name: string | null
           id: number
+          last_name: string | null
           role: Database['public']['Enums']['team_member_role']
           status: Database['public']['Enums']['team_member_status']
-          team_id: number | null
-          user_id: string | null
+          team_id: number
+          user_id: string
         }
         Insert: {
           created_at?: string | null
+          email?: string | null
+          first_name?: string | null
           id?: number
+          last_name?: string | null
           role: Database['public']['Enums']['team_member_role']
           status: Database['public']['Enums']['team_member_status']
-          team_id?: number | null
-          user_id?: string | null
+          team_id: number
+          user_id: string
         }
         Update: {
           created_at?: string | null
+          email?: string | null
+          first_name?: string | null
           id?: number
+          last_name?: string | null
           role?: Database['public']['Enums']['team_member_role']
           status?: Database['public']['Enums']['team_member_status']
-          team_id?: number | null
-          user_id?: string | null
+          team_id?: number
+          user_id?: string
         }
         Relationships: [
           {
@@ -211,23 +220,30 @@ export interface Database {
       teams: {
         Row: {
           created_at: string | null
-          created_by: string | null
+          created_by: string
           id: number
           name: string
         }
         Insert: {
           created_at?: string | null
-          created_by?: string | null
+          created_by: string
           id?: number
           name: string
         }
         Update: {
           created_at?: string | null
-          created_by?: string | null
+          created_by?: string
           id?: number
           name?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: 'teams_created_by_fkey'
+            columns: ['created_by']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          }
+        ]
       }
       users: {
         Row: {
@@ -271,7 +287,14 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_teams_for_authenticated_user: {
+        Args: Record<PropertyKey, never>
+        Returns: number[]
+      }
+      get_teams_with_admin_role_for_authenticated_user: {
+        Args: Record<PropertyKey, never>
+        Returns: number[]
+      }
     }
     Enums: {
       pricing_plan_interval: 'day' | 'week' | 'month' | 'year'

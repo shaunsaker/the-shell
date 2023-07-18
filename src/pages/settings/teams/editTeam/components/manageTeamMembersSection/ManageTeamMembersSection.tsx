@@ -102,7 +102,7 @@ export const ManageTeamMembersSection = (): ReactElement => {
                   <TableRow key={teamMember.user_id}>
                     <TableCell>{formatTeamMemberName(teamMember)}</TableCell>
 
-                    <TableCell>{teamMember.user.email}</TableCell>
+                    <TableCell>{teamMember.user?.email}</TableCell>
 
                     <TableCell>{formatTeamMemberStatus(teamMember.status)}</TableCell>
 

@@ -18,9 +18,7 @@ export type Subscription = Database['public']['Tables']['subscriptions']['Row']
 
 export type Team = Database['public']['Tables']['teams']['Row']
 
-export type TeamMemberDb = Database['public']['Tables']['team_members']['Row']
-
-export type TeamMember = TeamMemberDb & { user: { first_name: string; last_name: string; email: string } }
+export type TeamMember = Database['public']['Tables']['team_members']['Row']
 
 export type TeamWithTeamMembers = Team & {
   team_members: TeamMember[]
