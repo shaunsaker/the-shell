@@ -7,7 +7,8 @@ import { ensureFileDirExists } from '../utils/ensureFileDirExists'
 
 const CURRENT_WORKING_DIRECTORY = process.env.PWD || __dirname
 const PUBLIC_PATH = path.join(CURRENT_WORKING_DIRECTORY, './public')
-const LOGO_PATH = path.join(CURRENT_WORKING_DIRECTORY, './src/assets/logo.svg')
+const LOGO_PATH = path.join(CURRENT_WORKING_DIRECTORY, './logo.svg')
+const ASSETS_PATH = path.join(CURRENT_WORKING_DIRECTORY, './src/assets')
 
 async function main(): Promise<void> {
   ensureFileDirExists(PUBLIC_PATH)
@@ -15,6 +16,11 @@ async function main(): Promise<void> {
   await copyFile({
     inputPath: LOGO_PATH,
     outputPath: path.join(PUBLIC_PATH, './icon.svg'),
+  })
+
+  await copyFile({
+    inputPath: LOGO_PATH,
+    outputPath: path.join(ASSETS_PATH, './logo.svg'),
   })
 
   await createFavicon({
