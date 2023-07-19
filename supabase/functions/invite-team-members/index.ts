@@ -47,7 +47,7 @@ serve(async (request): Promise<Response> => {
     }
 
     // Destructure the data from the POST body
-    const { teamId, emails } = await request.json()
+    const { teamId, emails, redirectTo } = await request.json()
 
     // Verify that the logged in user is an admin of the team
     const teamMember = await fetchTeamMemberForTeam({ teamId, userId: user.id })
@@ -102,7 +102,7 @@ serve(async (request): Promise<Response> => {
 
     // FIXME: use Promise.all
     for (const invitee of invitees) {
-      const user = await inviteUserByEmail(invitee)
+      const user = await inviteUserByEmail({ email: invitee, redirectTo })
 
       if (user.user.id) {
         newTeamMembers.push({

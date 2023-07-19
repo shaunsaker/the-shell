@@ -1,7 +1,7 @@
 import { supabaseAdmin } from './supabaseAdmin.ts'
 
-export const inviteUserByEmail = async (email: string) => {
-  const { data, error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email)
+export const inviteUserByEmail = async ({ email, redirectTo }: { email: string; redirectTo: string }) => {
+  const { data, error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, { redirectTo })
 
   if (error) {
     throw error

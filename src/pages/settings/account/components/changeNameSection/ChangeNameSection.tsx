@@ -6,7 +6,15 @@ import { TextInput } from '../../../../../components/textInput/TextInput'
 import { useSession } from '../../../../../hooks/auth/useSession'
 import { useUpdateUserData } from '../../../../../hooks/auth/useUpdateUserData'
 
-export const ChangeNameSection = (): ReactElement => {
+type ChangeNameSectionProps = {
+  title?: string
+  description?: string
+}
+
+export const ChangeNameSection = ({
+  title = 'Change name',
+  description = 'Update your personal details associated with your account.',
+}: ChangeNameSectionProps): ReactElement => {
   const { data: session } = useSession()
   const firstName = session?.user?.user_metadata?.first_name || ''
   const lastName = session?.user?.user_metadata?.last_name || ''
@@ -24,7 +32,7 @@ export const ChangeNameSection = (): ReactElement => {
   }, [firstName, lastName])
 
   return (
-    <SettingsSection title="Change name" description="Update your personal details associated with your account.">
+    <SettingsSection title={title} description={description}>
       <div className="flex flex-wrap gap-6 lg:flex-nowrap">
         <TextInput
           className="flex-1"

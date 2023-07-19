@@ -5,14 +5,22 @@ import { useUpdateUserPassword } from '../../hooks/auth/useUpdateUserPassword'
 import { SettingsSection } from '../settingsSection/SettingsSection'
 import { TextInput } from '../textInput/TextInput'
 
-export const ChangePasswordSection = (): ReactElement => {
+type ChangePasswordSectionProps = {
+  title?: string
+  description?: string
+}
+
+export const ChangePasswordSection = ({
+  title = 'Change password',
+  description = 'Update your password associated with your account.',
+}: ChangePasswordSectionProps): ReactElement => {
   const [newUserPassword, setNewUserPassword] = useState('')
   const { mutate: updateUserPassword, isLoading } = useUpdateUserPassword()
 
   const disabled = !newUserPassword
 
   return (
-    <SettingsSection title="Change password" description="Update your password associated with your account.">
+    <SettingsSection title={title} description={description}>
       <TextInput
         label="Password"
         type="password"

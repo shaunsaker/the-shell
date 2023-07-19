@@ -8,6 +8,7 @@ import { SettingsSection } from '../../../../components/settingsSection/Settings
 import { SettingsTeamsNavbar } from '../../../../components/settingsTeamsNavbar/SettingsTeamsNavbar'
 import { TextInput } from '../../../../components/textInput/TextInput'
 import { useInviteTeamMembers } from '../../../../hooks/teams/useInviteTeamMember'
+import { routes, TEAM_ID_PARAM } from '../../../../routes'
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const SettingsInviteTeamMembers = (): ReactElement => {
@@ -32,7 +33,11 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
             disabled={sendInvitesDisabled}
             loading={isLoading}
             onClick={() => {
-              inviteTeamMembers({ teamId, emails })
+              inviteTeamMembers({
+                teamId,
+                emails,
+                redirectTo: `${window.location.origin}${routes.settingsAcceptInvite.replace(TEAM_ID_PARAM, teamId)}`,
+              })
             }}
           >
             Send invites

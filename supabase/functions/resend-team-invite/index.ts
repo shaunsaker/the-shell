@@ -44,7 +44,7 @@ serve(async (request): Promise<Response> => {
     }
 
     // Destructure the data from the POST body
-    const { teamId, email } = await request.json()
+    const { teamId, email, redirectTo } = await request.json()
 
     // Verify that the logged in user is an admin of the team
     const teamMember = await fetchTeamMemberForTeam({ teamId, userId: user.id })
@@ -66,7 +66,7 @@ serve(async (request): Promise<Response> => {
       )
     }
 
-    await inviteUserByEmail(email)
+    await inviteUserByEmail({ email, redirectTo })
 
     return new Response(JSON.stringify({ ok: true }), {
       headers: {

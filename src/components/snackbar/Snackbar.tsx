@@ -39,7 +39,9 @@ export const Snackbar = (): ReactElement => {
                     toast.type === 'success' ? 'bg-emerald-500' : 'bg-red-500'
                   )}
                 >
-                  <Text className="text-center text-white">{resolveValue(toast.message, toast)}</Text>
+                  <Text className="text-center text-tremor-content-inverted dark:text-dark-tremor-content-inverted">
+                    {resolveValue(toast.message, toast)}
+                  </Text>
                 </div>
               </motion.div>
             )
