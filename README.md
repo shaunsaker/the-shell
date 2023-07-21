@@ -415,7 +415,7 @@ supabase start
 4. Start the Stripe listener so that api events from products/subscriptions/customers created/updated in Stripe are forwarded to your local supabase instance:
 
 ```
-yarn stripe:listen
+yarn serve:stripe
 ```
 
 5. Serve the Supabase functions locally:
