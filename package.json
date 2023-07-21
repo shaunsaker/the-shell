@@ -7,6 +7,7 @@
     "prepare": "husky install",
     "dev": "vite",
     "dev:node": "tsx",
+    "dev:emails": "cd ./emails && yarn email dev --port 3000",
     "lint": "npm-run-all --parallel lint:*",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
@@ -17,10 +18,11 @@
     "preview": "vite preview",
     "gen:theme": "yarn dev:node ./scripts/generateTheme",
     "gen:assets": "yarn dev:node ./scripts/generateAssets",
-    "db:migration": "supabase db diff -f",
-    "db:types": "supabase gen types typescript --local --schema public > src/types/supabase.ts && prettier --write src/types/supabase.ts",
-    "stripe:listen": "stripe listen --forward-to localhost:54321/functions/v1/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
-    "functions:serve": "supabase functions serve --no-verify-jwt --env-file ./supabase/functions/.env.local"
+    "gen:types": "supabase gen types typescript --local --schema public > src/types/supabase.ts && prettier --write src/types/supabase.ts",
+    "gen:migration": "supabase db diff -f",
+    "gen:emails": "mv tsconfig.json tsconfig_temp.json && cd ./emails && yarn export && cd .. && mv tsconfig_temp.json tsconfig.json",
+    "serve:stripe": "stripe listen --forward-to localhost:54321/functions/v1/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
+    "serve:functions": "supabase functions serve --no-verify-jwt --env-file ./supabase/functions/.env.local"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -16,5 +16,5 @@
     "incremental": true
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.mjs"],
-  "exclude": ["node_modules", "supabase"]
+  "exclude": ["node_modules", "supabase", ".react-email"]
 }

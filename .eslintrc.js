@@ -25,4 +25,5 @@ module.exports = {
     'react-hooks/rules-of-hooks': ERROR,
     'react-hooks/exhaustive-deps': ERROR,
   },
+  ignorePatterns: ['.react-email'],
 }

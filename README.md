@@ -28,6 +28,8 @@ TODO: SS add a video of project setup in action
 - Auth flows, dashboard and settings management ✅
 - [Stripe](https://stripe.com/) integration ([that actually works](https://github.com/vercel/nextjs-subscription-payments/issues)) 💳
 - [Netlify](https://www.netlify.com/) deployment 🛰️
+- [Resend](https://resend.com/) for transactional emails ⚡️
+- [React Email](https://react.email/) for quick and easy email development ✉️❤️
 - [react-router-dom](https://reactrouter.com/en/main) for routing with a pre-configured Router 🧭
 - [react-query](https://tanstack.com/query/latest/) for declarative query management 🦅
 - [jotai](https://jotai.org/) for super simple state management 👻
@@ -59,6 +61,7 @@ TODO: SS add a video of project setup in action
 - [git](https://git-scm.com/downloads)
 - [yarn](https://classic.yarnpkg.com/lang/en/docs/install)
 - [Node.js](https://nodejs.org/en)
+- [Github account](https://github.com/signup)
 - [Supabase account](https://supabase.com/dashboard/sign-up)
 - [Supabase cli](https://supabase.com/docs/guides/cli#installation)
 - [Stripe account](https://dashboard.stripe.com/register)
@@ -66,6 +69,7 @@ TODO: SS add a video of project setup in action
 - [Netlify account](https://app.netlify.com/teams/shaunsaker/overview)
 - [Github cli](https://github.com/cli/cli#installation)
 - [Sentry account](https://sentry.io/signup/)
+- 2x [Resend accounts](https://resend.com/signup), one for staging and one for production
 
 ### Basic Setup
 
@@ -105,7 +109,7 @@ git push -u origin develop
 yarn gen:theme --baseColor teal --neutralColor gray
 ```
 
-3. Update `./src/assets/logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+3. Update `./logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
 
 4. Run the script:
 
@@ -164,7 +168,7 @@ yarn db:reset
 
 7. [Create a Supabase access token](https://supabase.com/dashboard/account/tokens).
 
-8. Add your Supabase access token (obtained above) and db passwords and project ids (obtained in step 2) to your Github repo:
+8. Push your Supabase access token (obtained above) and db passwords and project ids (obtained in step 2) to your Github repo:
 
 ```
 gh auth login
@@ -198,7 +202,7 @@ Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secr
 Run the local Stripe listener once, copy the Stripe Webhook Signing Secret and pop it into `./supabase/functions/.env.local`.
 
 ```
-yarn stripe:listen
+yarn serve:stripe
 ```
 
 ---
@@ -303,11 +307,17 @@ We support free trials out of the box. To add a free trial to a product, simply 
 yarn netlify init
 ```
 
-2. From the above command, grab your `Site URL`. For your staging Supabase project, prefix `develop--` to it, e.g. "https://ultimate-b2b-saas-boilerplate.netlify.app" becomes "https://ultimate-b2b-saas-boilerplate.netlify.app" and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration). Do the same for your production Supabase project except leave out the prefix. Note: When you add a custom domain to Netlify, you will need to update this again.
+2. From the above command, grab your `Site URL`.
 
-3. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
+3. For your staging Supabase project, prefix `develop--` to it, e.g. "https://ultimate-b2b-saas-boilerplate.netlify.app" becomes "https://ultimate-b2b-saas-boilerplate.netlify.app" and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration).
 
-4. Grab your Supabase **staging** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the staging deployment):
+4. Add the above as `SITE_URL` to `./emails/.env`.
+
+5. Do the same for your production Supabase project except leave out the prefix. Note: When you add a custom domain to Netlify, you will need to update these again.
+
+6. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
+
+7. Grab your Supabase **staging** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the staging deployment):
 
 ```
 yarn netlify env:set VITE_SUPABASE_URL STAGING_PROJECT URL --context branch-deploy
@@ -357,6 +367,39 @@ gh secret set SENTRY_PROJECT --body "VALUE"
 
 7. [Connect your Github repo to Sentry](https://private-zj.sentry.io/settings/integrations/github/).
 
+### Setup Resend
+
+1. Add an API key to each of your Resend accounts (staging and production).
+
+2. Push the secrets to Github.
+
+```
+gh auth login
+gh secret set RESEND_API_KEY_STAGING --body "VALUE"
+gh secret set RESEND_API_KEY_PRODUCTION --body "VALUE"
+```
+
+### Setup React Email
+
+1. Install dependencies:
+
+```
+cd ./emails
+yarn
+```
+
+2. Generate html email templates:
+
+```
+yarn gen:emails
+```
+
+3. Update your Supabase email templates:
+
+The command `yarn gen:emails` generated html email templates in `./emails/out/*`. Copy and save these to the relevant templates in your [Supabase projects](https://supabase.com/dashboard/project/_/auth/templates) and you will have beautiful themed auth emails out of the box 😎 Supabase will strip out some of the code, don't worry, they'll still work as expected.
+
+---
+
 ## Development
 
 1. Start the Supabase container:
@@ -378,7 +421,7 @@ yarn stripe:listen
 5. Serve the Supabase functions locally:
 
 ```
-yarn functions:serve
+yarn serve:functions
 ```
 
 6. Run the app:
@@ -394,7 +437,7 @@ yarn dev
 It's considered best practice to first make db changes to your local db and then to push them to the remote. With Supabase, we do this with [migrations](https://supabase.com/docs/guides/getting-started/local-development#database-migrations). After making changes to your local database, to get the diff as a migration run:
 
 ```
-yarn db:migration MIGRATION_NAME
+yarn gen:migration MIGRATION_NAME
 ```
 
 Your Github actions will take care of applying the migration to staging and production once it's merged into `develop` and `master` respectively.
@@ -406,5 +449,15 @@ Your Github actions will take care of applying the migration to staging and prod
 After making changes to your db schema, you can generate Typescript types with the following command:
 
 ```
-yarn db:types
+yarn gen:types
+```
+
+---
+
+### Emails
+
+To run the React Email dev server:
+
+```
+yarn dev:emails
 ```
