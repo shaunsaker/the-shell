@@ -119,10 +119,6 @@ yarn gen:assets
 
 And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
 
-Here it is in action:
-
-![Generating assets](https://github.com/shaunsaker/ultimate-react-boilerplate/blob/master/assets/generate-assets.gif?raw=true)
-
 ---
 
 ### Setup Supabase
