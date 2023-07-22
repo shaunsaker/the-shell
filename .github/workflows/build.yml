@@ -17,6 +17,4 @@ jobs:
         with:
           node-version: '18.x'
       - run: yarn --frozen-lockfile
-      - run: yarn lint
-      # - run: yarn test TODO: SS reenable once we add tests
-      - run: yarn build
+      - run: turbo run lint build # TODO: SS add test once we add tests

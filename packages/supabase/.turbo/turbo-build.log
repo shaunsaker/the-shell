@@ -1,0 +1,5 @@
+$ npm-run-all --parallel build:*
+$ supabase gen types typescript --local --schema public > ../app/src/types/supabase.ts && prettier --write ../app/src/types/supabase.ts
+(node:1) ExperimentalWarning: Importing JSON modules is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+../app/src/types/supabase.ts 118ms

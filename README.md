@@ -101,20 +101,21 @@ git push -u origin develop
 
 ### Make it your own
 
-1. Update `app.json` with your app name, description and support email.
+1. Update `./packages/common/app.json` with your app name, description and support email.
 
 2. Generate your theme colors where `baseColor` and `themeColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
 
 ```
-yarn gen:theme --baseColor teal --neutralColor gray
+cd ./packages/scripts
+yarn build:theme --baseColor teal --neutralColor gray
 ```
 
-3. Update `./logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+3. Update `./packages/common/logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
 
 4. Run the script:
 
 ```
-yarn gen:assets
+yarn build:assets
 ```
 
 And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
@@ -126,6 +127,7 @@ And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
 1. Login to the Supabase cli
 
 ```
+cd ./packages
 supabase login
 ```
 
@@ -147,7 +149,7 @@ supabase start
 4. Copy the env files:
 
 ```
-cp .env.example .env.local
+cp ./supabase/functions.env.example ./supabase/functions.env.local
 ```
 
 5. Grab your Supabase local `API URL` and `anon key` and pop them into `.env.local`:
@@ -159,7 +161,7 @@ supabase status
 6. Setup your local Supabase db:
 
 ```
-yarn db:reset
+supabase db reset
 ```
 
 7. [Create a Supabase access token](https://supabase.com/dashboard/account/tokens).
@@ -198,7 +200,7 @@ Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secr
 Run the local Stripe listener once, copy the Stripe Webhook Signing Secret and pop it into `./supabase/functions/.env.local`.
 
 ```
-yarn serve:stripe
+yarn dev:stripe
 ```
 
 ---
@@ -216,7 +218,7 @@ supabase projects list
 2. Deploy stripe-webhook function to your Supabase remote staging instance:
 
 ```
-yarn functions:deploy:stripe-webhook --project-ref SUPABASE_STAGING_PROJECT_ID
+supabase functions deploy stripe-webhook --project-ref SUPABASE_STAGING_PROJECT_ID
 ```
 
 3. The above command will generate a url where you can inspect your deployment. Visit that url and copy the `Endpoint URL`.
@@ -248,7 +250,7 @@ supabase projects list
 2. Deploy stripe-webhook function to your Supabase remote production instance:
 
 ```
-yarn functions:deploy:stripe-webhook --project-ref SUPABASE_PRODUCTION_PROJECT_ID
+supabase functions deploy stripe-webhook --project-ref SUPABASE_PRODUCTION_PROJECT_ID
 ```
 
 3. The above command will generate a url where you can inspect your deployment. Visit that url and copy the `Endpoint URL`.
@@ -300,6 +302,7 @@ We support free trials out of the box. To add a free trial to a product, simply 
 1. Create a new site on Netlify and connect your repo to it:
 
 ```
+cd ./packages/app
 yarn netlify init
 ```
 
@@ -307,7 +310,7 @@ yarn netlify init
 
 3. For your staging Supabase project, prefix `develop--` to it, e.g. "https://ultimate-b2b-saas-boilerplate.netlify.app" becomes "https://ultimate-b2b-saas-boilerplate.netlify.app" and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration).
 
-4. Add the above as `SITE_URL` to `./emails/.env`.
+4. Add the above as `SITE_URL` to `../emails/.env`.
 
 5. Do the same for your production Supabase project except leave out the prefix. Note: When you add a custom domain to Netlify, you will need to update these again.
 
@@ -377,17 +380,11 @@ gh secret set RESEND_API_KEY_PRODUCTION --body "VALUE"
 
 ### Setup React Email
 
-1. Install dependencies:
+1. Generate html email templates:
 
 ```
-cd ./emails
-yarn
-```
-
-2. Generate html email templates:
-
-```
-yarn gen:emails
+cd ./packages/emails
+yarn build:emails
 ```
 
 3. Update your Supabase email templates:
@@ -408,19 +405,7 @@ supabase start
 
 3. Open the [Inbucket](https://inbucket.org/) url, your local email server.
 
-4. Start the Stripe listener so that api events from products/subscriptions/customers created/updated in Stripe are forwarded to your local supabase instance:
-
-```
-yarn serve:stripe
-```
-
-5. Serve the Supabase functions locally:
-
-```
-yarn serve:functions
-```
-
-6. Run the app:
+4. Run the app, email dev server and supabase functions:
 
 ```
 yarn dev
@@ -433,27 +418,8 @@ yarn dev
 It's considered best practice to first make db changes to your local db and then to push them to the remote. With Supabase, we do this with [migrations](https://supabase.com/docs/guides/getting-started/local-development#database-migrations). After making changes to your local database, to get the diff as a migration run:
 
 ```
-yarn gen:migration MIGRATION_NAME
+cd ./packages/supabase
+yarn db:migration MIGRATION_NAME
 ```
 
 Your Github actions will take care of applying the migration to staging and production once it's merged into `develop` and `master` respectively.
-
----
-
-### Generating types
-
-After making changes to your db schema, you can generate Typescript types with the following command:
-
-```
-yarn gen:types
-```
-
----
-
-### Emails
-
-To run the React Email dev server:
-
-```
-yarn dev:emails
-```
