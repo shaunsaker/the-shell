@@ -423,3 +423,14 @@ yarn db:migration MIGRATION_NAME
 ```
 
 Your Github actions will take care of applying the migration to staging and production once it's merged into `develop` and `master` respectively.
+
+---
+
+### Emails
+
+Run the email dev server:
+
+```
+cd ./packages/emails
+yarn dev:emails
+```
