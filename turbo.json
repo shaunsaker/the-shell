@@ -1,12 +1,16 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
   "pipeline": {
     "lint": {},
     "test": {},
+    "app#build": {
+      "dependsOn": ["scripts#build", "supabase#build"]
+    },
+    "email#build": {
+      "dependsOn": ["scripts#build"]
+    },
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "dependsOn": ["^build"]
     },
     "dev": {
       "cache": false,
