@@ -1,10 +1,11 @@
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 import react from '@vitejs/plugin-react'
-import { app } from 'common'
 import colors from 'tailwindcss/colors'
 import { defineConfig } from 'vite'
 import handlebars from 'vite-plugin-handlebars'
 import svgr from 'vite-plugin-svgr'
+
+import app from '../common/app.json'
 
 const SHOULD_USE_SENTRY = Boolean(process.env.SENTRY_AUTH_TOKEN && process.env.SENTRY_ORG && process.env.SENTRY_PROJECT)
 

@@ -1,8 +1,8 @@
 import { Button, Card, Metric, Text } from '@tremor/react'
-import { app } from 'common'
 import { FormEvent, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import app from '../../../../common/app.json'
 import { FullPage } from '../../components/fullPage/FullPage'
 import { Logo } from '../../components/logo/Logo'
 import { TextInput } from '../../components/textInput/TextInput'

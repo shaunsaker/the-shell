@@ -1,9 +1,9 @@
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import { Button, Metric, Text, Title } from '@tremor/react'
-import { app } from 'common'
 import React, { ReactElement, useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
+import app from '../../../../common/app.json'
 import { useLink } from '../../hooks/utils/useLink'
 import { routes } from '../../routes'
 import { sentry } from '../../sentry'

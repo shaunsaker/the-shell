@@ -1,8 +1,8 @@
 import { Container, Img, Tailwind, Text } from '@react-email/components'
-import { app } from 'common'
 import dotenv from 'dotenv'
 import React, { ReactElement, ReactNode } from 'react'
 
+import app from '../../common/app.json'
 import { tailwindConfig } from '../tailwind.config'
 
 dotenv.config()

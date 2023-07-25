@@ -1,8 +1,9 @@
-import { app, themeColors } from 'common'
 import fs from 'fs'
 import path from 'path'
 import colors from 'tailwindcss/colors'
 
+import app from '../../common/app.json'
+import themeColors from '../../common/themeColors.json'
 import { args } from './args'
 import { tremorTheme } from './tremorTheme'
 

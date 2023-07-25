@@ -1,7 +1,7 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
-import { app } from 'common'
 import React, { ReactElement } from 'react'
 
+import app from '../../../../../../../../common/app.json'
 import { BlankState } from '../../../../../../components/blankState/BlankState'
 import { useLink } from '../../../../../../hooks/utils/useLink'
 
