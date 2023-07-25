@@ -1,11 +1,11 @@
 import { Dialog } from '@headlessui/react'
 import { Cog6ToothIcon, HomeModernIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Button } from '@tremor/react'
+import { app } from 'common'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
-import app from '../../../../common/app.json'
 import { useSubscription } from '../../hooks/subscription/useSubscription'
 import { useLink } from '../../hooks/utils/useLink'
 import { useSidebarOpen } from '../../hooks/utils/useSidebarOpen'
