@@ -179,6 +179,42 @@ gh secret set SUPABASE_PROJECT_ID_PRODUCTION --body "VALUE"
 
 ---
 
+### Setup Netlify
+
+1. Create a new site on Netlify and connect your repo to it:
+
+```
+yarn netlify init
+```
+
+2. From the above command, grab your `Site URL`.
+
+3. For your staging Supabase project, prefix `develop--` to it, e.g. "https://ultimate-b2b-saas-boilerplate.netlify.app" becomes "https://ultimate-b2b-saas-boilerplate.netlify.app" and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration).
+
+4. Add the above as `SITE_URL` to `../emails/.env`.
+
+5. Do the same for your production Supabase project except leave out the prefix. Note: When you add a custom domain to Netlify, you will need to update these again.
+
+6. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
+
+7. Grab your Supabase **staging** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the staging deployment):
+
+```
+yarn netlify env:set VITE_SUPABASE_URL STAGING_PROJECT URL --context branch-deploy
+yarn netlify env:set VITE_SUPABASE_ANON_KEY STAGING_ANON_KEY --context branch-deploy
+```
+
+5. Grab your Supabase **production** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the production deployment):
+
+```
+yarn netlify env:set VITE_SUPABASE_URL API PRODUCTION_PROJECT_URL --context production
+yarn netlify env:set VITE_SUPABASE_ANON_KEY PRODUCTION_ANON_KEY --context production
+```
+
+Now every time you push to `master`, production will be built and when you push to `develop`, staging will be built 🎉
+
+---
+
 ### Setup Stripe
 
 1. Enable Test mode in Stripe.
@@ -294,43 +330,6 @@ We support free trials out of the box. To add a free trial to a product, simply 
   freeTrialDays: number
 }
 ```
-
----
-
-### Setup Netlify
-
-1. Create a new site on Netlify and connect your repo to it:
-
-```
-cd ./packages/app
-yarn netlify init
-```
-
-2. From the above command, grab your `Site URL`.
-
-3. For your staging Supabase project, prefix `develop--` to it, e.g. "https://ultimate-b2b-saas-boilerplate.netlify.app" becomes "https://ultimate-b2b-saas-boilerplate.netlify.app" and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration).
-
-4. Add the above as `SITE_URL` to `../emails/.env`.
-
-5. Do the same for your production Supabase project except leave out the prefix. Note: When you add a custom domain to Netlify, you will need to update these again.
-
-6. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
-
-7. Grab your Supabase **staging** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the staging deployment):
-
-```
-yarn netlify env:set VITE_SUPABASE_URL STAGING_PROJECT URL --context branch-deploy
-yarn netlify env:set VITE_SUPABASE_ANON_KEY STAGING_ANON_KEY --context branch-deploy
-```
-
-5. Grab your Supabase **production** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the production deployment):
-
-```
-yarn netlify env:set VITE_SUPABASE_URL API PRODUCTION_PROJECT_URL --context production
-yarn netlify env:set VITE_SUPABASE_ANON_KEY PRODUCTION_ANON_KEY --context production
-```
-
-Now every time you push to `master`, production will be built and when you push to `develop`, staging will be built 🎉
 
 ---
 
