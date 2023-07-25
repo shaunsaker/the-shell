@@ -5,7 +5,7 @@ export const routes = {
   signUp: '/sign-up',
   signIn: '/sign-in',
   forgotPassword: '/forgot-password',
-  dashboard: '/',
+  dashboard: '/dashboard',
   settings: '/settings',
   settingsAccount: '/settings/account',
   settingsResetPassword: '/settings/account/reset-password',

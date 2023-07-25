@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
 
 import { deleteTeam } from '../../api/teams/deleteTeam'
 import { QueryKeys } from '../../models'
@@ -8,7 +8,7 @@ import { routes } from '../../routes'
 
 export const useDeleteTeam = () => {
   const queryClient = useQueryClient()
-  const navigate = useNavigate()
+  const router = useRouter()
 
   return useMutation({
     mutationFn: deleteTeam,
@@ -18,7 +18,7 @@ export const useDeleteTeam = () => {
 
       toast.success('Team deleted successfully')
 
-      navigate(routes.settingsTeams)
+      router.push(routes.settingsTeams)
     },
   })
 }

@@ -1,3 +1,4 @@
+'use client'
 import { Button } from '@tremor/react'
 import React, { ReactElement, useState } from 'react'
 

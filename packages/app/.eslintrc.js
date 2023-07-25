@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
-  extends: ['custom', 'react-app', 'plugin:react-hooks/recommended', 'plugin:tailwindcss/recommended'],
-  plugins: ['react', 'react-hooks', 'tailwindcss'],
+  extends: ['custom', 'next/core-web-vitals', 'plugin:tailwindcss/recommended'],
+  plugins: ['tailwindcss'],
   rules: {
     'react/no-unescaped-entities': 'off',
     'react/display-name': 'off',

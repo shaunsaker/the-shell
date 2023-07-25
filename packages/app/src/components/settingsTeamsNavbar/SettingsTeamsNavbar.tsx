@@ -1,5 +1,5 @@
+import { usePathname } from 'next/navigation'
 import React, { ComponentProps, ReactElement } from 'react'
-import { useLocation } from 'react-router-dom'
 
 import { useTeam } from '../../hooks/teams/useTeam'
 import { useTeamMember } from '../../hooks/teams/useTeamMember'
@@ -10,7 +10,7 @@ import { Breadcrumbs } from '../breadcrumbs/BreadCrumbs'
 export const SettingsTeamsNavbar = (): ReactElement => {
   const { data: team } = useTeam()
   const { data: teamMember } = useTeamMember()
-  const location = useLocation()
+  const pathname = usePathname()
 
   const BREADCRUMBS: ComponentProps<typeof Breadcrumbs>['pages'] = []
 
@@ -25,7 +25,7 @@ export const SettingsTeamsNavbar = (): ReactElement => {
 
     const hrefInviteTeamMembers = routes.settingsInviteTeamMembers.replace(TEAM_ID_PARAM, team.id.toString())
 
-    if (location.pathname === hrefInviteTeamMembers) {
+    if (pathname === hrefInviteTeamMembers) {
       BREADCRUMBS.push({
         name: 'Invite team members',
         href: hrefInviteTeamMembers,
@@ -35,7 +35,7 @@ export const SettingsTeamsNavbar = (): ReactElement => {
 
     const hrefAcceptInvite = routes.settingsAcceptInvite.replace(TEAM_ID_PARAM, team.id.toString())
 
-    if (location.pathname === hrefAcceptInvite) {
+    if (pathname === hrefAcceptInvite) {
       BREADCRUMBS.push({
         name: 'Accept invite',
         href: hrefAcceptInvite,

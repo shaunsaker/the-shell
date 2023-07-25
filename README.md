@@ -110,7 +110,9 @@ cd ./packages/scripts
 yarn build:theme --baseColor teal --neutralColor gray
 ```
 
-3. Update `./packages/common/logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+3. Update `./packages/common/icon.svg` and `./packages/common/icon-inverted.svg` with your logos. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+
+TODO: SS We need to be able to inject the brand colour into one logo and use white for the other.
 
 4. Run the script:
 
@@ -319,15 +321,15 @@ yarn netlify init
 7. Grab your Supabase **staging** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the staging deployment):
 
 ```
-yarn netlify env:set VITE_SUPABASE_URL STAGING_PROJECT URL --context branch-deploy
-yarn netlify env:set VITE_SUPABASE_ANON_KEY STAGING_ANON_KEY --context branch-deploy
+yarn netlify env:set NEXT_PUBLIC_SUPABASE_URL STAGING_PROJECT URL --context branch-deploy
+yarn netlify env:set NEXT_PUBLIC_SUPABASE_ANON_KEY STAGING_ANON_KEY --context branch-deploy
 ```
 
 5. Grab your Supabase **production** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the production deployment):
 
 ```
-yarn netlify env:set VITE_SUPABASE_URL API PRODUCTION_PROJECT_URL --context production
-yarn netlify env:set VITE_SUPABASE_ANON_KEY PRODUCTION_ANON_KEY --context production
+yarn netlify env:set NEXT_PUBLIC_SUPABASE_URL API PRODUCTION_PROJECT_URL --context production
+yarn netlify env:set NEXT_PUBLIC_SUPABASE_ANON_KEY PRODUCTION_ANON_KEY --context production
 ```
 
 Now every time you push to `master`, production will be built and when you push to `develop`, staging will be built 🎉

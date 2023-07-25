@@ -1,22 +1,20 @@
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import { Button, Metric, Text, Title } from '@tremor/react'
-import React, { ReactElement, useEffect } from 'react'
-import { useNavigate, useRouteError } from 'react-router-dom'
+import { app } from 'common'
+import { useRouter } from 'next/navigation'
+import React, { useEffect } from 'react'
 
-import app from '../../../../common/app.json'
 import { useLink } from '../../hooks/utils/useLink'
 import { routes } from '../../routes'
 import { sentry } from '../../sentry'
 
-export const ErrorBoundary = (): ReactElement => {
-  const error = useRouteError() as { status: number; statusText: string; error: Error } | Error | undefined
-  const navigate = useNavigate()
-  const link = useLink()
+type ErrorBoundaryProps = {
+  error: Error
+}
 
-  const errorIsError = error instanceof Error
-  const status = errorIsError ? 500 : error ? error.status : '500'
-  const statusText = errorIsError || !error ? 'Internal Server Error' : error.statusText
-  const errorMessage = errorIsError ? error.message : error ? error.error?.message : ''
+export default function ErrorBoundary({ error }: ErrorBoundaryProps) {
+  const router = useRouter()
+  const link = useLink()
 
   useEffect(() => {
     if (error) {
@@ -26,16 +24,16 @@ export const ErrorBoundary = (): ReactElement => {
 
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      <Title>{status}</Title>
+      <Title>500</Title>
 
-      <Metric className="mt-4">{statusText}</Metric>
+      <Metric className="mt-4">Internal server error</Metric>
 
-      <Text className="mt-4">{errorMessage}</Text>
+      <Text className="mt-4">{error.message}</Text>
 
       <div className="mt-8 flex gap-8">
         <Button
           onClick={() => {
-            navigate(routes.dashboard)
+            router.replace(routes.dashboard)
           }}
         >
           Go back home

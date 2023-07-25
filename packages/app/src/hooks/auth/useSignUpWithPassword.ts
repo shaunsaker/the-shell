@@ -7,7 +7,7 @@ export const useSignUpWithPassword = () => {
   return useMutation({
     mutationFn: signUp,
     onSuccess: () => {
-      if (!import.meta.env.DEV) {
+      if (process.env.NODE_ENV !== 'development') {
         // in development, the local server will not send a confirmation email
         toast.success('A confirmation email has been sent to your inbox.')
       }

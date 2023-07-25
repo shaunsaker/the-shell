@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Button, Text } from '@tremor/react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { usePathname, useRouter } from 'next/navigation'
 
 type Page = {
   name: string
@@ -13,14 +13,14 @@ type BreadcrumbsProps = {
 }
 
 export const Breadcrumbs = ({ pages }: BreadcrumbsProps) => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const router = useRouter()
+  const pathname = usePathname()
 
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol className="flex items-center space-x-4">
         {pages?.map((page, index) => {
-          const isActive = page.isActive(location.pathname)
+          const isActive = page.isActive(pathname)
 
           return (
             <li key={page.name}>
@@ -32,7 +32,7 @@ export const Breadcrumbs = ({ pages }: BreadcrumbsProps) => {
                   onClick={() => {
                     // navigate to the route if we're not already on that route
                     if (!isActive) {
-                      navigate(page.href)
+                      router.push(page.href)
                     }
                   }}
                 >

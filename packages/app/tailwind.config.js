@@ -2,7 +2,6 @@ import themeColors from '../common/themeColors.json'
 
 module.exports = {
   content: [
-    './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
 
     // Path to the Tremor module

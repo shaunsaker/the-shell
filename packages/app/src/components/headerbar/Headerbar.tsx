@@ -1,3 +1,4 @@
+'use client'
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button } from '@tremor/react'
 import React, { ReactElement, ReactNode } from 'react'

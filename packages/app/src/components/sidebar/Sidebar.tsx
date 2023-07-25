@@ -1,12 +1,12 @@
+'use client'
 import { Dialog } from '@headlessui/react'
 import { Cog6ToothIcon, HomeModernIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Button } from '@tremor/react'
+import { app } from 'common'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { usePathname, useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
-import app from '../../../../common/app.json'
-import { useSubscription } from '../../hooks/subscription/useSubscription'
 import { useLink } from '../../hooks/utils/useLink'
 import { useSidebarOpen } from '../../hooks/utils/useSidebarOpen'
 import { routes } from '../../routes'
@@ -37,10 +37,9 @@ const navigation: NavigationItem[] = [
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useSidebarOpen()
-  const location = useLocation()
-  const navigate = useNavigate()
+  const router = useRouter()
+  const pathname = usePathname()
   const link = useLink()
-  const { data: subscription } = useSubscription()
 
   const sidebar = (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-tremor-brand px-6 dark:bg-dark-tremor-brand">
@@ -51,23 +50,20 @@ export default function Sidebar() {
       <nav className="flex flex-1 flex-col">
         <ul className="-mx-2 flex flex-col space-y-1">
           {navigation.map(item => {
-            const disabled = item.href === routes.dashboard && !subscription // TODO: SS when we introduce features, disable the Dashboard if there is no subscription
-
             return (
               <li key={item.name}>
                 <Button
                   icon={item.icon}
-                  disabled={disabled}
                   className={twMerge(
-                    item.isActive(location.pathname)
+                    item.isActive(pathname)
                       ? 'bg-tremor-brand-emphasis text-tremor-brand-inverted dark:bg-dark-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted'
                       : 'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
                     'w-full justify-start border-none shadow-none',
                   )}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
-                    if (!item.isActive(location.pathname)) {
-                      navigate(item.href)
+                    if (!item.isActive(pathname)) {
+                      router.push(item.href)
                     }
                   }}
                 >

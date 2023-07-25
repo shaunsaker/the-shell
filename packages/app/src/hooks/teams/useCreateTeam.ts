@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
 
 import { createTeam } from '../../api/teams/createTeam'
 import { QueryKeys, Team } from '../../models'
@@ -8,7 +8,7 @@ import { routes } from '../../routes'
 
 export const useCreateTeam = () => {
   const queryClient = useQueryClient()
-  const navigate = useNavigate()
+  const router = useRouter()
 
   return useMutation({
     mutationFn: createTeam,
@@ -18,7 +18,7 @@ export const useCreateTeam = () => {
 
       toast.success('Team created successfully')
 
-      navigate(routes.settingsEditTeam.replace(':teamId', data.id.toString()))
+      router.push(routes.settingsEditTeam.replace(':teamId', data.id.toString()))
     },
   })
 }

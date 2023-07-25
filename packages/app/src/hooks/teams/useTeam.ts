@@ -1,10 +1,9 @@
-import { useParams } from 'react-router-dom'
-
+import { useTeamIdParam } from './useTeamIdParam'
 import { useTeams } from './useTeams'
 
 export const useTeam = () => {
-  const { teamId = '' } = useParams()
   const { data: teams, ...teamsQuery } = useTeams()
+  const teamId = useTeamIdParam()
 
   const team = teams?.find(team => team.id === parseInt(teamId))
 
