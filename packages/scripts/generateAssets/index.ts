@@ -11,6 +11,7 @@ const APP_PATH = path.join(ROOT_PATH, './app')
 const APP_PUBLIC_PATH = path.join(APP_PATH, './public')
 const APP_ASSETS_PATH = path.join(APP_PATH, './src/assets')
 const LOGO_PATH = path.join(ROOT_PATH, './common/logo.svg')
+const INVERTED_LOGO_PATH = path.join(ROOT_PATH, './common/logo-inverted.svg')
 
 async function main(): Promise<void> {
   ensureFileDirExists(APP_PUBLIC_PATH)
@@ -23,7 +24,7 @@ async function main(): Promise<void> {
   ensureFileDirExists(APP_ASSETS_PATH)
 
   await copyFile({
-    inputPath: LOGO_PATH,
+    inputPath: INVERTED_LOGO_PATH,
     outputPath: path.join(APP_ASSETS_PATH, './logo.svg'),
   })
 

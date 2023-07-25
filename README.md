@@ -110,7 +110,7 @@ cd ./packages/scripts
 yarn build:theme --baseColor teal --neutralColor gray
 ```
 
-3. Update `./packages/common/logo.svg` with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+3. Update `./packages/common/logo.svg` and `./packages/common/logo-inverted.svg` with your logos. `logo-inverted` is simply a white version of your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
 
 4. Run the script:
 
