@@ -1,4 +1,6 @@
 .DS_Store
 node_modules
-# Local Netlify folder
+yarn-error.log
+.turbo
 .netlify
+tsconfig.tsbuildinfo

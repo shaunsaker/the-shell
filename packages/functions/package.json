@@ -1,0 +1,28 @@
+{
+  "name": "functions",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev:functions": "netlify functions:serve",
+    "dev:stripe": "stripe listen --forward-to localhost:9999/.netlify/functions/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
+    "dev": "npm-run-all --parallel dev:*",
+    "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
+    "lint:eslint": "eslint --ext [.ts,.tsx] .",
+    "lint:ts": "tsc",
+    "lint": "npm-run-all --parallel lint:*"
+  },
+  "dependencies": {
+    "@netlify/functions": "^1.6.0",
+    "@supabase/supabase-js": "^2.29.0",
+    "dayjs": "^1.11.9",
+    "stripe": "^12.14.0"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "netlify-cli": "^15.9.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.1",
+    "tsconfig": "*",
+    "typescript": "^5.1.6"
+  }
+}

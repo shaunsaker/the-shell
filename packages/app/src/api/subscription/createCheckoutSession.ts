@@ -1,8 +1,8 @@
-import { supabase } from '..'
 import { handleApiError } from '../utils/handleApiError'
+import { invokeFunction } from '../utils/invokeFunction'
 
 export const createCheckoutSession = async (priceId: string) => {
-  const { data, error } = await supabase.functions.invoke('create-checkout-session', {
+  const { data, error } = await invokeFunction('create-checkout-session', {
     body: {
       priceId,
       successUrl: window.location.href,

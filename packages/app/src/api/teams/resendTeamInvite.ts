@@ -1,5 +1,5 @@
-import { supabase } from '..'
 import { handleApiError } from '../utils/handleApiError'
+import { invokeFunction } from '../utils/invokeFunction'
 
 export const resendTeamInvite = async ({
   teamId,
@@ -10,7 +10,7 @@ export const resendTeamInvite = async ({
   email: string
   redirectTo: string
 }) => {
-  const { data, error } = await supabase.functions.invoke('resend-team-invite', {
+  const { data, error } = await invokeFunction('resend-team-invite', {
     body: {
       teamId,
       email,

@@ -3,8 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev:stripe": "stripe listen --forward-to localhost:54321/functions/v1/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
-    "dev:functions": "supabase functions serve --no-verify-jwt --env-file ./supabase/functions/.env.local",
     "dev:dashboard": "set -a && eval $(supabase status --output env) && set +a && open $STUDIO_URL",
     "dev:email-server": "set -a && eval $(supabase status --output env) && set +a && open $INBUCKET_URL",
     "dev": "npm-run-all --parallel dev:*",

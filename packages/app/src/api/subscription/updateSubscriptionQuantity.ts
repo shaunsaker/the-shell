@@ -1,8 +1,8 @@
-import { supabase } from '..'
 import { handleApiError } from '../utils/handleApiError'
+import { invokeFunction } from '../utils/invokeFunction'
 
 export const updateSubscriptionQuantity = async (quantity: number) => {
-  const { data, error } = await supabase.functions.invoke('update-subscription-quantity', {
+  const { data, error } = await invokeFunction('update-subscription-quantity', {
     body: {
       quantity,
     },

@@ -1,6 +1,7 @@
 # example netlify.toml
 [build]
   command = "cd ./packages/scripts && yarn build:assets && cd ../app && yarn build"
+  functions = "./packages/functions/functions"
   publish = "./packages/app/dist"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.

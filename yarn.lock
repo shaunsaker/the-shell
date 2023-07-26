@@ -2265,6 +2265,13 @@
     cpy "^9.0.0"
     path-exists "^5.0.0"
 
+"@netlify/functions@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@netlify/functions/-/functions-1.6.0.tgz#c373423e6fef0e6f7422ac0345e8bbf2cb692366"
+  integrity sha512-6G92AlcpFrQG72XU8YH8pg94eDnq7+Q0YJhb8x4qNpdGsvuzvrfHWBmqFGp/Yshmv4wex9lpsTRZOocdrA2erQ==
+  dependencies:
+    is-promise "^4.0.0"
+
 "@netlify/git-utils@^5.1.1":
   version "5.1.1"
   resolved "https://registry.npmjs.org/@netlify/git-utils/-/git-utils-5.1.1.tgz"
@@ -3309,6 +3316,13 @@
   dependencies:
     cross-fetch "^3.1.5"
 
+"@supabase/gotrue-js@2.43.1":
+  version "2.43.1"
+  resolved "https://registry.yarnpkg.com/@supabase/gotrue-js/-/gotrue-js-2.43.1.tgz#4623791433f0b7ef4c17f0d880fba1f0307b4c81"
+  integrity sha512-HVjjElEPbM5sDoK1pXry/H181X7A1a9G9O68PZwN276y/EUwWOw3pA8KKKSRTaTSiK+41BPC8HUfsfbe7470RQ==
+  dependencies:
+    cross-fetch "^3.1.5"
+
 "@supabase/gotrue-js@^2.31.0":
   version "2.44.1"
   resolved "https://registry.npmjs.org/@supabase/gotrue-js/-/gotrue-js-2.44.1.tgz"
@@ -3346,6 +3360,18 @@
   dependencies:
     "@supabase/functions-js" "^2.1.0"
     "@supabase/gotrue-js" "^2.31.0"
+    "@supabase/postgrest-js" "^1.7.0"
+    "@supabase/realtime-js" "^2.7.3"
+    "@supabase/storage-js" "^2.5.1"
+    cross-fetch "^3.1.5"
+
+"@supabase/supabase-js@^2.29.0":
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.29.0.tgz#7bc9983188d01f37cf53e2afcf1a1ad14a772129"
+  integrity sha512-Lb/7sxsTLAzYl6Op1CL+hH+9NC3FUAj1FfgUUbCBysJlAF39/kbdrimq/JMFOAnN1/cqpkR3rR/1WmU9ARS29g==
+  dependencies:
+    "@supabase/functions-js" "^2.1.0"
+    "@supabase/gotrue-js" "2.43.1"
     "@supabase/postgrest-js" "^1.7.0"
     "@supabase/realtime-js" "^2.7.3"
     "@supabase/storage-js" "^2.5.1"
@@ -3711,15 +3737,20 @@
   resolved "https://registry.npmjs.org/@types/long/-/long-4.0.2.tgz"
   integrity sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==
 
-"@types/node@*":
-  version "20.4.2"
-  resolved "https://registry.npmjs.org/@types/node/-/node-20.4.2.tgz"
-  integrity sha512-Dd0BYtWgnWJKwO1jkmTrzofjK2QXXcai0dmtzvIBhcA+RsG5h8R3xlyta0kGOZRNfL9GuRtb1knmPEhQrePCEw==
+"@types/node@*", "@types/node@^14.18.54":
+  version "14.18.54"
+  resolved "https://registry.npmjs.org/@types/node/-/node-14.18.54.tgz"
+  integrity sha512-uq7O52wvo2Lggsx1x21tKZgqkJpvwCseBBPtX/nKQfpVlEsLOb11zZ1CRsWUKvJF0+lzuA9jwvA7Pr2Wt7i3xw==
 
 "@types/node@>=12.12.47", "@types/node@>=13.7.0":
   version "20.4.4"
   resolved "https://registry.npmjs.org/@types/node/-/node-20.4.4.tgz"
   integrity sha512-CukZhumInROvLq3+b5gLev+vgpsIqC2D0deQr/yS1WnxvmYLlJXZpaQrQiseMY+6xusl79E04UjWoqyr+t1/Ew==
+
+"@types/node@>=8.1.0":
+  version "20.4.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.5.tgz#9dc0a5cb1ccce4f7a731660935ab70b9c00a5d69"
+  integrity sha512-rt40Nk13II9JwQBdeYqmbn2Q6IVTA5uPhvSO+JVqdXw/6/4glI6oR9ezty/A9Hg5u7JH4OmYmuQ+XvjKm0Datg==
 
 "@types/node@^12.7.1":
   version "12.20.55"
@@ -5844,7 +5875,7 @@ date-time@^3.1.0:
   dependencies:
     time-zone "^1.0.0"
 
-dayjs@^1.11.8:
+dayjs@^1.11.8, dayjs@^1.11.9:
   version "1.11.9"
   resolved "https://registry.npmjs.org/dayjs/-/dayjs-1.11.9.tgz"
   integrity sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==
@@ -8821,6 +8852,11 @@ is-promise@^2.1.0:
   resolved "https://registry.npmjs.org/is-promise/-/is-promise-2.2.2.tgz"
   integrity sha512-+lP4/6lKUBfQjZ2pdxThZvLUAafmZb8OAxFb8XXtiQmS35INgr85hdOGoEs124ez1FCnZJt6jau/T+alh58QFQ==
 
+is-promise@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/is-promise/-/is-promise-4.0.0.tgz"
+  integrity sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==
+
 is-regex@^1.1.4:
   version "1.1.4"
   resolved "https://registry.npmjs.org/is-regex/-/is-regex-1.1.4.tgz"
@@ -10134,7 +10170,7 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0, nested-error-stacks@^2.1
 
 netlify-cli@^15.9.1:
   version "15.9.1"
-  resolved "https://registry.npmjs.org/netlify-cli/-/netlify-cli-15.9.1.tgz"
+  resolved "https://registry.yarnpkg.com/netlify-cli/-/netlify-cli-15.9.1.tgz#bd87f4aea5a640bc954dd366b246b15b683b7771"
   integrity sha512-R9a1se5n2yDEs5mWyEF1TBGEEMUuQ8ejQywt1HFjIL3wU/SEZPN0rEhmj8e1pM8+wBBhLeTA+PCjGE85N8jtUQ==
   dependencies:
     "@bugsnag/js" "7.20.2"
@@ -10441,7 +10477,7 @@ normalize-url@^8.0.0:
 
 npm-run-all@^4.1.5:
   version "4.1.5"
-  resolved "https://registry.npmjs.org/npm-run-all/-/npm-run-all-4.1.5.tgz"
+  resolved "https://registry.yarnpkg.com/npm-run-all/-/npm-run-all-4.1.5.tgz#04476202a15ee0e2e214080861bff12a51d98fba"
   integrity sha512-Oo82gJDAVcaMdi3nuoKFavkIHBRVqQ1qvMb+9LHk/cF4P6B2m8aP04hGf7oL6wZ9BuGwX1onlLhpuoofSyoQDQ==
   dependencies:
     ansi-styles "^3.2.1"
@@ -11476,7 +11512,7 @@ qs@6.11.0:
   dependencies:
     side-channel "^1.0.4"
 
-qs@^6.9.6:
+qs@^6.11.0, qs@^6.9.6:
   version "6.11.2"
   resolved "https://registry.npmjs.org/qs/-/qs-6.11.2.tgz"
   integrity sha512-tDNIz22aBzCDxLtVH++VnTfzxlfeK5CbqohpSqpJgj1Wg/cQbStNAz3NuqCs5vV+pjBsK4x4pN9HlVh7rcYRiA==
@@ -12858,6 +12894,14 @@ strip-outer@^2.0.0:
   resolved "https://registry.npmjs.org/strip-outer/-/strip-outer-2.0.0.tgz"
   integrity sha512-A21Xsm1XzUkK0qK1ZrytDUvqsQWict2Cykhvi0fBQntGG5JSprESasEyV1EZ/4CiR5WB5KjzLTrP/bO37B0wPg==
 
+stripe@^12.14.0:
+  version "12.14.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-12.14.0.tgz#3213534ec5739c1c5f4f41fc84cb22faa73bc8c7"
+  integrity sha512-WrDlYH1p5jliY7uzSU5nLDY7OCIeRe6FkC0hhScpTGwMthP/Muk38WXGeggjDHKeXAGCs43jUheZ7Ud/NEAJdg==
+  dependencies:
+    "@types/node" ">=8.1.0"
+    qs "^6.11.0"
+
 strtok3@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npmjs.org/strtok3/-/strtok3-7.0.0.tgz"
@@ -13422,7 +13466,7 @@ turbo-darwin-64@1.10.12:
 
 turbo-darwin-arm64@1.10.12:
   version "1.10.12"
-  resolved "https://registry.yarnpkg.com/turbo-darwin-arm64/-/turbo-darwin-arm64-1.10.12.tgz#ff1d9466935687ca68c0dee88a909c34cc654357"
+  resolved "https://registry.npmjs.org/turbo-darwin-arm64/-/turbo-darwin-arm64-1.10.12.tgz"
   integrity sha512-3JliEESLNX2s7g54SOBqqkqJ7UhcOGkS0ywMr5SNuvF6kWVTbuUq7uBU/sVbGq8RwvK1ONlhPvJne5MUqBCTCQ==
 
 turbo-linux-64@1.10.12:
@@ -13447,7 +13491,7 @@ turbo-windows-arm64@1.10.12:
 
 turbo@latest:
   version "1.10.12"
-  resolved "https://registry.yarnpkg.com/turbo/-/turbo-1.10.12.tgz#cd6f56b92da0600dae9fd94230483556a5c83187"
+  resolved "https://registry.npmjs.org/turbo/-/turbo-1.10.12.tgz"
   integrity sha512-WM3+jTfQWnB9W208pmP4oeehZcC6JQNlydb/ZHMRrhmQa+htGhWLCzd6Q9rLe0MwZLPpSPFV2/bN5egCLyoKjQ==
   optionalDependencies:
     turbo-darwin-64 "1.10.12"
@@ -13576,6 +13620,11 @@ typedarray-to-buffer@^3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
+
+typescript@^4.9.5:
+  version "4.9.5"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz"
+  integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
 typescript@^5.0.0, typescript@^5.0.4, typescript@^5.1.6:
   version "5.1.6"

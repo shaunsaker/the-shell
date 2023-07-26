@@ -146,27 +146,15 @@ Note your staging and production project ids and db passwords, you will use them
 supabase start
 ```
 
-4. Copy the env files:
-
-```
-cp ./supabase/functions.env.example ./supabase/functions.env.local
-```
-
-5. Grab your Supabase local `API URL` and `anon key` and pop them into `.env.local`:
-
-```
-supabase status
-```
-
-6. Setup your local Supabase db:
+4. Setup your local Supabase db:
 
 ```
 supabase db reset
 ```
 
-7. [Create a Supabase access token](https://supabase.com/dashboard/account/tokens).
+5. [Create a Supabase access token](https://supabase.com/dashboard/account/tokens).
 
-8. Push your Supabase access token (obtained above) and db passwords and project ids (obtained in step 2) to your Github repo:
+6. Push your Supabase access token (obtained above) and db passwords and project ids (obtained in step 2) to your Github repo:
 
 ```
 gh auth login
@@ -189,7 +177,7 @@ yarn netlify init
 
 2. From the above command, grab your `Site URL`.
 
-3. For your staging Supabase project, prefix `develop--` to it, e.g. "https://ultimate-b2b-saas-boilerplate.netlify.app" becomes "https://ultimate-b2b-saas-boilerplate.netlify.app" and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration).
+3. For your staging Supabase project, prefix `develop--` to it, e.g. "https://ultimate-b2b-saas-boilerplate.netlify.app" becomes "https://develop--ultimate-b2b-saas-boilerplate.netlify.app" and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration).
 
 4. Add the above as `SITE_URL` to `../emails/.env`.
 
@@ -197,18 +185,35 @@ yarn netlify init
 
 6. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
 
-7. Grab your Supabase **staging** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the staging deployment):
+7. Grab your Supabase **local** `API URL`, `anon key` and `service_role_key` from the command:
 
 ```
-yarn netlify env:set VITE_SUPABASE_URL STAGING_PROJECT URL --context branch-deploy
+cd ./packages
+supabase status
+```
+
+8. Grab your Supabase **staging** `API URL`, `anon key` and `service_role_key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api).
+
+9. Grab your Supabase **production** `API URL`, `anon key` and `service_role_key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api).
+
+10. Push the Supabase secrets to Netlify:
+
+```
+yarn netlify env:set VITE_SUPABASE_URL LOCAL_API_URL --context dev
+yarn netlify env:set VITE_SUPABASE_ANON_KEY LOCAL_ANON_KEY --context dev
+yarn netlify env:set SUPABASE_URL LOCAL_API_URL --context dev
+yarn netlify env:set SUPABASE_ANON_KEY LOCAL_ANON_KEY --context dev
+yarn netlify env:set SUPABASE_SERVICE_ROLE_KEY LOCAL_SERVICE_ROLE_KEY --context dev
+yarn netlify env:set VITE_SUPABASE_URL STAGING_API_URL --context branch-deploy
 yarn netlify env:set VITE_SUPABASE_ANON_KEY STAGING_ANON_KEY --context branch-deploy
-```
-
-5. Grab your Supabase **production** `Project URL` and `anon key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api) and push them to Netlify (to be used in the production deployment):
-
-```
-yarn netlify env:set VITE_SUPABASE_URL API PRODUCTION_PROJECT_URL --context production
+yarn netlify env:set SUPABASE_URL STAGING_API_URL --context branch-deploy
+yarn netlify env:set SUPABASE_ANON_KEY STAGING_ANON_KEY --context branch-deploy
+yarn netlify env:set SUPABASE_SERVICE_ROLE_KEY STAGING_SERVICE_ROLE_KEY --context branch-deploy
+yarn netlify env:set VITE_SUPABASE_URL PRODUCTION_API_URL --context production
 yarn netlify env:set VITE_SUPABASE_ANON_KEY PRODUCTION_ANON_KEY --context production
+yarn netlify env:set SUPABASE_URL PRODUCTION_API_URL --context production
+yarn netlify env:set SUPABASE_ANON_KEY PRODUCTION_ANON_KEY --context production
+yarn netlify env:set SUPABASE_SERVICE_ROLE_KEY PRODUCTION_SERVICE_ROLE_KEY --context production
 ```
 
 Now every time you push to `master`, production will be built and when you push to `develop`, staging will be built 🎉
@@ -227,16 +232,29 @@ Now every time you push to `master`, production will be built and when you push 
 
 The Stripe webhook will ensure that any activity in Stripe is updated in your Supabase db's, e.g. if a new customer is created in Stripe, add them to customers in the Supabase db's.
 
-Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key) and pop it into `./supabase/functions/.env.local`
+1. Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key).
+
+2. Push it to Netlify:
+
+```
+yarn netlify env:set STRIPE_API_KEY VALUE --context dev branch-deploy
+```
 
 ---
 
 ##### Connect test Stripe webhook to local
 
-Run the local Stripe listener once, copy the Stripe Webhook Signing Secret and pop it into `./supabase/functions/.env.local`.
+1. Run the local Stripe listener once, copy the Stripe Webhook Signing Secret:
 
 ```
+cd ./packages/functions
 yarn dev:stripe
+```
+
+2. Push it to Netlify:
+
+```
+yarn netlify env:set STRIPE_WEBHOOK_SIGNING_SECRET VALUE --context dev
 ```
 
 ---
@@ -245,30 +263,14 @@ yarn dev:stripe
 
 The following steps will setup your Supabase staging environment with your Stripe test environment.
 
-1. Grab your SUPABASE_STAGING_PROJECT_ID for use in the next step:
+1. In [test Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **staging** `Netlify Site Url` combined with the suffix, `/.netlify/functions/stripe-webhook` above,, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+
+2. Once your Stripe webhook is created, copy the Signing secret.
+
+3. Push your STRIPE_WEBHOOK_SIGNING_SECRET to Netlify:
 
 ```
-supabase projects list
-```
-
-2. Deploy stripe-webhook function to your Supabase remote staging instance:
-
-```
-supabase functions deploy stripe-webhook --project-ref SUPABASE_STAGING_PROJECT_ID
-```
-
-3. The above command will generate a url where you can inspect your deployment. Visit that url and copy the `Endpoint URL`.
-
-4. In [test Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste the `Endpoint URL` above, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
-
-5. Once your Stripe webhook is created, copy the Signing secret.
-
-6. Add the `STRIPE_API_KEY_STAGING` (from `./supabase/functions/.env.local`) and `STRIPE_WEBHOOK_SIGNING_SECRET_STAGING` (from above) secrets to your Github repo:
-
-```
-gh auth login
-gh secret set STRIPE_API_KEY_STAGING --body "VALUE"
-gh secret set STRIPE_WEBHOOK_SIGNING_SECRET_STAGING --body "VALUE"
+yarn netlify env:set STRIPE_WEBHOOK_SIGNING_SECRET VALUE --context branch-deploy
 ```
 
 ---
@@ -277,32 +279,17 @@ gh secret set STRIPE_WEBHOOK_SIGNING_SECRET_STAGING --body "VALUE"
 
 The following steps will setup your Supabase production environment with your Stripe live environment.
 
-1. Grab your SUPABASE_PRODUCTION_PROJECT_ID for use in the next step:
+1. In [live Stripe webhooks](https://dashboard.stripe.com/webhooks/create), paste your **production** `Netlify Site Url` combined with the suffix, `/.netlify/functions/stripe-webhook` above, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+
+2. Once your Stripe webhook is created, copy the Signing secret.
+
+3. Copy your [live Stripe API key](https://dashboard.stripe.com/apikeys) (Secret key).
+
+4. Push the `STRIPE_API_KEY` and `STRIPE_WEBHOOK_SIGNING_SECRET` (from above) secrets to Netlify:
 
 ```
-supabase projects list
-```
-
-2. Deploy stripe-webhook function to your Supabase remote production instance:
-
-```
-supabase functions deploy stripe-webhook --project-ref SUPABASE_PRODUCTION_PROJECT_ID
-```
-
-3. The above command will generate a url where you can inspect your deployment. Visit that url and copy the `Endpoint URL`.
-
-4. In [live Stripe webhooks](https://dashboard.stripe.com/webhooks/create), paste the `Endpoint URL` above, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
-
-5. Once your Stripe webhook is created, copy the Signing secret.
-
-6. Copy your [live Stripe API key](https://dashboard.stripe.com/apikeys) (Secret key).
-
-7. Add the `STRIPE_API_KEY_PRODUCTION` (from above) and `STRIPE_WEBHOOK_SIGNING_SECRET_PRODUCTION` (from above) secrets to your Github repo:
-
-```
-gh auth login
-gh secret set STRIPE_API_KEY_PRODUCTION --body "VALUE"
-gh secret set STRIPE_WEBHOOK_SIGNING_SECRET_PRODUCTION --body "VALUE"
+yarn netlify env:set STRIPE_API_KEY VALUE --context production
+yarn netlify env:set STRIPE_WEBHOOK_SIGNING_SECRET VALUE --context production
 ```
 
 ---
@@ -346,12 +333,12 @@ We support free trials out of the box. To add a free trial to a product, simply 
 5. Push the secrets to Netlify.
 
 ```
-yarn netlify env:set VITE_SENTRY_DSN VALUE
+yarn netlify env:set VITE_SENTRY_DSN VALUE --context branch-deploy production
 yarn netlify env:set VITE_SENTRY_ENV staging --context branch-deploy
 yarn netlify env:set VITE_SENTRY_ENV production --context production
-yarn netlify env:set SENTRY_AUTH_TOKEN VALUE
-yarn netlify env:set SENTRY_ORG VALUE
-yarn netlify env:set SENTRY_PROJECT VALUE
+yarn netlify env:set SENTRY_AUTH_TOKEN VALUE --context branch-deploy production
+yarn netlify env:set SENTRY_ORG VALUE --context branch-deploy production
+yarn netlify env:set SENTRY_PROJECT VALUE --context branch-deploy production
 ```
 
 6. Push the secrets to Github.
@@ -369,12 +356,11 @@ gh secret set SENTRY_PROJECT --body "VALUE"
 
 1. Add an API key to each of your Resend accounts (staging and production).
 
-2. Push the secrets to Github.
+2. Push the secrets to Netlify.
 
 ```
-gh auth login
-gh secret set RESEND_API_KEY_STAGING --body "VALUE"
-gh secret set RESEND_API_KEY_PRODUCTION --body "VALUE"
+yarn netlify env:set RESEND_API_KEY STAGING_VALUE --context branch-deploy
+yarn netlify env:set RESEND_API_KEY PRODUCTION_VALUE --context production
 ```
 
 ### Setup React Email
