@@ -1,10 +1,5 @@
-node_modules
-.DS_Store
-.netlify
 dist
-tsconfig.tsbuildinfo
 .env.local
-.turbo
 
 # auto-generated assets
 public/apple-touch-icon.png
