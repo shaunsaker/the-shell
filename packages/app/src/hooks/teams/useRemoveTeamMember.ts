@@ -2,17 +2,17 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { deleteTeamMember } from '../../api/teams/deleteTeamMember'
+import { removeTeamMember } from '../../api/teams/removeTeamMember'
 import { QueryKeys } from '../../models'
 import { routes, TEAM_ID_PARAM } from '../../routes'
 
-export const useDeleteTeamMember = () => {
+export const useRemoveTeamMember = () => {
   const queryClient = useQueryClient()
   const { teamId = '' } = useParams()
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: deleteTeamMember,
+    mutationFn: removeTeamMember,
     onSuccess: () => {
       // invalidate the teams query to refetch the data
       queryClient.invalidateQueries([QueryKeys.Teams])

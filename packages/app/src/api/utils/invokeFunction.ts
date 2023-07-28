@@ -3,9 +3,12 @@ import { getSession } from '../auth/getSession'
 type Functions =
   | 'create-billing-portal-session'
   | 'create-checkout-session'
+  | 'delete-team'
   | 'delete-user-account'
   | 'invite-team-members'
+  | 'remove-team-member'
   | 'resend-team-invite'
+  | 'send-welcome-email'
   | 'update-subscription-quantity'
 
 // adapted from @supabase/functions-js/src/types

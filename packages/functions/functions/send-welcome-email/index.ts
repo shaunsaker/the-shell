@@ -1,12 +1,11 @@
 import { Handler } from '@netlify/functions'
 
 import { corsHeaders } from '../../cors'
-import { createCheckoutSession } from '../../stripe/createCheckoutSession'
-import { createOrRetrieveCustomer } from '../../supabase/createOrRetrieveCustomer'
-import { fetchProductByPriceId } from '../../supabase/fetchProductByPriceId'
+import { sendWelcomeEmail } from '../../resend/sendWelcomeEmail'
 import { getAuthUser } from '../../supabase/getAuthUser'
+import { formatName } from '../../utils/formatName'
 
-console.log('Hello from Create Checkout Session!')
+console.log('Hello from Send Welcome Email!')
 
 export const handler: Handler = async event => {
   // This is needed if you're planning to invoke your function from a browser
@@ -48,44 +47,23 @@ export const handler: Handler = async event => {
       }
     }
 
-    // Retrieve or create the customer in Stripe
-    const customerId = await createOrRetrieveCustomer({
-      uuid: user?.id || '',
-      email: user?.email || '',
-    })
-
     // Destructure the data from the POST body
-    const { priceId, quantity = 1, successUrl, cancelUrl, metadata = {} } = JSON.parse(event.body)
+    const { firstName = '', lastName = '', userEmail = '' } = JSON.parse(event.body)
 
-    // Get the product using the priceId from supabase and pass product.metadata.freeTrialDays to createCheckoutSession
-    const product = await fetchProductByPriceId(priceId)
-    // FIXME: types
-    const productMetadata = product.metadata as any
-    const freeTrialDays = productMetadata?.freeTrialDays ? parseInt(productMetadata.freeTrialDays) : undefined
-
-    // Create a checkout session in Stripe
-    const session = await createCheckoutSession({
-      customerId,
-      priceId,
-      quantity,
-      freeTrialDays,
-      metadata,
-      successUrl,
-      cancelUrl,
-    })
-
-    if (session) {
+    if (!userEmail) {
       return {
-        statusCode: 200,
+        statusCode: 400,
         headers: { ...corsHeaders },
-        body: JSON.stringify({ url: session.url }),
+        body: JSON.stringify({ message: 'Missing userEmail' }),
       }
-    } else {
-      return {
-        statusCode: 500,
-        headers: { ...corsHeaders },
-        body: JSON.stringify({ message: 'Session is not defined' }),
-      }
+    }
+
+    await sendWelcomeEmail({ userName: formatName({ first_name: firstName, last_name: lastName }), userEmail })
+
+    return {
+      statusCode: 200,
+      headers: { ...corsHeaders },
+      body: JSON.stringify({ ok: true }),
     }
   } catch (error) {
     console.error(error)

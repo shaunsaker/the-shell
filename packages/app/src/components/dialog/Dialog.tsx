@@ -35,6 +35,8 @@ export const Dialog = ({
 }: DialogProps): ReactElement | null => {
   // Handle Enter key as confirm click
   useKeypress('Enter', () => {
+    console.log('HERE 2')
+
     if (!open) {
       return
     }

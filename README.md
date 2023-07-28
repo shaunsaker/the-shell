@@ -359,7 +359,7 @@ gh secret set SENTRY_PROJECT --body "VALUE"
 2. Push the secrets to Netlify.
 
 ```
-yarn netlify env:set RESEND_API_KEY STAGING_VALUE --context branch-deploy
+yarn netlify env:set RESEND_API_KEY STAGING_VALUE --context dev branch-deploy
 yarn netlify env:set RESEND_API_KEY PRODUCTION_VALUE --context production
 ```
 

@@ -33,7 +33,7 @@ export default function SignUp() {
       await signUpWithPassword({
         email,
         password,
-        emailRedirectTo: window.location.href, // TODO: SS use a route specifically for this
+        emailRedirectTo: window.location.href,
         firstName,
         lastName,
       })

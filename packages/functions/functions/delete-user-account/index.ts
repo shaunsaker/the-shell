@@ -1,6 +1,7 @@
 import { Handler } from '@netlify/functions'
 
 import { corsHeaders } from '../../cors'
+import { sendTeamDeletedEmail } from '../../resend/sendTeamDeletedEmail'
 import { deleteAuthUser } from '../../supabase/deleteAuthUser'
 import { deleteTeam } from '../../supabase/deleteTeam'
 import { deleteTeamMembersForUser } from '../../supabase/deleteTeamMembersForUser'
@@ -8,6 +9,7 @@ import { deleteUser } from '../../supabase/deleteUser'
 import { fetchTeam } from '../../supabase/fetchTeam'
 import { fetchTeamMembersForUser } from '../../supabase/fetchTeamMembersForUser'
 import { getAuthUser } from '../../supabase/getAuthUser'
+import { formatName } from '../../utils/formatName'
 
 console.log('Hello from Delete User Account!')
 
@@ -46,7 +48,7 @@ export const handler: Handler = async event => {
     const teamMembers = await fetchTeamMembersForUser(user.id)
 
     // Delete any teams that the user is the last admin of
-    const teamsToDelete: string[] = []
+    const teamsToDelete: Array<Awaited<ReturnType<typeof fetchTeam>>> = []
 
     // FIXME: use Promise.all
     for (const teamMember of teamMembers) {
@@ -59,7 +61,7 @@ export const handler: Handler = async event => {
 
       // if the user is the last admin, delete the team
       if (isLastAdmin) {
-        teamsToDelete.push(team.id)
+        teamsToDelete.push(team)
       }
     }
 
@@ -67,8 +69,35 @@ export const handler: Handler = async event => {
     await deleteTeamMembersForUser(user.id)
 
     // delete the teams (if any)
-    for (const teamId of teamsToDelete) {
-      await deleteTeam(teamId)
+    for (const team of teamsToDelete) {
+      await deleteTeam(team.id)
+
+      // notify team members that the team has been deleted
+      const adminTeamMember = team.team_members.find(teamMember => teamMember.user_id === user.id)
+
+      if (!adminTeamMember) {
+        return {
+          statusCode: 403,
+          headers: { ...corsHeaders },
+          body: JSON.stringify({ message: 'Team admin not found.' }),
+        }
+      }
+
+      const adminTeamMemberName = formatName(adminTeamMember)
+
+      // notify team members that the team has been deleted
+      for await (const teamMember of team.team_members) {
+        const isCurrentUser = teamMember.user_id === user.id
+
+        if (!isCurrentUser && teamMember.email) {
+          await sendTeamDeletedEmail({
+            userEmail: teamMember.email,
+            userName: formatName(teamMember),
+            teamName: team.name,
+            teamMemberName: adminTeamMemberName,
+          })
+        }
+      }
     }
 
     // delete the user data

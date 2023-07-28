@@ -1,5 +1,5 @@
 // Supabase injects these variables into the email template
-export enum EmailTemplateVariables {
+export enum SupabaseEmailTemplateVariables {
   ConfirmationUrl = '{{ .ConfirmationURL }}',
   Token = '{{ .Token }}',
   TokenHash = '{{ .TokenHash }}',

@@ -1,7 +1,7 @@
 import { Handler } from '@netlify/functions'
 
 import { corsHeaders } from '../../cors'
-import { fetchTeamMemberForTeam } from '../../supabase/fetchTeamMemberForTeam'
+import { fetchTeam } from '../../supabase/fetchTeam'
 import { getAuthUser } from '../../supabase/getAuthUser'
 import { inviteUserByEmail } from '../../supabase/inviteUserByEmail'
 
@@ -50,14 +50,24 @@ export const handler: Handler = async event => {
     // Destructure the data from the POST body
     const { teamId, email, redirectTo } = JSON.parse(event.body)
 
-    // Verify that the logged in user is an admin of the team
-    const teamMember = await fetchTeamMemberForTeam({ teamId, userId: user.id })
+    const team = await fetchTeam(teamId)
 
-    if (teamMember.role !== 'admin') {
+    // Verify that the logged in user is an admin of the team
+    const adminTeamMember = team.team_members.find(teamMember => teamMember.user_id === user.id)
+
+    if (!adminTeamMember) {
       return {
         statusCode: 403,
         headers: { ...corsHeaders },
-        body: JSON.stringify({ message: 'You need to be a team admin to invite team members.' }),
+        body: JSON.stringify({ message: 'Team admin not found.' }),
+      }
+    }
+
+    if (adminTeamMember.role !== 'admin') {
+      return {
+        statusCode: 403,
+        headers: { ...corsHeaders },
+        body: JSON.stringify({ message: 'You need to be a team admin to remove team members.' }),
       }
     }
 

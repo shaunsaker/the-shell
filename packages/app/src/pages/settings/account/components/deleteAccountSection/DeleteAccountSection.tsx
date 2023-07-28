@@ -1,5 +1,5 @@
 import { Button } from '@tremor/react'
-import React, { ReactElement, useCallback, useState } from 'react'
+import React, { ReactElement, useState } from 'react'
 
 import { Dialog } from '../../../../../components/dialog/Dialog'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
@@ -8,12 +8,6 @@ import { useDeleteUserAccount } from '../../../../../hooks/auth/useDeleteUserAcc
 export const DeleteAccountSection = (): ReactElement => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const { mutate: deleteUserAccount, isLoading } = useDeleteUserAccount()
-
-  const onDeleteAccount = useCallback(async () => {
-    await deleteUserAccount()
-
-    setDialogOpen(false)
-  }, [deleteUserAccount])
 
   return (
     <SettingsSection
@@ -38,7 +32,11 @@ export const DeleteAccountSection = (): ReactElement => {
         description="This action is not reversible. All information related to this account will be deleted permanently."
         confirmIsDangerous
         confirmLoading={isLoading}
-        onConfirmClick={onDeleteAccount}
+        onConfirmClick={async () => {
+          await deleteUserAccount()
+
+          setDialogOpen(false)
+        }}
         onClose={() => {
           setDialogOpen(false)
         }}

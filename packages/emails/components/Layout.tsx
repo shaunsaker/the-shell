@@ -1,13 +1,11 @@
 import { Container, Img, Tailwind, Text } from '@react-email/components'
-import dotenv from 'dotenv'
 import React, { ReactElement, ReactNode } from 'react'
 
 import app from '../../common/app.json'
 import { tailwindConfig } from '../tailwind.config'
+import { Description } from './Description'
 
-dotenv.config()
-
-const baseUrl = process.env.SITE_URL || ''
+const baseUrl = process.env.DEPLOY_PRIME_URL || ''
 
 type LayoutProps = {
   children?: ReactNode
@@ -21,6 +19,9 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
 
         <Container className="w-full max-w-xl rounded-lg border border-solid border-tremor-border bg-tremor-background p-6 shadow-sm">
           {children}
+
+          <Description>Cheers,</Description>
+          <Description>The {app.displayName} team</Description>
         </Container>
 
         <Text className="m-0 mt-8 text-center text-sm text-tremor-content">{app.displayName}</Text>

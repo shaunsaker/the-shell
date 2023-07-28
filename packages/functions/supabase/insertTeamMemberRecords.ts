@@ -1,4 +1,27 @@
+import { Database } from '../types/supabase'
 import { supabaseAdmin } from './supabaseAdmin'
+
+const parseTeamMemberRole = (role: string): Database['public']['Enums']['team_member_role'] => {
+  switch (role) {
+    case 'admin':
+      return 'admin'
+    case 'member':
+      return 'member'
+    default:
+      return 'member'
+  }
+}
+
+const parseTeamMemberStatus = (status: string): Database['public']['Enums']['team_member_status'] => {
+  switch (status) {
+    case 'active':
+      return 'active'
+    case 'invited':
+      return 'invited'
+    default:
+      return 'invited'
+  }
+}
 
 export const insertTeamMemberRecords = async (
   teamMembers: {
@@ -14,8 +37,8 @@ export const insertTeamMemberRecords = async (
   const teamMembersData = teamMembers.map(teamMember => ({
     team_id: teamMember.teamId,
     user_id: teamMember.userId,
-    role: teamMember.role,
-    status: teamMember.status,
+    role: parseTeamMemberRole(teamMember.role),
+    status: parseTeamMemberStatus(teamMember.status),
     first_name: teamMember.firstName,
     last_name: teamMember.lastName,
     email: teamMember.email,

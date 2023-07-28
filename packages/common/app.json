@@ -3,5 +3,6 @@
   "description": "The ultimate boilerplate for building SAAS applications with React, Supabase, Stripe, Tailwind CSS and TypeScript.",
   "baseColor": "teal",
   "neutralColor": "gray",
+  "fromEmail": "Shaun <shaun@fatbuck.app>",
   "supportEmail": "sakershaun@gmail.com"
 }

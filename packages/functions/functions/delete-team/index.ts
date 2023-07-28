@@ -1,15 +1,13 @@
 import { Handler } from '@netlify/functions'
 
 import { corsHeaders } from '../../cors'
-import { sendAddedUserToTeamEmail } from '../../resend/sendAddedUserToTeamEmail'
+import { sendTeamDeletedEmail } from '../../resend/sendTeamDeletedEmail'
+import { deleteTeam } from '../../supabase/deleteTeam'
 import { fetchTeam } from '../../supabase/fetchTeam'
-import { fetchUsersByEmails } from '../../supabase/fetchUsersByEmails'
 import { getAuthUser } from '../../supabase/getAuthUser'
-import { insertTeamMemberRecords } from '../../supabase/insertTeamMemberRecords'
-import { inviteUserByEmail } from '../../supabase/inviteUserByEmail'
 import { formatName } from '../../utils/formatName'
 
-console.log('Hello from Invite Team Members!')
+console.log('Hello from Delete Team!')
 
 export const handler: Handler = async event => {
   // This is needed if you're planning to invoke your function from a browser
@@ -52,7 +50,7 @@ export const handler: Handler = async event => {
     }
 
     // Destructure the data from the POST body
-    const { teamId, emails, redirectTo } = JSON.parse(event.body)
+    const { teamId } = JSON.parse(event.body)
 
     const team = await fetchTeam(teamId)
 
@@ -75,60 +73,23 @@ export const handler: Handler = async event => {
       }
     }
 
-    // Filter out the emails that don't already belong to the team
-    const newEmails = (emails as string[]).filter(
-      email => !team.team_members?.find(teamMember => teamMember.email === email),
-    )
+    await deleteTeam(teamId)
 
-    // If any of the emails, have a user account, we send them an email saying they have been added to the team
-    // otherwise, we send them an email with a link to sign up
-    const users = await fetchUsersByEmails(newEmails)
+    const adminTeamMemberName = formatName(adminTeamMember)
 
-    // notify the users above via email that they have been added to the team
-    for (const user of users) {
-      if (user.email) {
-        await sendAddedUserToTeamEmail({
-          userEmail: user.email,
-          userName: formatName(user),
+    // notify team members that the team has been deleted
+    for await (const teamMember of team.team_members) {
+      const isCurrentUser = teamMember.user_id === user.id
+
+      if (!isCurrentUser && teamMember.email) {
+        await sendTeamDeletedEmail({
+          userEmail: teamMember.email,
+          userName: formatName(teamMember),
           teamName: team.name,
-          teamMemberName: formatName(adminTeamMember),
+          teamMemberName: adminTeamMemberName,
         })
       }
     }
-
-    const newTeamMembers = users.map(user => ({
-      teamId: team.id,
-      userId: user.id,
-      role: 'member',
-      status: 'active',
-      firstName: user.first_name || '',
-      lastName: user.last_name || '',
-      email: user.email || '',
-    }))
-
-    // If not, send them an email with a link to sign up
-    // FIXME: types
-    const invitees = (newEmails as string[]).filter(email => !users.find(user => user.email === email))
-
-    // FIXME: use Promise.all
-    for (const invitee of invitees) {
-      const user = await inviteUserByEmail({ email: invitee, redirectTo })
-
-      if (user.user.id) {
-        newTeamMembers.push({
-          teamId: team.id,
-          userId: user.user.id,
-          role: 'member',
-          status: 'invited',
-          firstName: '',
-          lastName: '',
-          email: invitee,
-        })
-      }
-    }
-
-    // Finally, add all the users to the team
-    await insertTeamMemberRecords(newTeamMembers)
 
     return {
       statusCode: 200,

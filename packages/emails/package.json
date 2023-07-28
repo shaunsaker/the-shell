@@ -5,18 +5,18 @@
   "workspaces": [
     ".react-email"
   ],
+  "main": "index.ts",
   "scripts": {
-    "dev:emails": "cp .env .react-email/.env && email dev --port 3000",
+    "dev:emails": "email dev --port 3000",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
     "lint:ts": "tsc",
     "lint": "npm-run-all --parallel lint:*",
-    "build": "cp .env .react-email/.env && email export --pretty true"
+    "build": "email export --pretty true"
   },
   "dependencies": {
     "@react-email/components": "0.0.6",
     "@react-email/render": "0.0.7",
-    "dotenv": "^16.3.1",
     "react-email": "1.9.3",
     "tailwind-merge": "^1.14.0"
   },

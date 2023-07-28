@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Dialog } from '../../../../../components/dialog/Dialog'
-import { useDeleteTeamMember } from '../../../../../hooks/teams/useDeleteTeamMember'
+import { useRemoveTeamMember } from '../../../../../hooks/teams/useRemoveTeamMember'
 import { useRestrictedTeamAdminRoute } from '../../../../../hooks/teams/useRestrictedTeamAdminRoute'
 import { useTeam } from '../../../../../hooks/teams/useTeam'
 import { useTeamMember } from '../../../../../hooks/teams/useTeamMember'
@@ -11,7 +11,7 @@ import { formatTeamMemberName } from '../../../../../utils/formatTeamMemberName'
 export const SettingsRemoveTeamMember = (): ReactElement => {
   const { data: teamMember } = useTeamMember()
   const { data: team } = useTeam()
-  const { mutate: deleteTeamMember, isLoading } = useDeleteTeamMember()
+  const { mutate: removeTeamMember, isLoading } = useRemoveTeamMember()
   const navigate = useNavigate()
   useRestrictedTeamAdminRoute()
 
@@ -28,8 +28,8 @@ export const SettingsRemoveTeamMember = (): ReactElement => {
       confirmLoading={isLoading}
       confirmIsDangerous
       onConfirmClick={() => {
-        if (teamMember) {
-          deleteTeamMember(teamMember.id)
+        if (team?.id && teamMember) {
+          removeTeamMember({ teamId: team.id, teamMemberId: teamMember.id })
         }
       }}
       onClose={() => {

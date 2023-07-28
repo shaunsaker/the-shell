@@ -6,7 +6,7 @@
     "dev:dashboard": "set -a && eval $(supabase status --output env) && set +a && open $STUDIO_URL",
     "dev:email-server": "set -a && eval $(supabase status --output env) && set +a && open $INBUCKET_URL",
     "dev": "npm-run-all --parallel dev:*",
-    "build:types": "supabase gen types typescript --local --schema public > ../app/src/types/supabase.ts && prettier --write ../app/src/types/supabase.ts",
+    "build:types": "supabase gen types typescript --local --schema public > ../app/src/types/supabase.ts && prettier --write ../app/src/types/supabase.ts && cp ../app/src/types/supabase.ts ../functions/types/supabase.ts",
     "build": "npm-run-all --parallel build:*",
     "db:migration": "supabase db diff -f"
   },

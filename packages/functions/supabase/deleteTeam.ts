@@ -1,7 +1,7 @@
 import { deleteTeamMembersForTeam } from './deleteTeamMembersForTeam'
 import { supabaseAdmin } from './supabaseAdmin'
 
-export const deleteTeam = async (teamId: string) => {
+export const deleteTeam = async (teamId: number) => {
   // First delete the team members
   await deleteTeamMembersForTeam(teamId)
 

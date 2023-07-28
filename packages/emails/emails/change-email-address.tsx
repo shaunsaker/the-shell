@@ -5,22 +5,23 @@ import { Description } from '../components/Description'
 import { Layout } from '../components/Layout'
 import { Link } from '../components/Link'
 import { Title } from '../components/Title'
-import { EmailTemplateVariables } from '../models'
+import { SupabaseEmailTemplateVariables } from '../models'
 
 const ChangeEmailAddress = () => {
   return (
     <Layout>
       <Title>Confirm change of email</Title>
 
-      <Description className="mt-2">
+      <Description>
         Follow this link to confirm the update of your email from{' '}
-        <Link href={`mailto:${EmailTemplateVariables.Email}`}>{EmailTemplateVariables.Email}</Link> to{' '}
-        <Link href={`mailto:${EmailTemplateVariables.NewEmail}`}>{EmailTemplateVariables.NewEmail}</Link>:
+        <Link href={`mailto:${SupabaseEmailTemplateVariables.Email}`}>{SupabaseEmailTemplateVariables.Email}</Link> to{' '}
+        <Link href={`mailto:${SupabaseEmailTemplateVariables.NewEmail}`}>
+          {SupabaseEmailTemplateVariables.NewEmail}
+        </Link>
+        :
       </Description>
 
-      <Button className="mt-8" href={EmailTemplateVariables.ConfirmationUrl}>
-        Change email
-      </Button>
+      <Button href={SupabaseEmailTemplateVariables.ConfirmationUrl}>Change email</Button>
     </Layout>
   )
 }
