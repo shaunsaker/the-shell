@@ -158,11 +158,11 @@ supabase db reset
 
 ```
 gh auth login
-gh secret set SUPABASE_ACCESS_TOKEN --body "VALUE"
-gh secret set SUPABASE_DB_PASSWORD_STAGING --body "VALUE"
-gh secret set SUPABASE_PROJECT_ID_STAGING --body "VALUE"
-gh secret set SUPABASE_DB_PASSWORD_PRODUCTION --body "VALUE"
-gh secret set SUPABASE_PROJECT_ID_PRODUCTION --body "VALUE"
+gh secret set SUPABASE_ACCESS_TOKEN --body VALUE
+gh secret set SUPABASE_DB_PASSWORD_STAGING --body VALUE
+gh secret set SUPABASE_PROJECT_ID_STAGING --body VALUE
+gh secret set SUPABASE_DB_PASSWORD_PRODUCTION --body VALUE
+gh secret set SUPABASE_PROJECT_ID_PRODUCTION --body VALUE
 ```
 
 ---
@@ -345,9 +345,9 @@ yarn netlify env:set SENTRY_PROJECT VALUE --context branch-deploy production
 
 ```
 gh auth login
-gh secret set SENTRY_AUTH_TOKEN --body "VALUE"
-gh secret set SENTRY_ORG --body "VALUE"
-gh secret set SENTRY_PROJECT --body "VALUE"
+gh secret set SENTRY_AUTH_TOKEN --body VALUE
+gh secret set SENTRY_ORG --body VALUE
+gh secret set SENTRY_PROJECT --body VALUE
 ```
 
 7. [Connect your Github repo to Sentry](https://private-zj.sentry.io/settings/integrations/github/).

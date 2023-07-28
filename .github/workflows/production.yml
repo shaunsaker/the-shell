@@ -21,14 +21,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Deploy Supabase db migrations and functions
+      - name: Deploy Supabase db migrations
         uses: supabase/setup-cli@v1
         with:
           version: latest
 
-      - run: cd ./packages
-      - run: supabase link --project-ref $SUPABASE_PROJECT_ID
-      - run: supabase db push
+      - run: cd ./packages && supabase link --project-ref $SUPABASE_PROJECT_ID
+      - run: cd ./packages && supabase db push
 
       - name: Get package version
         id: package-version

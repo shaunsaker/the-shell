@@ -1,10 +1,6 @@
-name: Build
+name: Testing
 
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+on: [push, pull_request]
 
 jobs:
   testing:
@@ -12,9 +8,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+
+      - name: Supabase setup
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
       - run: yarn --frozen-lockfile
-      - run: turbo run lint build # TODO: SS add test once we add tests
+      - run: yarn turbo run lint # TODO: SS add test once we add tests
