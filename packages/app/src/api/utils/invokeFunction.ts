@@ -55,7 +55,7 @@ export const invokeFunction = async <T = any>(functionName: Functions, options?:
     }
   }
 
-  const url = `${import.meta.env.URL || 'http://localhost:9999'}/.netlify/functions/${functionName}`
+  const url = `${window.location.origin}/.netlify/functions/${functionName}`
   const headers = {
     ...options?.headers,
     authorization: `Bearer ${session.access_token}`,
