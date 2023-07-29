@@ -179,26 +179,25 @@ yarn netlify init
 
 3. For your staging Supabase project, prefix `develop--` to it, e.g. "https://ultimate-b2b-saas-boilerplate.netlify.app" becomes "https://develop--ultimate-b2b-saas-boilerplate.netlify.app" and add it to your [site url in Supabase](https://supabase.com/dashboard/project/_/auth/url-configuration).
 
-4. Add the above as `SITE_URL` to `../emails/.env`.
+4. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
 
-5. Do the same for your production Supabase project except leave out the prefix. Note: When you add a custom domain to Netlify, you will need to update these again.
-
-6. In the Netlify UI (https://app.netlify.com/sites/NETLIFY_SITE_URL/configuration/deploys#branches-and-deploy-contexts), enable Branch deploys for the `develop` branch.
-
-7. Grab your Supabase **local** `API URL`, `anon key` and `service_role_key` from the command:
+5. Grab your Supabase **local** `API URL`, `anon key` and `service_role_key` from the command:
 
 ```
 cd ./packages
 supabase status
 ```
 
-8. Grab your Supabase **staging** `API URL`, `anon key` and `service_role_key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api).
+6. Grab your Supabase **staging** `API URL`, `anon key` and `service_role_key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api).
 
-9. Grab your Supabase **production** `API URL`, `anon key` and `service_role_key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api).
+7. Grab your Supabase **production** `API URL`, `anon key` and `service_role_key` from the [Supabase api settings](https://supabase.com/dashboard/project/_/settings/api).
 
-10. Push the Supabase secrets to Netlify:
+8. Push the Supabase secrets to Netlify:
 
 ```
+cd ../
+yarn netlify env:set SITE_URL STAGING_SITE_URL --context branch-deploy
+yarn netlify env:set SITE_URL PRODUCTION_SITE_URL --context production
 yarn netlify env:set VITE_SUPABASE_URL LOCAL_API_URL --context dev
 yarn netlify env:set VITE_SUPABASE_ANON_KEY LOCAL_ANON_KEY --context dev
 yarn netlify env:set SUPABASE_URL LOCAL_API_URL --context dev
