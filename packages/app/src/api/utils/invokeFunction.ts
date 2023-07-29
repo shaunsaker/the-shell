@@ -71,8 +71,8 @@ export const invokeFunction = async <T = any>(functionName: Functions, options?:
     const data = (await response.json()) as T
 
     if (response.status !== 200) {
-      // @ts-expect-error FIXME:
-      const error = new Error(data.message)
+      // @ts-expect-error FIXME: types
+      const error = new Error(data.message || data.errorMessage)
 
       return {
         data: null,
