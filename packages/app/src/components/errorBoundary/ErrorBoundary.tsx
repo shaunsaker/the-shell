@@ -4,9 +4,9 @@ import React, { ReactElement, useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
 import app from '../../../../common/app.json'
+import { captureException } from '../../errors/captureException'
 import { useLink } from '../../hooks/utils/useLink'
 import { routes } from '../../routes'
-import { sentry } from '../../sentry'
 
 export const ErrorBoundary = (): ReactElement => {
   const error = useRouteError() as { status: number; statusText: string; error: Error } | Error | undefined
@@ -20,7 +20,7 @@ export const ErrorBoundary = (): ReactElement => {
 
   useEffect(() => {
     if (error) {
-      sentry.captureException(error)
+      captureException(error)
     }
   }, [error])
 

@@ -10,7 +10,7 @@ import { ReactElement, ReactNode } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { signOut } from '../../api/auth/signOut'
-import { sentry } from '../../sentry'
+import { captureException } from '../../errors/captureException'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,7 +28,7 @@ const queryClient = new QueryClient({
       if ((error as PostgrestError).message === 'Unauthorized' || (error as PostgrestError).message === 'JWT expired') {
         signOut()
       } else {
-        sentry.captureException(error)
+        captureException(error)
 
         toast.error((error as Error).message)
       }
@@ -39,7 +39,7 @@ const queryClient = new QueryClient({
     onError(error) {
       console.error(error)
 
-      sentry.captureException(error)
+      captureException(error)
 
       toast.error((error as Error).message)
     },
