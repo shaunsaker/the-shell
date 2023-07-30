@@ -70,6 +70,7 @@ TODO: SS add a video of project setup in action
 - [Github cli](https://github.com/cli/cli#installation)
 - [Sentry account](https://sentry.io/signup/)
 - 2x [Resend accounts](https://resend.com/signup), one for staging and one for production
+- [Mixpanel account](https://mixpanel.com/) with 2x projects, one for staging and one for production
 
 ### Basic Setup
 
@@ -376,6 +377,15 @@ yarn build:emails
 The command `yarn gen:emails` generated html email templates in `./emails/out/*`. Copy and save these to the relevant templates in your [Supabase projects](https://supabase.com/dashboard/project/_/auth/templates) and you will have beautiful themed auth emails out of the box 😎 Supabase will strip out some of the code, don't worry, they'll still work as expected.
 
 ---
+
+### Setup Mixpanel
+
+1. Grab your staging and production project tokens and push the secrets to Netlify:
+
+```
+yarn netlify env:set VITE_MIXPANEL_TOKEN STAGING_PROJECT_TOKEN --context branch-deploy
+yarn netlify env:set VITE_MIXPANEL_TOKEN PRODUCTION_PROJECT_TOKEN --context production
+```
 
 ## Development
 
