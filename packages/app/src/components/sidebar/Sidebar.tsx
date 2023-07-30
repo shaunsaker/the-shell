@@ -106,7 +106,7 @@ export default function Sidebar() {
 
           <div className="fixed inset-0 flex">
             <motion.div
-              className="flex w-full flex-col"
+              className="flex flex-col"
               initial={{ opacity: 0, transform: 'translateX(-100%)' }}
               animate={{ opacity: 1, transform: 'translateX(0%)' }}
               exit={{ opacity: 0, transform: 'translateX(-100%)' }}
