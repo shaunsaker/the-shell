@@ -1,6 +1,5 @@
 import { supabase } from '..'
 import { handleApiError } from '../utils/handleApiError'
-import { sendWelcomeEmail } from './sendWelcomeEmail'
 
 export const signUp = async ({
   email,
@@ -29,16 +28,6 @@ export const signUp = async ({
 
   if (error) {
     await handleApiError(error)
-  }
-
-  const { error: sendWelcomeEmailError } = await sendWelcomeEmail({
-    firstName: data.user?.user_metadata.first_name || '',
-    lastName: data.user?.user_metadata.last_name || '',
-    userEmail: email,
-  })
-
-  if (sendWelcomeEmailError) {
-    await handleApiError(sendWelcomeEmailError)
   }
 
   return data
