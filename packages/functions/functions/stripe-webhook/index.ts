@@ -1,10 +1,10 @@
 import { Handler } from '@netlify/functions'
 
-import { Stripe, stripe } from '../../stripe'
-import { deleteProductRecord } from '../../supabase/deleteProductRecord'
-import { manageSubscriptionStatusChange } from '../../supabase/manageSubscriptionStatusChange'
-import { upsertPriceRecord } from '../../supabase/upsertPriceRecord'
-import { upsertProductRecord } from '../../supabase/upsertProductRecord'
+import { Stripe, stripe } from '../../billing'
+import { deleteProduct } from '../../billing/deleteProduct'
+import { manageSubscriptionStatusChange } from '../../billing/manageSubscriptionStatusChange'
+import { updatePrice } from '../../billing/updatePrice'
+import { updateProduct } from '../../billing/updateProduct'
 
 // This is needed in order to use the Web Crypto API in Deno.
 const cryptoProvider = Stripe.createNodeCryptoProvider()
@@ -89,15 +89,15 @@ export const handler: Handler = async event => {
         case 'product.created':
         case 'product.updated':
           // FIXME: types
-          await upsertProductRecord(retrievedEvent.data.object as any)
+          await updateProduct(retrievedEvent.data.object as any)
           break
         case 'product.deleted':
           // FIXME: types
-          await deleteProductRecord((retrievedEvent.data.object as any).id)
+          await deleteProduct((retrievedEvent.data.object as any).id)
           break
         case 'price.created':
         case 'price.updated':
-          await upsertPriceRecord(retrievedEvent.data.object as any)
+          await updatePrice(retrievedEvent.data.object as any)
           break
         case 'customer.subscription.created':
         case 'customer.subscription.updated':

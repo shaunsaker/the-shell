@@ -1,14 +1,14 @@
 import { Handler } from '@netlify/functions'
 
-import { corsHeaders } from '../../cors'
-import { sendTeamDeletedEmail } from '../../resend/sendTeamDeletedEmail'
-import { deleteAuthUser } from '../../supabase/deleteAuthUser'
-import { deleteTeam } from '../../supabase/deleteTeam'
-import { deleteTeamMembersForUser } from '../../supabase/deleteTeamMembersForUser'
-import { deleteUser } from '../../supabase/deleteUser'
-import { fetchTeam } from '../../supabase/fetchTeam'
-import { fetchTeamMembersForUser } from '../../supabase/fetchTeamMembersForUser'
-import { getAuthUser } from '../../supabase/getAuthUser'
+import { deleteAuthUser } from '../../auth/deleteAuthUser'
+import { getAuthUser } from '../../auth/getAuthUser'
+import { sendTeamDeletedEmail } from '../../emails/sendTeamDeletedEmail'
+import { deleteTeam } from '../../teams/deleteTeam'
+import { deleteTeamMembersForUser } from '../../teams/deleteTeamMembersForUser'
+import { fetchTeam } from '../../teams/fetchTeam'
+import { fetchTeamMembersForUser } from '../../teams/fetchTeamMembersForUser'
+import { deleteUser } from '../../users/deleteUser'
+import { corsHeaders } from '../../utils/cors'
 import { formatName } from '../../utils/formatName'
 
 console.log('Hello from Delete User Account!')

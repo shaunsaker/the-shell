@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 
-import { updateUser } from '../../api/auth/updateUser'
+import { updateUser } from '../../auth/updateUser'
 
 export const useUpdateUserPassword = () => {
   return useMutation({

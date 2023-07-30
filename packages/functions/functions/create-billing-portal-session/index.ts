@@ -1,9 +1,9 @@
 import { Handler } from '@netlify/functions'
 
-import { corsHeaders } from '../../cors'
-import { createBillingPortalSession } from '../../stripe/createBillingPortalSession'
-import { createOrRetrieveCustomer } from '../../supabase/createOrRetrieveCustomer'
-import { getAuthUser } from '../../supabase/getAuthUser'
+import { getAuthUser } from '../../auth/getAuthUser'
+import { createBillingPortalSession } from '../../billing/createBillingPortalSession'
+import { createOrRetrieveCustomer } from '../../billing/createOrRetrieveCustomer'
+import { corsHeaders } from '../../utils/cors'
 
 console.log('Hello from Create Billing Portal Session!')
 

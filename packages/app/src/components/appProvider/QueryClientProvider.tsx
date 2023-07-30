@@ -9,7 +9,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ReactElement, ReactNode } from 'react'
 import { toast } from 'react-hot-toast'
 
-import { signOut } from '../../api/auth/signOut'
+import { signOut } from '../../auth/signOut'
 import { captureException } from '../../errors/captureException'
 
 const queryClient = new QueryClient({

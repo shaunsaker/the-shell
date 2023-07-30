@@ -1,10 +1,10 @@
 import { Handler } from '@netlify/functions'
 
-import { corsHeaders } from '../../cors'
-import { createCheckoutSession } from '../../stripe/createCheckoutSession'
-import { createOrRetrieveCustomer } from '../../supabase/createOrRetrieveCustomer'
-import { fetchProductByPriceId } from '../../supabase/fetchProductByPriceId'
-import { getAuthUser } from '../../supabase/getAuthUser'
+import { getAuthUser } from '../../auth/getAuthUser'
+import { createCheckoutSession } from '../../billing/createCheckoutSession'
+import { createOrRetrieveCustomer } from '../../billing/createOrRetrieveCustomer'
+import { fetchProductByPriceId } from '../../billing/fetchProductByPriceId'
+import { corsHeaders } from '../../utils/cors'
 
 console.log('Hello from Create Checkout Session!')
 

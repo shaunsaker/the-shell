@@ -2,9 +2,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { inviteTeamMembers } from '../../api/teams/inviteTeamMembers'
 import { QueryKeys } from '../../models'
 import { routes, TEAM_ID_PARAM } from '../../routes'
+import { inviteTeamMembers } from '../../teams/inviteTeamMembers'
 
 export const useInviteTeamMembers = () => {
   const queryClient = useQueryClient()

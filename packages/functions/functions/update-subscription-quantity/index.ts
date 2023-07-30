@@ -1,9 +1,9 @@
 import { Handler } from '@netlify/functions'
 
-import { corsHeaders } from '../../cors'
-import { updateSubscriptionQuantity } from '../../stripe/updateSubscriptionQuantity'
-import { fetchSubscriptionByUserId } from '../../supabase/fetchSubscriptionByUserId'
-import { getAuthUser } from '../../supabase/getAuthUser'
+import { getAuthUser } from '../../auth/getAuthUser'
+import { fetchSubscriptionByUserId } from '../../billing/fetchSubscriptionByUserId'
+import { updateSubscriptionQuantity } from '../../billing/updateSubscriptionQuantity'
+import { corsHeaders } from '../../utils/cors'
 
 console.log('Hello from Update Subscription Quantity!')
 

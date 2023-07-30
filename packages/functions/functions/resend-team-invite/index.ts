@@ -1,9 +1,9 @@
 import { Handler } from '@netlify/functions'
 
-import { corsHeaders } from '../../cors'
-import { fetchTeam } from '../../supabase/fetchTeam'
-import { getAuthUser } from '../../supabase/getAuthUser'
-import { inviteUserByEmail } from '../../supabase/inviteUserByEmail'
+import { getAuthUser } from '../../auth/getAuthUser'
+import { inviteUserByEmail } from '../../auth/inviteUserByEmail'
+import { fetchTeam } from '../../teams/fetchTeam'
+import { corsHeaders } from '../../utils/cors'
 
 console.log('Hello from Resend Team Member Invite!')
 

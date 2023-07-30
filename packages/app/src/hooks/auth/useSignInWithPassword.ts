@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { signInWithPassword } from '../../api/auth/signInWithPassword'
+import { signInWithPassword } from '../../auth/signInWithPassword'
 
 export const useSignInWithPassword = () => {
   return useMutation({

@@ -1,12 +1,12 @@
 import { Handler } from '@netlify/functions'
 
-import { corsHeaders } from '../../cors'
-import { sendAddedUserToTeamEmail } from '../../resend/sendAddedUserToTeamEmail'
-import { fetchTeam } from '../../supabase/fetchTeam'
-import { fetchUsersByEmails } from '../../supabase/fetchUsersByEmails'
-import { getAuthUser } from '../../supabase/getAuthUser'
-import { insertTeamMemberRecords } from '../../supabase/insertTeamMemberRecords'
-import { inviteUserByEmail } from '../../supabase/inviteUserByEmail'
+import { getAuthUser } from '../../auth/getAuthUser'
+import { inviteUserByEmail } from '../../auth/inviteUserByEmail'
+import { sendAddedUserToTeamEmail } from '../../emails/sendAddedUserToTeamEmail'
+import { addTeamMembers } from '../../teams/addTeamMembers'
+import { fetchTeam } from '../../teams/fetchTeam'
+import { fetchUsersByEmails } from '../../users/fetchUsersByEmails'
+import { corsHeaders } from '../../utils/cors'
 import { formatName } from '../../utils/formatName'
 
 console.log('Hello from Invite Team Members!')
@@ -128,7 +128,7 @@ export const handler: Handler = async event => {
     }
 
     // Finally, add all the users to the team
-    await insertTeamMemberRecords(newTeamMembers)
+    await addTeamMembers(newTeamMembers)
 
     return {
       statusCode: 200,

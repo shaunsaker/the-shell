@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 
-import { deleteUserAccount } from '../../api/auth/deleteUserAccount'
+import { deleteUserAccount } from '../../auth/deleteUserAccount'
 import { useSignOut } from './useSignOut'
 
 export const useDeleteUserAccount = () => {

@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 
-import { resetPasswordForEmail } from '../../api/auth/resetPasswordForEmail'
+import { resetPasswordForEmail } from '../../auth/resetPasswordForEmail'
 
 export const useResetPasswordForEmail = () => {
   return useMutation({

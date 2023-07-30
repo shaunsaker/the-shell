@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 
-import { updateTeamMember } from '../../api/teams/updateTeamMember'
 import { QueryKeys } from '../../models'
+import { updateTeamMember } from '../../teams/updateTeamMember'
 
 export const useUpdateTeamMember = () => {
   const queryClient = useQueryClient()

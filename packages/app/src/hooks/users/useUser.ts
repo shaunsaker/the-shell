@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { fetchUser } from '../../api/users/fetchUser'
 import { QueryKeys } from '../../models'
+import { fetchUser } from '../../users/fetchUser'
 import { useSession } from '../auth/useSession'
 
 export const useUser = () => {

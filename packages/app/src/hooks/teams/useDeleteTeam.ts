@@ -2,9 +2,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
-import { deleteTeam } from '../../api/teams/deleteTeam'
 import { QueryKeys } from '../../models'
 import { routes } from '../../routes'
+import { deleteTeam } from '../../teams/deleteTeam'
 
 export const useDeleteTeam = () => {
   const queryClient = useQueryClient()

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { fetchTeams } from '../../api/teams/fetchTeams'
 import { QueryKeys } from '../../models'
+import { fetchTeams } from '../../teams/fetchTeams'
 
 export const useTeams = () => {
   return useQuery({ queryKey: [QueryKeys.Teams], queryFn: fetchTeams })

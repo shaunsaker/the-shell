@@ -1,10 +1,10 @@
 import { Handler } from '@netlify/functions'
 
-import { corsHeaders } from '../../cors'
-import { sendTeamDeletedEmail } from '../../resend/sendTeamDeletedEmail'
-import { deleteTeam } from '../../supabase/deleteTeam'
-import { fetchTeam } from '../../supabase/fetchTeam'
-import { getAuthUser } from '../../supabase/getAuthUser'
+import { getAuthUser } from '../../auth/getAuthUser'
+import { sendTeamDeletedEmail } from '../../emails/sendTeamDeletedEmail'
+import { deleteTeam } from '../../teams/deleteTeam'
+import { fetchTeam } from '../../teams/fetchTeam'
+import { corsHeaders } from '../../utils/cors'
 import { formatName } from '../../utils/formatName'
 
 console.log('Hello from Delete Team!')
