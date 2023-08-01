@@ -26,6 +26,7 @@ const config: StorybookConfig = {
       },
     },
     getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-interactions'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
