@@ -2,10 +2,10 @@ import { Button } from '@tremor/react'
 import React, { ReactElement } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { useResendTeamInvite } from '../../../../../../auth/hooks/useResendConfirmationEmail'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
-import { useResendTeamInvite } from '../../../../../../hooks/auth/useResendConfirmationEmail'
-import { useTeamMember } from '../../../../../../hooks/teams/useTeamMember'
 import { routes, TEAM_ID_PARAM } from '../../../../../../routes'
+import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
 
 export const ResendTeamInviteSection = (): ReactElement => {
   const { data: teamMember } = useTeamMember()

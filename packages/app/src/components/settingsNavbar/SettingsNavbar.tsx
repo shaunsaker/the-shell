@@ -1,7 +1,7 @@
 import { Button } from '@tremor/react'
 import React, { ReactElement } from 'react'
 
-import { useSignOut } from '../../hooks/auth/useSignOut'
+import { useSignOut } from '../../auth/hooks/useSignOut'
 import { routes } from '../../routes'
 import { Headerbar } from '../headerbar/Headerbar'
 import { Navbar, NavigationItem } from '../navbar'

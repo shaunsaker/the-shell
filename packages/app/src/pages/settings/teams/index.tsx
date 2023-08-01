@@ -2,11 +2,11 @@ import { Button, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableR
 import React, { ReactElement } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
+import { useSession } from '../../../auth/hooks/useSession'
 import { SettingsSection } from '../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../components/skeletonLoader/SkeletonLoader'
-import { useSession } from '../../../hooks/auth/useSession'
-import { useTeams } from '../../../hooks/teams/useTeams'
 import { routes, TEAM_ID_PARAM } from '../../../routes'
+import { useTeams } from '../../../teams/hooks/useTeams'
 import { formatDate } from '../../../utils/formatDate'
 import { formatTeamMemberName } from '../../../utils/formatTeamMemberName'
 

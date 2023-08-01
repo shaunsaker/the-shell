@@ -2,7 +2,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button } from '@tremor/react'
 import React, { ReactElement, ReactNode } from 'react'
 
-import { useSidebarOpen } from '../../hooks/utils/useSidebarOpen'
+import { useSidebarOpen } from '../../utils/useSidebarOpen'
 
 type HeaderbarProps = {
   children?: ReactNode

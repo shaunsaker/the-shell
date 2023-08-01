@@ -4,9 +4,9 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
 import { TextInput } from '../../../../../../components/textInput/TextInput'
-import { useIsLoggedInUserTeamAdmin } from '../../../../../../hooks/teams/useIsLoggedInUserTeamAdmin'
-import { useTeam } from '../../../../../../hooks/teams/useTeam'
-import { useUpdateTeam } from '../../../../../../hooks/teams/useUpdateTeam'
+import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
+import { useTeam } from '../../../../../../teams/hooks/useTeam'
+import { useUpdateTeam } from '../../../../../../teams/hooks/useUpdateTeam'
 
 export const ChangeTeamNameSection = (): ReactElement => {
   const isLoggedInUserTeamAdmin = useIsLoggedInUserTeamAdmin()

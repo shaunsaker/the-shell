@@ -5,8 +5,8 @@ import { useNavigate, useRouteError } from 'react-router-dom'
 
 import app from '../../../../common/app.json'
 import { captureException } from '../../errors/captureException'
-import { useLink } from '../../hooks/utils/useLink'
 import { routes } from '../../routes'
+import { useLink } from '../../utils/useLink'
 
 export const ErrorBoundary = (): ReactElement => {
   const error = useRouteError() as { status: number; statusText: string; error: Error } | Error | undefined

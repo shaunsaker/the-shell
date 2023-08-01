@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Dialog } from '../../../../../components/dialog/Dialog'
-import { useRemoveTeamMember } from '../../../../../hooks/teams/useRemoveTeamMember'
-import { useRestrictedTeamAdminRoute } from '../../../../../hooks/teams/useRestrictedTeamAdminRoute'
-import { useTeam } from '../../../../../hooks/teams/useTeam'
-import { useTeamMember } from '../../../../../hooks/teams/useTeamMember'
+import { useRemoveTeamMember } from '../../../../../teams/hooks/useRemoveTeamMember'
+import { useRestrictedTeamAdminRoute } from '../../../../../teams/hooks/useRestrictedTeamAdminRoute'
+import { useTeam } from '../../../../../teams/hooks/useTeam'
+import { useTeamMember } from '../../../../../teams/hooks/useTeamMember'
 import { formatTeamMemberName } from '../../../../../utils/formatTeamMemberName'
 
 export const SettingsRemoveTeamMember = (): ReactElement => {

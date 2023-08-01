@@ -1,6 +1,6 @@
-import { useIdentifyUser } from '../../hooks/analytics/useIdentifyUser'
-import { useAuthListener } from '../../hooks/auth/useAuthListener'
-import { useSubscriptionListener } from '../../hooks/billing/useSubscriptionListener'
+import { useIdentifyUser } from '../../analytics/hooks/useIdentifyUser'
+import { useAuthListener } from '../../auth/hooks/useAuthListener'
+import { useSubscriptionListener } from '../../billing/hooks/useSubscriptionListener'
 
 export const Listeners = (): null => {
   useAuthListener()

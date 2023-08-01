@@ -1,9 +1,9 @@
 import React, { ComponentProps, ReactElement } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { useTeam } from '../../hooks/teams/useTeam'
-import { useTeamMember } from '../../hooks/teams/useTeamMember'
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../routes'
+import { useTeam } from '../../teams/hooks/useTeam'
+import { useTeamMember } from '../../teams/hooks/useTeamMember'
 import { formatTeamMemberName } from '../../utils/formatTeamMemberName'
 import { Breadcrumbs } from '../breadcrumbs/BreadCrumbs'
 

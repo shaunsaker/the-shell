@@ -7,8 +7,8 @@ import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
 import { SettingsTeamsNavbar } from '../../../../components/settingsTeamsNavbar/SettingsTeamsNavbar'
 import { TextInput } from '../../../../components/textInput/TextInput'
-import { useInviteTeamMembers } from '../../../../hooks/teams/useInviteTeamMember'
 import { routes, TEAM_ID_PARAM } from '../../../../routes'
+import { useInviteTeamMembers } from '../../../../teams/hooks/useInviteTeamMember'
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const SettingsInviteTeamMembers = (): ReactElement => {

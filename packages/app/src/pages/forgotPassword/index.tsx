@@ -3,11 +3,11 @@ import { Button, Card, Metric } from '@tremor/react'
 import { FormEvent, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
+import { useResetPasswordForEmail } from '../../auth/hooks/useResetPasswordForEmail'
 import { FullPage } from '../../components/fullPage/FullPage'
 import { Logo } from '../../components/logo/Logo'
 import { TextInput } from '../../components/textInput/TextInput'
-import { useAuthEmail } from '../../hooks/auth/useAuthEmail'
-import { useResetPasswordForEmail } from '../../hooks/auth/useResetPasswordForEmail'
 import { routes } from '../../routes'
 import { validateEmail } from '../../utils/validateEmail'
 

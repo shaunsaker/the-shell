@@ -3,11 +3,11 @@ import { FormEvent, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import app from '../../../../common/app.json'
+import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
+import { useSignUpWithPassword } from '../../auth/hooks/useSignUpWithPassword'
 import { FullPage } from '../../components/fullPage/FullPage'
 import { Logo } from '../../components/logo/Logo'
 import { TextInput } from '../../components/textInput/TextInput'
-import { useAuthEmail } from '../../hooks/auth/useAuthEmail'
-import { useSignUpWithPassword } from '../../hooks/auth/useSignUpWithPassword'
 import { routes } from '../../routes'
 import { validateEmail } from '../../utils/validateEmail'
 

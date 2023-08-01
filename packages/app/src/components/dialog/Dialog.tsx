@@ -3,7 +3,7 @@ import { Button, Text, Title } from '@tremor/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactElement, ReactNode } from 'react'
 
-import { useKeypress } from '../../hooks/utils/useKeyPress'
+import { useKeypress } from '../../utils/useKeyPress'
 import { Backdrop } from '../backdrop/Backdrop'
 
 type DialogProps = {

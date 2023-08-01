@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
+import { useSession } from './auth/hooks/useSession'
 import { ErrorBoundary } from './components/errorBoundary/ErrorBoundary'
 import { MainLayout } from './components/mainLayout/MainLayout'
 import { ScreenLoading } from './components/screenLoading'
 import { SettingsLayout } from './components/settingsLayout/SettingsLayout'
-import { useSession } from './hooks/auth/useSession'
 import { Dashboard } from './pages/dashboard'
 import ForgotPassword from './pages/forgotPassword'
 import { SettingsAccount } from './pages/settings/account'

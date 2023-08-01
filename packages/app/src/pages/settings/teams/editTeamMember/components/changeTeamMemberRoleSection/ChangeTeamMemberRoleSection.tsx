@@ -3,9 +3,9 @@ import React, { ReactElement, useEffect, useState } from 'react'
 
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
-import { useTeamMember } from '../../../../../../hooks/teams/useTeamMember'
-import { useUpdateTeamMember } from '../../../../../../hooks/teams/useUpdateTeamMember'
 import { TeamMemberRole } from '../../../../../../models'
+import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
+import { useUpdateTeamMember } from '../../../../../../teams/hooks/useUpdateTeamMember'
 import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRole'
 import { parseTeamMemberRole } from '../../../../../../utils/parseTeamMemberRole'
 

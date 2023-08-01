@@ -1,10 +1,10 @@
 import { Button } from '@tremor/react'
 import React, { ReactElement, useEffect, useState } from 'react'
 
+import { useSession } from '../../../../../auth/hooks/useSession'
+import { useUpdateUserData } from '../../../../../auth/hooks/useUpdateUserData'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
-import { useSession } from '../../../../../hooks/auth/useSession'
-import { useUpdateUserData } from '../../../../../hooks/auth/useUpdateUserData'
 
 type ChangeNameSectionProps = {
   title?: string

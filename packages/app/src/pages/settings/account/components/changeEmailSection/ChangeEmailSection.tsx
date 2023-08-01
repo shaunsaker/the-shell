@@ -1,10 +1,10 @@
 import { Button } from '@tremor/react'
 import React, { ReactElement, useEffect, useState } from 'react'
 
+import { useSession } from '../../../../../auth/hooks/useSession'
+import { useUpdateUserEmail } from '../../../../../auth/hooks/useUpdateUserEmail'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
-import { useSession } from '../../../../../hooks/auth/useSession'
-import { useUpdateUserEmail } from '../../../../../hooks/auth/useUpdateUserEmail'
 import { validateEmail } from '../../../../../utils/validateEmail'
 
 export const ChangeEmailSection = (): ReactElement => {

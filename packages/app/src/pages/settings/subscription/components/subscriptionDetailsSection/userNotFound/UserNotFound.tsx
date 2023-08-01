@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react'
 
 import app from '../../../../../../../../common/app.json'
 import { BlankState } from '../../../../../../components/blankState/BlankState'
-import { useLink } from '../../../../../../hooks/utils/useLink'
+import { useLink } from '../../../../../../utils/useLink'
 
 export const UserNotFound = (): ReactElement => {
   const link = useLink()

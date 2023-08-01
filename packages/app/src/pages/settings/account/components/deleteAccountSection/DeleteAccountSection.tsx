@@ -1,9 +1,9 @@
 import { Button } from '@tremor/react'
 import React, { ReactElement, useState } from 'react'
 
+import { useDeleteUserAccount } from '../../../../../auth/hooks/useDeleteUserAccount'
 import { Dialog } from '../../../../../components/dialog/Dialog'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
-import { useDeleteUserAccount } from '../../../../../hooks/auth/useDeleteUserAccount'
 
 export const DeleteAccountSection = (): ReactElement => {
   const [dialogOpen, setDialogOpen] = useState(false)

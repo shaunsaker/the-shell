@@ -1,4 +1,4 @@
-import { getSession } from '../auth/getSession'
+import { getSession } from '../auth/api/getSession'
 
 type Functions =
   | 'create-billing-portal-session'

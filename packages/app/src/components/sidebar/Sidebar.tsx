@@ -6,10 +6,10 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
-import { useSubscription } from '../../hooks/billing/useSubscription'
-import { useLink } from '../../hooks/utils/useLink'
-import { useSidebarOpen } from '../../hooks/utils/useSidebarOpen'
+import { useSubscription } from '../../billing/hooks/useSubscription'
 import { routes } from '../../routes'
+import { useLink } from '../../utils/useLink'
+import { useSidebarOpen } from '../../utils/useSidebarOpen'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Logo } from '../logo/Logo'
 
