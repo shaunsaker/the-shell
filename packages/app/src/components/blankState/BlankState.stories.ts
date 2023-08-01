@@ -27,7 +27,7 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
 
-    const submitButton = canvas.getByRole('button')
+    const submitButton = canvas.getByText('Create new')
 
     await userEvent.click(submitButton)
   },

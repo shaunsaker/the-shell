@@ -1,29 +1,26 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Button, Text } from '@tremor/react'
-import { useLocation, useNavigate } from 'react-router-dom'
 
-type Page = {
+export type NavigationItem = {
   name: string
   href: string
-  isActive: (pathname: string) => boolean
+  isActive: boolean
 }
 
-type BreadcrumbsProps = {
-  pages?: Page[]
+type Props = {
+  items: NavigationItem[]
+  onClick?: (href: string) => void
 }
 
-export const Breadcrumbs = ({ pages }: BreadcrumbsProps) => {
-  const navigate = useNavigate()
-  const location = useLocation()
-
+export const Breadcrumbs = ({ items, onClick }: Props) => {
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol className="flex items-center space-x-4">
-        {pages?.map((page, index) => {
-          const isActive = page.isActive(location.pathname)
+        {items?.map((item, index) => {
+          const isActive = item.isActive
 
           return (
-            <li key={page.name}>
+            <li key={item.name}>
               <div className="flex items-center space-x-4">
                 <Button
                   variant="light"
@@ -31,15 +28,15 @@ export const Breadcrumbs = ({ pages }: BreadcrumbsProps) => {
                   disabled={isActive}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
-                    if (!isActive) {
-                      navigate(page.href)
+                    if (!isActive && onClick) {
+                      onClick(item.href)
                     }
                   }}
                 >
-                  {page.name}
+                  {item.name}
                 </Button>
 
-                {index !== pages.length - 1 && (
+                {index !== items.length - 1 && (
                   <Text>
                     <ChevronRightIcon className="h-4 w-4" />
                   </Text>

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
-import { SettingsTeamsNavbar } from '../../../../components/settingsTeamsNavbar/SettingsTeamsNavbar'
+import { SettingsTeamsBreadcrumbs } from '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
 import { TextInput } from '../../../../components/textInput/TextInput'
 import { routes, TEAM_ID_PARAM } from '../../../../routes'
 import { useInviteTeamMembers } from '../../../../teams/hooks/useInviteTeamMember'
@@ -22,7 +22,7 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
 
   return (
     <SettingsList>
-      <SettingsTeamsNavbar />
+      <SettingsTeamsBreadcrumbs />
 
       <SettingsSection
         className="border-b-0"

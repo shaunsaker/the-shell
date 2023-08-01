@@ -1,18 +1,18 @@
-import React, { ComponentProps, ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../routes'
 import { useTeam } from '../../teams/hooks/useTeam'
 import { useTeamMember } from '../../teams/hooks/useTeamMember'
 import { formatTeamMemberName } from '../../utils/formatTeamMemberName'
-import { Breadcrumbs } from '../breadcrumbs/BreadCrumbs'
+import { Breadcrumbs, NavigationItem } from '../breadcrumbs/Breadcrumbs'
 
-export const SettingsTeamsNavbar = (): ReactElement => {
+export const SettingsTeamsBreadcrumbs = (): ReactElement => {
   const { data: team } = useTeam()
   const { data: teamMember } = useTeamMember()
   const location = useLocation()
 
-  const BREADCRUMBS: ComponentProps<typeof Breadcrumbs>['pages'] = []
+  const BREADCRUMBS: NavigationItem[] = []
 
   if (team) {
     const href = routes.settingsEditTeam.replace(TEAM_ID_PARAM, team.id.toString())
@@ -20,7 +20,7 @@ export const SettingsTeamsNavbar = (): ReactElement => {
     BREADCRUMBS.push({
       name: team.name,
       href,
-      isActive: (pathname: string) => href === pathname,
+      isActive: href === location.pathname,
     })
 
     const hrefInviteTeamMembers = routes.settingsInviteTeamMembers.replace(TEAM_ID_PARAM, team.id.toString())
@@ -29,7 +29,7 @@ export const SettingsTeamsNavbar = (): ReactElement => {
       BREADCRUMBS.push({
         name: 'Invite team members',
         href: hrefInviteTeamMembers,
-        isActive: (pathname: string) => hrefInviteTeamMembers === pathname,
+        isActive: hrefInviteTeamMembers === location.pathname,
       })
     }
 
@@ -39,7 +39,7 @@ export const SettingsTeamsNavbar = (): ReactElement => {
       BREADCRUMBS.push({
         name: 'Accept invite',
         href: hrefAcceptInvite,
-        isActive: (pathname: string) => hrefAcceptInvite === pathname,
+        isActive: hrefAcceptInvite === location.pathname,
       })
     }
   }
@@ -55,10 +55,10 @@ export const SettingsTeamsNavbar = (): ReactElement => {
       BREADCRUMBS.push({
         name,
         href,
-        isActive: (pathname: string) => href === pathname,
+        isActive: href === location.pathname,
       })
     }
   }
 
-  return <Breadcrumbs pages={BREADCRUMBS} />
+  return <Breadcrumbs items={BREADCRUMBS} />
 }

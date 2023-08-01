@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react'
 import { useSignOut } from '../../auth/hooks/useSignOut'
 import { routes } from '../../routes'
 import { Headerbar } from '../headerbar/Headerbar'
-import { Navbar, NavigationItem } from '../navbar'
+import { Navbar, NavigationItem } from '../navbar/Navbar'
 
 const items: NavigationItem[] = [
   {

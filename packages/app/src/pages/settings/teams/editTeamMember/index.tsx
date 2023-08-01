@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
-import { SettingsTeamsNavbar } from '../../../../components/settingsTeamsNavbar/SettingsTeamsNavbar'
+import { SettingsTeamsBreadcrumbs } from '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
 import { useRestrictedTeamAdminRoute } from '../../../../teams/hooks/useRestrictedTeamAdminRoute'
 import { useTeamMember } from '../../../../teams/hooks/useTeamMember'
 import { ChangeTeamMemberRoleSection } from './components/changeTeamMemberRoleSection/ChangeTeamMemberRoleSection'
@@ -17,7 +17,7 @@ export const SettingsEditTeamMember = (): ReactElement => {
 
   return (
     <SettingsList>
-      <SettingsTeamsNavbar />
+      <SettingsTeamsBreadcrumbs />
 
       {teamMemberIsInactive && <ResendTeamInviteSection />}
 
