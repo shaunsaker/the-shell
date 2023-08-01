@@ -14,10 +14,5 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Supabase setup
-        uses: supabase/setup-cli@v1
-        with:
-          version: latest
-
       - run: yarn --frozen-lockfile
       - run: yarn turbo run lint # TODO: SS add test once we add tests
