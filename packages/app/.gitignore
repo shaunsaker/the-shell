@@ -1,5 +1,7 @@
 dist
 .env.local
+build-storybook.log
+storybook-static
 
 # auto-generated assets
 public/apple-touch-icon.png

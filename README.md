@@ -51,6 +51,7 @@ TODO: SS add a video of project setup in action
 - [vite-plugin-svgr](https://github.com/pd4d10/vite-plugin-svgr) for svg support 🔗
 - [react-hot-toast](https://react-hot-toast.com/) for easy to use toast notifications 🍞
 - [heroicons](https://heroicons.com/) for beautiful icons 🙂
+- [Storybook](https://storybook.js.org/) deployed to [Chromatic](https://www.chromatic.com/) for UI development
 
 ---
 
@@ -71,6 +72,7 @@ TODO: SS add a video of project setup in action
 - [Sentry account](https://sentry.io/signup/)
 - 2x [Resend accounts](https://resend.com/signup), one for staging and one for production
 - [Mixpanel account](https://mixpanel.com/) with 2x projects, one for staging and one for production
+- [Chromatic account](https://www.chromatic.com/)
 
 ### Basic Setup
 
@@ -385,6 +387,16 @@ The command `yarn gen:emails` generated html email templates in `./emails/out/*`
 ```
 yarn netlify env:set VITE_MIXPANEL_TOKEN STAGING_PROJECT_TOKEN --context branch-deploy
 yarn netlify env:set VITE_MIXPANEL_TOKEN PRODUCTION_PROJECT_TOKEN --context production
+```
+
+### Setup Chromatic
+
+1. Setup your project at [Chromatic](https://www.chromatic.com/).
+
+2. Push your Chromatic Project Token to Github:
+
+```
+gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
 ```
 
 ## Development

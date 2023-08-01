@@ -1,6 +1,12 @@
 module.exports = {
   root: true,
-  extends: ['custom', 'react-app', 'plugin:react-hooks/recommended', 'plugin:tailwindcss/recommended'],
+  extends: [
+    'custom',
+    'react-app',
+    'plugin:react-hooks/recommended',
+    'plugin:tailwindcss/recommended',
+    'plugin:storybook/recommended',
+  ],
   plugins: ['react', 'react-hooks', 'tailwindcss'],
   rules: {
     'react/no-unescaped-entities': 'off',
