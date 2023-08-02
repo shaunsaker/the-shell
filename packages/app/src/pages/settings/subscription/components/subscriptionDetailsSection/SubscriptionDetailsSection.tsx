@@ -1,10 +1,11 @@
-import { List, ListItem } from '@tremor/react'
 import React, { ReactElement } from 'react'
 
 import { useCreateBillingPortalSession } from '../../../../../billing/hooks/useCreateBillingPortalSession'
 import { useProducts } from '../../../../../billing/hooks/useProducts'
 import { useSubscription } from '../../../../../billing/hooks/useSubscription'
 import { Button } from '../../../../../components/button/Button'
+import { List } from '../../../../../components/list/List'
+import { ListItem } from '../../../../../components/list/ListItem'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { useUser } from '../../../../../users/hooks/useUser'
 import { formatBillingAddress } from '../../../../../utils/formatBillingAddress'
