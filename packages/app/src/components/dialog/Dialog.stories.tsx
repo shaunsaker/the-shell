@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Text } from '@tremor/react'
 
+import { Text } from '../text/Text'
 import { Dialog } from './Dialog'
 
 const meta = {

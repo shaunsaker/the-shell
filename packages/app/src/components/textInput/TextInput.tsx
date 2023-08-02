@@ -1,5 +1,7 @@
-import { Text, TextInput as TextInputPrimitive } from '@tremor/react'
+import { TextInput as TextInputPrimitive } from '@tremor/react'
 import React, { ComponentProps, ReactElement } from 'react'
+
+import { Text } from '../text/Text'
 
 type TextInputProps = { label?: string } & ComponentProps<typeof TextInputPrimitive>
 

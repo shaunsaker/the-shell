@@ -1,8 +1,9 @@
 import { CheckIcon } from '@heroicons/react/24/outline'
-import { Badge, Button, Card, Metric, Text, Title } from '@tremor/react'
+import { Badge, Button, Card, Metric, Title } from '@tremor/react'
 import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import { Text } from '../../../../../../components/text/Text'
 import { formatCurrency } from '../../../../../../utils/formatCurrency'
 
 type PricingCardProps = {

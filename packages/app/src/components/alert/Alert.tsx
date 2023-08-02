@@ -4,11 +4,11 @@ import {
   ExclamationTriangleIcon,
   InformationCircleIcon,
 } from '@heroicons/react/24/outline'
-import { Text } from '@tremor/react'
 import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
+import { Text } from '../text/Text'
 
 export type AlertKind = 'info' | 'success' | 'warning' | 'error'
 
