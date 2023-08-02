@@ -1,35 +1,38 @@
 import { Button } from '@tremor/react'
 import React, { ReactElement } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useSignOut } from '../../auth/hooks/useSignOut'
 import { routes } from '../../routes'
 import { Headerbar } from '../headerbar/Headerbar'
 import { Navbar, NavigationItem } from '../navbar/Navbar'
 
-const items: NavigationItem[] = [
-  {
-    name: 'Account',
-    href: routes.settingsAccount,
-    isActive: (pathname: string) => pathname.includes(routes.settingsAccount),
-  },
-  {
-    name: 'Subscription',
-    href: routes.settingsSubscription,
-    isActive: (pathname: string) => pathname.includes(routes.settingsSubscription),
-  },
-  {
-    name: 'Teams',
-    href: routes.settingsTeams,
-    isActive: (pathname: string) => pathname.includes(routes.settingsTeams),
-  },
-]
-
 export const SettingsNavbar = (): ReactElement => {
   const { mutate: signOut, isLoading } = useSignOut()
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const items: NavigationItem[] = [
+    {
+      name: 'Account',
+      href: routes.settingsAccount,
+      isActive: location.pathname.includes(routes.settingsAccount),
+    },
+    {
+      name: 'Subscription',
+      href: routes.settingsSubscription,
+      isActive: location.pathname.includes(routes.settingsSubscription),
+    },
+    {
+      name: 'Teams',
+      href: routes.settingsTeams,
+      isActive: location.pathname.includes(routes.settingsTeams),
+    },
+  ]
 
   return (
     <Headerbar>
-      <Navbar items={items} />
+      <Navbar items={items} onClick={href => navigate(href)} />
 
       <Button
         variant="light"
