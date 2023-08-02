@@ -1,11 +1,10 @@
-import { Button, Card, Metric, Text } from '@tremor/react'
+import { Button, Text } from '@tremor/react'
 import { FormEvent, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
 import { useSignInWithPassword } from '../../auth/hooks/useSignInWithPassword'
-import { FullPage } from '../../components/fullPage/FullPage'
-import { Logo } from '../../components/logo/Logo'
+import { AuthLayout } from '../../components/authLayout/AuthLayout'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
 import { validateEmail } from '../../utils/validateEmail'
@@ -33,66 +32,61 @@ export default function SignIn() {
   )
 
   return (
-    <FullPage>
-      <div className="flex w-full max-w-lg flex-col text-center">
-        <Logo />
-
-        <Metric className="mt-4">Sign in to your account</Metric>
-      </div>
-
-      <Card className="mx-4 mt-10 w-full max-w-lg">
-        <form className="space-y-6" onSubmit={onSubmit}>
-          <TextInput
-            className="mt-2"
-            label="Email address"
-            placeholder="Enter your email..."
-            autoComplete="email"
-            required
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-            // @ts-expect-error override tremor type
-            type="email"
-          />
-
-          <TextInput
-            className="mt-2"
-            label="Password"
-            placeholder="Enter your password..."
-            type="password"
-            autoComplete="current-password"
-            required
-            value={password}
-            onChange={event => setPassword(event.target.value)}
-          />
-
+    <AuthLayout
+      title="Sign in to your account"
+      footer={
+        <Text>
+          Not a member?{' '}
           <Button
-            className="block"
-            type="button"
             variant="light"
             onClick={() => {
-              navigate(routes.forgotPassword)
+              navigate(routes.signUp)
             }}
           >
-            Forgot Password?
+            Sign up instead
           </Button>
+        </Text>
+      }
+    >
+      <form className="space-y-6" onSubmit={onSubmit}>
+        <TextInput
+          className="mt-2"
+          label="Email address"
+          placeholder="Enter your email..."
+          autoComplete="email"
+          required
+          value={email}
+          onChange={event => setEmail(event.target.value)}
+          // @ts-expect-error override tremor type
+          type="email"
+        />
 
-          <Button type="submit" disabled={disabled} loading={isLoading}>
-            Sign in
-          </Button>
-        </form>
-      </Card>
+        <TextInput
+          className="mt-2"
+          label="Password"
+          placeholder="Enter your password..."
+          type="password"
+          autoComplete="current-password"
+          required
+          value={password}
+          onChange={event => setPassword(event.target.value)}
+        />
 
-      <Text className="mt-10 text-center">
-        Not a member?{' '}
         <Button
+          className="block"
+          type="button"
           variant="light"
           onClick={() => {
-            navigate(routes.signUp)
+            navigate(routes.forgotPassword)
           }}
         >
-          Sign up instead
+          Forgot Password?
         </Button>
-      </Text>
-    </FullPage>
+
+        <Button type="submit" disabled={disabled} loading={isLoading}>
+          Sign in
+        </Button>
+      </form>
+    </AuthLayout>
   )
 }

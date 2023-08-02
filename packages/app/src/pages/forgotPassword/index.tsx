@@ -1,12 +1,11 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
-import { Button, Card, Metric } from '@tremor/react'
+import { Button } from '@tremor/react'
 import { FormEvent, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
 import { useResetPasswordForEmail } from '../../auth/hooks/useResetPasswordForEmail'
-import { FullPage } from '../../components/fullPage/FullPage'
-import { Logo } from '../../components/logo/Logo'
+import { AuthLayout } from '../../components/authLayout/AuthLayout'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
 import { validateEmail } from '../../utils/validateEmail'
@@ -36,43 +35,37 @@ export default function ForgotPassword() {
   )
 
   return (
-    <FullPage>
-      <div className="flex w-full max-w-lg flex-col text-center">
-        <Logo />
+    <AuthLayout
+      title="Forgot your password?"
+      footer={
+        <Button
+          icon={ArrowLeftIcon}
+          variant="light"
+          onClick={() => {
+            navigate(routes.signIn)
+          }}
+        >
+          Back to sign in
+        </Button>
+      }
+    >
+      <form className="space-y-6" onSubmit={onSubmit}>
+        <TextInput
+          className="mt-2"
+          label="Email address"
+          placeholder="Enter your email..."
+          autoComplete="email"
+          required
+          value={email}
+          onChange={event => setEmail(event.target.value)}
+          // @ts-expect-error override tremor type
+          type="email"
+        />
 
-        <Metric className="mt-4">Forgot your password?</Metric>
-      </div>
-
-      <Card className="mx-4 mt-10 w-full max-w-lg">
-        <form className="space-y-6" onSubmit={onSubmit}>
-          <TextInput
-            className="mt-2"
-            label="Email address"
-            placeholder="Enter your email..."
-            autoComplete="email"
-            required
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-            // @ts-expect-error override tremor type
-            type="email"
-          />
-
-          <Button type="submit" disabled={disabled} loading={isLoading}>
-            Send password reset email
-          </Button>
-        </form>
-      </Card>
-
-      <Button
-        className="mt-10"
-        icon={ArrowLeftIcon}
-        variant="light"
-        onClick={() => {
-          navigate(routes.signIn)
-        }}
-      >
-        Back to sign in
-      </Button>
-    </FullPage>
+        <Button type="submit" disabled={disabled} loading={isLoading}>
+          Send password reset email
+        </Button>
+      </form>
+    </AuthLayout>
   )
 }
