@@ -32,7 +32,12 @@ export const SettingsNavbar = (): ReactElement => {
 
   return (
     <Headerbar>
-      <Navbar items={items} onClick={href => navigate(href)} />
+      <Navbar
+        items={items}
+        onClick={href => {
+          navigate(href)
+        }}
+      />
 
       <Button
         variant="light"
