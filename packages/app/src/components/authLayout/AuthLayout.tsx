@@ -1,6 +1,6 @@
-import { Card } from '@tremor/react'
 import React, { ReactNode } from 'react'
 
+import { Card } from '../card/Card'
 import { Logo } from '../logo/Logo'
 import { Metric } from '../metric/Metric'
 
