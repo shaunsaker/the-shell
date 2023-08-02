@@ -35,13 +35,7 @@ export const Dialog = ({
 }: DialogProps): ReactElement | null => {
   // Handle Enter key as confirm click
   useKeypress('Enter', () => {
-    console.log('HERE 2')
-
-    if (!open) {
-      return
-    }
-
-    if (confirmDisabled) {
+    if (!open || confirmDisabled || confirmLoading) {
       return
     }
 
@@ -52,7 +46,15 @@ export const Dialog = ({
 
   return (
     <AnimatePresence>
-      <DialogPrimitive open={open} onClose={onClose} className="z-50">
+      <DialogPrimitive
+        open={open}
+        onClose={() => {
+          if (!confirmLoading) {
+            onClose()
+          }
+        }}
+        className="z-50"
+      >
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <Backdrop />
         </motion.div>
@@ -80,7 +82,7 @@ export const Dialog = ({
                   {children}
 
                   <div className="mt-6 flex justify-end gap-4">
-                    <Button color="gray" variant="secondary" onClick={onClose}>
+                    <Button color="gray" variant="secondary" disabled={confirmLoading} onClick={onClose}>
                       {cancelText}
                     </Button>
 
