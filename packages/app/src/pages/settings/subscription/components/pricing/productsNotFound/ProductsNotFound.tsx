@@ -1,8 +1,8 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
-import { Button } from '@tremor/react'
 import React, { ReactElement } from 'react'
 
 import { BlankState } from '../../../../../../components/blankState/BlankState'
+import { Button } from '../../../../../../components/button/Button'
 import { useLink } from '../../../../../../utils/useLink'
 
 export const ProductsNotFound = (): ReactElement => {

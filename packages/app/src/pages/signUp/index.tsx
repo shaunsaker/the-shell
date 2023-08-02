@@ -1,4 +1,4 @@
-import { Button, Text } from '@tremor/react'
+import { Text } from '@tremor/react'
 import { FormEvent, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -6,6 +6,7 @@ import app from '../../../../common/app.json'
 import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
 import { useSignUpWithPassword } from '../../auth/hooks/useSignUpWithPassword'
 import { AuthLayout } from '../../components/authLayout/AuthLayout'
+import { Button } from '../../components/button/Button'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
 import { validateEmail } from '../../utils/validateEmail'

@@ -1,8 +1,8 @@
-import { Button } from '@tremor/react'
 import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
+import { Button } from '../button/Button'
 
 export type NavigationItem = {
   name: string

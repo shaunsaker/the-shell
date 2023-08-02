@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
-import { Button } from '@tremor/react'
 
+import { Button } from '../button/Button'
 import { Text } from '../text/Text'
 
 export type NavigationItem = {

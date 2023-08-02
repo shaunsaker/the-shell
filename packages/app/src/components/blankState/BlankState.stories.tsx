@@ -1,8 +1,8 @@
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline'
 import type { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/testing-library'
-import { Button } from '@tremor/react'
 
+import { Button } from '../button/Button'
 import { BlankState } from './BlankState'
 
 const meta = {

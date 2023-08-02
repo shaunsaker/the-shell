@@ -1,5 +1,4 @@
 import { ArrowRightIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
-import { Button } from '@tremor/react'
 import React, { ReactElement, useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
@@ -8,6 +7,7 @@ import { captureException } from '../../errors/captureException'
 import { routes } from '../../routes'
 import { useLink } from '../../utils/useLink'
 import { BlankState } from '../blankState/BlankState'
+import { Button } from '../button/Button'
 
 export const ErrorBoundary = (): ReactElement => {
   const error = useRouteError() as { status: number; statusText: string; error: Error } | Error | undefined

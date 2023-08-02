@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Button } from '@tremor/react'
 
+import { Button } from '../button/Button'
 import { TextInput } from '../textInput/TextInput'
 import { SettingsSection } from './SettingsSection'
 

@@ -1,10 +1,11 @@
-import { Button, TextInput } from '@tremor/react'
 import React, { ReactElement, useEffect, useState } from 'react'
 
 import { useProducts } from '../../../../../billing/hooks/useProducts'
 import { useSubscription } from '../../../../../billing/hooks/useSubscription'
 import { useUpdateSubscriptionQuantity } from '../../../../../billing/hooks/useUpdateSubscriptionQuantity'
+import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
+import { TextInput } from '../../../../../components/textInput/TextInput'
 import { Price } from '../../../../../models'
 import { formatCurrency } from '../../../../../utils/formatCurrency'
 import { getActivePriceFromProducts } from '../../../../../utils/getActivePriceFromProducts'

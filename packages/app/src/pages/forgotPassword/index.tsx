@@ -1,11 +1,11 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
-import { Button } from '@tremor/react'
 import { FormEvent, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
 import { useResetPasswordForEmail } from '../../auth/hooks/useResetPasswordForEmail'
 import { AuthLayout } from '../../components/authLayout/AuthLayout'
+import { Button } from '../../components/button/Button'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
 import { validateEmail } from '../../utils/validateEmail'

@@ -1,6 +1,7 @@
-import { Button, Select, SelectItem } from '@tremor/react'
+import { Select, SelectItem } from '@tremor/react'
 import React, { ReactElement, useEffect, useState } from 'react'
 
+import { Button } from '../../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
 import { TeamMemberRole } from '../../../../../../models'

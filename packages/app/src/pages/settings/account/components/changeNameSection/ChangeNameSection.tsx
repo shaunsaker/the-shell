@@ -1,8 +1,8 @@
-import { Button } from '@tremor/react'
 import React, { ReactElement, useEffect, useState } from 'react'
 
 import { useSession } from '../../../../../auth/hooks/useSession'
 import { useUpdateUserData } from '../../../../../auth/hooks/useUpdateUserData'
+import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
 

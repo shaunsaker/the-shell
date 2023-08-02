@@ -1,8 +1,8 @@
-import { Button } from '@tremor/react'
 import React, { ReactElement } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useResendTeamInvite } from '../../../../../../auth/hooks/useResendConfirmationEmail'
+import { Button } from '../../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
 import { routes, TEAM_ID_PARAM } from '../../../../../../routes'
 import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'

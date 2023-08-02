@@ -1,8 +1,9 @@
-import { Button, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
+import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
 import React, { ReactElement } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import { useSession } from '../../../auth/hooks/useSession'
+import { Button } from '../../../components/button/Button'
 import { SettingsSection } from '../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../components/skeletonLoader/SkeletonLoader'
 import { routes, TEAM_ID_PARAM } from '../../../routes'

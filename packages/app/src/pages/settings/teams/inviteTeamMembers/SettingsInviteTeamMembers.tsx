@@ -1,8 +1,8 @@
 import { XCircleIcon } from '@heroicons/react/24/outline'
-import { Button } from '@tremor/react'
 import React, { ReactElement, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { Button } from '../../../../components/button/Button'
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
 import { SettingsTeamsBreadcrumbs } from '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'

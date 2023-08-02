@@ -1,10 +1,11 @@
-import { Button, Text } from '@tremor/react'
+import { Text } from '@tremor/react'
 import { FormEvent, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
 import { useSignInWithPassword } from '../../auth/hooks/useSignInWithPassword'
 import { AuthLayout } from '../../components/authLayout/AuthLayout'
+import { Button } from '../../components/button/Button'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
 import { validateEmail } from '../../utils/validateEmail'

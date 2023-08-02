@@ -1,7 +1,7 @@
-import { Button } from '@tremor/react'
 import React, { ReactElement, useState } from 'react'
 
 import { useDeleteUserAccount } from '../../../../../auth/hooks/useDeleteUserAccount'
+import { Button } from '../../../../../components/button/Button'
 import { Dialog } from '../../../../../components/dialog/Dialog'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 

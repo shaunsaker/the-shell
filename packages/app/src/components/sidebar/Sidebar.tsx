@@ -1,6 +1,5 @@
 import { Dialog } from '@headlessui/react'
 import { QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Button } from '@tremor/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
 
@@ -8,6 +7,7 @@ import app from '../../../../common/app.json'
 import { useLink } from '../../utils/useLink'
 import { useSidebarOpen } from '../../utils/useSidebarOpen'
 import { Backdrop } from '../backdrop/Backdrop'
+import { Button } from '../button/Button'
 import { Logo } from '../logo/Logo'
 
 export type NavigationItem = {
