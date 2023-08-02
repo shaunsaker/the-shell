@@ -15,6 +15,13 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+export const Info: Story = {
+  args: {
+    kind: 'info',
+    children: 'Alert',
+  },
+}
+
 export const Success: Story = {
   args: {
     kind: 'success',
