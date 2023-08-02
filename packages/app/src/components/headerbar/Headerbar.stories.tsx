@@ -1,15 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import { Button } from '@tremor/react'
 
-import { AuthLayout } from './AuthLayout'
+import { Headerbar } from './Headerbar'
 
 const meta = {
-  title: 'AuthLayout',
-  component: AuthLayout,
+  title: 'Headerbar',
+  component: Headerbar,
   parameters: {
     layout: 'fullscreen',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof AuthLayout>
+} satisfies Meta<typeof Headerbar>
 
 export default meta
 
@@ -17,6 +18,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    title: 'Sign in to your account',
+    children: <Button variant="light">Sign Out</Button>,
   },
 }

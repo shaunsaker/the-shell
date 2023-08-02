@@ -28,7 +28,7 @@ export const Headerbar = ({ children }: HeaderbarProps): ReactElement => {
         <Bars3Icon className="h-6 w-6" aria-hidden="true" />
       </Button>
 
-      {children}
+      <div className="flex-1 flex justify-end h-full">{children}</div>
     </header>
   )
 }
