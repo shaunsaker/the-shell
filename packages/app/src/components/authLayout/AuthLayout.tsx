@@ -1,7 +1,8 @@
-import { Card, Metric } from '@tremor/react'
+import { Card } from '@tremor/react'
 import React, { ReactNode } from 'react'
 
 import { Logo } from '../logo/Logo'
+import { Metric } from '../metric/Metric'
 
 type AuthLayoutProps = {
   title: string

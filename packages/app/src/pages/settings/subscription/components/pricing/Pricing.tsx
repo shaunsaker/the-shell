@@ -1,8 +1,8 @@
-import { Metric } from '@tremor/react'
 import React, { ReactElement, useEffect, useState } from 'react'
 
 import { useCreateCheckoutSession } from '../../../../../billing/hooks/useCreateCheckoutSession'
 import { useProducts } from '../../../../../billing/hooks/useProducts'
+import { Metric } from '../../../../../components/metric/Metric'
 import { RadioGroup } from '../../../../../components/radioGroup/RadioGroup'
 import { Text } from '../../../../../components/text/Text'
 import { parseProductMetadata } from '../../../../../utils/parseProductMetadata'
