@@ -3,8 +3,8 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
 import { useSession } from './auth/hooks/useSession'
 import { ErrorBoundary } from './components/errorBoundary/ErrorBoundary'
+import { Loading } from './components/loading/Loading'
 import { MainLayout } from './components/mainLayout/MainLayout'
-import { ScreenLoading } from './components/screenLoading'
 import { SettingsLayout } from './components/settingsLayout/SettingsLayout'
 import { Dashboard } from './pages/dashboard'
 import ForgotPassword from './pages/forgotPassword'
@@ -136,7 +136,7 @@ export const Router = (): ReactElement => {
   const { data: session, isLoading: sessionLoading } = useSession()
 
   if (sessionLoading) {
-    return <ScreenLoading />
+    return <Loading />
   }
 
   return <RouterProvider router={session ? authorisedRouter : unauthorisedRouter} />
