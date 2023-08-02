@@ -1,10 +1,17 @@
-import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@tremor/react'
 import React, { ReactElement } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { Button } from '../../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '../../../../../../components/table/Table'
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../routes'
 import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '../../../../../../teams/hooks/useTeam'
@@ -45,27 +52,17 @@ export const ManageTeamMembersSection = (): ReactElement => {
       <Table className="max-h-[20rem]">
         <TableHead>
           <TableRow>
-            <TableHeaderCell className="bg-tremor-content-inverted dark:bg-dark-tremor-content-inverted">
-              Name
-            </TableHeaderCell>
+            <TableHeaderCell>Name</TableHeaderCell>
 
-            <TableHeaderCell className="bg-tremor-content-inverted dark:bg-dark-tremor-content-inverted">
-              Email
-            </TableHeaderCell>
+            <TableHeaderCell>Email</TableHeaderCell>
 
-            <TableHeaderCell className="bg-tremor-content-inverted dark:bg-dark-tremor-content-inverted">
-              Status
-            </TableHeaderCell>
+            <TableHeaderCell>Status</TableHeaderCell>
 
-            <TableHeaderCell className="bg-tremor-content-inverted dark:bg-dark-tremor-content-inverted">
-              Role
-            </TableHeaderCell>
+            <TableHeaderCell>Role</TableHeaderCell>
 
-            <TableHeaderCell className="bg-tremor-content-inverted dark:bg-dark-tremor-content-inverted">
-              Date added
-            </TableHeaderCell>
+            <TableHeaderCell>Date added</TableHeaderCell>
 
-            <TableHeaderCell className="bg-tremor-content-inverted dark:bg-dark-tremor-content-inverted"></TableHeaderCell>
+            <TableHeaderCell></TableHeaderCell>
           </TableRow>
         </TableHead>
 

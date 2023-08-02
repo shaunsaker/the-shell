@@ -6,3 +6,5 @@ type Props = { children?: ReactNode }
 export const List = ({ children }: Props): ReactElement => {
   return <ListPrimitive>{children}</ListPrimitive>
 }
+
+export { ListItem } from './ListItem'
