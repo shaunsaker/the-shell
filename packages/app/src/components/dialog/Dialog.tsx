@@ -1,11 +1,12 @@
 import { Dialog as DialogPrimitive } from '@headlessui/react'
-import { Button, Title } from '@tremor/react'
+import { Button } from '@tremor/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactElement, ReactNode } from 'react'
 
 import { useKeypress } from '../../utils/useKeyPress'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Text } from '../text/Text'
+import { Title } from '../title/Title'
 
 type DialogProps = {
   open?: boolean

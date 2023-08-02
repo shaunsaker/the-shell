@@ -1,8 +1,8 @@
-import { Title } from '@tremor/react'
 import React, { ReactElement, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Text } from '../text/Text'
+import { Title } from '../title/Title'
 
 type SettingsSectionProps = {
   className?: string
