@@ -1,4 +1,5 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
+import { Button } from '@tremor/react'
 import React, { ReactElement } from 'react'
 
 import app from '../../../../../../../common/app.json'
@@ -14,9 +15,9 @@ export const SubscriptionNotFound = (): ReactElement => {
         Icon={ExclamationCircleIcon}
         title="No subscription found"
         description="We could not find your subscription. If the problem persists, contact support"
-        buttonText="Contact support"
-        buttonAction={() => link(`mailto:${app.supportEmail}`)}
-      />
+      >
+        <Button onClick={() => link(`mailto:${app.supportEmail}`)}>Contact support</Button>
+      </BlankState>
     </main>
   )
 }

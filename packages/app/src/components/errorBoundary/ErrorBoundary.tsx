@@ -1,5 +1,5 @@
-import { ArrowRightIcon } from '@heroicons/react/24/outline'
-import { Button, Metric, Text, Title } from '@tremor/react'
+import { ArrowRightIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
+import { Button } from '@tremor/react'
 import React, { ReactElement, useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
@@ -7,6 +7,7 @@ import app from '../../../../common/app.json'
 import { captureException } from '../../errors/captureException'
 import { routes } from '../../routes'
 import { useLink } from '../../utils/useLink'
+import { BlankState } from '../blankState/BlankState'
 
 export const ErrorBoundary = (): ReactElement => {
   const error = useRouteError() as { status: number; statusText: string; error: Error } | Error | undefined
@@ -26,30 +27,26 @@ export const ErrorBoundary = (): ReactElement => {
 
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      <Title>{status}</Title>
+      <BlankState Icon={ExclamationCircleIcon} title={String(status)} description={errorMessage || statusText}>
+        <div className="mt-8 flex gap-8">
+          <Button
+            onClick={() => {
+              navigate(routes.dashboard)
+            }}
+          >
+            Go back home
+          </Button>
 
-      <Metric className="mt-4">{statusText}</Metric>
-
-      <Text className="mt-4">{errorMessage}</Text>
-
-      <div className="mt-8 flex gap-8">
-        <Button
-          onClick={() => {
-            navigate(routes.dashboard)
-          }}
-        >
-          Go back home
-        </Button>
-
-        <Button
-          variant="light"
-          icon={ArrowRightIcon}
-          iconPosition="right"
-          onClick={() => link(`mailto:${app.supportEmail}`, '_blank')}
-        >
-          Contact support
-        </Button>
-      </div>
+          <Button
+            variant="light"
+            icon={ArrowRightIcon}
+            iconPosition="right"
+            onClick={() => link(`mailto:${app.supportEmail}`, '_blank')}
+          >
+            Contact support
+          </Button>
+        </div>
+      </BlankState>
     </div>
   )
 }
