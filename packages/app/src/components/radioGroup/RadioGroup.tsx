@@ -35,7 +35,7 @@ export const RadioGroup = ({ className, label, value, options, onChange }: Radio
               active || checked
                 ? 'bg-tremor-brand text-tremor-brand-inverted dark:bg-dark-tremor-brand dark:text-dark-tremor-brand-inverted'
                 : 'text-tremor-content hover:bg-tremor-background-subtle dark:text-tremor-content hover:dark:bg-dark-tremor-background-subtle',
-              'flex-1 cursor-pointer rounded-full px-2.5 py-1 transition-colors',
+              'flex-1 cursor-pointer rounded-full px-2.5 py-1 transition-colors whitespace-nowrap',
             )
           }
           key={option.value}
