@@ -1,8 +1,8 @@
 import { ListItem as ListItemPrimitive } from '@tremor/react'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { HTMLAttributes, ReactElement } from 'react'
 
-type Props = { children?: ReactNode }
+type Props = HTMLAttributes<HTMLLIElement>
 
-export const ListItem = ({ children }: Props): ReactElement => {
-  return <ListItemPrimitive>{children}</ListItemPrimitive>
+export const ListItem = ({ ...props }: Props): ReactElement => {
+  return <ListItemPrimitive {...props} />
 }
