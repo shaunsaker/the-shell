@@ -3,6 +3,6 @@ import React, { ReactElement } from 'react'
 
 type Props = MetricProps
 
-export const Metric = ({ ...props }: Props): ReactElement => {
+export const Title = ({ ...props }: Props): ReactElement => {
   return <MetricPrimitive {...props} />
 }

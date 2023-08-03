@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 
 import { Card } from '../card/Card'
 import { Logo } from '../logo/Logo'
-import { Metric } from '../metric/Metric'
+import { Title } from '../title/Title'
 
 type AuthLayoutProps = {
   title: string
@@ -16,7 +16,7 @@ export const AuthLayout = ({ title, children, footer }: AuthLayoutProps) => {
       <div className="flex w-full max-w-lg flex-col text-center">
         <Logo />
 
-        <Metric className="mt-4">{title}</Metric>
+        <Title className="mt-4">{title}</Title>
       </div>
 
       <Card className="mx-4 mt-10 w-full max-w-lg">{children}</Card>

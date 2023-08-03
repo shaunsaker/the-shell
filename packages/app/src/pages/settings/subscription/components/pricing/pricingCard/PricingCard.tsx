@@ -6,8 +6,8 @@ import { Badge } from '../../../../../../components/badge/Badge'
 import { Button } from '../../../../../../components/button/Button'
 import { Card } from '../../../../../../components/card/Card'
 import { Heading } from '../../../../../../components/heading/Heading'
-import { Metric } from '../../../../../../components/metric/Metric'
 import { Text } from '../../../../../../components/text/Text'
+import { Title } from '../../../../../../components/title/Title'
 import { formatCurrency } from '../../../../../../utils/formatCurrency'
 
 type PricingCardProps = {
@@ -51,7 +51,7 @@ export const PricingCard = ({
       <Text>{description}</Text>
 
       <div className="flex items-end">
-        <Metric>{currency && formatCurrency(price / 100, currency)}</Metric>
+        <Title>{currency && formatCurrency(price / 100, currency)}</Title>
 
         <Text className="mb-1 ml-1">/ {interval}</Text>
       </div>

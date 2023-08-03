@@ -2,9 +2,9 @@ import React, { ReactElement, useEffect, useState } from 'react'
 
 import { useCreateCheckoutSession } from '../../../../../billing/hooks/useCreateCheckoutSession'
 import { useProducts } from '../../../../../billing/hooks/useProducts'
-import { Metric } from '../../../../../components/metric/Metric'
 import { RadioGroup } from '../../../../../components/radioGroup/RadioGroup'
 import { Text } from '../../../../../components/text/Text'
+import { Title } from '../../../../../components/title/Title'
 import { parseProductMetadata } from '../../../../../utils/parseProductMetadata'
 import { PricingCard } from './pricingCard/PricingCard'
 import { ProductsNotFound } from './productsNotFound/ProductsNotFound'
@@ -67,7 +67,7 @@ export const Pricing = (): ReactElement => {
       <div className="w-full max-w-lg text-center">
         <Text className="text-tremor-brand dark:text-dark-tremor-brand">Pricing</Text>
 
-        <Metric className="mt-4">Pricing plans for teams of all sizes</Metric>
+        <Title className="mt-4">Pricing plans for teams of all sizes</Title>
 
         <Text className="mt-4">
           Choose an affordable plan that&apos;s packed with the best features for engaging your audience, creating
