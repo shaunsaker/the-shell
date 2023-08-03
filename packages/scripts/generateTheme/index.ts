@@ -56,12 +56,18 @@ async function main(): Promise<void> {
     throw new Error(`neutralColor ${neutralColor} is not a valid color`)
   }
 
+  // FIXME: types
+  let figmaColors: any = {}
+
   // for each color in tremorTheme, convert it to tailwind's color
   Object.keys(themeColors).forEach(themeKey => {
     type ThemeKey = keyof typeof themeColors
 
     Object.keys(themeColors[themeKey as ThemeKey]).forEach(usageKey => {
       type UsageKey = keyof (typeof themeColors)[ThemeKey]
+
+      const figmaKey = `${themeKey}/${usageKey}`
+      figmaColors[figmaKey] = {}
 
       Object.keys(themeColors[themeKey as ThemeKey][usageKey as UsageKey]).forEach(variantKey => {
         type VariantKey = keyof (typeof themeColors)[ThemeKey][UsageKey]
@@ -73,12 +79,20 @@ async function main(): Promise<void> {
         )
 
         themeColors[themeKey as ThemeKey][usageKey as UsageKey][variantKey as VariantKey] = color
+
+        // set the Figma color where the theme and usage keys are joined by a slash
+        figmaColors[figmaKey][variantKey] = color
       })
     })
   })
 
+  // append the default tailwind colors to the figmaColors
+  figmaColors = {
+    ...figmaColors,
+    ...colors,
+  }
+
   // finally, write the new themeColors to themeColors.json
-  console.log(path.join(__dirname, '../../themeColors.json'))
   fs.writeFileSync(path.join(__dirname, '../../common/themeColors.json'), JSON.stringify(themeColors, null, 2))
 
   // and baseColor and neutralColor to app.json
@@ -86,6 +100,8 @@ async function main(): Promise<void> {
     path.join(__dirname, '../../common/app.json'),
     JSON.stringify({ ...app, baseColor, neutralColor }, null, 2),
   )
+
+  fs.writeFileSync(path.join(__dirname, '../../common/figmaColors.json'), JSON.stringify(figmaColors, null, 2))
 }
 
 main()

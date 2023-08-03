@@ -7,21 +7,19 @@ import {
 import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import app from '../../../../common/app.json'
 import { Text } from '../text/Text'
 
 export type AlertKind = 'info' | 'success' | 'warning' | 'error'
 
-// TODO: SS in dark mode the text color loses opacity
 const kindToBgColor: Record<AlertKind, string> = {
-  info: `bg-${app.neutralColor}-50 dark:bg-${app.neutralColor}-900`,
+  info: `bg-tremor-background-muted dark:bg-dark-tremor-background-muted`,
   success: 'bg-green-50 dark:bg-green-900',
   warning: 'bg-orange-50 dark:bg-orange-900',
   error: 'bg-red-50 dark:bg-red-900',
 }
 
 const kindToBorderColor: Record<AlertKind, string> = {
-  info: `border-${app.neutralColor}-200 dark:border-${app.neutralColor}-700`,
+  info: `border-tremor-border dark:border-dark-tremor-border`,
   success: 'border-green-200 dark:border-green-700',
   warning: 'border-orange-200 dark:border-orange-700',
   error: 'border-red-200 dark:border-red-700',
@@ -36,7 +34,7 @@ const kindToIcon: Record<AlertKind, any> = {
 }
 
 const kindToTextColor: Record<AlertKind, string> = {
-  info: `text-${app.neutralColor}-900 dark:text-white`,
+  info: `text-tremor-content dark:text-dark-tremor-content`,
   success: 'text-green-700 dark:text-green-200',
   warning: 'text-orange-700 dark:text-green-200',
   error: 'text-red-700 dark:text-green-200',

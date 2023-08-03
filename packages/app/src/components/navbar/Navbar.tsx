@@ -31,7 +31,7 @@ export const Navbar = ({ items, onClick }: Props): ReactElement => {
             onClick={() => {
               onClick && onClick(item.href)
             }}
-            // @ts-expect-error FIXME: types
+            // @ts-expect-error FIXME: types and this usage sucks
             color={app.neutralColor}
           >
             {item.name}

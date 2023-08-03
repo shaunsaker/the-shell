@@ -73,6 +73,7 @@ TODO: SS add a video of project setup in action
 - 2x [Resend accounts](https://resend.com/signup), one for staging and one for production
 - [Mixpanel account](https://mixpanel.com/) with 2x projects, one for staging and one for production
 - [Chromatic account](https://www.chromatic.com/)
+- [Figma account](https://www.figma.com/)
 
 ### Basic Setup
 
@@ -389,6 +390,8 @@ yarn netlify env:set VITE_MIXPANEL_TOKEN STAGING_PROJECT_TOKEN --context branch-
 yarn netlify env:set VITE_MIXPANEL_TOKEN PRODUCTION_PROJECT_TOKEN --context production
 ```
 
+---
+
 ### Setup Chromatic
 
 1. Setup your project at [Chromatic](https://www.chromatic.com/).
@@ -398,6 +401,14 @@ yarn netlify env:set VITE_MIXPANEL_TOKEN PRODUCTION_PROJECT_TOKEN --context prod
 ```
 gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
 ```
+
+### Setup Figma
+
+1. [Duplicate](https://help.figma.com/hc/en-us/articles/360038511533-Duplicate-or-copy-files#:~:text=Right%2Dclick%20on%20the%20file,the%20original%20and%20the%20duplicate.) the [Figma component library](https://www.figma.com/file/F26nt2RDzvDTqbwvKbZV8l/Ultimate-B2B-Saas-Boilerplate-UI) to your own workspace.
+
+2. Follow the steps in [Figma Development](#figma).
+
+---
 
 ## Development
 
@@ -440,3 +451,17 @@ Run the email dev server:
 cd ./packages/emails
 yarn dev:emails
 ```
+
+---
+
+### Figma
+
+When updating your theme using the `./packages/scripts/generateTheme` script, you'll need to update your color styles in Figma.
+
+1. Copy the contents of `./packages/scripts/figmaColors.json` into this [tool](https://varundevpro.github.io/tailwind-plugin-helper-ui/).
+
+2. Click "Generate File".
+
+3. Using the Figma [Tailwind Color Palettes plugin](https://www.figma.com/community/plugin/853905984020840743/Tailwind-Color-Palettes), upload this generated file by clicking on the "Custom File" tab and setting the folder name as the existing "Tailwind" folder.
+
+Your Figma component library will now be updated to the latest theme colors 🎉
