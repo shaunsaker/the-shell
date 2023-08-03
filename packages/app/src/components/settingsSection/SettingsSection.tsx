@@ -1,8 +1,8 @@
 import React, { ReactElement, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import { Heading } from '../heading/Heading'
 import { Text } from '../text/Text'
-import { Title } from '../title/Title'
 
 type SettingsSectionProps = {
   className?: string
@@ -31,7 +31,7 @@ export const SettingsSection = ({
       <div className={`flex w-full flex-col gap-y-8 ${fullWidth ? '' : 'max-w-lg'}`}>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <Title>{title}</Title>
+            <Heading>{title}</Heading>
 
             <Text className="mt-2">{description}</Text>
           </div>

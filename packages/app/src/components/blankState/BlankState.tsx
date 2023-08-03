@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react'
 
+import { Heading } from '../heading/Heading'
 import { Text } from '../text/Text'
-import { Title } from '../title/Title'
 
 type BlankStateProps = {
   Icon: any
@@ -15,7 +15,7 @@ export const BlankState = ({ Icon, title, description, children }: BlankStatePro
     <div className="mx-auto flex max-w-lg flex-1 flex-col items-center justify-center">
       <Icon className="h-16 w-16 text-tremor-content-subtle dark:text-dark-tremor-content-subtle" />
 
-      <Title className="mt-4">{title}</Title>
+      <Heading className="mt-4">{title}</Heading>
 
       <Text className="mt-2 mb-8 text-center">{description}</Text>
 

@@ -5,8 +5,8 @@ import React, { ReactElement, ReactNode } from 'react'
 import { useKeypress } from '../../utils/useKeyPress'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
+import { Heading } from '../heading/Heading'
 import { Text } from '../text/Text'
-import { Title } from '../title/Title'
 
 type DialogProps = {
   open?: boolean
@@ -75,7 +75,7 @@ export const Dialog = ({
             >
               <DialogPrimitive.Panel className="relative w-full max-w-lg overflow-hidden rounded-lg bg-tremor-background p-4 text-left shadow-xl dark:bg-dark-tremor-background lg:p-6">
                 <div>
-                  <DialogPrimitive.Title as={Title}>{title}</DialogPrimitive.Title>
+                  <DialogPrimitive.Title as={Heading}>{title}</DialogPrimitive.Title>
 
                   <DialogPrimitive.Description className="mb-6 mt-2" as={Text}>
                     {description}

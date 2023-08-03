@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
 
 import { Headerbar } from '../../components/headerbar/Headerbar'
+import { Heading } from '../../components/heading/Heading'
 import { PageContent } from '../../components/pageContent/PageContent'
 import { Text } from '../../components/text/Text'
-import { Title } from '../../components/title/Title'
 
 export const Dashboard = (): ReactElement => {
   return (
@@ -11,7 +11,7 @@ export const Dashboard = (): ReactElement => {
       <Headerbar />
 
       <PageContent>
-        <Title>Dashboard</Title>
+        <Heading>Dashboard</Heading>
 
         <Text className="mt-2">Insert your app here 🚀</Text>
       </PageContent>
