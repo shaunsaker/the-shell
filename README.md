@@ -1,6 +1,6 @@
 # Ultimate B2B SAAS Boilerplate
 
-[![Testing](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/build.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/build.yml)
+[![Testing](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/testing.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/testing.yml)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/425cf22e-1721-43c3-95d4-7b03809e61f9/deploy-status)](https://app.netlify.com/sites/ultimate-b2b-saas-boilerplate/deploys)
 
