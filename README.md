@@ -408,6 +408,8 @@ gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
 
 2. Follow the steps in [Figma Development](#figma).
 
+3. Update the Logo component in Figma with your new logo.
+
 ---
 
 ## Development

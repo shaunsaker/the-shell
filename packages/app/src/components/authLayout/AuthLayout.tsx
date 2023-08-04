@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 
 import { Card } from '../card/Card'
 import { Logo } from '../logo/Logo'
+import { PageLayout } from '../pageLayout/PageLayout'
 import { Title } from '../title/Title'
 
 type AuthLayoutProps = {
@@ -12,16 +13,14 @@ type AuthLayoutProps = {
 
 export const AuthLayout = ({ title, children, footer }: AuthLayoutProps) => {
   return (
-    <div className="flex min-h-full flex-1 flex-col items-center justify-center bg-tremor-background-muted px-4 py-12 dark:bg-dark-tremor-background-muted sm:px-6 lg:px-8">
-      <div className="flex w-full max-w-lg flex-col text-center">
-        <Logo />
+    <PageLayout className="flex flex-col items-center justify-center gap-y-6">
+      <Logo />
 
-        <Title className="mt-4">{title}</Title>
-      </div>
+      <Title>{title}</Title>
 
-      <Card className="mx-4 mt-10 w-full max-w-lg">{children}</Card>
+      <Card className="w-full max-w-lg">{children}</Card>
 
-      {footer && <div className="mt-10 text-center">{footer}</div>}
-    </div>
+      {footer && <div className="text-center">{footer}</div>}
+    </PageLayout>
   )
 }

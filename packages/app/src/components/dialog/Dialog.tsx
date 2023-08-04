@@ -5,6 +5,7 @@ import React, { ReactElement, ReactNode } from 'react'
 import { useKeypress } from '../../utils/useKeyPress'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
+import { Card } from '../card/Card'
 import { Heading } from '../heading/Heading'
 import { Text } from '../text/Text'
 
@@ -57,9 +58,7 @@ export const Dialog = ({
         }}
         className="z-50"
       >
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <Backdrop />
-        </motion.div>
+        <Backdrop />
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4">
@@ -73,30 +72,30 @@ export const Dialog = ({
               animate={{ opacity: 1, transform: 'translateY(0px)', scale: 1 }}
               exit={{ opacity: 0, transform: 'translateY(4px)', scale: 0.95 }}
             >
-              <DialogPrimitive.Panel className="relative w-full max-w-lg overflow-hidden rounded-lg bg-tremor-background p-4 text-left shadow-xl dark:bg-dark-tremor-background lg:p-6">
+              <DialogPrimitive.Panel as={Card} className="max-w-lg flex flex-col gap-y-6">
                 <div>
                   <DialogPrimitive.Title as={Heading}>{title}</DialogPrimitive.Title>
 
-                  <DialogPrimitive.Description className="mb-6 mt-2" as={Text}>
+                  <DialogPrimitive.Description as={Text} className="mt-1">
                     {description}
                   </DialogPrimitive.Description>
+                </div>
 
-                  {children}
+                {children}
 
-                  <div className="mt-6 flex justify-end gap-4">
-                    <Button color="gray" variant="secondary" disabled={confirmLoading} onClick={onClose}>
-                      {cancelText}
-                    </Button>
+                <div className="flex justify-end gap-x-4">
+                  <Button color="gray" variant="secondary" disabled={confirmLoading} onClick={onClose}>
+                    {cancelText}
+                  </Button>
 
-                    <Button
-                      color={confirmIsDangerous ? 'red' : undefined}
-                      disabled={confirmDisabled}
-                      loading={confirmLoading}
-                      onClick={onConfirmClick}
-                    >
-                      {confirmText}
-                    </Button>
-                  </div>
+                  <Button
+                    color={confirmIsDangerous ? 'red' : undefined}
+                    disabled={confirmDisabled}
+                    loading={confirmLoading}
+                    onClick={onConfirmClick}
+                  >
+                    {confirmText}
+                  </Button>
                 </div>
               </DialogPrimitive.Panel>
             </motion.div>

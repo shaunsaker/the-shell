@@ -28,7 +28,7 @@ export const SettingsSection = ({
         className,
       )}
     >
-      <div className={`flex w-full flex-col gap-y-8 ${fullWidth ? '' : 'max-w-lg'}`}>
+      <div className={`flex w-full flex-col gap-y-6 ${fullWidth ? '' : 'max-w-lg'}`}>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <Heading>{title}</Heading>

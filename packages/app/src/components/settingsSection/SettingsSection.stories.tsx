@@ -21,7 +21,22 @@ export const Default: Story = {
   args: {
     title: 'Settings Section',
     description: 'This is a description',
+    children: (
+      <>
+        <TextInput label="Email" placeholder="Enter your email address..." />
+
+        <div>
+          <Button>Save</Button>
+        </div>
+      </>
+    ),
+  },
+}
+
+export const WithAction: Story = {
+  args: {
+    title: 'Settings Section',
+    description: 'This is a description',
     action: <Button>A primary action</Button>,
-    children: <TextInput label="First name" placeholder="Enter your first name..." />,
   },
 }

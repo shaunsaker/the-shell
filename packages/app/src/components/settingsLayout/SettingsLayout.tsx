@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { PageContent } from '../pageContent/PageContent'
+import { PageLayout } from '../pageLayout/PageLayout'
 import { SettingsNavbar } from '../settingsNavbar/SettingsNavbar'
 
 export const SettingsLayout = (): ReactElement => {
@@ -9,9 +9,9 @@ export const SettingsLayout = (): ReactElement => {
     <>
       <SettingsNavbar />
 
-      <PageContent>
+      <PageLayout>
         <Outlet />
-      </PageContent>
+      </PageLayout>
     </>
   )
 }

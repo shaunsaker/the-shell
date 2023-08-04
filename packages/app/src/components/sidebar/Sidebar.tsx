@@ -27,8 +27,8 @@ export const Sidebar = ({ items, onClick }: Props) => {
   const link = useLink()
 
   const sidebar = (
-    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-tremor-brand px-6 dark:bg-dark-tremor-brand">
-      <div className="flex h-16 shrink-0 items-center">
+    <div className="flex grow flex-col gap-y-6 overflow-y-auto bg-tremor-brand p-6 dark:bg-dark-tremor-brand">
+      <div className="flex items-center">
         <Logo className="fill-tremor-brand-inverted dark:fill-dark-tremor-brand-inverted" />
       </div>
 
@@ -81,9 +81,7 @@ export const Sidebar = ({ items, onClick }: Props) => {
     <>
       <AnimatePresence>
         <Dialog as="div" open={sidebarOpen} className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Backdrop />
-          </motion.div>
+          <Backdrop />
 
           <div className="fixed inset-0 flex">
             <motion.div

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Text } from '../text/Text'
 import { Dialog } from './Dialog'
 
 const meta = {
@@ -22,7 +21,6 @@ export const Default: Story = {
     description: 'This is a dialog',
     confirmText: 'Confirm',
     cancelText: 'Cancel',
-    children: <Text>Any additional information.</Text>,
     onConfirmClick: () => {
       console.log('Confirm clicked')
     },
@@ -40,7 +38,6 @@ export const Dangerous: Story = {
     confirmText: 'Confirm',
     confirmIsDangerous: true,
     cancelText: 'Cancel',
-    children: <Text>Any additional information.</Text>,
     onConfirmClick: () => {
       console.log('Confirm clicked')
     },
@@ -59,7 +56,6 @@ export const Loading: Story = {
     confirmIsDangerous: true,
     confirmLoading: true,
     cancelText: 'Cancel',
-    children: <Text>Any additional information.</Text>,
     onConfirmClick: () => {
       console.log('Confirm clicked')
     },

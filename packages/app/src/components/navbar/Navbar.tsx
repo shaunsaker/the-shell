@@ -25,7 +25,7 @@ export const Navbar = ({ items, onClick }: Props): ReactElement => {
               item.isActive
                 ? 'border-tremor-brand dark:border-dark-tremor-brand'
                 : 'border-transparent hover:border-tremor-border dark:hover:border-dark-tremor-border',
-              'inline-flex h-full items-center border-b-2 px-1 pt-1',
+              'h-full border-b-2',
             )}
             variant="light"
             onClick={() => {
