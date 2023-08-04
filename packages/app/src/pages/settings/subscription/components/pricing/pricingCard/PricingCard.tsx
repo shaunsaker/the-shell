@@ -45,7 +45,7 @@ export const PricingCard = ({
       <div className="flex justify-between gap-x-4">
         <Heading className={highlight ? 'text-tremor-brand dark:text-tremor-brand' : ''}>{title}</Heading>
 
-        {highlight && <Badge size="xs">Most popular</Badge>}
+        {highlight && <Badge>Most popular</Badge>}
       </div>
 
       <Text>{description}</Text>
