@@ -1,8 +1,12 @@
-import { Metric as MetricPrimitive, MetricProps } from '@tremor/react'
-import React, { ReactElement } from 'react'
+import React, { HTMLProps, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = MetricProps
+type Props = HTMLProps<HTMLHeadingElement>
 
-export const Title = ({ ...props }: Props): ReactElement => {
-  return <MetricPrimitive {...props} />
+export const Title = ({ className = '', children, ...props }: Props): ReactElement => {
+  return (
+    <h1 className={twMerge('font-semibold text-3xl text-tremor-content-emphasis', className)} {...props}>
+      {children}
+    </h1>
+  )
 }

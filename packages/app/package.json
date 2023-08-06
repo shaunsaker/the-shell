@@ -19,6 +19,7 @@
     "build": "npm-run-all --parallel build:*"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.0.8",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@sentry/react": "^7.57.0",
