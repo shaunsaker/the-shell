@@ -1,8 +1,12 @@
-import { Text as TextPrimitive, TextProps } from '@tremor/react'
-import React, { ReactElement } from 'react'
+import React, { HTMLProps, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = TextProps
+type Props = HTMLProps<HTMLParagraphElement>
 
-export const Text = ({ ...props }: Props): ReactElement => {
-  return <TextPrimitive {...props} />
+export const Text = ({ className = '', children, ...props }: Props): ReactElement => {
+  return (
+    <p className={twMerge('font-normal text-sm text-tremor-content', className)} {...props}>
+      {children}
+    </p>
+  )
 }
