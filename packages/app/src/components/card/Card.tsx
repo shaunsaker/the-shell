@@ -1,8 +1,8 @@
-import { Card as CardPrimitive, CardProps } from '@tremor/react'
-import React, { ReactElement } from 'react'
+import React, { HTMLProps, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = CardProps
+type Props = HTMLProps<HTMLDivElement>
 
-export const Card = ({ ...props }: Props): ReactElement => {
-  return <CardPrimitive {...props} />
+export const Card = ({ className = '', ...props }: Props): ReactElement => {
+  return <div className={twMerge('p-6 rounded-lg shadow border', className)} {...props} />
 }
