@@ -1,8 +1,14 @@
-import { ListItem as ListItemPrimitive } from '@tremor/react'
-import React, { HTMLAttributes, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = HTMLAttributes<HTMLLIElement>
+import { Text } from '../text/Text'
 
-export const ListItem = ({ ...props }: Props): ReactElement => {
-  return <ListItemPrimitive {...props} />
+type Props = ComponentPropsWithoutRef<'li'>
+
+export const ListItem = ({ className = '', children }: Props): ReactElement => {
+  return (
+    <li className={twMerge('py-2', className)}>
+      <Text>{children}</Text>
+    </li>
+  )
 }

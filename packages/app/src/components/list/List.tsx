@@ -1,10 +1,12 @@
-import { List as ListPrimitive } from '@tremor/react'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = { children?: ReactNode }
+type Props = ComponentPropsWithoutRef<'ul'>
 
-export const List = ({ children }: Props): ReactElement => {
-  return <ListPrimitive>{children}</ListPrimitive>
+export const List = ({ className = '', children }: Props): ReactElement => {
+  return (
+    <ul className={twMerge('divide-y divide-tremor-border dark:divide-dark-tremor-border', className)}>{children}</ul>
+  )
 }
 
 export { ListItem } from './ListItem'
