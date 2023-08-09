@@ -63,14 +63,13 @@ export const SubscriptionSeatsSection = (): ReactElement | null => {
     >
       <TextInput
         className="w-20"
+        type="number"
         placeholder="Enter seats"
         min={MIN_SEATS}
         value={seats}
         onChange={event =>
           parseInt(event.target.value) >= MIN_SEATS ? setSeats(event.target.value) : setSeats(MIN_SEATS.toString())
         }
-        // @ts-expect-error tremor TextInput types are incorrect
-        type="number"
       />
 
       <div>

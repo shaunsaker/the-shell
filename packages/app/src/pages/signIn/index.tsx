@@ -52,14 +52,13 @@ export default function SignIn() {
       <form className="space-y-6" onSubmit={onSubmit}>
         <TextInput
           className="mt-2"
+          type="email"
           label="Email address"
           placeholder="Enter your email..."
           autoComplete="email"
           required
           value={email}
           onChange={event => setEmail(event.target.value)}
-          // @ts-expect-error override tremor type
-          type="email"
         />
 
         <TextInput

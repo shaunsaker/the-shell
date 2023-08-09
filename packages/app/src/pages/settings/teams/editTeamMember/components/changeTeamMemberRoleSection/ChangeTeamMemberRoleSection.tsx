@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
 import { Button } from '../../../../../../components/button/Button'
-import { Select, SelectItem } from '../../../../../../components/select/Select'
+import { Select } from '../../../../../../components/select/Select'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
 import { TeamMemberRole } from '../../../../../../models'
@@ -11,6 +11,10 @@ import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRo
 import { parseTeamMemberRole } from '../../../../../../utils/parseTeamMemberRole'
 
 const TEAM_MEMBER_ROLES: TeamMemberRole[] = ['admin', 'member']
+const TEAM_MEMBER_ROLE_OPTIONS = TEAM_MEMBER_ROLES.map(role => ({
+  label: formatTeamMemberRole(role),
+  value: role,
+}))
 
 export const ChangeTeamMemberRoleSection = (): ReactElement => {
   const { data: teamMember, isLoading } = useTeamMember()
@@ -28,13 +32,7 @@ export const ChangeTeamMemberRoleSection = (): ReactElement => {
       {isLoading ? (
         <SkeletonLoader />
       ) : (
-        <Select value={role} onValueChange={setRole}>
-          {TEAM_MEMBER_ROLES.map(role => (
-            <SelectItem key={role} value={role}>
-              {formatTeamMemberRole(role)}
-            </SelectItem>
-          ))}
-        </Select>
+        <Select value={role} options={TEAM_MEMBER_ROLE_OPTIONS} onValueChange={setRole} />
       )}
 
       <div>

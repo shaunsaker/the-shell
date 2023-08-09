@@ -47,6 +47,7 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
       >
         <TextInput
           className="max-w-lg"
+          type="email"
           placeholder="Enter an email address"
           value={email}
           onChange={event => {
@@ -61,8 +62,6 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
               setEmail('')
             }
           }}
-          // @ts-expect-error FIXME: @tremor types
-          type="email"
         />
 
         <div className="flex flex-wrap gap-4">

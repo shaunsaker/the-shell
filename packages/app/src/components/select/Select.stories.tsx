@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Select, SelectItem } from './Select'
+import { Select } from './Select'
 
 const meta = {
   title: 'Select',
@@ -23,14 +23,10 @@ const options = [
 
 export const Default: Story = {
   args: {
-    children: (
-      <>
-        {options.map(option => (
-          <SelectItem key={option.value} value={option.value}>
-            {option.label}
-          </SelectItem>
-        ))}
-      </>
-    ),
+    value: options[0].label,
+    options,
+    onValueChange: (value: string) => {
+      console.log(value)
+    },
   },
 }

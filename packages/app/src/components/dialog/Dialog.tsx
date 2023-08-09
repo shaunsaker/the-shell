@@ -36,6 +36,7 @@ export const Dialog = ({
   onConfirmClick,
   onClose,
 }: DialogProps): ReactElement | null => {
+  // TODO: SS enclose button
   // Handle Enter key as confirm click
   useKeypress('Enter', () => {
     if (!open || confirmDisabled || confirmLoading) {

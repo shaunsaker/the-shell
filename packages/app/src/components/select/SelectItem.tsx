@@ -1,8 +1,7 @@
-import { SelectItem as SelectItemPrimitive, SelectItemProps } from '@tremor/react'
-import React, { ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 
-type Props = SelectItemProps
+type Props = ComponentPropsWithoutRef<'li'>
 
 export const SelectItem = ({ ...props }: Props): ReactElement => {
-  return <SelectItemPrimitive {...props} />
+  return <li {...props} />
 }

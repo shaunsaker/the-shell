@@ -25,12 +25,11 @@ export const ChangeEmailSection = (): ReactElement => {
     <SettingsSection title="Change email" description="Update your email address associated with your account.">
       <TextInput
         label="Email address"
+        type="email"
         placeholder="Enter your email..."
         autoComplete="email"
         value={newEmail}
         onChange={event => setNewEmail(event.target.value)}
-        // @ts-expect-error FIXME: override tremor type
-        type="email"
       />
 
       <div>
