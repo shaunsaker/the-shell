@@ -11,7 +11,7 @@ export const TextInput = ({ className = '', label, ...props }: TextInputProps): 
       {label && <Text>{label}</Text>}
 
       <input
-        className="px-4 py-2 shadow-sm border rounded text-sm text-tremor-content dark:text-tremor-content hover:bg-tremor-background-muted dark:hover:bg-dark-tremor-background-muted focus-visible:outline-tremor-brand-subtle dark:focus-visible:outline-dark-tremor-brand-subtle transition-colors"
+        className="outline-offset-4 px-4 py-2 shadow-sm border rounded-lg text-sm text-tremor-content dark:text-tremor-content hover:bg-tremor-background-muted dark:hover:bg-dark-tremor-background-muted focus-visible:outline-tremor-brand-subtle dark:focus-visible:outline-dark-tremor-brand-subtle transition-colors"
         {...props}
       />
     </div>

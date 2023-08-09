@@ -64,7 +64,7 @@ export const Loading: Story = {
 export const Icon: Story = {
   args: {
     variant: 'primary',
-    icon: ChevronLeftIcon,
+    icon: <ChevronLeftIcon />,
     children: 'Button',
   },
 }
