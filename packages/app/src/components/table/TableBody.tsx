@@ -1,8 +1,13 @@
-import { TableBody as TableBodyPrimitive } from '@tremor/react'
-import React, { ReactElement, TableHTMLAttributes } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = TableHTMLAttributes<HTMLTableSectionElement>
+type Props = ComponentPropsWithoutRef<'tbody'>
 
-export const TableBody = ({ ...props }: Props): ReactElement => {
-  return <TableBodyPrimitive {...props} />
+export const TableBody = ({ className = '', ...props }: Props): ReactElement => {
+  return (
+    <tbody
+      className={twMerge('overflow-x-auto divide-y divide-tremor-border dark:divide-dark-tremor-border')}
+      {...props}
+    />
+  )
 }

@@ -1,8 +1,15 @@
-import { TableCell as TableCellPrimitive } from '@tremor/react'
-import React, { ReactElement, TableHTMLAttributes } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = TableHTMLAttributes<HTMLTableCellElement>
+type Props = ComponentPropsWithoutRef<'td'>
 
-export const TableCell = ({ ...props }: Props): ReactElement => {
-  return <TableCellPrimitive {...props} />
+export const TableCell = ({ className = '', ...props }: Props): ReactElement => {
+  return (
+    <td
+      className={twMerge(
+        'align-middle whitespace-nowrap text-left p-4 text-tremor-content dark:text-dark-tremor-content text-sm',
+      )}
+      {...props}
+    />
+  )
 }

@@ -1,13 +1,14 @@
-import { TableHeaderCell as TableHeaderCellPrimitive } from '@tremor/react'
-import React, { ReactElement, TableHTMLAttributes } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = TableHTMLAttributes<HTMLTableCellElement>
+type Props = ComponentPropsWithoutRef<'th'>
 
 export const TableHeaderCell = ({ className = '', ...props }: Props): ReactElement => {
   return (
-    <TableHeaderCellPrimitive
-      className={twMerge('bg-tremor-content-inverted dark:bg-dark-tremor-content-inverted', className)}
+    <th
+      className={twMerge(
+        'sticky whitespace-nowrap text-left font-semibold text-sm text-tremor-content dark:text-dark-tremor-content top-0 px-4 py-3.5 bg-tremor-content-inverted dark:bg-dark-tremor-content-inverted',
+      )}
       {...props}
     />
   )

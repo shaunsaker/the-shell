@@ -1,10 +1,10 @@
-import { Table as TablePrimitive } from '@tremor/react'
-import React, { ReactElement, TableHTMLAttributes } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = TableHTMLAttributes<HTMLTableElement>
+type Props = ComponentPropsWithoutRef<'table'>
 
-export const Table = ({ ...props }: Props): ReactElement => {
-  return <TablePrimitive {...props} />
+export const Table = ({ className = '', ...props }: Props): ReactElement => {
+  return <table className={twMerge('w-full')} {...props} />
 }
 
 export { TableBody } from './TableBody'

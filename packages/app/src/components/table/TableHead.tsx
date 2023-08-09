@@ -1,8 +1,8 @@
-import { TableHead as TableHeadPrimitive } from '@tremor/react'
-import React, { ReactElement, TableHTMLAttributes } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type Props = TableHTMLAttributes<HTMLTableSectionElement>
+type Props = ComponentPropsWithoutRef<'thead'>
 
-export const TableHead = ({ ...props }: Props): ReactElement => {
-  return <TableHeadPrimitive {...props} />
+export const TableHead = ({ className = '', ...props }: Props): ReactElement => {
+  return <thead className={twMerge('')} {...props} />
 }
