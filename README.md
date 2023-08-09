@@ -33,7 +33,7 @@ TODO: SS add a video of project setup in action
 - [react-router-dom](https://reactrouter.com/en/main) for routing with a pre-configured Router 🧭
 - [react-query](https://tanstack.com/query/latest/) for declarative query management 🦅
 - [jotai](https://jotai.org/) for super simple state management 👻
-- [tremor](https://www.tremor.so/) and [headless UI](https://headlessui.com/) components 🔀
+- A super simple, custom component library 🔀
 - [framer-motion](framer.com/motion/) animations 🎬
 - Automatic light and dark modes 🌓
 - Mobile friendly 📱

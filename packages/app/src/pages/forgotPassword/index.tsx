@@ -39,7 +39,7 @@ export default function ForgotPassword() {
       title="Forgot your password?"
       footer={
         <Button
-          icon={ArrowLeftIcon}
+          icon={<ArrowLeftIcon />}
           variant="light"
           onClick={() => {
             navigate(routes.signIn)

@@ -69,7 +69,7 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
             <Button
               key={email}
               variant="light"
-              icon={XCircleIcon}
+              icon={<XCircleIcon />}
               iconPosition="right"
               onClick={() => {
                 // remove the email from the list of emails

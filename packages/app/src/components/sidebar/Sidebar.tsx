@@ -1,6 +1,7 @@
 import { Dialog } from '@headlessui/react'
 import { QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
@@ -13,7 +14,7 @@ import { Logo } from '../logo/Logo'
 export type NavigationItem = {
   name: string
   href: string
-  icon: any
+  icon: ReactNode
   isActive: boolean
 }
 
@@ -60,7 +61,7 @@ export const Sidebar = ({ items, onClick }: Props) => {
 
           <li>
             <Button
-              icon={QuestionMarkCircleIcon}
+              icon={<QuestionMarkCircleIcon />}
               className={twMerge(
                 'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
                 'w-full justify-start border-none shadow-none',

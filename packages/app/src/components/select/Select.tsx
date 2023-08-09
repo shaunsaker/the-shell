@@ -31,7 +31,7 @@ export const Select = ({ className = '', value, options, onValueChange, ...props
         className="outline-offset-4 border min-w-[10rem] justify-between rounded-lg shadow-sm px-4 py-2 text-sm text-tremor-content dark:text-tremor-content hover:bg-tremor-background-muted dark:hover:bg-dark-tremor-background-muted focus-visible:outline-tremor-brand-subtle dark:focus-visible:outline-dark-tremor-brand-subtle transition-colors"
         variant="light"
         color="gray"
-        icon={ChevronDownIcon}
+        icon={<ChevronDownIcon />}
         iconPosition="right"
         onClick={event => {
           setOpen(!open)

@@ -26,6 +26,7 @@ type Props = ComponentPropsWithoutRef<'button'> & {
   iconPosition?: 'left' | 'right'
 }
 
+// TODO: SS Button color
 export const Button = ({
   className = '',
   variant = 'primary',
@@ -45,6 +46,7 @@ export const Button = ({
         variantToButtonClassNames[variant],
         disabled ? 'opacity-40 shadow-none pointer-events-none' : '',
         loading ? 'pointer-events-none' : '',
+        className,
       )}
       {...props}
     >

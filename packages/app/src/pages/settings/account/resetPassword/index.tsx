@@ -14,7 +14,7 @@ export const SettingsResetPassword = (): ReactElement => {
     <SettingsList>
       <Button
         variant="light"
-        icon={ArrowLeftIcon}
+        icon={<ArrowLeftIcon />}
         onClick={() => {
           navigate(routes.settingsAccount)
         }}
