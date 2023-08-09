@@ -45,6 +45,14 @@ export const Light: Story = {
   },
 }
 
+export const CustomColor: Story = {
+  args: {
+    variant: 'primary',
+    color: 'gray',
+    children: 'Button',
+  },
+}
+
 export const Disabled: Story = {
   args: {
     variant: 'primary',
