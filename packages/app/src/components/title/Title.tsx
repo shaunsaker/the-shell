@@ -5,7 +5,7 @@ type Props = HTMLProps<HTMLHeadingElement>
 
 export const Title = ({ className = '', children, ...props }: Props): ReactElement => {
   return (
-    <h1 className={twMerge('font-semibold text-3xl text-tremor-content-emphasis', className)} {...props}>
+    <h1 className={twMerge('text-tremor-content-emphasis text-3xl font-semibold', className)} {...props}>
       {children}
     </h1>
   )

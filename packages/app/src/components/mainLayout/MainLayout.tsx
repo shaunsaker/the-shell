@@ -13,13 +13,13 @@ export const MainLayout = (): ReactElement => {
     {
       name: 'Dashboard',
       href: routes.dashboard,
-      icon: HomeModernIcon,
+      icon: <HomeModernIcon />,
       isActive: location.pathname === routes.dashboard,
     },
     {
       name: 'Settings',
       href: routes.settings,
-      icon: Cog6ToothIcon,
+      icon: <Cog6ToothIcon />,
       isActive: location.pathname.startsWith(routes.settings),
     },
   ]
@@ -33,7 +33,7 @@ export const MainLayout = (): ReactElement => {
         }}
       />
 
-      <div className="flex flex-1 flex-col overflow-hidden bg-tremor-background dark:bg-dark-tremor-background">
+      <div className="bg-tremor-background dark:bg-dark-tremor-background flex flex-1 flex-col overflow-hidden">
         <Outlet />
       </div>
     </div>

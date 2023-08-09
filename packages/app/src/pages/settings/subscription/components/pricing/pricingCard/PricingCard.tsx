@@ -38,7 +38,7 @@ export const PricingCard = ({
   return (
     <Card
       className={twMerge(
-        highlight ? 'ring ring-tremor-brand dark:ring-tremor-brand' : '',
+        highlight ? 'ring-tremor-brand dark:ring-tremor-brand ring' : '',
         'mx-auto flex max-w-lg flex-col gap-y-4',
       )}
     >
@@ -63,7 +63,7 @@ export const PricingCard = ({
       <ul className="flex flex-col gap-y-2">
         {features.map(feature => (
           <li key={feature} className="flex items-center gap-x-2">
-            <CheckIcon className="h-4 w-4 text-tremor-brand dark:text-dark-tremor-brand" />
+            <CheckIcon className="text-tremor-brand dark:text-dark-tremor-brand h-4 w-4" />
 
             <Text>{feature}</Text>
           </li>

@@ -24,7 +24,7 @@ export const SettingsSection = ({
   return (
     <section
       className={twMerge(
-        'flex w-full border-b border-b-tremor-border pb-8 dark:border-b-dark-tremor-border',
+        'border-b-tremor-border dark:border-b-dark-tremor-border flex w-full border-b pb-8',
         className,
       )}
     >

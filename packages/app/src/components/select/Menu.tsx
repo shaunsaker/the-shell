@@ -13,7 +13,7 @@ export const Menu = ({ className = '', options, onValueChange, onClose, ...props
   return (
     <AnimatePresence>
       <motion.ul
-        className="absolute mt-2 border rounded shadow w-full flex flex-col bg-tremor-background dark:bg-dark-tremor-background"
+        className="bg-tremor-background dark:bg-dark-tremor-background absolute mt-2 flex w-full flex-col rounded border shadow"
         initial={{
           opacity: 0,
           transform: 'translateY(-4px)',
@@ -25,7 +25,7 @@ export const Menu = ({ className = '', options, onValueChange, onClose, ...props
         {options.map((option, index) => (
           <li key={option.value}>
             <Button
-              className={`px-4 py-2 w-full justify-start`}
+              className={`w-full justify-start px-4 py-2`}
               variant="light"
               // TODO: SS use neutral color
               color="gray"

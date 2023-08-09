@@ -52,7 +52,7 @@ export const Alert = ({ className, kind = 'success', children }: AlertProps): Re
   return (
     <div
       className={twMerge(
-        'flex w-full max-w-lg items-center space-x-2 rounded-md p-4 border',
+        'flex w-full max-w-lg items-center space-x-2 rounded-md border p-4',
         kindToBgColor[kind],
         kindToBorderColor[kind],
         className,

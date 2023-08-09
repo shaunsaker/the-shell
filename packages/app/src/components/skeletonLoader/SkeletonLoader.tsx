@@ -9,7 +9,7 @@ export const SkeletonLoader = ({ className }: SkeletonLoaderProps): ReactElement
   return (
     <div
       className={twMerge(
-        'animate-pulse h-8 w-full rounded-lg bg-tremor-background-subtle dark:bg-dark-tremor-background-subtle',
+        'bg-tremor-background-subtle dark:bg-dark-tremor-background-subtle h-8 w-full animate-pulse rounded-lg',
         className,
       )}
     />

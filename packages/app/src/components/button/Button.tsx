@@ -37,14 +37,14 @@ export const Button = ({
   children,
   ...props
 }: Props): ReactElement => {
-  const iconComponent = icon && <span className={twMerge('w-4 h-4', variantToIconClassNames[variant])}>{icon}</span>
+  const iconComponent = icon && <span className={twMerge('h-4 w-4', variantToIconClassNames[variant])}>{icon}</span>
 
   return (
     <button
       className={twMerge(
-        'cursor-pointer outline-offset-4 flex justify-center items-center font-medium border rounded-lg shadow px-4 py-2 text-sm transition-all gap-x-2',
+        'flex cursor-pointer items-center justify-center gap-x-2 rounded-lg border px-4 py-2 text-sm font-medium shadow outline-offset-4 transition-all',
         variantToButtonClassNames[variant],
-        disabled ? 'opacity-40 shadow-none pointer-events-none' : '',
+        disabled ? 'pointer-events-none opacity-40 shadow-none' : '',
         loading ? 'pointer-events-none' : '',
         className,
       )}
@@ -60,9 +60,9 @@ export const Button = ({
             animate={{ opacity: 1, width: 'auto' }}
             exit={{ opacity: 0, width: '0px' }}
           >
-            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+            <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24">
               <circle
-                className="opacity-25 fill-transparent"
+                className="fill-transparent opacity-25"
                 cx="12"
                 cy="12"
                 r="10"

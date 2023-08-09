@@ -28,7 +28,7 @@ export const Sidebar = ({ items, onClick }: Props) => {
   const link = useLink()
 
   const sidebar = (
-    <div className="flex grow flex-col gap-y-6 overflow-y-auto bg-tremor-brand p-6 dark:bg-dark-tremor-brand">
+    <div className="bg-tremor-brand dark:bg-dark-tremor-brand flex grow flex-col gap-y-6 overflow-y-auto p-6">
       <div className="flex items-center">
         <Logo className="fill-tremor-brand-inverted dark:fill-dark-tremor-brand-inverted" />
       </div>

@@ -8,5 +8,5 @@ type LogoProps = {
 }
 
 export const Logo = ({ className }: LogoProps): ReactElement => {
-  return <LogoSvg className={twMerge('h-8 w-auto fill-tremor-brand dark:fill-dark-tremor-brand', className)} />
+  return <LogoSvg className={twMerge('fill-tremor-brand dark:fill-dark-tremor-brand h-8 w-auto', className)} />
 }

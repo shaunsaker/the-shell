@@ -17,21 +17,20 @@ type Props = {
 
 export const Navbar = ({ items, onClick }: Props): ReactElement => {
   return (
-    <ul className="mr-4 lg:mr-8 flex h-full flex-1 gap-x-2 lg:gap-x-4 overflow-x-auto">
+    <ul className="mr-4 flex h-full flex-1 gap-x-2 overflow-x-auto lg:mr-8 lg:gap-x-4">
       {items.map(item => (
         <li key={item.name} className="h-full">
           <Button
             className={twMerge(
               item.isActive
                 ? 'border-tremor-brand dark:border-dark-tremor-brand'
-                : 'border-transparent hover:border-tremor-border dark:hover:border-dark-tremor-border',
+                : 'hover:border-tremor-border dark:hover:border-dark-tremor-border border-transparent',
               'h-full border-b-2',
             )}
             variant="light"
             onClick={() => {
               onClick && onClick(item.href)
             }}
-            // @ts-expect-error FIXME: types and this usage sucks
             color={app.neutralColor}
           >
             {item.name}

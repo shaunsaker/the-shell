@@ -73,7 +73,7 @@ export const Dialog = ({
               animate={{ opacity: 1, transform: 'translateY(0px)', scale: 1 }}
               exit={{ opacity: 0, transform: 'translateY(4px)', scale: 0.95 }}
             >
-              <DialogPrimitive.Panel as={Card} className="max-w-lg flex flex-col gap-y-6">
+              <DialogPrimitive.Panel as={Card} className="flex max-w-lg flex-col gap-y-6">
                 <div>
                   <DialogPrimitive.Title as={Heading}>{title}</DialogPrimitive.Title>
 

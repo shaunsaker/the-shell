@@ -28,7 +28,7 @@ export const Select = ({ className = '', value, options, onValueChange, ...props
   return (
     <div ref={containerRef} className={twMerge('relative', className)} {...props}>
       <Button
-        className="outline-offset-4 border min-w-[10rem] justify-between rounded-lg shadow-sm px-4 py-2 text-sm text-tremor-content dark:text-tremor-content hover:bg-tremor-background-muted dark:hover:bg-dark-tremor-background-muted focus-visible:outline-tremor-brand-subtle dark:focus-visible:outline-dark-tremor-brand-subtle transition-colors"
+        className="text-tremor-content dark:text-tremor-content hover:bg-tremor-background-muted dark:hover:bg-dark-tremor-background-muted focus-visible:outline-tremor-brand-subtle dark:focus-visible:outline-dark-tremor-brand-subtle min-w-[10rem] justify-between rounded-lg border px-4 py-2 text-sm shadow-sm outline-offset-4 transition-colors"
         variant="light"
         color="gray"
         icon={<ChevronDownIcon />}

@@ -13,7 +13,7 @@ type BlankStateProps = {
 export const BlankState = ({ Icon, title, description, children }: BlankStateProps): ReactElement => {
   return (
     <div className="mx-auto flex max-w-lg flex-1 flex-col items-center justify-center gap-y-6">
-      <Icon className="h-16 w-16 text-tremor-content-subtle dark:text-dark-tremor-content-subtle" />
+      <Icon className="text-tremor-content-subtle dark:text-dark-tremor-content-subtle h-16 w-16" />
 
       <div className="text-center">
         <Heading>{title}</Heading>

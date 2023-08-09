@@ -7,7 +7,7 @@ export const PageLayout = ({ className = '', ...props }: PageLayoutProps): React
   return (
     <div
       className={twMerge(
-        'h-full overflow-y-auto px-6 py-8 lg:px-8 lg:py-12 bg-tremor-background-muted dark:bg-dark-tremor-background-muted',
+        'bg-tremor-background-muted dark:bg-dark-tremor-background-muted h-full overflow-y-auto px-6 py-8 lg:px-8 lg:py-12',
         className,
       )}
       {...props}
