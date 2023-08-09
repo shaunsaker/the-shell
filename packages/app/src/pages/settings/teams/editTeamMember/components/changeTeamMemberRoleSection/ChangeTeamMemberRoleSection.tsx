@@ -32,7 +32,7 @@ export const ChangeTeamMemberRoleSection = (): ReactElement => {
       {isLoading ? (
         <SkeletonLoader />
       ) : (
-        <Select value={role} options={TEAM_MEMBER_ROLE_OPTIONS} onValueChange={setRole} />
+        <Select value={role} options={TEAM_MEMBER_ROLE_OPTIONS} onValueChange={role => setRole(role.value)} />
       )}
 
       <div>

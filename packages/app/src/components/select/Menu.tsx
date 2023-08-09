@@ -2,10 +2,11 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React, { ComponentPropsWithoutRef } from 'react'
 
 import { Button } from '../button/Button'
+import { SelectOption } from './Select'
 
 type Props = ComponentPropsWithoutRef<'ul'> & {
-  options: { label: string; value: string }[]
-  onValueChange: (value: string) => void
+  options: SelectOption[]
+  onValueChange: (value: SelectOption) => void
   onClose: () => void
 }
 
@@ -30,7 +31,7 @@ export const Menu = ({ className = '', options, onValueChange, onClose, ...props
               // TODO: SS use neutral color
               color="gray"
               onClick={() => {
-                onValueChange(option.value)
+                onValueChange(option)
               }}
             >
               {option.label}

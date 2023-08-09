@@ -6,10 +6,15 @@ import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Button } from '../button/Button'
 import { Menu } from './Menu'
 
+export type SelectOption = {
+  value: string
+  label: string
+}
+
 type Props = ComponentPropsWithoutRef<'div'> & {
   value: string
-  options: { label: string; value: string }[]
-  onValueChange: (value: string) => void
+  options: SelectOption[]
+  onValueChange: (value: SelectOption) => void
 }
 
 export const Select = ({ className = '', value, options, onValueChange, ...props }: Props) => {
