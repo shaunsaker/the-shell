@@ -47,10 +47,10 @@ export const Sidebar = ({ items, onClick }: Props) => {
                 <Button
                   icon={item.icon}
                   className={twMerge(
+                    'w-full justify-start border-none shadow-none outline-offset-0',
                     item.isActive
                       ? 'bg-tremor-brand-emphasis text-tremor-brand-inverted dark:bg-dark-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted'
                       : 'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
-                    'w-full justify-start border-none shadow-none',
                   )}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
