@@ -45,10 +45,29 @@ export const Light: Story = {
   },
 }
 
-export const CustomColor: Story = {
+export const PrimaryCustomColor: Story = {
   args: {
     variant: 'primary',
-    color: 'gray',
+    color: 'red',
+    icon: <ChevronLeftIcon />,
+    children: 'Button',
+  },
+}
+
+export const SecondaryCustomColor: Story = {
+  args: {
+    variant: 'secondary',
+    color: 'red',
+    icon: <ChevronLeftIcon />,
+    children: 'Button',
+  },
+}
+
+export const LightCustomColor: Story = {
+  args: {
+    variant: 'light',
+    color: 'red',
+    icon: <ChevronLeftIcon />,
     children: 'Button',
   },
 }
