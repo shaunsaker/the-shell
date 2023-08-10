@@ -8,7 +8,7 @@ import { Card } from '../card/Card'
 import { Heading } from '../heading/Heading'
 import { Text } from '../text/Text'
 
-type DialogProps = {
+type Props = {
   open?: boolean
   title?: string
   description?: string
@@ -34,7 +34,7 @@ export const Dialog = ({
   children,
   onConfirmClick,
   onClose,
-}: DialogProps): ReactElement | null => {
+}: Props): ReactElement | null => {
   useKeypress('Escape', () => {
     if (open) {
       onClose()

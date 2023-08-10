@@ -8,7 +8,7 @@ type Option = {
   label: string
 }
 
-type RadioGroupProps = {
+type Props = {
   className?: string
   label?: string
   value: Option
@@ -16,7 +16,7 @@ type RadioGroupProps = {
   onValueChange: (value: Option) => void
 }
 
-export const RadioGroup = ({ className, label, value, options, onValueChange }: RadioGroupProps): ReactElement => {
+export const RadioGroup = ({ className, label, value, options, onValueChange }: Props): ReactElement => {
   const [selected, setSelected] = useState(value)
 
   return (

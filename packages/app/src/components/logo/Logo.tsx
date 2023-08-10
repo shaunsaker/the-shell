@@ -3,10 +3,10 @@ import { twMerge } from 'tailwind-merge'
 
 import LogoSvg from '../../../../common/logo-inverted.svg'
 
-type LogoProps = {
+type Props = {
   className?: string
 }
 
-export const Logo = ({ className }: LogoProps): ReactElement => {
+export const Logo = ({ className }: Props): ReactElement => {
   return <LogoSvg className={twMerge('fill-tremor-brand dark:fill-dark-tremor-brand h-8 w-auto', className)} />
 }

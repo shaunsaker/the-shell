@@ -1,7 +1,8 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-type SettingsListProps = { children: ReactNode }
+type Props = ComponentPropsWithoutRef<'main'>
 
-export const SettingsList = ({ children }: SettingsListProps): ReactElement => {
-  return <main className="flex flex-col items-start gap-y-8">{children}</main>
+export const SettingsList = ({ className = '', ...props }: Props): ReactElement => {
+  return <main className={twMerge('flex flex-col items-start gap-y-8', className)} {...props} />
 }

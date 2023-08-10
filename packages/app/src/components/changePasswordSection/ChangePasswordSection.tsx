@@ -5,7 +5,7 @@ import { Button } from '../button/Button'
 import { SettingsSection } from '../settingsSection/SettingsSection'
 import { TextInput } from '../textInput/TextInput'
 
-type ChangePasswordSectionProps = {
+type Props = {
   title?: string
   description?: string
 }
@@ -13,7 +13,7 @@ type ChangePasswordSectionProps = {
 export const ChangePasswordSection = ({
   title = 'Change password',
   description = 'Update your password associated with your account.',
-}: ChangePasswordSectionProps): ReactElement => {
+}: Props): ReactElement => {
   const [newUserPassword, setNewUserPassword] = useState('')
   const { mutate: updateUserPassword, isLoading } = useUpdateUserPassword()
 

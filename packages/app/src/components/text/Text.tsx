@@ -1,7 +1,7 @@
-import React, { HTMLProps, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = HTMLProps<HTMLParagraphElement>
+type Props = ComponentPropsWithoutRef<'p'>
 
 export const Text = ({ className = '', children, ...props }: Props): ReactElement => {
   return (

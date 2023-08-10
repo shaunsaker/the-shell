@@ -4,11 +4,11 @@ import React, { ReactElement, ReactNode } from 'react'
 import { useSidebarOpen } from '../../utils/useSidebarOpen'
 import { Button } from '../button/Button'
 
-type HeaderbarProps = {
+type Props = {
   children?: ReactNode
 }
 
-export const Headerbar = ({ children }: HeaderbarProps): ReactElement => {
+export const Headerbar = ({ children }: Props): ReactElement => {
   // FIXME: this should be ignored, something is wrong with the eslint config
   // eslint-disable-next-line
   const [_, setSidebarOpen] = useSidebarOpen()

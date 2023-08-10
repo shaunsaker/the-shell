@@ -1,7 +1,7 @@
-import React, { HTMLProps, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = HTMLProps<HTMLDivElement>
+type Props = ComponentPropsWithoutRef<'div'>
 
 export const Card = ({ className = '', ...props }: Props): ReactElement => {
   return (

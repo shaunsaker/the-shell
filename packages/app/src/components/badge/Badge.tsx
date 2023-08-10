@@ -1,8 +1,8 @@
-import React, { HTMLProps, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 
 import { Text } from '../text/Text'
 
-type Props = HTMLProps<HTMLDivElement>
+type Props = ComponentPropsWithoutRef<'div'>
 
 export const Badge = ({ children, ...props }: Props): ReactElement => {
   return (

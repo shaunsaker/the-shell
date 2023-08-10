@@ -40,13 +40,13 @@ const kindToTextColor: Record<AlertKind, string> = {
   error: 'text-red-700 dark:text-green-200',
 }
 
-type AlertProps = {
+type Props = {
   className?: string
   kind?: AlertKind
   children?: string
 }
 
-export const Alert = ({ className, kind = 'success', children }: AlertProps): ReactElement => {
+export const Alert = ({ className, kind = 'success', children }: Props): ReactElement => {
   const Icon = kindToIcon[kind]
 
   return (

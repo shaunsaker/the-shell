@@ -5,13 +5,13 @@ import { Logo } from '../logo/Logo'
 import { PageLayout } from '../pageLayout/PageLayout'
 import { Title } from '../title/Title'
 
-type AuthLayoutProps = {
+type Props = {
   title: string
   children?: ReactNode
   footer?: ReactNode
 }
 
-export const AuthLayout = ({ title, children, footer }: AuthLayoutProps) => {
+export const AuthLayout = ({ title, children, footer }: Props) => {
   return (
     <PageLayout className="flex flex-col items-center justify-center gap-y-6">
       <Logo />

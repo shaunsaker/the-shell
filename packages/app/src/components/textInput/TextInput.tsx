@@ -3,9 +3,9 @@ import { twMerge } from 'tailwind-merge'
 
 import { Text } from '../text/Text'
 
-type TextInputProps = ComponentProps<'input'> & { label?: string }
+type Props = ComponentProps<'input'> & { label?: string }
 
-export const TextInput = ({ className = '', label, ...props }: TextInputProps): ReactElement => {
+export const TextInput = ({ className = '', label, ...props }: Props): ReactElement => {
   return (
     <div className={twMerge('flex flex-col gap-y-2', className)}>
       {label && <Text>{label}</Text>}

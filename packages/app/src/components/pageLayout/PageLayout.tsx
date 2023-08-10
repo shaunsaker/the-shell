@@ -1,9 +1,9 @@
-import { HTMLProps, ReactElement } from 'react'
+import { ComponentPropsWithoutRef, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type PageLayoutProps = HTMLProps<HTMLDivElement>
+type Props = ComponentPropsWithoutRef<'div'>
 
-export const PageLayout = ({ className = '', ...props }: PageLayoutProps): ReactElement => {
+export const PageLayout = ({ className = '', ...props }: Props): ReactElement => {
   return (
     <div
       className={twMerge(

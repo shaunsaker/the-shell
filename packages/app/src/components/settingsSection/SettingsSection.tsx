@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import { Heading } from '../heading/Heading'
 import { Text } from '../text/Text'
 
-type SettingsSectionProps = {
+type Props = {
   className?: string
   title: string
   description: string
@@ -20,7 +20,7 @@ export const SettingsSection = ({
   action,
   children,
   fullWidth,
-}: SettingsSectionProps): ReactElement => {
+}: Props): ReactElement => {
   return (
     <section
       className={twMerge(
