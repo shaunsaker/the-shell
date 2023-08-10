@@ -1,4 +1,4 @@
-import { ChevronLeftIcon } from '@heroicons/react/24/outline'
+import { HomeIcon } from '@heroicons/react/24/outline'
 import type { Meta, StoryObj } from '@storybook/react'
 import { userEvent, within } from '@storybook/testing-library'
 
@@ -49,7 +49,7 @@ export const PrimaryCustomColor: Story = {
   args: {
     variant: 'primary',
     color: 'red',
-    icon: <ChevronLeftIcon />,
+    icon: <HomeIcon />,
     children: 'Button',
   },
 }
@@ -58,7 +58,7 @@ export const SecondaryCustomColor: Story = {
   args: {
     variant: 'secondary',
     color: 'red',
-    icon: <ChevronLeftIcon />,
+    icon: <HomeIcon />,
     children: 'Button',
   },
 }
@@ -67,7 +67,16 @@ export const LightCustomColor: Story = {
   args: {
     variant: 'light',
     color: 'red',
-    icon: <ChevronLeftIcon />,
+    icon: <HomeIcon />,
+    children: 'Button',
+  },
+}
+
+export const Small: Story = {
+  args: {
+    variant: 'primary',
+    size: 'sm',
+    icon: <HomeIcon />,
     children: 'Button',
   },
 }
@@ -91,7 +100,7 @@ export const Loading: Story = {
 export const Icon: Story = {
   args: {
     variant: 'primary',
-    icon: <ChevronLeftIcon />,
+    icon: <HomeIcon />,
     children: 'Button',
   },
 }

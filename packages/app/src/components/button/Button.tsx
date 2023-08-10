@@ -2,14 +2,46 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React, { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { getButtonClassNames } from './getButtonClassNames'
+type Variant = 'primary' | 'secondary' | 'light'
+type Color = string
+type Size = 'sm' | 'md'
 
-export type ButtonVariant = 'primary' | 'secondary' | 'light'
-export type ButtonColor = string
+const variantToButtonClassNames: Record<Variant, string> = {
+  primary:
+    'bg-tremor-brand dark:bg-dark-tremor-brand border-tremor-brand dark:border-dark-tremor-brand text-tremor-brand-inverted dark:text-dark-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:hover:bg-dark-tremor-brand-emphasis hover:border-tremor-brand-emphasis dark:hover:border-dark-tremor-brand-emphasis focus-visible:outline-tremor-brand-subtle dark:focus-visible:outline-dark-tremor-brand-subtle',
+  secondary:
+    'border-tremor-brand dark:border-dark-tremor-brand text-tremor-brand dark:text-dark-tremor-brand hover:text-tremor-brand-emphasis dark:hover:text-dark-tremor-brand-emphasis hover:border-tremor-brand-emphasis dark:hover:border-dark-tremor-brand-emphasis focus-visible:outline-tremor-brand-subtle dark:focus-visible:outline-dark-tremor-brand-subtle',
+  light:
+    'shadow-none border-none text-tremor-brand dark:text-dark-tremor-brand hover:text-tremor-brand-emphasis dark:hover:text-dark-tremor-brand-emphasis focus-visible:outline-tremor-brand-subtle dark:focus-visible:outline-dark-tremor-brand-subtle',
+}
+
+export const getButtonColorClassNames = (variant: Variant, color?: Color): string => {
+  if (color) {
+    if (variant === 'primary') {
+      return `bg-${color}-500 border-${color}-500 text-tremor-content-inverted hover:bg-${color}-700 dark:hover:bg-${color}-400 hover:border-${color}-700 dark:hover:border-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-800`
+    }
+
+    if (variant === 'secondary') {
+      return `border-${color}-500 dark:border-dark-${color}-500 text-${color}-500 dark:text-dark-${color}-500 hover:text-${color}-700 dark:hover:text-${color}-400 hover:border-${color}-700 dark:hover:border-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-800`
+    }
+
+    if (variant === 'light') {
+      return `shadow-none border-none text-${color}-500 dark:text-dark-${color}-500 hover:text-${color}-700 dark:hover:text-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-800`
+    }
+  }
+
+  return variantToButtonClassNames[variant]
+}
+
+const sizeToButtonClassNames: Record<Size, string> = {
+  sm: 'px-2 py-1 text-xs rounded',
+  md: 'px-4 py-2 text-sm rounded-lg',
+}
 
 type Props = ComponentPropsWithoutRef<'button'> & {
-  variant?: ButtonVariant
-  color?: ButtonColor
+  variant?: Variant
+  color?: Color
+  size?: Size
   loading?: boolean
   icon?: ReactNode
   iconPosition?: 'left' | 'right'
@@ -19,6 +51,7 @@ export const Button = ({
   className = '',
   variant = 'primary',
   color,
+  size = 'md',
   loading,
   disabled,
   icon,
@@ -31,8 +64,9 @@ export const Button = ({
   return (
     <button
       className={twMerge(
-        'flex items-center justify-center gap-x-2 rounded-lg border px-4 py-2 text-sm font-medium shadow transition-all focus-visible:outline-offset-4',
-        getButtonClassNames(variant, color),
+        'flex items-center justify-center gap-x-2 border font-medium shadow outline-offset-4 transition-all',
+        getButtonColorClassNames(variant, color),
+        sizeToButtonClassNames[size],
         disabled ? 'pointer-events-none opacity-40 shadow-none' : '',
         loading ? 'pointer-events-none' : '',
         className,
