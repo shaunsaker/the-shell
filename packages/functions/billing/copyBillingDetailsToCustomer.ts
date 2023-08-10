@@ -29,7 +29,6 @@ export const copyBillingDetailsToCustomer = async (
 
   await stripe.customers.update(customer, { name, phone, address })
 
-  // TODO: SS abstract this
   const { error } = await supabaseAdmin
     .from('users')
     .update({

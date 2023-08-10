@@ -14,8 +14,6 @@ Transform `6 weeks` of development into `1 hour` 🚀
 
 You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.app/).
 
-TODO: SS add a video of project setup in action
-
 ---
 
 ## What's in the box?

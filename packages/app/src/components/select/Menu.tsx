@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import React, { ComponentPropsWithoutRef } from 'react'
 
+import app from '../../../../common/app.json'
 import { Button } from '../button/Button'
 import { Card } from '../card/Card'
 import { SelectOption } from './Select'
@@ -29,8 +30,7 @@ export const Menu = ({ className = '', options, onValueChange, onClose, ...props
               <Button
                 className={`w-full justify-start px-4 py-2`}
                 variant="light"
-                // TODO: SS use neutral color
-                color="gray"
+                color={app.neutralColor}
                 onClick={() => {
                   onValueChange(option)
                 }}

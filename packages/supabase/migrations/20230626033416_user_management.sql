@@ -41,7 +41,6 @@ OR REPLACE TRIGGER on_auth_user_created AFTER
 INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION handle_auth_user_created();
 
 /* When a user updates their details, update the user's details in the users table */
--- TODO: This doesn't trigger when a user signs up after being invited by supabase admin
 CREATE
 OR REPLACE FUNCTION handle_auth_user_updated() RETURNS TRIGGER LANGUAGE plpgsql SECURITY DEFINER AS $$
 BEGIN

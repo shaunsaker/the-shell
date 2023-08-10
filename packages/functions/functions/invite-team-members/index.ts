@@ -107,10 +107,8 @@ export const handler: Handler = async event => {
     }))
 
     // If not, send them an email with a link to sign up
-    // FIXME: types
     const invitees = (newEmails as string[]).filter(email => !users.find(user => user.email === email))
 
-    // FIXME: use Promise.all
     for (const invitee of invitees) {
       const user = await inviteUserByEmail({ email: invitee, redirectTo })
 

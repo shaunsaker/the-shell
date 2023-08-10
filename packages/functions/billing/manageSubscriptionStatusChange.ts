@@ -42,7 +42,7 @@ export const manageSubscriptionStatusChange = async (
     ended_at: subscription.ended_at ? getISOString(subscription.ended_at * 1000) : null,
     trial_start: subscription.trial_start ? getISOString(subscription.trial_start * 1000) : null,
     trial_end: subscription.trial_end ? getISOString(subscription.trial_end * 1000) : null,
-    // @ts-expect-error quantity does exist on subscription
+    // @ts-expect-error quantity exists on subscription
     quantity: subscription.quantity,
   }
 
@@ -59,7 +59,7 @@ export const manageSubscriptionStatusChange = async (
   if (createAction && subscription.default_payment_method && uuid) {
     await copyBillingDetailsToCustomer(
       uuid,
-      // @ts-expect-error FIXME:
+      // @ts-expect-error default_payment_method exists on subscription
       subscription.default_payment_method,
     )
   }

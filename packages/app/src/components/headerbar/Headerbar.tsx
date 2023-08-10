@@ -9,7 +9,6 @@ type Props = {
 }
 
 export const Headerbar = ({ children }: Props): ReactElement => {
-  // FIXME: this should be ignored, something is wrong with the eslint config
   // eslint-disable-next-line
   const [_, setSidebarOpen] = useSidebarOpen()
 

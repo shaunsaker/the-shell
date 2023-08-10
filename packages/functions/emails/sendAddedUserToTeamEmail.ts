@@ -1,14 +1,8 @@
 import { AddedToTeam } from 'emails'
+import { getBaseUrl } from 'emails/utils/getBaseUrl'
 
 import app from '../../common/app.json'
 import { resend } from '.'
-
-// FIXME: localhost port should come from config
-const BASE_URL = process.env.CONTEXT !== 'dev' ? process.env.SITE_URL : 'http://localhost:5173'
-
-if (!BASE_URL) {
-  throw new Error('BASE_URL is not defined')
-}
 
 export const sendAddedUserToTeamEmail = async ({
   userEmail,
@@ -25,7 +19,7 @@ export const sendAddedUserToTeamEmail = async ({
     from: app.fromEmail,
     to: [userEmail],
     subject: `Welcome to the ${teamName} team!`,
-    react: AddedToTeam({ userName, teamName, teamMemberName, url: BASE_URL }),
+    react: AddedToTeam({ userName, teamName, teamMemberName, url: getBaseUrl() }),
   })
 
   return data

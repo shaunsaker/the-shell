@@ -56,7 +56,6 @@ async function main(): Promise<void> {
     throw new Error(`neutralColor ${neutralColor} is not a valid color`)
   }
 
-  // FIXME: types
   let figmaColors: any = {}
 
   // for each color in tremorTheme, convert it to tailwind's color

@@ -50,10 +50,8 @@ export const handler: Handler = async event => {
     // Delete any teams that the user is the last admin of
     const teamsToDelete: Array<Awaited<ReturnType<typeof fetchTeam>>> = []
 
-    // FIXME: use Promise.all
     for (const teamMember of teamMembers) {
       const team = await fetchTeam(teamMember.team_id)
-      // FIXME: types
       const teamAdmins = team.team_members?.filter(
         (teamMember: any) => teamMember.role === 'admin' && teamMember.status === 'active',
       )

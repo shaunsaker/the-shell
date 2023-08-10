@@ -1,14 +1,13 @@
-import { MouseEvent, RefObject, useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 
 // adapted from https://stackoverflow.com/a/42234988/7956924
-export const useOutsideClick = <T>({ ref, callback }: { ref: RefObject<T>; callback: () => void }): void => {
+export const useOutsideClick = ({ ref, callback }: { ref: any; callback: () => void }): void => {
   const onMouseDown = useCallback(
-    (event: MouseEvent<T>) => {
+    (event: MouseEvent) => {
       if (!ref.current) {
         return
       }
 
-      // @ts-expect-error FIXME:
       const wasClickedOutside = !ref.current.contains(event.target)
 
       if (wasClickedOutside) {
@@ -19,11 +18,9 @@ export const useOutsideClick = <T>({ ref, callback }: { ref: RefObject<T>; callb
   )
 
   useEffect(() => {
-    // @ts-expect-error FIXME
     document.addEventListener('mousedown', onMouseDown)
 
     return () => {
-      // @ts-expect-error FIXME
       document.removeEventListener('mousedown', onMouseDown)
     }
   }, [onMouseDown])

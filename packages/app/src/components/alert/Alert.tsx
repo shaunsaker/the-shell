@@ -25,8 +25,7 @@ const kindToBorderColor: Record<AlertKind, string> = {
   error: 'border-red-200 dark:border-red-700',
 }
 
-// FIXME: types
-const kindToIcon: Record<AlertKind, any> = {
+const kindToIcon: Record<AlertKind, typeof InformationCircleIcon> = {
   info: InformationCircleIcon,
   success: CheckCircleIcon,
   warning: ExclamationTriangleIcon,

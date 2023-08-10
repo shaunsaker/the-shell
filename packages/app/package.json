@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev:app": "vite --open",
+    "dev:app": "vite --open --port 5173",
     "dev:storybook": "storybook dev -p 6006",
     "dev": "npm-run-all --parallel dev:*",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",

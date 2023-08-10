@@ -59,7 +59,6 @@ export const handler: Handler = async event => {
 
     // Get the product using the priceId from supabase and pass product.metadata.freeTrialDays to createCheckoutSession
     const product = await fetchProductByPriceId(priceId)
-    // FIXME: types
     const productMetadata = product.metadata as any
     const freeTrialDays = productMetadata?.freeTrialDays ? parseInt(productMetadata.freeTrialDays) : undefined
 

@@ -88,11 +88,9 @@ export const handler: Handler = async event => {
       switch (retrievedEvent.type) {
         case 'product.created':
         case 'product.updated':
-          // FIXME: types
           await updateProduct(retrievedEvent.data.object as any)
           break
         case 'product.deleted':
-          // FIXME: types
           await deleteProduct((retrievedEvent.data.object as any).id)
           break
         case 'price.created':
@@ -103,18 +101,16 @@ export const handler: Handler = async event => {
         case 'customer.subscription.updated':
         // eslint-disable-next-line
         case 'customer.subscription.deleted':
-          // FIXME: types
           const subscription = retrievedEvent.data.object as any
 
           await manageSubscriptionStatusChange(
             subscription.id,
-            // FIXME: types
+
             subscription.customer as string,
             retrievedEvent.type === 'customer.subscription.created',
           )
           break
         case 'checkout.session.completed':
-          // FIXME: types
           const checkoutSession = retrievedEvent.data.object as any
 
           if (checkoutSession.mode === 'subscription') {
