@@ -22,7 +22,7 @@ export const getButtonColorClassNames = (variant: Variant, color?: Color): strin
     }
 
     if (variant === 'secondary') {
-      return `border-${color}-500 dark:border-dark-${color}-500 text-${color}-500 dark:text-dark-${color}-500 hover:text-${color}-700 dark:hover:text-${color}-400 hover:border-${color}-700 dark:hover:border-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-800`
+      return `border-${color}-400 dark:border-dark-${color}-500 text-${color}-500 dark:text-dark-${color}-500 hover:text-${color}-700 dark:hover:text-${color}-400 hover:border-${color}-700 dark:hover:border-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-800`
     }
 
     if (variant === 'light') {

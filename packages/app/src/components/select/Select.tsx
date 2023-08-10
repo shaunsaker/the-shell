@@ -1,4 +1,5 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { AnimatePresence } from 'framer-motion'
 import React, { ComponentPropsWithoutRef, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -34,7 +35,7 @@ export const Select = ({ className = '', value, options, onValueChange, ...props
     <div ref={containerRef} className={twMerge('relative', className)} {...props}>
       <Button
         className="min-w-[10rem] justify-between"
-        variant="light"
+        variant="secondary"
         color="gray"
         icon={<ChevronDownIcon />}
         iconPosition="right"
@@ -45,18 +46,20 @@ export const Select = ({ className = '', value, options, onValueChange, ...props
         {value}
       </Button>
 
-      {open && (
-        <Menu
-          options={options}
-          onValueChange={value => {
-            onValueChange(value)
-            setOpen(false)
-          }}
-          onClose={() => {
-            setOpen(false)
-          }}
-        />
-      )}
+      <AnimatePresence>
+        {open && (
+          <Menu
+            options={options}
+            onValueChange={value => {
+              onValueChange(value)
+              setOpen(false)
+            }}
+            onClose={() => {
+              setOpen(false)
+            }}
+          />
+        )}
+      </AnimatePresence>
     </div>
   )
 }
