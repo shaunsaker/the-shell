@@ -7,7 +7,7 @@ export const TableHeaderCell = ({ className = '', ...props }: Props): ReactEleme
   return (
     <th
       className={twMerge(
-        'text-tremor-content dark:text-dark-tremor-content bg-tremor-content-inverted dark:bg-dark-tremor-content-inverted sticky top-0 whitespace-nowrap px-4 py-3.5 text-left text-sm font-semibold',
+        'text-tremor-content dark:text-dark-tremor-content bg-tremor-background dark:bg-dark-tremor-background sticky top-0 whitespace-nowrap px-4 py-3.5 text-left text-sm font-semibold',
       )}
       {...props}
     />

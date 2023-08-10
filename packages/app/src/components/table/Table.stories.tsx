@@ -29,8 +29,6 @@ export const Default: Story = {
             <TableHeaderCell>Team Members</TableHeaderCell>
 
             <TableHeaderCell>Date Created</TableHeaderCell>
-
-            <TableHeaderCell></TableHeaderCell>
           </TableRow>
         </TableHead>
 

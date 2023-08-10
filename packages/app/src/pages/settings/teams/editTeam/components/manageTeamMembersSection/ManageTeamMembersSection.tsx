@@ -61,8 +61,6 @@ export const ManageTeamMembersSection = (): ReactElement => {
             <TableHeaderCell>Role</TableHeaderCell>
 
             <TableHeaderCell>Date added</TableHeaderCell>
-
-            <TableHeaderCell></TableHeaderCell>
           </TableRow>
         </TableHead>
 

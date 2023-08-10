@@ -22,22 +22,22 @@ module.exports = {
     {
       pattern:
         /^(bg-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:400|500|700|800))$/,
-      variants: ['hover', 'focus-visible'],
+      variants: ['hover', 'focus-visible', 'dark:hover', 'dark:focus-visible'],
     },
     {
       pattern:
         /^(border-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:400|500|700|800))$/,
-      variants: ['hover', 'focus-visible'],
+      variants: ['hover', 'focus-visible', 'dark:hover', 'dark:focus-visible'],
     },
     {
       pattern:
         /^(text-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:400|500|700|800))$/,
-      variants: ['hover', 'focus-visible'],
+      variants: ['hover', 'focus-visible', 'dark:hover', 'dark:focus-visible'],
     },
     {
       pattern:
         /^(outline-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:400|500|700|800))$/,
-      variants: ['hover', 'focus-visible'],
+      variants: ['hover', 'focus-visible', 'dark:hover', 'dark:focus-visible'],
     },
   ],
 }
