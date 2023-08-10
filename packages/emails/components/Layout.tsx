@@ -22,14 +22,14 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
       <div className="bg-tremor-background-muted px-8 py-16 font-sans">
         <Img className="mx-auto mb-8 h-8 w-8" src={`${BASE_URL}/icon-512.png`} />
 
-        <Container className="w-full max-w-xl rounded-lg border border-solid border-tremor-border bg-tremor-background p-6 shadow-sm">
+        <Container className="border-tremor-border bg-tremor-background w-full max-w-xl rounded-lg border border-solid p-6 shadow-sm">
           {children}
 
           <Description>Cheers,</Description>
           <Description>The {app.displayName} team</Description>
         </Container>
 
-        <Text className="m-0 mt-8 text-center text-sm text-tremor-content">{app.displayName}</Text>
+        <Text className="text-tremor-content m-0 mt-8 text-center text-sm">{app.displayName}</Text>
       </div>
     </Tailwind>
   )

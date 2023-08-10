@@ -12,7 +12,7 @@ export const Button = ({ className = '', href, children }: ButtonProps): ReactEl
   return (
     <ButtonPrimitive
       className={twMerge(
-        `cursor-pointer rounded-lg border bg-tremor-brand px-4 py-2 my-8 text-sm font-medium text-tremor-brand-inverted shadow-sm ${className}`,
+        `bg-tremor-brand text-tremor-brand-inverted my-8 cursor-pointer rounded-lg border px-4 py-2 text-sm font-medium shadow-sm ${className}`,
       )}
       href={href}
     >

@@ -9,7 +9,7 @@ type TitleProps = {
 
 export const Title = ({ className = '', children }: TitleProps): ReactElement => {
   return (
-    <Text className={twMerge(`m-0 mb-2 text-lg font-medium text-tremor-content-emphasis ${className}`)}>
+    <Text className={twMerge(`text-tremor-content-emphasis m-0 mb-2 text-lg font-medium ${className}`)}>
       {children}
     </Text>
   )
