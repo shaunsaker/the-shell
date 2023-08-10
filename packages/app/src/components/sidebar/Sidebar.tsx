@@ -1,10 +1,10 @@
-import { Dialog } from '@headlessui/react'
 import { QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
+import { useKeypress } from '../../utils/useKeyPress'
 import { useLink } from '../../utils/useLink'
 import { useSidebarOpen } from '../../utils/useSidebarOpen'
 import { Backdrop } from '../backdrop/Backdrop'
@@ -26,6 +26,12 @@ type Props = {
 export const Sidebar = ({ items, onClick }: Props) => {
   const [sidebarOpen, setSidebarOpen] = useSidebarOpen()
   const link = useLink()
+
+  useKeypress('Escape', () => {
+    if (sidebarOpen) {
+      setSidebarOpen(false)
+    }
+  })
 
   const sidebar = (
     <div className="bg-tremor-brand dark:bg-dark-tremor-brand flex grow flex-col gap-y-6 overflow-y-auto p-6">
@@ -81,34 +87,36 @@ export const Sidebar = ({ items, onClick }: Props) => {
   return (
     <>
       <AnimatePresence>
-        <Dialog as="div" open={sidebarOpen} className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
-          <Backdrop />
+        {sidebarOpen && (
+          <div className="relative z-50 lg:hidden">
+            <Backdrop />
 
-          <div className="fixed inset-0 flex">
-            <motion.div
-              className="flex flex-col"
-              initial={{ opacity: 0, transform: 'translateX(-100%)' }}
-              animate={{ opacity: 1, transform: 'translateX(0%)' }}
-              exit={{ opacity: 0, transform: 'translateX(-100%)' }}
-            >
-              <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
-                <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                  <Button
-                    variant="light"
-                    className="-m-2.5 p-2.5 text-white hover:text-gray-300"
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    <span className="sr-only">Close sidebar</span>
+            <div className="fixed inset-0 flex">
+              <motion.div
+                className="flex flex-col"
+                initial={{ opacity: 0, transform: 'translateX(-100%)' }}
+                animate={{ opacity: 1, transform: 'translateX(0%)' }}
+                exit={{ opacity: 0, transform: 'translateX(-100%)' }}
+              >
+                <div className="relative mr-16 flex w-full max-w-xs flex-1">
+                  <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
+                    <Button
+                      variant="light"
+                      className="-m-2.5 p-2.5 text-white hover:text-gray-300"
+                      onClick={() => setSidebarOpen(false)}
+                    >
+                      <span className="sr-only">Close sidebar</span>
 
-                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                  </Button>
+                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                    </Button>
+                  </div>
+
+                  {sidebar}
                 </div>
-
-                {sidebar}
-              </Dialog.Panel>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
-        </Dialog>
+        )}
       </AnimatePresence>
 
       <div className="hidden shrink-0 lg:flex lg:w-72 lg:flex-col">{sidebar}</div>
