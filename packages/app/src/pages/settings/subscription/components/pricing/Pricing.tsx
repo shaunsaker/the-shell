@@ -80,7 +80,7 @@ export const Pricing = (): ReactElement => {
         label="Select payment frequency"
         value={billingIntervalValue}
         options={billingIntervalOptions}
-        onChange={option => setBillingInterval(option.value)}
+        onValueChange={option => setBillingInterval(option.value)}
       />
 
       <div className="mt-8 flex w-full flex-wrap gap-4 lg:flex-nowrap">

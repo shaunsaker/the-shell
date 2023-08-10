@@ -1,6 +1,7 @@
-import { RadioGroup as RadioGroupPrimitive } from '@headlessui/react'
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+
+import { Button } from '../button/Button'
 
 type Option = {
   value: string
@@ -12,38 +13,37 @@ type RadioGroupProps = {
   label?: string
   value: Option
   options: Option[]
-  onChange: (value: Option) => void
+  onValueChange: (value: Option) => void
 }
 
-export const RadioGroup = ({ className, label, value, options, onChange }: RadioGroupProps): ReactElement => {
+export const RadioGroup = ({ className, label, value, options, onValueChange }: RadioGroupProps): ReactElement => {
+  const [selected, setSelected] = useState(value)
+
   return (
-    <RadioGroupPrimitive
+    <div
       className={twMerge(
         'ring-tremor-border dark:ring-dark-tremor-border flex gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset',
         className,
       )}
-      value={value}
-      by="value"
-      onChange={onChange}
     >
-      {label && <RadioGroupPrimitive.Label className="sr-only">{label}</RadioGroupPrimitive.Label>}
+      {label && <label className="sr-only">{label}</label>}
 
       {options?.map(option => (
-        <RadioGroupPrimitive.Option
-          className={({ active, checked }) =>
-            twMerge(
-              active || checked
-                ? 'bg-tremor-brand text-tremor-brand-inverted dark:bg-dark-tremor-brand dark:text-dark-tremor-brand-inverted'
-                : 'text-tremor-content hover:bg-tremor-background-subtle dark:text-tremor-content hover:dark:bg-dark-tremor-background-subtle',
-              'flex-1 cursor-pointer whitespace-nowrap rounded-full px-2.5 py-1 transition-colors',
-            )
-          }
+        <Button
           key={option.value}
-          value={option}
+          className={twMerge('rounded-full')}
+          variant={selected.value === option.value ? 'primary' : 'light'}
+          // TODO: SS use neutral color
+          color={selected.value === option.value ? '' : 'gray'}
+          size="sm"
+          onClick={() => {
+            setSelected(option)
+            onValueChange(option)
+          }}
         >
           {option.label}
-        </RadioGroupPrimitive.Option>
+        </Button>
       ))}
-    </RadioGroupPrimitive>
+    </div>
   )
 }

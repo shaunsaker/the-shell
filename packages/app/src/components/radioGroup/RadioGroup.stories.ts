@@ -26,7 +26,7 @@ export const Default: Story = {
     label: 'Select an option',
     value: options[0],
     options: options,
-    onChange: value => {
+    onValueChange: value => {
       console.log(value)
     },
   },
