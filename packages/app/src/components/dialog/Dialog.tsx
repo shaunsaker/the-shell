@@ -1,4 +1,3 @@
-import { Dialog as DialogPrimitive } from '@headlessui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactElement, ReactNode } from 'react'
 
@@ -36,73 +35,60 @@ export const Dialog = ({
   onConfirmClick,
   onClose,
 }: DialogProps): ReactElement | null => {
-  // TODO: SS enclose button
-  // Handle Enter key as confirm click
-  useKeypress('Enter', () => {
-    if (!open || confirmDisabled || confirmLoading) {
-      return
-    }
-
-    if (onConfirmClick) {
-      onConfirmClick()
+  useKeypress('Escape', () => {
+    if (open) {
+      onClose()
     }
   })
 
   return (
     <AnimatePresence>
-      <DialogPrimitive
-        open={open}
-        onClose={() => {
-          if (!confirmLoading) {
-            onClose()
-          }
-        }}
-        className="z-50"
-      >
-        <Backdrop />
+      {open && (
+        <div className="z-50">
+          <Backdrop />
 
-        <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
-            <motion.div
-              className="flex w-full justify-center"
-              initial={{
-                opacity: 0,
-                transform: 'translateY(4px)',
-                scale: 0.95,
-              }}
-              animate={{ opacity: 1, transform: 'translateY(0px)', scale: 1 }}
-              exit={{ opacity: 0, transform: 'translateY(4px)', scale: 0.95 }}
-            >
-              <DialogPrimitive.Panel as={Card} className="flex max-w-lg flex-col gap-y-6">
-                <div>
-                  <DialogPrimitive.Title as={Heading}>{title}</DialogPrimitive.Title>
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4">
+              <motion.div
+                className="flex w-full justify-center"
+                initial={{
+                  opacity: 0,
+                  transform: 'translateY(4px)',
+                  scale: 0.95,
+                }}
+                animate={{ opacity: 1, transform: 'translateY(0px)', scale: 1 }}
+                exit={{ opacity: 0, transform: 'translateY(4px)', scale: 0.95 }}
+              >
+                <Card className="flex max-w-lg flex-col gap-y-6">
+                  <div>
+                    <Heading>{title}</Heading>
 
-                  <DialogPrimitive.Description as={Text} className="mt-1">
-                    {description}
-                  </DialogPrimitive.Description>
-                </div>
+                    <Text className="mt-1">{description}</Text>
+                  </div>
 
-                {children}
+                  {children}
 
-                <div className="flex justify-end gap-x-4">
-                  <Button color="gray" variant="secondary" disabled={confirmLoading} onClick={onClose}>
-                    {cancelText}
-                  </Button>
+                  <div className="flex justify-end gap-x-4">
+                    {/* TODO: SS use neutral color */}
+                    <Button color="gray" variant="secondary" disabled={confirmLoading} onClick={onClose}>
+                      {cancelText}
+                    </Button>
 
-                  <Button
-                    color={confirmIsDangerous ? 'red' : undefined}
-                    disabled={confirmDisabled}
-                    loading={confirmLoading}
-                    onClick={onConfirmClick}
-                  >
-                    {confirmText}
-                  </Button>
-                </div>
-              </DialogPrimitive.Panel>
-            </motion.div>
+                    <Button
+                      color={confirmIsDangerous ? 'red' : undefined}
+                      disabled={confirmDisabled}
+                      loading={confirmLoading}
+                      onClick={onConfirmClick}
+                    >
+                      {confirmText}
+                    </Button>
+                  </div>
+                </Card>
+              </motion.div>
+            </div>
           </div>
         </div>
-      </DialogPrimitive>
+      )}
     </AnimatePresence>
   )
 }
