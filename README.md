@@ -33,7 +33,8 @@ TODO: SS add a video of project setup in action
 - [react-router-dom](https://reactrouter.com/en/main) for routing with a pre-configured Router 🧭
 - [react-query](https://tanstack.com/query/latest/) for declarative query management 🦅
 - [jotai](https://jotai.org/) for super simple state management 👻
-- A super simple, custom component library 🔀
+- A super simple, dark mode out of the box and accessible component library 🔀
+- [Figma component library](https://www.figma.com/file/F26nt2RDzvDTqbwvKbZV8l/Ultimate-B2B-Saas-Boilerplate-UI) 🎨
 - [framer-motion](framer.com/motion/) animations 🎬
 - Automatic light and dark modes 🌓
 - Mobile friendly 📱
