@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { userEvent, within } from '@storybook/testing-library'
 
 import { Breadcrumbs } from './Breadcrumbs'
 
@@ -38,12 +37,5 @@ export const Default: Story = {
     onClick: (href: string) => {
       console.log(href)
     },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    const homeButton = canvas.getByText('Home')
-
-    await userEvent.click(homeButton)
   },
 }

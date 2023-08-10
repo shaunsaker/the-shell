@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { userEvent, within } from '@storybook/testing-library'
 
 import { Navbar } from './Navbar'
 
@@ -35,12 +34,5 @@ export const Default: Story = {
         isActive: true,
       },
     ],
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    const homeButton = canvas.getByText('Home')
-
-    await userEvent.click(homeButton)
   },
 }

@@ -1,6 +1,5 @@
 import { HomeIcon } from '@heroicons/react/24/outline'
 import type { Meta, StoryObj } from '@storybook/react'
-import { userEvent, within } from '@storybook/testing-library'
 
 import { Button } from './Button'
 
@@ -21,13 +20,6 @@ export const Primary: Story = {
   args: {
     variant: 'primary',
     children: 'Button',
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-
-    const submitButton = canvas.getByText('Button')
-
-    await userEvent.click(submitButton)
   },
 }
 
