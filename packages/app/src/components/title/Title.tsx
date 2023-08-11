@@ -7,7 +7,7 @@ export const Title = ({ className = '', children, ...props }: Props): ReactEleme
   return (
     <h1
       className={twMerge(
-        'text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis text-3xl font-semibold',
+        'text-theme-content-emphasis dark:text-dark-theme-content-emphasis text-3xl font-semibold',
         className,
       )}
       {...props}

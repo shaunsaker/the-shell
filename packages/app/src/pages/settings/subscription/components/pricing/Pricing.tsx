@@ -65,7 +65,7 @@ export const Pricing = (): ReactElement => {
   return (
     <main className="flex flex-col items-center">
       <div className="w-full max-w-lg text-center">
-        <Text className="text-tremor-brand dark:text-dark-tremor-brand">Pricing</Text>
+        <Text className="text-theme-brand dark:text-dark-theme-brand">Pricing</Text>
 
         <Title className="mt-4">Pricing plans for teams of all sizes</Title>
 

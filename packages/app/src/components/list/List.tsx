@@ -5,7 +5,7 @@ type Props = ComponentPropsWithoutRef<'ul'>
 
 export const List = ({ className = '', children }: Props): ReactElement => {
   return (
-    <ul className={twMerge('divide-tremor-border dark:divide-dark-tremor-border divide-y', className)}>{children}</ul>
+    <ul className={twMerge('divide-theme-border dark:divide-dark-theme-border divide-y', className)}>{children}</ul>
   )
 }
 

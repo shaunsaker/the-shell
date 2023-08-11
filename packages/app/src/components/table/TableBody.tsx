@@ -6,7 +6,7 @@ type Props = ComponentPropsWithoutRef<'tbody'>
 export const TableBody = ({ className = '', ...props }: Props): ReactElement => {
   return (
     <tbody
-      className={twMerge('divide-tremor-border dark:divide-dark-tremor-border divide-y overflow-x-auto')}
+      className={twMerge('divide-theme-border dark:divide-dark-theme-border divide-y overflow-x-auto')}
       {...props}
     />
   )

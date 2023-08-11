@@ -13,17 +13,17 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps): ReactElement => {
   return (
     <Tailwind config={tailwindConfig}>
-      <div className="bg-tremor-background-muted px-8 py-16 font-sans">
+      <div className="bg-theme-background-muted px-8 py-16 font-sans">
         <Img className="mx-auto mb-8 h-8 w-8" src={`${getBaseUrl()}/icon-512.png`} />
 
-        <Container className="border-tremor-border bg-tremor-background w-full max-w-xl rounded-lg border border-solid p-6 shadow-sm">
+        <Container className="border-theme-border bg-theme-background w-full max-w-xl rounded-lg border border-solid p-6 shadow-sm">
           {children}
 
           <Description>Cheers,</Description>
           <Description>The {app.displayName} team</Description>
         </Container>
 
-        <Text className="text-tremor-content m-0 mt-8 text-center text-sm">{app.displayName}</Text>
+        <Text className="text-theme-content m-0 mt-8 text-center text-sm">{app.displayName}</Text>
       </div>
     </Tailwind>
   )

@@ -1,8 +1,8 @@
-// maps each tremor color to the corresponding tailwind default color
-// e.g. in app.json, if baseColor is "teal", tremor.brand.faint color will map to tailwind's teal-50 color
-export const tremorTheme = {
+// maps our theme color to the tailwind shade color
+// e.g. in app.json, if baseColor is "teal", theme.brand.faint color will map to tailwind's teal-50 color
+export const themeColorShadeMap = {
   // light mode
-  tremor: {
+  theme: {
     brand: {
       faint: {
         color: 'base',
@@ -73,8 +73,7 @@ export const tremorTheme = {
       inverted: { color: 'white' },
     },
   },
-  // dark mode
-  'dark-tremor': {
+  'dark-theme': {
     brand: {
       faint: {
         color: 'base',

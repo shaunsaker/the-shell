@@ -7,7 +7,7 @@ export const Heading = ({ className = '', children, ...props }: Props): ReactEle
   return (
     <h2
       className={twMerge(
-        'text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis text-lg font-medium',
+        'text-theme-content-emphasis dark:text-dark-theme-content-emphasis text-lg font-medium',
         className,
       )}
       {...props}

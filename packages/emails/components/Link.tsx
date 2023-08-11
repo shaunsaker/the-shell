@@ -10,7 +10,7 @@ type LinkProps = {
 
 export const Link = ({ className = '', href = '', children }: LinkProps): ReactElement => {
   return (
-    <LinkPrimitive className={twMerge(`text-tremor-brand m-0 text-sm underline ${className}`)} href={href}>
+    <LinkPrimitive className={twMerge(`text-theme-brand m-0 text-sm underline ${className}`)} href={href}>
       {children}
     </LinkPrimitive>
   )

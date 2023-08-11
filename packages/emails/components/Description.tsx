@@ -8,5 +8,5 @@ type DescriptionProps = {
 }
 
 export const Description = ({ className = '', children }: DescriptionProps): ReactElement => {
-  return <Text className={twMerge(`text-tremor-content m-0 text-sm ${className}`)}>{children}</Text>
+  return <Text className={twMerge(`text-theme-content m-0 text-sm ${className}`)}>{children}</Text>
 }

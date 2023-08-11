@@ -11,7 +11,7 @@ export const TextInput = ({ className = '', label, ...props }: Props): ReactElem
       {label && <Text>{label}</Text>}
 
       <input
-        className="text-tremor-content dark:text-tremor-content bg-tremor-background dark:bg-dark-tremor-background hover:bg-tremor-background-muted dark:hover:bg-dark-tremor-background-muted focus-visible:outline-tremor-brand-subtle dark:focus-visible:outline-dark-tremor-brand-subtle border-tremor-border dark:border-dark-tremor-border rounded-lg border px-4 py-2 text-sm shadow-sm outline-offset-4 transition-colors"
+        className="text-theme-content dark:text-theme-content bg-theme-background dark:bg-dark-theme-background hover:bg-theme-background-muted dark:hover:bg-dark-theme-background-muted focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle border-theme-border dark:border-dark-theme-border rounded-lg border px-4 py-2 text-sm shadow-sm outline-offset-4 transition-colors"
         {...props}
       />
     </div>

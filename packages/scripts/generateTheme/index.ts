@@ -5,17 +5,17 @@ import colors from 'tailwindcss/colors'
 import app from '../../common/app.json'
 import themeColors from '../../common/themeColors.json'
 import { args } from './args'
-import { tremorTheme } from './tremorTheme'
+import { themeColorShadeMap } from './themeColorShadeMap'
 
 const INVALID_COLORS = ['inherit', 'current', 'transparent', 'black', 'white']
 
-const getTailwindColorFromTremorThemeColor = (
+const getHexColorFromThemeColor = (
   baseColors:
     | string
     | {
         [key: string]: string
       },
-  tremorThemeColor: {
+  themeColor: {
     color: string
     shade?: string
   },
@@ -24,11 +24,11 @@ const getTailwindColorFromTremorThemeColor = (
     throw new Error(`baseColor ${baseColors} is not a valid color`)
   }
 
-  if (tremorThemeColor.color === 'white') {
+  if (themeColor.color === 'white') {
     return '#fff'
   }
 
-  const color = baseColors[tremorThemeColor.shade as keyof typeof baseColors]
+  const color = baseColors[themeColor.shade as keyof typeof baseColors]
 
   return color
 }
@@ -58,7 +58,7 @@ async function main(): Promise<void> {
 
   let figmaColors: any = {}
 
-  // for each color in tremorTheme, convert it to tailwind's color
+  // for each color in themeColorShadeMap, convert it to tailwind's color
   Object.keys(themeColors).forEach(themeKey => {
     type ThemeKey = keyof typeof themeColors
 
@@ -71,11 +71,8 @@ async function main(): Promise<void> {
       Object.keys(themeColors[themeKey as ThemeKey][usageKey as UsageKey]).forEach(variantKey => {
         type VariantKey = keyof (typeof themeColors)[ThemeKey][UsageKey]
 
-        const tremorThemeColor = tremorTheme[themeKey as ThemeKey][usageKey as UsageKey][variantKey as VariantKey]
-        const color = getTailwindColorFromTremorThemeColor(
-          tremorThemeColor.color === 'base' ? baseColors : neutralColors,
-          tremorThemeColor,
-        )
+        const themeColor = themeColorShadeMap[themeKey as ThemeKey][usageKey as UsageKey][variantKey as VariantKey]
+        const color = getHexColorFromThemeColor(themeColor.color === 'base' ? baseColors : neutralColors, themeColor)
 
         themeColors[themeKey as ThemeKey][usageKey as UsageKey][variantKey as VariantKey] = color
 

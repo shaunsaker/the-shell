@@ -23,8 +23,8 @@ export const Navbar = ({ items, onClick }: Props): ReactElement => {
           <Button
             className={twMerge(
               item.isActive
-                ? 'border-tremor-brand dark:border-dark-tremor-brand'
-                : 'hover:border-tremor-border dark:hover:border-dark-tremor-border border-transparent',
+                ? 'border-theme-brand dark:border-dark-theme-brand'
+                : 'hover:border-theme-border dark:hover:border-dark-theme-border border-transparent',
               'h-full border-b-2',
             )}
             variant="light"

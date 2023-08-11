@@ -38,12 +38,12 @@ export const PricingCard = ({
   return (
     <Card
       className={twMerge(
-        highlight ? 'ring-tremor-brand dark:ring-tremor-brand ring' : '',
+        highlight ? 'ring-theme-brand dark:ring-theme-brand ring' : '',
         'mx-auto flex max-w-lg flex-col gap-y-4',
       )}
     >
       <div className="flex justify-between gap-x-4">
-        <Heading className={highlight ? 'text-tremor-brand dark:text-tremor-brand' : ''}>{title}</Heading>
+        <Heading className={highlight ? 'text-theme-brand dark:text-theme-brand' : ''}>{title}</Heading>
 
         {highlight && <Badge>Most popular</Badge>}
       </div>
@@ -63,7 +63,7 @@ export const PricingCard = ({
       <ul className="flex flex-col gap-y-2">
         {features.map(feature => (
           <li key={feature} className="flex items-center gap-x-2">
-            <CheckIcon className="text-tremor-brand dark:text-dark-tremor-brand h-4 w-4" />
+            <CheckIcon className="text-theme-brand dark:text-dark-theme-brand h-4 w-4" />
 
             <Text>{feature}</Text>
           </li>

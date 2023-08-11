@@ -1,5 +1,5 @@
 {
-  "tremor": {
+  "theme": {
     "brand": {
       "faint": "#f0fdfa",
       "muted": "#99f6e4",
@@ -28,7 +28,7 @@
       "inverted": "#fff"
     }
   },
-  "dark-tremor": {
+  "dark-theme": {
     "brand": {
       "faint": "#134e4a",
       "muted": "#042f2e",

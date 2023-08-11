@@ -34,9 +34,9 @@ export const Sidebar = ({ items, onClick }: Props) => {
   })
 
   const sidebar = (
-    <div className="bg-tremor-brand dark:bg-dark-tremor-brand flex grow flex-col gap-y-6 overflow-y-auto p-6">
+    <div className="bg-theme-brand dark:bg-dark-theme-brand flex grow flex-col gap-y-6 overflow-y-auto p-6">
       <div className="flex items-center">
-        <Logo className="fill-tremor-brand-inverted dark:fill-dark-tremor-brand-inverted" />
+        <Logo className="fill-theme-brand-inverted dark:fill-dark-theme-brand-inverted" />
       </div>
 
       <nav className="flex flex-1 flex-col">
@@ -49,8 +49,8 @@ export const Sidebar = ({ items, onClick }: Props) => {
                   className={twMerge(
                     'w-full justify-start border-none shadow-none outline-offset-0',
                     item.isActive
-                      ? 'bg-tremor-brand-emphasis text-tremor-brand-inverted dark:bg-dark-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted'
-                      : 'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
+                      ? 'bg-theme-brand-emphasis text-theme-brand-inverted dark:bg-dark-theme-brand-emphasis dark:text-dark-theme-brand-inverted'
+                      : 'text-theme-brand-inverted hover:bg-theme-brand-emphasis dark:text-dark-theme-brand-inverted dark:hover:bg-dark-theme-brand-emphasis',
                   )}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
@@ -69,7 +69,7 @@ export const Sidebar = ({ items, onClick }: Props) => {
             <Button
               icon={<QuestionMarkCircleIcon />}
               className={twMerge(
-                'text-tremor-brand-inverted hover:bg-tremor-brand-emphasis dark:text-dark-tremor-brand-inverted dark:hover:bg-dark-tremor-brand-emphasis',
+                'text-theme-brand-inverted hover:bg-theme-brand-emphasis dark:text-dark-theme-brand-inverted dark:hover:bg-dark-theme-brand-emphasis',
                 'w-full justify-start border-none shadow-none',
               )}
               onClick={() => {

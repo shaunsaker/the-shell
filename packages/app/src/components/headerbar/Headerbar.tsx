@@ -13,7 +13,7 @@ export const Headerbar = ({ children }: Props): ReactElement => {
   const [_, setSidebarOpen] = useSidebarOpen()
 
   return (
-    <header className="border-tremor-border bg-tremor-background dark:border-dark-tremor-border dark:bg-dark-tremor-background flex h-16 w-full shrink-0 items-center border-b px-8 shadow-sm lg:pl-8">
+    <header className="border-theme-border bg-theme-background dark:border-dark-theme-border dark:bg-dark-theme-background flex h-16 w-full shrink-0 items-center border-b px-8 shadow-sm lg:pl-8">
       <Button
         variant="light"
         color="gray"

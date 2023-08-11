@@ -12,14 +12,14 @@ import { Text } from '../text/Text'
 export type AlertKind = 'info' | 'success' | 'warning' | 'error'
 
 const kindToBgColor: Record<AlertKind, string> = {
-  info: `bg-tremor-background-muted dark:bg-dark-tremor-background-muted`,
+  info: `bg-theme-background-muted dark:bg-dark-theme-background-muted`,
   success: 'bg-green-50 dark:bg-green-900',
   warning: 'bg-orange-50 dark:bg-orange-900',
   error: 'bg-red-50 dark:bg-red-900',
 }
 
 const kindToBorderColor: Record<AlertKind, string> = {
-  info: `border-tremor-border dark:border-dark-tremor-border`,
+  info: `border-theme-border dark:border-dark-theme-border`,
   success: 'border-green-200 dark:border-green-700',
   warning: 'border-orange-200 dark:border-orange-700',
   error: 'border-red-200 dark:border-red-700',
@@ -33,7 +33,7 @@ const kindToIcon: Record<AlertKind, typeof InformationCircleIcon> = {
 }
 
 const kindToTextColor: Record<AlertKind, string> = {
-  info: `text-tremor-content dark:text-dark-tremor-content`,
+  info: `text-theme-content dark:text-dark-theme-content`,
   success: 'text-green-700 dark:text-green-200',
   warning: 'text-orange-700 dark:text-green-200',
   error: 'text-red-700 dark:text-green-200',

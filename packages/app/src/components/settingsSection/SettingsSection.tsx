@@ -23,10 +23,7 @@ export const SettingsSection = ({
 }: Props): ReactElement => {
   return (
     <section
-      className={twMerge(
-        'border-b-tremor-border dark:border-b-dark-tremor-border flex w-full border-b pb-8',
-        className,
-      )}
+      className={twMerge('border-b-theme-border dark:border-b-dark-theme-border flex w-full border-b pb-8', className)}
     >
       <div className={`flex w-full flex-col gap-y-6 ${fullWidth ? '' : 'max-w-lg'}`}>
         <div className="flex flex-wrap items-start justify-between gap-4">

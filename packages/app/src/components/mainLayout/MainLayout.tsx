@@ -33,7 +33,7 @@ export const MainLayout = (): ReactElement => {
         }}
       />
 
-      <div className="bg-tremor-background dark:bg-dark-tremor-background flex flex-1 flex-col overflow-hidden">
+      <div className="bg-theme-background dark:bg-dark-theme-background flex flex-1 flex-col overflow-hidden">
         <Outlet />
       </div>
     </div>

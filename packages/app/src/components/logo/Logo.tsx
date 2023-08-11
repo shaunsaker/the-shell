@@ -8,5 +8,5 @@ type Props = {
 }
 
 export const Logo = ({ className }: Props): ReactElement => {
-  return <LogoSvg className={twMerge('fill-tremor-brand dark:fill-dark-tremor-brand h-8 w-auto', className)} />
+  return <LogoSvg className={twMerge('fill-theme-brand dark:fill-dark-theme-brand h-8 w-auto', className)} />
 }

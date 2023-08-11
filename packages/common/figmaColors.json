@@ -1,5 +1,5 @@
 {
-  "tremor/brand": {
+  "theme/brand": {
     "faint": "#f0fdfa",
     "muted": "#99f6e4",
     "subtle": "#2dd4bf",
@@ -7,26 +7,26 @@
     "emphasis": "#0f766e",
     "inverted": "#fff"
   },
-  "tremor/background": {
+  "theme/background": {
     "muted": "#f9fafb",
     "subtle": "#f3f4f6",
     "DEFAULT": "#fff",
     "emphasis": "#374151"
   },
-  "tremor/border": {
+  "theme/border": {
     "DEFAULT": "#e5e7eb"
   },
-  "tremor/ring": {
+  "theme/ring": {
     "DEFAULT": "#e5e7eb"
   },
-  "tremor/content": {
+  "theme/content": {
     "subtle": "#9ca3af",
     "DEFAULT": "#6b7280",
     "emphasis": "#374151",
     "strong": "#111827",
     "inverted": "#fff"
   },
-  "dark-tremor/brand": {
+  "dark-theme/brand": {
     "faint": "#134e4a",
     "muted": "#042f2e",
     "subtle": "#115e59",
@@ -34,19 +34,19 @@
     "emphasis": "#2dd4bf",
     "inverted": "#030712"
   },
-  "dark-tremor/background": {
+  "dark-theme/background": {
     "muted": "#1f2937",
     "subtle": "#374151",
     "DEFAULT": "#111827",
     "emphasis": "#d1d5db"
   },
-  "dark-tremor/border": {
+  "dark-theme/border": {
     "DEFAULT": "#1f2937"
   },
-  "dark-tremor/ring": {
+  "dark-theme/ring": {
     "DEFAULT": "#1f2937"
   },
-  "dark-tremor/content": {
+  "dark-theme/content": {
     "subtle": "#6b7280",
     "DEFAULT": "#9ca3af",
     "emphasis": "#e5e7eb",
