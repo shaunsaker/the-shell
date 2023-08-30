@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "dayjs": "^1.11.9",
-    "emails": "*",
     "firebase-admin": "^11.8.0",
     "firebase-functions": "^4.3.1",
     "resend": "^1.0.0",
