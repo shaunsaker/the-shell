@@ -6,7 +6,7 @@ export const useTeam = () => {
   const { teamId = '' } = useParams()
   const { data: teams, ...teamsQuery } = useTeams()
 
-  const team = teams?.find(team => team.id === parseInt(teamId))
+  const team = teams?.find(team => team.id === teamId)
 
   return {
     data: team,

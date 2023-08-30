@@ -1,4 +1,3 @@
-import { PostgrestError } from '@supabase/supabase-js'
 import {
   MutationCache,
   QueryCache,
@@ -25,7 +24,8 @@ const queryClient = new QueryClient({
       console.error(error)
 
       // if the user is unauthorised, sign them out
-      if ((error as PostgrestError).message === 'Unauthorized' || (error as PostgrestError).message === 'JWT expired') {
+      // TODO: SS check what this error looks like
+      if ((error as any).status === 401) {
         signOut()
       } else {
         captureException(error)

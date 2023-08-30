@@ -67,8 +67,7 @@ export const Button = ({
         'flex items-center justify-center gap-x-2 border font-medium shadow outline-offset-4 transition-all',
         getButtonColorClassNames(variant, color),
         sizeToButtonClassNames[size],
-        disabled ? 'pointer-events-none opacity-60 shadow-none' : '',
-        loading ? 'pointer-events-none' : '',
+        disabled || loading ? 'pointer-events-none opacity-60 shadow-none' : '',
         className,
       )}
       {...props}

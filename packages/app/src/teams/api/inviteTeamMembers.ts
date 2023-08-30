@@ -1,26 +1,20 @@
-import { handleApiError } from '../../utils/handleApiError'
+import { Functions } from '../../types/firebase'
 import { invokeFunction } from '../../utils/invokeFunction'
 
+const inviteTeamMembersFunction = invokeFunction(Functions.inviteTeamMembers)
+
 export const inviteTeamMembers = async ({
+  siteUrl,
   teamId,
   emails,
   redirectTo,
 }: {
+  siteUrl: string
   teamId: string
   emails: string[]
   redirectTo: string
 }) => {
-  const { data, error } = await invokeFunction('invite-team-members', {
-    body: {
-      teamId,
-      emails,
-      redirectTo,
-    },
-  })
+  const response = await inviteTeamMembersFunction({ siteUrl, teamId, emails, redirectTo })
 
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data
+  return response
 }

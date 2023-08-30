@@ -1,16 +1,10 @@
-import { handleApiError } from '../../utils/handleApiError'
+import { Functions } from '../../types/firebase'
 import { invokeFunction } from '../../utils/invokeFunction'
 
+const createBillingPortalSessionFunction = invokeFunction(Functions.createBillingPortalSession)
+
 export const createBillingPortalSession = async () => {
-  const { data, error } = await invokeFunction('create-billing-portal-session', {
-    body: {
-      returnUrl: window.location.href,
-    },
-  })
+  const response = await createBillingPortalSessionFunction({ returnUrl: window.location.href })
 
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data as { url: string }
+  return response
 }

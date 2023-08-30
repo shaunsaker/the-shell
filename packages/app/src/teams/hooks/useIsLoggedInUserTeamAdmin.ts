@@ -1,17 +1,15 @@
-import { useSession } from '../../auth/hooks/useSession'
-import { useTeam } from './useTeam'
+import { useParams } from 'react-router-dom'
+
+import { useAuthUser } from '../../auth/hooks/useAuthUser'
+import { useTeamMembers } from './useTeamMembers'
 
 export const useIsLoggedInUserTeamAdmin = () => {
-  const { data: session } = useSession()
-  const { data: team } = useTeam()
+  const { teamId = '' } = useParams()
+  const { data: authUser } = useAuthUser()
+  const { data: teamMembers } = useTeamMembers(teamId)
 
-  if (!session || !team) {
-    return false
-  }
-
-  const isLoggedInUserTeamAdmin = team.team_members?.some(
-    teamMember => teamMember.user_id === session?.user.id && teamMember.role === 'admin',
-  )
+  const authUserTeamMember = teamMembers?.find(teamMember => teamMember.userId === authUser?.uid)
+  const isLoggedInUserTeamAdmin = authUserTeamMember?.role === 'admin'
 
   return isLoggedInUserTeamAdmin
 }

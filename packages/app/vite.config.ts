@@ -33,8 +33,8 @@ export default defineConfig({
     }),
     {
       ...(SHOULD_USE_SENTRY &&
+        // TODO: SS test that these env vars are loaded correctly
         sentryVitePlugin({
-          // Note: these values are set via environment variables in Netlify
           authToken: process.env.SENTRY_AUTH_TOKEN,
           org: process.env.SENTRY_ORG,
           project: process.env.SENTRY_PROJECT,

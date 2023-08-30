@@ -34,6 +34,7 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
             loading={isLoading}
             onClick={() => {
               inviteTeamMembers({
+                siteUrl: window.location.origin,
                 teamId,
                 emails,
                 redirectTo: `${window.location.origin}${routes.settingsAcceptInvite.replace(TEAM_ID_PARAM, teamId)}`,

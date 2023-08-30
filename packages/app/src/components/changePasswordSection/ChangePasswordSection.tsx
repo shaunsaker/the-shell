@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react'
 
-import { useUpdateUserPassword } from '../../auth/hooks/useUpdateUserPassword'
+import { useUpdateUserPassword } from '../../users/hooks/useUpdateUserPassword'
 import { Button } from '../button/Button'
 import { SettingsSection } from '../settingsSection/SettingsSection'
 import { TextInput } from '../textInput/TextInput'
@@ -35,7 +35,7 @@ export const ChangePasswordSection = ({
           disabled={disabled}
           loading={isLoading}
           onClick={() => {
-            updateUserPassword({ password: newUserPassword })
+            updateUserPassword(newUserPassword)
           }}
         >
           Save

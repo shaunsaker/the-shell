@@ -6,22 +6,22 @@ import { Layout } from '../components/Layout'
 import { Title } from '../components/Title'
 
 type Props = {
+  siteUrl: string
   userName: string
   teamName: string
-  teamMemberName: string
-  url: string
+  adminTeamMemberName: string
 }
 
-export const AddedToTeam = ({ userName = '', teamName, teamMemberName, url }: Props): ReactElement => {
+export const AddedToTeam = ({ siteUrl, userName = '', teamName, adminTeamMemberName }: Props): ReactElement => {
   return (
-    <Layout>
+    <Layout siteUrl={siteUrl}>
       <Title>Hi{userName ? ` ${userName}` : ''},</Title>
 
       <Description>
-        You've been added to team "{teamName}" by {teamMemberName}.
+        You've been added to team "{teamName}" by {adminTeamMemberName}.
       </Description>
 
-      <Button href={url}>Go to your dashboard</Button>
+      <Button href={siteUrl}>Go to your dashboard</Button>
     </Layout>
   )
 }

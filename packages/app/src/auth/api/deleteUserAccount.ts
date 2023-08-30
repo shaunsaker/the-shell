@@ -1,12 +1,10 @@
-import { handleApiError } from '../../utils/handleApiError'
+import { Functions } from '../../types/firebase'
 import { invokeFunction } from '../../utils/invokeFunction'
 
+const deleteUserAccountFunction = invokeFunction(Functions.deleteUserAccount)
+
 export const deleteUserAccount = async () => {
-  const { data, error } = await invokeFunction('delete-user-account')
+  const response = await deleteUserAccountFunction(undefined)
 
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data
+  return response
 }

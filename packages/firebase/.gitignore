@@ -1,0 +1,8 @@
+# Firebase
+firebase-debug.log
+.firebase
+ui-debug.log
+
+# Compiled JavaScript files
+dist
+appDist

@@ -4,5 +4,5 @@ import { twMerge } from 'tailwind-merge'
 type Props = ComponentPropsWithoutRef<'thead'>
 
 export const TableHead = ({ className = '', ...props }: Props): ReactElement => {
-  return <thead className={twMerge('')} {...props} />
+  return <thead className={twMerge(className)} {...props} />
 }

@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
-import { useSession } from '../../../../../auth/hooks/useSession'
-import { useUpdateUserData } from '../../../../../auth/hooks/useUpdateUserData'
 import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
+import { useUpdateUserData } from '../../../../../users/hooks/useUpdateUserData'
+import { useUser } from '../../../../../users/hooks/useUser'
 
 type ChangeNameSectionProps = {
   title?: string
@@ -15,9 +15,9 @@ export const ChangeNameSection = ({
   title = 'Change name',
   description = 'Update your personal details associated with your account.',
 }: ChangeNameSectionProps): ReactElement => {
-  const { data: session } = useSession()
-  const firstName = session?.user?.user_metadata?.first_name || ''
-  const lastName = session?.user?.user_metadata?.last_name || ''
+  const { data: user } = useUser()
+  const firstName = user?.firstName || ''
+  const lastName = user?.lastName || ''
   const [newFirstName, setNewFirstName] = useState(firstName)
   const [newLastName, setNewLastName] = useState(lastName)
   const { mutate: updateUserData, isLoading } = useUpdateUserData()
@@ -26,7 +26,7 @@ export const ChangeNameSection = ({
   const disabled = !newFirstName || !newLastName || (firstName === newFirstName && lastName === newLastName)
 
   useEffect(() => {
-    // if the session names update, update newFirstName and newLastName
+    // if the authUser names update, update newFirstName and newLastName
     setNewFirstName(firstName)
     setNewLastName(lastName)
   }, [firstName, lastName])
@@ -56,11 +56,14 @@ export const ChangeNameSection = ({
           disabled={disabled}
           loading={isLoading}
           onClick={() => {
+            if (!user) {
+              return
+            }
+
             updateUserData({
-              data: {
-                first_name: newFirstName,
-                last_name: newLastName,
-              },
+              id: user.id,
+              firstName: newFirstName,
+              lastName: newLastName,
             })
           }}
         >

@@ -1,33 +1,33 @@
 import React, { ReactElement } from 'react'
 
 import { useCreateBillingPortalSession } from '../../../../../billing/hooks/useCreateBillingPortalSession'
+import { usePrices } from '../../../../../billing/hooks/usePrices'
 import { useProducts } from '../../../../../billing/hooks/useProducts'
 import { useSubscription } from '../../../../../billing/hooks/useSubscription'
 import { Button } from '../../../../../components/button/Button'
 import { List } from '../../../../../components/list/List'
 import { ListItem } from '../../../../../components/list/ListItem'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
+import { SubscriptionStatus } from '../../../../../types/firebase'
 import { useUser } from '../../../../../users/hooks/useUser'
 import { formatBillingAddress } from '../../../../../utils/formatBillingAddress'
 import { formatCurrency } from '../../../../../utils/formatCurrency'
 import { formatDate } from '../../../../../utils/formatDate'
-import { getActivePriceFromProducts } from '../../../../../utils/getActivePriceFromProducts'
-import { getActiveProductByPriceId } from '../../../../../utils/getActiveProductByPriceId'
 import { parsePaymentMethod } from '../../../../../utils/parsePaymentMethod'
 import { SubscriptionNotFound } from '../subscriptionNotFound/SubscriptionNotFound'
 import { UserNotFound } from './userNotFound/UserNotFound'
 
-const formatSubscriptionStatus = (status: string | null): string => {
+const formatSubscriptionStatus = (status: SubscriptionStatus): string => {
   switch (status) {
-    case 'trialing':
+    case SubscriptionStatus.Trialing:
       return 'Trial'
-    case 'active':
+    case SubscriptionStatus.Active:
       return 'Active'
-    case 'past_due':
+    case SubscriptionStatus.PastDue:
       return 'Past due'
-    case 'canceled':
+    case SubscriptionStatus.Canceled:
       return 'Canceled'
-    case 'unpaid':
+    case SubscriptionStatus.Unpaid:
       return 'Unpaid'
     default:
       return ''
@@ -36,16 +36,17 @@ const formatSubscriptionStatus = (status: string | null): string => {
 
 export const SubscriptionDetailsSection = (): ReactElement | null => {
   const { data: products } = useProducts()
+  const { data: prices } = usePrices()
   const { data: subscription } = useSubscription()
   const { data: user } = useUser()
   const { mutate: createBillingPortalSession, isLoading: createBillingPortalSessionLoading } =
     useCreateBillingPortalSession()
 
-  // get the active product
-  const activeProduct = getActiveProductByPriceId(products, subscription?.price_id)
-
   // get the active price
-  const activePrice = getActivePriceFromProducts(products, subscription?.price_id)
+  const activePrice = prices?.find(price => price.id === subscription?.priceId)
+
+  // get the active product
+  const activeProduct = products?.find(product => product.id === activePrice?.productId)
 
   if (!subscription) {
     return <SubscriptionNotFound />
@@ -79,22 +80,22 @@ export const SubscriptionDetailsSection = (): ReactElement | null => {
           <span>{subscription.quantity}</span>
         </ListItem>
 
-        {subscription.quantity && activePrice?.unit_amount && activePrice?.currency && (
+        {subscription.quantity && activePrice?.unitAmount && activePrice?.currency && (
           <ListItem>
             <span>Cost per seat</span>
 
             <span>
-              {formatCurrency(activePrice.unit_amount / 100, activePrice.currency)} / {activePrice?.interval}
+              {formatCurrency(activePrice.unitAmount / 100, activePrice.currency)} / {activePrice?.interval}
             </span>
           </ListItem>
         )}
 
-        {subscription.quantity && activePrice?.unit_amount && activePrice?.currency && (
+        {subscription.quantity && activePrice?.unitAmount && activePrice?.currency && (
           <ListItem>
             <span>Total cost</span>
 
             <span>
-              {formatCurrency((subscription.quantity * activePrice.unit_amount) / 100, activePrice.currency)} /{' '}
+              {formatCurrency((subscription.quantity * activePrice.unitAmount) / 100, activePrice.currency)} /{' '}
               {activePrice?.interval}
             </span>
           </ListItem>
@@ -105,13 +106,13 @@ export const SubscriptionDetailsSection = (): ReactElement | null => {
             <ListItem>
               <span>Trial started</span>
 
-              <span>{formatDate(subscription.trial_start)}</span>
+              <span>{formatDate(subscription.trialStart)}</span>
             </ListItem>
 
             <ListItem>
               <span>Trial ends</span>
 
-              <span>{formatDate(subscription.trial_end)}</span>
+              <span>{formatDate(subscription.trialEnd)}</span>
             </ListItem>
           </>
         )}
@@ -120,34 +121,34 @@ export const SubscriptionDetailsSection = (): ReactElement | null => {
           <ListItem>
             <span>Previous payment</span>
 
-            <span>{formatDate(subscription.current_period_start)}</span>
+            <span>{formatDate(subscription.currentPeriodStart)}</span>
           </ListItem>
         )}
 
-        {subscription.cancel_at_period_end ? (
+        {subscription.cancelAtPeriodEnd ? (
           <ListItem>
             <span>Cancels on</span>
 
-            <span>{formatDate(subscription.canceled_at)}</span>
+            <span>{formatDate(subscription.cancelAt)}</span>
           </ListItem>
         ) : (
           <ListItem>
             <span>Renews on</span>
 
-            <span>{formatDate(subscription.current_period_end)}</span>
+            <span>{formatDate(subscription.currentPeriodEnd)}</span>
           </ListItem>
         )}
 
         <ListItem>
           <span>Payment card</span>
 
-          <span>**** **** **** {parsePaymentMethod(user.payment_method).last4}</span>
+          <span>**** **** **** {parsePaymentMethod(user.paymentMethod).last4}</span>
         </ListItem>
 
         <ListItem className="items-start">
           <span className="mr-8">Billing address</span>
 
-          <span className="whitespace-break-spaces text-right">{formatBillingAddress(user.billing_address)}</span>
+          <span className="whitespace-break-spaces text-right">{formatBillingAddress(user.billingAddress)}</span>
         </ListItem>
       </List>
 

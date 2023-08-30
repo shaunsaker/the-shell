@@ -1,18 +1,12 @@
-import { Subscription } from '../../models'
-import { supabase } from '../../supabase'
+import { doc, onSnapshot } from 'firebase/firestore'
 
-export const listenSubscriptionForUser = (userId: string, cb: (data: Subscription) => void) => {
-  return supabase
-    .channel('any')
-    .on(
-      'postgres_changes',
-      {
-        event: '*',
-        schema: 'public',
-        table: 'subscriptions',
-        filter: `user_id=eq.${userId}`,
-      },
-      payload => cb(payload.new as Subscription),
-    )
-    .subscribe()
+import { db } from '../../firebase'
+import { Subscription } from '../../types/firebase'
+
+export const listenSubscriptionForUser = (uid: string, cb: (data: Subscription | undefined) => void) => {
+  return onSnapshot(doc(db, 'subscriptions', uid), snapshot => {
+    const subscription = snapshot.data() as Subscription | undefined
+
+    cb(subscription)
+  })
 }

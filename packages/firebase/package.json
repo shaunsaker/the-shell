@@ -1,0 +1,39 @@
+{
+  "name": "firebase",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/firebase/src/index.js",
+  "engines": {
+    "node": "18"
+  },
+  "scripts": {
+    "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
+    "lint:eslint": "eslint --ext [.ts,.tsx] .",
+    "lint:ts": "tsc",
+    "lint": "npm-run-all --parallel lint:*",
+    "predev": "yarn build:functions",
+    "dev": "firebase emulators:start --only functions",
+    "dev:watch": "yarn build:functions --watch",
+    "prebuild:functions": "rm -rf ./dist ./appDist",
+    "build:functions": "tsc",
+    "build:types": "cp ./src/models.ts ../app/src/types/firebase.ts",
+    "build": "npm-run-all --parallel build:*",
+    "deploy": "firebase deploy --only functions,firestore:rules,hosting"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.9",
+    "emails": "*",
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1",
+    "resend": "^1.0.0",
+    "stripe": "^12.18.0"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "firebase-functions-test": "^3.1.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.0.1",
+    "tsconfig": "*",
+    "typescript": "^5.1.6"
+  }
+}

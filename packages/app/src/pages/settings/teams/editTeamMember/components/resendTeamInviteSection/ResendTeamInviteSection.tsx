@@ -12,7 +12,7 @@ export const ResendTeamInviteSection = (): ReactElement => {
   const { mutate: resendTeamInvite, isLoading } = useResendTeamInvite()
   const { teamId = '' } = useParams()
 
-  const disabled = !teamMember?.team_id || !teamMember?.email
+  const disabled = !teamMember?.teamId || !teamMember?.email
 
   return (
     <SettingsSection
@@ -24,9 +24,9 @@ export const ResendTeamInviteSection = (): ReactElement => {
           disabled={disabled}
           loading={isLoading}
           onClick={() => {
-            if (teamMember?.team_id && teamMember?.email) {
+            if (teamMember?.teamId && teamMember?.email) {
               resendTeamInvite({
-                teamId: teamMember.team_id,
+                teamId: teamMember.teamId,
                 email: teamMember.email,
                 redirectTo: `${window.location.origin}${routes.settingsAcceptInvite.replace(TEAM_ID_PARAM, teamId)}`,
               })

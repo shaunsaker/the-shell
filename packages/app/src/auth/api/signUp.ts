@@ -1,34 +1,25 @@
-import { supabase } from '../../supabase'
-import { handleApiError } from '../../utils/handleApiError'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
+
+import { auth, db } from '../../firebase'
 
 export const signUp = async ({
   email,
   password,
-  emailRedirectTo,
   firstName,
   lastName,
 }: {
   email: string
   password: string
-  emailRedirectTo?: string
   firstName?: string
   lastName?: string
 }) => {
-  const { data, error } = await supabase.auth.signUp({
+  await createUserWithEmailAndPassword(auth, email, password)
+
+  // create the user in the database
+  await setDoc(doc(db, 'users'), {
     email,
-    password,
-    options: {
-      emailRedirectTo,
-      data: {
-        first_name: firstName,
-        last_name: lastName,
-      },
-    },
+    firstName,
+    lastName,
   })
-
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data
 }

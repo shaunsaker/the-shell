@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
 
-import { useSession } from '../../auth/hooks/useSession'
+import { useAuthUser } from '../../auth/hooks/useAuthUser'
 import { identifyUser } from '../api/identifyUser'
 
 export const useIdentifyUser = () => {
-  const { data: session } = useSession()
+  const { data: user } = useAuthUser()
 
   useEffect(() => {
-    // when the session changes, update the mixpanel user id
-    if (session?.user.id) {
-      identifyUser(session.user.id)
+    // when the user changes, update the mixpanel user id
+    if (user?.uid) {
+      identifyUser(user.uid)
     }
-  }, [session?.user.id])
+  }, [user?.uid])
 }

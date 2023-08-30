@@ -1,14 +1,7 @@
-import { supabase } from '../../supabase'
-import { handleApiError } from '../../utils/handleApiError'
+import { sendPasswordResetEmail } from 'firebase/auth'
+
+import { auth } from '../../firebase'
 
 export const resetPasswordForEmail = async ({ email, redirectTo }: { email: string; redirectTo: string }) => {
-  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo,
-  })
-
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data
+  await sendPasswordResetEmail(auth, email, { url: redirectTo })
 }

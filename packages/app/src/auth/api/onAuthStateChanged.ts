@@ -1,9 +1,9 @@
-import { supabase } from '../../supabase'
+import { User } from 'firebase/auth'
 
-export const onAuthStateChange = (cb: Parameters<typeof supabase.auth.onAuthStateChange>[0]) => {
-  const {
-    data: { subscription },
-  } = supabase.auth.onAuthStateChange(cb)
+import { auth } from '../../firebase'
 
-  return subscription
+export const onAuthStateChange = (cb: (user: User | null) => void) => {
+  return auth.onAuthStateChanged(user => {
+    cb(user)
+  })
 }

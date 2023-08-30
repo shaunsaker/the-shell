@@ -1,0 +1,26 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  deploy-staging:
+    needs: testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Install deps
+      - run: yarn global add firebase-tools
+
+      # Build the app (the build command is done in the predeploy script in firebase.json)
+      - run: cd ./packages/app && yarn --frozen-lockfile
+
+      # Build the functions (the build command is done in the predeploy script in firebase.json)
+      - run: cd ./packages/functions && yarn --frozen-lockfile
+
+      # Deploy staging
+      - run: cd ./packages/firebase && firebase use development && yarn deploy --token ${{ secrets.FIREBASE_TOKEN }}

@@ -1,15 +1,15 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
-import { useSession } from '../../../../../auth/hooks/useSession'
-import { useUpdateUserEmail } from '../../../../../auth/hooks/useUpdateUserEmail'
 import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
+import { useUpdateUserEmail } from '../../../../../users/hooks/useUpdateUserEmail'
+import { useUser } from '../../../../../users/hooks/useUser'
 import { validateEmail } from '../../../../../utils/validateEmail'
 
 export const ChangeEmailSection = (): ReactElement => {
-  const { data: session } = useSession()
-  const email = session?.user.email || ''
+  const { data: user } = useUser()
+  const email = user?.email || ''
   const [newEmail, setNewEmail] = useState(email)
   const { mutate: updateUserEmail, isLoading } = useUpdateUserEmail()
 
@@ -17,7 +17,7 @@ export const ChangeEmailSection = (): ReactElement => {
   const disabled = email === newEmail || !validateEmail(newEmail)
 
   useEffect(() => {
-    // if the session email updates, update newEmail
+    // if the authUser email updates, update newEmail
     setNewEmail(email)
   }, [email])
 
@@ -37,7 +37,11 @@ export const ChangeEmailSection = (): ReactElement => {
           disabled={disabled}
           loading={isLoading}
           onClick={() => {
-            updateUserEmail({ email: newEmail })
+            if (!user) {
+              return
+            }
+
+            updateUserEmail({ id: user.id, email: newEmail })
           }}
         >
           Save

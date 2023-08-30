@@ -39,7 +39,7 @@ export const Select = ({ className = '', value, options, onValueChange, ...props
         color="gray"
         icon={<ChevronDownIcon />}
         iconPosition="right"
-        onClick={event => {
+        onClick={() => {
           setOpen(!open)
         }}
       >

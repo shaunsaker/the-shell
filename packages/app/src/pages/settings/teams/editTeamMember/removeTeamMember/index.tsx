@@ -29,7 +29,7 @@ export const SettingsRemoveTeamMember = (): ReactElement => {
       confirmIsDangerous
       onConfirmClick={() => {
         if (team?.id && teamMember) {
-          removeTeamMember({ teamId: team.id, teamMemberId: teamMember.id })
+          removeTeamMember({ siteUrl: window.location.origin, teamId: team.id, teamMemberId: teamMember.id })
         }
       }}
       onClose={() => {

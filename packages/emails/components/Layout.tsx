@@ -3,18 +3,18 @@ import React, { ReactElement, ReactNode } from 'react'
 
 import app from '../../common/app.json'
 import { tailwindConfig } from '../tailwind.config'
-import { getBaseUrl } from '../utils/getBaseUrl'
 import { Description } from './Description'
 
 type LayoutProps = {
+  siteUrl: string
   children?: ReactNode
 }
 
-export const Layout = ({ children }: LayoutProps): ReactElement => {
+export const Layout = ({ siteUrl, children }: LayoutProps): ReactElement => {
   return (
     <Tailwind config={tailwindConfig}>
       <div className="bg-theme-background-muted px-8 py-16 font-sans">
-        <Img className="mx-auto mb-8 h-8 w-8" src={`${getBaseUrl()}/icon-512.png`} />
+        <Img className="mx-auto mb-8 h-8 w-8" src={`${siteUrl}/icon-512.png`} />
 
         <Container className="border-theme-border bg-theme-background w-full max-w-xl rounded-lg border border-solid p-6 shadow-sm">
           {children}

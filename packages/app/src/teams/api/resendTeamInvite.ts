@@ -1,26 +1,18 @@
-import { handleApiError } from '../../utils/handleApiError'
+import { Functions } from '../../types/firebase'
 import { invokeFunction } from '../../utils/invokeFunction'
+
+const resendTeamInviteFunction = invokeFunction(Functions.resendTeamInvite)
 
 export const resendTeamInvite = async ({
   teamId,
   email,
   redirectTo,
 }: {
-  teamId: number
+  teamId: string
   email: string
   redirectTo: string
 }) => {
-  const { data, error } = await invokeFunction('resend-team-invite', {
-    body: {
-      teamId,
-      email,
-      redirectTo,
-    },
-  })
+  const response = await resendTeamInviteFunction({ teamId, email, redirectTo })
 
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data
+  return response
 }

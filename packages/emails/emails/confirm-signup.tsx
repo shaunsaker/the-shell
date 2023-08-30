@@ -1,19 +1,23 @@
-import * as React from 'react'
+import React, { ReactElement } from 'react'
 
 import { Button } from '../components/Button'
 import { Description } from '../components/Description'
 import { Layout } from '../components/Layout'
 import { Title } from '../components/Title'
-import { SupabaseEmailTemplateVariables } from '../models'
 
-const ConfirmSignup = () => {
+type Props = {
+  siteUrl: string
+  confirmationUrl: string
+}
+
+export const ConfirmSignup = ({ siteUrl, confirmationUrl }: Props): ReactElement => {
   return (
-    <Layout>
+    <Layout siteUrl={siteUrl}>
       <Title>Confirm your signup</Title>
 
       <Description>Follow this link to confirm your user:</Description>
 
-      <Button href={SupabaseEmailTemplateVariables.ConfirmationUrl}>Confirm your mail</Button>
+      <Button href={confirmationUrl}>Confirm your mail</Button>
     </Layout>
   )
 }

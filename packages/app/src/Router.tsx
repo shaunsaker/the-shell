@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 
-import { useSession } from './auth/hooks/useSession'
+import { useAuthUser } from './auth/hooks/useAuthUser'
 import { ErrorBoundary } from './components/errorBoundary/ErrorBoundary'
 import { Loading } from './components/loading/Loading'
 import { MainLayout } from './components/mainLayout/MainLayout'
@@ -133,11 +133,11 @@ const authorisedRouter = createBrowserRouter([
 ])
 
 export const Router = (): ReactElement => {
-  const { data: session, isLoading: sessionLoading } = useSession()
+  const { data: authUser, isLoading: sessionLoading } = useAuthUser()
 
   if (sessionLoading) {
     return <Loading />
   }
 
-  return <RouterProvider router={session ? authorisedRouter : unauthorisedRouter} />
+  return <RouterProvider router={authUser ? authorisedRouter : unauthorisedRouter} />
 }

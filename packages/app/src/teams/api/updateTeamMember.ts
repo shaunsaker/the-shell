@@ -1,13 +1,8 @@
-import { TeamMemberRole } from '../../models'
-import { supabase } from '../../supabase'
-import { handleApiError } from '../../utils/handleApiError'
+import { doc, updateDoc } from 'firebase/firestore'
 
-export const updateTeamMember = async ({ id, role }: { id: number; role: TeamMemberRole }) => {
-  const { data, error } = await supabase.from('team_members').update({ role }).eq('id', id)
+import { db } from '../../firebase'
+import { TeamMemberRole } from '../../types/firebase'
 
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data
+export const updateTeamMember = async ({ id, role }: { id: string; role: TeamMemberRole }) => {
+  await updateDoc(doc(db, 'members', id), { role })
 }

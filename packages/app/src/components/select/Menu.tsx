@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
-import React, { ComponentPropsWithoutRef } from 'react'
+import React, { ComponentPropsWithoutRef, useRef } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
+import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Button } from '../button/Button'
 import { Card } from '../card/Card'
 import { SelectOption } from './Select'
@@ -13,8 +15,13 @@ type Props = ComponentPropsWithoutRef<'ul'> & {
 }
 
 export const Menu = ({ className = '', options, onValueChange, onClose, ...props }: Props) => {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useOutsideClick({ ref, callback: onClose })
+
   return (
     <motion.div
+      ref={ref}
       initial={{
         opacity: 0,
         transform: 'translateY(-4px)',
@@ -24,8 +31,8 @@ export const Menu = ({ className = '', options, onValueChange, onClose, ...props
       exit={{ opacity: 0, transform: 'translateY(-4px)', scale: 0.95 }}
     >
       <Card className="absolute mt-2 p-0">
-        <ul>
-          {options.map((option, index) => (
+        <ul {...props} className={twMerge(className)}>
+          {options.map(option => (
             <li key={option.value}>
               <Button
                 className={`w-full justify-start px-4 py-2`}

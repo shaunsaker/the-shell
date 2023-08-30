@@ -1,25 +1,42 @@
-import { supabase } from '../../supabase'
-import { handleApiError } from '../../utils/handleApiError'
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
 
-export const createTeam = async ({ name, userId }: { name: string; userId: string }) => {
-  const { data: team, error } = await supabase
-    .from('teams')
-    .insert([
-      {
-        name,
-        created_by: userId,
-      },
-    ])
-    .select()
-    .single()
+import { db } from '../../firebase'
+import { Team, TeamMember, TeamMemberRole, TeamMemberStatus } from '../../types/firebase'
+import { getISOString } from '../../utils/getISOString'
 
-  if (error) {
-    await handleApiError(error)
+export const createTeam = async ({
+  name,
+  uid,
+  userFirstName,
+  userLastName,
+  userEmail,
+}: {
+  name: string
+  uid: string
+  userFirstName: string
+  userLastName: string
+  userEmail: string
+}) => {
+  const now = getISOString()
+  const team: Omit<Team, 'id'> = { name, ownerId: uid, createdAt: now }
+
+  // create the team
+  const teamRef = await addDoc(collection(db, 'teams'), team)
+
+  const teamId = teamRef.id
+  const teamMember: Omit<TeamMember, 'id'> = {
+    teamId,
+    userId: uid,
+    firstName: userFirstName,
+    lastName: userLastName,
+    email: userEmail,
+    createdAt: now,
+    role: TeamMemberRole.Admin,
+    status: TeamMemberStatus.Active,
   }
 
-  if (!team) {
-    throw new Error('Missing team!')
-  }
+  // add the user as a team member
+  await setDoc(doc(db, 'teams', teamId, 'members', uid), teamMember)
 
-  return team
+  return teamRef
 }

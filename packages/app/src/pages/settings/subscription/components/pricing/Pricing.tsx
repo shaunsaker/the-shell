@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
 import { useCreateCheckoutSession } from '../../../../../billing/hooks/useCreateCheckoutSession'
+import { usePrices } from '../../../../../billing/hooks/usePrices'
 import { useProducts } from '../../../../../billing/hooks/useProducts'
 import { RadioGroup } from '../../../../../components/radioGroup/RadioGroup'
 import { Text } from '../../../../../components/text/Text'
@@ -26,12 +27,11 @@ const formatBillingInterval = (value: string): string => {
 
 export const Pricing = (): ReactElement => {
   const { data: products } = useProducts()
+  const { data: prices } = usePrices()
   const { mutate: createCheckoutSession, isLoading: createCheckoutSessionLoading } = useCreateCheckoutSession()
 
   // get the unique billing intervals from the prices
-  const billingIntervals = Array.from(
-    new Set(products?.flatMap(product => product?.prices?.map(price => price?.interval))),
-  ).filter(Boolean)
+  const billingIntervals = [...new Set(prices?.map(price => price.interval))]
 
   // Note: we set the billingInterval in a useEffect when the products and s
   const [billingInterval, setBillingInterval] = useState<string>('')
@@ -88,14 +88,21 @@ export const Pricing = (): ReactElement => {
           // sort by lowest price to highest price
           ?.sort((productA, productB) => {
             // get the prices for the current billing interval
-            const priceA = productA.prices?.filter(price => price.interval === billingInterval)[0]
-            const priceB = productB.prices?.filter(price => price.interval === billingInterval)[0]
+            const priceA = prices?.filter(
+              price => price.interval === billingInterval && price.productId === productA.id,
+            )[0]
+            const priceB = prices?.filter(
+              price => price.interval === billingInterval && price.productId === productB.id,
+            )[0]
 
-            return priceA?.unit_amount && priceB?.unit_amount && priceA?.unit_amount > priceB?.unit_amount ? 1 : -1
+            // sort by price
+            return (priceA?.unitAmount || 0) - (priceB?.unitAmount || 0)
           })
           .map((product, index) => {
             // get the price for the current billing interval
-            const price = product.prices?.filter(price => price.interval === billingInterval)[0]
+            const price = prices?.filter(
+              price => price.interval === billingInterval && price.productId === product.id,
+            )[0]
 
             // highlight the second product
             const highlight = index === 1
@@ -107,7 +114,7 @@ export const Pricing = (): ReactElement => {
                 key={product.id}
                 title={product.name || ''}
                 description={product.description || ''}
-                price={price?.unit_amount || 0}
+                price={price?.unitAmount || 0}
                 currency={price?.currency || ''}
                 interval={price?.interval || ''}
                 features={features}
@@ -115,7 +122,11 @@ export const Pricing = (): ReactElement => {
                 highlight={highlight}
                 loading={createCheckoutSessionLoading}
                 onClick={() => {
-                  createCheckoutSession(price?.id || '')
+                  if (!price) {
+                    return
+                  }
+
+                  createCheckoutSession({ priceId: price.id, quantity: 1 })
                 }}
               />
             )

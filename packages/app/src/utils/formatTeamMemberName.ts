@@ -1,9 +1,7 @@
-import { TeamMember } from '../models'
+import { TeamMember } from '../types/firebase'
 
 export const formatTeamMemberName = (teamMember?: TeamMember) => {
-  if (!teamMember || !teamMember.first_name || !teamMember.last_name) {
-    return ''
-  }
+  if (!teamMember) return 'Unnamed Team Member'
 
-  return `${teamMember.first_name} ${teamMember.last_name}`
+  return `${teamMember.firstName} ${teamMember.lastName}`
 }

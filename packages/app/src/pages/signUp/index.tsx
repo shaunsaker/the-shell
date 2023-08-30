@@ -33,7 +33,6 @@ export default function SignUp() {
       await signUpWithPassword({
         email,
         password,
-        emailRedirectTo: window.location.href,
         firstName,
         lastName,
       })

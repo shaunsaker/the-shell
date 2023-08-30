@@ -13,7 +13,7 @@ export const ProductsNotFound = (): ReactElement => {
       <BlankState
         Icon={ExclamationCircleIcon}
         title="No products found"
-        description="Create them in your Stripe dashboard. Hint: If you've already created them, make sure your Stripe listener and Supabase functions are being served. Edit the prices metadata and your local db should reflect the products and prices."
+        description="Create them in your Stripe dashboard."
       >
         <Button onClick={() => link('https://dashboard.stripe.com/dashboard', '_blank')}>Go to Stripe dashboard</Button>
       </BlankState>

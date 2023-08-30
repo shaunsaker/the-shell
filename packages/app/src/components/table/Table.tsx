@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 type Props = ComponentPropsWithoutRef<'table'>
 
 export const Table = ({ className = '', ...props }: Props): ReactElement => {
-  return <table className={twMerge('w-full')} {...props} />
+  return <table className={twMerge('w-full', className)} {...props} />
 }
 
 export { TableBody } from './TableBody'

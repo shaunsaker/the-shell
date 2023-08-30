@@ -1,26 +1,25 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
-import { useProducts } from '../../../../../billing/hooks/useProducts'
+import { usePrices } from '../../../../../billing/hooks/usePrices'
 import { useSubscription } from '../../../../../billing/hooks/useSubscription'
 import { useUpdateSubscriptionQuantity } from '../../../../../billing/hooks/useUpdateSubscriptionQuantity'
 import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
-import { Price } from '../../../../../models'
+import { Price } from '../../../../../types/firebase'
 import { formatCurrency } from '../../../../../utils/formatCurrency'
-import { getActivePriceFromProducts } from '../../../../../utils/getActivePriceFromProducts'
 import { maybePluralise } from '../../../../../utils/maybePluralise'
 import { SubscriptionNotFound } from '../subscriptionNotFound/SubscriptionNotFound'
 
 const MIN_SEATS = 1
 
 const getButtonLabel = (numberOfNewSeats: number, activePrice?: Price | null): string => {
-  if (!numberOfNewSeats || !activePrice || !activePrice.unit_amount || !activePrice.currency) {
+  if (!numberOfNewSeats || !activePrice || !activePrice.unitAmount || !activePrice.currency) {
     return 'Update plan'
   }
 
   const seatsText = `${Math.abs(numberOfNewSeats)} ${maybePluralise(Math.abs(numberOfNewSeats), 'seat')}`
-  const costText = formatCurrency((Math.abs(numberOfNewSeats) * activePrice.unit_amount) / 100, activePrice.currency)
+  const costText = formatCurrency((Math.abs(numberOfNewSeats) * activePrice.unitAmount) / 100, activePrice.currency)
 
   if (numberOfNewSeats > 0) {
     return `Add ${seatsText} for an additional ${costText} per ${activePrice.interval}`
@@ -31,13 +30,13 @@ const getButtonLabel = (numberOfNewSeats: number, activePrice?: Price | null): s
 
 export const SubscriptionSeatsSection = (): ReactElement | null => {
   const [seats, setSeats] = useState(MIN_SEATS.toString())
-  const { data: products } = useProducts()
+  const { data: prices } = usePrices()
   const { data: subscription } = useSubscription()
   const { mutate: updateSubscriptionQuantity, isLoading: updateSubscriptionQuantityLoading } =
     useUpdateSubscriptionQuantity()
 
   // get the active price
-  const activePrice = getActivePriceFromProducts(products, subscription?.price_id)
+  const activePrice = prices?.find(price => price.id === subscription?.priceId)
 
   // calculate the number of new seats
   const numberOfNewSeats = subscription?.quantity ? parseInt(seats) - subscription.quantity : 0
