@@ -1,6 +1,8 @@
 import { auth } from '../../firebase'
 
-export const getAuthUser = () => {
+export const getAuthUser = async () => {
+  await auth.authStateReady()
+
   const user = auth.currentUser
 
   return user

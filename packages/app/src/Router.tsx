@@ -133,9 +133,9 @@ const authorisedRouter = createBrowserRouter([
 ])
 
 export const Router = (): ReactElement => {
-  const { data: authUser, isLoading: sessionLoading } = useAuthUser()
+  const { data: authUser, isLoading: authUserLoading } = useAuthUser()
 
-  if (sessionLoading) {
+  if (authUserLoading) {
     return <Loading />
   }
 
