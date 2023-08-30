@@ -4,7 +4,7 @@ import { invokeFunction } from '../../utils/invokeFunction'
 const deleteUserAccountFunction = invokeFunction(Functions.deleteUserAccount)
 
 export const deleteUserAccount = async () => {
-  const response = await deleteUserAccountFunction(undefined)
+  const response = await deleteUserAccountFunction({ siteUrl: window.location.origin })
 
   return response
 }

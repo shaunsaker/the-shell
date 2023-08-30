@@ -21,7 +21,7 @@ export type User = {
   }
 }
 
-/* BILLING */
+/* SUBSCRIPTION */
 export type Customer = {
   id: string
   stripeCustomerId: string
