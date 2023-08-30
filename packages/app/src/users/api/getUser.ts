@@ -6,5 +6,5 @@ import { User } from '../../types/firebase'
 export const getUser = async (uid: string) => {
   const user = await getDoc(doc(db, 'users', uid))
 
-  return user.data() as User | undefined
+  return (user.data() as User) || null
 }
