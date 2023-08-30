@@ -1,3 +1,26 @@
+/* USERS */
+export type User = {
+  id: string
+  createdAt: string
+  email: string
+  firstName: string
+  lastName: string
+  billingAddress?: {
+    city: string
+    country: string
+    line1: string
+    line2: string
+    postalCode: string
+    state: string
+  }
+  paymentMethod?: {
+    brand: string
+    expMonth: number
+    expYear: number
+    last4: string
+  }
+}
+
 /* BILLING */
 export type Customer = {
   id: string
@@ -97,29 +120,6 @@ export type TeamMember = {
   status: TeamMemberStatus
 }
 
-/* USERS */
-export type User = {
-  id: string
-  createdAt: string
-  email: string
-  firstName: string
-  lastName: string
-  billingAddress?: {
-    city: string
-    country: string
-    line1: string
-    line2: string
-    postalCode: string
-    state: string
-  }
-  paymentMethod?: {
-    brand: string
-    expMonth: number
-    expYear: number
-    last4: string
-  }
-}
-
 /* FUNCTIONS */
 export enum Functions {
   createBillingPortalSession = 'createBillingPortalSessionFunction',
@@ -163,7 +163,9 @@ export type FunctionsMap = {
     }
   }
   [Functions.deleteUserAccount]: {
-    data: undefined
+    data: {
+      siteUrl: string
+    }
     response: {
       ok: true
     }
