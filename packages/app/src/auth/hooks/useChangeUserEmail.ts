@@ -17,7 +17,7 @@ export const useChangeUserEmail = () => {
       // invalidate the user data query so it will be refetched with the new email
       queryClient.invalidateQueries([QueryKeys.User])
 
-      toast.success('A confirmation email has been sent to your new email address.')
+      toast.success('Your email has been changed successfully.')
     },
   })
 }

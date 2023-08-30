@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
-import { useUpdateUserData } from '../../../../../users/hooks/useUpdateUserData'
+import { useUpdateUser } from '../../../../../users/hooks/useUpdateUser'
 import { useUser } from '../../../../../users/hooks/useUser'
 
 type ChangeNameSectionProps = {
@@ -20,7 +20,7 @@ export const ChangeNameSection = ({
   const lastName = user?.lastName || ''
   const [newFirstName, setNewFirstName] = useState(firstName)
   const [newLastName, setNewLastName] = useState(lastName)
-  const { mutate: updateUserData, isLoading } = useUpdateUserData()
+  const { mutate: updateUserData, isLoading } = useUpdateUser()
 
   // disable the save button if the name is the same as the current name or if the name is invalid
   const disabled = !newFirstName || !newLastName || (firstName === newFirstName && lastName === newLastName)

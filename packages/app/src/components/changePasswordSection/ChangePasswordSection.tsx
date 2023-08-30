@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react'
 
-import { useUpdateUserPassword } from '../../users/hooks/useUpdateUserPassword'
+import { useChangeUserPassword } from '../../auth/hooks/useChangeUserPassword'
 import { Button } from '../button/Button'
 import { SettingsSection } from '../settingsSection/SettingsSection'
 import { TextInput } from '../textInput/TextInput'
@@ -14,20 +14,30 @@ export const ChangePasswordSection = ({
   title = 'Change password',
   description = 'Update your password associated with your account.',
 }: Props): ReactElement => {
-  const [newUserPassword, setNewUserPassword] = useState('')
-  const { mutate: updateUserPassword, isLoading } = useUpdateUserPassword()
+  const [currentPassword, setCurrentPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const { mutate: changeUserPassword, isLoading } = useChangeUserPassword()
 
-  const disabled = !newUserPassword
+  const disabled = !newPassword
 
   return (
     <SettingsSection title={title} description={description}>
       <TextInput
-        label="Password"
+        label="Current password"
+        type="password"
+        placeholder="Enter your current password..."
+        autoComplete="password"
+        value={currentPassword}
+        onChange={event => setCurrentPassword(event.target.value)}
+      />
+
+      <TextInput
+        label="New password"
         type="password"
         placeholder="Enter your new password..."
         autoComplete="password"
-        value={newUserPassword}
-        onChange={event => setNewUserPassword(event.target.value)}
+        value={newPassword}
+        onChange={event => setNewPassword(event.target.value)}
       />
 
       <div>
@@ -35,7 +45,7 @@ export const ChangePasswordSection = ({
           disabled={disabled}
           loading={isLoading}
           onClick={() => {
-            updateUserPassword(newUserPassword)
+            changeUserPassword({ currentPassword, newPassword })
           }}
         >
           Save

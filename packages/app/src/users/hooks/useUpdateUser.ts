@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast'
 
 import { updateUser } from '../api/updateUser'
 
-export const useUpdateUserData = () => {
+export const useUpdateUser = () => {
   return useMutation({
     mutationFn: updateUser,
     onSuccess: () => {
