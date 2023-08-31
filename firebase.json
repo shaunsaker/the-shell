@@ -1,0 +1,78 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": [
+    {
+      "runtime": "nodejs18",
+      "predeploy": "cd ./packages/functions && yarn build:functions",
+      "source": ".",
+      "codebase": "default",
+      "ignore": [
+        ".github",
+        ".husky",
+        "node_modules",
+        "packages/app",
+        "packages/eslint-config-custom",
+        "packages/scripts",
+        "packages/ts-config",
+        ".firebaserc",
+        ".gitignore",
+        "firebase.json",
+        "package.json",
+        "prettier.config.js",
+        "README.md",
+        "TODOS.md",
+        "turbo.json"
+      ]
+    }
+  ],
+  "hosting": {
+    "predeploy": "cd ./packages/app && yarn build:app",
+    "public": "./packages/app/dist",
+    "ignore": [
+      ".github",
+      ".husky",
+      "node_modules",
+      "packages/common",
+      "packages/emails",
+      "packages/eslint-config-custom",
+      "packages/functions",
+      "packages/scripts",
+      "packages/ts-config",
+      ".firebaserc",
+      ".gitignore",
+      "firebase.json",
+      "package.json",
+      "prettier.config.js",
+      "README.md",
+      "TODOS.md",
+      "turbo.json"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  }
+}
