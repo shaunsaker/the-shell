@@ -20,4 +20,4 @@ jobs:
       - run: yarn --frozen-lockfile
 
       # Deploy staging
-      - run: cd ./packages/firebase && firebase use development && yarn deploy --token ${{ secrets.FIREBASE_TOKEN }}
+      - run: cd ./packages/firebase && firebase use staging && yarn deploy --token ${{ secrets.FIREBASE_TOKEN }}

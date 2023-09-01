@@ -8,7 +8,7 @@
 
 The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript. 😛 Set up your next project/prototype with minimal input, so you can do what you do best, build and test amazing new products 🔥
 
-Transform `6 weeks` of development into `1 hour` 🚀
+Transform `6 weeks` of staging into `1 hour` 🚀
 
 You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.app/).
 
@@ -19,7 +19,7 @@ You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.ap
 - [Typescript](https://www.typescriptlang.org/) 📘
 - [React](https://reactjs.org/) ⚛️
 - [tailwindcss](https://tailwindcss.com/) for super easy styling 🎨
-- [vite](https://vitejs.dev/) for blazingly fast development 🚀
+- [vite](https://vitejs.dev/) for blazingly fast staging 🚀
 - [Firebase](https://firebase.google.com/) for the backend and deployment ⚡️
 - Auth flows, dashboard, settings, billing and team management ✅
 - [Stripe](https://stripe.com/) integration ([that actually works](https://github.com/vercel/nextjs-subscription-payments/issues)) 💳
@@ -30,7 +30,7 @@ You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.ap
 - Looks ~~good~~ **farking beautiful** out of the box ✨
 - [framer-motion](framer.com/motion/) animations 🎬
 - [Resend](https://resend.com/) for transactional emails ⚡️
-- [React Email](https://react.email/) for quick and easy email development ✉️❤️
+- [React Email](https://react.email/) for quick and easy email staging ✉️❤️
 - [react-router-dom](https://reactrouter.com/en/main) for routing with a pre-configured Router 🧭
 - [react-query](https://tanstack.com/query/latest/) for declarative query management 🦅
 - [jotai](https://jotai.org/) for super simple state management 👻
@@ -47,7 +47,7 @@ You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.ap
 - [vite-plugin-svgr](https://github.com/pd4d10/vite-plugin-svgr) for svg support 🔗
 - [react-hot-toast](https://react-hot-toast.com/) for easy to use toast notifications 🍞
 - [heroicons](https://heroicons.com/) for beautiful icons 🙂
-- [Storybook](https://storybook.js.org/) deployed to [Chromatic](https://www.chromatic.com/) for UI development
+- [Storybook](https://storybook.js.org/) deployed to [Chromatic](https://www.chromatic.com/) for UI staging
 
 ---
 
@@ -65,8 +65,8 @@ You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.ap
 - [Stripe cli](https://stripe.com/docs/stripe-cli#install)
 - [Github cli](https://github.com/cli/cli#installation)
 - [Sentry account](https://sentry.io/signup/)
-- 2x [Resend accounts](https://resend.com/signup), one for development and one for production
-- [Mixpanel account](https://mixpanel.com/) with 2x projects, one for development and one for production
+- 2x [Resend accounts](https://resend.com/signup), one for staging and one for production
+- [Mixpanel account](https://mixpanel.com/) with 2x projects, one for staging and one for production
 - [Chromatic account](https://www.chromatic.com/)
 - [Figma account](https://www.figma.com/)
 
@@ -89,7 +89,7 @@ git remote add origin NEW_GITHUB_REMOTE
 git push -u origin master
 ```
 
-3. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for development, e.g. `develop`:
+3. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
 
 ```
 git checkout -b develop
@@ -130,21 +130,21 @@ cd ./packages/firebase
 firebase login
 ```
 
-2. Create two Firebase projects, one for development and one for production.
+2. Create two Firebase projects, one for staging and one for production.
 
 ```
-firebase projects:create PROJECT_NAME-development
+firebase projects:create PROJECT_NAME-staging
 firebase projects:create PROJECT_NAME-production
 ```
 
-3. _Manual Step_: Enable Cloud Firestore for both projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-development/firestore and https://console.firebase.google.com/project/PROJECT_NAME-production/firestore and clicking "Create database". Feel free to "Start in production mode".
+3. _Manual Step_: Enable Cloud Firestore for both projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/firestore and https://console.firebase.google.com/project/PROJECT_NAME-production/firestore and clicking "Create database". Feel free to "Start in production mode".
 
 4. [Enable the Blaze plan](https://console.firebase.google.com/project/_/usage/details) for both projects. This is required for Firebase Functions.
 
 5. Link your Firebase projects to your local repo:
 
 ```
-firebase use --add PROJECT_NAME-development --alias development
+firebase use --add PROJECT_NAME-staging --alias staging
 firebase use --add PROJECT_NAME-production --alias production
 ```
 
@@ -154,14 +154,14 @@ firebase use --add PROJECT_NAME-production --alias production
 firebase login:ci
 ```
 
-7. Push your Firebase token to Github so that Github Actions can deploy your app and functions to development and production:
+7. Push your Firebase token to Github so that Github Actions can deploy your app and functions to staging and production:
 
 ```
 gh auth login
 gh secret set FIREBASE_TOKEN --body VALUE
 ```
 
-8. _Manual Step_: Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-development/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into `./packages/app/.env.development` and `./packages/app/.env.production`.
+8. _Manual Step_: Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into `packages/app/.env.development`, `./packages/app/.env.staging` and `./packages/app/.env.production`.
 
 ---
 
@@ -177,11 +177,11 @@ gh secret set FIREBASE_TOKEN --body VALUE
 
 The Stripe webhook will ensure that any activity in Stripe is updated in your Firebase db's, e.g. if a new customer is created in Stripe, add them to customers in the Firebase db's.
 
-##### Connect test Stripe webhook to development
+##### Connect test Stripe webhook to staging
 
-The following steps will setup your Firebase development environment with your Stripe test environment.
+The following steps will setup your Firebase staging environment with your Stripe test environment.
 
-1. In [test Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **development** stripe-webhook firebase functions url, e.g. https://us-central1-PROJECT_NAME-development.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+1. In [test Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **staging** stripe-webhook firebase functions url, e.g. https://us-central1-PROJECT_NAME-staging.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
 
 2. Once your Stripe webhook is created, copy the Signing secret.
 
@@ -191,7 +191,7 @@ The following steps will setup your Firebase development environment with your S
 
 ```
 cd ./packages/firebase
-firebase use development
+firebase use staging
 firebase functions:secrets:set STRIPE_API_KEY VALUE
 firebase functions:secrets:set STRIPE_WEBHOOK_SIGNING_SECRET VALUE
 ```
@@ -202,7 +202,7 @@ firebase functions:secrets:set STRIPE_WEBHOOK_SIGNING_SECRET VALUE
 
 The following steps will setup your Firebase production environment with your Stripe live environment.
 
-1. In [live Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **development** stripe-webhook firebase functions url, e.g. https://us-central1-PROJECT_NAME-production.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+1. In [live Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **staging** stripe-webhook firebase functions url, e.g. https://us-central1-PROJECT_NAME-production.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
 
 2. Once your Stripe webhook is created, copy the Signing secret.
 
@@ -253,7 +253,7 @@ We support free trials out of the box. To add a free trial to a product, simply 
 
 4. Grab your "Project Slug" from https://sentry.io/settings/projects/ and clicking on the project. In the url that loads next, e.g. https://SENTRY_ORG.sentry.io/settings/projects/X/, X is your `SENTRY_PROJECT`.
 
-5. Add the secrets to `packages/app/.env.development` and `packages/app/.env.production`.
+5. Add the secrets to `packages/app/.env.local`, `packages/app/.env.staging` and `packages/app/.env.production`.
 
 6. Push the secrets to Github.
 
@@ -268,13 +268,13 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 ### Setup Resend
 
-1. Add an API key to each of your Resend accounts (development and production).
+1. Add an API key to each of your Resend accounts (staging and production).
 
 2. Push the secrets to Firebase functions.
 
 ```
 cd ./packages/firebase
-firebase use development
+firebase use staging
 firebase functions:secrets:set RESEND_API_KEY
 firebase use production
 firebase functions:secrets:set RESEND_API_KEY
@@ -284,7 +284,7 @@ firebase functions:secrets:set RESEND_API_KEY
 
 ### Setup Mixpanel
 
-1. Grab your development and production project tokens and them to the respective files at `./packages/app/.env.development` and `./packages/app/.env.production`.
+1. Grab your staging and production project tokens and them to the respective files at `packages/app/.env.local`, `./packages/app/.env.staging` and `./packages/app/.env.production`.
 
 ---
 
