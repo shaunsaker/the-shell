@@ -1,12 +1,4 @@
 {
   "extends": "tsconfig/base.json",
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2017",
-    "jsx": "react",
-    "noEmit": false,
-    "outDir": "dist",
-    "sourceMap": true
-  },
   "include": ["./src"]
 }

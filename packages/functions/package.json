@@ -2,6 +2,8 @@
   "name": "functions",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "main": "src/index.ts",
   "engines": {
     "node": "18"
   },
@@ -14,7 +16,7 @@
     "dev": "firebase emulators:start --only functions",
     "dev:watch": "yarn build:functions --watch",
     "prebuild:functions": "rm -rf ./dist",
-    "build:functions": "tsc",
+    "build:functions": "vite build",
     "build:types": "cp ./src/models.ts ../app/src/types/firebase.ts",
     "build": "npm-run-all --parallel build:*"
   },
@@ -30,7 +32,10 @@
     "firebase-functions-test": "^3.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.1",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-generate-package-json": "^3.2.0",
     "tsconfig": "*",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9"
   }
 }

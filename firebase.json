@@ -7,49 +7,12 @@
     {
       "runtime": "nodejs18",
       "predeploy": "cd ./packages/functions && yarn build:functions",
-      "source": ".",
-      "codebase": "default",
-      "ignore": [
-        ".github",
-        ".husky",
-        "node_modules",
-        "packages/app",
-        "packages/eslint-config-custom",
-        "packages/scripts",
-        "packages/ts-config",
-        ".firebaserc",
-        ".gitignore",
-        "firebase.json",
-        "package.json",
-        "prettier.config.js",
-        "README.md",
-        "TODOS.md",
-        "turbo.json"
-      ]
+      "source": "./packages/functions/dist"
     }
   ],
   "hosting": {
     "predeploy": "cd ./packages/app && yarn build:app",
     "public": "./packages/app/dist",
-    "ignore": [
-      ".github",
-      ".husky",
-      "node_modules",
-      "packages/common",
-      "packages/emails",
-      "packages/eslint-config-custom",
-      "packages/functions",
-      "packages/scripts",
-      "packages/ts-config",
-      ".firebaserc",
-      ".gitignore",
-      "firebase.json",
-      "package.json",
-      "prettier.config.js",
-      "README.md",
-      "TODOS.md",
-      "turbo.json"
-    ],
     "rewrites": [
       {
         "source": "**",
