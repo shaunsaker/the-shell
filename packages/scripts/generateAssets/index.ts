@@ -26,18 +26,6 @@ async function main(): Promise<void> {
 
   await createPng({
     inputPath: LOGO_PATH,
-    outputPath: path.join(APP_PUBLIC_PATH, './icon-512.png'),
-    size: 512,
-  })
-
-  await createPng({
-    inputPath: LOGO_PATH,
-    outputPath: path.join(APP_PUBLIC_PATH, './icon-192.png'),
-    size: 192,
-  })
-
-  await createPng({
-    inputPath: LOGO_PATH,
     outputPath: path.join(APP_PUBLIC_PATH, './apple-touch-icon.png'),
     size: 180,
   })
