@@ -13,7 +13,7 @@ export const createCustomer = async ({ email, uid }: { email: string; uid: strin
   const customer = await stripe.customers.create(customerData)
 
   // Save the customer in the db
-  await updateCustomer(uid, { stripeCustomerId: customer.id })
+  await updateCustomer(uid, { id: uid, stripeCustomerId: customer.id })
 
   return customer.id
 }

@@ -1,11 +1,12 @@
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 
 import { db } from '../../firebase'
 import { Subscription } from '../../types/firebase'
 
 // fetch the users subscription if they have one that is active or trialing
 export const getSubscriptionForUser = async (uid: string) => {
-  const subscription = await getDoc(doc(db, 'subscriptions', uid))
+  const subscriptions = await getDocs(query(collection(db, 'subscriptions'), where('userId', '==', uid)))
 
-  return subscription.data() as Subscription | undefined
+  // currently we only support single subscriptions
+  return subscriptions.docs[0].data() as Subscription | undefined
 }

@@ -177,6 +177,24 @@ gh secret set FIREBASE_TOKEN --body VALUE
 
 The Stripe webhook will ensure that any activity in Stripe is updated in your Firebase db's, e.g. if a new customer is created in Stripe, add them to customers in the Firebase db's.
 
+##### Connect test Stripe webhook to development
+
+The following steps will setup your Firebase development environment with your Stripe test environment.
+
+1. Run the stripe webhook listener locally:
+
+```
+yarn dev:stripe
+```
+
+2. Once your Stripe webhook is created, copy the Signing secret.
+
+3. Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key).
+
+4. Add the secrets to `./packages/functions/.env.development`.
+
+---
+
 ##### Connect test Stripe webhook to staging
 
 The following steps will setup your Firebase staging environment with your Stripe test environment.
@@ -270,7 +288,9 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 1. Add an API key to each of your Resend accounts (staging and production).
 
-2. Push the secrets to Firebase functions.
+2. Add the staging API key to `./packages/functions/.env.development`.
+
+3. Push the secrets to Firebase functions.
 
 ```
 cd ./packages/firebase

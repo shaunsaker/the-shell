@@ -1,5 +1,5 @@
 import { firebase } from '../firebaseAdmin'
-import { Product } from '../models'
+import { Price, Product } from '../models'
 
 export const getProductByPriceId = async (priceId: string) => {
   const priceDoc = await firebase.firestore().collection('prices').doc(priceId).get()
@@ -8,23 +8,23 @@ export const getProductByPriceId = async (priceId: string) => {
     throw new Error('Price not found')
   }
 
-  const priceData = priceDoc.data()
+  const priceData = priceDoc.data() as Price
 
   if (!priceData) {
     throw new Error('Price not found')
   }
 
-  const productDoc = await firebase.firestore().collection('products').doc(priceData.product_id).get()
+  const productDoc = await firebase.firestore().collection('products').doc(priceData.productId).get()
 
   if (!productDoc.exists) {
     throw new Error('Product not found')
   }
 
-  const productData = productDoc.data()
+  const productData = productDoc.data() as Product
 
   if (!productData) {
     throw new Error('Product not found')
   }
 
-  return productData as Product
+  return productData
 }

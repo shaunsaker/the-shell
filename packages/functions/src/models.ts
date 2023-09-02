@@ -1,24 +1,28 @@
 /* USERS */
+export type BillingAddress = {
+  city: string
+  line1: string
+  line2?: string
+  state: string
+  country: string
+  postalCode: string
+}
+
+export type PaymentMethod = {
+  brand: string
+  expMonth: number
+  expYear: number
+  last4: string
+}
+
 export type User = {
   id: string
   createdAt: string
   email: string
   firstName: string
   lastName: string
-  billingAddress?: {
-    city: string
-    country: string
-    line1: string
-    line2: string
-    postalCode: string
-    state: string
-  }
-  paymentMethod?: {
-    brand: string
-    expMonth: number
-    expYear: number
-    last4: string
-  }
+  billingAddress?: BillingAddress
+  paymentMethod?: PaymentMethod
 }
 
 /* SUBSCRIPTION */

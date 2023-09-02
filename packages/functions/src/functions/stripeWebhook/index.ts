@@ -34,7 +34,7 @@ export const stripeWebhookFunction = onRequest(async (request, response) => {
 
   // First step is to verify the event. The .text() method must be used as the
   // verification relies on the raw request body rather than the parsed JSON.
-  const body = request.body
+  const body = request.rawBody
 
   if (!body) {
     response.status(400).send('Missing body')
@@ -47,7 +47,7 @@ export const stripeWebhookFunction = onRequest(async (request, response) => {
     stripeEvent = await stripe.webhooks.constructEventAsync(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SIGNING_SECRET || '',
+      import.meta.env.VITE_STRIPE_WEBHOOK_SIGNING_SECRET || '',
       undefined,
       cryptoProvider,
     )

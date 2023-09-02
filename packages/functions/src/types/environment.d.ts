@@ -1,9 +1,6 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      FIREBASE_CONFIG: {
-        projectId: string
-      }
       STRIPE_API_KEY: string
       STRIPE_WEBHOOK_SIGNING_SECRET: string
       RESEND_API_KEY: string
