@@ -11,9 +11,7 @@ import { SettingsTeamsRow } from './components/SettingsTeamRow'
 
 export const SettingsTeams = (): ReactElement => {
   const navigate = useNavigate()
-  const { data: teams, isLoading: teamsLoading } = useTeams()
-
-  const isLoading = teamsLoading
+  const { data: teams, isLoading } = useTeams()
 
   return (
     <main>
@@ -70,7 +68,7 @@ export const SettingsTeams = (): ReactElement => {
               </TableRow>
             ) : teams?.length ? (
               teams?.map(team => {
-                return <SettingsTeamsRow team={team} />
+                return <SettingsTeamsRow key={team.id} team={team} />
               })
             ) : (
               <TableRow>

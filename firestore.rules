@@ -1,58 +1,69 @@
 rules_version = '2';
 
 service cloud.firestore {
-  function isSignedIn() {
-    return request.auth != null;
-  }
-
-  function isDocumentOwner(userId) {
-    return request.auth.uid == userId;
-  }
-
-  function isTeamOwner() {
-    return request.auth.uid == request.resource.data.ownerId;
-  }
-
-  function isTeamAdmin(teamId) {
-    return get(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid)).data.role == 'admin';
-  }
-
-  function isTeamMember(teamId) {
-    return get(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid));
-  }
-  
   match /databases/{database}/documents {
-    match /{document=**} {
-      match /users/{userId} {
-        allow read, write: if isDocumentOwner(userId);
-      }
+    function isSignedIn() {
+      return request.auth != null;
+    }
 
-      match /customers/{customerId} {
-        allow read, create: if isDocumentOwner(customerId);
-      }
+    function isDocumentOwner(userId) {
+      return request.auth.uid == userId;
+    }
 
-      match /products/{productId} {
-        allow read: if isSignedIn();
-      }
+    function isResourceOwner() {
+      return request.auth.uid == resource.data.userId;
+    }
 
-      match /prices/{priceId} {
-        allow read: if isSignedIn();
-      }
+    function isTeamOwner() {
+      return request.auth.uid == request.resource.data.ownerId;
+    }
 
-      match /subscriptions/{subscriptionId} {
-        allow read: if request.auth.uid == resource.data.userId;
-      }
+    function isTeamMemberOwner(teamId) {
+      return get(/databases/$(database)/documents/teams/$(teamId)).data.ownerId == request.auth.uid;
+    }
 
-      match /teams/{teamId} {
-        allow create: if isTeamOwner();
-        allow write: if isTeamAdmin(teamId);
-        allow read: if isTeamMember(teamId);
+    function isTeamAdmin(teamId) {
+      return get(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid)).data.role == 'admin';
+    }
 
-        match /members/{userId} {
-          allow write: if isTeamAdmin(teamId); 
-          allow read: if isTeamMember(teamId);
-        }
+    function isTeamMember(teamId) {
+      return exists(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid));
+    }
+
+
+    match /users/{userId} {
+      allow read, write: if isSignedIn() && isDocumentOwner(userId);
+    }
+
+    match /customers/{userId} {
+      allow read, create: if isSignedIn() && isDocumentOwner(userId);
+    }
+
+    match /products/{productId} {
+      allow read: if isSignedIn();
+    }
+
+    match /prices/{priceId} {
+      allow read: if isSignedIn();
+    }
+
+    match /subscriptions/{subscriptionId} {
+      allow read: if isSignedIn() && isResourceOwner();
+    }
+
+    match /teams/{teamId} {
+      allow write: if isSignedIn() && (isTeamOwner() || isTeamAdmin(teamId));
+      allow read: if isSignedIn() && isTeamMember(teamId);
+
+      match /members/{memberId} {
+        allow write: if isSignedIn() && (isTeamMemberOwner(teamId) || isTeamAdmin(teamId));
+        allow read: if isSignedIn() && isTeamMember(teamId);
       }
+    }
+
+    // this rule allows us to use collectionGroup queries to find all the user's team members and subsquently their teams
+    match /{document=**}/members/{memberId} {
+      allow read: if isSignedIn() && isResourceOwner();
     }
   }
 }

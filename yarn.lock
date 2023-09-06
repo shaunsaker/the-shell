@@ -2724,6 +2724,13 @@
   dependencies:
     react "18.2.0"
 
+"@react-email/button@0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@react-email/button/-/button-0.0.9.tgz#3366c3216add68936b3a555e72388d1317dda1ff"
+  integrity sha512-eYWQ1X4RFlkKYYSPgSrT6rk98wuLOieEAGENrp9j37t1v/1C+jMmBu0UjZvwHsHWdbOMRjbVDFeMI/+MxWKSEg==
+  dependencies:
+    react "18.2.0"
+
 "@react-email/column@0.0.7":
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@react-email/column/-/column-0.0.7.tgz#c67df014dc682df290e22d51d8f498e74e29e4c4"
@@ -2755,6 +2762,30 @@
     "@react-email/text" "0.0.5"
     react "18.2.0"
 
+"@react-email/components@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@react-email/components/-/components-0.0.7.tgz#419d8c6c1328dc0d15e953df9960a85d0c132281"
+  integrity sha512-GpRKV8E7EvK9OPf61f5Z8hliB3p0hTot8tslmEUVCTtX7tdL0wM2YEcZiDWU4PJcudJ/QWHJ7Y5wGzNEARcooA==
+  dependencies:
+    "@react-email/body" "0.0.2"
+    "@react-email/button" "0.0.9"
+    "@react-email/column" "0.0.7"
+    "@react-email/container" "0.0.8"
+    "@react-email/font" "0.0.2"
+    "@react-email/head" "0.0.5"
+    "@react-email/heading" "0.0.8"
+    "@react-email/hr" "0.0.5"
+    "@react-email/html" "0.0.4"
+    "@react-email/img" "0.0.5"
+    "@react-email/link" "0.0.5"
+    "@react-email/preview" "0.0.6"
+    "@react-email/render" "0.0.7"
+    "@react-email/row" "0.0.5"
+    "@react-email/section" "0.0.9"
+    "@react-email/tailwind" "0.0.8"
+    "@react-email/text" "0.0.5"
+    react "18.2.0"
+
 "@react-email/container@0.0.8":
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/@react-email/container/-/container-0.0.8.tgz#a5442b217247d7fe6134dc63564094ffbaca7c12"
@@ -2766,6 +2797,13 @@
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@react-email/font/-/font-0.0.1.tgz#0942b214b35b4ded40590890b058246762ed2827"
   integrity sha512-n43gjIIBgQse1visYsyk8zADzk1QHVrqLc98rKoQLG3qJwLBGTHYLpMDti/4tCAt54d7Ln1VINipGsyQS8PaqA==
+  dependencies:
+    react "18.2.0"
+
+"@react-email/font@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@react-email/font/-/font-0.0.2.tgz#fc863e47f0b13951c43866c72ccf77dc98269570"
+  integrity sha512-mmkyOCAcbgytE7DfIuOBVG1YVDUZY9rPCor4o7pUEzGJiU2y/TNuV8CgNPSU/VgXeBKL/94QDjB62OrGHlFNMQ==
   dependencies:
     react "18.2.0"
 
@@ -2827,7 +2865,7 @@
     react "18.2.0"
     react-dom "18.2.0"
 
-"@react-email/render@0.0.7":
+"@react-email/render@0.0.7", "@react-email/render@^0.0.7":
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@react-email/render/-/render-0.0.7.tgz#92a14e03a59160c39bceeff50517c7058721ab6f"
   integrity sha512-hMMhxk6TpOcDC5qnKzXPVJoVGEwfm+U5bGOPH+MyTTlx0F02RLQygcATBKsbP7aI/mvkmBAZoFbgPIHop7ovug==

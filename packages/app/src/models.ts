@@ -1,3 +1,5 @@
+export const getTeamMembersQueryKey = (teamId: string) => `teams/${teamId}members`
+
 export enum QueryKeys {
   AuthUser = 'authUser',
   Products = 'products',
@@ -5,5 +7,4 @@ export enum QueryKeys {
   Subscription = 'subscription',
   User = 'user',
   Teams = 'teams',
-  TeamMembers = 'teamMembers',
 }

@@ -14,7 +14,6 @@ import { SettingsSubscription } from './pages/settings/subscription'
 import { SettingsTeams } from './pages/settings/teams'
 import { SettingsAddTeam } from './pages/settings/teams/addTeam'
 import { SettingsEditTeam } from './pages/settings/teams/editTeam'
-import { SettingsAcceptInvite } from './pages/settings/teams/editTeam/acceptInvite'
 import { SettingsDeleteTeam } from './pages/settings/teams/editTeam/deleteTeam'
 import { SettingsEditTeamMember } from './pages/settings/teams/editTeamMember'
 import { SettingsRemoveTeamMember } from './pages/settings/teams/editTeamMember/removeTeamMember'
@@ -104,11 +103,6 @@ const authorisedRouter = createBrowserRouter([
           {
             path: routes.settingsInviteTeamMembers,
             element: <SettingsInviteTeamMembers />,
-            errorElement,
-          },
-          {
-            path: routes.settingsAcceptInvite,
-            element: <SettingsAcceptInvite />,
             errorElement,
           },
           {

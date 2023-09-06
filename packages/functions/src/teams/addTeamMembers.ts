@@ -23,9 +23,9 @@ const parseTeamMemberStatus = (status: string): TeamMemberStatus => {
   }
 }
 
-export const addTeamMembers = async (teamMembers: Omit<TeamMember, 'id'>[]) => {
+export const addTeamMembers = async (teamId: string, teamMembers: TeamMember[]) => {
   const teamMembersData = teamMembers.map(teamMember => ({
-    ...teamMembers,
+    ...teamMember,
     role: parseTeamMemberRole(teamMember.role),
     status: parseTeamMemberStatus(teamMember.status),
   }))
@@ -33,7 +33,7 @@ export const addTeamMembers = async (teamMembers: Omit<TeamMember, 'id'>[]) => {
   const batch = firebase.firestore().batch()
 
   for (const teamMember of teamMembersData) {
-    const teamMemberRef = firebase.firestore().collection('teamMembers').doc()
+    const teamMemberRef = firebase.firestore().collection('teams').doc(teamId).collection('members').doc(teamMember.id)
 
     batch.set(teamMemberRef, teamMember)
   }

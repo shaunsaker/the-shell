@@ -1,7 +1,6 @@
 import React, { ReactElement, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthUser } from '../../../../auth/hooks/useAuthUser'
 import { Dialog } from '../../../../components/dialog/Dialog'
 import { TextInput } from '../../../../components/textInput/TextInput'
 import { routes } from '../../../../routes'
@@ -11,7 +10,6 @@ import { useUser } from '../../../../users/hooks/useUser'
 export const SettingsAddTeam = (): ReactElement => {
   const navigate = useNavigate()
   const [name, setName] = useState('')
-  const { data: authUser } = useAuthUser()
   const { data: user } = useUser()
   const { mutate: createTeam, isLoading } = useCreateTeam()
 
@@ -26,10 +24,9 @@ export const SettingsAddTeam = (): ReactElement => {
       confirmDisabled={disabled}
       confirmLoading={isLoading}
       onConfirmClick={() => {
-        if (authUser?.uid && user) {
+        if (user) {
           createTeam({
             name,
-            uid: authUser.uid,
             userFirstName: user.firstName,
             userLastName: user.lastName,
             userEmail: user.email,

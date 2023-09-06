@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 
-import { QueryKeys } from '../../models'
+import { getTeamMembersQueryKey } from '../../models'
 import { updateTeamMember } from '../../teams/api/updateTeamMember'
 
 export const useUpdateTeamMember = () => {
@@ -9,9 +9,9 @@ export const useUpdateTeamMember = () => {
 
   return useMutation({
     mutationFn: updateTeamMember,
-    onSuccess: () => {
-      // invalidate the teams query to refetch the data
-      queryClient.invalidateQueries([QueryKeys.Teams])
+    onSuccess: (_, { teamId }) => {
+      // invalidate the team members query to refetch the data
+      queryClient.invalidateQueries([getTeamMembersQueryKey(teamId)])
 
       toast.success('Team member updated successfully')
     },

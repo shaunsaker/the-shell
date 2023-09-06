@@ -12,8 +12,9 @@
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
     "lint:ts": "tsc",
     "lint": "npm-run-all --parallel lint:*",
+    "preemulator": "npx kill-port 4000",
     "emulator": "firebase emulators:start --only auth,firestore,functions --import ./emulator --export-on-exit ./emulator",
-    "dev": "npm-run-all --parallel emulator build:functions:watch",
+    "dev": "npm-run-all --parallel build:functions:watch emulator",
     "prebuild:functions": "rm -rf ./dist",
     "build:functions": "vite build",
     "build:functions:watch": "yarn build:functions --watch --mode development",
@@ -21,11 +22,15 @@
     "build": "npm-run-all --parallel build:*"
   },
   "dependencies": {
+    "@react-email/components": "^0.0.7",
+    "@react-email/render": "^0.0.7",
     "dayjs": "^1.11.9",
     "firebase-admin": "^11.8.0",
     "firebase-functions": "^4.3.1",
     "resend": "^1.0.0",
-    "stripe": "^12.18.0"
+    "stripe": "^12.18.0",
+    "tailwind-merge": "^1.14.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "eslint-config-custom": "*",

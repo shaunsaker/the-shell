@@ -1,30 +1,38 @@
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 
+import { getAuthUser } from '../../auth/api/getAuthUser'
 import { db } from '../../firebase'
 import { Team, TeamMember, TeamMemberRole, TeamMemberStatus } from '../../types/firebase'
 import { getISOString } from '../../utils/getISOString'
+import { getUuid } from '../../utils/getUuid'
 
 export const createTeam = async ({
   name,
-  uid,
   userFirstName,
   userLastName,
   userEmail,
 }: {
   name: string
-  uid: string
   userFirstName: string
   userLastName: string
   userEmail: string
 }) => {
+  const authUser = await getAuthUser()
+
+  if (!authUser) {
+    throw new Error('User not found')
+  }
+
+  const uid = authUser.uid
   const now = getISOString()
-  const team: Omit<Team, 'id'> = { name, ownerId: uid, createdAt: now }
+  const teamId = getUuid()
+  const team: Team = { id: teamId, name, ownerId: uid, createdAt: now }
 
   // create the team
-  const teamRef = await addDoc(collection(db, 'teams'), team)
+  await setDoc(doc(db, 'teams', teamId), team)
 
-  const teamId = teamRef.id
-  const teamMember: Omit<TeamMember, 'id'> = {
+  const teamMember: TeamMember = {
+    id: uid,
     teamId,
     userId: uid,
     firstName: userFirstName,
@@ -38,5 +46,5 @@ export const createTeam = async ({
   // add the user as a team member
   await setDoc(doc(db, 'teams', teamId, 'members', uid), teamMember)
 
-  return teamRef
+  return { teamId }
 }

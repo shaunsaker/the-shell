@@ -7,14 +7,12 @@ export const inviteTeamMembers = async ({
   siteUrl,
   teamId,
   emails,
-  redirectTo,
 }: {
   siteUrl: string
   teamId: string
   emails: string[]
-  redirectTo: string
 }) => {
-  const response = await inviteTeamMembersFunction({ siteUrl, teamId, emails, redirectTo })
+  const response = await inviteTeamMembersFunction({ siteUrl, teamId, emails })
 
   return response
 }

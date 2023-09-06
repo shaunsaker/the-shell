@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 
+import app from '../../common/app.json'
 import { Button } from '../components/Button'
 import { Description } from '../components/Description'
 import { Layout } from '../components/Layout'
@@ -18,7 +19,7 @@ export const AddedToTeam = ({ siteUrl, userName = '', teamName, adminTeamMemberN
       <Title>Hi{userName ? ` ${userName}` : ''},</Title>
 
       <Description>
-        You've been added to team "{teamName}" by {adminTeamMemberName}.
+        You've been added to team "{teamName}" on {app.displayName} by {adminTeamMemberName}.
       </Description>
 
       <Button href={siteUrl}>Go to your dashboard</Button>

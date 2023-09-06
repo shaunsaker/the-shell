@@ -116,8 +116,8 @@ export type TeamMember = {
   id: string
   teamId: string
   userId: string | null // the userId is null if the user does not have an account yet
-  firstName: string
-  lastName: string
+  firstName: string | null // as above
+  lastName: string | null // as above
   createdAt: string
   email: string
   role: TeamMemberRole
@@ -132,7 +132,6 @@ export enum Functions {
   deleteUserAccount = 'deleteUserAccountFunction',
   inviteTeamMembers = 'inviteTeamMembersFunction',
   removeTeamMember = 'removeTeamMemberFunction',
-  resendTeamInvite = 'resendTeamInviteFunction',
   updateSubscriptionQuantity = 'updateSubscriptionQuantityFunction',
 }
 
@@ -179,7 +178,6 @@ export type FunctionsMap = {
       siteUrl: string
       teamId: string
       emails: string[]
-      redirectTo: string
     }
     response: {
       ok: true
@@ -190,16 +188,6 @@ export type FunctionsMap = {
       siteUrl: string
       teamId: string
       teamMemberId: string
-    }
-    response: {
-      ok: true
-    }
-  }
-  [Functions.resendTeamInvite]: {
-    data: {
-      teamId: string
-      email: string
-      redirectTo: string
     }
     response: {
       ok: true

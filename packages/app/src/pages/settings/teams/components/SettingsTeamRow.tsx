@@ -21,7 +21,7 @@ export const SettingsTeamsRow = ({ team }: Props): ReactElement => {
   const createdByTeamMember = teamMembers?.find(teamMember => teamMember.userId === team.ownerId)
 
   return (
-    <TableRow key={team.id}>
+    <TableRow>
       <TableCell>{team.name}</TableCell>
 
       <TableCell>{formatTeamMemberName(createdByTeamMember)}</TableCell>

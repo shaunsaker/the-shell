@@ -6,11 +6,13 @@ import { useRemoveTeamMember } from '../../../../../teams/hooks/useRemoveTeamMem
 import { useRestrictedTeamAdminRoute } from '../../../../../teams/hooks/useRestrictedTeamAdminRoute'
 import { useTeam } from '../../../../../teams/hooks/useTeam'
 import { useTeamMember } from '../../../../../teams/hooks/useTeamMember'
+import { useTeamMembers } from '../../../../../teams/hooks/useTeamMembers'
 import { formatTeamMemberName } from '../../../../../utils/formatTeamMemberName'
 
 export const SettingsRemoveTeamMember = (): ReactElement => {
   const { data: teamMember } = useTeamMember()
   const { data: team } = useTeam()
+  const { data: teamMembers } = useTeamMembers(team?.id)
   const { mutate: removeTeamMember, isLoading } = useRemoveTeamMember()
   const navigate = useNavigate()
   useRestrictedTeamAdminRoute()
@@ -29,7 +31,12 @@ export const SettingsRemoveTeamMember = (): ReactElement => {
       confirmIsDangerous
       onConfirmClick={() => {
         if (team?.id && teamMember) {
-          removeTeamMember({ siteUrl: window.location.origin, teamId: team.id, teamMemberId: teamMember.id })
+          removeTeamMember({
+            siteUrl: window.location.origin,
+            teamId: team.id,
+            teamMemberId: teamMember.id,
+            isLastTeamMember: teamMembers?.length === 1,
+          })
         }
       }}
       onClose={() => {

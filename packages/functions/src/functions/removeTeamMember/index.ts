@@ -3,9 +3,11 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { getAuthUser } from '../../auth/getAuthUser'
 import { sendRemovedFromTeamEmail } from '../../emails/sendRemovedFromTeamEmail'
 import { Functions, FunctionsMap } from '../../models'
+import { deleteTeam } from '../../teams/deleteTeam'
 import { deleteTeamMember } from '../../teams/deleteTeamMembers'
 import { getTeam } from '../../teams/getTeam'
 import { getTeamMembers } from '../../teams/getTeamMembers'
+import { verifyTeamAdmin } from '../../teams/verifyTeamAdmin'
 import { formatName } from '../../utils/formatName'
 
 console.log('Hello from Remove Team Member!')
@@ -30,6 +32,8 @@ export const removeTeamMemberFunction = onCall<
     // Destructure the data from the POST body
     const { siteUrl, teamId, teamMemberId } = request.data
 
+    const adminTeamMember = await verifyTeamAdmin({ teamId, uid: user.uid })
+
     const team = await getTeam(teamId)
 
     if (!team) {
@@ -38,20 +42,18 @@ export const removeTeamMemberFunction = onCall<
 
     const teamMembers = await getTeamMembers(teamId)
 
-    // Verify that the logged in user is an admin of the team
-    const adminTeamMember = teamMembers.find(teamMember => teamMember.userId === user.uid)
-
-    if (!adminTeamMember || adminTeamMember.role !== 'admin') {
-      throw new HttpsError('permission-denied', 'You need to be a team admin to invite team members.')
-    }
-
     const teamMember = teamMembers.find(teamMember => teamMember.id === teamMemberId)
 
     if (!teamMember) {
       throw new HttpsError('not-found', 'Team member not found')
     }
 
-    await deleteTeamMember(teamMemberId)
+    await deleteTeamMember({ teamId, teamMemberId })
+
+    // delete the team if last team member
+    if (teamMembers.length === 1) {
+      await deleteTeam(teamId)
+    }
 
     await sendRemovedFromTeamEmail({
       siteUrl,

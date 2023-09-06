@@ -3,8 +3,9 @@ import { createCheckoutSessionFunction } from './functions/createCheckoutSession
 import { deleteTeamFunction } from './functions/deleteTeam'
 import { deleteUserAccountFunction } from './functions/deleteUserAccount'
 import { inviteTeamMembersFunction } from './functions/inviteTeamMembers'
+import { onTeamMemberUserDataCreated } from './functions/onTeamMemberUserDataCreated'
+import { onTeamMemberUserDataUpdated } from './functions/onTeamMemberUserDataUpdated'
 import { removeTeamMemberFunction } from './functions/removeTeamMember'
-import { resendTeamInviteFunction } from './functions/resendTeamInvite'
 import { stripeWebhookFunction } from './functions/stripeWebhook'
 import { updateSubscriptionQuantityFunction } from './functions/updateSubscriptionQuantity'
 
@@ -14,8 +15,9 @@ export {
   deleteTeamFunction,
   deleteUserAccountFunction,
   inviteTeamMembersFunction,
+  onTeamMemberUserDataCreated,
+  onTeamMemberUserDataUpdated,
   removeTeamMemberFunction,
-  resendTeamInviteFunction,
   stripeWebhookFunction,
   updateSubscriptionQuantityFunction,
 }

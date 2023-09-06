@@ -18,7 +18,7 @@ export const useCreateTeam = () => {
 
       toast.success('Team created successfully')
 
-      navigate(routes.settingsEditTeam.replace(':teamId', data.id))
+      navigate(routes.settingsEditTeam.replace(':teamId', data.teamId))
     },
   })
 }
