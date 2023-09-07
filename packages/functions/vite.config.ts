@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { dirname, join, resolve } from 'path'
 import copy from 'rollup-plugin-copy'
 import generatePackageJson from 'rollup-plugin-generate-package-json'
 import { defineConfig } from 'vite'
@@ -39,6 +39,10 @@ export default defineConfig({
   resolve: {
     // This setting is necessary for vite to resolve symlinks to packages in the monorepo
     preserveSymlinks: true,
+    alias: {
+      // fixes This browser does not support `document.implementation.createHTMLDocument` => https://github.com/remarkablemark/html-react-parser/issues/736
+      'html-dom-parser': join(dirname(resolve('html-dom-parser')), 'lib/server/html-to-dom.js'),
+    },
   },
   build: {
     lib: {
