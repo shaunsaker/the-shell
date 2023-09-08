@@ -8,7 +8,7 @@ export const useAuthListener = () => {
   const queryClient = useQueryClient()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChange(() => {
+    const unsubscribe = onAuthStateChange(user => {
       // invalidate the query session cache so that we refetch it
       queryClient.invalidateQueries([QueryKeys.AuthUser])
     })
