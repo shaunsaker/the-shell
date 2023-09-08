@@ -163,6 +163,8 @@ gh secret set FIREBASE_TOKEN --body VALUE
 
 8. _Manual Step_: Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into `packages/app/.env.development`, `./packages/app/.env.staging` and `./packages/app/.env.production`.
 
+9. _Manual Step_: [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/the-shell-development/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable" and "Email link (passwordless sign-in)" => "Enable".
+
 ---
 
 ### Setup Stripe

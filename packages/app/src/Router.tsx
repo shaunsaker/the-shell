@@ -20,6 +20,7 @@ import { SettingsRemoveTeamMember } from './pages/settings/teams/editTeamMember/
 import { SettingsInviteTeamMembers } from './pages/settings/teams/inviteTeamMembers/SettingsInviteTeamMembers'
 import SignIn from './pages/signIn'
 import SignUp from './pages/signUp'
+import VerifyEmail from './pages/verifyEmail'
 import { routes } from './routes'
 
 const errorElement = <ErrorBoundary />
@@ -28,6 +29,11 @@ const unauthorisedRouter = createBrowserRouter([
   {
     path: routes.signUp,
     element: <SignUp />,
+    errorElement,
+  },
+  {
+    path: routes.verifyEmail,
+    element: <VerifyEmail />,
     errorElement,
   },
   {
@@ -50,6 +56,11 @@ const authorisedRouter = createBrowserRouter([
       {
         path: routes.dashboard,
         element: <Dashboard />,
+        errorElement,
+      },
+      {
+        path: routes.verifyEmail,
+        element: <VerifyEmail />,
         errorElement,
       },
       {
@@ -133,5 +144,5 @@ export const Router = (): ReactElement => {
     return <Loading />
   }
 
-  return <RouterProvider router={authUser ? authorisedRouter : unauthorisedRouter} />
+  return <RouterProvider router={authUser?.emailVerified ? authorisedRouter : unauthorisedRouter} />
 }

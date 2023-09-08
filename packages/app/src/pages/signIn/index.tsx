@@ -1,17 +1,17 @@
 import { FormEvent, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
 import { useSignInWithPassword } from '../../auth/hooks/useSignInWithPassword'
 import { AuthLayout } from '../../components/authLayout/AuthLayout'
 import { Button } from '../../components/button/Button'
 import { Text } from '../../components/text/Text'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
+import { useUserEmail } from '../../users/hooks/useUserEmail'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function SignIn() {
-  const [email, setEmail] = useAuthEmail()
+  const [email, setEmail] = useUserEmail()
   const [password, setPassword] = useState('')
   const { mutate: signInWithPassword, isLoading } = useSignInWithPassword()
   const navigate = useNavigate()

@@ -2,16 +2,16 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { FormEvent, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
 import { useResetPasswordForEmail } from '../../auth/hooks/useResetPasswordForEmail'
 import { AuthLayout } from '../../components/authLayout/AuthLayout'
 import { Button } from '../../components/button/Button'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
+import { useUserEmail } from '../../users/hooks/useUserEmail'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useAuthEmail()
+  const [email, setEmail] = useUserEmail()
   const navigate = useNavigate()
   const { mutate: resetPasswordForEmail, isLoading } = useResetPasswordForEmail()
 

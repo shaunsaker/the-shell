@@ -2,19 +2,21 @@ import { FormEvent, useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import app from '../../../../common/app.json'
-import { useAuthEmail } from '../../auth/hooks/useAuthEmail'
 import { useSignUpWithPassword } from '../../auth/hooks/useSignUpWithPassword'
 import { AuthLayout } from '../../components/authLayout/AuthLayout'
 import { Button } from '../../components/button/Button'
 import { Text } from '../../components/text/Text'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
+import { useUserEmail } from '../../users/hooks/useUserEmail'
+import { useUserFirstName } from '../../users/hooks/useUserFirstName'
+import { useUserLastName } from '../../users/hooks/useUserLastName'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function SignUp() {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useAuthEmail()
+  const [firstName, setFirstName] = useUserFirstName()
+  const [lastName, setLastName] = useUserLastName()
+  const [email, setEmail] = useUserEmail()
   const [password, setPassword] = useState('')
   const { mutate: signUpWithPassword, isLoading } = useSignUpWithPassword()
   const navigate = useNavigate()
@@ -33,11 +35,9 @@ export default function SignUp() {
       await signUpWithPassword({
         email,
         password,
-        firstName,
-        lastName,
       })
     },
-    [disabled, email, firstName, lastName, password, signUpWithPassword],
+    [disabled, email, password, signUpWithPassword],
   )
 
   return (

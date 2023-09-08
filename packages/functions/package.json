@@ -19,7 +19,8 @@
     "build:functions": "vite build",
     "build:functions:watch": "yarn build:functions --watch --mode development",
     "build:types": "cp ./src/models.ts ../app/src/types/firebase.ts",
-    "build": "npm-run-all --parallel build:*"
+    "build": "npm-run-all --parallel build:*",
+    "deploy": "firebase deploy --only functions,firestore,hosting"
   },
   "dependencies": {
     "@react-email/components": "^0.0.7",
