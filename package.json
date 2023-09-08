@@ -10,7 +10,7 @@
     "dev:stripe": "stripe listen --forward-to http://127.0.0.1:5001/the-shell-development/us-central1/stripeWebhookFunction",
     "lint": "turbo run lint",
     "build": "turbo run build",
-    "deploy": "firebase deploy --only functions,firestore:rules,hosting"
+    "deploy": "firebase deploy --only firestore,functions,hosting"
   },
   "packageManager": "yarn@1.22.19",
   "workspaces": {
