@@ -4,9 +4,9 @@ export const TEAM_MEMBER_ID_PARAM = ':teamMemberId'
 // FIXME: SS this should be an enum
 export const routes = {
   signUp: '/sign-up',
-  verifyEmail: '/verify-email',
   signIn: '/sign-in',
   forgotPassword: '/forgot-password',
+  userManagement: '/user-management',
   dashboard: '/',
   settings: '/settings',
   settingsAccount: '/settings/account',

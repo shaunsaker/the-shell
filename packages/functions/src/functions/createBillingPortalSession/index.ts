@@ -36,7 +36,6 @@ export const createBillingPortalSessionFunction = onCall<
       })
     }
 
-    // Destructure the data from the POST body
     const { returnUrl } = request.data
 
     // Create a billing potral session in Stripe

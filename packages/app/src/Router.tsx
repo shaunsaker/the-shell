@@ -20,7 +20,7 @@ import { SettingsRemoveTeamMember } from './pages/settings/teams/editTeamMember/
 import { SettingsInviteTeamMembers } from './pages/settings/teams/inviteTeamMembers/SettingsInviteTeamMembers'
 import SignIn from './pages/signIn'
 import SignUp from './pages/signUp'
-import VerifyEmail from './pages/verifyEmail'
+import UserManagement from './pages/userManagement'
 import { routes } from './routes'
 
 const errorElement = <ErrorBoundary />
@@ -29,11 +29,6 @@ const unauthorisedRouter = createBrowserRouter([
   {
     path: routes.signUp,
     element: <SignUp />,
-    errorElement,
-  },
-  {
-    path: routes.verifyEmail,
-    element: <VerifyEmail />,
     errorElement,
   },
   {
@@ -46,10 +41,20 @@ const unauthorisedRouter = createBrowserRouter([
     element: <ForgotPassword />,
     errorElement,
   },
+  {
+    path: routes.userManagement,
+    element: <UserManagement />,
+    errorElement,
+  },
   { path: '*', element: <Navigate to={routes.signIn} /> },
 ])
 
 const authorisedRouter = createBrowserRouter([
+  {
+    path: routes.userManagement,
+    element: <UserManagement />,
+    errorElement,
+  },
   {
     element: <MainLayout />,
     children: [
@@ -59,8 +64,8 @@ const authorisedRouter = createBrowserRouter([
         errorElement,
       },
       {
-        path: routes.verifyEmail,
-        element: <VerifyEmail />,
+        path: routes.userManagement,
+        element: <UserManagement />,
         errorElement,
       },
       {

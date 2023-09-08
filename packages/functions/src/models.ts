@@ -131,6 +131,7 @@ export enum Functions {
   deleteTeam = 'deleteTeamFunction',
   deleteUserAccount = 'deleteUserAccountFunction',
   inviteTeamMembers = 'inviteTeamMembersFunction',
+  sendEmailVerification = 'sendEmailVerificationFunction',
   removeTeamMember = 'removeTeamMemberFunction',
   updateSubscriptionQuantity = 'updateSubscriptionQuantityFunction',
 }
@@ -188,6 +189,16 @@ export type FunctionsMap = {
       siteUrl: string
       teamId: string
       teamMemberId: string
+    }
+    response: {
+      ok: true
+    }
+  }
+  [Functions.sendEmailVerification]: {
+    data: {
+      siteUrl: string
+      email: string
+      redirectUrl: string
     }
     response: {
       ok: true

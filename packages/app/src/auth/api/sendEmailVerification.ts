@@ -1,15 +1,23 @@
-import { ActionCodeSettings, sendEmailVerification as sendEmailVerificationCb, User } from 'firebase/auth'
+import { User } from 'firebase/auth'
 
 import { routes } from '../../routes'
+import { Functions } from '../../types/firebase'
+import { invokeFunction } from '../../utils/invokeFunction'
+
+const sendEmailVerificationFunction = invokeFunction(Functions.sendEmailVerification)
 
 export const sendEmailVerification = async (user: User) => {
-  const actionCodeSettings: ActionCodeSettings = {
-    // URL you want to redirect back to. The domain (www.example.com) for this
-    // URL must be in the authorized domains list in the Firebase Console.
-    url: `${window.location.origin}${routes.verifyEmail}`,
-    // This must be true.
-    handleCodeInApp: true,
+  if (!user.email) {
+    throw new Error('No email found')
   }
 
-  await sendEmailVerificationCb(user, actionCodeSettings)
+  if (user.emailVerified) {
+    return
+  }
+
+  await sendEmailVerificationFunction({
+    email: user.email,
+    redirectUrl: `${window.location.origin}${routes.userManagement}`,
+    siteUrl: window.location.origin,
+  })
 }

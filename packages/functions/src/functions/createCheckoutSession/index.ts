@@ -36,7 +36,7 @@ export const createCheckoutSessionFunction = onCall<
         email: user.email || '',
       })
     }
-    // Destructure the data from the POST body
+
     const { priceId, quantity, successUrl, cancelUrl, metadata = {} } = request.data
 
     // Get the product using the priceId and pass product.metadata.freeTrialDays to createCheckoutSession

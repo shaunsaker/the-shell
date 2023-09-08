@@ -29,7 +29,6 @@ export const removeTeamMemberFunction = onCall<
       throw new HttpsError('not-found', 'User not found')
     }
 
-    // Destructure the data from the POST body
     const { siteUrl, teamId, teamMemberId } = request.data
 
     const adminTeamMember = await verifyTeamAdmin({ teamId, uid: user.uid })

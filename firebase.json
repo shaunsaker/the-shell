@@ -11,7 +11,7 @@
     }
   ],
   "hosting": {
-    "predeploy": "cd ./packages/scripts && yarn build && cd ../packages/functions && yarn build:types && cd ../app && yarn build:app",
+    "predeploy": "cd ./packages/scripts && yarn build && cd ../functions && yarn build:types && cd ../app && yarn build:app",
     "public": "./packages/app/dist",
     "rewrites": [
       {

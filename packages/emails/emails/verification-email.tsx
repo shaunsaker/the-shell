@@ -7,19 +7,19 @@ import { Title } from '../components/Title'
 
 type Props = {
   siteUrl: string
-  confirmationUrl: string
+  emailVerificationLink: string
 }
 
-export const ConfirmSignup = ({ siteUrl, confirmationUrl }: Props): ReactElement => {
+export const VerificationEmail = ({ siteUrl, emailVerificationLink }: Props): ReactElement => {
   return (
     <Layout siteUrl={siteUrl}>
       <Title>Confirm your signup</Title>
 
       <Description>Follow this link to confirm your user:</Description>
 
-      <Button href={confirmationUrl}>Confirm your mail</Button>
+      <Button href={emailVerificationLink}>Confirm your mail</Button>
     </Layout>
   )
 }
 
-export default ConfirmSignup
+export default VerificationEmail
