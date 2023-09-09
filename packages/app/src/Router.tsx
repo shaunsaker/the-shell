@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
 
 import { useAuthUser } from './auth/hooks/useAuthUser'
 import { ErrorBoundary } from './components/errorBoundary/ErrorBoundary'
@@ -25,7 +25,13 @@ import { routes } from './routes'
 
 const errorElement = <ErrorBoundary />
 
-const unauthorisedRouter = createBrowserRouter([
+const userManagementRoute = {
+  path: routes.userManagement,
+  element: <UserManagement />,
+  errorElement,
+}
+
+const unauthorisedRoutes: RouteObject[] = [
   {
     path: routes.signUp,
     element: <SignUp />,
@@ -41,31 +47,23 @@ const unauthorisedRouter = createBrowserRouter([
     element: <ForgotPassword />,
     errorElement,
   },
-  {
-    path: routes.userManagement,
-    element: <UserManagement />,
-    errorElement,
-  },
-  { path: '*', element: <Navigate to={routes.signIn} /> },
-])
+]
 
-const authorisedRouter = createBrowserRouter([
-  {
-    path: routes.userManagement,
-    element: <UserManagement />,
-    errorElement,
-  },
+// we only want to add the user management route to the unauthorised routes in production because
+// in development, firebase automatically verifies the email when the email action link is clicked
+if (import.meta.env.MODE !== 'development') {
+  unauthorisedRoutes.push(userManagementRoute)
+}
+
+unauthorisedRoutes.push({ path: '*', element: <Navigate to={routes.signIn} /> })
+
+const authorisedRoutes: RouteObject[] = [
   {
     element: <MainLayout />,
     children: [
       {
         path: routes.dashboard,
         element: <Dashboard />,
-        errorElement,
-      },
-      {
-        path: routes.userManagement,
-        element: <UserManagement />,
         errorElement,
       },
       {
@@ -140,14 +138,27 @@ const authorisedRouter = createBrowserRouter([
       { path: '*', element: <Navigate to={routes.dashboard} /> },
     ],
   },
-])
+]
+
+// we only want to add the user management route to the authorised routes in development because
+// in development, firebase automatically verifies the email when the email action link is clicked
+if (import.meta.env.MODE === 'development') {
+  authorisedRoutes.push(userManagementRoute)
+}
+
+authorisedRoutes.push({ path: '*', element: <Navigate to={routes.dashboard} /> })
+
+const unauthorisedRouter = createBrowserRouter(unauthorisedRoutes)
+const authorisedRouter = createBrowserRouter(authorisedRoutes)
 
 export const Router = (): ReactElement => {
   const { data: authUser, isLoading: authUserLoading } = useAuthUser()
+
+  const isAuthenticated = authUser && authUser.emailVerified // maybe we should also check if the user has data?
 
   if (authUserLoading) {
     return <Loading />
   }
 
-  return <RouterProvider router={authUser?.emailVerified ? authorisedRouter : unauthorisedRouter} />
+  return <RouterProvider router={isAuthenticated ? authorisedRouter : unauthorisedRouter} />
 }

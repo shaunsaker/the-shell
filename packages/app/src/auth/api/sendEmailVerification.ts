@@ -17,7 +17,7 @@ export const sendEmailVerification = async (user: User) => {
 
   await sendEmailVerificationFunction({
     email: user.email,
-    redirectUrl: `${window.location.origin}${routes.userManagement}`,
+    redirectUrl: `${window.location.origin}${routes.userManagement}?mode=verifyEmail`,
     siteUrl: window.location.origin,
   })
 }
