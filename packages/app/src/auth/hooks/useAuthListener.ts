@@ -1,17 +1,18 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 
-import { onAuthStateChange } from '../../auth/api/onAuthStateChanged'
+import { onAuthStateChanged } from '../../auth/api/onAuthStateChanged'
 import { QueryKeys } from '../../models'
 
 export const useAuthListener = () => {
   const queryClient = useQueryClient()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChange(authUser => {
+    // subscribe to the user's auth changes
+    const unsubscribe = onAuthStateChanged(authUser => {
       queryClient.setQueryData([QueryKeys.AuthUser], authUser)
     })
 
-    return () => unsubscribe()
+    return unsubscribe
   }, [queryClient])
 }

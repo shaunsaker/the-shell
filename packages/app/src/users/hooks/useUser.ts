@@ -5,9 +5,9 @@ import { QueryKeys } from '../../models'
 import { getUser } from '../api/getUser'
 
 export const useUser = () => {
-  const { data: user } = useAuthUser()
+  const { data: authUser } = useAuthUser()
 
-  const userId = user?.uid
+  const userId = authUser?.uid
 
   const query = useQuery({
     queryKey: [QueryKeys.User],
@@ -18,7 +18,7 @@ export const useUser = () => {
   return {
     ...query,
 
-    // for the loading state we use isFetching because the query may not be enabled yet if the user is not logged in
+    // for the loading state we use isFetching because the query may not be enabled yet if the authUser is not logged in
     isLoading: query.isFetching,
   }
 }

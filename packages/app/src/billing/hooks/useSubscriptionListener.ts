@@ -18,9 +18,7 @@ export const useSubscriptionListener = () => {
         queryClient.setQueryData([QueryKeys.Subscription], subscription)
       })
 
-      return () => {
-        unsubscribe()
-      }
+      return unsubscribe
     }
   }, [queryClient, userId])
 }

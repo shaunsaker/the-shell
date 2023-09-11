@@ -9,13 +9,11 @@ import { Text } from '../../components/text/Text'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
 import { useUserEmail } from '../../users/hooks/useUserEmail'
-import { useUserFirstName } from '../../users/hooks/useUserFirstName'
-import { useUserLastName } from '../../users/hooks/useUserLastName'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function SignUp() {
-  const [firstName, setFirstName] = useUserFirstName()
-  const [lastName, setLastName] = useUserLastName()
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [email, setEmail] = useUserEmail()
   const [password, setPassword] = useState('')
   const { mutate: signUpWithPassword, isLoading } = useSignUpWithPassword()
@@ -33,11 +31,13 @@ export default function SignUp() {
       }
 
       await signUpWithPassword({
+        firstName,
+        lastName,
         email,
         password,
       })
     },
-    [disabled, email, password, signUpWithPassword],
+    [disabled, email, firstName, lastName, password, signUpWithPassword],
   )
 
   return (

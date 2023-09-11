@@ -4,6 +4,7 @@ import { generateEmailVerificationLink } from '../../auth/generateEmailVerificat
 import { getAuthUserByEmail } from '../../auth/getAuthUserByEmail'
 import { sendEmailVerificationEmail } from '../../emails/sendEmailVerificationEmail'
 import { Functions, FunctionsMap } from '../../models'
+import { updateUser } from '../../users/updateUser'
 import { validateEmail } from '../../utils/validateEmail'
 
 console.log('Hello from Send Email Verification!')
@@ -18,7 +19,7 @@ export const sendEmailVerificationFunction = onCall<
       throw new HttpsError('unauthenticated', 'Unauthorized')
     }
 
-    const { email, redirectUrl, siteUrl } = request.data
+    const { firstName, lastName, email, redirectUrl, siteUrl } = request.data
 
     // validate email
     if (!validateEmail(email)) {
@@ -40,6 +41,16 @@ export const sendEmailVerificationFunction = onCall<
       siteUrl,
       email,
       emailVerificationLink,
+    })
+
+    // save the user data
+    const { uid } = authUser
+
+    await updateUser(uid, {
+      id: uid,
+      firstName,
+      lastName,
+      email,
     })
 
     return {

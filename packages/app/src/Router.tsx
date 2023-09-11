@@ -25,12 +25,6 @@ import { routes } from './routes'
 
 const errorElement = <ErrorBoundary />
 
-const userManagementRoute = {
-  path: routes.userManagement,
-  element: <UserManagement />,
-  errorElement,
-}
-
 const unauthorisedRoutes: RouteObject[] = [
   {
     path: routes.signUp,
@@ -47,15 +41,13 @@ const unauthorisedRoutes: RouteObject[] = [
     element: <ForgotPassword />,
     errorElement,
   },
+  {
+    path: routes.userManagement,
+    element: <UserManagement />,
+    errorElement,
+  },
+  { path: '*', element: <Navigate to={routes.signIn} /> },
 ]
-
-// we only want to add the user management route to the unauthorised routes in production because
-// in development, firebase automatically verifies the email when the email action link is clicked
-if (import.meta.env.MODE !== 'development') {
-  unauthorisedRoutes.push(userManagementRoute)
-}
-
-unauthorisedRoutes.push({ path: '*', element: <Navigate to={routes.signIn} /> })
 
 const authorisedRoutes: RouteObject[] = [
   {
@@ -140,23 +132,18 @@ const authorisedRoutes: RouteObject[] = [
   },
 ]
 
-// we only want to add the user management route to the authorised routes in development because
-// in development, firebase automatically verifies the email when the email action link is clicked
-if (import.meta.env.MODE === 'development') {
-  authorisedRoutes.push(userManagementRoute)
-}
-
-authorisedRoutes.push({ path: '*', element: <Navigate to={routes.dashboard} /> })
-
 const unauthorisedRouter = createBrowserRouter(unauthorisedRoutes)
 const authorisedRouter = createBrowserRouter(authorisedRoutes)
 
 export const Router = (): ReactElement => {
   const { data: authUser, isLoading: authUserLoading } = useAuthUser()
 
-  const isAuthenticated = authUser && authUser.emailVerified // maybe we should also check if the user has data?
+  const isLoading = authUserLoading
 
-  if (authUserLoading) {
+  // the user can view the authenticated stack if they have auth and their email is verified
+  const isAuthenticated = authUser && authUser.emailVerified
+
+  if (isLoading) {
     return <Loading />
   }
 

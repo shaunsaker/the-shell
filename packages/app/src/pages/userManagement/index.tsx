@@ -11,7 +11,6 @@ export default function UserManagement() {
 
   useEffect(() => {
     if (!mode) {
-      console.log('Redirecting to sign in')
       navigate(routes.signIn)
     }
   }, [mode, navigate])

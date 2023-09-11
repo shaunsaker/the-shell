@@ -197,6 +197,8 @@ export type FunctionsMap = {
   [Functions.sendEmailVerification]: {
     data: {
       siteUrl: string
+      firstName: string
+      lastName: string
       email: string
       redirectUrl: string
     }
