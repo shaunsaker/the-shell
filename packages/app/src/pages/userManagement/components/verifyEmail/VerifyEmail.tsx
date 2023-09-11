@@ -30,6 +30,8 @@ export const VerifyEmail = (): ReactElement => {
         await verifyEmail(actionCode)
       }
 
+      // TODO: SS handle change email
+
       // navigate to the sign in page
       navigate(routes.signIn)
 
