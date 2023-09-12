@@ -1,3 +1,4 @@
+import { changeUserEmailFunction } from './functions/changeUserEmail'
 import { createBillingPortalSessionFunction } from './functions/createBillingPortalSession'
 import { createCheckoutSessionFunction } from './functions/createCheckoutSession'
 import { deleteTeamFunction } from './functions/deleteTeam'
@@ -6,11 +7,13 @@ import { inviteTeamMembersFunction } from './functions/inviteTeamMembers'
 import { onTeamMemberUserDataCreated } from './functions/onTeamMemberUserDataCreated'
 import { onTeamMemberUserDataUpdated } from './functions/onTeamMemberUserDataUpdated'
 import { removeTeamMemberFunction } from './functions/removeTeamMember'
+import { sendChangeEmailVerificationFunction } from './functions/sendChangeEmailVerification'
 import { sendEmailVerificationFunction } from './functions/sendEmailVerification'
 import { stripeWebhookFunction } from './functions/stripeWebhook'
 import { updateSubscriptionQuantityFunction } from './functions/updateSubscriptionQuantity'
 
 export {
+  changeUserEmailFunction,
   createBillingPortalSessionFunction,
   createCheckoutSessionFunction,
   deleteTeamFunction,
@@ -19,6 +22,7 @@ export {
   onTeamMemberUserDataCreated,
   onTeamMemberUserDataUpdated,
   removeTeamMemberFunction,
+  sendChangeEmailVerificationFunction,
   sendEmailVerificationFunction,
   stripeWebhookFunction,
   updateSubscriptionQuantityFunction,

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { routes } from '../../routes'
+import { VerifyAndChangeEmail } from './components/verifyAndChangeEmail/VerifyAndChangeEmail'
 import { VerifyEmail } from './components/verifyEmail/VerifyEmail'
 
 export default function UserManagement() {
@@ -17,6 +18,10 @@ export default function UserManagement() {
 
   if (mode === 'verifyEmail') {
     return <VerifyEmail />
+  }
+
+  if (mode === 'verifyAndChangeEmail') {
+    return <VerifyAndChangeEmail />
   }
 
   // TODO: SS add the other modes

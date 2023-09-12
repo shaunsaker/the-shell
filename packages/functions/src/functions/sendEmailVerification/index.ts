@@ -1,6 +1,7 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 
 import { generateEmailVerificationLink } from '../../auth/generateEmailVerificationLink'
+import { getAuthUser } from '../../auth/getAuthUser'
 import { getAuthUserByEmail } from '../../auth/getAuthUserByEmail'
 import { sendEmailVerificationEmail } from '../../emails/sendEmailVerificationEmail'
 import { Functions, FunctionsMap } from '../../models'
@@ -26,7 +27,9 @@ export const sendEmailVerificationFunction = onCall<
     }
 
     // check if the user and email exists (they may not be authenticated by this stage)
-    const authUser = await getAuthUserByEmail(email)
+    // e.g. when a new user signs up, they are not authenticated by this stage
+    // but if an existing user is changing their email, they are authenticated
+    const authUser = (await getAuthUser(request.auth.uid)) || (await getAuthUserByEmail(email))
 
     if (!authUser) {
       throw new HttpsError('not-found', 'User not found')

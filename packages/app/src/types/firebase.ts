@@ -126,17 +126,29 @@ export type TeamMember = {
 
 /* FUNCTIONS */
 export enum Functions {
+  changeUserEmail = 'changeUserEmailFunction',
   createBillingPortalSession = 'createBillingPortalSessionFunction',
   createCheckoutSession = 'createCheckoutSessionFunction',
   deleteTeam = 'deleteTeamFunction',
   deleteUserAccount = 'deleteUserAccountFunction',
   inviteTeamMembers = 'inviteTeamMembersFunction',
+  sendChangeEmailVerification = 'sendChangeEmailVerificationFunction',
   sendEmailVerification = 'sendEmailVerificationFunction',
   removeTeamMember = 'removeTeamMemberFunction',
   updateSubscriptionQuantity = 'updateSubscriptionQuantityFunction',
 }
 
 export type FunctionsMap = {
+  [Functions.changeUserEmail]: {
+    data: {
+      siteUrl: string
+      oldEmail: string
+      newEmail: string
+    }
+    response: {
+      ok: true
+    }
+  }
   [Functions.createBillingPortalSession]: {
     data: {
       returnUrl: string
@@ -189,6 +201,17 @@ export type FunctionsMap = {
       siteUrl: string
       teamId: string
       teamMemberId: string
+    }
+    response: {
+      ok: true
+    }
+  }
+  [Functions.sendChangeEmailVerification]: {
+    data: {
+      siteUrl: string
+      oldEmail: string
+      newEmail: string
+      redirectUrl: string
     }
     response: {
       ok: true

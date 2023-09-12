@@ -7,7 +7,6 @@ export const removeTeamMember = async ({
   siteUrl,
   teamId,
   teamMemberId,
-  isLastTeamMember,
 }: {
   siteUrl: string
   teamId: string

@@ -1,6 +1,7 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
+      FUNCTIONS_EMULATOR: boolean
       STRIPE_API_KEY: string
       STRIPE_WEBHOOK_SIGNING_SECRET: string
       RESEND_API_KEY: string

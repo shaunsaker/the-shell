@@ -3,37 +3,46 @@ import toast from 'react-hot-toast'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useAuthUser } from '../../../../auth/hooks/useAuthUser'
+import { useChangeUserEmail } from '../../../../auth/hooks/useChangeUserEmail'
 import { useVerifyEmail } from '../../../../auth/hooks/useVerifyEmail'
 import { Loading } from '../../../../components/loading/Loading'
 import { routes } from '../../../../routes'
 
-export const VerifyEmail = (): ReactElement => {
+export const VerifyAndChangeEmail = (): ReactElement => {
   const [searchParams] = useSearchParams()
   // FIXME: how can we type these params?
   const actionCode = searchParams.get('oobCode')
   const oldEmail = searchParams.get('oldEmail')
-  const email = searchParams.get('email')
+  console.log({ oldEmail })
+  const newEmail = searchParams.get('newEmail')
   const { data: authUser } = useAuthUser()
   const { mutate: verifyEmail } = useVerifyEmail()
+  const { mutate: changeUserEmail } = useChangeUserEmail()
   const navigate = useNavigate()
 
   useEffect(() => {
     async function doAsync() {
-      if (
-        !actionCode &&
-        // in development, we don't have an action code
-        // because firebase automatically verifies the email when the email action link is clicked
-        import.meta.env.MODE !== 'development'
-      ) {
+      if (!actionCode) {
         throw new Error('Action code is missing')
       }
 
-      // in development, we don't have an action code because Firebase automatically verifies the email when the email action link is clicked
-      if (actionCode) {
-        await verifyEmail(actionCode)
+      if (!oldEmail) {
+        throw new Error('Old email is required')
       }
 
-      toast.success('Email verified successfully. Please sign in to continue.')
+      if (!newEmail) {
+        throw new Error('New email is required')
+      }
+
+      await verifyEmail(actionCode)
+
+      // we need to call a function on the backend to update the auth user's email now that it's been verified
+      await changeUserEmail({
+        oldEmail,
+        newEmail,
+      })
+
+      toast.success('Your email has been changed successfully. Please sign in to continue.')
 
       // navigate to the sign in page
       navigate(routes.signIn)
@@ -41,7 +50,7 @@ export const VerifyEmail = (): ReactElement => {
 
     // FIXME: SS in development, this runs twice
     doAsync()
-  }, [actionCode, authUser, navigate, email, oldEmail, verifyEmail])
+  }, [actionCode, authUser, changeUserEmail, navigate, oldEmail, verifyEmail, newEmail])
 
   return <Loading />
 }
