@@ -28,6 +28,4 @@ export default function UserManagement() {
   if (mode === 'resetPassword') {
     return <ResetPassword />
   }
-
-  // TODO: SS add the other modes
 }

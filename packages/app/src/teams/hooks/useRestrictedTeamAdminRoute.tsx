@@ -11,7 +11,6 @@ export const useRestrictedTeamAdminRoute = () => {
 
   // only admins of the team should be able to access this page
   useEffect(() => {
-    // TODO: SS test if loading state is an issue
     if (!isLoggedInUserTeamAdmin) {
       navigate(routes.settingsTeams)
     }
