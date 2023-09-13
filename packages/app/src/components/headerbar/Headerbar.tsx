@@ -9,7 +9,6 @@ type Props = {
 }
 
 export const Headerbar = ({ children }: Props): ReactElement => {
-  // eslint-disable-next-line
   const [_, setSidebarOpen] = useSidebarOpen()
 
   return (
