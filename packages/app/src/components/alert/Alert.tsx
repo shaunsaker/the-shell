@@ -51,7 +51,7 @@ export const Alert = ({ className, kind = 'success', children }: Props): ReactEl
   return (
     <div
       className={twMerge(
-        'flex w-full max-w-lg items-center space-x-2 rounded-md border p-4',
+        'flex w-full max-w-lg items-center space-x-2 rounded-md border px-3 py-2',
         kindToBgColor[kind],
         kindToBorderColor[kind],
         className,
