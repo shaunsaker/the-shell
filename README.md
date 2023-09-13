@@ -100,7 +100,7 @@ git push -u origin develop
 
 ### Make it your own
 
-1. Update `./packages/common/app.json` with your app name, description and support email.
+1. Update `./packages/common/app.json` with your app name, description and from or support email.
 
 2. Generate your theme colors where `baseColor` and `themeColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
 
@@ -171,6 +171,8 @@ gh secret set FIREBASE_TOKEN --body VALUE
 10. _Manual Step_: Set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, clicking the edit icon, click "Customize action URL" and set it to DOMAIN_NAME/user-management.
 
 11. _Manual Step_: Add `localhost` as an Authorized domain to your [projects](https://console.firebase.google.com/u/0/project/_/authentication/settings).
+
+12. _Manual Step_: Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
 
 ---
 
@@ -286,6 +288,8 @@ gh secret set SENTRY_PROJECT --body VALUE
 1. Add an API key to each of your Resend accounts (staging and production).
 
 2. Add the secrets to `./packages/functions/.env.development`, `./packages/functions/.env.staging` and `./packages/functions/.env.production`.
+
+3. _Manual Step_: Add your domain by visiting https://resend.com/domains, clicking "Add domain" and following the instructions.
 
 ---
 
