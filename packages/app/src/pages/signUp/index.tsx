@@ -79,7 +79,6 @@ export default function SignUp() {
         </div>
 
         <TextInput
-          className="mt-2"
           type="email"
           label="Email address"
           placeholder="Enter your email..."
@@ -90,7 +89,6 @@ export default function SignUp() {
         />
 
         <TextInput
-          className="mt-2"
           label="Password"
           placeholder="Enter your password..."
           type="password"

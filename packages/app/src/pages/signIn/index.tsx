@@ -51,7 +51,6 @@ export default function SignIn() {
     >
       <form className="space-y-6" onSubmit={onSubmit}>
         <TextInput
-          className="mt-2"
           type="email"
           label="Email address"
           placeholder="Enter your email..."
@@ -62,7 +61,6 @@ export default function SignIn() {
         />
 
         <TextInput
-          className="mt-2"
           label="Password"
           placeholder="Enter your password..."
           type="password"
@@ -73,14 +71,14 @@ export default function SignIn() {
         />
 
         <Button
-          className="block"
+          className="-ml-3.5 block"
           type="button"
           variant="light"
           onClick={() => {
             navigate(routes.forgotPassword)
           }}
         >
-          Forgot Password?
+          Forgot password?
         </Button>
 
         <Button type="submit" disabled={disabled} loading={isLoading}>
