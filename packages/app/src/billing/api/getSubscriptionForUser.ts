@@ -8,5 +8,5 @@ export const getSubscriptionForUser = async (uid: string) => {
   const subscriptions = await getDocs(query(collection(db, 'subscriptions'), where('userId', '==', uid)))
 
   // currently we only support single subscriptions
-  return subscriptions.docs[0].data() as Subscription | undefined
+  return (subscriptions.docs[0]?.data() as Subscription) || null
 }

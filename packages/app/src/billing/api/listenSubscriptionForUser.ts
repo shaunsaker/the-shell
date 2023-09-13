@@ -8,7 +8,7 @@ export const listenSubscriptionForUser = (uid: string, cb: (data: Subscription |
 
   return onSnapshot(ref, querySnapshot => {
     // currently we only support single subscriptions
-    const subscription = querySnapshot.docs[0].data() as Subscription | undefined
+    const subscription = (querySnapshot.docs[0]?.data() as Subscription) || null
 
     cb(subscription)
   })
