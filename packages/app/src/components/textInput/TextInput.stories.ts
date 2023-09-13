@@ -22,6 +22,14 @@ export const Default: Story = {
   },
 }
 
+export const Value: Story = {
+  args: {
+    label: 'First name',
+    placeholder: 'Enter your first name...',
+    value: 'Shaun',
+  },
+}
+
 export const WithoutLabel: Story = {
   args: {
     placeholder: 'Enter your first name...',
