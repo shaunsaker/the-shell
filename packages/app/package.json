@@ -17,7 +17,7 @@
     "test:storybook": "test-storybook",
     "test": "npm-run-all --parallel test:*",
     "start": "vite preview",
-    "build:app": "tsc && vite build",
+    "build:app": "tsc && vite build --mode=$MODE",
     "build:storybook": "storybook build",
     "build": "npm-run-all --parallel build:*"
   },
