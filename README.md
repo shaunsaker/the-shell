@@ -170,6 +170,8 @@ gh secret set FIREBASE_TOKEN --body VALUE
 
 10. _Manual Step_: Set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, clicking the edit icon, click "Customize action URL" and set it to DOMAIN_NAME/user-management.
 
+11. _Manual Step_: Add `localhost` as an Authorized domain to your [projects](https://console.firebase.google.com/u/0/project/_/authentication/settings).
+
 ---
 
 ### Setup Stripe
