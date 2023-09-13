@@ -143,7 +143,10 @@ firebase projects:create PROJECT_NAME-production
 
 5. Link your Firebase projects to your local repo:
 
+Note the first command is just to help firebase load the correct env variables in development.
+
 ```
+firebase use --add PROJECT_NAME-staging --alias development
 firebase use --add PROJECT_NAME-staging --alias staging
 firebase use --add PROJECT_NAME-production --alias production
 ```
@@ -209,14 +212,7 @@ The following steps will setup your Firebase staging environment with your Strip
 
 3. Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key).
 
-4. Push the secrets to Firebase functions.
-
-```
-cd ./packages/firebase
-firebase use staging
-firebase functions:secrets:set STRIPE_API_KEY VALUE
-firebase functions:secrets:set STRIPE_WEBHOOK_SIGNING_SECRET VALUE
-```
+4. Add the secrets to `./packages/functions/.env.staging`.
 
 ---
 
@@ -230,14 +226,7 @@ The following steps will setup your Firebase production environment with your St
 
 3. Grab your [live Stripe API key](https://dashboard.stripe.com/apikeys) (Secret key).
 
-4. Push the secrets to Firebase functions.
-
-```
-cd ./packages/firebase
-firebase use production
-firebase functions:secrets:set STRIPE_API_KEY
-firebase functions:secrets:set STRIPE_WEBHOOK_SIGNING_SECRET
-```
+4. Add the secrets to `./packages/functions/.env.production`.
 
 ---
 
@@ -292,23 +281,13 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 1. Add an API key to each of your Resend accounts (staging and production).
 
-2. Add the staging API key to `./packages/functions/.env.development`.
-
-3. Push the secrets to Firebase functions.
-
-```
-cd ./packages/firebase
-firebase use staging
-firebase functions:secrets:set RESEND_API_KEY
-firebase use production
-firebase functions:secrets:set RESEND_API_KEY
-```
+2. Add the secrets to `./packages/functions/.env.development`, `./packages/functions/.env.staging` and `./packages/functions/.env.production`.
 
 ---
 
 ### Setup Mixpanel
 
-1. Grab your staging and production project tokens and them to the respective files at `packages/app/.env.local`, `./packages/app/.env.staging` and `./packages/app/.env.production`.
+1. Grab your staging and production project tokens and them to the respective files at `packages/app/.env.development`, `./packages/app/.env.staging` and `./packages/app/.env.production`.
 
 ---
 
@@ -334,7 +313,11 @@ gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
 
 ## Development
 
-TODO: SS
+Run the following command to start the app development server and Firebase emulator:
+
+```
+yarn dev
+```
 
 ---
 
