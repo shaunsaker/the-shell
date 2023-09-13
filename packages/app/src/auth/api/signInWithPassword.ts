@@ -1,15 +1,7 @@
-import { supabase } from '../../supabase'
-import { handleApiError } from '../../utils/handleApiError'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+
+import { auth } from '../../firebase'
 
 export const signInWithPassword = async ({ email, password }: { email: string; password: string }) => {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  })
-
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data
+  return await signInWithEmailAndPassword(auth, email, password)
 }

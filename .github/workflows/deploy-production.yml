@@ -1,0 +1,23 @@
+name: Deploy Production
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  deploy-production:
+    needs: testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Install firebase-tools
+      - run: yarn global add firebase-tools
+
+      # Install deps
+      - run: yarn --frozen-lockfile
+
+      # Deploy Production
+      - run: export MODE="production" && firebase use production && yarn deploy --token ${{ secrets.FIREBASE_TOKEN }}

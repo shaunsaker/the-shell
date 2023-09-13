@@ -1,16 +1,11 @@
-import { handleApiError } from '../../utils/handleApiError'
+import { Functions } from 'types'
+
 import { invokeFunction } from '../../utils/invokeFunction'
 
+const updateSubscriptionQuantityFunction = invokeFunction(Functions.updateSubscriptionQuantity)
+
 export const updateSubscriptionQuantity = async (quantity: number) => {
-  const { data, error } = await invokeFunction('update-subscription-quantity', {
-    body: {
-      quantity,
-    },
-  })
+  const response = await updateSubscriptionQuantityFunction({ quantity })
 
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data as { ok: boolean }
+  return response
 }

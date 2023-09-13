@@ -1,10 +1,10 @@
-import { TeamMemberRole } from '../models'
+import { TeamMemberRole } from 'types'
 
 export const parseTeamMemberRole = (role: string): TeamMemberRole => {
   switch (role) {
-    case 'Admin':
-      return 'admin'
+    case 'admin':
+      return TeamMemberRole.Admin
     default:
-      return 'member'
+      return TeamMemberRole.Member
   }
 }

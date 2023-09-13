@@ -1,6 +1,4 @@
-type PaymentMethod = {
-  last4: number
-}
+import { PaymentMethod } from 'types'
 
 const validatePaymentMethod = (object: unknown): object is PaymentMethod => {
   if (!object) {
@@ -12,6 +10,18 @@ const validatePaymentMethod = (object: unknown): object is PaymentMethod => {
   }
 
   const castedObject = object as Record<string, any>
+
+  if (!castedObject['brand'] && typeof castedObject['brand'] !== 'string') {
+    return false
+  }
+
+  if (!castedObject['expMonth'] && typeof castedObject['expMonth'] !== 'string') {
+    return false
+  }
+
+  if (!castedObject['expYear'] && typeof castedObject['expYear'] !== 'string') {
+    return false
+  }
 
   if (!castedObject['last4'] && typeof castedObject['last4'] !== 'string') {
     return false
@@ -25,9 +35,12 @@ export const parsePaymentMethod = (paymentMethod?: any): PaymentMethod => {
     throw new Error('Invalid payment method')
   }
 
-  const { last4 } = paymentMethod
+  const { brand, expMonth, expYear, last4 } = paymentMethod
 
   return {
-    last4: Number(last4),
+    brand,
+    expMonth,
+    expYear,
+    last4,
   }
 }

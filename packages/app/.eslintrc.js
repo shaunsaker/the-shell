@@ -1,11 +1,11 @@
 module.exports = {
   root: true,
   extends: [
-    'custom',
     'react-app',
     'plugin:react-hooks/recommended',
     'plugin:tailwindcss/recommended',
     'plugin:storybook/recommended',
+    'custom',
   ],
   plugins: ['react', 'react-hooks', 'tailwindcss'],
   rules: {

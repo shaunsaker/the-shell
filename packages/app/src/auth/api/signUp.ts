@@ -1,34 +1,38 @@
-import { supabase } from '../../supabase'
-import { handleApiError } from '../../utils/handleApiError'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+
+import { auth } from '../../firebase'
+import { updateUser } from '../../users/api/updateUser'
+import { sendEmailVerification } from './sendEmailVerification'
+import { signOut } from './signOut'
 
 export const signUp = async ({
-  email,
-  password,
-  emailRedirectTo,
   firstName,
   lastName,
+  email,
+  password,
 }: {
+  firstName: string
+  lastName: string
   email: string
   password: string
-  emailRedirectTo?: string
-  firstName?: string
-  lastName?: string
 }) => {
-  const { data, error } = await supabase.auth.signUp({
+  // sign out any existing user
+  await signOut()
+
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+
+  // save the user data
+  const { uid } = userCredential.user
+
+  await updateUser({
+    id: uid,
+    firstName,
+    lastName,
     email,
-    password,
-    options: {
-      emailRedirectTo,
-      data: {
-        first_name: firstName,
-        last_name: lastName,
-      },
-    },
   })
 
-  if (error) {
-    await handleApiError(error)
-  }
+  await sendEmailVerification({ email })
 
-  return data
+  // the step above will sign in the user, so we need to sign them out again for our auth flow to work correctly
+  await signOut()
 }

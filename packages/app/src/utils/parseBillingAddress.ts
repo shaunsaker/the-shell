@@ -1,11 +1,4 @@
-type BillingAddress = {
-  city: string
-  line1: string
-  line2?: string
-  state: string
-  country: string
-  postal_code: string
-}
+import { BillingAddress } from 'types'
 
 const validateBillingAddress = (object: unknown): object is BillingAddress => {
   if (!object) {
@@ -34,7 +27,7 @@ const validateBillingAddress = (object: unknown): object is BillingAddress => {
     return false
   }
 
-  if (!castedObject['postal_code'] && typeof castedObject['postal_code'] !== 'string') {
+  if (!castedObject['postalCode'] && typeof castedObject['postalCode'] !== 'string') {
     return false
   }
 

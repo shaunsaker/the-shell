@@ -1,17 +1,20 @@
-import { handleApiError } from '../../utils/handleApiError'
+import { Functions } from 'types'
+
 import { invokeFunction } from '../../utils/invokeFunction'
 
-export const removeTeamMember = async ({ teamId, teamMemberId }: { teamId: number; teamMemberId: number }) => {
-  const { data, error } = await invokeFunction('remove-team-member', {
-    body: {
-      teamId,
-      teamMemberId,
-    },
-  })
+const removeTeamMemberFunction = invokeFunction(Functions.removeTeamMember)
 
-  if (error) {
-    await handleApiError(error)
-  }
+export const removeTeamMember = async ({
+  siteUrl,
+  teamId,
+  teamMemberId,
+}: {
+  siteUrl: string
+  teamId: string
+  teamMemberId: string
+  isLastTeamMember: boolean
+}) => {
+  const response = await removeTeamMemberFunction({ siteUrl, teamId, teamMemberId })
 
-  return data
+  return response
 }

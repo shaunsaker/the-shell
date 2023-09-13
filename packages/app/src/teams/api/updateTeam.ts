@@ -1,12 +1,7 @@
-import { supabase } from '../../supabase'
-import { handleApiError } from '../../utils/handleApiError'
+import { doc, updateDoc } from 'firebase/firestore'
 
-export const updateTeam = async ({ id, name }: { id: number; name: string }) => {
-  const { data, error } = await supabase.from('teams').update({ name }).eq('id', id)
+import { db } from '../../firebase'
 
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data
+export const updateTeam = async ({ id, name }: { id: string; name: string }) => {
+  await updateDoc(doc(db, 'teams', id), { name })
 }

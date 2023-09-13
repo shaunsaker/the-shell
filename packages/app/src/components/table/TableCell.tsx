@@ -8,6 +8,7 @@ export const TableCell = ({ className = '', ...props }: Props): ReactElement => 
     <td
       className={twMerge(
         'text-theme-content dark:text-dark-theme-content whitespace-nowrap p-4 text-left align-middle text-sm',
+        className,
       )}
       {...props}
     />

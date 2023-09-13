@@ -1,4 +1,4 @@
-import { ANALYTICS_ENABLED, mixpanel } from '.'
+import { ANALYTICS_ENABLED, mixpanel } from './mixpanel'
 
 export const identifyUser = (uid: string) => {
   if (ANALYTICS_ENABLED) {

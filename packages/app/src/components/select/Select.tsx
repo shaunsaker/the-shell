@@ -15,10 +15,11 @@ export type SelectOption = {
 type Props = ComponentPropsWithoutRef<'div'> & {
   value: string
   options: SelectOption[]
+  disabled?: boolean
   onValueChange: (value: SelectOption) => void
 }
 
-export const Select = ({ className = '', value, options, onValueChange, ...props }: Props) => {
+export const Select = ({ className = '', value, options, disabled, onValueChange, ...props }: Props) => {
   const [open, setOpen] = useState(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -39,7 +40,8 @@ export const Select = ({ className = '', value, options, onValueChange, ...props
         color="gray"
         icon={<ChevronDownIcon />}
         iconPosition="right"
-        onClick={event => {
+        disabled={disabled}
+        onClick={() => {
           setOpen(!open)
         }}
       >

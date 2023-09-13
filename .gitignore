@@ -2,5 +2,6 @@
 node_modules
 yarn-error.log
 .turbo
-.netlify
 tsconfig.tsbuildinfo
+firebase-debug.log
+.firebase

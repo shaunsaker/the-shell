@@ -1,9 +1,9 @@
-import { TeamMember } from '../models'
+import { TeamMember } from 'types'
 
 export const formatTeamMemberName = (teamMember?: TeamMember) => {
-  if (!teamMember || !teamMember.first_name || !teamMember.last_name) {
+  if (!teamMember || (!teamMember.firstName && !teamMember.lastName)) {
     return ''
   }
 
-  return `${teamMember.first_name} ${teamMember.last_name}`
+  return `${teamMember.firstName} ${teamMember.lastName}`
 }

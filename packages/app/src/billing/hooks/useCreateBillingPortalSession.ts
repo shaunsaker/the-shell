@@ -8,9 +8,9 @@ export const useCreateBillingPortalSession = () => {
 
   return useMutation({
     mutationFn: createBillingPortalSession,
-    onSuccess: ({ url }) => {
+    onSuccess: response => {
       // on success, redirect to the billing portal
-      link(url, '_self')
+      link(response.data.url, '_self')
     },
   })
 }

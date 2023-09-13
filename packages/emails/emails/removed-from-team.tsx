@@ -5,18 +5,19 @@ import { Layout } from '../components/Layout'
 import { Title } from '../components/Title'
 
 type Props = {
+  siteUrl: string
   userName: string
   teamName: string
-  teamMemberName: string
+  adminTeamMemberName: string
 }
 
-export const RemovedFromTeam = ({ userName = '', teamName, teamMemberName }: Props): ReactElement => {
+export const RemovedFromTeam = ({ siteUrl, userName = '', teamName, adminTeamMemberName }: Props): ReactElement => {
   return (
-    <Layout>
+    <Layout siteUrl={siteUrl}>
       <Title>Hi{userName ? ` ${userName}` : ''},</Title>
 
       <Description className="mb-8">
-        You've been removed from team "{teamName}" by {teamMemberName}.
+        You've been removed from team "{teamName}" by {adminTeamMemberName}.
       </Description>
     </Layout>
   )

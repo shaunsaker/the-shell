@@ -32,16 +32,6 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
         isActive: hrefInviteTeamMembers === location.pathname,
       })
     }
-
-    const hrefAcceptInvite = routes.settingsAcceptInvite.replace(TEAM_ID_PARAM, team.id.toString())
-
-    if (location.pathname === hrefAcceptInvite) {
-      BREADCRUMBS.push({
-        name: 'Accept invite',
-        href: hrefAcceptInvite,
-        isActive: hrefAcceptInvite === location.pathname,
-      })
-    }
   }
 
   if (teamMember) {

@@ -1,0 +1,23 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  deploy-staging:
+    needs: testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Install firebase-tools
+      - run: yarn global add firebase-tools
+
+      # Install deps
+      - run: yarn --frozen-lockfile
+
+      # Deploy staging
+      - run: export MODE="staging" && firebase use staging && yarn deploy --token ${{ secrets.FIREBASE_TOKEN }}

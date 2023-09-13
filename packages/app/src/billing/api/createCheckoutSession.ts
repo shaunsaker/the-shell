@@ -1,18 +1,16 @@
-import { handleApiError } from '../../utils/handleApiError'
+import { Functions } from 'types'
+
 import { invokeFunction } from '../../utils/invokeFunction'
 
-export const createCheckoutSession = async (priceId: string) => {
-  const { data, error } = await invokeFunction('create-checkout-session', {
-    body: {
-      priceId,
-      successUrl: window.location.href,
-      cancelUrl: window.location.href,
-    },
+const createCheckoutSessionFunction = invokeFunction(Functions.createCheckoutSession)
+
+export const createCheckoutSession = async ({ priceId, quantity }: { priceId: string; quantity: number }) => {
+  const response = await createCheckoutSessionFunction({
+    priceId,
+    quantity,
+    successUrl: window.location.href,
+    cancelUrl: window.location.href,
   })
 
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data as { url: string }
+  return response
 }

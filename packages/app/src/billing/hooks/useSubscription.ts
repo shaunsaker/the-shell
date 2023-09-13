@@ -1,17 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { useSession } from '../../auth/hooks/useSession'
-import { fetchSubscriptionForUser } from '../../billing/api/fetchSubscriptionForUser'
+import { useAuthUser } from '../../auth/hooks/useAuthUser'
+import { getSubscriptionForUser } from '../../billing/api/getSubscriptionForUser'
 import { QueryKeys } from '../../models'
 
 export const useSubscription = () => {
-  const { data: session } = useSession()
+  const { data: user } = useAuthUser()
 
-  const userId = session?.user.id
+  const userId = user?.uid
 
   const query = useQuery({
     queryKey: [QueryKeys.Subscription],
-    queryFn: () => (userId ? fetchSubscriptionForUser(userId) : undefined),
+    queryFn: () => (userId ? getSubscriptionForUser(userId) : undefined),
     enabled: Boolean(userId),
   })
 

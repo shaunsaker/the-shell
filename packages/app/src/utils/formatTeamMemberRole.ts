@@ -1,4 +1,4 @@
-import { TeamMemberRole } from '../models'
+import { TeamMemberRole } from 'types'
 
 export const formatTeamMemberRole = (role: TeamMemberRole): string => {
   switch (role) {

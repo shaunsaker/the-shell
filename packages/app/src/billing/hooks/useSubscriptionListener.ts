@@ -1,26 +1,24 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 
-import { useSession } from '../../auth/hooks/useSession'
+import { useAuthUser } from '../../auth/hooks/useAuthUser'
 import { listenSubscriptionForUser } from '../../billing/api/listenSubscriptionForUser'
 import { QueryKeys } from '../../models'
 
 export const useSubscriptionListener = () => {
   const queryClient = useQueryClient()
-  const { data: session } = useSession()
+  const { data: user } = useAuthUser()
 
-  const userId = session?.user.id
+  const userId = user?.uid
 
   useEffect(() => {
     if (userId) {
-      // subscribe to supabase subscription changes
-      const listener = listenSubscriptionForUser(userId, subscription => {
+      // subscribe to the user's subscription changes
+      const unsubscribe = listenSubscriptionForUser(userId, subscription => {
         queryClient.setQueryData([QueryKeys.Subscription], subscription)
       })
 
-      return () => {
-        listener.unsubscribe()
-      }
+      return unsubscribe
     }
   }, [queryClient, userId])
 }

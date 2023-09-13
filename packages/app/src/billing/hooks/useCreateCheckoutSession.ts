@@ -8,9 +8,9 @@ export const useCreateCheckoutSession = () => {
 
   return useMutation({
     mutationFn: createCheckoutSession,
-    onSuccess: ({ url }) => {
+    onSuccess: response => {
       // on success, redirect to the checkout session
-      link(url, '_self')
+      link(response.data.url, '_self')
     },
   })
 }

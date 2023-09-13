@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['custom', 'react-app', 'plugin:tailwindcss/recommended'],
+  extends: ['react-app', 'plugin:tailwindcss/recommended', 'custom'],
   plugins: ['react', 'tailwindcss'],
   rules: {
     'react/no-unescaped-entities': 'off',

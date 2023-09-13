@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
 
-import { useSession } from './auth/hooks/useSession'
+import { useAuthUser } from './auth/hooks/useAuthUser'
 import { ErrorBoundary } from './components/errorBoundary/ErrorBoundary'
 import { Loading } from './components/loading/Loading'
 import { MainLayout } from './components/mainLayout/MainLayout'
@@ -9,23 +9,22 @@ import { SettingsLayout } from './components/settingsLayout/SettingsLayout'
 import { Dashboard } from './pages/dashboard'
 import ForgotPassword from './pages/forgotPassword'
 import { SettingsAccount } from './pages/settings/account'
-import { SettingsResetPassword } from './pages/settings/account/resetPassword'
 import { SettingsSubscription } from './pages/settings/subscription'
 import { SettingsTeams } from './pages/settings/teams'
 import { SettingsAddTeam } from './pages/settings/teams/addTeam'
 import { SettingsEditTeam } from './pages/settings/teams/editTeam'
-import { SettingsAcceptInvite } from './pages/settings/teams/editTeam/acceptInvite'
 import { SettingsDeleteTeam } from './pages/settings/teams/editTeam/deleteTeam'
 import { SettingsEditTeamMember } from './pages/settings/teams/editTeamMember'
 import { SettingsRemoveTeamMember } from './pages/settings/teams/editTeamMember/removeTeamMember'
 import { SettingsInviteTeamMembers } from './pages/settings/teams/inviteTeamMembers/SettingsInviteTeamMembers'
 import SignIn from './pages/signIn'
 import SignUp from './pages/signUp'
+import UserManagement from './pages/userManagement'
 import { routes } from './routes'
 
 const errorElement = <ErrorBoundary />
 
-const unauthorisedRouter = createBrowserRouter([
+const unauthorisedRoutes: RouteObject[] = [
   {
     path: routes.signUp,
     element: <SignUp />,
@@ -41,10 +40,15 @@ const unauthorisedRouter = createBrowserRouter([
     element: <ForgotPassword />,
     errorElement,
   },
+  {
+    path: routes.userManagement,
+    element: <UserManagement />,
+    errorElement,
+  },
   { path: '*', element: <Navigate to={routes.signIn} /> },
-])
+]
 
-const authorisedRouter = createBrowserRouter([
+const authorisedRoutes: RouteObject[] = [
   {
     element: <MainLayout />,
     children: [
@@ -66,12 +70,6 @@ const authorisedRouter = createBrowserRouter([
             element: <SettingsAccount />,
             errorElement,
           },
-          {
-            path: routes.settingsResetPassword,
-            element: <SettingsResetPassword />,
-            errorElement,
-          },
-
           {
             path: routes.settingsSubscription,
             element: <SettingsSubscription />,
@@ -107,11 +105,6 @@ const authorisedRouter = createBrowserRouter([
             errorElement,
           },
           {
-            path: routes.settingsAcceptInvite,
-            element: <SettingsAcceptInvite />,
-            errorElement,
-          },
-          {
             path: routes.settingsEditTeamMember,
             element: <SettingsEditTeamMember />,
             children: [
@@ -130,14 +123,22 @@ const authorisedRouter = createBrowserRouter([
       { path: '*', element: <Navigate to={routes.dashboard} /> },
     ],
   },
-])
+]
+
+const unauthorisedRouter = createBrowserRouter(unauthorisedRoutes)
+const authorisedRouter = createBrowserRouter(authorisedRoutes)
 
 export const Router = (): ReactElement => {
-  const { data: session, isLoading: sessionLoading } = useSession()
+  const { data: authUser, isLoading: authUserLoading } = useAuthUser()
 
-  if (sessionLoading) {
+  const isLoading = authUserLoading
+
+  // the user can view the authenticated stack if they have auth and their email is verified
+  const isAuthenticated = authUser && authUser.emailVerified
+
+  if (isLoading) {
     return <Loading />
   }
 
-  return <RouterProvider router={session ? authorisedRouter : unauthorisedRouter} />
+  return <RouterProvider router={isAuthenticated ? authorisedRouter : unauthorisedRouter} />
 }

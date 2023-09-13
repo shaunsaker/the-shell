@@ -25,7 +25,10 @@ export const SettingsDeleteTeam = (): ReactElement => {
       confirmIsDangerous
       onConfirmClick={() => {
         if (team) {
-          deleteTeam(team.id)
+          deleteTeam({
+            siteUrl: window.location.origin,
+            teamId: team.id,
+          })
         }
       }}
       onClose={() => {

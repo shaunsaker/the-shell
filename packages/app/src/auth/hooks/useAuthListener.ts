@@ -1,18 +1,18 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 
-import { onAuthStateChange } from '../../auth/api/onAuthStateChanged'
+import { onAuthStateChanged } from '../../auth/api/onAuthStateChanged'
 import { QueryKeys } from '../../models'
 
 export const useAuthListener = () => {
   const queryClient = useQueryClient()
 
   useEffect(() => {
-    const subscription = onAuthStateChange((event, session) => {
-      // invalidate the query session cache so that we refetch it
-      queryClient.invalidateQueries([QueryKeys.Session])
+    // subscribe to the user's auth changes
+    const unsubscribe = onAuthStateChanged(authUser => {
+      queryClient.setQueryData([QueryKeys.AuthUser], authUser)
     })
 
-    return () => subscription.unsubscribe()
+    return unsubscribe
   }, [queryClient])
 }

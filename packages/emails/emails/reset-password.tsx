@@ -1,19 +1,23 @@
-import * as React from 'react'
+import React, { ReactElement } from 'react'
 
 import { Button } from '../components/Button'
 import { Description } from '../components/Description'
 import { Layout } from '../components/Layout'
 import { Title } from '../components/Title'
-import { SupabaseEmailTemplateVariables } from '../models'
 
-const ResetPassword = () => {
+type Props = {
+  siteUrl: string
+  link: string
+}
+
+export const ResetPassword = ({ siteUrl, link }: Props): ReactElement => {
   return (
-    <Layout>
+    <Layout siteUrl={siteUrl}>
       <Title>Reset password</Title>
 
       <Description>Follow this link to reset the password for your user:</Description>
 
-      <Button href={SupabaseEmailTemplateVariables.ConfirmationUrl}>Reset password</Button>
+      <Button href={link}>Reset password</Button>
     </Layout>
   )
 }

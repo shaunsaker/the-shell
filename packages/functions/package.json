@@ -2,29 +2,47 @@
   "name": "functions",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
-    "dev:functions": "netlify functions:serve",
-    "dev:stripe": "stripe listen --forward-to localhost:9999/.netlify/functions/stripe-webhook -H 'Stripe-Version: 2022-11-15'",
-    "dev": "npm-run-all --parallel dev:*",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
     "lint:ts": "tsc",
-    "lint": "npm-run-all --parallel lint:*"
+    "lint": "npm-run-all --parallel lint:*",
+    "preemulator": "npx kill-port 4000 8080 9099",
+    "emulator": "firebase emulators:start --only auth,firestore,functions --import ./emulator --export-on-exit ./emulator",
+    "dev": "npm-run-all --parallel build:functions:watch emulator",
+    "prebuild:functions": "rm -rf ./dist",
+    "build:functions": "vite build",
+    "build:functions:watch": "yarn build:functions --watch --mode development",
+    "build": "npm-run-all --parallel build:functions",
+    "deploy": "firebase deploy --only functions,firestore,hosting"
   },
   "dependencies": {
-    "@netlify/functions": "^1.6.0",
-    "@supabase/supabase-js": "^2.29.0",
+    "@react-email/components": "^0.0.7",
+    "@react-email/render": "^0.0.7",
     "dayjs": "^1.11.9",
     "emails": "*",
-    "resend": "^0.17.2",
-    "stripe": "^12.14.0"
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1",
+    "resend": "^1.0.0",
+    "stripe": "^12.18.0",
+    "tailwind-merge": "^1.14.0",
+    "types": "*",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "eslint-config-custom": "*",
-    "netlify-cli": "^15.9.1",
+    "firebase-functions-test": "^3.1.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.1",
+    "prettier": "^3.0.1",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-generate-package-json": "^3.2.0",
     "tsconfig": "*",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9"
   }
 }

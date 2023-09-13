@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "development": "the-shell-development",
+    "staging": "the-shell-development",
+    "production": "the-shell-development"
+  },
+  "targets": {},
+  "etags": {}
+}

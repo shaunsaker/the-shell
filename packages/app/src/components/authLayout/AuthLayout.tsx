@@ -18,7 +18,7 @@ export const AuthLayout = ({ title, children, footer }: Props) => {
 
       <Title>{title}</Title>
 
-      <Card className="w-full max-w-lg">{children}</Card>
+      <Card className="w-full max-w-lg space-y-6">{children}</Card>
 
       {footer && <div className="text-center">{footer}</div>}
     </PageLayout>

@@ -1,12 +1,7 @@
-import { supabase } from '../../supabase'
-import { handleApiError } from '../../utils/handleApiError'
+import { deleteDoc, doc } from 'firebase/firestore'
 
-export const removeTeamMember = async (id: number) => {
-  const { data, error } = await supabase.from('team_members').delete().eq('id', id)
+import { db } from '../../firebase'
 
-  if (error) {
-    await handleApiError(error)
-  }
-
-  return data
+export const removeTeamMember = async ({ teamId, teamMemberId }: { teamId: string; teamMemberId: string }) => {
+  await deleteDoc(doc(db, 'teams', teamId, 'members', teamMemberId))
 }

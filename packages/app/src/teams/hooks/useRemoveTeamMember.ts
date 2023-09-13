@@ -1,25 +1,34 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-import { QueryKeys } from '../../models'
+import { getTeamMembersQueryKey, QueryKeys } from '../../models'
 import { routes, TEAM_ID_PARAM } from '../../routes'
 import { removeTeamMember } from '../../teams/api/removeTeamMember'
 
 export const useRemoveTeamMember = () => {
   const queryClient = useQueryClient()
-  const { teamId = '' } = useParams()
   const navigate = useNavigate()
 
   return useMutation({
     mutationFn: removeTeamMember,
-    onSuccess: () => {
-      // invalidate the teams query to refetch the data
-      queryClient.invalidateQueries([QueryKeys.Teams])
+    onSuccess: (_, { teamId, isLastTeamMember }) => {
+      // invalidate the team members query to refetch the data
+      const queriesToInvalidate: string[] = [getTeamMembersQueryKey(teamId)]
 
-      toast.success('Team member removed successfully')
+      // if the last team member was removed, the team is also deleted
+      if (isLastTeamMember) {
+        queriesToInvalidate.push(QueryKeys.Teams)
+      }
 
-      navigate(routes.settingsEditTeam.replace(TEAM_ID_PARAM, teamId))
+      queryClient.invalidateQueries(queriesToInvalidate)
+
+      toast.success(isLastTeamMember ? 'Team member and team removed successfully' : 'Team member removed successfully')
+
+      navigate(
+        // if the user is deleting the last team member then the team will also be deleted
+        isLastTeamMember ? routes.settingsTeams : routes.settingsEditTeam.replace(TEAM_ID_PARAM, teamId),
+      )
     },
   })
 }

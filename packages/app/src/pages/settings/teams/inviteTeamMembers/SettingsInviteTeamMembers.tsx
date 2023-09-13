@@ -7,7 +7,6 @@ import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
 import { SettingsTeamsBreadcrumbs } from '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
 import { TextInput } from '../../../../components/textInput/TextInput'
-import { routes, TEAM_ID_PARAM } from '../../../../routes'
 import { useInviteTeamMembers } from '../../../../teams/hooks/useInviteTeamMember'
 import { validateEmail } from '../../../../utils/validateEmail'
 
@@ -34,9 +33,9 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
             loading={isLoading}
             onClick={() => {
               inviteTeamMembers({
+                siteUrl: window.location.origin,
                 teamId,
                 emails,
-                redirectTo: `${window.location.origin}${routes.settingsAcceptInvite.replace(TEAM_ID_PARAM, teamId)}`,
               })
             }}
           >

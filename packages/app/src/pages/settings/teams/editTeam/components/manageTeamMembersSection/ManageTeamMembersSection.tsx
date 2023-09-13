@@ -15,6 +15,7 @@ import {
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../routes'
 import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '../../../../../../teams/hooks/useTeam'
+import { useTeamMembers } from '../../../../../../teams/hooks/useTeamMembers'
 import { formatDate } from '../../../../../../utils/formatDate'
 import { formatTeamMemberName } from '../../../../../../utils/formatTeamMemberName'
 import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRole'
@@ -22,11 +23,12 @@ import { formatTeamMemberStatus } from '../../../../../../utils/formatTeamMember
 
 export const ManageTeamMembersSection = (): ReactElement => {
   const isLoggedInUserTeamAdmin = useIsLoggedInUserTeamAdmin()
-  const { data: team, isLoading } = useTeam()
+  const { data: team, isLoading: isTeamLoading } = useTeam()
+  const { data: teamMembers, isLoading: isTeamMembersLoading } = useTeamMembers(team?.id)
   const { teamId = '' } = useParams()
   const navigate = useNavigate()
 
-  const loading = isLoading
+  const loading = isTeamLoading || isTeamMembersLoading
   const disabled = !isLoggedInUserTeamAdmin || loading
 
   return (
@@ -93,9 +95,9 @@ export const ManageTeamMembersSection = (): ReactElement => {
             </TableRow>
           ) : (
             <>
-              {team?.team_members.map(teamMember => {
+              {teamMembers?.map(teamMember => {
                 return (
-                  <TableRow key={teamMember.user_id}>
+                  <TableRow key={teamMember.id}>
                     <TableCell>{formatTeamMemberName(teamMember)}</TableCell>
 
                     <TableCell>{teamMember.email}</TableCell>
@@ -104,7 +106,7 @@ export const ManageTeamMembersSection = (): ReactElement => {
 
                     <TableCell>{formatTeamMemberRole(teamMember.role)}</TableCell>
 
-                    <TableCell>{formatDate(teamMember.created_at)}</TableCell>
+                    <TableCell>{formatDate(teamMember.createdAt)}</TableCell>
 
                     <TableCell>
                       <Button
@@ -113,7 +115,7 @@ export const ManageTeamMembersSection = (): ReactElement => {
                         onClick={() => {
                           navigate(
                             routes.settingsEditTeamMember
-                              .replace(TEAM_ID_PARAM, team.id.toString())
+                              .replace(TEAM_ID_PARAM, team?.id.toString() || '')
                               .replace(TEAM_MEMBER_ID_PARAM, teamMember.id.toString()),
                           )
                         }}

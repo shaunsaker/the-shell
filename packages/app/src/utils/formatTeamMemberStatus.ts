@@ -1,4 +1,4 @@
-import { TeamMemberStatus } from '../models'
+import { TeamMemberStatus } from 'types'
 
 export const formatTeamMemberStatus = (status: TeamMemberStatus): string => {
   switch (status) {

@@ -1,4 +1,3 @@
-import { PostgrestError } from '@supabase/supabase-js'
 import {
   MutationCache,
   QueryCache,
@@ -6,10 +5,10 @@ import {
   QueryClientProvider as QueryClientProviderPrimitive,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { FirebaseError } from 'firebase/app'
 import { ReactElement, ReactNode } from 'react'
 import { toast } from 'react-hot-toast'
 
-import { signOut } from '../../auth/api/signOut'
 import { captureException } from '../../errors/captureException'
 
 const queryClient = new QueryClient({
@@ -24,14 +23,15 @@ const queryClient = new QueryClient({
     onError(error) {
       console.error(error)
 
-      // if the user is unauthorised, sign them out
-      if ((error as PostgrestError).message === 'Unauthorized' || (error as PostgrestError).message === 'JWT expired') {
-        signOut()
-      } else {
-        captureException(error)
+      const isFirebaseError = error instanceof FirebaseError
 
+      if (isFirebaseError && error.code === 'permission-denied') {
+        toast.error('You do not have permission to access this resource.')
+      } else {
         toast.error((error as Error).message)
       }
+
+      captureException(error)
     },
   }),
   mutationCache: new MutationCache({
@@ -39,9 +39,15 @@ const queryClient = new QueryClient({
     onError(error) {
       console.error(error)
 
-      captureException(error)
+      const isFirebaseError = error instanceof FirebaseError
 
-      toast.error((error as Error).message)
+      if (isFirebaseError && error.code === 'permission-denied') {
+        toast.error('You do not have permission to modify this resource.')
+      } else {
+        toast.error((error as Error).message)
+      }
+
+      captureException(error)
     },
   }),
 })
