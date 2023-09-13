@@ -1,44 +1,52 @@
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 import react from '@vitejs/plugin-react'
 import colors from 'tailwindcss/colors'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import handlebars from 'vite-plugin-handlebars'
 import svgr from 'vite-plugin-svgr'
 
 import app from '../common/app.json'
 
-const SHOULD_USE_SENTRY = Boolean(process.env.SENTRY_AUTH_TOKEN && process.env.SENTRY_ORG && process.env.SENTRY_PROJECT)
+// // https://vitejs.dev/config/
+const config = ({ mode }) => {
+  // this allows us to use env variables in this file
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  build: {
-    sourcemap: SHOULD_USE_SENTRY,
-  },
+  const SHOULD_USE_SENTRY = Boolean(
+    process.env.VITE_SENTRY_AUTH_TOKEN && process.env.VITE_SENTRY_ORG && process.env.VITE_SENTRY_PROJECT,
+  )
 
-  plugins: [
-    react(),
-    svgr({
-      exportAsDefault: true,
-      svgrOptions: {
-        // enables us to size svg's with the css font-size property
-        icon: '1em',
-      },
-    }),
-    handlebars({
-      context: {
-        title: app.displayName,
-        description: app.description,
-        themeColor: colors[app.baseColor as keyof typeof colors][500],
-      },
-    }),
-    {
-      ...(SHOULD_USE_SENTRY &&
-        // TODO: SS test that these env vars are loaded correctly
-        sentryVitePlugin({
-          authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
-          org: process.env.VITE_SENTRY_ORG,
-          project: process.env.VITE_SENTRY_PROJECT,
-        })),
+  return defineConfig({
+    build: {
+      sourcemap: SHOULD_USE_SENTRY,
     },
-  ],
-})
+
+    plugins: [
+      react(),
+      svgr({
+        exportAsDefault: true,
+        svgrOptions: {
+          // enables us to size svg's with the css font-size property
+          icon: '1em',
+        },
+      }),
+      handlebars({
+        context: {
+          title: app.displayName,
+          description: app.description,
+          themeColor: colors[app.baseColor as keyof typeof colors][500],
+        },
+      }),
+      {
+        ...(SHOULD_USE_SENTRY &&
+          sentryVitePlugin({
+            authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
+            org: process.env.VITE_SENTRY_ORG,
+            project: process.env.VITE_SENTRY_PROJECT,
+          })),
+      },
+    ],
+  })
+}
+
+export default config

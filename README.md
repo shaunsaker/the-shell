@@ -260,13 +260,15 @@ We support free trials out of the box. To add a free trial to a product, simply 
 
 2. Copy the `dsn` key. This is your `VITE_SENTRY_DSN`.
 
-3. Grab your "Organization Slug" from [Settings](https://sentry.io/settings/organization/). This is your `SENTRY_ORG`.
+3. [Create a Sentry Auth Token](https://private-zj.sentry.io/settings/auth-tokens/new-token/). This is your `VITE_SENTRY_AUTH_TOKEN`.
 
-4. Grab your "Project Slug" from https://sentry.io/settings/projects/ and clicking on the project. In the url that loads next, e.g. https://SENTRY_ORG.sentry.io/settings/projects/X/, X is your `SENTRY_PROJECT`.
+4. Grab your "Organization Slug" from [Settings](https://sentry.io/settings/organization/). This is your `VITE_SENTRY_ORG`.
 
-5. Add the secrets to `packages/app/.env.local`, `packages/app/.env.staging` and `packages/app/.env.production`.
+5. Grab your "Project Slug" from https://sentry.io/settings/projects/ and clicking on the project. In the url that loads next, e.g. https://SENTRY_ORG.sentry.io/settings/projects/X/, X is your `VITE_SENTRY_PROJECT`.
 
-6. Push the secrets to Github.
+6. Add the secrets to `packages/app/.env.local`, `packages/app/.env.staging` and `packages/app/.env.production`.
+
+7. Push the secrets to Github.
 
 ```
 gh auth login
@@ -275,7 +277,7 @@ gh secret set SENTRY_ORG --body VALUE
 gh secret set SENTRY_PROJECT --body VALUE
 ```
 
-7. [Connect your Github repo to Sentry](https://private-zj.sentry.io/settings/integrations/github/).
+8. [Connect your Github repo to Sentry](https://private-zj.sentry.io/settings/integrations/github/).
 
 ### Setup Resend
 
