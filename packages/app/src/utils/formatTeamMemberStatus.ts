@@ -1,4 +1,4 @@
-import { TeamMemberStatus } from '../types/firebase'
+import { TeamMemberStatus } from 'types'
 
 export const formatTeamMemberStatus = (status: TeamMemberStatus): string => {
   switch (status) {

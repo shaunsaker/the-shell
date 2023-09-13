@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Team } from 'types'
 
 import { Button } from '../../../../components/button/Button'
 import { TableCell } from '../../../../components/table/TableCell'
 import { TableRow } from '../../../../components/table/TableRow'
 import { routes, TEAM_ID_PARAM } from '../../../../routes'
 import { useTeamMembers } from '../../../../teams/hooks/useTeamMembers'
-import { Team } from '../../../../types/firebase'
 import { formatDate } from '../../../../utils/formatDate'
 import { formatTeamMemberName } from '../../../../utils/formatTeamMemberName'
 

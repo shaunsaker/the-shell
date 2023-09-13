@@ -1,7 +1,7 @@
 import { onDocumentCreated } from 'firebase-functions/v2/firestore'
+import { TeamMemberStatus, User } from 'types'
 
 import { firebase } from '../../firebaseAdmin'
-import { TeamMemberStatus, User } from '../../models'
 
 console.log('Hello from On Team Member User Data Created!')
 

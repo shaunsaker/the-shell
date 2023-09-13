@@ -1,4 +1,4 @@
-import { TeamMember } from '../types/firebase'
+import { TeamMember } from 'types'
 
 export const formatTeamMemberName = (teamMember?: TeamMember) => {
   if (!teamMember || (!teamMember.firstName && !teamMember.lastName)) {

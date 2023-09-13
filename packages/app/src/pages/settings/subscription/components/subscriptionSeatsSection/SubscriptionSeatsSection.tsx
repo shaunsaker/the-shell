@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
+import { Price } from 'types'
 
 import { usePrices } from '../../../../../billing/hooks/usePrices'
 import { useSubscription } from '../../../../../billing/hooks/useSubscription'
@@ -6,7 +7,6 @@ import { useUpdateSubscriptionQuantity } from '../../../../../billing/hooks/useU
 import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
-import { Price } from '../../../../../types/firebase'
 import { formatCurrency } from '../../../../../utils/formatCurrency'
 import { maybePluralise } from '../../../../../utils/maybePluralise'
 import { SubscriptionNotFound } from '../subscriptionNotFound/SubscriptionNotFound'

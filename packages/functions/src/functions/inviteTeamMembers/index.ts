@@ -1,8 +1,8 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
+import { Functions, FunctionsMap, TeamMember, TeamMemberRole, TeamMemberStatus } from 'types'
 
 import { getAuthUser } from '../../auth/getAuthUser'
 import { sendAddedUserToTeamEmail } from '../../emails/sendAddedUserToTeamEmail'
-import { Functions, FunctionsMap, TeamMember, TeamMemberRole, TeamMemberStatus } from '../../models'
 import { addTeamMembers } from '../../teams/addTeamMembers'
 import { getTeam } from '../../teams/getTeam'
 import { getTeamMembers } from '../../teams/getTeamMembers'

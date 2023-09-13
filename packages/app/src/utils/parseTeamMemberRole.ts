@@ -1,4 +1,4 @@
-import { TeamMemberRole } from '../types/firebase'
+import { TeamMemberRole } from 'types'
 
 export const parseTeamMemberRole = (role: string): TeamMemberRole => {
   switch (role) {

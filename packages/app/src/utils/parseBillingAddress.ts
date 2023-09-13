@@ -1,4 +1,4 @@
-import { BillingAddress } from '../types/firebase'
+import { BillingAddress } from 'types'
 
 const validateBillingAddress = (object: unknown): object is BillingAddress => {
   if (!object) {

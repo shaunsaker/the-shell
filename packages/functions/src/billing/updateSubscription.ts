@@ -1,5 +1,6 @@
+import { Subscription, SubscriptionStatus } from 'types'
+
 import { firebase } from '../firebaseAdmin'
-import { Subscription, SubscriptionStatus } from '../models'
 import { getISOString } from '../utils/getISOString'
 import { Stripe } from './stripe'
 

@@ -1,5 +1,6 @@
+import { Price, Product } from 'types'
+
 import { firebase } from '../firebaseAdmin'
-import { Price, Product } from '../models'
 
 export const getProductByPriceId = async (priceId: string) => {
   const priceDoc = await firebase.firestore().collection('prices').doc(priceId).get()

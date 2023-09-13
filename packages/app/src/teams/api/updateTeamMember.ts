@@ -1,7 +1,7 @@
 import { doc, updateDoc } from 'firebase/firestore'
+import { TeamMemberRole } from 'types'
 
 import { db } from '../../firebase'
-import { TeamMemberRole } from '../../types/firebase'
 
 export const updateTeamMember = async ({
   teamId,

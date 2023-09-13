@@ -1,7 +1,7 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
+import { Subscription } from 'types'
 
 import { db } from '../../firebase'
-import { Subscription } from '../../types/firebase'
 
 // fetch the users subscription if they have one that is active or trialing
 export const getSubscriptionForUser = async (uid: string) => {

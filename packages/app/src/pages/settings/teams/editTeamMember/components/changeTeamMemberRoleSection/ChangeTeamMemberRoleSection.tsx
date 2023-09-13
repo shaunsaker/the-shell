@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
+import { TeamMemberRole } from 'types'
 
 import { Button } from '../../../../../../components/button/Button'
 import { Select } from '../../../../../../components/select/Select'
@@ -7,7 +8,6 @@ import { SkeletonLoader } from '../../../../../../components/skeletonLoader/Skel
 import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
 import { useTeamMembers } from '../../../../../../teams/hooks/useTeamMembers'
 import { useUpdateTeamMember } from '../../../../../../teams/hooks/useUpdateTeamMember'
-import { TeamMemberRole } from '../../../../../../types/firebase'
 import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRole'
 import { parseTeamMemberRole } from '../../../../../../utils/parseTeamMemberRole'
 

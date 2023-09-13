@@ -1,4 +1,4 @@
-import { PaymentMethod } from '../types/firebase'
+import { PaymentMethod } from 'types'
 
 const validatePaymentMethod = (object: unknown): object is PaymentMethod => {
   if (!object) {

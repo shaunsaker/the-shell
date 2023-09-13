@@ -1,8 +1,8 @@
 import { doc, setDoc } from 'firebase/firestore'
+import { Team, TeamMember, TeamMemberRole, TeamMemberStatus } from 'types'
 
 import { getAuthUser } from '../../auth/api/getAuthUser'
 import { db } from '../../firebase'
-import { Team, TeamMember, TeamMemberRole, TeamMemberStatus } from '../../types/firebase'
 import { getISOString } from '../../utils/getISOString'
 import { getUuid } from '../../utils/getUuid'
 

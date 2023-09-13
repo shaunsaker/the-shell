@@ -1,5 +1,6 @@
+import { TeamMember, TeamMemberRole, TeamMemberStatus } from 'types'
+
 import { firebase } from '../firebaseAdmin'
-import { TeamMember, TeamMemberRole, TeamMemberStatus } from '../models'
 
 const parseTeamMemberRole = (role: string): TeamMemberRole => {
   switch (role) {

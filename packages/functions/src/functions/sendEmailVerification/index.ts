@@ -1,10 +1,10 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
+import { Functions, FunctionsMap } from 'types'
 
 import { generateEmailVerificationLink } from '../../auth/generateEmailVerificationLink'
 import { getAuthUser } from '../../auth/getAuthUser'
 import { getAuthUserByEmail } from '../../auth/getAuthUserByEmail'
 import { sendEmailVerificationEmail } from '../../emails/sendEmailVerificationEmail'
-import { Functions, FunctionsMap } from '../../models'
 import { validateEmail } from '../../utils/validateEmail'
 
 console.log('Hello from Send Email Verification!')

@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import { SubscriptionStatus } from 'types'
 
 import { useCreateBillingPortalSession } from '../../../../../billing/hooks/useCreateBillingPortalSession'
 import { usePrices } from '../../../../../billing/hooks/usePrices'
@@ -8,7 +9,6 @@ import { Button } from '../../../../../components/button/Button'
 import { List } from '../../../../../components/list/List'
 import { ListItem } from '../../../../../components/list/ListItem'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
-import { SubscriptionStatus } from '../../../../../types/firebase'
 import { useUser } from '../../../../../users/hooks/useUser'
 import { formatBillingAddress } from '../../../../../utils/formatBillingAddress'
 import { formatCurrency } from '../../../../../utils/formatCurrency'

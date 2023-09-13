@@ -1,9 +1,9 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
+import { Functions, FunctionsMap } from 'types'
 
 import { deleteAuthUser } from '../../auth/deleteAuthUser'
 import { getAuthUser } from '../../auth/getAuthUser'
 import { sendTeamDeletedEmail } from '../../emails/sendTeamDeletedEmail'
-import { Functions, FunctionsMap } from '../../models'
 import { deleteTeam } from '../../teams/deleteTeam'
 import { deleteTeamMembersForUser } from '../../teams/deleteTeamMembersForUser'
 import { getTeam } from '../../teams/getTeam'

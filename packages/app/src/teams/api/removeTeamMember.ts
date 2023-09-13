@@ -1,4 +1,5 @@
-import { Functions } from '../../types/firebase'
+import { Functions } from 'types'
+
 import { invokeFunction } from '../../utils/invokeFunction'
 
 const removeTeamMemberFunction = invokeFunction(Functions.removeTeamMember)

@@ -1,11 +1,11 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
+import { Functions, FunctionsMap } from 'types'
 
 import { getAuthUser } from '../../auth/getAuthUser'
 import { createCheckoutSession } from '../../billing/createCheckoutSession'
 import { createCustomer } from '../../billing/createCustomer'
 import { getCustomer } from '../../billing/getCustomer'
 import { getProductByPriceId } from '../../billing/getProductByPriceId'
-import { Functions, FunctionsMap } from '../../models'
 
 console.log('Hello from Create Checkout Session!')
 

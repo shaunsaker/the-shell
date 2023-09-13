@@ -1,5 +1,6 @@
+import { User } from 'types'
+
 import { firebase } from '../firebaseAdmin'
-import { User } from '../models'
 
 export const getUsersByEmails = async (emails: string[]) => {
   const docs = await firebase.firestore().collection('users').where('email', 'in', emails).get()

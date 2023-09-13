@@ -1,7 +1,7 @@
 import { doc, getDoc } from 'firebase/firestore'
+import { User } from 'types'
 
 import { db } from '../../firebase'
-import { User } from '../../types/firebase'
 
 export const getUser = async (uid: string) => {
   const user = await getDoc(doc(db, 'users', uid))
