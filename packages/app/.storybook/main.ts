@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/react-vite'
-
 import { join, dirname } from 'path'
 
 /**
@@ -7,15 +6,17 @@ import { join, dirname } from 'path'
  * It is needed in projects that use Yarn PnP or are set up within a monorepo.
  */
 function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, 'package.json')))
+  const path = dirname(require.resolve(join(value, 'package.json')))
+
+  return path
 }
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../src/**/*.stories.@(ts|tsx)'],
   addons: [
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@storybook/addon-styling'),
+    getAbsolutePath('@storybook/addon-styling-webpack'),
     getAbsolutePath('@storybook/addon-a11y'),
   ],
   framework: {
@@ -26,4 +27,5 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
 }
+
 export default config
