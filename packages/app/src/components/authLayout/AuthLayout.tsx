@@ -13,7 +13,7 @@ type Props = {
 
 export const AuthLayout = ({ title, children, footer }: Props) => {
   return (
-    <PageLayout className="flex flex-col items-center justify-center gap-y-8">
+    <PageLayout className="bg-theme-background-muted dark:bg-dark-theme-background-muted flex flex-col items-center justify-center gap-y-8">
       <div className="flex flex-col items-center gap-y-4">
         <Logo />
 
