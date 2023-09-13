@@ -132,9 +132,10 @@ export enum Functions {
   deleteTeam = 'deleteTeamFunction',
   deleteUserAccount = 'deleteUserAccountFunction',
   inviteTeamMembers = 'inviteTeamMembersFunction',
+  removeTeamMember = 'removeTeamMemberFunction',
+  requestResetPassword = 'requestResetPasswordFunction',
   sendChangeEmailVerification = 'sendChangeEmailVerificationFunction',
   sendEmailVerification = 'sendEmailVerificationFunction',
-  removeTeamMember = 'removeTeamMemberFunction',
   updateSubscriptionQuantity = 'updateSubscriptionQuantityFunction',
 }
 
@@ -201,6 +202,17 @@ export type FunctionsMap = {
       siteUrl: string
       teamId: string
       teamMemberId: string
+    }
+    response: {
+      ok: true
+    }
+  }
+  [Functions.requestResetPassword]: {
+    data: {
+      siteUrl: string
+      email: string
+      newPassword: string
+      redirectUrl: string
     }
     response: {
       ok: true

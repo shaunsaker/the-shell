@@ -7,6 +7,7 @@ import { inviteTeamMembersFunction } from './functions/inviteTeamMembers'
 import { onTeamMemberUserDataCreated } from './functions/onTeamMemberUserDataCreated'
 import { onTeamMemberUserDataUpdated } from './functions/onTeamMemberUserDataUpdated'
 import { removeTeamMemberFunction } from './functions/removeTeamMember'
+import { requestResetPasswordFunction } from './functions/requestResetPassword'
 import { sendChangeEmailVerificationFunction } from './functions/sendChangeEmailVerification'
 import { sendEmailVerificationFunction } from './functions/sendEmailVerification'
 import { stripeWebhookFunction } from './functions/stripeWebhook'
@@ -22,6 +23,7 @@ export {
   onTeamMemberUserDataCreated,
   onTeamMemberUserDataUpdated,
   removeTeamMemberFunction,
+  requestResetPasswordFunction,
   sendChangeEmailVerificationFunction,
   sendEmailVerificationFunction,
   stripeWebhookFunction,

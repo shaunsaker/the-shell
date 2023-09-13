@@ -10,7 +10,6 @@ export const routes = {
   dashboard: '/',
   settings: '/settings',
   settingsAccount: '/settings/account',
-  settingsResetPassword: '/settings/account/reset-password',
   settingsSubscription: '/settings/subscription',
   settingsTeams: '/settings/teams',
   settingsAddTeam: '/settings/teams/add',

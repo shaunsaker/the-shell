@@ -9,7 +9,6 @@ import { SettingsLayout } from './components/settingsLayout/SettingsLayout'
 import { Dashboard } from './pages/dashboard'
 import ForgotPassword from './pages/forgotPassword'
 import { SettingsAccount } from './pages/settings/account'
-import { SettingsResetPassword } from './pages/settings/account/resetPassword'
 import { SettingsSubscription } from './pages/settings/subscription'
 import { SettingsTeams } from './pages/settings/teams'
 import { SettingsAddTeam } from './pages/settings/teams/addTeam'
@@ -71,12 +70,6 @@ const authorisedRoutes: RouteObject[] = [
             element: <SettingsAccount />,
             errorElement,
           },
-          {
-            path: routes.settingsResetPassword,
-            element: <SettingsResetPassword />,
-            errorElement,
-          },
-
           {
             path: routes.settingsSubscription,
             element: <SettingsSubscription />,

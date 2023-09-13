@@ -2,17 +2,16 @@ import React, { ReactElement, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
-import { useVerifyEmail } from '../../../../auth/hooks/useVerifyEmail'
+import { useResetPassword } from '../../../../auth/hooks/useResetPassword'
 import { Loading } from '../../../../components/loading/Loading'
 import { routes } from '../../../../routes'
 
-export const VerifyEmail = (): ReactElement => {
+export const ResetPassword = (): ReactElement => {
   const [searchParams] = useSearchParams()
   // FIXME: how can we type these params?
   const actionCode = searchParams.get('oobCode')
-  const oldEmail = searchParams.get('oldEmail')
-  const email = searchParams.get('email')
-  const { mutate: verifyEmail } = useVerifyEmail()
+  const newPassword = searchParams.get('newPassword')
+  const { mutate: resetPassword } = useResetPassword()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -20,18 +19,22 @@ export const VerifyEmail = (): ReactElement => {
       if (
         !actionCode &&
         // in development, we don't have an action code
-        // because firebase automatically verifies the email when the email action link is clicked
+        // because firebase automatically changes the password when the email action link is clicked
         import.meta.env.MODE !== 'development'
       ) {
         throw new Error('Action code is missing')
       }
 
-      // in development, we don't have an action code because Firebase automatically verifies the email when the email action link is clicked
-      if (actionCode) {
-        await verifyEmail(actionCode)
+      if (!newPassword) {
+        throw new Error('New password is missing')
       }
 
-      toast.success('Email verified successfully. Please sign in to continue.')
+      // in development, we don't have an action code because Firebase automatically changes the password when the email action link is clicked
+      if (actionCode) {
+        await resetPassword({ actionCode, newPassword })
+      }
+
+      toast.success('Password changed successfully. Please sign in to continue.')
 
       // navigate to the sign in page
       navigate(routes.signIn)
@@ -39,7 +42,7 @@ export const VerifyEmail = (): ReactElement => {
 
     // FIXME: SS in development, this runs twice
     doAsync()
-  }, [actionCode, navigate, email, oldEmail, verifyEmail])
+  }, [actionCode, navigate, newPassword, resetPassword])
 
   return <Loading />
 }

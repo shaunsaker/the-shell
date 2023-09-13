@@ -1,38 +1,13 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
-import { FormEvent, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useResetPasswordForEmail } from '../../auth/hooks/useResetPasswordForEmail'
 import { AuthLayout } from '../../components/authLayout/AuthLayout'
 import { Button } from '../../components/button/Button'
-import { TextInput } from '../../components/textInput/TextInput'
+import { ResetPassword } from '../../components/resetPassword/ResetPassword'
 import { routes } from '../../routes'
-import { useUserEmail } from '../../users/hooks/useUserEmail'
-import { validateEmail } from '../../utils/validateEmail'
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useUserEmail()
   const navigate = useNavigate()
-  const { mutate: resetPasswordForEmail, isLoading } = useResetPasswordForEmail()
-
-  const isEmailValid = validateEmail(email)
-  const disabled = !email || !isEmailValid
-
-  const onSubmit = useCallback(
-    async (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
-
-      if (disabled) {
-        return
-      }
-
-      await resetPasswordForEmail({
-        email,
-        redirectTo: `${window.location.origin}${routes.settingsResetPassword}`,
-      })
-    },
-    [disabled, email, resetPasswordForEmail],
-  )
 
   return (
     <AuthLayout
@@ -49,22 +24,7 @@ export default function ForgotPassword() {
         </Button>
       }
     >
-      <form className="space-y-6" onSubmit={onSubmit}>
-        <TextInput
-          className="mt-2"
-          type="email"
-          label="Email address"
-          placeholder="Enter your email..."
-          autoComplete="email"
-          required
-          value={email}
-          onChange={event => setEmail(event.target.value)}
-        />
-
-        <Button type="submit" disabled={disabled} loading={isLoading}>
-          Send password reset email
-        </Button>
-      </form>
+      <ResetPassword />
     </AuthLayout>
   )
 }

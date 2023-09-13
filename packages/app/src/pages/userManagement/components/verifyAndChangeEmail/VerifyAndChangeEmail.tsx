@@ -2,7 +2,6 @@ import React, { ReactElement, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
-import { useAuthUser } from '../../../../auth/hooks/useAuthUser'
 import { useChangeUserEmail } from '../../../../auth/hooks/useChangeUserEmail'
 import { useVerifyEmail } from '../../../../auth/hooks/useVerifyEmail'
 import { Loading } from '../../../../components/loading/Loading'
@@ -13,9 +12,7 @@ export const VerifyAndChangeEmail = (): ReactElement => {
   // FIXME: how can we type these params?
   const actionCode = searchParams.get('oobCode')
   const oldEmail = searchParams.get('oldEmail')
-  console.log({ oldEmail })
   const newEmail = searchParams.get('newEmail')
-  const { data: authUser } = useAuthUser()
   const { mutate: verifyEmail } = useVerifyEmail()
   const { mutate: changeUserEmail } = useChangeUserEmail()
   const navigate = useNavigate()
@@ -50,7 +47,7 @@ export const VerifyAndChangeEmail = (): ReactElement => {
 
     // FIXME: SS in development, this runs twice
     doAsync()
-  }, [actionCode, authUser, changeUserEmail, navigate, oldEmail, verifyEmail, newEmail])
+  }, [actionCode, changeUserEmail, navigate, oldEmail, verifyEmail, newEmail])
 
   return <Loading />
 }
