@@ -1,5 +1,6 @@
+import { ResetPassword } from 'emails'
+
 import app from '../../../common/app.json'
-import { ResetPassword } from '../../../emails'
 import { resend } from './resend'
 
 export const sendResetPasswordEmail = async ({

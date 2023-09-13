@@ -323,6 +323,13 @@ Run the following command to start the app development server and Firebase emula
 yarn dev
 ```
 
+To start the email development server, run:
+
+```
+cd ./packages/emails
+yarn dev:emails
+```
+
 ---
 
 ### Figma

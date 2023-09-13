@@ -1,5 +1,6 @@
+import { RemovedFromTeam } from 'emails'
+
 import app from '../../../common/app.json'
-import { RemovedFromTeam } from '../../../emails'
 import { resend } from './resend'
 
 export const sendRemovedFromTeamEmail = async ({

@@ -1,5 +1,6 @@
+import { EmailAddressChanged } from 'emails'
+
 import app from '../../../common/app.json'
-import { EmailAddressChanged } from '../../../emails'
 import { resend } from './resend'
 
 export const sendEmailAddressChangedEmail = async ({
