@@ -18,30 +18,31 @@ export const Snackbar = (): ReactElement => {
 
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 flex flex-col items-center pt-2"
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 flex flex-col items-center"
       onMouseEnter={startPause}
       onMouseLeave={endPause}
     >
       <AnimatePresence initial={false}>
         {toasts
           .filter(toast => toast.visible)
-          .map(toast => {
+          .map((toast, index) => {
+            const initial = { opacity: 0, y: -64 * (index + 1), scale: 0.9 }
+
             return (
               <motion.div
                 key={toast.id}
-                initial={{ opacity: 0, y: -64, scale: 0.9 }}
+                initial={initial}
                 animate={{
                   opacity: 1,
                   y: 0,
                   scale: 1,
                 }}
                 exit={{
-                  opacity: 0,
-                  scale: 0.9,
-                  transition: { delay: 1, duration: 0.2 },
+                  ...initial,
+                  transition: { delay: 1, duration: 0.33 },
                 }}
               >
-                <Alert className="shadow-lg" kind={mapTypeToKind[toast.type]}>
+                <Alert className="mt-2 shadow-lg" kind={mapTypeToKind[toast.type]}>
                   {String(resolveValue(toast.message, toast))}
                 </Alert>
               </motion.div>
