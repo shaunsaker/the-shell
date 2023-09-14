@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import React, { ComponentPropsWithoutRef, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import { useKeypress } from '../../utils/useKeyPress'
 import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Button } from '../button/Button'
 import { Menu } from './Menu'
@@ -24,6 +25,12 @@ export const Select = ({ className = '', value, options, disabled, onValueChange
   const containerRef = useRef<HTMLDivElement>(null)
 
   useOutsideClick(containerRef, () => {
+    if (open) {
+      setOpen(false)
+    }
+  })
+
+  useKeypress('Escape', () => {
     if (open) {
       setOpen(false)
     }
