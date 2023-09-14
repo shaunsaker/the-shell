@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactElement } from 'react'
-import { resolveValue, ToastType, useToaster } from 'react-hot-toast'
+import toast, { resolveValue, ToastType, useToaster } from 'react-hot-toast'
 
 import { Alert, AlertKind } from '../alert/Alert'
 
@@ -25,25 +25,28 @@ export const Snackbar = (): ReactElement => {
       <AnimatePresence initial={false}>
         {toasts
           .filter(toast => toast.visible)
-          .map((toast, index) => {
+          .map((toastInstance, index) => {
             const initial = { opacity: 0, y: -64 * (index + 1), scale: 0.9 }
 
             return (
               <motion.div
-                key={toast.id}
+                key={toastInstance.id}
                 initial={initial}
                 animate={{
                   opacity: 1,
                   y: 0,
                   scale: 1,
                 }}
-                exit={{
-                  ...initial,
-                  transition: { delay: 1, duration: 0.33 },
-                }}
+                exit={initial}
               >
-                <Alert className="mt-2 shadow-lg" kind={mapTypeToKind[toast.type]}>
-                  {String(resolveValue(toast.message, toast))}
+                <Alert
+                  className="mt-2 shadow-lg"
+                  kind={mapTypeToKind[toastInstance.type]}
+                  onClose={() => {
+                    toast.dismiss(toastInstance.id)
+                  }}
+                >
+                  {String(resolveValue(toastInstance.message, toastInstance))}
                 </Alert>
               </motion.div>
             )
