@@ -64,6 +64,11 @@ export const Sidebar = ({ items, onClick }: Props) => {
                     // navigate to the route if we're not already on that route
                     if (!item.isActive && onClick) {
                       onClick(item.href)
+
+                      if (sidebarOpen) {
+                        // close the Sidebar
+                        setSidebarOpen(false)
+                      }
                     }
                   }}
                 >
