@@ -24,6 +24,8 @@ export const Select = ({ className = '', value, options, disabled, onValueChange
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  const label = options.find(option => option.value === value)?.label || ''
+
   useOutsideClick(containerRef, () => {
     if (open) {
       setOpen(false)
@@ -49,7 +51,7 @@ export const Select = ({ className = '', value, options, disabled, onValueChange
           setOpen(!open)
         }}
       >
-        {value}
+        {label}
       </Button>
 
       <AnimatePresence>
