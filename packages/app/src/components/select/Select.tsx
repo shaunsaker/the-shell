@@ -21,15 +21,12 @@ type Props = ComponentPropsWithoutRef<'div'> & {
 
 export const Select = ({ className = '', value, options, disabled, onValueChange, ...props }: Props) => {
   const [open, setOpen] = useState(false)
-
   const containerRef = useRef<HTMLDivElement>(null)
-  useOutsideClick({
-    ref: containerRef,
-    callback: () => {
-      if (open) {
-        setOpen(false)
-      }
-    },
+
+  useOutsideClick(containerRef, () => {
+    if (open) {
+      setOpen(false)
+    }
   })
 
   return (

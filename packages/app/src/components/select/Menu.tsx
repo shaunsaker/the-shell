@@ -17,7 +17,7 @@ type Props = ComponentPropsWithoutRef<'ul'> & {
 export const Menu = ({ className = '', options, onValueChange, onClose, ...props }: Props) => {
   const ref = useRef<HTMLDivElement>(null)
 
-  useOutsideClick({ ref, callback: onClose })
+  useOutsideClick(ref, onClose)
 
   return (
     <motion.div
