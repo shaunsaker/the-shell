@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
@@ -11,15 +11,12 @@ type Option = {
 
 type Props = {
   className?: string
-  label?: string
-  value: Option
+  value: string
   options: Option[]
-  onValueChange: (value: Option) => void
+  onValueChange: (option: Option) => void
 }
 
-export const RadioGroup = ({ className, label, value, options, onValueChange }: Props): ReactElement => {
-  const [selected, setSelected] = useState(value)
-
+export const RadioGroup = ({ className, value, options, onValueChange }: Props): ReactElement => {
   return (
     <div
       className={twMerge(
@@ -27,23 +24,24 @@ export const RadioGroup = ({ className, label, value, options, onValueChange }: 
         className,
       )}
     >
-      {label && <label className="sr-only">{label}</label>}
+      {options?.map(option => {
+        const isSelected = option.value === value
 
-      {options?.map(option => (
-        <Button
-          key={option.value}
-          className={twMerge('rounded-full')}
-          variant={selected.value === option.value ? 'primary' : 'light'}
-          color={selected.value === option.value ? '' : app.neutralColor}
-          size="sm"
-          onClick={() => {
-            setSelected(option)
-            onValueChange(option)
-          }}
-        >
-          {option.label}
-        </Button>
-      ))}
+        return (
+          <Button
+            key={option.value}
+            className={twMerge('rounded-full')}
+            variant={isSelected ? 'primary' : 'light'}
+            color={isSelected ? '' : app.neutralColor}
+            size="sm"
+            onClick={() => {
+              onValueChange(option)
+            }}
+          >
+            {option.label}
+          </Button>
+        )
+      })}
     </div>
   )
 }

@@ -17,7 +17,7 @@ type Props = ComponentPropsWithoutRef<'div'> & {
   value: string
   options: SelectOption[]
   disabled?: boolean
-  onValueChange: (value: SelectOption) => void
+  onValueChange: (option: SelectOption) => void
 }
 
 export const Select = ({ className = '', value, options, disabled, onValueChange, ...props }: Props) => {

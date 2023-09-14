@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useMemo, useState } from 'react'
 
 import { useCreateCheckoutSession } from '../../../../../billing/hooks/useCreateCheckoutSession'
 import { usePrices } from '../../../../../billing/hooks/usePrices'
@@ -31,16 +31,18 @@ export const Pricing = (): ReactElement => {
   const { mutate: createCheckoutSession, isLoading: createCheckoutSessionLoading } = useCreateCheckoutSession()
 
   // get the unique billing intervals from the prices
-  const billingIntervals = [...new Set(prices?.map(price => price.interval))]
+  const billingIntervals = useMemo(() => {
+    if (!prices) {
+      return []
+    }
 
-  // Note: we set the billingInterval in a useEffect when the products and s
+    return [...new Set(prices?.map(price => price.interval))]
+  }, [prices])
+
+  // Note: we set the billingInterval in a useEffect when the products and subscription updates
   const [billingInterval, setBillingInterval] = useState<string>('')
 
   // transform the billing interval into radio group options
-  const billingIntervalValue = {
-    label: formatBillingInterval(billingInterval),
-    value: billingInterval,
-  }
   const billingIntervalOptions = billingIntervals.map(billingInterval => ({
     label: formatBillingInterval(billingInterval),
     value: billingInterval,
@@ -54,8 +56,7 @@ export const Pricing = (): ReactElement => {
       }
     },
     // billingIntervals is excluded because it updates on every render and we don't want it to run this effect
-    // eslint-disable-next-line
-    [products],
+    [billingIntervals, products],
   )
 
   if (!products?.length) {
@@ -77,8 +78,7 @@ export const Pricing = (): ReactElement => {
 
       <RadioGroup
         className="mt-8"
-        label="Select payment frequency"
-        value={billingIntervalValue}
+        value={billingInterval}
         options={billingIntervalOptions}
         onValueChange={option => setBillingInterval(option.value)}
       />
