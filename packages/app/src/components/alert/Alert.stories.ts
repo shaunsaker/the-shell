@@ -19,6 +19,7 @@ export const Info: Story = {
   args: {
     kind: 'info',
     children: 'Alert',
+    onClose: undefined,
   },
 }
 
@@ -26,6 +27,7 @@ export const Success: Story = {
   args: {
     kind: 'success',
     children: 'Alert',
+    onClose: undefined,
   },
 }
 
@@ -33,6 +35,7 @@ export const Warning: Story = {
   args: {
     kind: 'warning',
     children: 'Alert',
+    onClose: undefined,
   },
 }
 
@@ -40,6 +43,7 @@ export const Error: Story = {
   args: {
     kind: 'error',
     children: 'Alert',
+    onClose: undefined,
   },
 }
 
