@@ -18,7 +18,7 @@ export const Snackbar = (): ReactElement => {
 
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 flex flex-col items-center"
+      className="fixed inset-x-0 top-0 z-50 flex flex-col items-center"
       onMouseEnter={startPause}
       onMouseLeave={endPause}
     >
