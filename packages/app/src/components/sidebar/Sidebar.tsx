@@ -1,11 +1,12 @@
 import { QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { ReactNode, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
 import { useKeypress } from '../../utils/useKeyPress'
 import { useLink } from '../../utils/useLink'
+import { useOutsideClick } from '../../utils/useOutsideClick'
 import { useSidebarOpen } from '../../utils/useSidebarOpen'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
@@ -26,6 +27,13 @@ type Props = {
 export const Sidebar = ({ items, onClick }: Props) => {
   const [sidebarOpen, setSidebarOpen] = useSidebarOpen()
   const link = useLink()
+  const ref = useRef<HTMLDivElement>(null)
+
+  useOutsideClick(ref, () => {
+    if (sidebarOpen) {
+      setSidebarOpen(false)
+    }
+  })
 
   useKeypress('Escape', () => {
     if (sidebarOpen) {
@@ -34,7 +42,7 @@ export const Sidebar = ({ items, onClick }: Props) => {
   })
 
   const sidebar = (
-    <div className="bg-theme-brand dark:bg-dark-theme-brand flex grow flex-col gap-y-6 overflow-y-auto p-6">
+    <div ref={ref} className="bg-theme-brand dark:bg-dark-theme-brand flex grow flex-col gap-y-6 overflow-y-auto p-6">
       <div className="flex items-center">
         <Logo className="fill-theme-brand-inverted dark:fill-dark-theme-brand-inverted" />
       </div>
