@@ -21,6 +21,7 @@ export const Breadcrumbs = ({ items, onClick }: Props) => {
       <ol className="flex items-center space-x-4">
         {items?.map((item, index) => {
           const isActive = item.isActive
+          const isLastBreadcrumb = index === items.length - 1
 
           return (
             <li key={item.name}>
@@ -39,7 +40,7 @@ export const Breadcrumbs = ({ items, onClick }: Props) => {
                   {item.name}
                 </Button>
 
-                {index !== items.length - 1 && (
+                {!isLastBreadcrumb && (
                   <Text>
                     <ChevronRightIcon className="h-4 w-4" />
                   </Text>
