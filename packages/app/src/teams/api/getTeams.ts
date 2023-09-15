@@ -1,4 +1,4 @@
-import { collectionGroup, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
+import { collectionGroup, doc, getDoc, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { Team } from 'types'
 
 import { getAuthUser } from '../../auth/api/getAuthUser'
@@ -12,7 +12,9 @@ export const getTeams = async () => {
   }
 
   // first we need to fetch the user's team members
-  const teamMembers = await getDocs(query(collectionGroup(db, 'members'), where('userId', '==', authUser.uid)))
+  const teamMembers = await getDocs(
+    query(collectionGroup(db, 'members'), where('userId', '==', authUser.uid), orderBy('createdAt', 'asc')),
+  )
 
   // then we need to fetch the teams
   const teams = await Promise.all(
