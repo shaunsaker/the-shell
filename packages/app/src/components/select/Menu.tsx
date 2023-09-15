@@ -3,6 +3,7 @@ import React, { ComponentPropsWithoutRef, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
+import { useKeypress } from '../../utils/useKeyPress'
 import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Button } from '../button/Button'
 import { Card } from '../card/Card'
@@ -17,13 +18,15 @@ const INITIAL_ANIMATION = {
 type Props = ComponentPropsWithoutRef<'ul'> & {
   options: SelectOption[]
   onValueChange: (value: SelectOption) => void
-  onClose: () => void
+  onClose: (event?: MouseEvent | KeyboardEvent) => void
 }
 
 export const Menu = ({ className = '', options, onValueChange, onClose, ...props }: Props) => {
   const ref = useRef<HTMLDivElement>(null)
 
   useOutsideClick(ref, onClose)
+
+  useKeypress('Escape', onClose)
 
   return (
     <motion.div
