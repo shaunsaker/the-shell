@@ -8,6 +8,12 @@ import { Button } from '../button/Button'
 import { Card } from '../card/Card'
 import { SelectOption } from './Select'
 
+const INITIAL_ANIMATION = {
+  opacity: 0,
+  transform: 'translateY(-4px)',
+  scale: 0.95,
+}
+
 type Props = ComponentPropsWithoutRef<'ul'> & {
   options: SelectOption[]
   onValueChange: (value: SelectOption) => void
@@ -22,15 +28,12 @@ export const Menu = ({ className = '', options, onValueChange, onClose, ...props
   return (
     <motion.div
       ref={ref}
-      initial={{
-        opacity: 0,
-        transform: 'translateY(-4px)',
-        scale: 0.95,
-      }}
+      className="absolute z-50 mt-2 min-w-[10rem]"
+      initial={INITIAL_ANIMATION}
       animate={{ opacity: 1, transform: 'translateY(0px)', scale: 1 }}
-      exit={{ opacity: 0, transform: 'translateY(-4px)', scale: 0.95 }}
+      exit={INITIAL_ANIMATION}
     >
-      <Card className="absolute mt-2 p-0">
+      <Card className="p-0">
         <ul {...props} className={twMerge(className)}>
           {options.map(option => (
             <li key={option.value}>
