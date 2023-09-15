@@ -30,6 +30,15 @@ export const Value: Story = {
   },
 }
 
+export const Disabled: Story = {
+  args: {
+    label: 'First name',
+    placeholder: 'Enter your first name...',
+    value: 'Shaun',
+    disabled: true,
+  },
+}
+
 export const WithoutLabel: Story = {
   args: {
     placeholder: 'Enter your first name...',
