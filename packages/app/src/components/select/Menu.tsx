@@ -28,7 +28,7 @@ export const Menu = ({ className = '', options, onValueChange, onClose, ...props
   return (
     <motion.div
       ref={ref}
-      className="absolute z-50 mt-2 min-w-[10rem]"
+      className="absolute z-10 mt-2 min-w-[10rem]"
       initial={INITIAL_ANIMATION}
       animate={{ opacity: 1, transform: 'translateY(0px)', scale: 1 }}
       exit={INITIAL_ANIMATION}

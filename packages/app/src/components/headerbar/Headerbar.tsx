@@ -1,6 +1,7 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import React, { ReactElement, ReactNode } from 'react'
 
+import app from '../../../../common/app.json'
 import { useSidebarOpen } from '../../utils/useSidebarOpen'
 import { Button } from '../button/Button'
 
@@ -15,7 +16,7 @@ export const Headerbar = ({ children }: Props): ReactElement => {
     <header className="border-theme-border bg-theme-background dark:border-dark-theme-border dark:bg-dark-theme-background flex h-16 w-full shrink-0 items-center border-b px-8 shadow-sm lg:pl-8">
       <Button
         variant="light"
-        color="gray"
+        color={app.neutralColor}
         className="-m-2.5 mr-4 lg:hidden"
         onClick={() => {
           setSidebarOpen(true)
