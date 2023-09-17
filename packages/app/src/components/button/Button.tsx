@@ -64,7 +64,7 @@ export const Button = ({
   return (
     <button
       className={twMerge(
-        'flex items-center justify-center gap-x-2 border font-medium outline-offset-4 transition-all',
+        'flex items-center justify-center gap-x-2 border font-medium outline-2 outline-offset-4 transition-all focus-visible:outline',
         sizeToButtonClassNames[size],
         getButtonColorClassNames(variant, color),
         disabled || loading ? 'pointer-events-none opacity-60 shadow-none' : '',
