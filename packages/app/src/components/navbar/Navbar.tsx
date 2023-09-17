@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
@@ -13,13 +13,13 @@ export type NavigationItem = {
 type Props = {
   items: NavigationItem[]
   onClick?: (href: string) => void
-}
+} & Omit<ComponentPropsWithoutRef<'ul'>, 'onClick'>
 
-export const Navbar = ({ items, onClick }: Props): ReactElement => {
+export const Navbar = ({ className, items, onClick, children, ...props }: Props): ReactElement => {
   return (
-    <ul className="mr-4 flex h-full flex-1 gap-x-2 overflow-x-auto lg:mr-8 lg:gap-x-4">
+    <ul className={twMerge(`flex flex-1 gap-x-2 overflow-x-auto lg:gap-x-4`, className)} {...props}>
       {items.map(item => (
-        <li key={item.name} className="h-full">
+        <li key={item.name}>
           <Button
             className={twMerge(
               item.isActive
@@ -28,15 +28,17 @@ export const Navbar = ({ items, onClick }: Props): ReactElement => {
               'h-full border-b-2 border-l-0 border-r-0 border-t-0',
             )}
             variant="light"
+            color={app.neutralColor}
             onClick={() => {
               onClick && onClick(item.href)
             }}
-            color={app.neutralColor}
           >
             {item.name}
           </Button>
         </li>
       ))}
+
+      <li className="flex flex-1 justify-end border-b-2 border-transparent">{children}</li>
     </ul>
   )
 }

@@ -13,11 +13,11 @@ export const Headerbar = ({ children }: Props): ReactElement => {
   const [_, setSidebarOpen] = useSidebarOpen()
 
   return (
-    <header className="border-theme-border bg-theme-background dark:border-dark-theme-border dark:bg-dark-theme-background flex h-16 w-full shrink-0 items-center border-b px-8 shadow-sm lg:pl-8">
+    <header className="border-theme-border bg-theme-background dark:border-dark-theme-border dark:bg-dark-theme-background flex h-16 w-full shrink-0 items-center border-b shadow-sm lg:pl-8">
       <Button
         variant="light"
         color={app.neutralColor}
-        className="-m-2.5 mr-4 lg:hidden"
+        className="mr-2 lg:hidden"
         onClick={() => {
           setSidebarOpen(true)
         }}
@@ -27,7 +27,7 @@ export const Headerbar = ({ children }: Props): ReactElement => {
         <Bars3Icon className="h-6 w-6" aria-hidden="true" />
       </Button>
 
-      <div className="flex h-full flex-1 justify-end">{children}</div>
+      <div className="flex h-full w-full justify-end overflow-hidden">{children}</div>
     </header>
   )
 }

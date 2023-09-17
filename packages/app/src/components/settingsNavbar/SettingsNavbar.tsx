@@ -37,17 +37,17 @@ export const SettingsNavbar = (): ReactElement => {
         onClick={href => {
           navigate(href)
         }}
-      />
-
-      <Button
-        variant="light"
-        loading={isLoading}
-        onClick={() => {
-          signOut()
-        }}
       >
-        Sign Out
-      </Button>
+        <Button
+          variant="light"
+          loading={isLoading}
+          onClick={() => {
+            signOut()
+          }}
+        >
+          Sign Out
+        </Button>
+      </Navbar>
     </Headerbar>
   )
 }
