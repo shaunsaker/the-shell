@@ -25,7 +25,7 @@ export const Navbar = ({ className, items, onClick, children, ...props }: Props)
               item.isActive
                 ? 'border-theme-brand dark:border-dark-theme-brand'
                 : 'hover:border-theme-border dark:hover:border-dark-theme-border',
-              'h-full border-b-2 border-l-0 border-r-0 border-t-0',
+              'h-full rounded-none border-b-2 border-l-0 border-r-0 border-t-0',
             )}
             variant="light"
             color={app.neutralColor}

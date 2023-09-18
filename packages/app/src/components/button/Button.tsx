@@ -13,7 +13,7 @@ const variantToButtonClassNames: Record<Variant, string> = {
   secondary:
     'shadow border-theme-brand dark:border-dark-theme-brand text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis hover:border-theme-brand-emphasis dark:hover:border-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle',
   light:
-    'border-transparent rounded-none text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle',
+    'border-transparent text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle',
 }
 
 export const getButtonColorClassNames = (variant: Variant, color?: Color): string => {
@@ -27,7 +27,7 @@ export const getButtonColorClassNames = (variant: Variant, color?: Color): strin
     }
 
     if (variant === 'light') {
-      return `border-transparent rounded-none text-${color}-500 dark:text-${color}-400 hover:text-${color}-700 dark:hover:text-${color}-300 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-400`
+      return `border-transparent text-${color}-500 dark:text-${color}-400 hover:text-${color}-700 dark:hover:text-${color}-300 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-400`
     }
   }
 

@@ -39,6 +39,7 @@ export const SettingsNavbar = (): ReactElement => {
         }}
       >
         <Button
+          className="rounded-none"
           variant="light"
           loading={isLoading}
           onClick={() => {
