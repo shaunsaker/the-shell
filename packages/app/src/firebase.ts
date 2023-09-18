@@ -20,7 +20,9 @@ export const db = getFirestore(app)
 export const functions = getFunctions(app)
 
 if (import.meta.env.MODE === 'development') {
-  connectAuthEmulator(auth, `http://localhost:${firebaseConfig.emulators.auth.port}`)
+  connectAuthEmulator(auth, `http://localhost:${firebaseConfig.emulators.auth.port}`, {
+    disableWarnings: true,
+  })
   connectFirestoreEmulator(db, '127.0.0.1', firebaseConfig.emulators.firestore.port)
   connectFunctionsEmulator(functions, '127.0.0.1', firebaseConfig.emulators.functions.port)
 }
