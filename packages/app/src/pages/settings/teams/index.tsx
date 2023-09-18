@@ -14,9 +14,9 @@ export const SettingsTeams = (): ReactElement => {
   const { data: teams, isLoading } = useTeams()
 
   return (
-    <main>
+    <main className="h-full">
       <SettingsSection
-        className="border-b-0"
+        className="h-full border-b-0"
         title="Teams"
         description="Add or edit teams in your organisation."
         fullWidth
