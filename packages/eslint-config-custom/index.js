@@ -1,3 +1,6 @@
+const ERROR = 'error'
+const OFF = 'off'
+
 module.exports = {
   extends: ['prettier', 'plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
@@ -7,12 +10,12 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'simple-import-sort'],
   rules: {
-    '@typescript-eslint/no-unused-vars': ['error', { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-explicit-any': 'off',
-    'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error',
+    '@typescript-eslint/no-unused-vars': [ERROR, { args: 'all', argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-explicit-any': OFF,
+    'simple-import-sort/imports': ERROR,
+    'simple-import-sort/exports': ERROR,
     'padding-line-between-statements': [
-      'error',
+      ERROR,
       { blankLine: 'always', prev: '*', next: 'block' },
       { blankLine: 'always', prev: 'block', next: '*' },
       { blankLine: 'always', prev: '*', next: 'block-like' },

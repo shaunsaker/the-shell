@@ -1,3 +1,6 @@
+const ERROR = 'error'
+const OFF = 'off'
+
 module.exports = {
   root: true,
   extends: [
@@ -9,11 +12,11 @@ module.exports = {
   ],
   plugins: ['react', 'react-hooks', 'tailwindcss'],
   rules: {
-    'react/no-unescaped-entities': 'off',
-    'react/display-name': 'off',
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'error',
-    'tailwindcss/no-custom-classname': 'off',
-    'tailwindcss/classnames-order': 'off',
+    'react/no-unescaped-entities': OFF,
+    'react/display-name': OFF,
+    'react-hooks/rules-of-hooks': ERROR,
+    'react-hooks/exhaustive-deps': ERROR,
+    'tailwindcss/no-custom-classname': OFF,
+    'tailwindcss/classnames-order': OFF,
   },
 }
