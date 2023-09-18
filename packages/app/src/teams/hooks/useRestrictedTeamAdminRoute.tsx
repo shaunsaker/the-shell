@@ -6,13 +6,12 @@ import { useIsLoggedInUserTeamAdmin } from './useIsLoggedInUserTeamAdmin'
 
 export const useRestrictedTeamAdminRoute = () => {
   const navigate = useNavigate()
-
-  const isLoggedInUserTeamAdmin = useIsLoggedInUserTeamAdmin()
+  const { data: isLoggedInUserTeamAdmin, isLoading } = useIsLoggedInUserTeamAdmin()
 
   // only admins of the team should be able to access this page
   useEffect(() => {
-    if (!isLoggedInUserTeamAdmin) {
+    if (!isLoading && !isLoggedInUserTeamAdmin) {
       navigate(routes.settingsTeams)
     }
-  }, [isLoggedInUserTeamAdmin, navigate])
+  }, [isLoading, isLoggedInUserTeamAdmin, navigate])
 }

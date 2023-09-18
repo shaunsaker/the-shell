@@ -9,13 +9,14 @@ import { useTeam } from '../../../../../../teams/hooks/useTeam'
 import { useUpdateTeam } from '../../../../../../teams/hooks/useUpdateTeam'
 
 export const ChangeTeamNameSection = (): ReactElement => {
-  const isLoggedInUserTeamAdmin = useIsLoggedInUserTeamAdmin()
+  const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()
   const { data: team, isLoading: teamsLoading } = useTeam()
   const { mutate: updateTeam, isLoading: updateTeamLoading } = useUpdateTeam()
 
   const [teamName, setTeamName] = useState('')
 
-  const disabled = !teamName || teamName === team?.name || teamsLoading || updateTeamLoading
+  const disabled =
+    !teamName || teamName === team?.name || isLoggedInUserTeamAdminLoading || teamsLoading || updateTeamLoading
 
   // if the team name changes update state
   useEffect(() => {

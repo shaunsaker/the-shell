@@ -22,13 +22,13 @@ import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRo
 import { formatTeamMemberStatus } from '../../../../../../utils/formatTeamMemberStatus'
 
 export const ManageTeamMembersSection = (): ReactElement => {
-  const isLoggedInUserTeamAdmin = useIsLoggedInUserTeamAdmin()
+  const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()
   const { data: team, isLoading: isTeamLoading } = useTeam()
   const { data: teamMembers, isLoading: isTeamMembersLoading } = useTeamMembers(team?.id)
   const { teamId = '' } = useParams()
   const navigate = useNavigate()
 
-  const loading = isTeamLoading || isTeamMembersLoading
+  const loading = isLoggedInUserTeamAdminLoading || isTeamLoading || isTeamMembersLoading
   const disabled = !isLoggedInUserTeamAdmin || loading
 
   return (

@@ -5,11 +5,12 @@ import { useTeamMembers } from './useTeamMembers'
 
 export const useIsLoggedInUserTeamAdmin = () => {
   const { teamId = '' } = useParams()
-  const { data: authUser } = useAuthUser()
-  const { data: teamMembers } = useTeamMembers(teamId)
+  const { data: authUser, isLoading: isAuthUserLoading } = useAuthUser()
+  const { data: teamMembers, isLoading: isTeamMembersLoading } = useTeamMembers(teamId)
 
   const authUserTeamMember = teamMembers?.find(teamMember => teamMember.userId === authUser?.uid)
   const isLoggedInUserTeamAdmin = authUserTeamMember?.role === 'admin'
+  const isLoading = isAuthUserLoading || isTeamMembersLoading
 
-  return isLoggedInUserTeamAdmin
+  return { data: isLoggedInUserTeamAdmin, isLoading }
 }

@@ -7,7 +7,7 @@ import { routes, TEAM_ID_PARAM } from '../../../../../../routes'
 import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
 
 export const DeleteTeamSection = (): ReactElement => {
-  const isLoggedInUserTeamAdmin = useIsLoggedInUserTeamAdmin()
+  const { data: isLoggedInUserTeamAdmin } = useIsLoggedInUserTeamAdmin()
   const { teamId = '' } = useParams()
   const navigate = useNavigate()
 
