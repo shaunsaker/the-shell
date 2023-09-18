@@ -7,6 +7,7 @@ export const useKeypress = (key: string, cb: (event: KeyboardEvent) => void) => 
         cb(event)
       }
     }
+
     window.addEventListener('keyup', onKeyup)
 
     return () => window.removeEventListener('keyup', onKeyup)

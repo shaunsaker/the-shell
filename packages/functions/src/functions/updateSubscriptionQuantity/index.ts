@@ -23,6 +23,7 @@ export const updateSubscriptionQuantityFunction = onCall<
     if (!user) {
       throw new HttpsError('not-found', 'User not found')
     }
+
     // Destructure the data from the POST body
     const { quantity } = request.data
 

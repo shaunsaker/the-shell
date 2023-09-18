@@ -43,6 +43,7 @@ export const stripeWebhookFunction = onRequest(async (request, response) => {
   }
 
   let stripeEvent: Stripe.Event
+
   try {
     stripeEvent = await stripe.webhooks.constructEventAsync(
       body,
@@ -69,6 +70,7 @@ export const stripeWebhookFunction = onRequest(async (request, response) => {
     : {}
 
   let retrievedEvent: Stripe.Event
+
   try {
     retrievedEvent = await stripe.events.retrieve(stripeEvent.id, requestOptions)
   } catch (error) {
@@ -117,6 +119,7 @@ export const stripeWebhookFunction = onRequest(async (request, response) => {
               createAction: true,
             })
           }
+
           break
         default:
           console.error('Unhandled relevant event!', retrievedEvent.type)
