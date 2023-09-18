@@ -12,5 +12,7 @@ export const updateTeamMember = async ({
   teamMemberId: string
   role: TeamMemberRole
 }) => {
-  await updateDoc(doc(db, 'teams', teamId, 'members', teamMemberId), { role })
+  const ref = doc(db, 'teams', teamId, 'members', teamMemberId)
+
+  await updateDoc(ref, { role })
 }

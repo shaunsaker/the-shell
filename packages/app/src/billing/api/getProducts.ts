@@ -5,7 +5,10 @@ import { db } from '../../firebase'
 
 // fetch the active products
 export const getProducts = async () => {
-  const products = await getDocs(query(collection(db, 'products'), where('active', '==', true)))
+  const ref = collection(db, 'products')
+  const queryRef = query(ref, where('active', '==', true))
+
+  const products = await getDocs(queryRef)
 
   return products.docs.map(product => ({
     id: product.id,

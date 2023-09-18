@@ -12,9 +12,10 @@ export const getTeams = async () => {
   }
 
   // first we need to fetch the user's team members
-  const teamMembers = await getDocs(
-    query(collectionGroup(db, 'members'), where('userId', '==', authUser.uid), orderBy('createdAt', 'asc')),
-  )
+  const ref = collectionGroup(db, 'members')
+  const queryRef = query(ref, where('userId', '==', authUser.uid), orderBy('createdAt', 'asc'))
+
+  const teamMembers = await getDocs(queryRef)
 
   // then we need to fetch the teams
   const teams = await Promise.all(
@@ -22,7 +23,8 @@ export const getTeams = async () => {
       const teamId = teamMemberDoc.data().teamId
 
       if (teamId) {
-        const teamDoc = await getDoc(doc(db, 'teams', teamId))
+        const teamRef = doc(db, 'teams', teamId)
+        const teamDoc = await getDoc(teamRef)
 
         return teamDoc
       }

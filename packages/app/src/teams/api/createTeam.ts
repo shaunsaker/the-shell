@@ -29,7 +29,9 @@ export const createTeam = async ({
   const team: Team = { id: teamId, name, ownerId: uid, createdAt: now }
 
   // create the team
-  await setDoc(doc(db, 'teams', teamId), team)
+  const teamRef = doc(db, 'teams', teamId)
+
+  await setDoc(teamRef, team)
 
   const teamMember: TeamMember = {
     id: uid,
@@ -44,7 +46,9 @@ export const createTeam = async ({
   }
 
   // add the user as a team member
-  await setDoc(doc(db, 'teams', teamId, 'members', uid), teamMember)
+  const teamMemberRef = doc(db, 'teams', teamId, 'members', uid)
+
+  await setDoc(teamMemberRef, teamMember)
 
   return { teamId }
 }

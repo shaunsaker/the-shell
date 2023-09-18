@@ -4,5 +4,7 @@ import { User } from 'types'
 import { db } from '../../firebase'
 
 export const updateUser = async (user: Partial<User> & { id: string }) => {
-  await setDoc(doc(db, 'users', user.id), user, { merge: true })
+  const ref = doc(db, 'users', user.id)
+
+  await setDoc(ref, user, { merge: true })
 }
