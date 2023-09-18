@@ -1,13 +1,18 @@
 import React, { ReactElement, useState } from 'react'
 
 import { useDeleteUserAccount } from '../../../../../auth/hooks/useDeleteUserAccount'
+import { useSubscription } from '../../../../../billing/hooks/useSubscription'
 import { Button } from '../../../../../components/button/Button'
 import { Dialog } from '../../../../../components/dialog/Dialog'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
+import { Text } from '../../../../../components/text/Text'
 
 export const DeleteAccountSection = (): ReactElement => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const { mutate: deleteUserAccount, isLoading } = useDeleteUserAccount()
+  const { data: subscription, isLoading: isSubscriptionLoading } = useSubscription()
+
+  const hasActiveSubscription = subscription?.status === 'active'
 
   return (
     <SettingsSection
@@ -18,6 +23,7 @@ export const DeleteAccountSection = (): ReactElement => {
       <div>
         <Button
           color="red"
+          disabled={isSubscriptionLoading || hasActiveSubscription}
           onClick={() => {
             setDialogOpen(true)
           }}
@@ -25,6 +31,12 @@ export const DeleteAccountSection = (): ReactElement => {
           Yes, delete my account
         </Button>
       </div>
+
+      {hasActiveSubscription && (
+        <Text>
+          You cannot delete your account while you have an active subscription. Please cancel your subscription first.
+        </Text>
+      )}
 
       <Dialog
         open={dialogOpen}
