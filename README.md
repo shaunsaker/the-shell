@@ -6,20 +6,20 @@
 
 ## What is it?
 
-The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript. 😛 Set up your next project/prototype with minimal input, so you can do what you do best, build and test amazing new products 🔥
+The ultimate boilerplate for building SAAS applications with React, Typescript, Tailwind CSS, Firebase and Stripe 😛 Set up your next project/prototype with minimal input, so you can do what you do best, build and test amazing new products 🔥
 
-Transform `6 weeks` of staging into `1 hour` 🚀
+Transform `8 weeks` of staging into `1 hour` 🚀
 
-You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.app/).
+You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.app/). // TODO: SS update this when we add the custom domain
 
 ---
 
 ## What's in the box?
 
-- [Typescript](https://www.typescriptlang.org/) 📘
 - [React](https://reactjs.org/) ⚛️
+- [Typescript](https://www.typescriptlang.org/) 📘
 - [tailwindcss](https://tailwindcss.com/) for super easy styling 🎨
-- [vite](https://vitejs.dev/) for blazingly fast staging 🚀
+- [vite](https://vitejs.dev/) for blazingly fast development 🚀
 - [Firebase](https://firebase.google.com/) for the backend and deployment ⚡️
 - Auth flows, dashboard, settings, billing and team management ✅
 - [Stripe](https://stripe.com/) integration ([that actually works](https://github.com/vercel/nextjs-subscription-payments/issues)) 💳
@@ -123,7 +123,7 @@ And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
 
 ### Setup Firebase
 
-1. _Manual Step_: Login to the Firebase cli
+1. Login to the Firebase cli
 
 ```
 cd ./packages/firebase
@@ -137,7 +137,7 @@ firebase projects:create PROJECT_NAME-staging
 firebase projects:create PROJECT_NAME-production
 ```
 
-3. _Manual Step_: Enable Cloud Firestore for both projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/firestore and https://console.firebase.google.com/project/PROJECT_NAME-production/firestore and clicking "Create database". Feel free to "Start in production mode".
+3. Enable Cloud Firestore for both projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/firestore and https://console.firebase.google.com/project/PROJECT_NAME-production/firestore and clicking "Create database". Feel free to "Start in production mode", the firebase rules and indices will be deployed automatically when you merge into `develop` (staging) or `master` (production).
 
 4. [Enable the Blaze plan](https://console.firebase.google.com/project/_/usage/details) for both projects. This is required for Firebase Functions.
 
@@ -151,7 +151,7 @@ firebase use --add PROJECT_NAME-staging --alias staging
 firebase use --add PROJECT_NAME-production --alias production
 ```
 
-6. _Manual Step_: Get a Firebase token for Github Actions:
+6. Get a Firebase token for Github Actions:
 
 ```
 firebase login:ci
@@ -164,29 +164,29 @@ gh auth login
 gh secret set FIREBASE_TOKEN --body VALUE
 ```
 
-8. _Manual Step_: Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into `packages/app/.env.development`, `./packages/app/.env.staging` and `./packages/app/.env.production`.
+8. Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into `packages/app/.env.development`, `./packages/app/.env.staging` and `./packages/app/.env.production`.
 
-9. _Manual Step_: [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
+9. [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
 
-10. _Manual Step_: Set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, clicking the edit icon, click "Customize action URL" and set it to DOMAIN_NAME/user-management.
+10. Set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, clicking the edit icon, click "Customize action URL" and set it to DOMAIN_NAME/user-management.
 
-11. _Manual Step_: Add `localhost` as an Authorized domain to your [projects](https://console.firebase.google.com/u/0/project/_/authentication/settings).
+11. Add `localhost` as an Authorized domain to your [projects](https://console.firebase.google.com/u/0/project/_/authentication/settings).
 
-12. _Manual Step_: Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
+12. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
 
 ---
 
 ### Setup Stripe
 
-1. Enable Test mode in Stripe.
+1. Enable Test mode in the [Stripe dashboard](https://dashboard.stripe.com/test/dashboard).
 
-2. [Upgrade the Stripe API version](https://dashboard.stripe.com/test/developers) to the latest version. By doing this, we ensure that our functions use the same version of stripe.
+2. [Upgrade the Stripe API version](https://dashboard.stripe.com/test/developers) to the latest version, `2022-11-15`. By doing this, we ensure that our functions use the same version of Stripe.
 
 ---
 
 #### Stripe webhooks
 
-The Stripe webhook will ensure that any activity in Stripe is updated in your Firebase db's, e.g. if a new customer is created in Stripe, add them to customers in the Firebase db's.
+The Stripe webhook will ensure that any activity in Stripe is updated in your Firebase db's, e.g. if a new customer is created in Stripe, add them to the customers collection in the Firebase db's.
 
 ##### Connect test Stripe webhook to development
 
@@ -214,9 +214,7 @@ The following steps will setup your Firebase staging environment with your Strip
 
 2. Once your Stripe webhook is created, copy the Signing secret.
 
-3. Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key).
-
-4. Add the secrets to `./packages/functions/.env.staging`.
+3. Add the secrets to `./packages/functions/.env.staging`.
 
 ---
 
@@ -224,7 +222,7 @@ The following steps will setup your Firebase staging environment with your Strip
 
 The following steps will setup your Firebase production environment with your Stripe live environment.
 
-1. In [live Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **staging** stripe-webhook firebase functions url, e.g. https://us-central1-PROJECT_NAME-production.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+1. In [live Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **production** stripe-webhook firebase functions url, e.g. https://us-central1-PROJECT_NAME-production.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
 
 2. Once your Stripe webhook is created, copy the Signing secret.
 
@@ -270,7 +268,7 @@ We support free trials out of the box. To add a free trial to a product, simply 
 
 5. Grab your "Project Slug" from https://sentry.io/settings/projects/ and clicking on the project. In the url that loads next, e.g. https://SENTRY_ORG.sentry.io/settings/projects/X/, X is your `VITE_SENTRY_PROJECT`.
 
-6. Add the secrets to `packages/app/.env.local`, `packages/app/.env.staging` and `packages/app/.env.production`.
+6. Add the secrets to `packages/app/.env.staging` and `packages/app/.env.production`.
 
 7. Push the secrets to Github.
 
@@ -289,13 +287,13 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 2. Add the secrets to `./packages/functions/.env.development`, `./packages/functions/.env.staging` and `./packages/functions/.env.production`.
 
-3. _Manual Step_: Add your domain by visiting https://resend.com/domains, clicking "Add domain" and following the instructions.
+3. Add your domain by visiting https://resend.com/domains, clicking "Add domain" and following the instructions.
 
 ---
 
 ### Setup Mixpanel
 
-1. Grab your staging and production project tokens and them to the respective files at `packages/app/.env.development`, `./packages/app/.env.staging` and `./packages/app/.env.production`.
+1. Grab your staging and production project tokens and them to the respective files at `./packages/app/.env.staging` and `./packages/app/.env.production`.
 
 ---
 
