@@ -2,7 +2,7 @@ import yargs from 'yargs/yargs'
 
 export const args = async () => {
   return await yargs(process.argv.slice(2)).options({
-    baseColor: {
+    themeColor: {
       type: 'string',
       describe: 'The tailwind base color, e.g. teal.',
     },

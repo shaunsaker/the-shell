@@ -39,7 +39,7 @@
     },
     "background": {
       "muted": "#1f2937",
-      "subtle": "#374151",
+      "subtle": "#1f2937",
       "DEFAULT": "#111827",
       "emphasis": "#d1d5db"
     },
@@ -50,8 +50,8 @@
       "DEFAULT": "#1f2937"
     },
     "content": {
-      "subtle": "#6b7280",
-      "DEFAULT": "#9ca3af",
+      "subtle": "#4b5563",
+      "DEFAULT": "#6b7280",
       "emphasis": "#e5e7eb",
       "strong": "#f9fafb",
       "inverted": "#111827"

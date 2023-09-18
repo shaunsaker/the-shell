@@ -21,7 +21,7 @@ const getHexColorFromThemeColor = (
   },
 ): string => {
   if (typeof baseColors === 'string') {
-    throw new Error(`baseColor ${baseColors} is not a valid color`)
+    throw new Error(`themeColor ${baseColors} is not a valid color`)
   }
 
   if (themeColor.color === 'white') {
@@ -34,20 +34,20 @@ const getHexColorFromThemeColor = (
 }
 
 async function main(): Promise<void> {
-  const { baseColor = app.baseColor, neutralColor = app.neutralColor } = await args()
+  const { themeColor = app.themeColor, neutralColor = app.neutralColor } = await args()
 
-  if (INVALID_COLORS.includes(baseColor)) {
-    throw new Error(`baseColor ${baseColor} is not a valid color`)
+  if (INVALID_COLORS.includes(themeColor)) {
+    throw new Error(`themeColor ${themeColor} is not a valid color`)
   }
 
   if (INVALID_COLORS.includes(neutralColor)) {
     throw new Error(`neutralColor ${neutralColor} is not a valid color`)
   }
 
-  const baseColors = colors[baseColor as keyof typeof colors]
+  const baseColors = colors[themeColor as keyof typeof colors]
 
   if (!baseColors) {
-    throw new Error(`baseColor ${baseColor} is not a valid color`)
+    throw new Error(`themeColor ${themeColor} is not a valid color`)
   }
 
   const neutralColors = colors[neutralColor as keyof typeof colors]
@@ -91,10 +91,10 @@ async function main(): Promise<void> {
   // finally, write the new themeColors to themeColors.json
   fs.writeFileSync(path.join(__dirname, '../../common/themeColors.json'), JSON.stringify(themeColors, null, 2))
 
-  // and baseColor and neutralColor to app.json
+  // and themeColor and neutralColor to app.json
   fs.writeFileSync(
     path.join(__dirname, '../../common/app.json'),
-    JSON.stringify({ ...app, baseColor, neutralColor }, null, 2),
+    JSON.stringify({ ...app, themeColor, neutralColor }, null, 2),
   )
 
   fs.writeFileSync(path.join(__dirname, '../../common/figmaColors.json'), JSON.stringify(figmaColors, null, 2))

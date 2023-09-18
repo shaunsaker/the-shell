@@ -34,7 +34,7 @@ const config = ({ mode }) => {
         context: {
           title: app.displayName,
           description: app.description,
-          themeColor: colors[app.baseColor as keyof typeof colors][500],
+          themeColor: colors[app.themeColor as keyof typeof colors][500],
         },
       }),
       {

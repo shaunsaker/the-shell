@@ -102,11 +102,11 @@ git push -u origin develop
 
 1. Update `./packages/common/app.json` with your app name, description and from or support email.
 
-2. Generate your theme colors where `baseColor` and `themeColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
+2. Generate your theme colors where `themeColor` and `neutralColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
 
 ```
 cd ./packages/scripts
-yarn build:theme --baseColor teal --neutralColor gray
+yarn build:theme --themeColor teal --neutralColor gray
 ```
 
 3. Update `./packages/common/logo.svg` and `./packages/common/logo-inverted.svg` with your logos. `logo-inverted` is simply a white version of your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉

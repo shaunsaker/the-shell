@@ -1,5 +1,5 @@
 // maps our theme color to the tailwind shade color
-// e.g. in app.json, if baseColor is "teal", theme.brand.faint color will map to tailwind's teal-50 color
+// e.g. in app.json, if themeColor is "teal", theme.brand.faint color will map to tailwind's teal-50 color
 export const themeColorShadeMap = {
   // light mode
   theme: {
