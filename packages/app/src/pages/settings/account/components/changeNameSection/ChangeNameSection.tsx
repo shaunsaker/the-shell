@@ -3,8 +3,8 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
-import { useUpdateUser } from '../../../../../users/hooks/useUpdateUser'
-import { useUser } from '../../../../../users/hooks/useUser'
+import { useUpdateUser } from '../../../../../user/hooks/useUpdateUser'
+import { useUser } from '../../../../../user/hooks/useUser'
 
 type ChangeNameSectionProps = {
   title?: string

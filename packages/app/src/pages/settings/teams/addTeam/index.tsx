@@ -5,7 +5,7 @@ import { Dialog } from '../../../../components/dialog/Dialog'
 import { TextInput } from '../../../../components/textInput/TextInput'
 import { routes } from '../../../../routes'
 import { useCreateTeam } from '../../../../teams/hooks/useCreateTeam'
-import { useUser } from '../../../../users/hooks/useUser'
+import { useUser } from '../../../../user/hooks/useUser'
 
 export const SettingsAddTeam = (): ReactElement => {
   const navigate = useNavigate()

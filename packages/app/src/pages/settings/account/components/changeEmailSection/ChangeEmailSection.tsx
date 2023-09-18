@@ -4,7 +4,7 @@ import { useSendChangeEmailVerification } from '../../../../../auth/hooks/useSen
 import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { TextInput } from '../../../../../components/textInput/TextInput'
-import { useUser } from '../../../../../users/hooks/useUser'
+import { useUser } from '../../../../../user/hooks/useUser'
 import { validateEmail } from '../../../../../utils/validateEmail'
 
 export const ChangeEmailSection = (): ReactElement => {

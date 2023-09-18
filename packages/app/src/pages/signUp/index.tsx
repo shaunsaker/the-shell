@@ -8,7 +8,7 @@ import { Button } from '../../components/button/Button'
 import { Text } from '../../components/text/Text'
 import { TextInput } from '../../components/textInput/TextInput'
 import { routes } from '../../routes'
-import { useUserEmail } from '../../users/hooks/useUserEmail'
+import { useUserEmail } from '../../user/hooks/useUserEmail'
 import { validateEmail } from '../../utils/validateEmail'
 
 export default function SignUp() {

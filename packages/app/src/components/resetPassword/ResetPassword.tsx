@@ -1,7 +1,7 @@
 import React, { FormEvent, ReactElement, useCallback, useState } from 'react'
 
 import { useRequestResetPassword } from '../../auth/hooks/useRequestResetPassword'
-import { useUserEmail } from '../../users/hooks/useUserEmail'
+import { useUserEmail } from '../../user/hooks/useUserEmail'
 import { validateEmail } from '../../utils/validateEmail'
 import { Button } from '../button/Button'
 import { TextInput } from '../textInput/TextInput'
