@@ -19,15 +19,15 @@ const variantToButtonClassNames: Record<Variant, string> = {
 export const getButtonColorClassNames = (variant: Variant, color?: Color): string => {
   if (color) {
     if (variant === 'primary') {
-      return `shadow bg-${color}-500 border-${color}-500 text-theme-content-inverted hover:bg-${color}-700 dark:hover:bg-${color}-400 hover:border-${color}-700 dark:hover:border-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-800`
+      return `shadow bg-${color}-500 border-${color}-500 text-theme-content-inverted hover:bg-${color}-700 dark:hover:bg-${color}-400 hover:border-${color}-700 dark:hover:border-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-400`
     }
 
     if (variant === 'secondary') {
-      return `shadow border-${color}-400 dark:border-dark-${color}-500 text-${color}-500 dark:text-dark-${color}-500 hover:text-${color}-700 dark:hover:text-${color}-400 hover:border-${color}-700 dark:hover:border-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-800`
+      return `shadow border-${color}-500 dark:border-${color}-400 text-${color}-500 dark:text-${color}-400 hover:text-${color}-700 dark:hover:text-${color}-300 hover:border-${color}-700 dark:hover:border-${color}-300 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-400`
     }
 
     if (variant === 'light') {
-      return `border-transparent rounded-none text-${color}-500 dark:text-dark-${color}-500 hover:text-${color}-700 dark:hover:text-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-800`
+      return `border-transparent rounded-none text-${color}-500 dark:text-${color}-400 hover:text-${color}-700 dark:hover:text-${color}-300 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-400`
     }
   }
 

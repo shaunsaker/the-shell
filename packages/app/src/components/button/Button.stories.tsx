@@ -40,7 +40,7 @@ export const Light: Story = {
 export const PrimaryCustomColor: Story = {
   args: {
     variant: 'primary',
-    color: 'red',
+    color: 'gray',
     icon: <HomeIcon />,
     children: 'Button',
   },
@@ -49,7 +49,7 @@ export const PrimaryCustomColor: Story = {
 export const SecondaryCustomColor: Story = {
   args: {
     variant: 'secondary',
-    color: 'red',
+    color: 'gray',
     icon: <HomeIcon />,
     children: 'Button',
   },
@@ -58,7 +58,7 @@ export const SecondaryCustomColor: Story = {
 export const LightCustomColor: Story = {
   args: {
     variant: 'light',
-    color: 'red',
+    color: 'gray',
     icon: <HomeIcon />,
     children: 'Button',
   },
