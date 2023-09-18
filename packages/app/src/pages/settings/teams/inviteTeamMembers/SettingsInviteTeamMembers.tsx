@@ -33,7 +33,6 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
             loading={isLoading}
             onClick={() => {
               inviteTeamMembers({
-                siteUrl: window.location.origin,
                 teamId,
                 emails,
               })

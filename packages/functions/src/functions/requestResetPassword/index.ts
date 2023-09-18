@@ -13,7 +13,7 @@ export const requestResetPasswordFunction = onCall<
   Promise<FunctionsMap[Functions.requestResetPassword]['response']>
 >(async request => {
   try {
-    const { siteUrl, email, newPassword, redirectUrl } = request.data
+    const { email, newPassword, redirectUrl } = request.data
 
     // validate email
     if (!validateEmail(email)) {
@@ -31,7 +31,7 @@ export const requestResetPasswordFunction = onCall<
 
     // send the reset password email
     await sendResetPasswordEmail({
-      siteUrl,
+      siteUrl: request.rawRequest.headers.origin || '',
       email,
       link,
     })

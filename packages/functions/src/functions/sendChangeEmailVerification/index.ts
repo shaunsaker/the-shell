@@ -20,7 +20,7 @@ export const sendChangeEmailVerificationFunction = onCall<
       throw new HttpsError('unauthenticated', 'Unauthorized')
     }
 
-    const { oldEmail, newEmail, redirectUrl, siteUrl } = request.data
+    const { oldEmail, newEmail, redirectUrl } = request.data
 
     // validate oldEmail
     if (!validateEmail(oldEmail)) {
@@ -56,7 +56,7 @@ export const sendChangeEmailVerificationFunction = onCall<
 
       // send the verification email
       await sendEmailVerificationEmail({
-        siteUrl,
+        siteUrl: request.rawRequest.headers.origin || '',
         email: newEmail,
         emailVerificationLink,
       })

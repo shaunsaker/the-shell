@@ -33,8 +33,6 @@ export const deleteUserAccountFunction = onCall<
 
     const userTeamMembers = await getTeamMembersForUser(user.uid)
 
-    const { siteUrl } = request.data
-
     for (const userTember of userTeamMembers) {
       const teamId = userTember.teamId
       const teamMembers = await getTeamMembers(teamId)
@@ -64,7 +62,7 @@ export const deleteUserAccountFunction = onCall<
           .filter(teamMember => teamMember.userId !== user.uid)
           .map(teamMember =>
             sendTeamDeletedEmail({
-              siteUrl,
+              siteUrl: request.rawRequest.headers.origin || '',
               userEmail: teamMember.email,
               userName: formatName(teamMember),
               teamName: team.name,

@@ -19,7 +19,7 @@ export const sendEmailVerificationFunction = onCall<
       throw new HttpsError('unauthenticated', 'Unauthorized')
     }
 
-    const { email, redirectUrl, siteUrl } = request.data
+    const { email, redirectUrl } = request.data
 
     // validate email
     if (!validateEmail(email)) {
@@ -40,7 +40,7 @@ export const sendEmailVerificationFunction = onCall<
 
     // send the verification email
     await sendEmailVerificationEmail({
-      siteUrl,
+      siteUrl: request.rawRequest.headers.origin || '',
       email,
       emailVerificationLink,
     })

@@ -8,6 +8,5 @@ export const changeUserEmail = async ({ oldEmail, newEmail }: { oldEmail: string
   await changeUserEmailFunction({
     oldEmail,
     newEmail,
-    siteUrl: window.location.origin,
   })
 }

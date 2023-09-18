@@ -10,6 +10,5 @@ export const sendChangeEmailVerification = async ({ oldEmail, newEmail }: { oldE
     oldEmail,
     newEmail,
     redirectUrl: `${window.location.origin}${routes.userManagement}`,
-    siteUrl: window.location.origin,
   })
 }

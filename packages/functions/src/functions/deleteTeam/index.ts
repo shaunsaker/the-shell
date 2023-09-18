@@ -29,7 +29,7 @@ export const deleteTeamFunction = onCall<
       throw new HttpsError('not-found', 'User not found')
     }
 
-    const { siteUrl, teamId } = request.data
+    const { teamId } = request.data
 
     const adminTeamMember = await verifyTeamAdmin({ teamId, uid: user.uid })
 
@@ -53,7 +53,7 @@ export const deleteTeamFunction = onCall<
       .filter(teamMember => teamMember.userId !== user.uid)
       .map(teamMember =>
         sendTeamDeletedEmail({
-          siteUrl,
+          siteUrl: request.rawRequest.headers.origin || '',
           userEmail: teamMember.email,
           userName: formatName(teamMember),
           teamName: team.name,

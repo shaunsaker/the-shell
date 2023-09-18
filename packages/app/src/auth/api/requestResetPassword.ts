@@ -11,7 +11,6 @@ export const requestResetPassword = async ({ email, newPassword }: { email: stri
     email,
     newPassword,
     redirectUrl: `${window.location.origin}${routes.userManagement}?mode=resetPassword&newPassword=${newPassword}`,
-    siteUrl: window.location.origin,
   })
 
   // sign the user out so that our auth flow works correctly

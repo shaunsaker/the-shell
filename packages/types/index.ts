@@ -142,7 +142,6 @@ export enum Functions {
 export type FunctionsMap = {
   [Functions.changeUserEmail]: {
     data: {
-      siteUrl: string
       oldEmail: string
       newEmail: string
     }
@@ -172,7 +171,6 @@ export type FunctionsMap = {
   }
   [Functions.deleteTeam]: {
     data: {
-      siteUrl: string
       teamId: string
     }
     response: {
@@ -180,16 +178,13 @@ export type FunctionsMap = {
     }
   }
   [Functions.deleteUserAccount]: {
-    data: {
-      siteUrl: string
-    }
+    data: object
     response: {
       ok: true
     }
   }
   [Functions.inviteTeamMembers]: {
     data: {
-      siteUrl: string
       teamId: string
       emails: string[]
     }
@@ -199,7 +194,6 @@ export type FunctionsMap = {
   }
   [Functions.removeTeamMember]: {
     data: {
-      siteUrl: string
       teamId: string
       teamMemberId: string
     }
@@ -209,7 +203,6 @@ export type FunctionsMap = {
   }
   [Functions.requestResetPassword]: {
     data: {
-      siteUrl: string
       email: string
       newPassword: string
       redirectUrl: string
@@ -220,7 +213,6 @@ export type FunctionsMap = {
   }
   [Functions.sendChangeEmailVerification]: {
     data: {
-      siteUrl: string
       oldEmail: string
       newEmail: string
       redirectUrl: string
@@ -231,7 +223,6 @@ export type FunctionsMap = {
   }
   [Functions.sendEmailVerification]: {
     data: {
-      siteUrl: string
       email: string
       redirectUrl: string
     }

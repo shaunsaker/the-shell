@@ -31,7 +31,7 @@ export const inviteTeamMembersFunction = onCall<
       throw new HttpsError('not-found', 'User not found')
     }
 
-    const { siteUrl, teamId, emails } = request.data
+    const { teamId, emails } = request.data
 
     const adminTeamMember = await verifyTeamAdmin({ teamId, uid: user.uid })
 
@@ -75,7 +75,7 @@ export const inviteTeamMembersFunction = onCall<
     // notify the users via email that they have been added to the team
     const promises = newTeamMembers.map(teamMember =>
       sendAddedUserToTeamEmail({
-        siteUrl,
+        siteUrl: request.rawRequest.headers.origin || '',
         userEmail: teamMember.email,
         userName: formatName(teamMember),
         teamName: team.name,

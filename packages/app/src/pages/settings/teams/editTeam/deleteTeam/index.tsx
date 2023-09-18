@@ -26,7 +26,6 @@ export const SettingsDeleteTeam = (): ReactElement => {
       onConfirmClick={() => {
         if (team) {
           deleteTeam({
-            siteUrl: window.location.origin,
             teamId: team.id,
           })
         }

@@ -13,7 +13,7 @@ export const changeUserEmailFunction = onCall<
   Promise<FunctionsMap[Functions.changeUserEmail]['response']>
 >(async request => {
   try {
-    const { oldEmail, newEmail, siteUrl } = request.data
+    const { oldEmail, newEmail } = request.data
 
     // validate the emails
     if (!validateEmail(oldEmail)) {
@@ -38,7 +38,7 @@ export const changeUserEmailFunction = onCall<
 
     // send them an email
     await sendEmailAddressChangedEmail({
-      siteUrl,
+      siteUrl: request.rawRequest.headers.origin || '',
       oldEmail,
       newEmail,
     })

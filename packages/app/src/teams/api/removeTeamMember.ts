@@ -5,16 +5,14 @@ import { invokeFunction } from '../../utils/invokeFunction'
 const removeTeamMemberFunction = invokeFunction(Functions.removeTeamMember)
 
 export const removeTeamMember = async ({
-  siteUrl,
   teamId,
   teamMemberId,
 }: {
-  siteUrl: string
   teamId: string
   teamMemberId: string
   isLastTeamMember: boolean
 }) => {
-  const response = await removeTeamMemberFunction({ siteUrl, teamId, teamMemberId })
+  const response = await removeTeamMemberFunction({ teamId, teamMemberId })
 
   return response
 }

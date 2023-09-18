@@ -32,7 +32,6 @@ export const SettingsRemoveTeamMember = (): ReactElement => {
       onConfirmClick={() => {
         if (team?.id && teamMember) {
           removeTeamMember({
-            siteUrl: window.location.origin,
             teamId: team.id,
             teamMemberId: teamMember.id,
             isLastTeamMember: teamMembers?.length === 1,
