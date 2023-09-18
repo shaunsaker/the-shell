@@ -4,6 +4,7 @@ import colors from 'tailwindcss/colors'
 
 import app from '../../common/app.json'
 import themeColors from '../../common/themeColors.json'
+import { log } from '../utils/log'
 import { args } from './args'
 import { themeColorShadeMap } from './themeColorShadeMap'
 
@@ -34,6 +35,8 @@ const getHexColorFromThemeColor = (
 }
 
 async function main(): Promise<void> {
+  log('Generating theme...')
+
   const { themeColor = app.themeColor, neutralColor = app.neutralColor } = await args()
 
   if (INVALID_COLORS.includes(themeColor)) {
@@ -98,6 +101,8 @@ async function main(): Promise<void> {
   )
 
   fs.writeFileSync(path.join(__dirname, '../../common/figmaColors.json'), JSON.stringify(figmaColors, null, 2))
+
+  log('Done ✅')
 }
 
 main()

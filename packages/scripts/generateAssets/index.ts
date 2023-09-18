@@ -4,6 +4,7 @@ import { copyFile } from '../utils/copyFile'
 import { createFavicon } from '../utils/createFavicon'
 import { createPng } from '../utils/createPng'
 import { ensureFileDirExists } from '../utils/ensureFileDirExists'
+import { log } from '../utils/log'
 
 const CURRENT_WORKING_DIRECTORY = process.env.PWD || __dirname
 const ROOT_PATH = path.join(CURRENT_WORKING_DIRECTORY, '..')
@@ -12,6 +13,8 @@ const APP_PUBLIC_PATH = path.join(APP_PATH, './public')
 const LOGO_PATH = path.join(ROOT_PATH, './common/logo.svg')
 
 async function main(): Promise<void> {
+  log('Generating assets...')
+
   ensureFileDirExists(APP_PUBLIC_PATH)
 
   await copyFile({
@@ -35,6 +38,8 @@ async function main(): Promise<void> {
     outputPath: path.join(APP_PUBLIC_PATH, './icon-emails.png'),
     size: 64,
   })
+
+  log('Done ✅')
 }
 
 main()
