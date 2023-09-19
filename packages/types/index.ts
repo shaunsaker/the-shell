@@ -37,7 +37,7 @@ export type Product = {
   description: string
   active: boolean
   image: string
-  metadata?: { freeTrialDays: number } | Record<string, string>
+  metadata?: { freeTrialDays: number; teamPlan: boolean } | Record<string, string>
 }
 
 export enum PricingType {

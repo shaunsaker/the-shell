@@ -3,6 +3,7 @@ import React, { ReactElement, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRestrictedSubscriptionRoute'
+import { useRestrictedTeamPlanRoute } from '../../../../billing/hooks/useRestrictedTeamPlanRoute'
 import { Button } from '../../../../components/button/Button'
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
@@ -13,6 +14,7 @@ import { validateEmail } from '../../../../utils/validateEmail'
 
 export const SettingsInviteTeamMembers = (): ReactElement => {
   useRestrictedSubscriptionRoute()
+  useRestrictedTeamPlanRoute()
   const [email, setEmail] = useState('')
   const [emails, setEmails] = useState<string[]>([])
   const { teamId = '' } = useParams()

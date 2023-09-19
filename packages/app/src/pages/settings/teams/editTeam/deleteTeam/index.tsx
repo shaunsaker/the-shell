@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../../../billing/hooks/useRestrictedSubscriptionRoute'
+import { useRestrictedTeamPlanRoute } from '../../../../../billing/hooks/useRestrictedTeamPlanRoute'
 import { Dialog } from '../../../../../components/dialog/Dialog'
 import { useDeleteTeam } from '../../../../../teams/hooks/useDeleteTeam'
 import { useRestrictedTeamAdminRoute } from '../../../../../teams/hooks/useRestrictedTeamAdminRoute'
@@ -9,6 +10,7 @@ import { useTeam } from '../../../../../teams/hooks/useTeam'
 
 export const SettingsDeleteTeam = (): ReactElement => {
   useRestrictedSubscriptionRoute()
+  useRestrictedTeamPlanRoute()
   useRestrictedTeamAdminRoute()
   const { data: team } = useTeam()
   const { mutate: deleteTeam, isLoading: deleteTeamLoading } = useDeleteTeam()

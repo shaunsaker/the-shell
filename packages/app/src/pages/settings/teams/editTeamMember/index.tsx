@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRestrictedSubscriptionRoute'
+import { useRestrictedTeamPlanRoute } from '../../../../billing/hooks/useRestrictedTeamPlanRoute'
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsTeamsBreadcrumbs } from '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
 import { useRestrictedTeamAdminRoute } from '../../../../teams/hooks/useRestrictedTeamAdminRoute'
@@ -10,6 +11,7 @@ import { RemoveTeamMemberSection } from './components/removeTeamMemberSection/Re
 
 export const SettingsEditTeamMember = (): ReactElement => {
   useRestrictedSubscriptionRoute()
+  useRestrictedTeamPlanRoute()
   useRestrictedTeamAdminRoute()
 
   return (

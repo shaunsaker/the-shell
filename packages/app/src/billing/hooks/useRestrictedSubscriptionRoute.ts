@@ -6,14 +6,14 @@ import { useSubscription } from './useSubscription'
 
 export const useRestrictedSubscriptionRoute = () => {
   const navigate = useNavigate()
-  const { data: subscription, isLoading: subscriptionLoading } = useSubscription()
+  const { data: subscription, isLoading } = useSubscription()
 
   const hasSubscription = subscription?.status === 'active'
 
   // only users with subscriptions can access restricted pages
   useEffect(() => {
-    if (!subscriptionLoading && !hasSubscription) {
+    if (!isLoading && !hasSubscription) {
       navigate(routes.settingsSubscription)
     }
-  }, [hasSubscription, navigate, subscriptionLoading])
+  }, [hasSubscription, navigate, isLoading])
 }

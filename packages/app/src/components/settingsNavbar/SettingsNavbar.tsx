@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useSignOut } from '../../auth/hooks/useSignOut'
+import { useHasTeamPlan } from '../../billing/hooks/useHasTeamPlan'
 import { useSubscription } from '../../billing/hooks/useSubscription'
 import { routes } from '../../router/routes'
 import { NavigationItem } from '../../types'
@@ -14,6 +15,7 @@ export const SettingsNavbar = (): ReactElement => {
   const location = useLocation()
   const navigate = useNavigate()
   const { data: subscription, isLoading: subscriptionLoading } = useSubscription()
+  const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useHasTeamPlan()
 
   const hasSubscription = subscription?.status === 'active'
   const items: NavigationItem[] = [
@@ -31,7 +33,7 @@ export const SettingsNavbar = (): ReactElement => {
       name: 'Teams',
       href: routes.settingsTeams,
       isActive: location.pathname.includes(routes.settingsTeams),
-      disabled: subscriptionLoading || !hasSubscription,
+      disabled: subscriptionLoading || !hasSubscription || hasTeamPlanLoading || !hasTeamPlan,
     },
   ]
 

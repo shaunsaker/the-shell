@@ -2,6 +2,7 @@ import React, { ReactElement, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRestrictedSubscriptionRoute'
+import { useRestrictedTeamPlanRoute } from '../../../../billing/hooks/useRestrictedTeamPlanRoute'
 import { Dialog } from '../../../../components/dialog/Dialog'
 import { TextInput } from '../../../../components/textInput/TextInput'
 import { routes } from '../../../../router/routes'
@@ -10,6 +11,7 @@ import { useUser } from '../../../../user/hooks/useUser'
 
 export const SettingsAddTeam = (): ReactElement => {
   useRestrictedSubscriptionRoute()
+  useRestrictedTeamPlanRoute()
   const navigate = useNavigate()
   const [name, setName] = useState('')
   const { data: user } = useUser()

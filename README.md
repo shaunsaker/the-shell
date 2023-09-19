@@ -234,9 +234,19 @@ The following steps will setup your Firebase production environment with your St
 
 #### Creating products in Stripe
 
-##### Features
+##### Team Plan
 
-When adding features, we do not use Stripe's `Feature list` property but rather the product's **metadata** as follows:
+To enable the teams feature, users must have a subscription on the team plan. To create a team plan, simply add the `teamPlan` property to the relevant product's **metadata**:
+
+```ts
+{
+  teamPlan: true
+}
+```
+
+##### Feature List
+
+When adding features that populate the pricing cards, we do not use Stripe's `Feature list` property but rather the product's **metadata** as follows:
 
 ```ts
 {
@@ -246,7 +256,7 @@ When adding features, we do not use Stripe's `Feature list` property but rather 
 
 ##### Free trials
 
-We support free trials out of the box. To add a free trial to a product, simply add the `freeTrialDays` property to the relevant product's metadata:
+We support free trials out of the box. To add a free trial to a product, simply add the `freeTrialDays` property to the relevant product's **metadata**:
 
 ```ts
 {
@@ -330,6 +340,12 @@ To start the email development server, run:
 ```
 cd ./packages/emails
 yarn dev:emails
+```
+
+To send Stripe webhook events to your development environment, e.g. to populate products, prices, subscriptions etc in the Firebase emulator, run:
+
+```
+yarn dev:stripe
 ```
 
 ---

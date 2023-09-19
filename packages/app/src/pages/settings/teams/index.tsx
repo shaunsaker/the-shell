@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../billing/hooks/useRestrictedSubscriptionRoute'
+import { useRestrictedTeamPlanRoute } from '../../../billing/hooks/useRestrictedTeamPlanRoute'
 import { Button } from '../../../components/button/Button'
 import { SettingsSection } from '../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../components/skeletonLoader/SkeletonLoader'
@@ -12,6 +13,7 @@ import { SettingsTeamsRow } from './components/SettingsTeamRow'
 
 export const SettingsTeams = (): ReactElement => {
   useRestrictedSubscriptionRoute()
+  useRestrictedTeamPlanRoute()
   const navigate = useNavigate()
   const { data: teams, isLoading } = useTeams()
 

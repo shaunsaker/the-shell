@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { Price } from 'types'
 
+import { useHasTeamPlan } from '../../../../../billing/hooks/useHasTeamPlan'
 import { usePrices } from '../../../../../billing/hooks/usePrices'
 import { useSubscription } from '../../../../../billing/hooks/useSubscription'
 import { useUpdateSubscriptionQuantity } from '../../../../../billing/hooks/useUpdateSubscriptionQuantity'
@@ -34,6 +35,7 @@ export const SubscriptionSeatsSection = (): ReactElement | null => {
   const { data: subscription } = useSubscription()
   const { mutate: updateSubscriptionQuantity, isLoading: updateSubscriptionQuantityLoading } =
     useUpdateSubscriptionQuantity()
+  const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useHasTeamPlan()
 
   // get the active price
   const activePrice = prices?.find(price => price.id === subscription?.priceId)
@@ -41,8 +43,9 @@ export const SubscriptionSeatsSection = (): ReactElement | null => {
   // calculate the number of new seats
   const numberOfNewSeats = subscription?.quantity ? parseInt(seats) - subscription.quantity : 0
 
-  // disable the button if the number of seats is the same as the current subscription
-  const disabled = !numberOfNewSeats || updateSubscriptionQuantityLoading
+  // disable the button if the user does not have a team plan or the number of seats is the same as the current subscription
+  const inputDisabled = hasTeamPlanLoading || !hasTeamPlan || updateSubscriptionQuantityLoading
+  const buttonDisabled = hasTeamPlanLoading || !hasTeamPlan || !numberOfNewSeats || updateSubscriptionQuantityLoading
 
   useEffect(() => {
     if (subscription && subscription.quantity) {
@@ -58,13 +61,18 @@ export const SubscriptionSeatsSection = (): ReactElement | null => {
     <SettingsSection
       className="border-b-0"
       title="Subscription seats"
-      description="Add or remove seats from your subscription."
+      description={
+        hasTeamPlan
+          ? 'Add or remove seats from your subscription.'
+          : 'Adding seats to your subscription is only available on the team plan.'
+      }
     >
       <TextInput
         className="w-20"
         type="number"
         placeholder="Enter seats"
         min={MIN_SEATS}
+        disabled={inputDisabled}
         value={seats}
         onChange={event =>
           parseInt(event.target.value) >= MIN_SEATS ? setSeats(event.target.value) : setSeats(MIN_SEATS.toString())
@@ -74,7 +82,7 @@ export const SubscriptionSeatsSection = (): ReactElement | null => {
       <div>
         <Button
           loading={updateSubscriptionQuantityLoading}
-          disabled={disabled}
+          disabled={buttonDisabled}
           onClick={() => {
             updateSubscriptionQuantity(parseInt(seats))
           }}
