@@ -1,12 +1,13 @@
 import React, { ReactElement, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { TeamMemberRole } from 'types'
 
+import { Alert } from '../../../../../../components/alert/Alert'
 import { Button } from '../../../../../../components/button/Button'
 import { Select } from '../../../../../../components/select/Select'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
-import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
-import { useTeamMembers } from '../../../../../../teams/hooks/useTeamMembers'
+import { useTeam } from '../../../../../../teams/hooks/useTeam'
 import { useUpdateTeamMember } from '../../../../../../teams/hooks/useUpdateTeamMember'
 import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRole'
 import { parseTeamMemberRole } from '../../../../../../utils/parseTeamMemberRole'
@@ -18,12 +19,15 @@ const TEAM_MEMBER_ROLE_OPTIONS = TEAM_MEMBER_ROLES.map(role => ({
 }))
 
 export const ChangeTeamMemberRoleSection = (): ReactElement => {
-  const { data: teamMember, isLoading } = useTeamMember()
-  const { data: teamMembers } = useTeamMembers(teamMember?.teamId)
+  const { teamMemberId = '' } = useParams()
+  const { data: team, isLoading: teamLoading } = useTeam()
   const [role, setRole] = useState('')
   const { mutate: updateTeamMember, isLoading: updateTeamMemberLoading } = useUpdateTeamMember()
 
-  const isLastTeamMember = teamMembers?.length === 1
+  const teamMember = team?.members.find(member => member.id === teamMemberId)
+  const isLastAdmin =
+    team?.members.filter(member => member.id === teamMemberId && member.role === TeamMemberRole.Admin).length === 1
+  const isLoading = teamLoading
   const disabled = isLoading || role === teamMember?.role || !role
 
   useEffect(() => {
@@ -35,13 +39,19 @@ export const ChangeTeamMemberRoleSection = (): ReactElement => {
       {isLoading ? (
         <SkeletonLoader />
       ) : (
-        <Select
-          value={role}
-          options={TEAM_MEMBER_ROLE_OPTIONS}
-          // we don't want to allow the last admin to change their role to member
-          disabled={isLastTeamMember}
-          onValueChange={role => setRole(role.value)}
-        />
+        <>
+          {isLastAdmin && (
+            <Alert kind="info">As you are the last admin of the team, you cannot change your role to member.</Alert>
+          )}
+
+          <Select
+            value={role}
+            options={TEAM_MEMBER_ROLE_OPTIONS}
+            // we don't want to allow the last admin to change their role to member
+            disabled={isLastAdmin}
+            onValueChange={role => setRole(role.value)}
+          />
+        </>
       )}
 
       <div>
