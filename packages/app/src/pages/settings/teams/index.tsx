@@ -40,6 +40,8 @@ export const SettingsTeams = (): ReactElement => {
               <TableHeaderCell>Team Members</TableHeaderCell>
 
               <TableHeaderCell>Date Created</TableHeaderCell>
+
+              <TableHeaderCell />
             </TableRow>
           </TableHead>
 
