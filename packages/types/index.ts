@@ -124,6 +124,10 @@ export type TeamMember = {
   status: TeamMemberStatus
 }
 
+export type TeamWithMembers = Team & {
+  members: TeamMember[]
+}
+
 /* FUNCTIONS */
 export enum Functions {
   changeUserEmail = 'changeUserEmailFunction',

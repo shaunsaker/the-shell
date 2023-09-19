@@ -1,24 +1,22 @@
 import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Team } from 'types'
+import { TeamWithMembers } from 'types'
 
 import { Button } from '../../../../components/button/Button'
 import { TableCell } from '../../../../components/table/TableCell'
 import { TableRow } from '../../../../components/table/TableRow'
 import { routes, TEAM_ID_PARAM } from '../../../../routes'
-import { useTeamMembers } from '../../../../teams/hooks/useTeamMembers'
 import { formatDate } from '../../../../utils/formatDate'
 import { formatTeamMemberName } from '../../../../utils/formatTeamMemberName'
 
 type Props = {
-  team: Team
+  team: TeamWithMembers
 }
 
 export const SettingsTeamsRow = ({ team }: Props): ReactElement => {
-  const { data: teamMembers } = useTeamMembers(team.id)
   const navigate = useNavigate()
 
-  const createdByTeamMember = teamMembers?.find(teamMember => teamMember.userId === team.ownerId)
+  const createdByTeamMember = team.members?.find(teamMember => teamMember.userId === team.ownerId)
 
   return (
     <TableRow>
@@ -26,7 +24,7 @@ export const SettingsTeamsRow = ({ team }: Props): ReactElement => {
 
       <TableCell>{formatTeamMemberName(createdByTeamMember)}</TableCell>
 
-      <TableCell>{teamMembers?.length}</TableCell>
+      <TableCell>{team.members.length}</TableCell>
 
       <TableCell>{formatDate(team.createdAt)}</TableCell>
 

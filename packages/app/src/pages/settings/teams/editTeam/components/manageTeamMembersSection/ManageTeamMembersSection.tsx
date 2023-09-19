@@ -15,7 +15,6 @@ import {
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../routes'
 import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '../../../../../../teams/hooks/useTeam'
-import { useTeamMembers } from '../../../../../../teams/hooks/useTeamMembers'
 import { formatDate } from '../../../../../../utils/formatDate'
 import { formatTeamMemberName } from '../../../../../../utils/formatTeamMemberName'
 import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRole'
@@ -24,11 +23,10 @@ import { formatTeamMemberStatus } from '../../../../../../utils/formatTeamMember
 export const ManageTeamMembersSection = (): ReactElement => {
   const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()
   const { data: team, isLoading: isTeamLoading } = useTeam()
-  const { data: teamMembers, isLoading: isTeamMembersLoading } = useTeamMembers(team?.id)
   const { teamId = '' } = useParams()
   const navigate = useNavigate()
 
-  const loading = isLoggedInUserTeamAdminLoading || isTeamLoading || isTeamMembersLoading
+  const loading = isLoggedInUserTeamAdminLoading || isTeamLoading
   const disabled = !isLoggedInUserTeamAdmin || loading
 
   return (
@@ -95,7 +93,7 @@ export const ManageTeamMembersSection = (): ReactElement => {
             </TableRow>
           ) : (
             <>
-              {teamMembers?.map(teamMember => {
+              {team?.members?.map(teamMember => {
                 return (
                   <TableRow key={teamMember.id}>
                     <TableCell>{formatTeamMemberName(teamMember)}</TableCell>
