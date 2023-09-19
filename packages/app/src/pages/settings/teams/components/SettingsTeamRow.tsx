@@ -5,7 +5,7 @@ import { TeamWithMembers } from 'types'
 import { Button } from '../../../../components/button/Button'
 import { TableCell } from '../../../../components/table/TableCell'
 import { TableRow } from '../../../../components/table/TableRow'
-import { routes, TEAM_ID_PARAM } from '../../../../routes'
+import { routes, TEAM_ID_PARAM } from '../../../../router/routes'
 import { formatDate } from '../../../../utils/formatDate'
 import { formatTeamMemberName } from '../../../../utils/formatTeamMemberName'
 

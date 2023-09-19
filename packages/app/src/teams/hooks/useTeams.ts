@@ -1,8 +1,8 @@
 import { useQueries, useQuery } from '@tanstack/react-query'
 import { TeamWithMembers } from 'types'
 
-import { getTeamMembersQueryKey, QueryKeys } from '../../models'
 import { getTeams } from '../../teams/api/getTeams'
+import { getTeamMembersQueryKey, QueryKeys } from '../../types'
 import { getTeamMembers } from '../api/getTeamMembers'
 
 export const useTeams = () => {

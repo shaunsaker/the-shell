@@ -12,7 +12,7 @@ import {
   TableHeaderCell,
   TableRow,
 } from '../../../../../../components/table/Table'
-import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../routes'
+import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../router/routes'
 import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '../../../../../../teams/hooks/useTeam'
 import { formatDate } from '../../../../../../utils/formatDate'

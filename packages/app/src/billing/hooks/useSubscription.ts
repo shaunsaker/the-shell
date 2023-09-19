@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useAuthUser } from '../../auth/hooks/useAuthUser'
 import { getSubscriptionForUser } from '../../billing/api/getSubscriptionForUser'
-import { QueryKeys } from '../../models'
+import { QueryKeys } from '../../types'
 
 export const useSubscription = () => {
   const { data: user } = useAuthUser()

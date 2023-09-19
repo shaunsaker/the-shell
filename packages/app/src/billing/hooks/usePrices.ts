@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { QueryKeys } from '../../models'
+import { QueryKeys } from '../../types'
 import { getPrices } from '../api/getPrices'
 
 export const usePrices = () => {

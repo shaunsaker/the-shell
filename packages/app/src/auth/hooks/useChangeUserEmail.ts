@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { QueryKeys } from '../../models'
+import { QueryKeys } from '../../types'
 import { changeUserEmail } from '../api/changeUserEmail'
 
 export const useChangeUserEmail = () => {

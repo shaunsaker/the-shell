@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { Button } from '../../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
-import { routes, TEAM_ID_PARAM } from '../../../../../../routes'
+import { routes, TEAM_ID_PARAM } from '../../../../../../router/routes'
 import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
 
 export const DeleteTeamSection = (): ReactElement => {

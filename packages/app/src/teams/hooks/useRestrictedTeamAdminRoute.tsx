@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { routes } from '../../routes'
+import { routes } from '../../router/routes'
 import { useIsLoggedInUserTeamAdmin } from './useIsLoggedInUserTeamAdmin'
 
 export const useRestrictedTeamAdminRoute = () => {

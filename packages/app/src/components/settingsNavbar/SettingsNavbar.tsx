@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useSignOut } from '../../auth/hooks/useSignOut'
-import { routes } from '../../routes'
+import { routes } from '../../router/routes'
 import { Button } from '../button/Button'
 import { Headerbar } from '../headerbar/Headerbar'
 import { Navbar, NavigationItem } from '../navbar/Navbar'

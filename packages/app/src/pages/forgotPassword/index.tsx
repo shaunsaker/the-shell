@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { AuthLayout } from '../../components/authLayout/AuthLayout'
 import { Button } from '../../components/button/Button'
 import { ResetPassword } from '../../components/resetPassword/ResetPassword'
-import { routes } from '../../routes'
+import { routes } from '../../router/routes'
 
 export default function ForgotPassword() {
   const navigate = useNavigate()

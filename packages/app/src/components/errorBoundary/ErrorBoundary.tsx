@@ -4,7 +4,7 @@ import { useNavigate, useRouteError } from 'react-router-dom'
 
 import app from '../../../../common/app.json'
 import { captureException } from '../../errors/captureException'
-import { routes } from '../../routes'
+import { routes } from '../../router/routes'
 import { useLink } from '../../utils/useLink'
 import { BlankState } from '../blankState/BlankState'
 import { Button } from '../button/Button'

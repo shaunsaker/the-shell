@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useVerifyEmail } from '../../../../auth/hooks/useVerifyEmail'
 import { Loading } from '../../../../components/loading/Loading'
-import { routes } from '../../../../routes'
+import { routes } from '../../../../router/routes'
 
 export const VerifyEmail = (): ReactElement => {
   const [searchParams] = useSearchParams()

@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 import { useAuthUser } from '../../auth/hooks/useAuthUser'
 import { listenSubscriptionForUser } from '../../billing/api/listenSubscriptionForUser'
-import { QueryKeys } from '../../models'
+import { QueryKeys } from '../../types'
 
 export const useSubscriptionListener = () => {
   const queryClient = useQueryClient()

@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useResetPassword } from '../../../../auth/hooks/useResetPassword'
 import { Loading } from '../../../../components/loading/Loading'
-import { routes } from '../../../../routes'
+import { routes } from '../../../../router/routes'
 
 export const ResetPassword = (): ReactElement => {
   const [searchParams] = useSearchParams()

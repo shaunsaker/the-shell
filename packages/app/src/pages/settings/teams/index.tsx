@@ -5,7 +5,7 @@ import { Button } from '../../../components/button/Button'
 import { SettingsSection } from '../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../components/skeletonLoader/SkeletonLoader'
 import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '../../../components/table/Table'
-import { routes } from '../../../routes'
+import { routes } from '../../../router/routes'
 import { useTeams } from '../../../teams/hooks/useTeams'
 import { SettingsTeamsRow } from './components/SettingsTeamRow'
 

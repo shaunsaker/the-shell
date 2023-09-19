@@ -2,9 +2,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
-import { getTeamMembersQueryKey, QueryKeys } from '../../models'
-import { routes, TEAM_ID_PARAM } from '../../routes'
+import { routes, TEAM_ID_PARAM } from '../../router/routes'
 import { removeTeamMember } from '../../teams/api/removeTeamMember'
+import { getTeamMembersQueryKey, QueryKeys } from '../../types'
 
 export const useRemoveTeamMember = () => {
   const queryClient = useQueryClient()

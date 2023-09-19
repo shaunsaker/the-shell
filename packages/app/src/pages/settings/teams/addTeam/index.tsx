@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Dialog } from '../../../../components/dialog/Dialog'
 import { TextInput } from '../../../../components/textInput/TextInput'
-import { routes } from '../../../../routes'
+import { routes } from '../../../../router/routes'
 import { useCreateTeam } from '../../../../teams/hooks/useCreateTeam'
 import { useUser } from '../../../../user/hooks/useUser'
 
