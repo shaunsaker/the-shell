@@ -5,7 +5,7 @@ import {
   InformationCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import React, { ReactElement } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Button } from '../button/Button'
@@ -44,7 +44,7 @@ const kindToTextColor: Record<AlertKind, string> = {
 type Props = {
   className?: string
   kind?: AlertKind
-  children?: string
+  children?: ReactNode
   onClose?: () => void
 }
 

@@ -1,6 +1,6 @@
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import React, { ReactElement, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRestrictedSubscriptionRoute'
 import { useRestrictedTeamPlanRoute } from '../../../../billing/hooks/useRestrictedTeamPlanRoute'
@@ -8,8 +8,11 @@ import { Button } from '../../../../components/button/Button'
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
 import { SettingsTeamsBreadcrumbs } from '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
+import { Text } from '../../../../components/text/Text'
 import { TextInput } from '../../../../components/textInput/TextInput'
+import { routes } from '../../../../router/routes'
 import { useInviteTeamMembers } from '../../../../teams/hooks/useInviteTeamMember'
+import { useSubscriptionSeats } from '../../../../teams/hooks/useSubscriptionSeats'
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const SettingsInviteTeamMembers = (): ReactElement => {
@@ -18,8 +21,13 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
   const [email, setEmail] = useState('')
   const [emails, setEmails] = useState<string[]>([])
   const { teamId = '' } = useParams()
-  const { mutate: inviteTeamMembers, isLoading } = useInviteTeamMembers()
+  const { mutate: inviteTeamMembers, isLoading: inviteTeamMembersLoading } = useInviteTeamMembers()
+  const { data: subscriptionSeats, isLoading: subscriptionSeatsLoading } = useSubscriptionSeats()
+  const navigate = useNavigate()
 
+  const availableSeats = (subscriptionSeats?.availableSeats || 0) - emails.length
+  const hasAvailableSeats = availableSeats > 0
+  const inputDisabled = !hasAvailableSeats || subscriptionSeatsLoading
   const submitDisabled = !validateEmail(email)
   const sendInvitesDisabled = emails.length === 0
 
@@ -34,7 +42,7 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
         action={
           <Button
             disabled={sendInvitesDisabled}
-            loading={isLoading}
+            loading={inviteTeamMembersLoading}
             onClick={() => {
               inviteTeamMembers({
                 teamId,
@@ -47,11 +55,27 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
         }
         fullWidth
       >
+        <div className="flex items-center gap-x-4">
+          <Text>
+            Available Seats: {availableSeats} / {subscriptionSeats.totalSeats}
+          </Text>
+
+          <Button
+            variant="light"
+            onClick={() => {
+              navigate(routes.settingsSubscription)
+            }}
+          >
+            Buy more
+          </Button>
+        </div>
+
         <TextInput
           className="max-w-lg"
           type="email"
           placeholder="Enter an email address"
           value={email}
+          disabled={inputDisabled}
           onChange={event => {
             setEmail(event.target.value)
           }}
