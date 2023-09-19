@@ -15,8 +15,9 @@ export const ChangeTeamNameSection = (): ReactElement => {
 
   const [teamName, setTeamName] = useState('')
 
-  const disabled =
-    !teamName || teamName === team?.name || isLoggedInUserTeamAdminLoading || teamsLoading || updateTeamLoading
+  const isLoading = isLoggedInUserTeamAdminLoading || teamsLoading
+  const inputDisabled = isLoading || !isLoggedInUserTeamAdmin
+  const buttonDisabled = isLoading || !teamName || teamName === team?.name || updateTeamLoading
 
   // if the team name changes update state
   useEffect(() => {
@@ -30,7 +31,7 @@ export const ChangeTeamNameSection = (): ReactElement => {
       ) : (
         <TextInput
           placeholder="Enter a team name..."
-          disabled={!isLoggedInUserTeamAdmin}
+          disabled={inputDisabled}
           value={teamName}
           onChange={event => {
             setTeamName(event.target.value)
@@ -41,7 +42,7 @@ export const ChangeTeamNameSection = (): ReactElement => {
       <div>
         <Button
           loading={updateTeamLoading}
-          disabled={disabled}
+          disabled={buttonDisabled}
           onClick={() => {
             if (team) {
               updateTeam({ id: team.id, name: teamName })

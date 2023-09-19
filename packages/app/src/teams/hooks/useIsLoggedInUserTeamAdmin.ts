@@ -1,16 +1,13 @@
-import { useParams } from 'react-router-dom'
-
 import { useAuthUser } from '../../auth/hooks/useAuthUser'
-import { useTeamMembers } from './useTeamMembers'
+import { useTeam } from './useTeam'
 
 export const useIsLoggedInUserTeamAdmin = () => {
-  const { teamId = '' } = useParams()
   const { data: authUser, isLoading: isAuthUserLoading } = useAuthUser()
-  const { data: teamMembers, isLoading: isTeamMembersLoading } = useTeamMembers(teamId)
+  const { data: team, isLoading: isTeamLoading } = useTeam()
 
-  const authUserTeamMember = teamMembers?.find(teamMember => teamMember.userId === authUser?.uid)
+  const authUserTeamMember = team?.members?.find(member => member.userId === authUser?.uid)
   const isLoggedInUserTeamAdmin = authUserTeamMember?.role === 'admin'
-  const isLoading = isAuthUserLoading || isTeamMembersLoading
+  const isLoading = isAuthUserLoading || isTeamLoading
 
   return { data: isLoggedInUserTeamAdmin, isLoading }
 }

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../../../billing/hooks/useRestrictedSubscriptionRoute'
 import { useRestrictedTeamPlanRoute } from '../../../../../billing/hooks/useRestrictedTeamPlanRoute'
@@ -7,18 +7,18 @@ import { Dialog } from '../../../../../components/dialog/Dialog'
 import { useRemoveTeamMember } from '../../../../../teams/hooks/useRemoveTeamMember'
 import { useRestrictedTeamAdminRoute } from '../../../../../teams/hooks/useRestrictedTeamAdminRoute'
 import { useTeam } from '../../../../../teams/hooks/useTeam'
-import { useTeamMember } from '../../../../../teams/hooks/useTeamMember'
 import { formatTeamMemberName } from '../../../../../utils/formatTeamMemberName'
 
 export const SettingsRemoveTeamMember = (): ReactElement => {
   useRestrictedSubscriptionRoute()
   useRestrictedTeamPlanRoute()
   useRestrictedTeamAdminRoute()
-  const { data: teamMember } = useTeamMember()
+  const { teamMemberId = '' } = useParams()
   const { data: team } = useTeam()
   const { mutate: removeTeamMember, isLoading } = useRemoveTeamMember()
   const navigate = useNavigate()
 
+  const teamMember = team?.members.find(member => member.id === teamMemberId)
   const disabled = !team || !teamMember
 
   return (
