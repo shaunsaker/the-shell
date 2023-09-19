@@ -2,13 +2,8 @@ import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
+import { NavigationItem } from '../../types'
 import { Button } from '../button/Button'
-
-export type NavigationItem = {
-  name: string
-  href: string
-  isActive: boolean
-}
 
 type Props = {
   items: NavigationItem[]
@@ -29,6 +24,7 @@ export const Navbar = ({ className, items, onClick, children, ...props }: Props)
             )}
             variant="light"
             color={app.neutralColor}
+            disabled={item.disabled}
             onClick={() => {
               onClick && onClick(item.href)
             }}

@@ -4,8 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../router/routes'
 import { useTeam } from '../../teams/hooks/useTeam'
 import { useTeamMember } from '../../teams/hooks/useTeamMember'
+import { NavigationItem } from '../../types'
 import { formatTeamMemberName } from '../../utils/formatTeamMemberName'
-import { Breadcrumbs, NavigationItem } from '../breadcrumbs/Breadcrumbs'
+import { Breadcrumbs } from '../breadcrumbs/Breadcrumbs'
 
 export const SettingsTeamsBreadcrumbs = (): ReactElement => {
   const { data: team } = useTeam()

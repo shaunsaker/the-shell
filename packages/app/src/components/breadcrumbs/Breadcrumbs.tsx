@@ -1,14 +1,9 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 
 import app from '../../../../common/app.json'
+import { NavigationItem } from '../../types'
 import { Button } from '../button/Button'
 import { Text } from '../text/Text'
-
-export type NavigationItem = {
-  name: string
-  href: string
-  isActive: boolean
-}
 
 type Props = {
   items: NavigationItem[]

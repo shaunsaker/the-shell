@@ -2,6 +2,7 @@ import { XCircleIcon } from '@heroicons/react/24/outline'
 import React, { ReactElement, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRestrictedSubscriptionRoute'
 import { Button } from '../../../../components/button/Button'
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
@@ -11,6 +12,7 @@ import { useInviteTeamMembers } from '../../../../teams/hooks/useInviteTeamMembe
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const SettingsInviteTeamMembers = (): ReactElement => {
+  useRestrictedSubscriptionRoute()
   const [email, setEmail] = useState('')
   const [emails, setEmails] = useState<string[]>([])
   const { teamId = '' } = useParams()

@@ -2,19 +2,24 @@ import { Cog6ToothIcon, HomeModernIcon } from '@heroicons/react/24/outline'
 import React, { ReactElement } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
+import { useSubscription } from '../../billing/hooks/useSubscription'
 import { routes } from '../../router/routes'
-import { NavigationItem, Sidebar } from '../sidebar/Sidebar'
+import { NavigationItem } from '../../types'
+import { Sidebar } from '../sidebar/Sidebar'
 
 export const MainLayout = (): ReactElement => {
   const location = useLocation()
   const navigate = useNavigate()
+  const { data: subscription, isLoading: subscriptionLoading } = useSubscription()
 
+  const hasSubscription = subscription?.status === 'active'
   const items: NavigationItem[] = [
     {
       name: 'Dashboard',
       href: routes.dashboard,
       icon: <HomeModernIcon />,
       isActive: location.pathname === routes.dashboard,
+      disabled: subscriptionLoading || !hasSubscription,
     },
     {
       name: 'Settings',

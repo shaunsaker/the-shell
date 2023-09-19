@@ -1,9 +1,10 @@
 import { QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ReactNode, useRef } from 'react'
+import { useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
+import { NavigationItem } from '../../types'
 import { useKeypress } from '../../utils/useKeyPress'
 import { useLink } from '../../utils/useLink'
 import { useOutsideClick } from '../../utils/useOutsideClick'
@@ -11,13 +12,6 @@ import { useSidebarOpen } from '../../utils/useSidebarOpen'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 import { Logo } from '../logo/Logo'
-
-export type NavigationItem = {
-  name: string
-  href: string
-  icon: ReactNode
-  isActive: boolean
-}
 
 type Props = {
   items: NavigationItem[]
@@ -60,6 +54,7 @@ export const Sidebar = ({ items, onClick }: Props) => {
                       ? 'bg-theme-brand-emphasis text-theme-brand-inverted dark:bg-dark-theme-brand-emphasis dark:text-dark-theme-brand-inverted'
                       : 'text-theme-brand-inverted hover:bg-theme-brand-emphasis dark:text-dark-theme-brand-inverted dark:hover:bg-dark-theme-brand-emphasis',
                   )}
+                  disabled={item.disabled}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
                     if (!item.isActive && onClick) {
