@@ -75,14 +75,14 @@ export const SubscriptionDetailsSection = (): ReactElement | null => {
         </ListItem>
 
         <ListItem>
-          <span>Seats</span>
+          <span>Quantity</span>
 
           <span>{subscription.quantity}</span>
         </ListItem>
 
         {subscription.quantity && activePrice?.unitAmount && activePrice?.currency && (
           <ListItem>
-            <span>Cost per seat</span>
+            <span>Cost per subscription</span>
 
             <span>
               {formatCurrency(activePrice.unitAmount / 100, activePrice.currency)} / {activePrice?.interval}
