@@ -1,12 +1,15 @@
 import { doc, getDoc } from 'firebase/firestore'
-import { User } from 'types'
+import { Firestore, User } from 'types'
 
 import { db } from '../../firebase'
 
 export const getUser = async (uid: string) => {
-  const ref = doc(db, 'users', uid)
+  const ref = doc(db, Firestore.Users, uid)
 
-  const user = await getDoc(ref)
+  const snapshot = await getDoc(ref)
 
-  return (user.data() as User) || null
+  return {
+    id: snapshot.id,
+    ...snapshot.data(),
+  } as User | undefined
 }

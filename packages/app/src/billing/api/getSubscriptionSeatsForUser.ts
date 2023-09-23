@@ -8,9 +8,9 @@ export const getSubscriptionSeatsForUser = async (uid: string) => {
   const ref = collectionGroup(db, 'seats')
   const queryRef = query(ref, where('userId', '==', uid))
 
-  const subscriptionSeats = await getDocs(queryRef)
+  const snapshot = await getDocs(queryRef)
 
-  return subscriptionSeats.docs.map(
+  return snapshot.docs.map(
     doc =>
       ({
         id: doc.id,

@@ -1,9 +1,9 @@
-import { Subscription } from 'types'
+import { Firestore, Subscription } from 'types'
 
 import { firebase } from '../firebaseAdmin'
 
 export const getSubscription = async (id: string) => {
-  const doc = await firebase.firestore().collection('subscriptions').doc(id).get()
+  const doc = await firebase.firestore().collection(Firestore.Subscriptions).doc(id).get()
 
   return {
     ...doc.data(),

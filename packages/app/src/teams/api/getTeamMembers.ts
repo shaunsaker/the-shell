@@ -1,15 +1,15 @@
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
-import { TeamMember } from 'types'
+import { Firestore, TeamMember } from 'types'
 
 import { db } from '../../firebase'
 
 export const getTeamMembers = async (teamId: string) => {
-  const ref = collection(db, 'teams', teamId, 'members')
+  const ref = collection(db, Firestore.Teams, teamId, Firestore.TeamMembers)
   const queryRef = query(ref, orderBy('createdAt', 'asc'))
 
-  const teamMembers = await getDocs(queryRef)
+  const snapshot = await getDocs(queryRef)
 
-  return teamMembers.docs.map(doc => ({
+  return snapshot.docs.map(doc => ({
     id: doc.id,
     ...doc.data(),
   })) as TeamMember[]

@@ -1,5 +1,5 @@
 import { doc, updateDoc } from 'firebase/firestore'
-import { TeamMemberRole } from 'types'
+import { Firestore, TeamMemberRole } from 'types'
 
 import { db } from '../../firebase'
 
@@ -12,7 +12,7 @@ export const updateTeamMemberRole = async ({
   teamMemberId: string
   role: TeamMemberRole
 }) => {
-  const ref = doc(db, 'teams', teamId, 'members', teamMemberId)
+  const ref = doc(db, Firestore.Teams, teamId, Firestore.TeamMembers, teamMemberId)
 
   await updateDoc(ref, { role })
 }

@@ -1,13 +1,13 @@
-import { SubscriptionSeat } from 'types'
+import { Firestore, SubscriptionSeat } from 'types'
 
 import { firebase } from '../firebaseAdmin'
 
 export const updateSubscriptionSeats = async (subscriptionSeats: SubscriptionSeat[]) => {
   const batch = firebase.firestore().batch()
-  const subscriptionsRef = firebase.firestore().collection('subscriptions')
+  const subscriptionsRef = firebase.firestore().collection(Firestore.Subscriptions)
 
   for (const seat of subscriptionSeats) {
-    const seatRef = subscriptionsRef.doc(seat.subscriptionId).collection('seats').doc(seat.id)
+    const seatRef = subscriptionsRef.doc(seat.subscriptionId).collection(Firestore.SubscriptionSeats).doc(seat.id)
 
     batch.set(seatRef, seat, { merge: true })
   }

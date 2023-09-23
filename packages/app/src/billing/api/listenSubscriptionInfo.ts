@@ -1,10 +1,10 @@
 import { doc, onSnapshot } from 'firebase/firestore'
-import { SubscriptionInfo } from 'types'
+import { Firestore, SubscriptionInfo } from 'types'
 
 import { db } from '../../firebase'
 
 export const listenSubscriptionInfo = (subscriptionId: string, cb: (data: SubscriptionInfo | undefined) => void) => {
-  const ref = doc(db, 'subscriptionInfo', subscriptionId)
+  const ref = doc(db, Firestore.SubscriptionInfo, subscriptionId)
 
   return onSnapshot(ref, snapshot => {
     const subscriptionInfo = {

@@ -1,4 +1,4 @@
-import { Subscription, SubscriptionStatus } from 'types'
+import { Firestore, Subscription, SubscriptionStatus } from 'types'
 
 import { firebase } from '../firebaseAdmin'
 import { getISOString } from '../utils/getISOString'
@@ -46,5 +46,5 @@ export const updateSubscription = async (uid: string, stripeSubscription: Stripe
     metadata: stripeSubscription.metadata,
   }
 
-  await firebase.firestore().collection('subscriptions').doc(stripeSubscription.id).set(subscriptionData)
+  await firebase.firestore().collection(Firestore.Subscriptions).doc(stripeSubscription.id).set(subscriptionData)
 }

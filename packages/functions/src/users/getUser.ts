@@ -1,9 +1,9 @@
-import { User } from 'types'
+import { Firestore, User } from 'types'
 
 import { firebase } from '../firebaseAdmin'
 
 export const getUser = async (uid: string) => {
-  const doc = await firebase.firestore().collection('users').doc(uid).get()
+  const doc = await firebase.firestore().collection(Firestore.Users).doc(uid).get()
 
   return {
     id: doc.id,

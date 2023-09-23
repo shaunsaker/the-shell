@@ -157,6 +157,19 @@ export type TeamWithMembers = Team & {
   members: TeamMember[]
 }
 
+/* FIRESTORE */
+export enum Firestore {
+  Customers = 'customers',
+  Prices = 'prices',
+  Products = 'products',
+  Subscriptions = 'subscriptions',
+  SubscriptionSeats = 'seats',
+  SubscriptionInfo = 'subscriptionInfo',
+  Teams = 'teams',
+  TeamMembers = 'members',
+  Users = 'users',
+}
+
 /* FUNCTIONS */
 export enum Functions {
   changeUserEmail = 'changeUserEmailFunction',
