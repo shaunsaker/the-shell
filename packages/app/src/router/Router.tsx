@@ -10,10 +10,7 @@ import { Dashboard } from '../pages/dashboard'
 import ForgotPassword from '../pages/forgotPassword'
 import { SettingsAccount } from '../pages/settings/account'
 import { SettingsSubscription } from '../pages/settings/subscription'
-import { SettingsTeams } from '../pages/settings/teams'
-import { SettingsAddTeam } from '../pages/settings/teams/addTeam'
 import { SettingsEditTeam } from '../pages/settings/teams/editTeam'
-import { SettingsDeleteTeam } from '../pages/settings/teams/editTeam/deleteTeam'
 import { SettingsEditTeamMember } from '../pages/settings/teams/editTeamMember'
 import { SettingsRemoveTeamMember } from '../pages/settings/teams/editTeamMember/removeTeamMember'
 import { SettingsInviteTeamMembers } from '../pages/settings/teams/inviteTeamMembers/SettingsInviteTeamMembers'
@@ -76,27 +73,8 @@ const authorisedRoutes: RouteObject[] = [
             errorElement,
           },
           {
-            path: routes.settingsTeams,
-            element: <SettingsTeams />,
-            children: [
-              {
-                path: routes.settingsAddTeam,
-                element: <SettingsAddTeam />,
-                errorElement,
-              },
-            ],
-            errorElement,
-          },
-          {
             path: routes.settingsEditTeam,
             element: <SettingsEditTeam />,
-            children: [
-              {
-                path: routes.settingsDeleteTeam,
-                element: <SettingsDeleteTeam />,
-                errorElement,
-              },
-            ],
             errorElement,
           },
           {

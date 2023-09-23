@@ -2,9 +2,10 @@ import React, { ReactElement } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useSignOut } from '../../auth/hooks/useSignOut'
+import { useHasActiveSubscription } from '../../billing/hooks/useHasActiveSubscription'
 import { useHasTeamPlan } from '../../billing/hooks/useHasTeamPlan'
-import { useSubscription } from '../../billing/hooks/useSubscription'
-import { routes } from '../../router/routes'
+import { routes, TEAM_ID_PARAM } from '../../router/routes'
+import { useTeams } from '../../teams/hooks/useTeams'
 import { NavigationItem } from '../../types'
 import { Button } from '../button/Button'
 import { Headerbar } from '../headerbar/Headerbar'
@@ -14,10 +15,11 @@ export const SettingsNavbar = (): ReactElement => {
   const { mutate: signOut, isLoading } = useSignOut()
   const location = useLocation()
   const navigate = useNavigate()
-  const { data: subscription, isLoading: subscriptionLoading } = useSubscription()
+  const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useHasTeamPlan()
+  const { data: teams, isLoading: teamsLoading } = useTeams()
 
-  const hasSubscription = subscription?.status === 'active'
+  const defaultTeamId = (teams?.length && teams[0].id) || ''
   const items: NavigationItem[] = [
     {
       name: 'Account',
@@ -30,10 +32,16 @@ export const SettingsNavbar = (): ReactElement => {
       isActive: location.pathname.includes(routes.settingsSubscription),
     },
     {
-      name: 'Teams',
-      href: routes.settingsTeams,
-      isActive: location.pathname.includes(routes.settingsTeams),
-      disabled: subscriptionLoading || !hasSubscription || hasTeamPlanLoading || !hasTeamPlan,
+      name: 'Team',
+      href: routes.settingsEditTeam.replace(TEAM_ID_PARAM, defaultTeamId),
+      isActive: location.pathname.includes(routes.settingsEditTeam.replace(TEAM_ID_PARAM, defaultTeamId)),
+      disabled:
+        hasActiveSubscriptionLoading ||
+        !hasActiveSubscription ||
+        hasTeamPlanLoading ||
+        !hasTeamPlan ||
+        teamsLoading ||
+        !defaultTeamId,
     },
   ]
 

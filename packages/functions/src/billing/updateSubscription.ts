@@ -27,24 +27,24 @@ const parseSubscriptionStatus = (status: string): SubscriptionStatus => {
   }
 }
 
-export const updateSubscription = async (uid: string, subscription: Stripe.Subscription) => {
+export const updateSubscription = async (uid: string, stripeSubscription: Stripe.Subscription) => {
   const subscriptionData: Subscription = {
-    id: subscription.id,
-    userId: uid,
-    priceId: subscription.items.data[0].price.id,
-    quantity: subscription.items.data[0].quantity || 1,
-    status: parseSubscriptionStatus(subscription.status),
-    created: getISOString(subscription.created * 1000),
-    trialStart: subscription.trial_start ? getISOString(subscription.trial_start * 1000) : '',
-    trialEnd: subscription.trial_end ? getISOString(subscription.trial_end * 1000) : '',
-    currentPeriodStart: getISOString(subscription.current_period_start * 1000),
-    currentPeriodEnd: getISOString(subscription.current_period_end * 1000),
-    cancelAt: subscription.cancel_at ? getISOString(subscription.cancel_at * 1000) : '',
-    cancelAtPeriodEnd: subscription.cancel_at_period_end,
-    canceledAt: subscription.canceled_at ? getISOString(subscription.canceled_at * 1000) : '',
-    endedAt: subscription.ended_at ? getISOString(subscription.ended_at * 1000) : '',
-    metadata: subscription.metadata,
+    id: stripeSubscription.id,
+    ownerId: uid,
+    priceId: stripeSubscription.items.data[0].price.id,
+    quantity: stripeSubscription.items.data[0].quantity || 1,
+    status: parseSubscriptionStatus(stripeSubscription.status),
+    created: getISOString(stripeSubscription.created * 1000),
+    trialStart: stripeSubscription.trial_start ? getISOString(stripeSubscription.trial_start * 1000) : '',
+    trialEnd: stripeSubscription.trial_end ? getISOString(stripeSubscription.trial_end * 1000) : '',
+    currentPeriodStart: getISOString(stripeSubscription.current_period_start * 1000),
+    currentPeriodEnd: getISOString(stripeSubscription.current_period_end * 1000),
+    cancelAt: stripeSubscription.cancel_at ? getISOString(stripeSubscription.cancel_at * 1000) : '',
+    cancelAtPeriodEnd: stripeSubscription.cancel_at_period_end,
+    canceledAt: stripeSubscription.canceled_at ? getISOString(stripeSubscription.canceled_at * 1000) : '',
+    endedAt: stripeSubscription.ended_at ? getISOString(stripeSubscription.ended_at * 1000) : '',
+    metadata: stripeSubscription.metadata,
   }
 
-  await firebase.firestore().collection('subscriptions').doc(subscription.id).set(subscriptionData)
+  await firebase.firestore().collection('subscriptions').doc(stripeSubscription.id).set(subscriptionData)
 }

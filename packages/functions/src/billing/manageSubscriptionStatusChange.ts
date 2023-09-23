@@ -6,36 +6,32 @@ import { updateSubscription } from './updateSubscription'
 export const manageSubscriptionStatusChange = async ({
   subscriptionId,
   customerId,
-  createAction,
+  isNewSubscription,
 }: {
   subscriptionId: string
   customerId: string
-  createAction: boolean
+  isNewSubscription: boolean
 }) => {
-  // Get customer's UUID from mapping table.
   const customer = await getCustomerByStripeCustomerId(customerId)
 
-  // if no customer was returned and we are updating or deleting a subscription, throw an error
   if (!customer) {
     throw new Error(`No customer found for Stripe customer ID [${customerId}]`)
   }
 
-  const uid = customer.id
-
-  const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
+  const stripeSubscription = await stripe.subscriptions.retrieve(subscriptionId, {
     expand: ['default_payment_method'],
   })
 
-  await updateSubscription(uid, subscription)
+  // the customer id is the uid of the user
+  const uid = customer.id
 
-  // For a new subscription copy the billing details to the customer object.
-  // NOTE: This is a costly operation and should happen at the very end.
-  if (
-    createAction &&
-    subscription.default_payment_method &&
-    typeof subscription.default_payment_method !== 'string' &&
-    uid
-  ) {
-    await copyBillingDetailsToCustomer(uid, subscription.default_payment_method)
+  await updateSubscription(uid, stripeSubscription)
+
+  if (isNewSubscription) {
+    // For a new subscription copy the billing details to the customer object.
+    // NOTE: This is a costly operation and should happen at the very end.
+    if (stripeSubscription.default_payment_method && typeof stripeSubscription.default_payment_method !== 'string') {
+      await copyBillingDetailsToCustomer(uid, stripeSubscription.default_payment_method)
+    }
   }
 }

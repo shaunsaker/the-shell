@@ -11,9 +11,18 @@ type Props = {
   userName: string
   teamName: string
   adminTeamMemberName: string
+  buttonUrl: string
+  buttonText: string
 }
 
-export const AddedToTeam = ({ siteUrl, userName = '', teamName, adminTeamMemberName }: Props): ReactElement => {
+export const AddedToTeam = ({
+  siteUrl,
+  userName = '',
+  teamName,
+  adminTeamMemberName,
+  buttonUrl,
+  buttonText,
+}: Props): ReactElement => {
   return (
     <Layout siteUrl={siteUrl}>
       <Title>Hi{userName ? ` ${userName}` : ''},</Title>
@@ -22,7 +31,7 @@ export const AddedToTeam = ({ siteUrl, userName = '', teamName, adminTeamMemberN
         You've been added to team "{teamName}" on {app.displayName} by {adminTeamMemberName}.
       </Description>
 
-      <Button href={siteUrl}>Go to your dashboard</Button>
+      <Button href={buttonUrl}>{buttonText}</Button>
     </Layout>
   )
 }

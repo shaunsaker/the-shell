@@ -7,7 +7,7 @@ export const verifyTeamAdmin = async ({ teamId, uid }: { teamId: string; uid: st
   const adminTeamMember = await getTeamMember({ teamId, teamMemberId: uid })
 
   if (!adminTeamMember || adminTeamMember.role !== 'admin') {
-    throw new HttpsError('permission-denied', 'You need to be a team admin to remove team members.')
+    throw new HttpsError('permission-denied', 'You need to be a team admin to invite or remove team members.')
   }
 
   return adminTeamMember

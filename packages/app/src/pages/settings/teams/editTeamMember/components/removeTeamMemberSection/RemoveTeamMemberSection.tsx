@@ -1,24 +1,20 @@
 import React, { ReactElement } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { TeamMemberRole } from 'types'
 
 import { Alert } from '../../../../../../components/alert/Alert'
 import { Button } from '../../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../router/routes'
-import { useTeam } from '../../../../../../teams/hooks/useTeam'
+import { useIsTeamMemberLastAdmin } from '../../../../../../teams/hooks/useIsTeamMemberLastAdmin'
 
 export const RemoveTeamMemberSection = (): ReactElement => {
   const { teamId = '', teamMemberId = '' } = useParams()
-  const { data: team, isLoading: teamLoading } = useTeam()
+  const { data: isTeamMemberLastAdmin, isLoading: isTeamMemberLastAdminLoading } = useIsTeamMemberLastAdmin()
   const navigate = useNavigate()
 
-  const isLastAdminAndOtherMembers =
-    team?.members.filter(member => member.id === teamMemberId && member.role === TeamMemberRole.Admin).length === 1 &&
-    team?.members.length > 1
-  const isLoading = teamLoading
-  const disabled = isLoading || isLastAdminAndOtherMembers
+  const isLoading = isTeamMemberLastAdminLoading
+  const disabled = isLoading || isTeamMemberLastAdmin
 
   return (
     <SettingsSection
@@ -30,7 +26,7 @@ export const RemoveTeamMemberSection = (): ReactElement => {
         <SkeletonLoader />
       ) : (
         <>
-          {isLastAdminAndOtherMembers && (
+          {isTeamMemberLastAdmin && (
             <Alert kind="info">
               You are the last admin of the team and there are other team members. To remove yourself from the team,
               first assign another team member as admin.

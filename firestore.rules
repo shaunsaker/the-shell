@@ -11,7 +11,11 @@ service cloud.firestore {
     }
 
     function isResourceOwner() {
-      return request.auth.uid == resource.data.userId;
+      return request.auth.uid == resource.data.ownerId || request.auth.uid == resource.data.userId;
+    }
+
+    function hasSubscriptionSeat(subscriptionId) {
+      return exists(/databases/$(database)/documents/subscriptions/$(subscriptionId)/seats/$(request.auth.uid));
     }
 
     function isTeamOwner() {
@@ -29,7 +33,6 @@ service cloud.firestore {
     function isTeamMember(teamId) {
       return exists(/databases/$(database)/documents/teams/$(teamId)/members/$(request.auth.uid));
     }
-
 
     match /users/{userId} {
       allow read, write: if isSignedIn() && isDocumentOwner(userId);
@@ -51,6 +54,10 @@ service cloud.firestore {
       allow read: if isSignedIn() && isResourceOwner();
     }
 
+    match /subscriptionInfo/{subscriptionId} {
+      allow read: if isSignedIn() && hasSubscriptionSeat(subscriptionId);
+    }
+
     match /teams/{teamId} {
       allow write: if isSignedIn() && (isTeamOwner() || isTeamAdmin(teamId));
       allow read: if isSignedIn() && isTeamMember(teamId);
@@ -61,7 +68,12 @@ service cloud.firestore {
       }
     }
 
-    // this rule allows us to use collectionGroup queries to find all the user's team members and subsquently their teams
+    // this rule allows us to use collectionGroup queries to find all the user's subscription seats
+    match /{document=**}/seats/{seatId} {
+      allow read: if isSignedIn() && isResourceOwner();
+    }
+
+    // this rule allows us to use collectionGroup queries to find all the user's team members
     match /{document=**}/members/{memberId} {
       allow read: if isSignedIn() && isResourceOwner();
     }

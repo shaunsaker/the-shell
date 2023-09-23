@@ -25,10 +25,7 @@ export const useRemoveTeamMember = () => {
 
       toast.success(isLastTeamMember ? 'Team member and team removed successfully' : 'Team member removed successfully')
 
-      navigate(
-        // if the user is deleting the last team member then the team will also be deleted
-        isLastTeamMember ? routes.settingsTeams : routes.settingsEditTeam.replace(TEAM_ID_PARAM, teamId),
-      )
+      navigate(routes.settingsEditTeam.replace(TEAM_ID_PARAM, teamId))
     },
   })
 }

@@ -7,9 +7,11 @@ export enum QueryKeys {
   AuthUser = 'authUser',
   Products = 'products',
   Prices = 'prices',
-  Subscription = 'subscription',
-  User = 'user',
+  Subscriptions = 'subscriptions',
+  SubscriptionSeats = 'subscriptionSeats',
+  SubscriptionInfo = 'subscriptionInfo',
   Teams = 'teams',
+  User = 'user',
 }
 
 // UI

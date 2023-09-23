@@ -8,7 +8,7 @@ import { deleteTeam } from '../../teams/deleteTeam'
 import { deleteTeamMembersForUser } from '../../teams/deleteTeamMembersForUser'
 import { getTeam } from '../../teams/getTeam'
 import { getTeamMembers } from '../../teams/getTeamMembers'
-import { getTeamMembersForUser } from '../../teams/getTeamMembersForUser'
+import { getTeamMembersForUserEmail } from '../../teams/getTeamMembersForUserEmail'
 import { deleteUser } from '../../users/deleteUser'
 import { formatName } from '../../utils/formatName'
 
@@ -31,7 +31,11 @@ export const deleteUserAccountFunction = onCall<
       throw new HttpsError('not-found', 'User not found')
     }
 
-    const userTeamMembers = await getTeamMembersForUser(user.uid)
+    if (!user.email) {
+      throw new HttpsError('not-found', 'User email not found')
+    }
+
+    const userTeamMembers = await getTeamMembersForUserEmail(user.email)
 
     for (const userTember of userTeamMembers) {
       const teamId = userTember.teamId

@@ -3,8 +3,7 @@ import { Functions, FunctionsMap } from 'types'
 
 import { getAuthUser } from '../../auth/getAuthUser'
 import { sendRemovedFromTeamEmail } from '../../emails/sendRemovedFromTeamEmail'
-import { deleteTeam } from '../../teams/deleteTeam'
-import { deleteTeamMember } from '../../teams/deleteTeamMembers'
+import { deleteTeamMembers } from '../../teams/deleteTeamMembers'
 import { getTeam } from '../../teams/getTeam'
 import { getTeamMembers } from '../../teams/getTeamMembers'
 import { verifyTeamAdmin } from '../../teams/verifyTeamAdmin'
@@ -41,18 +40,17 @@ export const removeTeamMemberFunction = onCall<
 
     const teamMembers = await getTeamMembers(teamId)
 
+    if (teamMembers.length === 1) {
+      throw new HttpsError('failed-precondition', 'Cannot remove the last team member')
+    }
+
     const teamMember = teamMembers.find(teamMember => teamMember.id === teamMemberId)
 
     if (!teamMember) {
       throw new HttpsError('not-found', 'Team member not found')
     }
 
-    await deleteTeamMember({ teamId, teamMemberId })
-
-    // delete the team if last team member
-    if (teamMembers.length === 1) {
-      await deleteTeam(teamId)
-    }
+    await deleteTeamMembers([teamMember])
 
     await sendRemovedFromTeamEmail({
       siteUrl: request.rawRequest.headers.origin || '',

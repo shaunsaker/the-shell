@@ -11,11 +11,9 @@ export const routes = {
   settings: '/settings',
   settingsAccount: '/settings/account',
   settingsSubscription: '/settings/subscription',
-  settingsTeams: '/settings/teams',
-  settingsAddTeam: '/settings/teams/add',
   settingsEditTeam: `/settings/teams/${TEAM_ID_PARAM}`,
   settingsDeleteTeam: `/settings/teams/${TEAM_ID_PARAM}/delete`,
   settingsInviteTeamMembers: `/settings/teams/${TEAM_ID_PARAM}/invite`,
-  settingsEditTeamMember: `/settings/teams/${TEAM_ID_PARAM}/team-members/${TEAM_MEMBER_ID_PARAM}`,
-  settingsRemoveTeamMember: `/settings/teams/${TEAM_ID_PARAM}/team-members/${TEAM_MEMBER_ID_PARAM}/remove`,
+  settingsEditTeamMember: `/settings/teams/${TEAM_ID_PARAM}/members/${TEAM_MEMBER_ID_PARAM}`,
+  settingsRemoveTeamMember: `/settings/teams/${TEAM_ID_PARAM}/members/${TEAM_MEMBER_ID_PARAM}/remove`,
 }

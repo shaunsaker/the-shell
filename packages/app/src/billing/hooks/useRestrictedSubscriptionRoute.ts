@@ -2,13 +2,14 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { routes } from '../../router/routes'
-import { useSubscription } from './useSubscription'
+import { useSubscriptionSeats } from './useSubscriptionSeats'
 
 export const useRestrictedSubscriptionRoute = () => {
   const navigate = useNavigate()
-  const { data: subscription, isLoading } = useSubscription()
+  const { data: subscriptionSeats, isLoading } = useSubscriptionSeats()
 
-  const hasSubscription = subscription?.status === 'active'
+  // TODO: SS we also need to ensure the subscription is active => maybe we should use subscriptionInfo here instead
+  const hasSubscription = subscriptionSeats?.length
 
   // only users with subscriptions can access restricted pages
   useEffect(() => {

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRestrictedSubscriptionRoute'
 import { useRestrictedTeamPlanRoute } from '../../../../billing/hooks/useRestrictedTeamPlanRoute'
+import { useSubscriptionInfo } from '../../../../billing/hooks/useSubscriptionInfo'
 import { Button } from '../../../../components/button/Button'
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
@@ -12,7 +13,6 @@ import { Text } from '../../../../components/text/Text'
 import { TextInput } from '../../../../components/textInput/TextInput'
 import { routes } from '../../../../router/routes'
 import { useInviteTeamMembers } from '../../../../teams/hooks/useInviteTeamMember'
-import { useSubscriptionSeats } from '../../../../teams/hooks/useSubscriptionSeats'
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const SettingsInviteTeamMembers = (): ReactElement => {
@@ -22,12 +22,12 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
   const [emails, setEmails] = useState<string[]>([])
   const { teamId = '' } = useParams()
   const { mutate: inviteTeamMembers, isLoading: inviteTeamMembersLoading } = useInviteTeamMembers()
-  const { data: subscriptionSeats, isLoading: subscriptionSeatsLoading } = useSubscriptionSeats()
+  const { data: subscriptionInfo, isLoading: subscriptionInfoLoading } = useSubscriptionInfo()
   const navigate = useNavigate()
 
-  const availableSeats = (subscriptionSeats?.availableSeats || 0) - emails.length
+  const availableSeats = (subscriptionInfo?.availableSeats || 0) - emails.length
   const hasAvailableSeats = availableSeats > 0
-  const inputDisabled = !hasAvailableSeats || subscriptionSeatsLoading
+  const inputDisabled = !hasAvailableSeats || subscriptionInfoLoading
   const submitDisabled = !validateEmail(email)
   const sendInvitesDisabled = emails.length === 0
 
@@ -47,6 +47,7 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
               inviteTeamMembers({
                 teamId,
                 emails,
+                signUpUrl: `${window.location.origin}${routes.signUp}`,
               })
             }}
           >
@@ -57,7 +58,7 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
       >
         <div className="flex items-center gap-x-4">
           <Text>
-            Available Seats: {availableSeats} / {subscriptionSeats.totalSeats}
+            Available Seats: {availableSeats} / {subscriptionInfo?.totalSeats}
           </Text>
 
           <Button

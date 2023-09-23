@@ -1,16 +1,21 @@
 import { usePrices } from './usePrices'
 import { useProducts } from './useProducts'
-import { useSubscription } from './useSubscription'
+import { useSubscriptionInfo } from './useSubscriptionInfo'
 
 export const useHasTeamPlan = () => {
-  const { data: subscription, isLoading: subscriptionLoading } = useSubscription()
+  const { data: subscriptionInfo, isLoading: subscriptionInfoLoading } = useSubscriptionInfo()
   const { data: prices, isLoading: pricesLoading } = usePrices()
   const { data: products, isLoading: productsLoading } = useProducts()
 
-  const activePrice = prices?.find(price => price.id === subscription?.priceId)
+  const activePrice = prices?.find(
+    price =>
+      price.id ===
+      // NOTE: we assume the user can only have one subscription here
+      subscriptionInfo?.priceId,
+  )
   const activeProduct = products?.find(product => product.id === activePrice?.productId)
   const hasTeamPlan = Boolean(activeProduct?.metadata?.teamPlan)
-  const isLoading = subscriptionLoading || pricesLoading || productsLoading
+  const isLoading = subscriptionInfoLoading || pricesLoading || productsLoading
 
   return {
     data: hasTeamPlan,

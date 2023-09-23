@@ -15,19 +15,22 @@ export type PaymentMethod = {
   last4: string
 }
 
+type UserId = string
+type UserEmail = string
+
 export type User = {
-  id: string
+  id: UserId
   createdAt: string
-  email: string
+  email: UserEmail
   firstName: string
   lastName: string
   billingAddress?: BillingAddress
   paymentMethod?: PaymentMethod
 }
 
-/* SUBSCRIPTION */
+/* BILLING */
 export type Customer = {
-  id: string
+  id: UserId
   stripeCustomerId: string
 }
 
@@ -52,8 +55,10 @@ export enum PricingPlanInterval {
   Year = 'year',
 }
 
+type PriceId = string
+
 export type Price = {
-  id: string
+  id: PriceId
   productId: string
   active: boolean
   currency: string
@@ -76,10 +81,12 @@ export enum SubscriptionStatus {
   Paused = 'paused',
 }
 
+export type SubscriptionId = string
+
 export type Subscription = {
-  id: string
-  userId: string
-  priceId: string
+  id: SubscriptionId
+  ownerId: UserId
+  priceId: PriceId
   quantity: number
   status: SubscriptionStatus
   created: string
@@ -94,12 +101,33 @@ export type Subscription = {
   metadata: Record<string, string>
 }
 
-/* TEAMS */
-export type Team = {
+export type SubscriptionSeat = {
   id: string
+  subscriptionId: SubscriptionId
+  userId: UserId | null // the userId is null if the user does not have an account yet
+  email: string | null // the email is used to find assigned seats of new users (it's null for subscription owners because we don't need to find their seats)
+  isSubscriptionOwner: boolean
+  createdAt: string
+}
+
+export type SubscriptionInfo = {
+  id: SubscriptionId
+  priceId: PriceId // this is used to check if a team admin is on the team plan
+  status: SubscriptionStatus
+  totalSeats: number
+  assignedSeats: number
+  availableSeats: number
+}
+
+/* TEAMS */
+type TeamId = string
+
+export type Team = {
+  id: TeamId
   name: string
   createdAt: string
   ownerId: string
+  subscriptionId: SubscriptionId
 }
 
 export enum TeamMemberRole {
@@ -115,13 +143,14 @@ export enum TeamMemberStatus {
 export type TeamMember = {
   id: string
   teamId: string
-  userId: string | null // the userId is null if the user does not have an account yet
+  userId: UserId | null // the userId is null if the user does not have an account yet
   firstName: string | null // as above
   lastName: string | null // as above
   createdAt: string
   email: string
   role: TeamMemberRole
   status: TeamMemberStatus
+  invitedBy: UserId
 }
 
 export type TeamWithMembers = Team & {
@@ -191,6 +220,7 @@ export type FunctionsMap = {
     data: {
       teamId: string
       emails: string[]
+      signUpUrl: string
     }
     response: {
       ok: true

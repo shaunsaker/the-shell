@@ -25,7 +25,7 @@ export const ChangeTeamNameSection = (): ReactElement => {
   }, [team?.name])
 
   return (
-    <SettingsSection title="Change team name" description="Update your team name.">
+    <SettingsSection className="border-b-0" title="Change team name" description="Update your team name.">
       {teamsLoading ? (
         <SkeletonLoader />
       ) : (

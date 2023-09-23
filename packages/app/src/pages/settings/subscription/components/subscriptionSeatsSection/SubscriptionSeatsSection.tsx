@@ -3,17 +3,15 @@ import { Price } from 'types'
 
 import { useHasTeamPlan } from '../../../../../billing/hooks/useHasTeamPlan'
 import { usePrices } from '../../../../../billing/hooks/usePrices'
-import { useSubscription } from '../../../../../billing/hooks/useSubscription'
+import { useSubscriptionInfo } from '../../../../../billing/hooks/useSubscriptionInfo'
 import { useUpdateSubscriptionQuantity } from '../../../../../billing/hooks/useUpdateSubscriptionQuantity'
 import { Alert } from '../../../../../components/alert/Alert'
 import { Button } from '../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 import { Text } from '../../../../../components/text/Text'
 import { TextInput } from '../../../../../components/textInput/TextInput'
-import { useSubscriptionSeats } from '../../../../../teams/hooks/useSubscriptionSeats'
 import { formatCurrency } from '../../../../../utils/formatCurrency'
 import { maybePluralise } from '../../../../../utils/maybePluralise'
-import { SubscriptionNotFound } from '../subscriptionNotFound/SubscriptionNotFound'
 
 const MIN_SEATS = 1
 
@@ -35,28 +33,23 @@ const getButtonLabel = (numberOfNewSeats: number, activePrice?: Price | null): s
 export const SubscriptionSeatsSection = (): ReactElement | null => {
   const [seats, setSeats] = useState(MIN_SEATS.toString())
   const { data: prices } = usePrices()
-  const { data: subscription } = useSubscription()
   const { mutate: updateSubscriptionQuantity, isLoading: updateSubscriptionQuantityLoading } =
     useUpdateSubscriptionQuantity()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useHasTeamPlan()
-  const { data: subscriptionSeats, isLoading: subscriptionSeatsLoading } = useSubscriptionSeats()
+  const { data: subscriptionInfo, isLoading: subscriptionInfoLoading } = useSubscriptionInfo()
 
-  const activePrice = prices?.find(price => price.id === subscription?.priceId)
-  const numberOfNewSeats = subscription?.quantity ? parseInt(seats) - subscription.quantity : 0
+  const activePrice = prices?.find(price => price.id === subscriptionInfo?.priceId)
+  const numberOfNewSeats = subscriptionInfo?.totalSeats ? parseInt(seats) - subscriptionInfo.totalSeats : 0
   const inputDisabled =
-    hasTeamPlanLoading || !hasTeamPlan || updateSubscriptionQuantityLoading || subscriptionSeatsLoading
-  const newSeatsLessThanAssignedSeats = parseInt(seats) < subscriptionSeats.assignedSeats
+    hasTeamPlanLoading || !hasTeamPlan || updateSubscriptionQuantityLoading || subscriptionInfoLoading
+  const newSeatsLessThanAssignedSeats = subscriptionInfo && parseInt(seats) < subscriptionInfo.assignedSeats
   const buttonDisabled = !numberOfNewSeats || newSeatsLessThanAssignedSeats
 
   useEffect(() => {
-    if (subscription && subscription.quantity) {
-      setSeats(subscription.quantity.toString())
+    if (subscriptionInfo && subscriptionInfo.totalSeats) {
+      setSeats(subscriptionInfo.totalSeats.toString())
     }
-  }, [subscription])
-
-  if (!subscription) {
-    return <SubscriptionNotFound />
-  }
+  }, [subscriptionInfo])
 
   return (
     <SettingsSection
@@ -69,7 +62,7 @@ export const SubscriptionSeatsSection = (): ReactElement | null => {
       }
     >
       <Text>
-        Available Seats: {subscriptionSeats.availableSeats} / {subscriptionSeats.totalSeats}
+        Available Seats: {subscriptionInfo?.availableSeats} / {subscriptionInfo?.totalSeats}
       </Text>
 
       <TextInput

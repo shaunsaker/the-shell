@@ -103,7 +103,7 @@ export const stripeWebhookFunction = onRequest(async (request, response) => {
           await manageSubscriptionStatusChange({
             subscriptionId: subscription.id,
             customerId: subscription.customer as string,
-            createAction: retrievedEvent.type === 'customer.subscription.created',
+            isNewSubscription: retrievedEvent.type === 'customer.subscription.created',
           })
 
           break
@@ -116,7 +116,7 @@ export const stripeWebhookFunction = onRequest(async (request, response) => {
             await manageSubscriptionStatusChange({
               subscriptionId,
               customerId: checkoutSession.customer,
-              createAction: true,
+              isNewSubscription: true,
             })
           }
 

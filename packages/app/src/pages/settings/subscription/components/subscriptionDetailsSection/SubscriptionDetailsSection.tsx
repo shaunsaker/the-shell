@@ -4,7 +4,8 @@ import { SubscriptionStatus } from 'types'
 import { useCreateBillingPortalSession } from '../../../../../billing/hooks/useCreateBillingPortalSession'
 import { usePrices } from '../../../../../billing/hooks/usePrices'
 import { useProducts } from '../../../../../billing/hooks/useProducts'
-import { useSubscription } from '../../../../../billing/hooks/useSubscription'
+import { useSubscriptions } from '../../../../../billing/hooks/useSubscriptions'
+import { useSubscriptionsListener } from '../../../../../billing/hooks/useSubscriptionsListener'
 import { Button } from '../../../../../components/button/Button'
 import { List } from '../../../../../components/list/List'
 import { ListItem } from '../../../../../components/list/ListItem'
@@ -14,8 +15,6 @@ import { formatBillingAddress } from '../../../../../utils/formatBillingAddress'
 import { formatCurrency } from '../../../../../utils/formatCurrency'
 import { formatDate } from '../../../../../utils/formatDate'
 import { parsePaymentMethod } from '../../../../../utils/parsePaymentMethod'
-import { SubscriptionNotFound } from '../subscriptionNotFound/SubscriptionNotFound'
-import { UserNotFound } from './userNotFound/UserNotFound'
 
 const formatSubscriptionStatus = (status: SubscriptionStatus): string => {
   switch (status) {
@@ -37,24 +36,20 @@ const formatSubscriptionStatus = (status: SubscriptionStatus): string => {
 export const SubscriptionDetailsSection = (): ReactElement | null => {
   const { data: products } = useProducts()
   const { data: prices } = usePrices()
-  const { data: subscription } = useSubscription()
+  useSubscriptionsListener()
+  const { data: subscriptions } = useSubscriptions()
   const { data: user } = useUser()
   const { mutate: createBillingPortalSession, isLoading: createBillingPortalSessionLoading } =
     useCreateBillingPortalSession()
+
+  // currently we only support having one owned subscription
+  const subscription = subscriptions && subscriptions[0]
 
   // get the active price
   const activePrice = prices?.find(price => price.id === subscription?.priceId)
 
   // get the active product
   const activeProduct = products?.find(product => product.id === activePrice?.productId)
-
-  if (!subscription) {
-    return <SubscriptionNotFound />
-  }
-
-  if (!user) {
-    return <UserNotFound />
-  }
 
   return (
     <SettingsSection
@@ -71,37 +66,38 @@ export const SubscriptionDetailsSection = (): ReactElement | null => {
         <ListItem>
           <span>Status</span>
 
-          <span>{formatSubscriptionStatus(subscription.status)}</span>
+          <span>{subscription ? formatSubscriptionStatus(subscription.status) : ''}</span>
         </ListItem>
 
         <ListItem>
           <span>Quantity</span>
 
-          <span>{subscription.quantity}</span>
+          <span>{subscription?.quantity}</span>
         </ListItem>
 
-        {subscription.quantity && activePrice?.unitAmount && activePrice?.currency && (
-          <ListItem>
-            <span>Cost per subscription</span>
+        <ListItem>
+          <span>Cost per subscription</span>
 
-            <span>
-              {formatCurrency(activePrice.unitAmount / 100, activePrice.currency)} / {activePrice?.interval}
-            </span>
-          </ListItem>
-        )}
+          <span>
+            {activePrice
+              ? `${formatCurrency(activePrice.unitAmount / 100, activePrice.currency)} / ${activePrice?.interval}`
+              : ''}
+          </span>
+        </ListItem>
 
-        {subscription.quantity && activePrice?.unitAmount && activePrice?.currency && (
-          <ListItem>
-            <span>Total cost</span>
+        <ListItem>
+          <span>Total cost</span>
 
-            <span>
-              {formatCurrency((subscription.quantity * activePrice.unitAmount) / 100, activePrice.currency)} /{' '}
-              {activePrice?.interval}
-            </span>
-          </ListItem>
-        )}
+          <span>
+            {subscription && activePrice
+              ? `${formatCurrency((subscription.quantity * activePrice.unitAmount) / 100, activePrice.currency)} / ${
+                  activePrice?.interval
+                }`
+              : ''}
+          </span>
+        </ListItem>
 
-        {subscription.status === 'trialing' && (
+        {subscription?.status === 'trialing' && (
           <>
             <ListItem>
               <span>Trial started</span>
@@ -117,7 +113,7 @@ export const SubscriptionDetailsSection = (): ReactElement | null => {
           </>
         )}
 
-        {subscription.status === 'active' && (
+        {subscription?.status === 'active' && (
           <ListItem>
             <span>Previous payment</span>
 
@@ -125,7 +121,7 @@ export const SubscriptionDetailsSection = (): ReactElement | null => {
           </ListItem>
         )}
 
-        {subscription.cancelAtPeriodEnd ? (
+        {subscription?.cancelAtPeriodEnd ? (
           <ListItem>
             <span>Cancels on</span>
 
@@ -135,20 +131,22 @@ export const SubscriptionDetailsSection = (): ReactElement | null => {
           <ListItem>
             <span>Renews on</span>
 
-            <span>{formatDate(subscription.currentPeriodEnd)}</span>
+            <span>{subscription ? formatDate(subscription.currentPeriodEnd) : ''}</span>
           </ListItem>
         )}
 
         <ListItem>
           <span>Payment card</span>
 
-          <span>**** **** **** {parsePaymentMethod(user.paymentMethod).last4}</span>
+          <span>{user ? `**** **** **** ${parsePaymentMethod(user.paymentMethod).last4}` : ''}</span>
         </ListItem>
 
         <ListItem className="items-start">
           <span className="mr-8">Billing address</span>
 
-          <span className="whitespace-break-spaces text-right">{formatBillingAddress(user.billingAddress)}</span>
+          <span className="whitespace-break-spaces text-right">
+            {user ? formatBillingAddress(user.billingAddress) : ''}
+          </span>
         </ListItem>
       </List>
 
