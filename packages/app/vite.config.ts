@@ -20,7 +20,6 @@ const config = ({ mode }) => {
     build: {
       sourcemap: SHOULD_USE_SENTRY,
     },
-
     plugins: [
       react(),
       svgr({
@@ -46,6 +45,10 @@ const config = ({ mode }) => {
           })),
       },
     ],
+    // @ts-expect-error test is valid config
+    test: {
+      environment: 'happy-dom',
+    },
   })
 }
 
