@@ -8,6 +8,7 @@
     "prepare": "husky install",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "test": "turbo run test",
     "build": "turbo run build",
     "deploy": "firebase deploy --only firestore,functions,hosting"
   },
