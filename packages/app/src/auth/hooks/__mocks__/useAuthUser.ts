@@ -1,9 +1,6 @@
-import { User } from 'firebase/auth'
 import { vi } from 'vitest'
 
-export const MOCK_AUTH_USER: Partial<User> = {
-  uid: 'mock-auth-user',
-}
+import { MOCK_AUTH_USER } from '../../../__mocks__/firebase'
 
 export const useAuthUserMock = vi.fn(() => ({ data: MOCK_AUTH_USER }))
 
