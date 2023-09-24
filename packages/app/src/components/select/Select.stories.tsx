@@ -23,7 +23,7 @@ const options = [
 
 export const Default: Story = {
   args: {
-    value: options[0].label,
+    value: options[0].value,
     options,
     onValueChange: value => {
       console.log(value)
