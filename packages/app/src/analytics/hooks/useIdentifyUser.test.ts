@@ -1,7 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { describe, expect, it, vi } from 'vitest'
 
-import { MOCK_AUTH_USER, useAuthUserMock } from '../../auth/hooks/__mocks__/useAuthUser'
+import { MOCK_AUTH_USER } from '../../__mocks__/firebase'
+import { useAuthUserMock } from '../../auth/hooks/__mocks__/useAuthUser'
 import { identifyUserMock } from '../api/__mocks__/identifyUser'
 import { useIdentifyUser } from './useIdentifyUser'
 
