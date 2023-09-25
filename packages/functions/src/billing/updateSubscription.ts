@@ -10,8 +10,8 @@ const parseSubscriptionStatus = (status: string): SubscriptionStatus => {
       return SubscriptionStatus.Trialing
     case 'active':
       return SubscriptionStatus.Active
-    case 'canceled':
-      return SubscriptionStatus.Canceled
+    case 'cancelled':
+      return SubscriptionStatus.Cancelled
     case 'incomplete':
       return SubscriptionStatus.Incomplete
     case 'incomplete_expired':

@@ -39,7 +39,6 @@ export const onSubscriptionCreated = onDocumentCreated('subscriptions/{subscript
     throw new Error(`No product found for priceId [${subscription.priceId}]`)
   }
 
-  // TODO: SS test this
   const isTeamPlan = Boolean(product.metadata?.teamPlan)
 
   if (!isTeamPlan) {

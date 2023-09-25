@@ -73,7 +73,7 @@ export type Price = {
 export enum SubscriptionStatus {
   Trialing = 'trialing',
   Active = 'active',
-  Canceled = 'canceled',
+  Cancelled = 'cancelled',
   Incomplete = 'incomplete',
   IncompleteExpired = 'incomplete_expired',
   PastDue = 'past_due',

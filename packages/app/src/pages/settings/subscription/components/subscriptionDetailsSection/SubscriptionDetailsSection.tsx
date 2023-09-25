@@ -24,8 +24,8 @@ const formatSubscriptionStatus = (status: SubscriptionStatus): string => {
       return 'Active'
     case SubscriptionStatus.PastDue:
       return 'Past due'
-    case SubscriptionStatus.Canceled:
-      return 'Canceled'
+    case SubscriptionStatus.Cancelled:
+      return 'Cancelled'
     case SubscriptionStatus.Unpaid:
       return 'Unpaid'
     default:
