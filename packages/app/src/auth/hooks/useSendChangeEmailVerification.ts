@@ -15,7 +15,7 @@ export const useSendChangeEmailVerification = () => {
       // update the user's email in the app for quicker sign in
       setUserEmail(newEmail)
 
-      signOut()
+      await signOut()
 
       toast.success(
         `Your email has been changed. ${
