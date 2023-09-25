@@ -5,16 +5,13 @@ import { routes } from '../../router/routes'
 import { useSubscriptionSeats } from './useSubscriptionSeats'
 
 export const useRestrictedSubscriptionRoute = () => {
+  const { data: hasActiveSubscription, isLoading } = useSubscriptionSeats()
   const navigate = useNavigate()
-  const { data: subscriptionSeats, isLoading } = useSubscriptionSeats()
 
-  // TODO: SS we also need to ensure the subscription is active => maybe we should use subscriptionInfo here instead
-  const hasSubscription = subscriptionSeats?.length
-
-  // only users with subscriptions can access restricted pages
+  // only users with active subscriptions can access restricted pages
   useEffect(() => {
-    if (!isLoading && !hasSubscription) {
+    if (!isLoading && !hasActiveSubscription) {
       navigate(routes.settingsSubscription)
     }
-  }, [hasSubscription, navigate, isLoading])
+  }, [hasActiveSubscription, navigate, isLoading])
 }
