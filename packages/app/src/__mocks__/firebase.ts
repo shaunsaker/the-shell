@@ -21,3 +21,9 @@ export const createUserWithEmailAndPasswordMock = vi.fn(() => ({
 vi.mock('firebase/auth', () => ({
   createUserWithEmailAndPassword: createUserWithEmailAndPasswordMock,
 }))
+
+export const httpsCallableMock = vi.fn()
+
+vi.mock('firebase/functions', () => ({
+  httpsCallable: httpsCallableMock,
+}))

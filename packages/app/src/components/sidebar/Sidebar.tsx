@@ -4,11 +4,11 @@ import { useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
+import { useSidebarOpen } from '../../sidebar/useSidebarOpen'
 import { NavigationItem } from '../../types'
-import { useKeypress } from '../../utils/useKeyPress'
+import { useKeyPress } from '../../utils/useKeyPress'
 import { useLink } from '../../utils/useLink'
 import { useOutsideClick } from '../../utils/useOutsideClick'
-import { useSidebarOpen } from '../../utils/useSidebarOpen'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 import { Logo } from '../logo/Logo'
@@ -29,7 +29,7 @@ export const Sidebar = ({ items, onClick }: Props) => {
     }
   })
 
-  useKeypress('Escape', () => {
+  useKeyPress('Escape', () => {
     if (sidebarOpen) {
       setSidebarOpen(false)
     }

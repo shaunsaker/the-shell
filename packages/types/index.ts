@@ -175,7 +175,6 @@ export enum Functions {
   changeUserEmail = 'changeUserEmailFunction',
   createBillingPortalSession = 'createBillingPortalSessionFunction',
   createCheckoutSession = 'createCheckoutSessionFunction',
-  deleteTeam = 'deleteTeamFunction',
   deleteUserAccount = 'deleteUserAccountFunction',
   inviteTeamMembers = 'inviteTeamMembersFunction',
   removeTeamMember = 'removeTeamMemberFunction',
@@ -213,14 +212,6 @@ export type FunctionsMap = {
     }
     response: {
       url: string
-    }
-  }
-  [Functions.deleteTeam]: {
-    data: {
-      teamId: string
-    }
-    response: {
-      ok: true
     }
   }
   [Functions.deleteUserAccount]: {
