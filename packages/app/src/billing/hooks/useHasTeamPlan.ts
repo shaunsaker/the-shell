@@ -17,6 +17,16 @@ export const useHasTeamPlan = () => {
   const hasTeamPlan = Boolean(activeProduct?.metadata?.teamPlan)
   const isLoading = subscriptionInfoLoading || pricesLoading || productsLoading
 
+  console.log({
+    subscriptionInfo,
+    prices,
+    products,
+    activePrice,
+    activeProduct,
+    hasTeamPlan,
+    isLoading,
+  })
+
   return {
     data: hasTeamPlan,
     isLoading,
