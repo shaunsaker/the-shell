@@ -8,7 +8,6 @@ import { routes } from '../../../../router/routes'
 
 export const VerifyEmail = (): ReactElement => {
   const [searchParams] = useSearchParams()
-  // FIXME: how can we type these params?
   const actionCode = searchParams.get('oobCode')
   const oldEmail = searchParams.get('oldEmail')
   const email = searchParams.get('email')
@@ -37,7 +36,7 @@ export const VerifyEmail = (): ReactElement => {
       navigate(routes.signIn)
     }
 
-    // FIXME: SS in development, this runs twice
+    // NOTE: in development, this runs twice because React.StrictMode mounts the app twice
     doAsync()
   }, [actionCode, navigate, email, oldEmail, verifyEmail])
 

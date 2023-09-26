@@ -39,6 +39,7 @@ const mocks = vi.hoisted(() => {
           },
         ] as any,
     ),
+    toastMock: vi.fn(),
   }
 })
 
@@ -99,7 +100,7 @@ describe('UserManagement', () => {
     expect(screen.queryByTestId('verifyAndChangeEmail')).toBeInTheDocument()
   })
 
-  it('renders VerifyEmail if the verifyEmail mode is present in the query params', () => {
+  it('renders VerifyEmail if the verifyEmail mode is present in the query params', async () => {
     mocks.searchParams.mockReturnValueOnce([
       {
         get: () => 'verifyEmail',

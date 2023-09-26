@@ -17,13 +17,6 @@ vi.mock('../../billing/hooks/useRestrictedSubscriptionRoute', () => ({
   useRestrictedSubscriptionRoute: mocks.useRestrictedSubscriptionRouteMock,
 }))
 
-vi.mock(
-  '../components/loading/Loading',
-  vi.fn(() => ({
-    Loading: () => <div data-testid="loading" />,
-  })),
-)
-
 describe('Dashboard', () => {
   cleanUpAfterEach()
 

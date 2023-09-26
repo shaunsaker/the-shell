@@ -8,7 +8,6 @@ import { routes } from '../../../../router/routes'
 
 export const ResetPassword = (): ReactElement => {
   const [searchParams] = useSearchParams()
-  // FIXME: how can we type these params?
   const actionCode = searchParams.get('oobCode')
   const newPassword = searchParams.get('newPassword')
   const { mutate: resetPassword } = useResetPassword()
@@ -40,7 +39,7 @@ export const ResetPassword = (): ReactElement => {
       navigate(routes.signIn)
     }
 
-    // FIXME: SS in development, this runs twice
+    // NOTE: in development, this runs twice because React.StrictMode mounts the app twice
     doAsync()
   }, [actionCode, navigate, newPassword, resetPassword])
 
