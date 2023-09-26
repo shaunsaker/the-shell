@@ -3,7 +3,7 @@ import { connectAuthEmulator, getAuth } from 'firebase/auth'
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
 import { connectFunctionsEmulator, getFunctions } from 'firebase/functions'
 
-import firebaseConfig from '../../../firebase.json'
+import firebaseConfig from '../../../../firebase.json'
 
 const config = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,

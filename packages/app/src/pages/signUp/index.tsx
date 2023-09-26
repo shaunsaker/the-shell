@@ -11,7 +11,7 @@ import { routes } from '../../router/routes'
 import { useUserEmail } from '../../user/hooks/useUserEmail'
 import { validateEmail } from '../../utils/validateEmail'
 
-export default function SignUp() {
+export const SignUp = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useUserEmail()

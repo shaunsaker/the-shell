@@ -6,7 +6,7 @@ import { ResetPassword } from './components/resetPassword/ResetPassword'
 import { VerifyAndChangeEmail } from './components/verifyAndChangeEmail/VerifyAndChangeEmail'
 import { VerifyEmail } from './components/verifyEmail/VerifyEmail'
 
-export default function UserManagement() {
+export const UserManagement = () => {
   const [searchParams] = useSearchParams()
   const mode = searchParams.get('mode')
   const navigate = useNavigate()

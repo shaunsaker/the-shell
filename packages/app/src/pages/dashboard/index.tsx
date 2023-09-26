@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { useRestrictedSubscriptionRoute } from '../../billing/hooks/useRestrictedSubscriptionRoute'
 import { Headerbar } from '../../components/headerbar/Headerbar'
@@ -6,7 +6,7 @@ import { Heading } from '../../components/heading/Heading'
 import { PageLayout } from '../../components/pageLayout/PageLayout'
 import { Text } from '../../components/text/Text'
 
-export const Dashboard = (): ReactElement => {
+export const Dashboard = () => {
   useRestrictedSubscriptionRoute()
 
   return (

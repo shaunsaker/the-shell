@@ -21,7 +21,10 @@ const config = ({ mode }) => {
       sourcemap: SHOULD_USE_SENTRY,
     },
     plugins: [
-      react(),
+      react({
+        // disable fastRefresh while testing to fix https://stackoverflow.com/questions/73815639/how-to-use-jsx-in-a-web-worker-with-vite
+        fastRefresh: !process.env.TEST,
+      }),
       svgr({
         exportAsDefault: true,
         svgrOptions: {
@@ -48,6 +51,7 @@ const config = ({ mode }) => {
     // @ts-expect-error test is valid config
     test: {
       environment: 'happy-dom',
+      setupFiles: ['./src/test/setup.ts'],
     },
   })
 }

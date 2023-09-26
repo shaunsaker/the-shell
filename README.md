@@ -361,3 +361,9 @@ When updating your theme using the `./packages/scripts/generateTheme` script, yo
 3. Using the Figma [Tailwind Color Palettes plugin](https://www.figma.com/community/plugin/853905984020840743/Tailwind-Color-Palettes), upload this generated file by clicking on the "Custom File" tab and setting the folder name as the existing "Tailwind" folder.
 
 Your Figma component library will now be updated to the latest theme colors 🎉
+
+---
+
+### Testing
+
+Our testing approach is to focus on testing user interactions and avoid testing implementation details. Unit tests are added for utils and util hooks while integration tests are added for components and their integration with api hooks.

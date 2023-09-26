@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
-import { useSidebarOpen } from '../../sidebar/useSidebarOpen'
+import { useSidebarOpen } from '../../sidebar/hooks/useSidebarOpen'
 import { NavigationItem } from '../../types'
 import { useKeyPress } from '../../utils/useKeyPress'
 import { useLink } from '../../utils/useLink'
