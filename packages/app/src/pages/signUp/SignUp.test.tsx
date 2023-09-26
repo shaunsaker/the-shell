@@ -9,7 +9,7 @@ const getFirstNameInput = () => screen.getByLabelText('First name')
 const getLastNameInput = () => screen.getByLabelText('Last name')
 const getEmailInput = () => screen.getByLabelText('Email address')
 const getPasswordInput = () => screen.getByLabelText('Password')
-const getSignUpButton = () => screen.getByRole('button', { name: 'Sign up' })
+const getSubmitButton = () => screen.getByRole('button', { name: 'Sign up' })
 
 const fillForm = ({
   firstName,
@@ -53,7 +53,7 @@ describe('SignUp', () => {
     expect(getLastNameInput()).toBeInTheDocument()
     expect(getEmailInput()).toBeInTheDocument()
     expect(getPasswordInput()).toBeInTheDocument()
-    expect(getSignUpButton()).toBeInTheDocument()
+    expect(getSubmitButton()).toBeInTheDocument()
   })
 
   it('disables the form when are no input values', () => {
@@ -63,7 +63,7 @@ describe('SignUp', () => {
       </MockAppProvider>,
     )
 
-    expect(getSignUpButton()).toBeDisabled()
+    expect(getSubmitButton()).toBeDisabled()
   })
 
   it('disables the form when there is no firstName', () => {
@@ -80,7 +80,7 @@ describe('SignUp', () => {
       password: '123123',
     })
 
-    expect(getSignUpButton()).toBeDisabled()
+    expect(getSubmitButton()).toBeDisabled()
   })
 
   it('disables the form when there is no lastName', () => {
@@ -97,7 +97,7 @@ describe('SignUp', () => {
       password: '123123',
     })
 
-    expect(getSignUpButton()).toBeDisabled()
+    expect(getSubmitButton()).toBeDisabled()
   })
 
   it('disables the form when there is no email', () => {
@@ -114,7 +114,7 @@ describe('SignUp', () => {
       password: '123123',
     })
 
-    expect(getSignUpButton()).toBeDisabled()
+    expect(getSubmitButton()).toBeDisabled()
   })
 
   it('disables the form when there the email is invalid', () => {
@@ -131,7 +131,7 @@ describe('SignUp', () => {
       password: '123123',
     })
 
-    expect(getSignUpButton()).toBeDisabled()
+    expect(getSubmitButton()).toBeDisabled()
   })
 
   it('disables the form when there is no password', () => {
@@ -148,7 +148,7 @@ describe('SignUp', () => {
       password: '',
     })
 
-    expect(getSignUpButton()).toBeDisabled()
+    expect(getSubmitButton()).toBeDisabled()
   })
 
   it('enabled the form when are valid input values', () => {
@@ -165,7 +165,7 @@ describe('SignUp', () => {
       password: '123123',
     })
 
-    expect(getSignUpButton()).toBeEnabled()
+    expect(getSubmitButton()).toBeEnabled()
   })
 
   it('signs up users', () => {
@@ -182,7 +182,7 @@ describe('SignUp', () => {
       password: '123123',
     })
 
-    fireEvent.submit(getSignUpButton())
+    fireEvent.submit(getSubmitButton())
 
     expect(signUpWithPasswordMock).toHaveBeenCalled()
   })

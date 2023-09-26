@@ -49,7 +49,7 @@ export const ResetPassword = ({ emailDisabled = false }: Props): ReactElement =>
 
       <TextInput
         type="password"
-        label="New Password"
+        label="New password"
         placeholder="Enter your new password..."
         autoComplete="password"
         required
