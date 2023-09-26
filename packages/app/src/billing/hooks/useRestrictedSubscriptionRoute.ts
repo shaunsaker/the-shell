@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom'
 import { routes } from '../../router/routes'
 import { useHasActiveSubscription } from './useHasActiveSubscription'
 
+// TODO: SS test me
 export const useRestrictedSubscriptionRoute = () => {
-  const { data: hasActiveSubscription, isLoading } = useHasActiveSubscription()
+  const { data: hasActiveSubscription, isLoading, ...query } = useHasActiveSubscription()
   const navigate = useNavigate()
 
   // only users with active subscriptions can access restricted pages
@@ -14,4 +15,10 @@ export const useRestrictedSubscriptionRoute = () => {
       navigate(routes.settingsSubscription)
     }
   }, [hasActiveSubscription, navigate, isLoading])
+
+  return {
+    ...query,
+    data: hasActiveSubscription,
+    isLoading,
+  }
 }

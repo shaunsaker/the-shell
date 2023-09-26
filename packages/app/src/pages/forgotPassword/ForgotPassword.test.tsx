@@ -1,7 +1,8 @@
-import { cleanup, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 
 import { routes } from '../../router/routes'
+import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../test/MockAppProvider'
 import { ForgotPassword } from '.'
 
@@ -14,21 +15,23 @@ vi.mock(
   })),
 )
 
-const navigateMock = vi.fn()
+const mocks = vi.hoisted(() => {
+  return {
+    navigate: vi.fn(),
+  }
+})
 
 vi.mock('react-router-dom', async () => {
   const actual = (await vi.importActual('react-router-dom')) as object
 
   return {
     ...actual,
-    useNavigate: () => navigateMock,
+    useNavigate: () => mocks.navigate,
   }
 })
 
 describe('ForgotPassword', () => {
-  afterEach(() => {
-    cleanup()
-  })
+  cleanUpAfterEach()
 
   it('renders', () => {
     render(
@@ -50,6 +53,6 @@ describe('ForgotPassword', () => {
 
     getNavigateToSignInButton().click()
 
-    expect(navigateMock).toHaveBeenCalledWith(routes.signIn)
+    expect(mocks.navigate).toHaveBeenCalledWith(routes.signIn)
   })
 })

@@ -1,7 +1,8 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 
 import app from '../../../../common/app.json'
+import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../test/MockAppProvider'
 import { SignUp } from '.'
 
@@ -28,18 +29,20 @@ const fillForm = ({
   fireEvent.change(getPasswordInput(), { target: { value: password } })
 }
 
-const signUpWithPasswordMock = vi.fn()
+const mocks = vi.hoisted(() => {
+  return {
+    signUpWithPasswordMock: vi.fn(),
+  }
+})
 
 vi.mock('../../auth/hooks/useSignUpWithPassword', () => ({
   useSignUpWithPassword: vi.fn(() => ({
-    mutate: signUpWithPasswordMock,
+    mutate: mocks.signUpWithPasswordMock,
   })),
 }))
 
 describe('SignUp', () => {
-  afterEach(() => {
-    cleanup()
-  })
+  cleanUpAfterEach()
 
   it('renders', () => {
     render(
@@ -184,6 +187,6 @@ describe('SignUp', () => {
 
     fireEvent.submit(getSubmitButton())
 
-    expect(signUpWithPasswordMock).toHaveBeenCalled()
+    expect(mocks.signUpWithPasswordMock).toHaveBeenCalled()
   })
 })

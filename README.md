@@ -366,4 +366,4 @@ Your Figma component library will now be updated to the latest theme colors 🎉
 
 ### Testing
 
-Our testing approach is to focus on testing user interactions and avoid testing implementation details. Unit tests are added for utils and util hooks while integration tests are added for components and their integration with api hooks.
+Our testing approach is to focus on testing user interactions and avoid testing implementation details. Unit tests are added for utils, util hooks and hooks that integrate with other hooks. Integration tests are added for components and their integration with api hooks. E2E tests are added for user flows.

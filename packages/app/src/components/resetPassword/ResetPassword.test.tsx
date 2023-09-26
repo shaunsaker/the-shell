@@ -1,6 +1,7 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
 
+import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../test/MockAppProvider'
 import { ResetPassword } from './ResetPassword'
 
@@ -22,9 +23,7 @@ vi.mock('../../auth/hooks/useRequestResetPassword', () => ({
 }))
 
 describe('ResetPassword', () => {
-  afterEach(() => {
-    cleanup()
-  })
+  cleanUpAfterEach()
 
   it('renders', () => {
     render(
