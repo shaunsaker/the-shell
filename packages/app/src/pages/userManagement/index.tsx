@@ -2,13 +2,14 @@ import { useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { routes } from '../../router/routes'
+import { UserManagementParams } from '../../types'
 import { ResetPassword } from './components/resetPassword/ResetPassword'
 import { VerifyAndChangeEmail } from './components/verifyAndChangeEmail/VerifyAndChangeEmail'
 import { VerifyEmail } from './components/verifyEmail/VerifyEmail'
 
 export const UserManagement = () => {
   const [searchParams] = useSearchParams()
-  const mode = searchParams.get('mode')
+  const mode = searchParams.get(UserManagementParams.Mode)
   const navigate = useNavigate()
 
   useEffect(() => {

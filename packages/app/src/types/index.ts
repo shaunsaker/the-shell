@@ -14,6 +14,15 @@ export enum QueryKeys {
   User = 'user',
 }
 
+// USER MANAGEMENT
+export enum UserManagementParams {
+  Mode = 'mode',
+  ActionCode = 'oobCode',
+  NewPassword = 'newPassword',
+  OldEmail = 'oldEmail',
+  NewEmail = 'newEmail',
+}
+
 // UI
 export type NavigationItem = {
   name: string

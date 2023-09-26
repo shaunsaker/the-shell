@@ -5,7 +5,7 @@ import { routes } from '../../../../router/routes'
 import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../test/MockAppProvider'
 import { UserManagementParams } from '../../../../types'
-import { ResetPassword } from './ResetPassword'
+import { VerifyAndChangeEmail } from './VerifyAndChangeEmail'
 
 const mocks = vi.hoisted(() => {
   return {
@@ -14,11 +14,12 @@ const mocks = vi.hoisted(() => {
       () =>
         [
           {
-            get: (param: UserManagementParams) => param,
+            get: (param: string) => param,
           },
         ] as any,
     ),
-    resetPassword: vi.fn(),
+    verifyEmail: vi.fn(),
+    changeUserEmail: vi.fn(),
   }
 })
 
@@ -32,29 +33,37 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-vi.mock('../../../../auth/hooks/useResetPassword', () => ({
-  useResetPassword: vi.fn(() => ({
-    mutate: mocks.resetPassword,
+vi.mock('../../../../auth/hooks/useVerifyEmail', () => ({
+  useVerifyEmail: vi.fn(() => ({
+    mutate: mocks.verifyEmail,
   })),
 }))
 
-describe('ResetPassword', () => {
+vi.mock('../../../../auth/hooks/useChangeUserEmail', () => ({
+  useChangeUserEmail: vi.fn(() => ({
+    mutate: mocks.changeUserEmail,
+  })),
+}))
+
+describe('VerifyAndChangeEmail', () => {
   cleanUpAfterEach()
 
-  it('renders and calls resetPassword with the actionCode and newPassword', async () => {
+  it('renders and calls verifyEmail with the actionCode and changeUserEmail with the old and new emails', async () => {
     render(
       <MockAppProvider>
-        <ResetPassword />
+        <VerifyAndChangeEmail />
       </MockAppProvider>,
     )
 
     expect(screen.getByTestId('loading')).toBeInTheDocument()
 
+    // our mock function simply returns the param that was passed in
+    await waitFor(() => expect(mocks.verifyEmail).toHaveBeenCalledWith(UserManagementParams.ActionCode))
+
     await waitFor(() =>
-      expect(mocks.resetPassword).toHaveBeenCalledWith({
-        // our mock function simply returns the param that was passed in
-        actionCode: UserManagementParams.ActionCode,
-        newPassword: UserManagementParams.NewPassword,
+      expect(mocks.changeUserEmail).toHaveBeenCalledWith({
+        oldEmail: UserManagementParams.OldEmail,
+        newEmail: UserManagementParams.NewEmail,
       }),
     )
 
