@@ -17,15 +17,17 @@ export const UserManagement = () => {
     }
   }, [mode, navigate])
 
-  if (mode === 'verifyEmail') {
-    return <VerifyEmail />
+  if (mode === 'resetPassword') {
+    return <ResetPassword />
   }
 
   if (mode === 'verifyAndChangeEmail') {
     return <VerifyAndChangeEmail />
   }
 
-  if (mode === 'resetPassword') {
-    return <ResetPassword />
+  if (mode === 'verifyEmail') {
+    return <VerifyEmail />
   }
+
+  return null
 }
