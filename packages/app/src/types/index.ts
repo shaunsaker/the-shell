@@ -21,6 +21,7 @@ export enum UserManagementParams {
   NewPassword = 'newPassword',
   OldEmail = 'oldEmail',
   NewEmail = 'newEmail',
+  Email = 'email',
 }
 
 // UI

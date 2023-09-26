@@ -5,12 +5,13 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useVerifyEmail } from '../../../../auth/hooks/useVerifyEmail'
 import { Loading } from '../../../../components/loading/Loading'
 import { routes } from '../../../../router/routes'
+import { UserManagementParams } from '../../../../types'
 
 export const VerifyEmail = (): ReactElement => {
   const [searchParams] = useSearchParams()
-  const actionCode = searchParams.get('oobCode')
-  const oldEmail = searchParams.get('oldEmail')
-  const email = searchParams.get('email')
+  const actionCode = searchParams.get(UserManagementParams.ActionCode)
+  const oldEmail = searchParams.get(UserManagementParams.OldEmail)
+  const email = searchParams.get(UserManagementParams.Email)
   const { mutate: verifyEmail } = useVerifyEmail()
   const navigate = useNavigate()
 
