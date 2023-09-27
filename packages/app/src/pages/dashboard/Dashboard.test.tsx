@@ -3,18 +3,19 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../test/MockAppProvider'
+import { TestIds } from '../../types'
 import { Dashboard } from '.'
 
 const mocks = vi.hoisted(() => {
   const hasActiveSubscription = false
 
   return {
-    useRestrictedSubscriptionRouteMock: vi.fn(() => ({ data: hasActiveSubscription, isLoading: true })),
+    useRestrictedSubscriptionRoute: vi.fn(() => ({ data: hasActiveSubscription, isLoading: true })),
   }
 })
 
 vi.mock('../../billing/hooks/useRestrictedSubscriptionRoute', () => ({
-  useRestrictedSubscriptionRoute: mocks.useRestrictedSubscriptionRouteMock,
+  useRestrictedSubscriptionRoute: mocks.useRestrictedSubscriptionRoute,
 }))
 
 describe('Dashboard', () => {
@@ -27,12 +28,12 @@ describe('Dashboard', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.getByTestId('loading')).toBeInTheDocument()
+    expect(screen.getByTestId(TestIds.Loading)).toBeInTheDocument()
   })
 
   it('does not render anything for users without an active subscription', () => {
     const hasActiveSubscription = false
-    mocks.useRestrictedSubscriptionRouteMock.mockImplementationOnce(() => ({
+    mocks.useRestrictedSubscriptionRoute.mockImplementationOnce(() => ({
       data: hasActiveSubscription,
       isLoading: false,
     }))
@@ -43,13 +44,13 @@ describe('Dashboard', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.queryByTestId('loading')).not.toBeInTheDocument()
+    expect(screen.queryByTestId(TestIds.Loading)).not.toBeInTheDocument()
     expect(screen.queryByText('Dashboard')).not.toBeInTheDocument()
   })
 
   it('renders the Dashboard for users with an active subscription', () => {
     const hasActiveSubscription = true
-    mocks.useRestrictedSubscriptionRouteMock.mockImplementationOnce(() => ({
+    mocks.useRestrictedSubscriptionRoute.mockImplementationOnce(() => ({
       data: hasActiveSubscription,
       isLoading: false,
     }))
@@ -60,7 +61,7 @@ describe('Dashboard', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.queryByTestId('loading')).not.toBeInTheDocument()
+    expect(screen.queryByTestId(TestIds.Loading)).not.toBeInTheDocument()
     expect(screen.getByText('Dashboard')).toBeInTheDocument()
   })
 })

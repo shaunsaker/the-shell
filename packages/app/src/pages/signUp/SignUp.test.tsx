@@ -31,13 +31,13 @@ const fillForm = ({
 
 const mocks = vi.hoisted(() => {
   return {
-    signUpWithPasswordMock: vi.fn(),
+    signUpWithPassword: vi.fn(),
   }
 })
 
 vi.mock('../../auth/hooks/useSignUpWithPassword', () => ({
   useSignUpWithPassword: vi.fn(() => ({
-    mutate: mocks.signUpWithPasswordMock,
+    mutate: mocks.signUpWithPassword,
   })),
 }))
 
@@ -187,6 +187,6 @@ describe('SignUp', () => {
 
     fireEvent.submit(getSubmitButton())
 
-    expect(mocks.signUpWithPasswordMock).toHaveBeenCalled()
+    expect(mocks.signUpWithPassword).toHaveBeenCalled()
   })
 })

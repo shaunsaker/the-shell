@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { routes } from '../../../../router/routes'
 import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../test/MockAppProvider'
-import { UserManagementParams } from '../../../../types'
+import { TestIds, UserManagementParams } from '../../../../types'
 import { VerifyAndChangeEmail } from './VerifyAndChangeEmail'
 
 const mocks = vi.hoisted(() => {
@@ -55,7 +55,7 @@ describe('VerifyAndChangeEmail', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.getByTestId('loading')).toBeInTheDocument()
+    expect(screen.getByTestId(TestIds.Loading)).toBeInTheDocument()
 
     // our mock function simply returns the param that was passed in
     await waitFor(() => expect(mocks.verifyEmail).toHaveBeenCalledWith(UserManagementParams.ActionCode))

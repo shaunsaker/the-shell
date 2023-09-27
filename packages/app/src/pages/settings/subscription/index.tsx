@@ -15,9 +15,6 @@ export const SettingsSubscription = (): ReactElement => {
   const { data: hasActiveSubscription } = useHasActiveSubscription()
   const { data: subscriptionSeats } = useSubscriptionSeats()
 
-  const isSubscriptionOwner = subscriptionSeats?.some(seat => seat.isSubscriptionOwner)
-  const hasManagedSubscription = !isSubscriptionOwner
-
   if (isFetching) {
     return <Loading />
   }
@@ -25,6 +22,9 @@ export const SettingsSubscription = (): ReactElement => {
   if (!hasActiveSubscription) {
     return <Pricing />
   }
+
+  const isSubscriptionOwner = subscriptionSeats?.some(seat => seat.isSubscriptionOwner)
+  const hasManagedSubscription = !isSubscriptionOwner
 
   if (hasManagedSubscription) {
     return <ManagedSubscriptionSection />

@@ -32,3 +32,8 @@ export type NavigationItem = {
   isActive?: boolean
   disabled?: boolean
 }
+
+// TESTING
+export enum TestIds {
+  Loading = 'loading',
+}

@@ -16,13 +16,13 @@ const fillForm = ({ email, password }: { email?: string; password?: string }) =>
 
 const mocks = vi.hoisted(() => {
   return {
-    signInWithPasswordMock: vi.fn(),
+    signInWithPassword: vi.fn(),
   }
 })
 
 vi.mock('../../auth/hooks/useSignInWithPassword', () => ({
   useSignInWithPassword: vi.fn(() => ({
-    mutate: mocks.signInWithPasswordMock,
+    mutate: mocks.signInWithPassword,
   })),
 }))
 
@@ -126,6 +126,6 @@ describe('SignIn', () => {
 
     fireEvent.submit(getSubmitButton())
 
-    expect(mocks.signInWithPasswordMock).toHaveBeenCalled()
+    expect(mocks.signInWithPassword).toHaveBeenCalled()
   })
 })

@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { routes } from '../../../../router/routes'
 import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../test/MockAppProvider'
-import { UserManagementParams } from '../../../../types'
+import { TestIds, UserManagementParams } from '../../../../types'
 import { ResetPassword } from './ResetPassword'
 
 const mocks = vi.hoisted(() => {
@@ -48,7 +48,7 @@ describe('ResetPassword', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.getByTestId('loading')).toBeInTheDocument()
+    expect(screen.getByTestId(TestIds.Loading)).toBeInTheDocument()
 
     await waitFor(() =>
       expect(mocks.resetPassword).toHaveBeenCalledWith({
