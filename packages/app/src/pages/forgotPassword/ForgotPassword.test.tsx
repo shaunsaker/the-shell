@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { routes } from '../../router/routes'
@@ -51,7 +51,7 @@ describe('ForgotPassword', () => {
       </MockAppProvider>,
     )
 
-    getNavigateToSignInButton().click()
+    fireEvent.click(getNavigateToSignInButton())
 
     expect(mocks.navigate).toHaveBeenCalledWith(routes.signIn)
   })

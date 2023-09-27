@@ -8,8 +8,8 @@ import { SettingsSection } from '../../../../../components/settingsSection/Setti
 
 export const DeleteAccountSection = (): ReactElement => {
   const [dialogOpen, setDialogOpen] = useState(false)
-  const { mutate: deleteUserAccount, isLoading: deleteUserAccountLoading } = useDeleteUserAccount()
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
+  const { mutate: deleteUserAccount, isLoading: deleteUserAccountLoading } = useDeleteUserAccount()
 
   const isDisabled = hasActiveSubscriptionLoading || hasActiveSubscription
 
