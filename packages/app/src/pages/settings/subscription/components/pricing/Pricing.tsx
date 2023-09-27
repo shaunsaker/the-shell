@@ -6,24 +6,10 @@ import { useProducts } from '../../../../../billing/hooks/useProducts'
 import { RadioGroup } from '../../../../../components/radioGroup/RadioGroup'
 import { Text } from '../../../../../components/text/Text'
 import { Title } from '../../../../../components/title/Title'
+import { formatBillingInterval } from '../../../../../utils/formatBillingInterval'
 import { parseProductMetadata } from '../../../../../utils/parseProductMetadata'
 import { PricingCard } from './pricingCard/PricingCard'
 import { ProductsNotFound } from './productsNotFound/ProductsNotFound'
-
-const formatBillingInterval = (value: string): string => {
-  switch (value) {
-    case 'day':
-      return 'Daily'
-    case 'week':
-      return 'Weekly'
-    case 'month':
-      return 'Monthly'
-    case 'year':
-      return 'Yearly'
-    default:
-      return ''
-  }
-}
 
 export const Pricing = (): ReactElement => {
   const { data: products } = useProducts()
