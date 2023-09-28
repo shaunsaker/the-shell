@@ -34,13 +34,19 @@ export type Customer = {
   stripeCustomerId: string
 }
 
+export type ProductMetadata = {
+  features: string // JSON stringified array of strings
+  freeTrialDays: number
+  teamPlan: boolean
+}
+
 export type Product = {
   id: string
   name: string
   description: string
   active: boolean
   image: string
-  metadata?: { freeTrialDays: number; teamPlan: boolean } | Record<string, string>
+  metadata?: ProductMetadata | Record<string, string>
 }
 
 export enum PricingType {

@@ -72,7 +72,7 @@ describe('UserManagement', () => {
   })
 
   it('renders ResetPassword if the resetPassword mode is present in the query params', () => {
-    mocks.searchParams.mockReturnValueOnce([
+    mocks.searchParams.mockReturnValue([
       {
         get: () => 'resetPassword',
       },
@@ -89,7 +89,7 @@ describe('UserManagement', () => {
   })
 
   it('renders VerifyAndChangeEmail if the verifyAndChangeEmail mode is present in the query params', () => {
-    mocks.searchParams.mockReturnValueOnce([
+    mocks.searchParams.mockReturnValue([
       {
         get: () => 'verifyAndChangeEmail',
       },
@@ -106,7 +106,7 @@ describe('UserManagement', () => {
   })
 
   it('renders VerifyEmail if the verifyEmail mode is present in the query params', async () => {
-    mocks.searchParams.mockReturnValueOnce([
+    mocks.searchParams.mockReturnValue([
       {
         get: () => 'verifyEmail',
       },

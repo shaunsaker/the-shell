@@ -8,6 +8,7 @@ import { Text } from '../../../../../components/text/Text'
 import { Title } from '../../../../../components/title/Title'
 import { formatBillingInterval } from '../../../../../utils/formatBillingInterval'
 import { parseProductMetadata } from '../../../../../utils/parseProductMetadata'
+import { sortProductsByPrice } from '../../../../../utils/sortProductsByPrice'
 import { PricingCard } from './pricingCard/PricingCard'
 import { ProductsNotFound } from './productsNotFound/ProductsNotFound'
 
@@ -16,36 +17,40 @@ export const Pricing = (): ReactElement => {
   const { data: prices } = usePrices()
   const { mutate: createCheckoutSession, isLoading: createCheckoutSessionLoading } = useCreateCheckoutSession()
 
-  // get the unique billing intervals from the prices
-  const billingIntervals = useMemo(() => {
-    if (!prices) {
-      return []
-    }
-
-    return [...new Set(prices?.map(price => price.interval))]
-  }, [prices])
-
-  // Note: we set the billingInterval in a useEffect when the products and subscription updates
+  // Note: we set the billingInterval in a useEffect when the prices updates
   const [billingInterval, setBillingInterval] = useState<string>('')
+  const [billingIntervalOptions, setBillingIntervalOptions] = useState<{ label: string; value: string }[]>([])
 
-  // transform the billing interval into radio group options
-  const billingIntervalOptions = billingIntervals.map(billingInterval => ({
-    label: formatBillingInterval(billingInterval),
-    value: billingInterval,
-  }))
-
-  useEffect(
-    () => {
-      // when the products or subscription updates, set the billing interval
-      if (products) {
-        setBillingInterval(billingIntervals[0])
-      }
-    },
-    // billingIntervals is excluded because it updates on every render and we don't want it to run this effect
-    [billingIntervals, products],
+  // filter the prices by the selected billing interval
+  const pricesForBillingInterval = useMemo(
+    () => prices?.filter(price => price.interval === billingInterval),
+    [billingInterval, prices],
   )
 
-  if (!products?.length) {
+  const sortedProducts = useMemo(
+    () => sortProductsByPrice({ products, prices: pricesForBillingInterval }),
+    [pricesForBillingInterval, products],
+  )
+
+  useEffect(() => {
+    // when the prices update, set the selected billing interval and billing interval options
+    if (prices?.length) {
+      // console.log('HERE 2')
+      // get the unique billing intervals from the prices
+      const billingIntervalOptions = [...new Set(prices?.map(price => price.interval))].map(billingInterval => ({
+        label: formatBillingInterval(billingInterval),
+        value: billingInterval,
+      }))
+
+      setBillingIntervalOptions(billingIntervalOptions)
+
+      // set the selected billing interval to the first one
+      setBillingInterval(billingIntervalOptions[0].value)
+      // console.log('HERE 3')
+    }
+  }, [prices])
+
+  if (!products?.length || !prices?.length) {
     return <ProductsNotFound />
   }
 
@@ -70,53 +75,37 @@ export const Pricing = (): ReactElement => {
       />
 
       <div className="mt-8 flex w-full flex-wrap gap-4 lg:flex-nowrap">
-        {products
-          // sort by lowest price to highest price
-          ?.sort((productA, productB) => {
-            // get the prices for the current billing interval
-            const priceA = prices?.filter(
-              price => price.interval === billingInterval && price.productId === productA.id,
-            )[0]
-            const priceB = prices?.filter(
-              price => price.interval === billingInterval && price.productId === productB.id,
-            )[0]
+        {sortedProducts.map((product, index) => {
+          // get the price for the current billing interval
+          const price = pricesForBillingInterval?.filter(price => price.productId === product.id)[0]
 
-            // sort by price
-            return (priceA?.unitAmount || 0) - (priceB?.unitAmount || 0)
-          })
-          .map((product, index) => {
-            // get the price for the current billing interval
-            const price = prices?.filter(
-              price => price.interval === billingInterval && price.productId === product.id,
-            )[0]
+          // highlight the second product
+          const highlight = index === 1
 
-            // highlight the second product
-            const highlight = index === 1
+          const { features, freeTrialDays } = parseProductMetadata(product.metadata)
 
-            const { features, freeTrialDays } = parseProductMetadata(product.metadata)
+          return (
+            <PricingCard
+              key={product.id}
+              title={product.name || ''}
+              description={product.description || ''}
+              price={price?.unitAmount || 0}
+              currency={price?.currency || ''}
+              interval={price?.interval || ''}
+              features={features}
+              freeTrialDays={freeTrialDays}
+              highlight={highlight}
+              loading={createCheckoutSessionLoading}
+              onClick={() => {
+                if (!price) {
+                  return
+                }
 
-            return (
-              <PricingCard
-                key={product.id}
-                title={product.name || ''}
-                description={product.description || ''}
-                price={price?.unitAmount || 0}
-                currency={price?.currency || ''}
-                interval={price?.interval || ''}
-                features={features}
-                freeTrialDays={freeTrialDays}
-                highlight={highlight}
-                loading={createCheckoutSessionLoading}
-                onClick={() => {
-                  if (!price) {
-                    return
-                  }
-
-                  createCheckoutSession({ priceId: price.id, quantity: 1 })
-                }}
-              />
-            )
-          })}
+                createCheckoutSession({ priceId: price.id, quantity: 1 })
+              }}
+            />
+          )
+        })}
       </div>
     </main>
   )
