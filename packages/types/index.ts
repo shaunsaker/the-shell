@@ -109,11 +109,11 @@ export type Subscription = {
 
 export type SubscriptionSeat = {
   id: string
+  createdAt: string
   subscriptionId: SubscriptionId
   userId: UserId | null // the userId is null if the user does not have an account yet
   email: string | null // the email is used to find assigned seats of new users (it's null for subscription owners because we don't need to find their seats)
   isSubscriptionOwner: boolean
-  createdAt: string
 }
 
 export type SubscriptionInfo = {
@@ -130,8 +130,8 @@ type TeamId = string
 
 export type Team = {
   id: TeamId
-  name: string
   createdAt: string
+  name: string
   ownerId: string
   subscriptionId: SubscriptionId
 }
@@ -148,11 +148,11 @@ export enum TeamMemberStatus {
 
 export type TeamMember = {
   id: string
+  createdAt: string
   teamId: string
   userId: UserId | null // the userId is null if the user does not have an account yet
   firstName: string | null // as above
   lastName: string | null // as above
-  createdAt: string
   email: string
   role: TeamMemberRole
   status: TeamMemberStatus

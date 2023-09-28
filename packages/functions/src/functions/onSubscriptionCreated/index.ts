@@ -24,11 +24,11 @@ export const onSubscriptionCreated = onDocumentCreated('subscriptions/{subscript
   // create a subscription seat for the owner
   const subscriptionSeat: SubscriptionSeat = {
     id: uid,
+    createdAt: getISOString(),
     subscriptionId: subscription.id,
     userId: uid,
     email: user.email || '', // we should technically have the email by this stage but it's not a biggie if we don't
     isSubscriptionOwner: true, // this user is creating this subscription and is therefore the owner
-    createdAt: getISOString(),
   }
 
   await updateSubscriptionSeats([subscriptionSeat])
@@ -48,8 +48,8 @@ export const onSubscriptionCreated = onDocumentCreated('subscriptions/{subscript
   // if the subscription is on the team plan, create a team and add the owner to the team
   const team: Team = {
     id: getUuid(),
-    name: `${user.firstName} ${user.lastName}'s Team`,
     createdAt: getISOString(),
+    name: `${user.firstName} ${user.lastName}'s Team`,
     ownerId: uid,
     subscriptionId: subscription.id,
   }
@@ -58,11 +58,11 @@ export const onSubscriptionCreated = onDocumentCreated('subscriptions/{subscript
 
   const teamMember: TeamMember = {
     id: uid,
+    createdAt: getISOString(),
     teamId: team.id,
     userId: uid,
     firstName: user.firstName,
     lastName: user.lastName,
-    createdAt: getISOString(),
     email: user.email || '', // we should technically have the email by this stage but it's not a biggie if we don't
     role: TeamMemberRole.Admin,
     status: TeamMemberStatus.Active,

@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { SubscriptionSeat } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
+import { makeSubscriptionSeat } from '../../../billing/mocks/makeSubscriptionSeat'
 import { cleanUpAfterEach } from '../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../test/MockAppProvider'
 import { TestIds } from '../../../types'
@@ -66,15 +67,6 @@ vi.mock('../../../billing/hooks/useHasActiveSubscription', () => ({
 vi.mock('../../../billing/hooks/useSubscriptionSeats', () => ({
   useSubscriptionSeats: mocks.useSubscriptionSeats,
 }))
-
-const makeSubscriptionSeat = ({ isSubscriptionOwner }: { isSubscriptionOwner: boolean }): SubscriptionSeat => ({
-  isSubscriptionOwner,
-  id: 'subscriptionSeatId',
-  subscriptionId: 'subscriptionId',
-  userId: 'userId',
-  email: 'email',
-  createdAt: '',
-})
 
 describe('SettingsSubscription', () => {
   cleanUpAfterEach()

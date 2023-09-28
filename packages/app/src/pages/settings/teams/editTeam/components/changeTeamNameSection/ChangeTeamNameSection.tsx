@@ -17,7 +17,8 @@ export const ChangeTeamNameSection = (): ReactElement => {
 
   const isLoading = isLoggedInUserTeamAdminLoading || teamsLoading
   const inputDisabled = isLoading || !isLoggedInUserTeamAdmin
-  const buttonDisabled = isLoading || !teamName || teamName === team?.name || updateTeamLoading
+  const teamNameUnchanged = teamName === team?.name
+  const buttonDisabled = isLoading || !teamName || teamNameUnchanged || updateTeamLoading
 
   // if the team name changes update state
   useEffect(() => {

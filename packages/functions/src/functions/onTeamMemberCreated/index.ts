@@ -32,11 +32,11 @@ export const onTeamMemberCreated = onDocumentCreated('teams/{teamsId}/members/{u
   // create a new subscription seat for the new team member
   const subscriptionSeat: SubscriptionSeat = {
     id: uid,
+    createdAt: teamMember.createdAt,
     subscriptionId,
     userId: teamMember.userId,
     email: teamMember.email,
     isSubscriptionOwner: false,
-    createdAt: teamMember.createdAt,
   }
 
   await updateSubscriptionSeats([subscriptionSeat])
