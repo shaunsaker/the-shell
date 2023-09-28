@@ -13,7 +13,7 @@ const mocks = vi.hoisted(() => {
   return {
     usePrices: vi.fn<any, { data: Price[] }>(() => ({ data: [] })),
     useProducts: vi.fn<any, { data: Product[] }>(() => ({ data: [] })),
-    useCreateCheckoutSession: vi.fn(),
+    createCheckoutSession: vi.fn(),
   }
 })
 
@@ -27,7 +27,7 @@ vi.mock('../../../../../billing/hooks/useProducts', () => ({
 
 vi.mock('../../../../../billing/hooks/useCreateCheckoutSession', () => ({
   useCreateCheckoutSession: () => ({
-    mutate: mocks.useCreateCheckoutSession,
+    mutate: mocks.createCheckoutSession,
   }),
 }))
 
@@ -181,7 +181,7 @@ describe('Pricing', () => {
 
     fireEvent.click(firstBuyButton)
 
-    expect(mocks.useCreateCheckoutSession).toHaveBeenCalledWith({
+    expect(mocks.createCheckoutSession).toHaveBeenCalledWith({
       priceId: '1',
       quantity: 1,
     })
@@ -194,7 +194,7 @@ describe('Pricing', () => {
 
     fireEvent.click(secondBuyButton)
 
-    expect(mocks.useCreateCheckoutSession).toHaveBeenCalledWith({
+    expect(mocks.createCheckoutSession).toHaveBeenCalledWith({
       priceId: '2',
       quantity: 1,
     })

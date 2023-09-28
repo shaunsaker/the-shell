@@ -13,7 +13,7 @@ const mocks = vi.hoisted(() => {
     usePrices: vi.fn<any, { data: Price[] }>(() => ({ data: [] })),
     useSubscriptions: vi.fn<any, { data: Subscription[] }>(() => ({ data: [] })),
     useUser: vi.fn<any, { data: User }>(() => ({ data: makeUser({}) })),
-    useCreateBillingPortalSession: vi.fn(),
+    createBillingPortalSession: vi.fn(),
   }
 })
 
@@ -39,7 +39,7 @@ vi.mock('../../../../../user/hooks/useUser', () => ({
 
 vi.mock('../../../../../billing/hooks/useCreateBillingPortalSession', () => ({
   useCreateBillingPortalSession: () => ({
-    mutate: mocks.useCreateBillingPortalSession,
+    mutate: mocks.createBillingPortalSession,
   }),
 }))
 
@@ -65,6 +65,6 @@ describe('SubscriptionDetailsSection', () => {
 
     fireEvent.click(screen.getByText('Manage plan'))
 
-    expect(mocks.useCreateBillingPortalSession).toHaveBeenCalledWith()
+    expect(mocks.createBillingPortalSession).toHaveBeenCalledWith()
   })
 })
