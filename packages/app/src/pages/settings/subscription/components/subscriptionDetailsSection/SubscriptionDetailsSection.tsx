@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react'
-import { SubscriptionStatus } from 'types'
 
 import { useCreateBillingPortalSession } from '../../../../../billing/hooks/useCreateBillingPortalSession'
 import { usePrices } from '../../../../../billing/hooks/usePrices'
@@ -14,24 +13,8 @@ import { useUser } from '../../../../../user/hooks/useUser'
 import { formatBillingAddress } from '../../../../../utils/formatBillingAddress'
 import { formatCurrency } from '../../../../../utils/formatCurrency'
 import { formatDate } from '../../../../../utils/formatDate'
+import { formatSubscriptionStatus } from '../../../../../utils/formatSubscriptionStatus'
 import { parsePaymentMethod } from '../../../../../utils/parsePaymentMethod'
-
-const formatSubscriptionStatus = (status: SubscriptionStatus): string => {
-  switch (status) {
-    case SubscriptionStatus.Trialing:
-      return 'Trial'
-    case SubscriptionStatus.Active:
-      return 'Active'
-    case SubscriptionStatus.PastDue:
-      return 'Past due'
-    case SubscriptionStatus.Cancelled:
-      return 'Cancelled'
-    case SubscriptionStatus.Unpaid:
-      return 'Unpaid'
-    default:
-      return ''
-  }
-}
 
 export const SubscriptionDetailsSection = (): ReactElement | null => {
   const { data: products } = useProducts()
