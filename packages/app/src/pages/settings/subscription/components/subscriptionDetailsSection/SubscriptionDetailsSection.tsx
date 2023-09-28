@@ -121,14 +121,16 @@ export const SubscriptionDetailsSection = (): ReactElement | null => {
         <ListItem>
           <span>Payment card</span>
 
-          <span>{user ? `**** **** **** ${parsePaymentMethod(user.paymentMethod).last4}` : ''}</span>
+          <span>
+            {user && user.paymentMethod ? `**** **** **** ${parsePaymentMethod(user.paymentMethod).last4}` : ''}
+          </span>
         </ListItem>
 
         <ListItem className="items-start">
           <span className="mr-8">Billing address</span>
 
           <span className="whitespace-break-spaces text-right">
-            {user ? formatBillingAddress(user.billingAddress) : ''}
+            {user && user.billingAddress ? formatBillingAddress(user.billingAddress) : ''}
           </span>
         </ListItem>
       </List>
