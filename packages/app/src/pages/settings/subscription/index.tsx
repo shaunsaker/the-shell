@@ -1,4 +1,3 @@
-import { useIsFetching } from '@tanstack/react-query'
 import React, { ReactElement } from 'react'
 
 import { useHasActiveSubscription } from '../../../billing/hooks/useHasActiveSubscription'
@@ -11,11 +10,12 @@ import { SubscriptionDetailsSection } from './components/subscriptionDetailsSect
 import { SubscriptionSeatsSection } from './components/subscriptionSeatsSection/SubscriptionSeatsSection'
 
 export const SettingsSubscription = (): ReactElement => {
-  const isFetching = useIsFetching()
-  const { data: hasActiveSubscription } = useHasActiveSubscription()
-  const { data: subscriptionSeats } = useSubscriptionSeats()
+  const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
+  const { data: subscriptionSeats, isLoading: subscriptionSeatsLoading } = useSubscriptionSeats()
 
-  if (isFetching) {
+  const isLoading = hasActiveSubscriptionLoading || subscriptionSeatsLoading
+
+  if (isLoading) {
     return <Loading />
   }
 
