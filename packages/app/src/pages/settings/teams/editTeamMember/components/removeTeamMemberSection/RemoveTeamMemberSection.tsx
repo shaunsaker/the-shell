@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Alert } from '../../../../../../components/alert/Alert'
 import { Button } from '../../../../../../components/button/Button'
@@ -7,13 +7,14 @@ import { SettingsSection } from '../../../../../../components/settingsSection/Se
 import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../router/routes'
 import { useIsTeamMemberLastAdmin } from '../../../../../../teams/hooks/useIsTeamMemberLastAdmin'
+import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
 
 export const RemoveTeamMemberSection = (): ReactElement => {
-  const { teamId = '', teamMemberId = '' } = useParams()
+  const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
   const { data: isTeamMemberLastAdmin, isLoading: isTeamMemberLastAdminLoading } = useIsTeamMemberLastAdmin()
   const navigate = useNavigate()
 
-  const isLoading = isTeamMemberLastAdminLoading
+  const isLoading = teamMemberLoading || isTeamMemberLastAdminLoading
   const disabled = isLoading || isTeamMemberLastAdmin
 
   return (
@@ -38,11 +39,13 @@ export const RemoveTeamMemberSection = (): ReactElement => {
               color="red"
               disabled={disabled}
               onClick={() => {
-                navigate(
-                  routes.settingsRemoveTeamMember
-                    .replace(TEAM_ID_PARAM, teamId)
-                    .replace(TEAM_MEMBER_ID_PARAM, teamMemberId),
-                )
+                if (teamMember) {
+                  navigate(
+                    routes.settingsRemoveTeamMember
+                      .replace(TEAM_ID_PARAM, teamMember.teamId)
+                      .replace(TEAM_MEMBER_ID_PARAM, teamMember.id),
+                  )
+                }
               }}
             >
               Yes, remove team member
