@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => {
   return {
     useIsLoggedInUserTeamAdmin: vi.fn(() => ({ data: false })),
     useTeam: vi.fn(() => ({
-      data: makeTeamWithMembers({ team: {}, teamMembers: [] }),
+      data: makeTeamWithMembers({ team: {}, members: [] }),
     })),
     navigate: vi.fn(),
   }
@@ -44,7 +44,7 @@ describe('ManageTeamMembersSection', () => {
     mocks.useIsLoggedInUserTeamAdmin.mockReturnValueOnce({ data: false })
 
     mocks.useTeam.mockReturnValueOnce({
-      data: makeTeamWithMembers({ team: {}, teamMembers: [{ role: TeamMemberRole.Member }] }),
+      data: makeTeamWithMembers({ team: {}, members: [{ role: TeamMemberRole.Member }] }),
     })
 
     render(
@@ -62,7 +62,7 @@ describe('ManageTeamMembersSection', () => {
     mocks.useIsLoggedInUserTeamAdmin.mockReturnValueOnce({ data: true })
 
     mocks.useTeam.mockReturnValueOnce({
-      data: makeTeamWithMembers({ team: {}, teamMembers: [{ role: TeamMemberRole.Member }] }),
+      data: makeTeamWithMembers({ team: {}, members: [{ role: TeamMemberRole.Member }] }),
     })
 
     render(
@@ -81,7 +81,7 @@ describe('ManageTeamMembersSection', () => {
 
     const teamId = '1'
     mocks.useTeam.mockReturnValueOnce({
-      data: makeTeamWithMembers({ team: { id: teamId }, teamMembers: [] }),
+      data: makeTeamWithMembers({ team: { id: teamId }, members: [] }),
     })
 
     render(
@@ -105,7 +105,7 @@ describe('ManageTeamMembersSection', () => {
         team: {
           id: teamId,
         },
-        teamMembers: [
+        members: [
           {
             id: teamMemberId,
             role: TeamMemberRole.Member,

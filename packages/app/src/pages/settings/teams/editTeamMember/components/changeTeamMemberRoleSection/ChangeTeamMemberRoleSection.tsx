@@ -1,5 +1,4 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import { TeamMemberRole } from 'types'
 
 import { Alert } from '../../../../../../components/alert/Alert'
@@ -8,7 +7,7 @@ import { Select } from '../../../../../../components/select/Select'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
 import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
 import { useIsTeamMemberLastAdmin } from '../../../../../../teams/hooks/useIsTeamMemberLastAdmin'
-import { useTeam } from '../../../../../../teams/hooks/useTeam'
+import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
 import { useUpdateTeamMemberRole } from '../../../../../../teams/hooks/useUpdateTeamMemberRole'
 import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRole'
 import { parseTeamMemberRole } from '../../../../../../utils/parseTeamMemberRole'
@@ -20,14 +19,12 @@ const TEAM_MEMBER_ROLE_OPTIONS = TEAM_MEMBER_ROLES.map(role => ({
 }))
 
 export const ChangeTeamMemberRoleSection = (): ReactElement => {
-  const { teamMemberId = '' } = useParams()
-  const { data: team, isLoading: teamLoading } = useTeam()
   const [role, setRole] = useState('')
-  const { mutate: updateTeamMemberRole, isLoading: updateTeamMemberLoading } = useUpdateTeamMemberRole()
+  const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
   const { data: isTeamMemberLastAdmin, isLoading: isTeamMemberLastAdminLoading } = useIsTeamMemberLastAdmin()
+  const { mutate: updateTeamMemberRole, isLoading: updateTeamMemberLoading } = useUpdateTeamMemberRole()
 
-  const teamMember = team?.members.find(member => member.id === teamMemberId)
-  const isLoading = teamLoading || isTeamMemberLastAdminLoading
+  const isLoading = teamMemberLoading || isTeamMemberLastAdminLoading
   const disabled = isLoading || role === teamMember?.role || !role
 
   useEffect(() => {

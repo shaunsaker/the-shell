@@ -5,16 +5,16 @@ import { makeTeamMember } from './makeTeamMember'
 
 export const makeTeamWithMembers = ({
   team: partialTeam,
-  teamMembers: partialTeamMembers,
+  members: partialMembers,
 }: {
   team: Partial<Team>
-  teamMembers: Array<Partial<TeamMember>>
+  members: Array<Partial<TeamMember>>
 }): TeamWithMembers => {
   const team = makeTeam(partialTeam)
-  const teamMembers = partialTeamMembers.map(makeTeamMember)
+  const members = partialMembers.map(makeTeamMember)
   const teamWithTeamMembers: TeamWithMembers = {
     ...team,
-    members: teamMembers,
+    members,
   }
 
   return teamWithTeamMembers
