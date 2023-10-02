@@ -50,14 +50,14 @@ export const Sidebar = ({ items, onClick }: Props) => {
                   icon={item.icon}
                   className={twMerge(
                     'w-full justify-start border-none shadow-none outline-offset-0',
-                    item.isActive
+                    item.active
                       ? 'bg-theme-brand-emphasis text-theme-brand-inverted dark:bg-dark-theme-brand-emphasis dark:text-dark-theme-brand-inverted'
                       : 'text-theme-brand-inverted hover:bg-theme-brand-emphasis dark:text-dark-theme-brand-inverted dark:hover:bg-dark-theme-brand-emphasis',
                   )}
                   disabled={item.disabled}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
-                    if (!item.isActive && onClick) {
+                    if (!item.active && onClick) {
                       onClick(item.href)
 
                       if (sidebarOpen) {

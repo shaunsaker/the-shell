@@ -6,13 +6,9 @@ import { MockAppProvider } from '../../test/MockAppProvider'
 import { TestIds } from '../../types'
 import { Dashboard } from '.'
 
-const mocks = vi.hoisted(() => {
-  const hasActiveSubscription = false
-
-  return {
-    useRestrictedSubscriptionRoute: vi.fn(() => ({ data: hasActiveSubscription, isLoading: true })),
-  }
-})
+const mocks = vi.hoisted(() => ({
+  useRestrictedSubscriptionRoute: vi.fn(() => ({ data: false, isLoading: true })),
+}))
 
 vi.mock('../../billing/hooks/useRestrictedSubscriptionRoute', () => ({
   useRestrictedSubscriptionRoute: mocks.useRestrictedSubscriptionRoute,

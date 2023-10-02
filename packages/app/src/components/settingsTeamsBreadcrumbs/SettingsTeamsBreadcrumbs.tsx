@@ -23,7 +23,7 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
     BREADCRUMBS.push({
       name: team.name,
       href,
-      isActive: href === location.pathname,
+      active: href === location.pathname,
     })
 
     const hrefInviteTeamMembers = routes.settingsInviteTeamMembers.replace(TEAM_ID_PARAM, team.id.toString())
@@ -32,7 +32,7 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
       BREADCRUMBS.push({
         name: 'Invite team members',
         href: hrefInviteTeamMembers,
-        isActive: hrefInviteTeamMembers === location.pathname,
+        active: hrefInviteTeamMembers === location.pathname,
       })
     }
   }
@@ -48,7 +48,7 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
       BREADCRUMBS.push({
         name,
         href,
-        isActive: href === location.pathname,
+        active: href === location.pathname,
       })
     }
   }

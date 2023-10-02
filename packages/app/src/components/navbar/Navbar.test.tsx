@@ -9,18 +9,18 @@ const ITEMS: NavigationItem[] = [
   {
     name: 'Home',
     href: '/',
-    isActive: true,
+    active: true,
   },
   {
     name: 'Dashboard',
     href: '/dashboard',
-    isActive: false,
+    active: false,
     disabled: true,
   },
   {
     name: 'Settings',
     href: '/settings',
-    isActive: false,
+    active: false,
   },
 ]
 

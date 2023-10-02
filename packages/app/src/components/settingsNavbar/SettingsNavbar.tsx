@@ -24,17 +24,17 @@ export const SettingsNavbar = (): ReactElement => {
     {
       name: 'Account',
       href: routes.settingsAccount,
-      isActive: location.pathname.includes(routes.settingsAccount),
+      active: location.pathname.includes(routes.settingsAccount),
     },
     {
       name: 'Subscription',
       href: routes.settingsSubscription,
-      isActive: location.pathname.includes(routes.settingsSubscription),
+      active: location.pathname.includes(routes.settingsSubscription),
     },
     {
       name: 'Team',
       href: routes.settingsEditTeam.replace(TEAM_ID_PARAM, defaultTeamId),
-      isActive: location.pathname.includes(routes.settingsEditTeam.replace(TEAM_ID_PARAM, defaultTeamId)),
+      active: location.pathname.includes(routes.settingsEditTeam.replace(TEAM_ID_PARAM, defaultTeamId)),
       disabled:
         hasActiveSubscriptionLoading ||
         !hasActiveSubscription ||

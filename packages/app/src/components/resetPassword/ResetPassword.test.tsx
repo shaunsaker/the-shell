@@ -14,6 +14,7 @@ const fillForm = ({ email, password }: { email?: string; password?: string }) =>
   fireEvent.change(getPasswordInput(), { target: { value: password } })
 }
 
+// TODO: SS move this to vi.hoisted
 const requestResetPasswordMock = vi.fn()
 
 vi.mock('../../auth/hooks/useRequestResetPassword', () => ({

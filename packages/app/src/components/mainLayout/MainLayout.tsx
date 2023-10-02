@@ -9,22 +9,22 @@ import { Sidebar } from '../sidebar/Sidebar'
 
 export const MainLayout = (): ReactElement => {
   const location = useLocation()
-  const navigate = useNavigate()
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
+  const navigate = useNavigate()
 
   const navigationItems: NavigationItem[] = [
     {
       name: 'Dashboard',
       href: routes.dashboard,
       icon: <HomeModernIcon />,
-      isActive: location.pathname === routes.dashboard,
+      active: location.pathname === routes.dashboard,
       disabled: hasActiveSubscriptionLoading || !hasActiveSubscription,
     },
     {
       name: 'Settings',
       href: routes.settings,
       icon: <Cog6ToothIcon />,
-      isActive: location.pathname.startsWith(routes.settings),
+      active: location.pathname.startsWith(routes.settings),
     },
   ]
 

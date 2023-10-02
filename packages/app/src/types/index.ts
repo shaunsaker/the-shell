@@ -29,7 +29,7 @@ export type NavigationItem = {
   name: string
   href: string
   icon?: ReactNode
-  isActive?: boolean
+  active?: boolean
   disabled?: boolean
 }
 
