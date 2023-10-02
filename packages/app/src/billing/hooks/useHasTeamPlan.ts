@@ -3,7 +3,7 @@ import { useProducts } from './useProducts'
 import { useSubscriptionInfo } from './useSubscriptionInfo'
 
 export const useHasTeamPlan = () => {
-  const { data: subscriptionInfo, isLoading: subscriptionInfoLoading } = useSubscriptionInfo()
+  const { data: subscriptionInfo, isLoading: subscriptionInfoLoading, ...query } = useSubscriptionInfo()
   const { data: prices, isLoading: pricesLoading } = usePrices()
   const { data: products, isLoading: productsLoading } = useProducts()
 
@@ -18,6 +18,7 @@ export const useHasTeamPlan = () => {
   const isLoading = subscriptionInfoLoading || pricesLoading || productsLoading
 
   return {
+    ...query,
     data: hasTeamPlan,
     isLoading,
   }
