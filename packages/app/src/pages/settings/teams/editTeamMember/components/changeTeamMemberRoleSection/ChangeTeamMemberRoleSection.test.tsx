@@ -2,6 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { TeamMemberRole } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
+import { useIsTeamMemberLastAdmin } from '../../../../../../teams/hooks/useIsTeamMemberLastAdmin'
+import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
 import { makeTeamMember } from '../../../../../../teams/mocks/makeTeamMember'
 import { cleanUpAfterEach } from '../../../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../../../test/MockAppProvider'
@@ -10,8 +12,11 @@ import { ChangeTeamMemberRoleSection } from './ChangeTeamMemberRoleSection'
 
 const mocks = vi.hoisted(() => {
   return {
-    useIsTeamMemberLastAdmin: vi.fn(() => ({ data: false })),
-    useTeamMember: vi.fn(() => ({ data: makeTeamMember({}) })),
+    useIsTeamMemberLastAdmin: vi.fn<any, Partial<ReturnType<typeof useIsTeamMemberLastAdmin>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
+    useTeamMember: vi.fn<any, Partial<ReturnType<typeof useTeamMember>>>(() => ({ data: undefined, isLoading: false })),
     updateTeamMemberRole: vi.fn(),
   }
 })

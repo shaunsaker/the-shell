@@ -13,15 +13,15 @@ import { useSubscriptionInfo } from './useSubscriptionInfo'
 const mocks = vi.hoisted(() => ({
   useSubscriptionInfo: vi.fn<any, Partial<ReturnType<typeof useSubscriptionInfo>>>(() => ({
     data: undefined,
-    isLoading: true,
+    isLoading: false,
   })),
   usePrices: vi.fn<any, Partial<ReturnType<typeof usePrices>>>(() => ({
     data: undefined,
-    isLoading: true,
+    isLoading: false,
   })),
   useProducts: vi.fn<any, Partial<ReturnType<typeof useProducts>>>(() => ({
     data: undefined,
-    isLoading: true,
+    isLoading: false,
   })),
 }))
 

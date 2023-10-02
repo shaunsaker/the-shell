@@ -14,13 +14,14 @@ const fillForm = ({ email, password }: { email?: string; password?: string }) =>
   fireEvent.change(getPasswordInput(), { target: { value: password } })
 }
 
-// TODO: SS move this to vi.hoisted
-const requestResetPasswordMock = vi.fn()
+const mocks = vi.hoisted(() => ({
+  requestResetPassword: vi.fn(),
+}))
 
 vi.mock('../../auth/hooks/useRequestResetPassword', () => ({
-  useRequestResetPassword: vi.fn(() => ({
-    mutate: requestResetPasswordMock,
-  })),
+  useRequestResetPassword: () => ({
+    mutate: mocks.requestResetPassword,
+  }),
 }))
 
 describe('ResetPassword', () => {
@@ -122,6 +123,6 @@ describe('ResetPassword', () => {
 
     fireEvent.submit(getSubmitButton())
 
-    expect(requestResetPasswordMock).toHaveBeenCalled()
+    expect(mocks.requestResetPassword).toHaveBeenCalled()
   })
 })

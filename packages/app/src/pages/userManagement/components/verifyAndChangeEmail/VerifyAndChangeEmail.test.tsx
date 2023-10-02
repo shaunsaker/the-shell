@@ -34,15 +34,15 @@ vi.mock('react-router-dom', async () => {
 })
 
 vi.mock('../../../../auth/hooks/useVerifyEmail', () => ({
-  useVerifyEmail: vi.fn(() => ({
+  useVerifyEmail: () => ({
     mutate: mocks.verifyEmail,
-  })),
+  }),
 }))
 
 vi.mock('../../../../auth/hooks/useChangeUserEmail', () => ({
-  useChangeUserEmail: vi.fn(() => ({
+  useChangeUserEmail: () => ({
     mutate: mocks.changeUserEmail,
-  })),
+  }),
 }))
 
 describe('VerifyAndChangeEmail', () => {

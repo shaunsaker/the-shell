@@ -3,10 +3,11 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { useAuthUser } from '../../auth/hooks/useAuthUser'
 import { makeAuthUser } from '../../auth/mocks/makeAuthUser'
+import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { useIdentifyUser } from './useIdentifyUser'
 
 const mocks = vi.hoisted(() => ({
-  useAuthUser: vi.fn<any, Partial<ReturnType<typeof useAuthUser>>>(() => ({ data: undefined, isLoading: true })),
+  useAuthUser: vi.fn<any, Partial<ReturnType<typeof useAuthUser>>>(() => ({ data: undefined, isLoading: false })),
   identifyUser: vi.fn(),
 }))
 
@@ -19,6 +20,8 @@ vi.mock('../api/identifyUser', () => ({
 }))
 
 describe('useIdentifyUser', () => {
+  cleanUpAfterEach()
+
   it('does not call identifyUser when there is no user', () => {
     mocks.useAuthUser.mockReturnValueOnce({ data: undefined, isLoading: false })
 

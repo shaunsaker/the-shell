@@ -2,6 +2,7 @@ import { renderHook } from '@testing-library/react'
 import { SubscriptionStatus } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
+import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { makeSubscriptionInfo } from '../mocks/makeSubscriptionInfo'
 import { useHasActiveSubscription } from './useHasActiveSubscription'
 import { useSubscriptionInfo } from './useSubscriptionInfo'
@@ -9,7 +10,7 @@ import { useSubscriptionInfo } from './useSubscriptionInfo'
 const mocks = vi.hoisted(() => ({
   useSubscriptionInfo: vi.fn<any, Partial<ReturnType<typeof useSubscriptionInfo>>>(() => ({
     data: undefined,
-    isLoading: true,
+    isLoading: false,
   })),
 }))
 
@@ -18,6 +19,8 @@ vi.mock('./useSubscriptionInfo', () => ({
 }))
 
 describe('useHasActiveSubscription', () => {
+  cleanUpAfterEach()
+
   it('returns false when the subscription info is loading', () => {
     const { result } = renderHook<ReturnType<typeof useHasActiveSubscription>, any>(useHasActiveSubscription)
 

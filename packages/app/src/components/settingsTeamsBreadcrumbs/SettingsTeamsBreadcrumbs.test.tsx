@@ -12,8 +12,8 @@ import { formatTeamMemberName } from '../../utils/formatTeamMemberName'
 import { SettingsTeamsBreadcrumbs } from './SettingsTeamsBreadcrumbs'
 
 const mocks = vi.hoisted(() => ({
-  useTeam: vi.fn<any, Partial<ReturnType<typeof useTeam>>>(() => ({ data: undefined, isLoading: true })),
-  useTeamMember: vi.fn<any, Partial<ReturnType<typeof useTeamMember>>>(() => ({ data: undefined, isLoading: true })),
+  useTeam: vi.fn<any, Partial<ReturnType<typeof useTeam>>>(() => ({ data: undefined, isLoading: false })),
+  useTeamMember: vi.fn<any, Partial<ReturnType<typeof useTeamMember>>>(() => ({ data: undefined, isLoading: false })),
   navigate: vi.fn(),
 }))
 

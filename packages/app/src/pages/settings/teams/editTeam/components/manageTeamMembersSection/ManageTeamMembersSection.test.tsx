@@ -3,6 +3,8 @@ import { TeamMemberRole } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../router/routes'
+import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
+import { useTeam } from '../../../../../../teams/hooks/useTeam'
 import { makeTeamWithMembers } from '../../../../../../teams/mocks/makeTeamWithMembers'
 import { cleanUpAfterEach } from '../../../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../../../test/MockAppProvider'
@@ -10,9 +12,13 @@ import { ManageTeamMembersSection } from './ManageTeamMembersSection'
 
 const mocks = vi.hoisted(() => {
   return {
-    useIsLoggedInUserTeamAdmin: vi.fn(() => ({ data: false })),
-    useTeam: vi.fn(() => ({
-      data: makeTeamWithMembers({ team: {}, members: [] }),
+    useIsLoggedInUserTeamAdmin: vi.fn<any, Partial<ReturnType<typeof useIsLoggedInUserTeamAdmin>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
+    useTeam: vi.fn<any, Partial<ReturnType<typeof useTeam>>>(() => ({
+      data: undefined,
+      isLoading: false,
     })),
     navigate: vi.fn(),
   }

@@ -1,15 +1,20 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { makeTeam } from '../../../../../../teams/mocks/makeTeam'
+import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
+import { useTeam } from '../../../../../../teams/hooks/useTeam'
+import { makeTeamWithMembers } from '../../../../../../teams/mocks/makeTeamWithMembers'
 import { cleanUpAfterEach } from '../../../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../../../test/MockAppProvider'
 import { ChangeTeamNameSection } from './ChangeTeamNameSection'
 
 const mocks = vi.hoisted(() => {
   return {
-    useIsLoggedInUserTeamAdmin: vi.fn(() => ({ data: false })),
-    useTeam: vi.fn(() => ({ data: makeTeam({}) })),
+    useIsLoggedInUserTeamAdmin: vi.fn<any, Partial<ReturnType<typeof useIsLoggedInUserTeamAdmin>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
+    useTeam: vi.fn<any, Partial<ReturnType<typeof useTeam>>>(() => ({ data: undefined, isLoading: false })),
     updateTeam: vi.fn(),
   }
 })
@@ -36,7 +41,7 @@ describe('ChangeTeamNameSection', () => {
 
   it('renders', () => {
     const teamName = 'Team 1'
-    mocks.useTeam.mockReturnValue({ data: makeTeam({ name: teamName }) })
+    mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: { name: teamName }, members: [] }) })
 
     render(
       <MockAppProvider>
@@ -74,7 +79,7 @@ describe('ChangeTeamNameSection', () => {
 
   it('disables the submit button if the team name did not change', () => {
     const teamName = 'Team 1'
-    mocks.useTeam.mockReturnValue({ data: makeTeam({ name: teamName }) })
+    mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: { name: teamName }, members: [] }) })
 
     render(
       <MockAppProvider>
@@ -90,7 +95,7 @@ describe('ChangeTeamNameSection', () => {
   it('updates the team', () => {
     const teamId = '1'
     const teamName = 'Team 1'
-    mocks.useTeam.mockReturnValue({ data: makeTeam({ id: teamId, name: teamName }) })
+    mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: { name: teamName }, members: [] }) })
 
     render(
       <MockAppProvider>

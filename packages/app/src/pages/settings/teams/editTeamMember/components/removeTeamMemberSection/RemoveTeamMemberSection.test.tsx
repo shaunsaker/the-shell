@@ -2,6 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../router/routes'
+import { useIsTeamMemberLastAdmin } from '../../../../../../teams/hooks/useIsTeamMemberLastAdmin'
+import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
 import { makeTeamMember } from '../../../../../../teams/mocks/makeTeamMember'
 import { cleanUpAfterEach } from '../../../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../../../test/MockAppProvider'
@@ -9,8 +11,11 @@ import { RemoveTeamMemberSection } from './RemoveTeamMemberSection'
 
 const mocks = vi.hoisted(() => {
   return {
-    useIsTeamMemberLastAdmin: vi.fn(() => ({ data: false })),
-    useTeamMember: vi.fn(() => ({ data: makeTeamMember({}) })),
+    useIsTeamMemberLastAdmin: vi.fn<any, Partial<ReturnType<typeof useIsTeamMemberLastAdmin>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
+    useTeamMember: vi.fn<any, Partial<ReturnType<typeof useTeamMember>>>(() => ({ data: undefined, isLoading: false })),
     navigate: vi.fn(),
   }
 })

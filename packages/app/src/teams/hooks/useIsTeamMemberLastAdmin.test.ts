@@ -12,11 +12,11 @@ import { useTeamMember } from './useTeamMember'
 const mocks = vi.hoisted(() => ({
   useTeam: vi.fn<any, Partial<ReturnType<typeof useTeam>>>(() => ({
     data: undefined,
-    isLoading: true,
+    isLoading: false,
   })),
   useTeamMember: vi.fn<any, Partial<ReturnType<typeof useTeamMember>>>(() => ({
     data: undefined,
-    isLoading: true,
+    isLoading: false,
   })),
 }))
 

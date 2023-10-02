@@ -1,8 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
+import { useIsSubscriptionOwner } from '../../../../billing/hooks/useIsSubscriptionOwner'
+import { useSubscriptionInfo } from '../../../../billing/hooks/useSubscriptionInfo'
+import { makeSubscriptionInfo } from '../../../../billing/mocks/makeSubscriptionInfo'
 import { routes } from '../../../../router/routes'
-import { makeTeam } from '../../../../teams/mocks/makeTeam'
+import { useTeam } from '../../../../teams/hooks/useTeam'
+import { makeTeamWithMembers } from '../../../../teams/mocks/makeTeamWithMembers'
 import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../test/MockAppProvider'
 import { SettingsInviteTeamMembers } from '.'
@@ -23,9 +27,15 @@ const mocks = vi.hoisted(() => {
   return {
     useRestrictedSubscriptionRoute: vi.fn(() => ({ data: false, isLoading: false })),
     useRestrictedTeamPlanRoute: vi.fn(() => ({ data: false, isLoading: false })),
-    useTeam: vi.fn(() => ({ data: makeTeam({}), isLoading: false })),
-    useSubscriptionInfo: vi.fn(() => ({ data: { availableSeats: 1 }, isLoading: false })),
-    useIsSubscriptionOwner: vi.fn(() => ({ data: false, isLoading: false })),
+    useTeam: vi.fn<any, Partial<ReturnType<typeof useTeam>>>(() => ({ data: undefined, isLoading: false })),
+    useSubscriptionInfo: vi.fn<any, Partial<ReturnType<typeof useSubscriptionInfo>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
+    useIsSubscriptionOwner: vi.fn<any, Partial<ReturnType<typeof useIsSubscriptionOwner>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
     inviteTeamMembers: vi.fn(),
     navigate: vi.fn(),
   }
@@ -84,8 +94,9 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('disables the input and send invite button when loading', () => {
-    mocks.useTeam.mockReturnValue({ data: makeTeam({}), isLoading: true })
-    mocks.useSubscriptionInfo.mockReturnValue({ data: { availableSeats: 1 }, isLoading: true })
+    mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: true })
+    mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: true })
+    mocks.useIsSubscriptionOwner.mockReturnValue({ data: true, isLoading: true })
 
     render(
       <MockAppProvider>
@@ -98,8 +109,9 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('disables the input when there are no available seats', () => {
-    mocks.useTeam.mockReturnValue({ data: makeTeam({}), isLoading: false })
-    mocks.useSubscriptionInfo.mockReturnValue({ data: { availableSeats: 0 }, isLoading: false })
+    mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
+    mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 0 }), isLoading: false })
+    mocks.useIsSubscriptionOwner.mockReturnValue({ data: true, isLoading: false })
 
     render(
       <MockAppProvider>
@@ -111,8 +123,8 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('disables the send invites button when there are no new emails', () => {
-    mocks.useTeam.mockReturnValue({ data: makeTeam({}), isLoading: false })
-    mocks.useSubscriptionInfo.mockReturnValue({ data: { availableSeats: 1 }, isLoading: false })
+    mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
+    mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: false })
 
     render(
       <MockAppProvider>
@@ -124,8 +136,8 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('does not allow the addition of invalid emails', () => {
-    mocks.useTeam.mockReturnValue({ data: makeTeam({}), isLoading: false })
-    mocks.useSubscriptionInfo.mockReturnValue({ data: { availableSeats: 1 }, isLoading: false })
+    mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
+    mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: false })
 
     render(
       <MockAppProvider>
@@ -151,8 +163,11 @@ describe('SettingsInviteTeamMembers', () => {
 
   it('adds emails, removes emails and sends invites', () => {
     const teamId = 'team-1'
-    mocks.useTeam.mockReturnValue({ data: makeTeam({ id: teamId }), isLoading: false })
-    mocks.useSubscriptionInfo.mockReturnValue({ data: { availableSeats: 1 }, isLoading: false })
+    mocks.useTeam.mockReturnValue({
+      data: makeTeamWithMembers({ team: { id: teamId }, members: [] }),
+      isLoading: false,
+    })
+    mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: false })
 
     render(
       <MockAppProvider>
@@ -198,8 +213,8 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('disables the Buy more button for non-subscription owners', () => {
-    mocks.useTeam.mockReturnValue({ data: makeTeam({}), isLoading: false })
-    mocks.useSubscriptionInfo.mockReturnValue({ data: { availableSeats: 1 }, isLoading: false })
+    mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
+    mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: false })
     mocks.useIsSubscriptionOwner.mockReturnValue({ data: false, isLoading: false })
 
     render(
@@ -212,8 +227,8 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('allows subscription owners to buy more seats', () => {
-    mocks.useTeam.mockReturnValue({ data: makeTeam({}), isLoading: false })
-    mocks.useSubscriptionInfo.mockReturnValue({ data: { availableSeats: 1 }, isLoading: false })
+    mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
+    mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: false })
     mocks.useIsSubscriptionOwner.mockReturnValue({ data: true, isLoading: false })
 
     render(

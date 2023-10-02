@@ -23,9 +23,9 @@ vi.mock('../../../../../billing/hooks/useHasActiveSubscription', () => ({
 }))
 
 vi.mock('../../../../../auth/hooks/useDeleteUserAccount', () => ({
-  useDeleteUserAccount: vi.fn(() => ({
+  useDeleteUserAccount: () => ({
     mutate: mocks.deleteUserAccount,
-  })),
+  }),
 }))
 
 describe('DeleteAccountSection', () => {

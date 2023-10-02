@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
+import { useHasActiveSubscription } from '../../../billing/hooks/useHasActiveSubscription'
+import { useIsSubscriptionOwner } from '../../../billing/hooks/useIsSubscriptionOwner'
 import { cleanUpAfterEach } from '../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../test/MockAppProvider'
 import { TestIds } from '../../../types'
@@ -43,9 +45,12 @@ vi.mock(
 
 const mocks = vi.hoisted(() => {
   return {
-    useHasActiveSubscription: vi.fn(() => ({ data: false, isLoading: false })),
-    useIsSubscriptionOwner: vi.fn(() => ({
-      data: false,
+    useHasActiveSubscription: vi.fn<any, Partial<ReturnType<typeof useHasActiveSubscription>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
+    useIsSubscriptionOwner: vi.fn<any, Partial<ReturnType<typeof useIsSubscriptionOwner>>>(() => ({
+      data: undefined,
       isLoading: false,
     })),
   }

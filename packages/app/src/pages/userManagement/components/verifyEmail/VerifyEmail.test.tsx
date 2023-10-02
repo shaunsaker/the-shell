@@ -34,9 +34,9 @@ vi.mock('react-router-dom', async () => {
 })
 
 vi.mock('../../../../auth/hooks/useVerifyEmail', () => ({
-  useVerifyEmail: vi.fn(() => ({
+  useVerifyEmail: () => ({
     mutate: mocks.verifyEmail,
-  })),
+  }),
 }))
 
 describe('VerifyEmail', () => {

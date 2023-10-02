@@ -7,7 +7,7 @@ import { TestIds } from '../../types'
 import { Dashboard } from '.'
 
 const mocks = vi.hoisted(() => ({
-  useRestrictedSubscriptionRoute: vi.fn(() => ({ data: false, isLoading: true })),
+  useRestrictedSubscriptionRoute: vi.fn(() => ({ data: false, isLoading: false })),
 }))
 
 vi.mock('../../billing/hooks/useRestrictedSubscriptionRoute', () => ({
@@ -18,6 +18,11 @@ describe('Dashboard', () => {
   cleanUpAfterEach()
 
   it('renders loading', () => {
+    mocks.useRestrictedSubscriptionRoute.mockImplementationOnce(() => ({
+      data: false,
+      isLoading: true,
+    }))
+
     render(
       <MockAppProvider>
         <Dashboard />
@@ -28,9 +33,8 @@ describe('Dashboard', () => {
   })
 
   it('does not render anything for users without an active subscription', () => {
-    const hasActiveSubscription = false
     mocks.useRestrictedSubscriptionRoute.mockImplementationOnce(() => ({
-      data: hasActiveSubscription,
+      data: false,
       isLoading: false,
     }))
 

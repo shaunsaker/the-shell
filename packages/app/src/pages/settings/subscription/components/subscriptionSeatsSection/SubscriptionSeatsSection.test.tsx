@@ -1,7 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { Price, SubscriptionInfo } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
+import { useHasTeamPlan } from '../../../../../billing/hooks/useHasTeamPlan'
+import { usePrices } from '../../../../../billing/hooks/usePrices'
+import { useSubscriptionInfo } from '../../../../../billing/hooks/useSubscriptionInfo'
 import { makePrice } from '../../../../../billing/mocks/makePrice'
 import { makeSubscriptionInfo } from '../../../../../billing/mocks/makeSubscriptionInfo'
 import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
@@ -10,9 +12,15 @@ import { SubscriptionSeatsSection } from './SubscriptionSeatsSection'
 
 const mocks = vi.hoisted(() => {
   return {
-    usePrices: vi.fn<any, { data: Price[] }>(() => ({ data: [] })),
-    useHasTeamPlan: vi.fn(() => ({ data: true })),
-    useSubscriptionInfo: vi.fn<any, { data: SubscriptionInfo }>(() => ({ data: makeSubscriptionInfo({}) })),
+    usePrices: vi.fn<any, Partial<ReturnType<typeof usePrices>>>(() => ({ data: undefined, isLoading: false })),
+    useHasTeamPlan: vi.fn<any, Partial<ReturnType<typeof useHasTeamPlan>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
+    useSubscriptionInfo: vi.fn<any, Partial<ReturnType<typeof useSubscriptionInfo>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
     updateSubscriptionQuantity: vi.fn(),
   }
 })

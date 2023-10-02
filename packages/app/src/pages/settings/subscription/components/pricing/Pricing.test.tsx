@@ -1,7 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { Price, PricingPlanInterval, Product } from 'types'
+import { PricingPlanInterval } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
+import { usePrices } from '../../../../../billing/hooks/usePrices'
+import { useProducts } from '../../../../../billing/hooks/useProducts'
 import { makePrice } from '../../../../../billing/mocks/makePrice'
 import { makeProduct } from '../../../../../billing/mocks/makeProduct'
 import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
@@ -11,8 +13,8 @@ import { Pricing } from './Pricing'
 
 const mocks = vi.hoisted(() => {
   return {
-    usePrices: vi.fn<any, { data: Price[] }>(() => ({ data: [] })),
-    useProducts: vi.fn<any, { data: Product[] }>(() => ({ data: [] })),
+    usePrices: vi.fn<any, Partial<ReturnType<typeof usePrices>>>(() => ({ data: undefined, isLoading: false })),
+    useProducts: vi.fn<any, Partial<ReturnType<typeof useProducts>>>(() => ({ data: undefined, isLoading: false })),
     createCheckoutSession: vi.fn(),
   }
 })

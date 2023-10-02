@@ -1,16 +1,21 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { Team } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
-import { makeTeam } from '../../teams/mocks/makeTeam'
+import { useHasActiveSubscription } from '../../billing/hooks/useHasActiveSubscription'
+import { useHasTeamPlan } from '../../billing/hooks/useHasTeamPlan'
+import { useTeams } from '../../teams/hooks/useTeams'
+import { makeTeamWithMembers } from '../../teams/mocks/makeTeamWithMembers'
 import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../test/MockAppProvider'
 import { SettingsNavbar } from './SettingsNavbar'
 
 const mocks = vi.hoisted(() => ({
-  useHasActiveSubscription: vi.fn(() => ({ data: false, isLoading: true })),
-  useHasTeamPlan: vi.fn(() => ({ data: false, isLoading: true })),
-  useTeams: vi.fn<any, { data: Team[]; isLoading: boolean }>(() => ({ data: [], isLoading: true })),
+  useHasActiveSubscription: vi.fn<any, Partial<ReturnType<typeof useHasActiveSubscription>>>(() => ({
+    data: undefined,
+    isLoading: false,
+  })),
+  useHasTeamPlan: vi.fn<any, Partial<ReturnType<typeof useHasTeamPlan>>>(() => ({ data: undefined, isLoading: false })),
+  useTeams: vi.fn<any, Partial<ReturnType<typeof useTeams>>>(() => ({ data: undefined, isLoading: false })),
   signOut: vi.fn(),
   navigate: vi.fn(),
 }))
@@ -68,7 +73,7 @@ describe('SettingsNavbar', () => {
   })
 
   it('disables the subscription page if the active subscription is loading', () => {
-    mocks.useHasActiveSubscription.mockReturnValue({ data: false, isLoading: true })
+    mocks.useHasActiveSubscription.mockReturnValue({ data: false, isLoading: false })
 
     render(
       <MockAppProvider>
@@ -104,9 +109,9 @@ describe('SettingsNavbar', () => {
   })
 
   it('disables the teams page if the active subscription is loading or the team plan is loading or if there is no default team id', () => {
-    mocks.useHasActiveSubscription.mockReturnValue({ data: true, isLoading: true })
-    mocks.useHasTeamPlan.mockReturnValue({ data: false, isLoading: true })
-    mocks.useTeams.mockReturnValue({ data: [], isLoading: true })
+    mocks.useHasActiveSubscription.mockReturnValue({ data: true, isLoading: false })
+    mocks.useHasTeamPlan.mockReturnValue({ data: false, isLoading: false })
+    mocks.useTeams.mockReturnValue({ data: [], isLoading: false })
 
     render(
       <MockAppProvider>
@@ -134,7 +139,7 @@ describe('SettingsNavbar', () => {
   it('enables the teams page if user has an active subscription and is on the team plan and has a default team id', () => {
     mocks.useHasActiveSubscription.mockReturnValue({ data: true, isLoading: false })
     mocks.useHasTeamPlan.mockReturnValue({ data: true, isLoading: false })
-    mocks.useTeams.mockReturnValue({ data: [makeTeam({ id: 'team-1' })], isLoading: false })
+    mocks.useTeams.mockReturnValue({ data: [makeTeamWithMembers({ team: {}, members: [] })], isLoading: false })
 
     render(
       <MockAppProvider>

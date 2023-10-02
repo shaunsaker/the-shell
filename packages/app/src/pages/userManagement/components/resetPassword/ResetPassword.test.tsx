@@ -33,9 +33,9 @@ vi.mock('react-router-dom', async () => {
 })
 
 vi.mock('../../../../auth/hooks/useResetPassword', () => ({
-  useResetPassword: vi.fn(() => ({
+  useResetPassword: () => ({
     mutate: mocks.resetPassword,
-  })),
+  }),
 }))
 
 describe('ResetPassword', () => {

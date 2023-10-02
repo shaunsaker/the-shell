@@ -2,8 +2,10 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { routes } from '../../../../../router/routes'
-import { makeTeam } from '../../../../../teams/mocks/makeTeam'
+import { useTeam } from '../../../../../teams/hooks/useTeam'
+import { useTeamMember } from '../../../../../teams/hooks/useTeamMember'
 import { makeTeamMember } from '../../../../../teams/mocks/makeTeamMember'
+import { makeTeamWithMembers } from '../../../../../teams/mocks/makeTeamWithMembers'
 import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../../test/MockAppProvider'
 import { SettingsRemoveTeamMember } from '.'
@@ -13,8 +15,8 @@ const mocks = vi.hoisted(() => {
     useRestrictedSubscriptionRoute: vi.fn(),
     useRestrictedTeamPlanRoute: vi.fn(),
     useRestrictedTeamAdminRoute: vi.fn(),
-    useTeam: vi.fn(() => ({ data: makeTeam({}), isLoading: false })),
-    useTeamMember: vi.fn(() => ({ data: makeTeamMember({}), isLoading: false })),
+    useTeam: vi.fn<any, Partial<ReturnType<typeof useTeam>>>(() => ({ data: undefined, isLoading: false })),
+    useTeamMember: vi.fn<any, Partial<ReturnType<typeof useTeamMember>>>(() => ({ data: undefined, isLoading: false })),
     removeTeamMember: vi.fn(),
     navigate: vi.fn(),
   }
@@ -41,9 +43,9 @@ vi.mock('../../../../../teams/hooks/useTeamMember', () => ({
 }))
 
 vi.mock('../../../../../teams/hooks/useRemoveTeamMember', () => ({
-  useRemoveTeamMember: vi.fn(() => ({
+  useRemoveTeamMember: () => ({
     mutate: mocks.removeTeamMember,
-  })),
+  }),
 }))
 
 vi.mock('react-router-dom', async () => {
@@ -72,7 +74,7 @@ describe('SettingsRemoveTeamMember', () => {
   })
 
   it('disables the confirm button when loading', () => {
-    mocks.useTeam.mockReturnValueOnce({ data: makeTeam({}), isLoading: true })
+    mocks.useTeam.mockReturnValueOnce({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: true })
 
     render(
       <MockAppProvider>
@@ -100,6 +102,10 @@ describe('SettingsRemoveTeamMember', () => {
     const teamMemberId = 'member-1'
 
     mocks.useTeamMember.mockReturnValueOnce({ data: makeTeamMember({ id: teamMemberId, teamId }), isLoading: false })
+    mocks.useTeam.mockReturnValueOnce({
+      data: makeTeamWithMembers({ team: { id: teamId }, members: [{ id: teamMemberId, teamId }] }),
+      isLoading: false,
+    })
 
     render(
       <MockAppProvider>

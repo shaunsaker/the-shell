@@ -1,13 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
+import { useHasActiveSubscription } from '../../billing/hooks/useHasActiveSubscription'
 import { routes } from '../../router/routes'
 import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../test/MockAppProvider'
 import { MainLayout } from './MainLayout'
 
 const mocks = vi.hoisted(() => ({
-  useHasActiveSubscription: vi.fn(() => ({ data: false, isLoading: true })),
+  useHasActiveSubscription: vi.fn<any, Partial<ReturnType<typeof useHasActiveSubscription>>>(() => ({
+    data: undefined,
+    isLoading: false,
+  })),
   navigate: vi.fn(),
 }))
 
@@ -40,7 +44,7 @@ describe('MainLayout', () => {
   })
 
   it('disables the Dashboard button if loading the active subscription', () => {
-    mocks.useHasActiveSubscription.mockReturnValue({ data: false, isLoading: true })
+    mocks.useHasActiveSubscription.mockReturnValue({ data: false, isLoading: false })
 
     render(
       <MockAppProvider>

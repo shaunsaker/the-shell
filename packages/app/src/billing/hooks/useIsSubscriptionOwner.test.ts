@@ -9,7 +9,7 @@ import { useSubscriptionSeats } from './useSubscriptionSeats'
 const mocks = vi.hoisted(() => ({
   useSubscriptionSeats: vi.fn<any, Partial<ReturnType<typeof useSubscriptionSeats>>>(() => ({
     data: undefined,
-    isLoading: true,
+    isLoading: false,
   })),
 }))
 

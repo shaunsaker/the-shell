@@ -5,6 +5,18 @@ import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../test/MockAppProvider'
 import { SignIn } from '.'
 
+const mocks = vi.hoisted(() => {
+  return {
+    signInWithPassword: vi.fn(),
+  }
+})
+
+vi.mock('../../auth/hooks/useSignInWithPassword', () => ({
+  useSignInWithPassword: () => ({
+    mutate: mocks.signInWithPassword,
+  }),
+}))
+
 const getEmailInput = () => screen.getByLabelText('Email address')
 const getPasswordInput = () => screen.getByLabelText('Password')
 const getSubmitButton = () => screen.getByRole('button', { name: 'Sign in' })
@@ -13,18 +25,6 @@ const fillForm = ({ email, password }: { email?: string; password?: string }) =>
   fireEvent.change(getEmailInput(), { target: { value: email } })
   fireEvent.change(getPasswordInput(), { target: { value: password } })
 }
-
-const mocks = vi.hoisted(() => {
-  return {
-    signInWithPassword: vi.fn(),
-  }
-})
-
-vi.mock('../../auth/hooks/useSignInWithPassword', () => ({
-  useSignInWithPassword: vi.fn(() => ({
-    mutate: mocks.signInWithPassword,
-  })),
-}))
 
 describe('SignIn', () => {
   cleanUpAfterEach()
