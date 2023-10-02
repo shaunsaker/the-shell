@@ -5,7 +5,6 @@ import { routes, TEAM_ID_PARAM } from '../../router/routes'
 import { useIsLoggedInUserTeamAdmin } from './useIsLoggedInUserTeamAdmin'
 import { useTeams } from './useTeams'
 
-// TODO: SS test me
 export const useRestrictedTeamAdminRoute = () => {
   const navigate = useNavigate()
   const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()

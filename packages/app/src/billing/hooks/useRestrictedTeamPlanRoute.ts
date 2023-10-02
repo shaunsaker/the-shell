@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { routes } from '../../router/routes'
 import { useHasTeamPlan } from './useHasTeamPlan'
 
-// TODO: SS test me
 export const useRestrictedTeamPlanRoute = () => {
   const navigate = useNavigate()
   const { data: hasTeamPlan, isLoading, ...query } = useHasTeamPlan()

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { routes } from '../../router/routes'
 import { useHasActiveSubscription } from './useHasActiveSubscription'
 
-// TODO: SS test me
 export const useRestrictedSubscriptionRoute = () => {
   const { data: hasActiveSubscription, isLoading, ...query } = useHasActiveSubscription()
   const navigate = useNavigate()

@@ -8,6 +8,8 @@ export const useOutsideClick = (ref: any, callback: (event?: MouseEvent) => void
         return
       }
 
+      console.log('HERE', event)
+
       const wasClickedOutside = !ref.current.contains(event.target)
 
       if (wasClickedOutside) {

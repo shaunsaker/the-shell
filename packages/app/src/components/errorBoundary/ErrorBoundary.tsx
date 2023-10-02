@@ -18,6 +18,7 @@ export const ErrorBoundary = (): ReactElement => {
   const status = errorIsError ? 500 : error ? error.status : '500'
   const statusText = errorIsError || !error ? 'Internal Server Error' : error.statusText
   const errorMessage = errorIsError ? error.message : error ? error.error?.message : ''
+  console.log({ error, status, statusText, errorMessage })
 
   useEffect(() => {
     if (error) {
