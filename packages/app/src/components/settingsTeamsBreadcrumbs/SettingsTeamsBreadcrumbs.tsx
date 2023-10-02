@@ -7,13 +7,15 @@ import { useTeamMember } from '../../teams/hooks/useTeamMember'
 import { NavigationItem } from '../../types'
 import { formatTeamMemberName } from '../../utils/formatTeamMemberName'
 import { Breadcrumbs } from '../breadcrumbs/Breadcrumbs'
+import { SkeletonLoader } from '../skeletonLoader/SkeletonLoader'
 
-// TODO: SS handle loading states
 export const SettingsTeamsBreadcrumbs = (): ReactElement => {
-  const { data: team } = useTeam()
-  const { data: teamMember } = useTeamMember()
+  const { data: team, isLoading: teamLoading } = useTeam()
+  const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
   const location = useLocation()
   const navigate = useNavigate()
+
+  const isLoading = teamLoading || teamMemberLoading
 
   const BREADCRUMBS: NavigationItem[] = []
 
@@ -51,6 +53,10 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
         active: href === location.pathname,
       })
     }
+  }
+
+  if (isLoading) {
+    return <SkeletonLoader />
   }
 
   return (

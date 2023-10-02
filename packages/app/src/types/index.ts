@@ -36,4 +36,5 @@ export type NavigationItem = {
 // TESTING
 export enum TestIds {
   Loading = 'loading',
+  SkeletonLoader = 'skeleton-loader',
 }
