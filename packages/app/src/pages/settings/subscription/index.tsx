@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 
 import { useHasActiveSubscription } from '../../../billing/hooks/useHasActiveSubscription'
-import { useSubscriptionSeats } from '../../../billing/hooks/useSubscriptionSeats'
+import { useIsSubscriptionOwner } from '../../../billing/hooks/useIsSubscriptionOwner'
 import { Loading } from '../../../components/loading/Loading'
 import { SettingsList } from '../../../components/settingsList/SettingsList'
 import { ManagedSubscriptionSection } from './components/managedSubscriptionSection/ManagedSubscriptionSection'
@@ -11,9 +11,9 @@ import { SubscriptionSeatsSection } from './components/subscriptionSeatsSection/
 
 export const SettingsSubscription = (): ReactElement => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
-  const { data: subscriptionSeats, isLoading: subscriptionSeatsLoading } = useSubscriptionSeats()
+  const { data: isSubscriptionOwner, isLoading: isSubscriptionOwnerLoading } = useIsSubscriptionOwner()
 
-  const isLoading = hasActiveSubscriptionLoading || subscriptionSeatsLoading
+  const isLoading = hasActiveSubscriptionLoading || isSubscriptionOwnerLoading
 
   if (isLoading) {
     return <Loading />
@@ -23,7 +23,6 @@ export const SettingsSubscription = (): ReactElement => {
     return <Pricing />
   }
 
-  const isSubscriptionOwner = subscriptionSeats?.some(seat => seat.isSubscriptionOwner)
   const hasManagedSubscription = !isSubscriptionOwner
 
   if (hasManagedSubscription) {

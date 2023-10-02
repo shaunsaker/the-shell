@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { SubscriptionSeat } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
-import { makeSubscriptionSeat } from '../../../billing/mocks/makeSubscriptionSeat'
 import { cleanUpAfterEach } from '../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../test/MockAppProvider'
 import { TestIds } from '../../../types'
@@ -46,8 +44,8 @@ vi.mock(
 const mocks = vi.hoisted(() => {
   return {
     useHasActiveSubscription: vi.fn(() => ({ data: false, isLoading: false })),
-    useSubscriptionSeats: vi.fn<any, { data: SubscriptionSeat[]; isLoading: boolean }>(() => ({
-      data: [],
+    useIsSubscriptionOwner: vi.fn(() => ({
+      data: false,
       isLoading: false,
     })),
   }
@@ -57,8 +55,8 @@ vi.mock('../../../billing/hooks/useHasActiveSubscription', () => ({
   useHasActiveSubscription: mocks.useHasActiveSubscription,
 }))
 
-vi.mock('../../../billing/hooks/useSubscriptionSeats', () => ({
-  useSubscriptionSeats: mocks.useSubscriptionSeats,
+vi.mock('../../../billing/hooks/useIsSubscriptionOwner', () => ({
+  useIsSubscriptionOwner: mocks.useIsSubscriptionOwner,
 }))
 
 describe('SettingsSubscription', () => {
@@ -66,7 +64,7 @@ describe('SettingsSubscription', () => {
 
   it('renders loading', () => {
     mocks.useHasActiveSubscription.mockReturnValueOnce({ data: false, isLoading: true })
-    mocks.useSubscriptionSeats.mockReturnValueOnce({ data: [], isLoading: true })
+    mocks.useIsSubscriptionOwner.mockReturnValueOnce({ data: false, isLoading: true })
 
     render(
       <MockAppProvider>
@@ -91,8 +89,8 @@ describe('SettingsSubscription', () => {
 
   it('renders managed subscription section for users with a managed subscription', () => {
     mocks.useHasActiveSubscription.mockReturnValueOnce({ data: true, isLoading: false })
-    mocks.useSubscriptionSeats.mockReturnValueOnce({
-      data: [makeSubscriptionSeat({ isSubscriptionOwner: false })],
+    mocks.useIsSubscriptionOwner.mockReturnValueOnce({
+      data: false,
       isLoading: false,
     })
 
@@ -107,8 +105,8 @@ describe('SettingsSubscription', () => {
 
   it('renders the subscription details for users with an owned subscription', () => {
     mocks.useHasActiveSubscription.mockReturnValueOnce({ data: true, isLoading: false })
-    mocks.useSubscriptionSeats.mockReturnValueOnce({
-      data: [makeSubscriptionSeat({ isSubscriptionOwner: true })],
+    mocks.useIsSubscriptionOwner.mockReturnValueOnce({
+      data: true,
       isLoading: false,
     })
 
