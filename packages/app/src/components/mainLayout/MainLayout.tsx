@@ -12,7 +12,7 @@ export const MainLayout = (): ReactElement => {
   const navigate = useNavigate()
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
 
-  const items: NavigationItem[] = [
+  const navigationItems: NavigationItem[] = [
     {
       name: 'Dashboard',
       href: routes.dashboard,
@@ -31,7 +31,7 @@ export const MainLayout = (): ReactElement => {
   return (
     <div className="flex h-full">
       <Sidebar
-        items={items}
+        items={navigationItems}
         onClick={href => {
           navigate(href)
         }}

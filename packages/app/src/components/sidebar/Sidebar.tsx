@@ -19,9 +19,9 @@ type Props = {
 }
 
 export const Sidebar = ({ items, onClick }: Props) => {
+  const ref = useRef<HTMLDivElement>(null)
   const [sidebarOpen, setSidebarOpen] = useSidebarOpen()
   const link = useLink()
-  const ref = useRef<HTMLDivElement>(null)
 
   useOutsideClick(ref, () => {
     if (sidebarOpen) {

@@ -24,7 +24,7 @@ export const Navbar = ({ className, items, onClick, children, ...props }: Props)
             )}
             variant="light"
             color={app.neutralColor}
-            disabled={item.disabled}
+            disabled={item.isActive || item.disabled}
             onClick={() => {
               onClick && onClick(item.href)
             }}
