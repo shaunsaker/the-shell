@@ -12,14 +12,23 @@ import { Headerbar } from '../headerbar/Headerbar'
 import { Navbar } from '../navbar/Navbar'
 
 export const SettingsNavbar = (): ReactElement => {
-  const { mutate: signOut, isLoading } = useSignOut()
   const location = useLocation()
-  const navigate = useNavigate()
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useHasTeamPlan()
-  const { data: teams, isLoading: teamsLoading } = useTeams()
+  const { data: teams, isLoading: teamsLoading } = useTeams() // multiple teams are unsupported on the FE and we don't know the default team id so we need to load all teams and choose a default
+  const { mutate: signOut, isLoading: signOutLoading } = useSignOut()
+  const navigate = useNavigate()
 
   const defaultTeamId = (teams?.length && teams[0].id) || ''
+  const subscriptionPageDisabled = hasActiveSubscriptionLoading || !hasActiveSubscription
+  const teamsPageDisabled =
+    hasActiveSubscriptionLoading ||
+    !hasActiveSubscription ||
+    hasTeamPlanLoading ||
+    !hasTeamPlan ||
+    teamsLoading ||
+    !defaultTeamId
+
   const items: NavigationItem[] = [
     {
       name: 'Account',
@@ -30,18 +39,13 @@ export const SettingsNavbar = (): ReactElement => {
       name: 'Subscription',
       href: routes.settingsSubscription,
       active: location.pathname.includes(routes.settingsSubscription),
+      disabled: subscriptionPageDisabled,
     },
     {
       name: 'Team',
       href: routes.settingsEditTeam.replace(TEAM_ID_PARAM, defaultTeamId),
       active: location.pathname.includes(routes.settingsEditTeam.replace(TEAM_ID_PARAM, defaultTeamId)),
-      disabled:
-        hasActiveSubscriptionLoading ||
-        !hasActiveSubscription ||
-        hasTeamPlanLoading ||
-        !hasTeamPlan ||
-        teamsLoading ||
-        !defaultTeamId,
+      disabled: teamsPageDisabled,
     },
   ]
 
@@ -56,12 +60,12 @@ export const SettingsNavbar = (): ReactElement => {
         <Button
           className="rounded-none"
           variant="light"
-          loading={isLoading}
+          loading={signOutLoading}
           onClick={() => {
             signOut()
           }}
         >
-          Sign Out
+          Sign out
         </Button>
       </Navbar>
     </Headerbar>
