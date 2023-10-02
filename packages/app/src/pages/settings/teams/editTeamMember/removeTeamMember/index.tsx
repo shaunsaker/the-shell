@@ -1,25 +1,27 @@
 import React, { ReactElement } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../../../billing/hooks/useRestrictedSubscriptionRoute'
 import { useRestrictedTeamPlanRoute } from '../../../../../billing/hooks/useRestrictedTeamPlanRoute'
 import { Dialog } from '../../../../../components/dialog/Dialog'
+import { routes } from '../../../../../router/routes'
 import { useRemoveTeamMember } from '../../../../../teams/hooks/useRemoveTeamMember'
 import { useRestrictedTeamAdminRoute } from '../../../../../teams/hooks/useRestrictedTeamAdminRoute'
 import { useTeam } from '../../../../../teams/hooks/useTeam'
+import { useTeamMember } from '../../../../../teams/hooks/useTeamMember'
 import { formatTeamMemberName } from '../../../../../utils/formatTeamMemberName'
 
 export const SettingsRemoveTeamMember = (): ReactElement => {
   useRestrictedSubscriptionRoute()
   useRestrictedTeamPlanRoute()
   useRestrictedTeamAdminRoute()
-  const { teamMemberId = '' } = useParams()
-  const { data: team } = useTeam()
-  const { mutate: removeTeamMember, isLoading } = useRemoveTeamMember()
+  const { data: team, isLoading: teamLoading } = useTeam()
+  const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
+  const { mutate: removeTeamMember, isLoading: removeTeamMemberLoading } = useRemoveTeamMember()
   const navigate = useNavigate()
 
-  const teamMember = team?.members.find(member => member.id === teamMemberId)
-  const disabled = !team || !teamMember
+  const isLoading = teamLoading || teamMemberLoading || removeTeamMemberLoading
+  const disabled = isLoading
 
   return (
     <Dialog
@@ -29,19 +31,18 @@ export const SettingsRemoveTeamMember = (): ReactElement => {
         team?.name
       } team? This action cannot be undone.`}
       confirmDisabled={disabled}
-      confirmLoading={isLoading}
+      confirmLoading={removeTeamMemberLoading}
       confirmIsDangerous
       onConfirmClick={() => {
         if (team?.id && teamMember) {
           removeTeamMember({
-            teamId: team.id,
+            teamId: teamMember.teamId,
             teamMemberId: teamMember.id,
-            isLastTeamMember: team.members?.length === 1,
           })
         }
       }}
       onClose={() => {
-        navigate(-1)
+        navigate(routes.back)
       }}
     />
   )

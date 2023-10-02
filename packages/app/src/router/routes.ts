@@ -2,6 +2,7 @@ export const TEAM_ID_PARAM = ':teamId'
 export const TEAM_MEMBER_ID_PARAM = ':teamMemberId'
 
 export const routes = {
+  back: -1,
   signUp: '/sign-up',
   signIn: '/sign-in',
   forgotPassword: '/forgot-password',
