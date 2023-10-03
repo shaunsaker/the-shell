@@ -72,30 +72,6 @@ describe('SettingsNavbar', () => {
     expect(mocks.signOut).toHaveBeenCalled()
   })
 
-  it('disables the subscription page if the active subscription is loading', () => {
-    mocks.useHasActiveSubscription.mockReturnValue({ data: false, isLoading: false })
-
-    render(
-      <MockAppProvider>
-        <SettingsNavbar />
-      </MockAppProvider>,
-    )
-
-    expect(screen.getByRole('button', { name: 'Subscription' })).toBeDisabled()
-  })
-
-  it('disables the subscription page if user does not have an active subscription', () => {
-    mocks.useHasActiveSubscription.mockReturnValue({ data: false, isLoading: false })
-
-    render(
-      <MockAppProvider>
-        <SettingsNavbar />
-      </MockAppProvider>,
-    )
-
-    expect(screen.getByRole('button', { name: 'Subscription' })).toBeDisabled()
-  })
-
   it('enables the subscription page if user has an active subscription', () => {
     mocks.useHasActiveSubscription.mockReturnValue({ data: true, isLoading: false })
 

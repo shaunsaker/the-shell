@@ -20,7 +20,6 @@ export const SettingsNavbar = (): ReactElement => {
   const navigate = useNavigate()
 
   const defaultTeamId = (teams?.length && teams[0].id) || ''
-  const subscriptionPageDisabled = hasActiveSubscriptionLoading || !hasActiveSubscription
   const teamsPageDisabled =
     hasActiveSubscriptionLoading ||
     !hasActiveSubscription ||
@@ -39,7 +38,6 @@ export const SettingsNavbar = (): ReactElement => {
       name: 'Subscription',
       href: routes.settingsSubscription,
       active: location.pathname.includes(routes.settingsSubscription),
-      disabled: subscriptionPageDisabled,
     },
     {
       name: 'Team',
