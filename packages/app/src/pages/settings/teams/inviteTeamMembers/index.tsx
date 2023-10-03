@@ -14,12 +14,14 @@ import { Text } from '../../../../components/text/Text'
 import { TextInput } from '../../../../components/textInput/TextInput'
 import { routes } from '../../../../router/routes'
 import { useInviteTeamMembers } from '../../../../teams/hooks/useInviteTeamMember'
+import { useRestrictedTeamAdminRoute } from '../../../../teams/hooks/useRestrictedTeamAdminRoute'
 import { useTeam } from '../../../../teams/hooks/useTeam'
 import { validateEmail } from '../../../../utils/validateEmail'
 
 export const SettingsInviteTeamMembers = (): ReactElement => {
   useRestrictedSubscriptionRoute()
   useRestrictedTeamPlanRoute()
+  useRestrictedTeamAdminRoute()
   const [email, setEmail] = useState('')
   const [emails, setEmails] = useState<string[]>([])
   const { data: team, isLoading: teamLoading } = useTeam()
