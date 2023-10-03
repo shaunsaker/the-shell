@@ -1,5 +1,5 @@
 import { XCircleIcon } from '@heroicons/react/24/outline'
-import React, { ReactElement, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useIsSubscriptionOwner } from '../../../../billing/hooks/useIsSubscriptionOwner'
@@ -7,6 +7,7 @@ import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRes
 import { useRestrictedTeamPlanRoute } from '../../../../billing/hooks/useRestrictedTeamPlanRoute'
 import { useSubscriptionInfo } from '../../../../billing/hooks/useSubscriptionInfo'
 import { Button } from '../../../../components/button/Button'
+import { Loading } from '../../../../components/loading/Loading'
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
 import { SettingsTeamsBreadcrumbs } from '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
@@ -18,10 +19,11 @@ import { useRestrictedTeamAdminRoute } from '../../../../teams/hooks/useRestrict
 import { useTeam } from '../../../../teams/hooks/useTeam'
 import { validateEmail } from '../../../../utils/validateEmail'
 
-export const SettingsInviteTeamMembers = (): ReactElement => {
-  useRestrictedSubscriptionRoute()
-  useRestrictedTeamPlanRoute()
-  useRestrictedTeamAdminRoute()
+// TODO: SS test me
+export const SettingsInviteTeamMembers = () => {
+  const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()
+  const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useRestrictedTeamPlanRoute()
+  const { data: isTeamAdmin, isLoading: isTeamAdminLoading } = useRestrictedTeamAdminRoute()
   const [email, setEmail] = useState('')
   const [emails, setEmails] = useState<string[]>([])
   const { data: team, isLoading: teamLoading } = useTeam()
@@ -32,10 +34,24 @@ export const SettingsInviteTeamMembers = (): ReactElement => {
 
   const availableSeats = (subscriptionInfo?.availableSeats || 0) - emails.length
   const hasAvailableSeats = availableSeats > 0
-  const isLoading = teamLoading || subscriptionInfoLoading || isSubscriptionOwnerLoading
+  const isLoading =
+    hasActiveSubscriptionLoading ||
+    hasTeamPlanLoading ||
+    isTeamAdminLoading ||
+    teamLoading ||
+    subscriptionInfoLoading ||
+    isSubscriptionOwnerLoading
   const inputDisabled = !hasAvailableSeats || isLoading
   const submitDisabled = isLoading || !validateEmail(email)
   const sendInvitesDisabled = isLoading || emails.length === 0
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (!hasActiveSubscription || !hasTeamPlan || !isTeamAdmin) {
+    return null
+  }
 
   return (
     <SettingsList>

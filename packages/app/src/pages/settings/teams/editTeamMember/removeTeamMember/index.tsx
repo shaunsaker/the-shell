@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '../../../../../billing/hooks/useRestrictedSubscriptionRoute'
@@ -11,17 +11,22 @@ import { useTeam } from '../../../../../teams/hooks/useTeam'
 import { useTeamMember } from '../../../../../teams/hooks/useTeamMember'
 import { formatTeamMemberName } from '../../../../../utils/formatTeamMemberName'
 
-export const SettingsRemoveTeamMember = (): ReactElement => {
-  useRestrictedSubscriptionRoute()
-  useRestrictedTeamPlanRoute()
-  useRestrictedTeamAdminRoute()
+export const SettingsRemoveTeamMember = () => {
+  const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()
+  const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useRestrictedTeamPlanRoute()
+  const { data: isTeamAdmin, isLoading: isTeamAdminLoading } = useRestrictedTeamAdminRoute()
   const { data: team, isLoading: teamLoading } = useTeam()
   const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
   const { mutate: removeTeamMember, isLoading: removeTeamMemberLoading } = useRemoveTeamMember()
   const navigate = useNavigate()
 
-  const isLoading = teamLoading || teamMemberLoading || removeTeamMemberLoading
+  const isLoading =
+    hasActiveSubscriptionLoading || hasTeamPlanLoading || isTeamAdminLoading || teamLoading || teamMemberLoading
   const disabled = isLoading
+
+  if (!hasActiveSubscription || !hasTeamPlan || !isTeamAdmin) {
+    return null
+  }
 
   return (
     <Dialog
