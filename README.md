@@ -182,6 +182,12 @@ gh secret set FIREBASE_TOKEN --body VALUE
 
 2. [Upgrade the Stripe API version](https://dashboard.stripe.com/test/developers) to the latest version, `2022-11-15`. By doing this, we ensure that our functions use the same version of Stripe.
 
+3. Login into the Stripe cli:
+
+```
+stripe login
+```
+
 ---
 
 #### Stripe webhooks
@@ -324,6 +330,14 @@ gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
 2. Follow the steps in [Figma Development](#figma).
 
 3. Update the Logo component in Figma with your new logo.
+
+### Deploy
+
+Run an initial deploy to staging.
+
+```
+yarn deploy:staging
+```
 
 ---
 
