@@ -19,9 +19,11 @@ const TEAM_MEMBER_ROLE_OPTIONS = TEAM_MEMBER_ROLES.map(role => ({
 }))
 
 export const ChangeTeamMemberRoleSection = (): ReactElement => {
-  const [role, setRole] = useState('')
   const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
   const { data: isTeamMemberLastAdmin, isLoading: isTeamMemberLastAdminLoading } = useIsTeamMemberLastAdmin()
+
+  const [role, setRole] = useState('')
+
   const { mutate: updateTeamMemberRole, isLoading: updateTeamMemberLoading } = useUpdateTeamMemberRole()
 
   const isLoading = teamMemberLoading || isTeamMemberLastAdminLoading

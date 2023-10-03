@@ -8,10 +8,13 @@ import { useUser } from '../../../../../user/hooks/useUser'
 
 export const ChangeNameSection = (): ReactElement => {
   const { data: user } = useUser()
+
   const firstName = user?.firstName || ''
-  const lastName = user?.lastName || ''
   const [newFirstName, setNewFirstName] = useState(firstName)
+
+  const lastName = user?.lastName || ''
   const [newLastName, setNewLastName] = useState(lastName)
+
   const { mutate: updateUser, isLoading } = useUpdateUser()
 
   // disable the save button if the name is the same as the current name or if the name is invalid

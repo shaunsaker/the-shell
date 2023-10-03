@@ -9,8 +9,10 @@ import { VerifyEmail } from './components/verifyEmail/VerifyEmail'
 
 export const UserManagement = () => {
   const [searchParams] = useSearchParams()
-  const mode = searchParams.get(UserManagementParams.Mode)
+
   const navigate = useNavigate()
+
+  const mode = searchParams.get(UserManagementParams.Mode)
 
   useEffect(() => {
     if (!mode) {

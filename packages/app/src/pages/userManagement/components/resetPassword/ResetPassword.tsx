@@ -9,10 +9,12 @@ import { UserManagementParams } from '../../../../types'
 
 export const ResetPassword = (): ReactElement => {
   const [searchParams] = useSearchParams()
-  const actionCode = searchParams.get(UserManagementParams.ActionCode)
-  const newPassword = searchParams.get(UserManagementParams.NewPassword)
+
   const { mutate: resetPassword } = useResetPassword()
   const navigate = useNavigate()
+
+  const actionCode = searchParams.get(UserManagementParams.ActionCode)
+  const newPassword = searchParams.get(UserManagementParams.NewPassword)
 
   useEffect(() => {
     async function doAsync() {

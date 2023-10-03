@@ -10,9 +10,10 @@ import { Breadcrumbs } from '../breadcrumbs/Breadcrumbs'
 import { SkeletonLoader } from '../skeletonLoader/SkeletonLoader'
 
 export const SettingsTeamsBreadcrumbs = (): ReactElement => {
+  const location = useLocation()
   const { data: team, isLoading: teamLoading } = useTeam()
   const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
-  const location = useLocation()
+
   const navigate = useNavigate()
 
   const isLoading = teamLoading || teamMemberLoading

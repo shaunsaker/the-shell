@@ -22,11 +22,13 @@ export const SettingsInviteTeamMembers = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useRestrictedTeamPlanRoute()
   const { data: isTeamAdmin, isLoading: isTeamAdminLoading } = useRestrictedTeamAdminRoute()
-  const [email, setEmail] = useState('')
-  const [emails, setEmails] = useState<string[]>([])
   const { data: team, isLoading: teamLoading } = useTeam()
   const { data: subscriptionInfo, isLoading: subscriptionInfoLoading } = useSubscriptionInfo()
   const { data: isSubscriptionOwner, isLoading: isSubscriptionOwnerLoading } = useIsSubscriptionOwner()
+
+  const [email, setEmail] = useState('')
+  const [emails, setEmails] = useState<string[]>([])
+
   const { mutate: inviteTeamMembers, isLoading: inviteTeamMembersLoading } = useInviteTeamMembers()
   const navigate = useNavigate()
 

@@ -23,6 +23,7 @@ import { formatTeamMemberStatus } from '../../../../../../utils/formatTeamMember
 export const ManageTeamMembersSection = (): ReactElement => {
   const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()
   const { data: team, isLoading: isTeamLoading } = useTeam()
+
   const navigate = useNavigate()
 
   const loading = isLoggedInUserTeamAdminLoading || isTeamLoading

@@ -17,6 +17,7 @@ export const SettingsRemoveTeamMember = () => {
   const { data: isTeamAdmin, isLoading: isTeamAdminLoading } = useRestrictedTeamAdminRoute()
   const { data: team, isLoading: teamLoading } = useTeam()
   const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
+
   const { mutate: removeTeamMember, isLoading: removeTeamMemberLoading } = useRemoveTeamMember()
   const navigate = useNavigate()
 

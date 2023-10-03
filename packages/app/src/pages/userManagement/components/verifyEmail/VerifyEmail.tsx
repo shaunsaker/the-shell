@@ -9,11 +9,13 @@ import { UserManagementParams } from '../../../../types'
 
 export const VerifyEmail = (): ReactElement => {
   const [searchParams] = useSearchParams()
+
+  const { mutate: verifyEmail } = useVerifyEmail()
+  const navigate = useNavigate()
+
   const actionCode = searchParams.get(UserManagementParams.ActionCode)
   const oldEmail = searchParams.get(UserManagementParams.OldEmail)
   const email = searchParams.get(UserManagementParams.Email)
-  const { mutate: verifyEmail } = useVerifyEmail()
-  const navigate = useNavigate()
 
   useEffect(() => {
     async function doAsync() {

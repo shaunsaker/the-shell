@@ -16,6 +16,7 @@ export const SettingsNavbar = (): ReactElement => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useHasTeamPlan()
   const { data: teams, isLoading: teamsLoading } = useTeams() // multiple teams are unsupported on the FE and we don't know the default team id so we need to load all teams and choose a default
+
   const { mutate: signOut, isLoading: signOutLoading } = useSignOut()
   const navigate = useNavigate()
 

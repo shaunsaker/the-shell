@@ -16,6 +16,7 @@ export const SignUp = () => {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useUserEmail()
   const [password, setPassword] = useState('')
+
   const { mutate: signUpWithPassword, isLoading } = useSignUpWithPassword()
   const navigate = useNavigate()
 

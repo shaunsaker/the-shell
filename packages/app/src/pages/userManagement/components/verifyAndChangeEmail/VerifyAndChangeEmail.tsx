@@ -10,12 +10,14 @@ import { UserManagementParams } from '../../../../types'
 
 export const VerifyAndChangeEmail = (): ReactElement => {
   const [searchParams] = useSearchParams()
-  const actionCode = searchParams.get(UserManagementParams.ActionCode)
-  const oldEmail = searchParams.get(UserManagementParams.OldEmail)
-  const newEmail = searchParams.get(UserManagementParams.NewEmail)
+
   const { mutate: verifyEmail } = useVerifyEmail()
   const { mutate: changeUserEmail } = useChangeUserEmail()
   const navigate = useNavigate()
+
+  const actionCode = searchParams.get(UserManagementParams.ActionCode)
+  const oldEmail = searchParams.get(UserManagementParams.OldEmail)
+  const newEmail = searchParams.get(UserManagementParams.NewEmail)
 
   useEffect(() => {
     async function doAsync() {

@@ -14,10 +14,12 @@ import { getSubscriptionSeatsButtonLabel } from '../../../../../utils/getSubscri
 const MIN_SEATS = 1
 
 export const SubscriptionSeatsSection = (): ReactElement | null => {
-  const [seats, setSeats] = useState(MIN_SEATS.toString())
   const { data: prices } = usePrices()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useHasTeamPlan()
   const { data: subscriptionInfo, isLoading: subscriptionInfoLoading } = useSubscriptionInfo()
+
+  const [seats, setSeats] = useState(MIN_SEATS.toString())
+
   const { mutate: updateSubscriptionQuantity, isLoading: updateSubscriptionQuantityLoading } =
     useUpdateSubscriptionQuantity()
 

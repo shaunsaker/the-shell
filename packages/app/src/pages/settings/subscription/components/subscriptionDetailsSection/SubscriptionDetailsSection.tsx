@@ -17,11 +17,12 @@ import { formatSubscriptionStatus } from '../../../../../utils/formatSubscriptio
 import { parsePaymentMethod } from '../../../../../utils/parsePaymentMethod'
 
 export const SubscriptionDetailsSection = (): ReactElement | null => {
+  useSubscriptionsListener()
   const { data: products } = useProducts()
   const { data: prices } = usePrices()
-  useSubscriptionsListener()
   const { data: subscriptions } = useSubscriptions()
   const { data: user } = useUser()
+
   const { mutate: createBillingPortalSession, isLoading: createBillingPortalSessionLoading } =
     useCreateBillingPortalSession()
 

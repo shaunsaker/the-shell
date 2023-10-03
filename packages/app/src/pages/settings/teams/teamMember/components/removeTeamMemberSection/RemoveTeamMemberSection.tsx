@@ -12,6 +12,7 @@ import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
 export const RemoveTeamMemberSection = (): ReactElement => {
   const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
   const { data: isTeamMemberLastAdmin, isLoading: isTeamMemberLastAdminLoading } = useIsTeamMemberLastAdmin()
+
   const navigate = useNavigate()
 
   const isLoading = teamMemberLoading || isTeamMemberLastAdminLoading

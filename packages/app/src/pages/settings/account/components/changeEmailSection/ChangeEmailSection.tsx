@@ -9,9 +9,10 @@ import { validateEmail } from '../../../../../utils/validateEmail'
 
 export const ChangeEmailSection = (): ReactElement => {
   const { data: user } = useUser()
+  const { mutate: sendChangeEmailVerification, isLoading } = useSendChangeEmailVerification()
+
   const email = user?.email || ''
   const [newEmail, setNewEmail] = useState(email)
-  const { mutate: sendChangeEmailVerification, isLoading } = useSendChangeEmailVerification()
 
   // disable the save button if the email is the same as the current email or if the email is invalid
   const disabled = email === newEmail || !validateEmail(newEmail)

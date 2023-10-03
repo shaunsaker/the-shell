@@ -10,6 +10,7 @@ import { Sidebar } from '../sidebar/Sidebar'
 export const MainLayout = (): ReactElement => {
   const location = useLocation()
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
+
   const navigate = useNavigate()
 
   const navigationItems: NavigationItem[] = [

@@ -7,9 +7,10 @@ import { Dialog } from '../../../../../components/dialog/Dialog'
 import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
 
 export const DeleteAccountSection = (): ReactElement => {
-  const [dialogOpen, setDialogOpen] = useState(false)
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
   const { mutate: deleteUserAccount, isLoading: deleteUserAccountLoading } = useDeleteUserAccount()
+
+  const [dialogOpen, setDialogOpen] = useState(false)
 
   const isDisabled = hasActiveSubscriptionLoading || hasActiveSubscription
 
