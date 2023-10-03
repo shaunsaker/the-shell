@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Button } from '../../../../../../components/button/Button'
 import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
@@ -23,7 +23,6 @@ import { formatTeamMemberStatus } from '../../../../../../utils/formatTeamMember
 export const ManageTeamMembersSection = (): ReactElement => {
   const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()
   const { data: team, isLoading: isTeamLoading } = useTeam()
-  const { teamId = '' } = useParams()
   const navigate = useNavigate()
 
   const loading = isLoggedInUserTeamAdminLoading || isTeamLoading
@@ -41,7 +40,9 @@ export const ManageTeamMembersSection = (): ReactElement => {
         <Button
           disabled={disabled}
           onClick={() => {
-            navigate(routes.settingsInviteTeamMembers.replace(TEAM_ID_PARAM, teamId))
+            if (team) {
+              navigate(routes.settingsInviteTeamMembers.replace(TEAM_ID_PARAM, team.id))
+            }
           }}
         >
           Invite team members
@@ -111,11 +112,13 @@ export const ManageTeamMembersSection = (): ReactElement => {
                         variant="light"
                         disabled={!isLoggedInUserTeamAdmin}
                         onClick={() => {
-                          navigate(
-                            routes.settingsEditTeamMember
-                              .replace(TEAM_ID_PARAM, team?.id.toString() || '')
-                              .replace(TEAM_MEMBER_ID_PARAM, teamMember.id.toString()),
-                          )
+                          if (team) {
+                            navigate(
+                              routes.settingsEditTeamMember
+                                .replace(TEAM_ID_PARAM, team.id.toString())
+                                .replace(TEAM_MEMBER_ID_PARAM, teamMember.id.toString()),
+                            )
+                          }
                         }}
                       >
                         Manage

@@ -6,7 +6,7 @@ import { Button } from '../../components/button/Button'
 import { ResetPassword } from '../../components/resetPassword/ResetPassword'
 import { routes } from '../../router/routes'
 
-export default function ForgotPassword() {
+export const ForgotPassword = () => {
   const navigate = useNavigate()
 
   return (

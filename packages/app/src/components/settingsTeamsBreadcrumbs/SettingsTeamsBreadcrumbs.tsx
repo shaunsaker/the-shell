@@ -1,19 +1,22 @@
 import React, { ReactElement } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../router/routes'
 import { useTeam } from '../../teams/hooks/useTeam'
+import { useTeamMember } from '../../teams/hooks/useTeamMember'
 import { NavigationItem } from '../../types'
 import { formatTeamMemberName } from '../../utils/formatTeamMemberName'
 import { Breadcrumbs } from '../breadcrumbs/Breadcrumbs'
+import { SkeletonLoader } from '../skeletonLoader/SkeletonLoader'
 
 export const SettingsTeamsBreadcrumbs = (): ReactElement => {
-  const { teamMemberId = '' } = useParams()
-  const { data: team } = useTeam()
+  const { data: team, isLoading: teamLoading } = useTeam()
+  const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
   const location = useLocation()
   const navigate = useNavigate()
 
-  const teamMember = team?.members.find(member => member.id === teamMemberId)
+  const isLoading = teamLoading || teamMemberLoading
+
   const BREADCRUMBS: NavigationItem[] = []
 
   if (team) {
@@ -22,7 +25,7 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
     BREADCRUMBS.push({
       name: team.name,
       href,
-      isActive: href === location.pathname,
+      active: href === location.pathname,
     })
 
     const hrefInviteTeamMembers = routes.settingsInviteTeamMembers.replace(TEAM_ID_PARAM, team.id.toString())
@@ -31,7 +34,7 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
       BREADCRUMBS.push({
         name: 'Invite team members',
         href: hrefInviteTeamMembers,
-        isActive: hrefInviteTeamMembers === location.pathname,
+        active: hrefInviteTeamMembers === location.pathname,
       })
     }
   }
@@ -47,9 +50,13 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
       BREADCRUMBS.push({
         name,
         href,
-        isActive: href === location.pathname,
+        active: href === location.pathname,
       })
     }
+  }
+
+  if (isLoading) {
+    return <SkeletonLoader />
   }
 
   return (

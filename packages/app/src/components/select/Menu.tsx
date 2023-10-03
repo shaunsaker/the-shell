@@ -3,7 +3,7 @@ import React, { ComponentPropsWithoutRef, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
-import { useKeypress } from '../../utils/useKeyPress'
+import { useKeyPress } from '../../utils/useKeyPress'
 import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Button } from '../button/Button'
 import { Card } from '../card/Card'
@@ -26,7 +26,7 @@ export const Menu = ({ className = '', options, onValueChange, onClose, ...props
 
   useOutsideClick(ref, onClose)
 
-  useKeypress('Escape', onClose)
+  useKeyPress('Escape', onClose)
 
   return (
     <motion.div

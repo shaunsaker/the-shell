@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactElement, ReactNode, useRef } from 'react'
 
 import app from '../../../../common/app.json'
-import { useKeypress } from '../../utils/useKeyPress'
+import { useKeyPress } from '../../utils/useKeyPress'
 import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
@@ -45,7 +45,7 @@ export const Dialog = ({
     }
   })
 
-  useKeypress('Escape', () => {
+  useKeyPress('Escape', () => {
     if (open) {
       onClose()
     }

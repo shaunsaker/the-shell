@@ -10,7 +10,7 @@ import { routes } from '../../router/routes'
 import { useUserEmail } from '../../user/hooks/useUserEmail'
 import { validateEmail } from '../../utils/validateEmail'
 
-export default function SignIn() {
+export const SignIn = () => {
   const [email, setEmail] = useUserEmail()
   const [password, setPassword] = useState('')
   const { mutate: signInWithPassword, isLoading } = useSignInWithPassword()

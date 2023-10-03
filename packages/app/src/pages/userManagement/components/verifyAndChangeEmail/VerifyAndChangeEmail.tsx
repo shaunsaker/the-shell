@@ -6,13 +6,13 @@ import { useChangeUserEmail } from '../../../../auth/hooks/useChangeUserEmail'
 import { useVerifyEmail } from '../../../../auth/hooks/useVerifyEmail'
 import { Loading } from '../../../../components/loading/Loading'
 import { routes } from '../../../../router/routes'
+import { UserManagementParams } from '../../../../types'
 
 export const VerifyAndChangeEmail = (): ReactElement => {
   const [searchParams] = useSearchParams()
-  // FIXME: how can we type these params?
-  const actionCode = searchParams.get('oobCode')
-  const oldEmail = searchParams.get('oldEmail')
-  const newEmail = searchParams.get('newEmail')
+  const actionCode = searchParams.get(UserManagementParams.ActionCode)
+  const oldEmail = searchParams.get(UserManagementParams.OldEmail)
+  const newEmail = searchParams.get(UserManagementParams.NewEmail)
   const { mutate: verifyEmail } = useVerifyEmail()
   const { mutate: changeUserEmail } = useChangeUserEmail()
   const navigate = useNavigate()
@@ -45,7 +45,7 @@ export const VerifyAndChangeEmail = (): ReactElement => {
       navigate(routes.signIn)
     }
 
-    // FIXME: SS in development, this runs twice
+    // NOTE: in development, this runs twice because React.StrictMode mounts the app twice
     doAsync()
   }, [actionCode, changeUserEmail, navigate, oldEmail, verifyEmail, newEmail])
 

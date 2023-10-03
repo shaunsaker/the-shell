@@ -1,5 +1,5 @@
 type RawProductMetadata = {
-  features: string
+  features?: string
   freeTrialDays?: string
 }
 
@@ -14,11 +14,7 @@ const validateProductMetadata = (object: unknown): object is RawProductMetadata 
 
   const castedObject = object as Record<string, any>
 
-  if (!castedObject.features) {
-    return false
-  }
-
-  if (typeof castedObject.features !== 'string') {
+  if (castedObject.features && typeof castedObject.features !== 'string') {
     return false
   }
 
@@ -45,7 +41,9 @@ export const parseProductMetadata = (metadata: any): ProductMetadata => {
     freeTrialDays: 0,
   }
 
-  parsed.features = JSON.parse(metadata.features) as string[]
+  if (metadata.features) {
+    parsed.features = JSON.parse(metadata.features) as string[]
+  }
 
   if (metadata.freeTrialDays) {
     parsed.freeTrialDays = parseInt(metadata.freeTrialDays)

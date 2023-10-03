@@ -4,6 +4,7 @@ dist
 .env.production
 build-storybook.log
 storybook-static
+coverage
 
 # auto-generated assets
 public/apple-touch-icon.png

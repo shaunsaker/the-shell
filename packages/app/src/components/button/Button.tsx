@@ -71,6 +71,7 @@ export const Button = ({
         disabled || loading ? 'pointer-events-none opacity-60 shadow-none' : '',
         className,
       )}
+      disabled={disabled || loading}
       {...props}
     >
       <Spinner loading={loading} />

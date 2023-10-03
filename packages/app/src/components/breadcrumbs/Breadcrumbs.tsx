@@ -7,15 +7,15 @@ import { Text } from '../text/Text'
 
 type Props = {
   items: NavigationItem[]
-  onClick?: (href: string) => void
+  onClick: (href: string) => void
 }
 
 export const Breadcrumbs = ({ items, onClick }: Props) => {
   return (
-    <nav className="flex" aria-label="Breadcrumb">
+    <nav className="flex" aria-label="Breadcrumbs">
       <ol className="flex items-center space-x-4">
         {items?.map((item, index) => {
-          const isActive = item.isActive
+          const active = item.active
           const isLastBreadcrumb = index === items.length - 1
 
           return (
@@ -24,10 +24,10 @@ export const Breadcrumbs = ({ items, onClick }: Props) => {
                 <Button
                   variant="light"
                   color={app.neutralColor}
-                  disabled={isActive}
+                  disabled={active || item.disabled}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
-                    if (!isActive && onClick) {
+                    if (!active && onClick) {
                       onClick(item.href)
                     }
                   }}

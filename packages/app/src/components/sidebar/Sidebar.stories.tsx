@@ -23,13 +23,13 @@ export const Default: Story = {
         name: 'Dashboard',
         href: '/dashboard',
         icon: <HomeModernIcon />,
-        isActive: true,
+        active: true,
       },
       {
         name: 'Settings',
         href: '/settings',
         icon: <Cog6ToothIcon />,
-        isActive: false,
+        active: false,
       },
     ],
     onClick: href => {

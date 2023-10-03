@@ -18,6 +18,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    children: <Button variant="light">Sign Out</Button>,
+    children: <Button variant="light">Sign out</Button>,
   },
 }

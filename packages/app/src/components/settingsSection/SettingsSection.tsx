@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Heading } from '../heading/Heading'
@@ -11,7 +11,7 @@ type Props = {
   action?: ReactNode
   children?: ReactNode
   fullWidth?: boolean
-}
+} & ComponentPropsWithoutRef<'section'>
 
 export const SettingsSection = ({
   className,
@@ -20,6 +20,7 @@ export const SettingsSection = ({
   action,
   children,
   fullWidth,
+  ...props
 }: Props): ReactElement => {
   return (
     <section
@@ -27,6 +28,7 @@ export const SettingsSection = ({
         'border-b-theme-border dark:border-b-dark-theme-border flex w-full border-b pb-8 lg:pb-12',
         className,
       )}
+      {...props}
     >
       <div className={`flex w-full flex-col gap-y-6 ${fullWidth ? '' : 'max-w-lg'}`}>
         <div className="flex flex-wrap items-start justify-between gap-4">

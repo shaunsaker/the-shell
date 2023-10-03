@@ -1,8 +1,7 @@
-import { useIsFetching } from '@tanstack/react-query'
 import React, { ReactElement } from 'react'
 
 import { useHasActiveSubscription } from '../../../billing/hooks/useHasActiveSubscription'
-import { useSubscriptionSeats } from '../../../billing/hooks/useSubscriptionSeats'
+import { useIsSubscriptionOwner } from '../../../billing/hooks/useIsSubscriptionOwner'
 import { Loading } from '../../../components/loading/Loading'
 import { SettingsList } from '../../../components/settingsList/SettingsList'
 import { ManagedSubscriptionSection } from './components/managedSubscriptionSection/ManagedSubscriptionSection'
@@ -11,20 +10,20 @@ import { SubscriptionDetailsSection } from './components/subscriptionDetailsSect
 import { SubscriptionSeatsSection } from './components/subscriptionSeatsSection/SubscriptionSeatsSection'
 
 export const SettingsSubscription = (): ReactElement => {
-  const isFetching = useIsFetching()
-  const { data: hasActiveSubscription } = useHasActiveSubscription()
-  const { data: subscriptionSeats } = useSubscriptionSeats()
+  const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
+  const { data: isSubscriptionOwner, isLoading: isSubscriptionOwnerLoading } = useIsSubscriptionOwner()
 
-  const isSubscriptionOwner = subscriptionSeats?.some(seat => seat.isSubscriptionOwner)
-  const hasManagedSubscription = !isSubscriptionOwner
+  const isLoading = hasActiveSubscriptionLoading || isSubscriptionOwnerLoading
 
-  if (isFetching) {
+  if (isLoading) {
     return <Loading />
   }
 
   if (!hasActiveSubscription) {
     return <Pricing />
   }
+
+  const hasManagedSubscription = !isSubscriptionOwner
 
   if (hasManagedSubscription) {
     return <ManagedSubscriptionSection />

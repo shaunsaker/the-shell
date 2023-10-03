@@ -17,7 +17,7 @@ export const Navbar = ({ className, items, onClick, children, ...props }: Props)
         <li key={item.name}>
           <Button
             className={twMerge(
-              item.isActive
+              item.active
                 ? 'border-theme-brand dark:border-dark-theme-brand'
                 : 'hover:border-theme-border dark:hover:border-dark-theme-border',
               'h-full rounded-none border-b-2 border-l-0 border-r-0 border-t-0',
@@ -26,7 +26,10 @@ export const Navbar = ({ className, items, onClick, children, ...props }: Props)
             color={app.neutralColor}
             disabled={item.disabled}
             onClick={() => {
-              onClick && onClick(item.href)
+              // navigate to the route if we're not already on that route
+              if (!item.active && onClick) {
+                onClick(item.href)
+              }
             }}
           >
             {item.name}

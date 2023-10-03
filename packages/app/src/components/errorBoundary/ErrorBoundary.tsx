@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
 import app from '../../../../common/app.json'
-import { captureException } from '../../errors/captureException'
+import { useCaptureException } from '../../errors/hooks/useCaptureException'
 import { routes } from '../../router/routes'
 import { useLink } from '../../utils/useLink'
 import { BlankState } from '../blankState/BlankState'
@@ -11,6 +11,7 @@ import { Button } from '../button/Button'
 
 export const ErrorBoundary = (): ReactElement => {
   const error = useRouteError() as { status: number; statusText: string; error: Error } | Error | undefined
+  const { mutate: captureException } = useCaptureException()
   const navigate = useNavigate()
   const link = useLink()
 
@@ -18,12 +19,13 @@ export const ErrorBoundary = (): ReactElement => {
   const status = errorIsError ? 500 : error ? error.status : '500'
   const statusText = errorIsError || !error ? 'Internal Server Error' : error.statusText
   const errorMessage = errorIsError ? error.message : error ? error.error?.message : ''
+  console.log({ status, statusText, errorMessage, errorIsError, error })
 
   useEffect(() => {
     if (error) {
       captureException(error)
     }
-  }, [error])
+  }, [captureException, error])
 
   return (
     <div className="flex h-full flex-col items-center justify-center">

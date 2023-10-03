@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-export const useKeypress = (key: string, cb: (event: KeyboardEvent) => void) => {
+export const useKeyPress = (key: string, cb: (event: KeyboardEvent) => void) => {
   useEffect(() => {
     const onKeyup = (event: KeyboardEvent) => {
       if (event.key === key) {

@@ -35,10 +35,10 @@ const kindToIcon: Record<AlertKind, typeof InformationCircleIcon> = {
 }
 
 const kindToTextColor: Record<AlertKind, string> = {
-  info: `text-theme-content dark:text-dark-theme-content`,
-  success: 'text-green-700 dark:text-green-200',
-  warning: 'text-orange-700 dark:text-green-200',
-  error: 'text-red-700 dark:text-green-200',
+  info: `text-theme-content dark:text-dark-theme-content-emphasis`,
+  success: 'text-green-700 dark:text-dark-theme-content-emphasis',
+  warning: 'text-orange-700 dark:text-dark-theme-content-emphasis',
+  error: 'text-red-700 dark:text-dark-theme-content-emphasis',
 }
 
 type Props = {
@@ -54,7 +54,7 @@ export const Alert = ({ className, kind = 'success', children, onClose }: Props)
   return (
     <div
       className={twMerge(
-        'flex w-full max-w-lg items-start space-x-2 rounded-md border px-3 py-2',
+        'flex w-full max-w-lg items-center space-x-2 break-all rounded-md border px-3 py-2',
         kindToBgColor[kind],
         kindToBorderColor[kind],
         kindToTextColor[kind],
@@ -65,10 +65,10 @@ export const Alert = ({ className, kind = 'success', children, onClose }: Props)
         <Icon className={`h-5 w-5 text-inherit`} />
       </div>
 
-      <Text className="w-full text-inherit">{children}</Text>
+      <Text className="w-full text-inherit dark:text-inherit">{children}</Text>
 
       {onClose && (
-        <Button className="p-0 text-inherit" variant="light" onClick={onClose}>
+        <Button className="p-0 text-inherit dark:text-inherit" variant="light" onClick={onClose}>
           <XMarkIcon className="h-5 w-5" />
         </Button>
       )}

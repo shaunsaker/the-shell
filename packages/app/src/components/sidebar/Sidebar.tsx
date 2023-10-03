@@ -4,11 +4,11 @@ import { useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import app from '../../../../common/app.json'
+import { useSidebarOpen } from '../../sidebar/hooks/useSidebarOpen'
 import { NavigationItem } from '../../types'
-import { useKeypress } from '../../utils/useKeyPress'
+import { useKeyPress } from '../../utils/useKeyPress'
 import { useLink } from '../../utils/useLink'
 import { useOutsideClick } from '../../utils/useOutsideClick'
-import { useSidebarOpen } from '../../utils/useSidebarOpen'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 import { Logo } from '../logo/Logo'
@@ -19,9 +19,9 @@ type Props = {
 }
 
 export const Sidebar = ({ items, onClick }: Props) => {
+  const ref = useRef<HTMLDivElement>(null)
   const [sidebarOpen, setSidebarOpen] = useSidebarOpen()
   const link = useLink()
-  const ref = useRef<HTMLDivElement>(null)
 
   useOutsideClick(ref, () => {
     if (sidebarOpen) {
@@ -29,7 +29,7 @@ export const Sidebar = ({ items, onClick }: Props) => {
     }
   })
 
-  useKeypress('Escape', () => {
+  useKeyPress('Escape', () => {
     if (sidebarOpen) {
       setSidebarOpen(false)
     }
@@ -50,14 +50,14 @@ export const Sidebar = ({ items, onClick }: Props) => {
                   icon={item.icon}
                   className={twMerge(
                     'w-full justify-start border-none shadow-none outline-offset-0',
-                    item.isActive
+                    item.active
                       ? 'bg-theme-brand-emphasis text-theme-brand-inverted dark:bg-dark-theme-brand-emphasis dark:text-dark-theme-brand-inverted'
                       : 'text-theme-brand-inverted hover:bg-theme-brand-emphasis dark:text-dark-theme-brand-inverted dark:hover:bg-dark-theme-brand-emphasis',
                   )}
                   disabled={item.disabled}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
-                    if (!item.isActive && onClick) {
+                    if (!item.active && onClick) {
                       onClick(item.href)
 
                       if (sidebarOpen) {

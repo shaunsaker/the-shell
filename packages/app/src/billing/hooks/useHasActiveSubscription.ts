@@ -3,10 +3,10 @@ import { SubscriptionStatus } from 'types'
 import { useSubscriptionInfo } from './useSubscriptionInfo'
 
 export const useHasActiveSubscription = () => {
-  const { data: susbcriptionInfo, ...query } = useSubscriptionInfo()
+  const { data: subscriptionInfo, ...query } = useSubscriptionInfo()
 
   const hasActiveSubscription =
-    susbcriptionInfo?.status === SubscriptionStatus.Active || susbcriptionInfo?.status === SubscriptionStatus.Trialing
+    subscriptionInfo?.status === SubscriptionStatus.Active || subscriptionInfo?.status === SubscriptionStatus.Trialing
 
   return {
     ...query,

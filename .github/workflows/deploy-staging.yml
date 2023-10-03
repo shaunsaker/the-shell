@@ -20,4 +20,4 @@ jobs:
       - run: yarn --frozen-lockfile
 
       # Deploy staging
-      - run: export MODE="staging" && firebase use staging && yarn deploy --token ${{ secrets.FIREBASE_TOKEN }}
+      - run: yarn deploy:staging --token ${{ secrets.FIREBASE_TOKEN }}

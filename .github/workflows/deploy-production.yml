@@ -19,5 +19,5 @@ jobs:
       # Install deps
       - run: yarn --frozen-lockfile
 
-      # Deploy Production
-      - run: export MODE="production" && firebase use production && yarn deploy --token ${{ secrets.FIREBASE_TOKEN }}
+      # Deploy production
+      - run: yarn deploy:production --token ${{ secrets.FIREBASE_TOKEN }}

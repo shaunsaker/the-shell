@@ -2,7 +2,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import React, { ReactElement, ReactNode } from 'react'
 
 import app from '../../../../common/app.json'
-import { useSidebarOpen } from '../../utils/useSidebarOpen'
+import { useSidebarOpen } from '../../sidebar/hooks/useSidebarOpen'
 import { Button } from '../button/Button'
 
 type Props = {

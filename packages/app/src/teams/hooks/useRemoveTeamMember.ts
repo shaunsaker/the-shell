@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { routes, TEAM_ID_PARAM } from '../../router/routes'
 import { removeTeamMember } from '../../teams/api/removeTeamMember'
-import { getTeamMembersQueryKey, QueryKeys } from '../../types'
+import { getTeamMembersQueryKey } from '../../types'
 
 export const useRemoveTeamMember = () => {
   const queryClient = useQueryClient()
@@ -12,18 +12,11 @@ export const useRemoveTeamMember = () => {
 
   return useMutation({
     mutationFn: removeTeamMember,
-    onSuccess: (_, { teamId, isLastTeamMember }) => {
+    onSuccess: (_, { teamId }) => {
       // invalidate the team members query to refetch the data
-      const queriesToInvalidate: string[] = [getTeamMembersQueryKey(teamId)]
+      queryClient.invalidateQueries([getTeamMembersQueryKey(teamId)])
 
-      // if the last team member was removed, the team is also deleted
-      if (isLastTeamMember) {
-        queriesToInvalidate.push(QueryKeys.Teams)
-      }
-
-      queryClient.invalidateQueries(queriesToInvalidate)
-
-      toast.success(isLastTeamMember ? 'Team member and team removed successfully' : 'Team member removed successfully')
+      toast.success('Team member removed successfully')
 
       navigate(routes.settingsEditTeam.replace(TEAM_ID_PARAM, teamId))
     },

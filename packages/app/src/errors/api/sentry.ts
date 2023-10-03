@@ -8,7 +8,7 @@ const IGNORED_SENTRY_ERRORS: string[] = [
   'auth/email-already-in-use',
 ]
 
-if (SENTRY_DSN && ENVIRONMENT) {
+if (!import.meta.env.DEV && SENTRY_DSN && ENVIRONMENT) {
   Sentry.init({
     dsn: SENTRY_DSN,
     environment: ENVIRONMENT,

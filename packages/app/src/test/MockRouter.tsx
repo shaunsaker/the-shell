@@ -3,7 +3,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom'
 
 type MockRouterProps = { children: ReactElement }
 
-export const RouterMock = ({ children }: MockRouterProps): ReactElement => {
+export const MockRouter = ({ children }: MockRouterProps): ReactElement => {
   return (
     <MemoryRouter>
       <Routes>

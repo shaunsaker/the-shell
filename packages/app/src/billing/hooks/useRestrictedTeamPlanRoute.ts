@@ -5,8 +5,8 @@ import { routes } from '../../router/routes'
 import { useHasTeamPlan } from './useHasTeamPlan'
 
 export const useRestrictedTeamPlanRoute = () => {
+  const { data: hasTeamPlan, isLoading, ...query } = useHasTeamPlan()
   const navigate = useNavigate()
-  const { data: hasTeamPlan, isLoading } = useHasTeamPlan()
 
   // only users with a team plan can access restricted pages
   useEffect(() => {
@@ -14,4 +14,10 @@ export const useRestrictedTeamPlanRoute = () => {
       navigate(routes.settingsSubscription)
     }
   }, [hasTeamPlan, isLoading, navigate])
+
+  return {
+    ...query,
+    data: hasTeamPlan,
+    isLoading,
+  }
 }

@@ -14,11 +14,27 @@ export enum QueryKeys {
   User = 'user',
 }
 
+// USER MANAGEMENT
+export enum UserManagementParams {
+  Mode = 'mode',
+  ActionCode = 'oobCode',
+  NewPassword = 'newPassword',
+  OldEmail = 'oldEmail',
+  NewEmail = 'newEmail',
+  Email = 'email',
+}
+
 // UI
 export type NavigationItem = {
   name: string
   href: string
   icon?: ReactNode
-  isActive?: boolean
+  active?: boolean
   disabled?: boolean
+}
+
+// TESTING
+export enum TestIds {
+  Loading = 'loading',
+  SkeletonLoader = 'skeleton-loader',
 }

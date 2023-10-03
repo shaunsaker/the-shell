@@ -6,21 +6,13 @@ import { TextInput } from '../../../../../components/textInput/TextInput'
 import { useUpdateUser } from '../../../../../user/hooks/useUpdateUser'
 import { useUser } from '../../../../../user/hooks/useUser'
 
-type ChangeNameSectionProps = {
-  title?: string
-  description?: string
-}
-
-export const ChangeNameSection = ({
-  title = 'Change name',
-  description = 'Update your personal details associated with your account.',
-}: ChangeNameSectionProps): ReactElement => {
+export const ChangeNameSection = (): ReactElement => {
   const { data: user } = useUser()
   const firstName = user?.firstName || ''
   const lastName = user?.lastName || ''
   const [newFirstName, setNewFirstName] = useState(firstName)
   const [newLastName, setNewLastName] = useState(lastName)
-  const { mutate: updateUserData, isLoading } = useUpdateUser()
+  const { mutate: updateUser, isLoading } = useUpdateUser()
 
   // disable the save button if the name is the same as the current name or if the name is invalid
   const disabled = !newFirstName || !newLastName || (firstName === newFirstName && lastName === newLastName)
@@ -32,7 +24,7 @@ export const ChangeNameSection = ({
   }, [firstName, lastName])
 
   return (
-    <SettingsSection title={title} description={description}>
+    <SettingsSection title="Change name" description="Update your personal details associated with your account.">
       <div className="flex flex-wrap gap-6 lg:flex-nowrap">
         <TextInput
           className="flex-1"
@@ -56,11 +48,11 @@ export const ChangeNameSection = ({
           disabled={disabled}
           loading={isLoading}
           onClick={() => {
-            if (!user) {
+            if (!user?.id) {
               return
             }
 
-            updateUserData({
+            updateUser({
               id: user.id,
               firstName: newFirstName,
               lastName: newLastName,

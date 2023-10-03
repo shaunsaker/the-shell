@@ -4,6 +4,17 @@
     "staging": "the-shell-development",
     "production": "the-shell-development"
   },
-  "targets": {},
+  "targets": {
+    "the-shell-development": {
+      "hosting": {
+        "app": [
+          "the-shell-development"
+        ],
+        "storybook": [
+          "the-shell-development-storybook-ui"
+        ]
+      }
+    }
+  },
   "etags": {}
 }

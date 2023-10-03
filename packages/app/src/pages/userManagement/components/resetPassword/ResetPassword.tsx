@@ -5,12 +5,12 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useResetPassword } from '../../../../auth/hooks/useResetPassword'
 import { Loading } from '../../../../components/loading/Loading'
 import { routes } from '../../../../router/routes'
+import { UserManagementParams } from '../../../../types'
 
 export const ResetPassword = (): ReactElement => {
   const [searchParams] = useSearchParams()
-  // FIXME: how can we type these params?
-  const actionCode = searchParams.get('oobCode')
-  const newPassword = searchParams.get('newPassword')
+  const actionCode = searchParams.get(UserManagementParams.ActionCode)
+  const newPassword = searchParams.get(UserManagementParams.NewPassword)
   const { mutate: resetPassword } = useResetPassword()
   const navigate = useNavigate()
 
@@ -40,7 +40,7 @@ export const ResetPassword = (): ReactElement => {
       navigate(routes.signIn)
     }
 
-    // FIXME: SS in development, this runs twice
+    // NOTE: in development, this runs twice because React.StrictMode mounts the app twice
     doAsync()
   }, [actionCode, navigate, newPassword, resetPassword])
 

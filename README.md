@@ -70,6 +70,14 @@ You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.ap
 - [Chromatic account](https://www.chromatic.com/)
 - [Figma account](https://www.figma.com/)
 
+### Environments
+
+We support 3 environments out of the box:
+
+- Development: Local development
+- Staging: Remote development
+- Production: Live environment
+
 ### Basic Setup
 
 1. Clone the repo and install dependencies:
@@ -100,7 +108,7 @@ git push -u origin develop
 
 ### Make it your own
 
-1. Update `./packages/common/app.json` with your app name, description and from or support email.
+1. Update [app.json](./packages/common/app.json) with your app name, description and from or support email.
 
 2. Generate your theme colors where `themeColor` and `neutralColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
 
@@ -109,7 +117,7 @@ cd ./packages/scripts
 yarn build:theme --themeColor teal --neutralColor gray
 ```
 
-3. Update `./packages/common/logo.svg` and `./packages/common/logo-inverted.svg` with your logos. `logo-inverted` is simply a white version of your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+3. Update [logo.svg](./packages/common/logo.svg) and [logo-inverted.svg](./packages/common/logo-inverted.svg) with your logos. [logo-inverted.svg](./packages/common/logo-inverted.svg) is simply a white version of your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
 
 4. Run the script:
 
@@ -164,15 +172,27 @@ gh auth login
 gh secret set FIREBASE_TOKEN --body VALUE
 ```
 
-8. Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into `packages/app/.env.development`, `./packages/app/.env.staging` and `./packages/app/.env.production`.
+8. Create your app env files:
 
-9. [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
+```
+touch ./packages/app/.env.development
+touch ./packages/app/.env.staging
+touch ./packages/app/.env.production
+```
 
-10. Set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, clicking the edit icon, click "Customize action URL" and set it to DOMAIN_NAME/user-management.
+9. Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [app/.env.staging](./packages/app/.env.staging) and [app/.env.production](./packages/app/.env.production).
 
-11. Add `localhost` as an Authorized domain to your [projects](https://console.firebase.google.com/u/0/project/_/authentication/settings).
+10. [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
 
-12. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
+11. Set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, clicking the edit icon, click "Customize action URL" and set it to DOMAIN_NAME/user-management.
+
+12. Add `localhost` as an Authorized domain to your [projects](https://console.firebase.google.com/u/0/project/_/authentication/settings).
+
+13. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
+
+14. Create another site for your Storybook by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `PROJECT_NAME-storybook-ui`.
+
+15. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell-development" with your PROJECT_NAME.
 
 ---
 
@@ -181,6 +201,12 @@ gh secret set FIREBASE_TOKEN --body VALUE
 1. Enable Test mode in the [Stripe dashboard](https://dashboard.stripe.com/test/dashboard).
 
 2. [Upgrade the Stripe API version](https://dashboard.stripe.com/test/developers) to the latest version, `2022-11-15`. By doing this, we ensure that our functions use the same version of Stripe.
+
+3. Login into the Stripe cli:
+
+```
+stripe login
+```
 
 ---
 
@@ -195,6 +221,7 @@ The following steps will setup your Firebase development environment with your S
 1. Run the stripe webhook listener locally:
 
 ```
+cd ./packages/functions
 yarn dev:stripe
 ```
 
@@ -202,7 +229,14 @@ yarn dev:stripe
 
 3. Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key).
 
-4. Add the secrets to `./packages/functions/.env.development`.
+4. Create [functions/.env.development](./packages/functions/.env.development).
+
+```
+cd ../../
+touch ./packages/functions/.env.development
+```
+
+5. Add the secrets to [functions/.env.development](./packages/functions/.env.development).
 
 ---
 
@@ -214,7 +248,13 @@ The following steps will setup your Firebase staging environment with your Strip
 
 2. Once your Stripe webhook is created, copy the Signing secret.
 
-3. Add the secrets to `./packages/functions/.env.staging`.
+3. Create [functions/.env.staging](./packages/functions/.env.staging).
+
+```
+touch ./packages/functions/.env.staging
+```
+
+4. Add the secrets to [functions/.env.staging](./packages/functions/.env.staging).
 
 ---
 
@@ -228,7 +268,13 @@ The following steps will setup your Firebase production environment with your St
 
 3. Grab your [live Stripe API key](https://dashboard.stripe.com/apikeys) (Secret key).
 
-4. Add the secrets to `./packages/functions/.env.production`.
+4. Create [functions/.env.production](./packages/functions/.env.production).
+
+```
+touch ./packages/functions/.env.production
+```
+
+5. Add the secrets to [functions/.env.production](./packages/functions/.env.production).
 
 ---
 
@@ -278,7 +324,7 @@ We support free trials out of the box. To add a free trial to a product, simply 
 
 5. Grab your "Project Slug" from https://sentry.io/settings/projects/ and clicking on the project. In the url that loads next, e.g. https://SENTRY_ORG.sentry.io/settings/projects/X/, X is your `VITE_SENTRY_PROJECT`.
 
-6. Add the secrets to `packages/app/.env.staging` and `packages/app/.env.production`.
+6. Add the secrets to [app/.env.staging](./packages/app/.env.staging) and [app/.env.production](./packages/app/.env.production).
 
 7. Push the secrets to Github.
 
@@ -295,7 +341,7 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 1. Add an API key to each of your Resend accounts (staging and production).
 
-2. Add the secrets to `./packages/functions/.env.development`, `./packages/functions/.env.staging` and `./packages/functions/.env.production`.
+2. Add the secrets to [functions/.env.development](./packages/functions/.env.development), [functions/.env.staging](./packages/functions/.env.staging) and [functions/.env.production](./packages/functions/.env.production).
 
 3. Add your domain by visiting https://resend.com/domains, clicking "Add domain" and following the instructions.
 
@@ -303,7 +349,7 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 ### Setup Mixpanel
 
-1. Grab your staging and production project tokens and them to the respective files at `./packages/app/.env.staging` and `./packages/app/.env.production`.
+1. Grab your staging and production project tokens and them to the respective files at [app/.env.staging](./packages/app/.env.staging) and [app/.env.production](./packages/app/.env.production).
 
 ---
 
@@ -325,11 +371,19 @@ gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
 
 3. Update the Logo component in Figma with your new logo.
 
+### Deploy
+
+Run an initial deploy to staging.
+
+```
+yarn deploy:staging
+```
+
 ---
 
 ## Development
 
-Run the following command to start the app development server and Firebase emulator:
+Run the following command to start the app development server, Storybook server, Firebase emulator and Stripe listener:
 
 ```
 yarn dev
@@ -342,22 +396,22 @@ cd ./packages/emails
 yarn dev:emails
 ```
 
-To send Stripe webhook events to your development environment, e.g. to populate products, prices, subscriptions etc in the Firebase emulator, run:
-
-```
-yarn dev:stripe
-```
-
 ---
 
 ### Figma
 
-When updating your theme using the `./packages/scripts/generateTheme` script, you'll need to update your color styles in Figma.
+When updating your theme using the [scripts/generateTheme](./packages/scripts/generateTheme) script, you'll need to update your color styles in Figma.
 
-1. Copy the contents of `./packages/scripts/figmaColors.json` into this [tool](https://varundevpro.github.io/tailwind-plugin-helper-ui/).
+1. Copy the contents of [common/figmaColors.json](./packages/common/figmaColors.json) into this [tool](https://varundevpro.github.io/tailwind-plugin-helper-ui/).
 
 2. Click "Generate File".
 
 3. Using the Figma [Tailwind Color Palettes plugin](https://www.figma.com/community/plugin/853905984020840743/Tailwind-Color-Palettes), upload this generated file by clicking on the "Custom File" tab and setting the folder name as the existing "Tailwind" folder.
 
 Your Figma component library will now be updated to the latest theme colors 🎉
+
+---
+
+### Testing
+
+Our testing approach is to focus on testing user interactions and avoid testing implementation details. Unit tests are added for utils, util hooks and hooks that integrate with other hooks. Integration tests are added for components and their integration with api hooks. E2E tests are added for user flows.

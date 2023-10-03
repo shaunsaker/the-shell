@@ -34,13 +34,19 @@ export type Customer = {
   stripeCustomerId: string
 }
 
+export type ProductMetadata = {
+  features: string // JSON stringified array of strings
+  freeTrialDays: number
+  teamPlan: boolean
+}
+
 export type Product = {
   id: string
   name: string
   description: string
   active: boolean
   image: string
-  metadata?: { freeTrialDays: number; teamPlan: boolean } | Record<string, string>
+  metadata?: ProductMetadata | Record<string, string>
 }
 
 export enum PricingType {
@@ -73,7 +79,7 @@ export type Price = {
 export enum SubscriptionStatus {
   Trialing = 'trialing',
   Active = 'active',
-  Canceled = 'canceled',
+  Cancelled = 'cancelled',
   Incomplete = 'incomplete',
   IncompleteExpired = 'incomplete_expired',
   PastDue = 'past_due',
@@ -103,11 +109,11 @@ export type Subscription = {
 
 export type SubscriptionSeat = {
   id: string
+  createdAt: string
   subscriptionId: SubscriptionId
   userId: UserId | null // the userId is null if the user does not have an account yet
   email: string | null // the email is used to find assigned seats of new users (it's null for subscription owners because we don't need to find their seats)
   isSubscriptionOwner: boolean
-  createdAt: string
 }
 
 export type SubscriptionInfo = {
@@ -124,8 +130,8 @@ type TeamId = string
 
 export type Team = {
   id: TeamId
-  name: string
   createdAt: string
+  name: string
   ownerId: string
   subscriptionId: SubscriptionId
 }
@@ -142,11 +148,11 @@ export enum TeamMemberStatus {
 
 export type TeamMember = {
   id: string
+  createdAt: string
   teamId: string
   userId: UserId | null // the userId is null if the user does not have an account yet
   firstName: string | null // as above
   lastName: string | null // as above
-  createdAt: string
   email: string
   role: TeamMemberRole
   status: TeamMemberStatus
@@ -175,7 +181,6 @@ export enum Functions {
   changeUserEmail = 'changeUserEmailFunction',
   createBillingPortalSession = 'createBillingPortalSessionFunction',
   createCheckoutSession = 'createCheckoutSessionFunction',
-  deleteTeam = 'deleteTeamFunction',
   deleteUserAccount = 'deleteUserAccountFunction',
   inviteTeamMembers = 'inviteTeamMembersFunction',
   removeTeamMember = 'removeTeamMemberFunction',
@@ -213,14 +218,6 @@ export type FunctionsMap = {
     }
     response: {
       url: string
-    }
-  }
-  [Functions.deleteTeam]: {
-    data: {
-      teamId: string
-    }
-    response: {
-      ok: true
     }
   }
   [Functions.deleteUserAccount]: {
