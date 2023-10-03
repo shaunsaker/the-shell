@@ -2,9 +2,12 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useIsSubscriptionOwner } from '../../../../billing/hooks/useIsSubscriptionOwner'
+import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRestrictedSubscriptionRoute'
+import { useRestrictedTeamPlanRoute } from '../../../../billing/hooks/useRestrictedTeamPlanRoute'
 import { useSubscriptionInfo } from '../../../../billing/hooks/useSubscriptionInfo'
 import { makeSubscriptionInfo } from '../../../../billing/mocks/makeSubscriptionInfo'
 import { routes } from '../../../../router/routes'
+import { useRestrictedTeamAdminRoute } from '../../../../teams/hooks/useRestrictedTeamAdminRoute'
 import { useTeam } from '../../../../teams/hooks/useTeam'
 import { makeTeamWithMembers } from '../../../../teams/mocks/makeTeamWithMembers'
 import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
@@ -25,8 +28,18 @@ vi.mock(
 
 const mocks = vi.hoisted(() => {
   return {
-    useRestrictedSubscriptionRoute: vi.fn(() => ({ data: false, isLoading: false })),
-    useRestrictedTeamPlanRoute: vi.fn(() => ({ data: false, isLoading: false })),
+    useRestrictedSubscriptionRoute: vi.fn<any, Partial<ReturnType<typeof useRestrictedSubscriptionRoute>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
+    useRestrictedTeamPlanRoute: vi.fn<any, Partial<ReturnType<typeof useRestrictedTeamPlanRoute>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
+    useRestrictedTeamAdminRoute: vi.fn<any, Partial<ReturnType<typeof useRestrictedTeamAdminRoute>>>(() => ({
+      data: undefined,
+      isLoading: false,
+    })),
     useTeam: vi.fn<any, Partial<ReturnType<typeof useTeam>>>(() => ({ data: undefined, isLoading: false })),
     useSubscriptionInfo: vi.fn<any, Partial<ReturnType<typeof useSubscriptionInfo>>>(() => ({
       data: undefined,
@@ -47,6 +60,10 @@ vi.mock('../../../../billing/hooks/useRestrictedSubscriptionRoute', () => ({
 
 vi.mock('../../../../billing/hooks/useRestrictedTeamPlanRoute', () => ({
   useRestrictedTeamPlanRoute: mocks.useRestrictedTeamPlanRoute,
+}))
+
+vi.mock('../../../../teams/hooks/useRestrictedTeamAdminRoute', () => ({
+  useRestrictedTeamAdminRoute: mocks.useRestrictedTeamAdminRoute,
 }))
 
 vi.mock('../../../../teams/hooks/useTeam', () => ({
@@ -84,6 +101,10 @@ describe('SettingsInviteTeamMembers', () => {
   cleanUpAfterEach()
 
   it('renders', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
+
     render(
       <MockAppProvider>
         <SettingsInviteTeamMembers />
@@ -93,7 +114,52 @@ describe('SettingsInviteTeamMembers', () => {
     expect(screen.getByText('Invite team members')).toBeInTheDocument()
   })
 
+  it('restricts the route to users without an active subscription', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: false, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
+
+    render(
+      <MockAppProvider>
+        <SettingsInviteTeamMembers />
+      </MockAppProvider>,
+    )
+
+    expect(screen.queryByText('Remove team member')).not.toBeInTheDocument()
+  })
+
+  it('restricts the route to users without a team plan', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: false, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
+
+    render(
+      <MockAppProvider>
+        <SettingsInviteTeamMembers />
+      </MockAppProvider>,
+    )
+
+    expect(screen.queryByText('Remove team member')).not.toBeInTheDocument()
+  })
+
+  it('restricts the route to non-team admins', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: false, isLoading: false })
+
+    render(
+      <MockAppProvider>
+        <SettingsInviteTeamMembers />
+      </MockAppProvider>,
+    )
+
+    expect(screen.queryByText('Remove team member')).not.toBeInTheDocument()
+  })
+
   it('disables the input and send invite button when loading', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
     mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: true })
     mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: true })
     mocks.useIsSubscriptionOwner.mockReturnValue({ data: true, isLoading: true })
@@ -109,6 +175,9 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('disables the input when there are no available seats', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
     mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
     mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 0 }), isLoading: false })
     mocks.useIsSubscriptionOwner.mockReturnValue({ data: true, isLoading: false })
@@ -123,6 +192,9 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('disables the send invites button when there are no new emails', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
     mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
     mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: false })
 
@@ -136,6 +208,9 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('does not allow the addition of invalid emails', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
     mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
     mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: false })
 
@@ -162,6 +237,9 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('adds emails, removes emails and sends invites', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
     const teamId = 'team-1'
     mocks.useTeam.mockReturnValue({
       data: makeTeamWithMembers({ team: { id: teamId }, members: [] }),
@@ -213,6 +291,9 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('disables the Buy more button for non-subscription owners', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
     mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
     mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: false })
     mocks.useIsSubscriptionOwner.mockReturnValue({ data: false, isLoading: false })
@@ -227,6 +308,9 @@ describe('SettingsInviteTeamMembers', () => {
   })
 
   it('allows subscription owners to buy more seats', () => {
+    mocks.useRestrictedSubscriptionRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
+    mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
     mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: false })
     mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: false })
     mocks.useIsSubscriptionOwner.mockReturnValue({ data: true, isLoading: false })

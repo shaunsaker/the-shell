@@ -7,7 +7,6 @@ import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRes
 import { useRestrictedTeamPlanRoute } from '../../../../billing/hooks/useRestrictedTeamPlanRoute'
 import { useSubscriptionInfo } from '../../../../billing/hooks/useSubscriptionInfo'
 import { Button } from '../../../../components/button/Button'
-import { Loading } from '../../../../components/loading/Loading'
 import { SettingsList } from '../../../../components/settingsList/SettingsList'
 import { SettingsSection } from '../../../../components/settingsSection/SettingsSection'
 import { SettingsTeamsBreadcrumbs } from '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
@@ -19,7 +18,6 @@ import { useRestrictedTeamAdminRoute } from '../../../../teams/hooks/useRestrict
 import { useTeam } from '../../../../teams/hooks/useTeam'
 import { validateEmail } from '../../../../utils/validateEmail'
 
-// TODO: SS test me
 export const SettingsInviteTeamMembers = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useRestrictedTeamPlanRoute()
@@ -41,13 +39,9 @@ export const SettingsInviteTeamMembers = () => {
     teamLoading ||
     subscriptionInfoLoading ||
     isSubscriptionOwnerLoading
-  const inputDisabled = !hasAvailableSeats || isLoading
+  const inputDisabled = isLoading || !hasAvailableSeats
   const submitDisabled = isLoading || !validateEmail(email)
   const sendInvitesDisabled = isLoading || emails.length === 0
-
-  if (isLoading) {
-    return <Loading />
-  }
 
   if (!hasActiveSubscription || !hasTeamPlan || !isTeamAdmin) {
     return null
