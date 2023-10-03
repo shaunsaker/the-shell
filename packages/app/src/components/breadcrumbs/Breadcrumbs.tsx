@@ -24,7 +24,7 @@ export const Breadcrumbs = ({ items, onClick }: Props) => {
                 <Button
                   variant="light"
                   color={app.neutralColor}
-                  disabled={item.disabled}
+                  disabled={active || item.disabled}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
                     if (!active && onClick) {
