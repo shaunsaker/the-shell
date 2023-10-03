@@ -190,6 +190,10 @@ touch ./packages/app/.env.production
 
 13. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
 
+14. Create another site for your Storybook by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `PROJECT_NAME-storybook-ui`.
+
+15. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell-development" with your PROJECT_NAME.
+
 ---
 
 ### Setup Stripe

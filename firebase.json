@@ -10,16 +10,30 @@
       "source": "./packages/functions/dist"
     }
   ],
-  "hosting": {
-    "predeploy": "cd ./packages/scripts && yarn build && cd ../functions && cd ../app && yarn build:app",
-    "public": "./packages/app/dist",
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
+  "hosting": [
+    {
+      "target": "app",
+      "predeploy": "cd ./packages/scripts && yarn build && cd ../app && yarn build:app",
+      "public": "./packages/app/dist",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "storybook",
+      "predeploy": "cd ./packages/scripts && yarn build && cd ../app && yarn build:storybook",
+      "public": "./packages/app/storybook-static",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ],
   "emulators": {
     "auth": {
       "port": 9099
