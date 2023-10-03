@@ -9,7 +9,10 @@ export const Badge = ({ className = '', children, ...props }: Props): ReactEleme
   return (
     <div
       {...props}
-      className={twMerge('bg-theme-brand-muted dark:bg-dark-theme-brand-muted rounded-full px-2 py-0.5', className)}
+      className={twMerge(
+        'bg-theme-brand-muted dark:bg-dark-theme-brand-muted flex items-center rounded-full px-2 py-0.5',
+        className,
+      )}
     >
       <Text className="text-theme-brand-emphasis dark:text-dark-theme-brand-emphasis text-xs">{children}</Text>
     </div>
