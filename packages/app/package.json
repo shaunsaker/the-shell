@@ -8,7 +8,7 @@
     "dev:app:staging": "yarn dev:app --mode staging",
     "dev:app:production": "yarn dev:app --mode production",
     "dev:storybook": "storybook dev --port 6006",
-    "dev": "yarn dev:app",
+    "dev": "npm-run-all dev:app dev:storybook",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
     "lint:ts": "tsc",
