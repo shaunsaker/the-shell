@@ -10,10 +10,10 @@ import { Dashboard } from '../pages/dashboard'
 import { ForgotPassword } from '../pages/forgotPassword'
 import { SettingsAccount } from '../pages/settings/account'
 import { SettingsSubscription } from '../pages/settings/subscription'
-import { SettingsEditTeam } from '../pages/settings/teams/editTeam'
 import { SettingsEditTeamMember } from '../pages/settings/teams/editTeamMember'
 import { SettingsRemoveTeamMember } from '../pages/settings/teams/editTeamMember/removeTeamMember'
 import { SettingsInviteTeamMembers } from '../pages/settings/teams/inviteTeamMembers'
+import { SettingsTeam } from '../pages/settings/teams/team'
 import { SignIn } from '../pages/signIn'
 import { SignUp } from '../pages/signUp'
 import { UserManagement } from '../pages/userManagement'
@@ -73,8 +73,8 @@ const authorisedRoutes: RouteObject[] = [
             errorElement,
           },
           {
-            path: routes.settingsEditTeam,
-            element: <SettingsEditTeam />,
+            path: routes.settingsTeam,
+            element: <SettingsTeam />,
             errorElement,
           },
           {

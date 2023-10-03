@@ -19,7 +19,7 @@ export const useRestrictedTeamAdminRoute = () => {
   // only admins of the team should be able to access this page
   useEffect(() => {
     if (!isLoading && !isLoggedInUserTeamAdmin && team) {
-      navigate(routes.settingsEditTeam.replace(TEAM_ID_PARAM, team.id))
+      navigate(routes.settingsTeam.replace(TEAM_ID_PARAM, team.id))
     }
   }, [isLoading, isLoggedInUserTeamAdmin, navigate, team])
 

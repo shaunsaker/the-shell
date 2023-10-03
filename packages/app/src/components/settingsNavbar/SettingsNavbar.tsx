@@ -41,8 +41,8 @@ export const SettingsNavbar = (): ReactElement => {
     },
     {
       name: 'Team',
-      href: routes.settingsEditTeam.replace(TEAM_ID_PARAM, defaultTeamId),
-      active: location.pathname.includes(routes.settingsEditTeam.replace(TEAM_ID_PARAM, defaultTeamId)),
+      href: routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId),
+      active: location.pathname.includes(routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId)),
       disabled: teamsPageDisabled,
     },
   ]

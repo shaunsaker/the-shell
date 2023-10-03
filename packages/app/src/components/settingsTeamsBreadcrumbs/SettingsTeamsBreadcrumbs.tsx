@@ -20,7 +20,7 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
   const BREADCRUMBS: NavigationItem[] = []
 
   if (team) {
-    const href = routes.settingsEditTeam.replace(TEAM_ID_PARAM, team.id.toString())
+    const href = routes.settingsTeam.replace(TEAM_ID_PARAM, team.id.toString())
 
     BREADCRUMBS.push({
       name: team.name,

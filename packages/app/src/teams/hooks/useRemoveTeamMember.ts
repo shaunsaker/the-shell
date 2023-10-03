@@ -18,7 +18,7 @@ export const useRemoveTeamMember = () => {
 
       toast.success('Team member removed successfully')
 
-      navigate(routes.settingsEditTeam.replace(TEAM_ID_PARAM, teamId))
+      navigate(routes.settingsTeam.replace(TEAM_ID_PARAM, teamId))
     },
   })
 }

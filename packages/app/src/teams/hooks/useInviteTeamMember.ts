@@ -18,7 +18,7 @@ export const useInviteTeamMembers = () => {
 
       toast.success('Team members invited successfully')
 
-      navigate(routes.settingsEditTeam.replace(TEAM_ID_PARAM, teamId))
+      navigate(routes.settingsTeam.replace(TEAM_ID_PARAM, teamId))
     },
   })
 }

@@ -9,7 +9,7 @@ import { SettingsTeamsBreadcrumbs } from '../../../../components/settingsTeamsBr
 import { ChangeTeamNameSection } from './components/changeTeamNameSection/ChangeTeamNameSection'
 import { ManageTeamMembersSection } from './components/manageTeamMembersSection/ManageTeamMembersSection'
 
-export const SettingsEditTeam = () => {
+export const SettingsTeam = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useRestrictedTeamPlanRoute()
 

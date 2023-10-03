@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../test/MockAppProvider'
 import { TestIds } from '../../../../types'
-import { SettingsEditTeam } from '.'
+import { SettingsTeam } from '.'
 
 enum MockTestIds {
   SettingsTeamsBreadcrumbs = 'settingsTeamsBreadcrumbs',
@@ -47,7 +47,7 @@ vi.mock('../../../../billing/hooks/useRestrictedTeamPlanRoute', () => ({
   useRestrictedTeamPlanRoute: mocks.useRestrictedTeamPlanRoute,
 }))
 
-describe('SettingsEditTeam', () => {
+describe('SettingsTeam', () => {
   cleanUpAfterEach()
 
   it('renders the loading state', () => {
@@ -56,7 +56,7 @@ describe('SettingsEditTeam', () => {
 
     render(
       <MockAppProvider>
-        <SettingsEditTeam />
+        <SettingsTeam />
       </MockAppProvider>,
     )
 
@@ -68,7 +68,7 @@ describe('SettingsEditTeam', () => {
 
     render(
       <MockAppProvider>
-        <SettingsEditTeam />
+        <SettingsTeam />
       </MockAppProvider>,
     )
 
@@ -81,7 +81,7 @@ describe('SettingsEditTeam', () => {
 
     render(
       <MockAppProvider>
-        <SettingsEditTeam />
+        <SettingsTeam />
       </MockAppProvider>,
     )
 
@@ -95,7 +95,7 @@ describe('SettingsEditTeam', () => {
 
     render(
       <MockAppProvider>
-        <SettingsEditTeam />
+        <SettingsTeam />
       </MockAppProvider>,
     )
 

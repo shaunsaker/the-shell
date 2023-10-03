@@ -91,6 +91,6 @@ describe('useRestrictedTeamAdminRoute', () => {
     })
 
     expect(result.current.data).toBe(false)
-    expect(mocks.navigate).toHaveBeenCalledWith(routes.settingsEditTeam.replace(TEAM_ID_PARAM, teamId))
+    expect(mocks.navigate).toHaveBeenCalledWith(routes.settingsTeam.replace(TEAM_ID_PARAM, teamId))
   })
 })
