@@ -35,7 +35,6 @@ export const Pricing = (): ReactElement => {
   useEffect(() => {
     // when the prices update, set the selected billing interval and billing interval options
     if (prices?.length) {
-      // console.log('HERE 2')
       // get the unique billing intervals from the prices
       const billingIntervalOptions = [...new Set(prices?.map(price => price.interval))].map(billingInterval => ({
         label: formatBillingInterval(billingInterval),
@@ -46,7 +45,6 @@ export const Pricing = (): ReactElement => {
 
       // set the selected billing interval to the first one
       setBillingInterval(billingIntervalOptions[0].value)
-      // console.log('HERE 3')
     }
   }, [prices])
 
