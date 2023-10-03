@@ -129,7 +129,7 @@ describe('ManageTeamMembersSection', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Manage' }))
 
     expect(mocks.navigate).toHaveBeenCalledWith(
-      routes.settingsEditTeamMember.replace(TEAM_ID_PARAM, teamId).replace(TEAM_MEMBER_ID_PARAM, teamMemberId),
+      routes.settingsTeamMember.replace(TEAM_ID_PARAM, teamId).replace(TEAM_MEMBER_ID_PARAM, teamMemberId),
     )
   })
 })

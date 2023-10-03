@@ -10,7 +10,7 @@ import { useRestrictedTeamAdminRoute } from '../../../../teams/hooks/useRestrict
 import { ChangeTeamMemberRoleSection } from './components/changeTeamMemberRoleSection/ChangeTeamMemberRoleSection'
 import { RemoveTeamMemberSection } from './components/removeTeamMemberSection/RemoveTeamMemberSection'
 
-export const SettingsEditTeamMember = () => {
+export const SettingsTeamMember = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useRestrictedTeamPlanRoute()
   const { data: isTeamAdmin, isLoading: isTeamAdminLoading } = useRestrictedTeamAdminRoute()

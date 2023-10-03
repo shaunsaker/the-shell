@@ -43,7 +43,7 @@ export const SettingsTeamsBreadcrumbs = (): ReactElement => {
     const name = formatTeamMemberName(teamMember) || teamMember.email
 
     if (name) {
-      const href = routes.settingsEditTeamMember
+      const href = routes.settingsTeamMember
         .replace(TEAM_ID_PARAM, team?.id.toString() || '')
         .replace(TEAM_MEMBER_ID_PARAM, teamMember.id.toString())
 

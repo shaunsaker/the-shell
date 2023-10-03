@@ -14,6 +14,6 @@ export const routes = {
   settingsTeam: `/settings/teams/${TEAM_ID_PARAM}`,
   settingsDeleteTeam: `/settings/teams/${TEAM_ID_PARAM}/delete`,
   settingsInviteTeamMembers: `/settings/teams/${TEAM_ID_PARAM}/invite`,
-  settingsEditTeamMember: `/settings/teams/${TEAM_ID_PARAM}/members/${TEAM_MEMBER_ID_PARAM}`,
+  settingsTeamMember: `/settings/teams/${TEAM_ID_PARAM}/members/${TEAM_MEMBER_ID_PARAM}`,
   settingsRemoveTeamMember: `/settings/teams/${TEAM_ID_PARAM}/members/${TEAM_MEMBER_ID_PARAM}/remove`,
 }

@@ -7,7 +7,7 @@ import { useRestrictedTeamAdminRoute } from '../../../../teams/hooks/useRestrict
 import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
 import { MockAppProvider } from '../../../../test/MockAppProvider'
 import { TestIds } from '../../../../types'
-import { SettingsEditTeamMember } from '.'
+import { SettingsTeamMember } from '.'
 
 enum MockTestIds {
   SettingsTeamsBreadcrumbs = 'settingsTeamsBreadcrumbs',
@@ -64,7 +64,7 @@ vi.mock('../../../../teams/hooks/useRestrictedTeamAdminRoute', () => ({
   useRestrictedTeamAdminRoute: mocks.useRestrictedTeamAdminRoute,
 }))
 
-describe('SettingsEditTeamMember', () => {
+describe('SettingsTeamMember', () => {
   cleanUpAfterEach()
 
   it('renders the loading state', () => {
@@ -74,7 +74,7 @@ describe('SettingsEditTeamMember', () => {
 
     render(
       <MockAppProvider>
-        <SettingsEditTeamMember />
+        <SettingsTeamMember />
       </MockAppProvider>,
     )
 
@@ -88,7 +88,7 @@ describe('SettingsEditTeamMember', () => {
 
     render(
       <MockAppProvider>
-        <SettingsEditTeamMember />
+        <SettingsTeamMember />
       </MockAppProvider>,
     )
 
@@ -102,7 +102,7 @@ describe('SettingsEditTeamMember', () => {
 
     render(
       <MockAppProvider>
-        <SettingsEditTeamMember />
+        <SettingsTeamMember />
       </MockAppProvider>,
     )
 
@@ -116,7 +116,7 @@ describe('SettingsEditTeamMember', () => {
 
     render(
       <MockAppProvider>
-        <SettingsEditTeamMember />
+        <SettingsTeamMember />
       </MockAppProvider>,
     )
 
@@ -130,7 +130,7 @@ describe('SettingsEditTeamMember', () => {
 
     render(
       <MockAppProvider>
-        <SettingsEditTeamMember />
+        <SettingsTeamMember />
       </MockAppProvider>,
     )
 

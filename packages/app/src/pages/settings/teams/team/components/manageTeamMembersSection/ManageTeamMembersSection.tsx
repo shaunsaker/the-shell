@@ -114,7 +114,7 @@ export const ManageTeamMembersSection = (): ReactElement => {
                         onClick={() => {
                           if (team) {
                             navigate(
-                              routes.settingsEditTeamMember
+                              routes.settingsTeamMember
                                 .replace(TEAM_ID_PARAM, team.id.toString())
                                 .replace(TEAM_MEMBER_ID_PARAM, teamMember.id.toString()),
                             )
