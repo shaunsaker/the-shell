@@ -1,0 +1,20 @@
+{
+  "projects": {
+    "development": "the-shell-development",
+    "staging": "the-shell-development",
+    "production": "the-shell-development"
+  },
+  "targets": {
+    "the-shell-development": {
+      "hosting": {
+        "app": [
+          "the-shell-development"
+        ],
+        "storybook": [
+          "the-shell-development-storybook-ui"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
