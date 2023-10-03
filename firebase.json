@@ -6,7 +6,7 @@
   "functions": [
     {
       "runtime": "nodejs18",
-      "predeploy": "cd ./packages/functions && yarn build:functions",
+      "predeploy": "cd ./packages/functions && yarn build",
       "source": "./packages/functions/dist"
     }
   ],
