@@ -6,9 +6,13 @@ import { useIsLoggedInUserTeamAdmin } from './useIsLoggedInUserTeamAdmin'
 import { useTeam } from './useTeam'
 
 export const useRestrictedTeamAdminRoute = () => {
-  const navigate = useNavigate()
-  const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()
+  const {
+    data: isLoggedInUserTeamAdmin,
+    isLoading: isLoggedInUserTeamAdminLoading,
+    ...query
+  } = useIsLoggedInUserTeamAdmin()
   const { data: team, isLoading: teamsLoading } = useTeam()
+  const navigate = useNavigate()
 
   const isLoading = isLoggedInUserTeamAdminLoading || teamsLoading
 
@@ -18,4 +22,10 @@ export const useRestrictedTeamAdminRoute = () => {
       navigate(routes.settingsEditTeam.replace(TEAM_ID_PARAM, team.id))
     }
   }, [isLoading, isLoggedInUserTeamAdmin, navigate, team])
+
+  return {
+    ...query,
+    data: isLoggedInUserTeamAdmin,
+    isLoading,
+  }
 }
