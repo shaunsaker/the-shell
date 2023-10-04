@@ -1,14 +1,15 @@
-name: Deploy Storybook
+name: Storybook
 
 on:
   push:
     branches:
-      - develop
-  workflow_dispatch:
+      - master
+    paths:
+      - stories/**
+      - src/components/**
 
 jobs:
-  deploy-storybook:
-    needs: testing
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

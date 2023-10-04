@@ -11,7 +11,8 @@
     "test": "turbo run test",
     "deploy": "firebase deploy --only firestore,functions,hosting",
     "deploy:staging": "export MODE=staging && firebase use staging && yarn deploy",
-    "deploy:production": "export MODE=production && firebase use production && yarn deploy"
+    "deploy:production": "export MODE=production && firebase use production && yarn deploy",
+    "create:release": "cd ./packages/scripts && yarn create:release"
   },
   "packageManager": "yarn@1.22.19",
   "workspaces": {
