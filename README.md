@@ -97,13 +97,6 @@ git remote add origin NEW_GITHUB_REMOTE
 git push -u origin master
 ```
 
-3. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
-
-```
-git checkout -b develop
-git push -u origin develop
-```
-
 ---
 
 ### Make it your own
@@ -145,7 +138,7 @@ firebase projects:create PROJECT_NAME-staging
 firebase projects:create PROJECT_NAME-production
 ```
 
-3. Enable Cloud Firestore for both projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/firestore and https://console.firebase.google.com/project/PROJECT_NAME-production/firestore and clicking "Create database". Feel free to "Start in production mode", the firebase rules and indices will be deployed automatically when you merge into `develop` (staging) or `master` (production).
+3. Enable Cloud Firestore for both projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/firestore and https://console.firebase.google.com/project/PROJECT_NAME-production/firestore and clicking "Create database". Feel free to "Start in production mode", the firebase rules and indices will be deployed automatically when you merge into `master` (staging) or any release branch, e.g. `v1.0.1` (production).
 
 4. [Enable the Blaze plan](https://console.firebase.google.com/project/_/usage/details) for both projects. This is required for Firebase Functions.
 
@@ -415,3 +408,15 @@ Your Figma component library will now be updated to the latest theme colors 🎉
 ### Testing
 
 Our testing approach is to focus on testing user interactions and avoid testing implementation details. Unit tests are added for utils, util hooks and hooks that integrate with other hooks. Integration tests are added for components and their integration with api hooks. E2E tests are added for user flows.
+
+---
+
+### Releases
+
+To create a new release, run:
+
+```
+yarn deploy:release --version VERSION_NUMBER
+```
+
+where `VERSION_NUMBER` is the new version number, e.g. `1.0.1` and follows [semver](https://semver.org/).
