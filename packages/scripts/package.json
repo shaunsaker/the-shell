@@ -12,7 +12,7 @@
     "build:theme": "yarn dev:node ./generateTheme",
     "build:assets": "yarn dev:node ./generateAssets",
     "build": "npm-run-all --parallel build:*",
-    "release": "yarn dev:node ./createRelease"
+    "create:release": "yarn dev:node ./createRelease"
   },
   "dependencies": {
     "@expo/spawn-async": "^1.7.2",

@@ -416,8 +416,7 @@ Our testing approach is to focus on testing user interactions and avoid testing 
 To create a new release, run:
 
 ```
-cd ./packages/scripts
-yarn release --version VERSION_NUMBER
+yarn deploy:release --version VERSION_NUMBER
 ```
 
 where `VERSION_NUMBER` is the new version number, e.g. `1.0.1` and follows [semver](https://semver.org/).

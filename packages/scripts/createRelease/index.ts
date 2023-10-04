@@ -1,8 +1,6 @@
 import { execCommand } from '../utils/execCommand'
 import { args } from './args'
 
-const SHOW_LOGS = true
-
 async function main() {
   const { release = '' } = await args()
 
@@ -10,16 +8,32 @@ async function main() {
     throw new Error('Please supply a release version!')
   }
 
-  await execCommand('git checkout master', SHOW_LOGS)
+  // ensure we have no uncommitted changes
+  try {
+    await execCommand('git diff --exit-code')
+  } catch (error) {
+    throw new Error('Please commit all changes before creating a release!')
+  }
 
-  // update package.json version and create release commit and tag
-  await execCommand(`npm version ${release}`, SHOW_LOGS)
+  await execCommand('git checkout master')
+
+  // create release branch
+  await execCommand(`git checkout -b release/${release}`)
+
+  // update package.json version
+  await execCommand(`cd ../../ && npm version ${release}`)
+
+  // create release commit
+  await execCommand(`git commit -am "release: ${release}"`)
+
+  // create release tag
+  await execCommand(`git tag -a v${release} -m "release: ${release}"`)
+
+  // push release branch
+  await execCommand(`git push -u origin release/${release}`)
 
   // push release tag
-  await execCommand(`git push -u origin v${release}`, SHOW_LOGS)
-
-  // push release commit
-  await execCommand(`git push -f`, SHOW_LOGS)
+  await execCommand(`git push -u origin v${release}`)
 }
 
 main()
