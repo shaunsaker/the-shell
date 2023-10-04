@@ -3,12 +3,14 @@ name: Deploy Staging
 on:
   push:
     branches:
-      - develop
-  workflow_dispatch:
+      - master
 
 jobs:
-  deploy-staging:
-    needs: testing
+  test:
+    name: Lint and test
+    uses: .github/workflows/development.yml
+
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,3 +23,27 @@ jobs:
 
       # Deploy staging
       - run: yarn deploy:staging --token ${{ secrets.FIREBASE_TOKEN }}
+
+  deploy-sentry:
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+      SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # This is necessary for the Create Sentry release step
+      - name: Get package version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+
+      # Creates a Sentry release
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        with:
+          version: ${{ steps.package-version.outputs.current-version}}
+          environment: staging
