@@ -11,7 +11,8 @@
     "lint": "npm-run-all --parallel lint:*",
     "build:theme": "yarn dev:node ./generateTheme",
     "build:assets": "yarn dev:node ./generateAssets",
-    "build": "npm-run-all --parallel build:*"
+    "build": "npm-run-all --parallel build:*",
+    "deploy:release": "yarn dev:node ./deployRelease"
   },
   "dependencies": {
     "@expo/spawn-async": "^1.7.2",

@@ -97,13 +97,6 @@ git remote add origin NEW_GITHUB_REMOTE
 git push -u origin master
 ```
 
-3. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
-
-```
-git checkout -b develop
-git push -u origin develop
-```
-
 ---
 
 ### Make it your own
@@ -145,7 +138,7 @@ firebase projects:create PROJECT_NAME-staging
 firebase projects:create PROJECT_NAME-production
 ```
 
-3. Enable Cloud Firestore for both projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/firestore and https://console.firebase.google.com/project/PROJECT_NAME-production/firestore and clicking "Create database". Feel free to "Start in production mode", the firebase rules and indices will be deployed automatically when you merge into `develop` (staging) or `master` (production).
+3. Enable Cloud Firestore for both projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/firestore and https://console.firebase.google.com/project/PROJECT_NAME-production/firestore and clicking "Create database". Feel free to "Start in production mode", the firebase rules and indices will be deployed automatically when you merge into `master` (staging) or any release branch, e.g. `v1.0.1` (production).
 
 4. [Enable the Blaze plan](https://console.firebase.google.com/project/_/usage/details) for both projects. This is required for Firebase Functions.
 
@@ -256,6 +249,14 @@ touch ./packages/functions/.env.staging
 
 4. Add the secrets to [functions/.env.staging](./packages/functions/.env.staging).
 
+5. Push the secrets to Github so that Github Actions can deploy your functions to staging:
+
+```
+gh auth login
+gh secret set VITE_STRIPE_API_KEY_STAGING --body VALUE
+gh secret set VITE_STRIPE_WEBHOOK_SIGNING_SECRET_STAGING --body VALUE
+```
+
 ---
 
 ##### Connect live Stripe webhook to production
@@ -275,6 +276,13 @@ touch ./packages/functions/.env.production
 ```
 
 5. Add the secrets to [functions/.env.production](./packages/functions/.env.production).
+
+6. Push the secrets to Github so that Github Actions can deploy your functions to production:
+
+```
+gh secret set VITE_STRIPE_API_KEY_PRODUCTION --body VALUE
+gh secret set VITE_STRIPE_WEBHOOK_SIGNING_SECRET_PRODUCTION --body VALUE
+```
 
 ---
 
@@ -329,7 +337,6 @@ We support free trials out of the box. To add a free trial to a product, simply 
 7. Push the secrets to Github.
 
 ```
-gh auth login
 gh secret set SENTRY_AUTH_TOKEN --body VALUE
 gh secret set SENTRY_ORG --body VALUE
 gh secret set SENTRY_PROJECT --body VALUE
@@ -344,6 +351,13 @@ gh secret set SENTRY_PROJECT --body VALUE
 2. Add the secrets to [functions/.env.development](./packages/functions/.env.development), [functions/.env.staging](./packages/functions/.env.staging) and [functions/.env.production](./packages/functions/.env.production).
 
 3. Add your domain by visiting https://resend.com/domains, clicking "Add domain" and following the instructions.
+
+4. Push the secrets to Github so that Github Actions can deploy your functions to staging and production:
+
+```
+gh secret set VITE_RESEND_API_KEY_STAGING --body VALUE
+gh secret set VITE_RESEND_API_KEY_PRODUCTION --body VALUE
+```
 
 ---
 
@@ -415,3 +429,15 @@ Your Figma component library will now be updated to the latest theme colors 🎉
 ### Testing
 
 Our testing approach is to focus on testing user interactions and avoid testing implementation details. Unit tests are added for utils, util hooks and hooks that integrate with other hooks. Integration tests are added for components and their integration with api hooks. E2E tests are added for user flows.
+
+---
+
+### Releases
+
+To create a new release, run:
+
+```
+yarn deploy:release --version VERSION_NUMBER
+```
+
+where `VERSION_NUMBER` is the new version number, e.g. `1.0.1` and follows [semver](https://semver.org/).
