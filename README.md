@@ -256,6 +256,14 @@ touch ./packages/functions/.env.staging
 
 4. Add the secrets to [functions/.env.staging](./packages/functions/.env.staging).
 
+5. Push the secrets to Github so that Github Actions can deploy your functions to staging:
+
+```
+gh auth login
+gh secret set VITE_STRIPE_API_KEY_STAGING --body VALUE
+gh secret set VITE_STRIPE_WEBHOOK_SIGNING_SECRET_STAGING --body VALUE
+```
+
 ---
 
 ##### Connect live Stripe webhook to production
@@ -275,6 +283,13 @@ touch ./packages/functions/.env.production
 ```
 
 5. Add the secrets to [functions/.env.production](./packages/functions/.env.production).
+
+6. Push the secrets to Github so that Github Actions can deploy your functions to production:
+
+```
+gh secret set VITE_STRIPE_API_KEY_PRODUCTION --body VALUE
+gh secret set VITE_STRIPE_WEBHOOK_SIGNING_SECRET_PRODUCTION --body VALUE
+```
 
 ---
 
@@ -329,7 +344,6 @@ We support free trials out of the box. To add a free trial to a product, simply 
 7. Push the secrets to Github.
 
 ```
-gh auth login
 gh secret set SENTRY_AUTH_TOKEN --body VALUE
 gh secret set SENTRY_ORG --body VALUE
 gh secret set SENTRY_PROJECT --body VALUE
@@ -344,6 +358,13 @@ gh secret set SENTRY_PROJECT --body VALUE
 2. Add the secrets to [functions/.env.development](./packages/functions/.env.development), [functions/.env.staging](./packages/functions/.env.staging) and [functions/.env.production](./packages/functions/.env.production).
 
 3. Add your domain by visiting https://resend.com/domains, clicking "Add domain" and following the instructions.
+
+4. Push the secrets to Github so that Github Actions can deploy your functions to staging and production:
+
+```
+gh secret set VITE_RESEND_API_KEY_STAGING --body VALUE
+gh secret set VITE_RESEND_API_KEY_PRODUCTION --body VALUE
+```
 
 ---
 

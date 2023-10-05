@@ -9,9 +9,10 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
+    "activate-project": "firebase use",
     "deploy": "firebase deploy --only firestore,functions,hosting",
-    "deploy:staging": "export MODE=staging && firebase use staging && yarn deploy",
-    "deploy:production": "export MODE=production && firebase use production && yarn deploy"
+    "deploy:staging": "export MODE=staging && yarn deploy",
+    "deploy:production": "export MODE=production && yarn deploy"
   },
   "packageManager": "yarn@1.22.19",
   "workspaces": {
