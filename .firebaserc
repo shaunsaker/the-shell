@@ -2,7 +2,7 @@
   "projects": {
     "development": "the-shell-development",
     "staging": "the-shell-development",
-    "production": "the-shell-development"
+    "production": "the-shell-production"
   },
   "targets": {
     "the-shell-development": {
