@@ -1,6 +1,6 @@
 # Ultimate B2B SAAS Boilerplate
 
-[![Testing](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/testing.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/testing.yml)
+[![Development](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml/badge.svg?branch=develop)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml)
 
 ---
 
