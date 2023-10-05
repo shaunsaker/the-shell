@@ -394,10 +394,10 @@ gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
 
 ### Setup automated releases
 
-1. Create a Github token with the `repo` scope and push it to Github:
+1. Create a [Github personal access token](https://github.com/settings/tokens/new) with the `repo` scope and push it to Github:
 
 ```
-gh secret set GITHUB_TOKEN --body VALUE
+gh secret set GH_TOKEN --body VALUE
 ```
 
 2. That's it, you're done! Every time you push to `master`, a release will automatically be created and the app will be deployed to production.
