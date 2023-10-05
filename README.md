@@ -392,11 +392,22 @@ gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
 
 3. Update the Logo component in Figma with your new logo.
 
+### Setup automated releases
+
+1. Create a Github token with the `repo` scope and push it to Github:
+
+```
+gh secret set GITHUB_TOKEN --body VALUE
+```
+
+2. That's it, you're done! Every time you push to `master`, a release will automatically be created and the app will be deployed to production.
+
 ### Deploy
 
 Run an initial deploy to staging.
 
 ```
+yarn activate-project staging
 yarn deploy:staging
 ```
 

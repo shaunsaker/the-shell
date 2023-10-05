@@ -2,8 +2,8 @@ name: Deploy Production
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - '**'
 
 jobs:
   development:
@@ -20,7 +20,7 @@ jobs:
       VITE_RESEND_API_KEY: ${{ secrets.VITE_RESEND_API_KEY_PRODUCTION}}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Install firebase-tools
       - run: yarn global add firebase-tools
@@ -44,7 +44,7 @@ jobs:
       SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # This is necessary for the Create Sentry release step
       - name: Get package version
