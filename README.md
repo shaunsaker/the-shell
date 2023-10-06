@@ -256,14 +256,6 @@ touch ./packages/functions/.env.staging
 
 4. Add the secrets to [functions/.env.staging](./packages/functions/.env.staging).
 
-5. Push the secrets to Github so that Github Actions can deploy your functions to staging:
-
-```
-gh auth login
-gh secret set VITE_STRIPE_API_KEY_STAGING --body VALUE
-gh secret set VITE_STRIPE_WEBHOOK_SIGNING_SECRET_STAGING --body VALUE
-```
-
 ---
 
 ##### Connect live Stripe webhook to production
@@ -283,13 +275,6 @@ touch ./packages/functions/.env.production
 ```
 
 5. Add the secrets to [functions/.env.production](./packages/functions/.env.production).
-
-6. Push the secrets to Github so that Github Actions can deploy your functions to production:
-
-```
-gh secret set VITE_STRIPE_API_KEY_PRODUCTION --body VALUE
-gh secret set VITE_STRIPE_WEBHOOK_SIGNING_SECRET_PRODUCTION --body VALUE
-```
 
 ---
 
@@ -341,7 +326,7 @@ We support free trials out of the box. To add a free trial to a product, simply 
 
 6. Add the secrets to [app/.env.staging](./packages/app/.env.staging) and [app/.env.production](./packages/app/.env.production).
 
-7. Push the secrets to Github.
+7. Push the secrets to Github so that the deploy workflows can deploy sentry releases.
 
 ```
 gh secret set SENTRY_AUTH_TOKEN --body VALUE
@@ -359,13 +344,6 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 3. Add your domain by visiting https://resend.com/domains, clicking "Add domain" and following the instructions.
 
-4. Push the secrets to Github so that Github Actions can deploy your functions to staging and production:
-
-```
-gh secret set VITE_RESEND_API_KEY_STAGING --body VALUE
-gh secret set VITE_RESEND_API_KEY_PRODUCTION --body VALUE
-```
-
 ---
 
 ### Setup Mixpanel
@@ -378,7 +356,7 @@ gh secret set VITE_RESEND_API_KEY_PRODUCTION --body VALUE
 
 1. Setup your project at [Chromatic](https://www.chromatic.com/).
 
-2. Push your Chromatic Project Token to Github:
+2. Push your Chromatic Project Token to Github so that the deploy workflows can deploy to Chromatic:
 
 ```
 gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
@@ -400,7 +378,21 @@ gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
 gh secret set GH_TOKEN --body VALUE
 ```
 
-2. That's it, you're done! Every time you push to `master`, a release will automatically be created and the app will be deployed to production.
+2. Send your env files to Github so that the deploy workflows can deploy to Firebase:
+
+```
+cat ./packages/app/.env.staging > .env.staging
+echo >> .env.staging
+cat ./packages/functions/.env.staging >> .env.staging
+cat ./packages/app/.env.production > .env.production
+echo >> .env.production
+cat ./packages/functions/.env.production >> .env.production
+gh secret set ENV_FILE_STAGING < .env.staging
+gh secret set ENV_FILE_PRODUCTION < .env.production
+rm .env.staging .env.production
+```
+
+That's it, you're done! Every time you push to `master`, a release will automatically be created and the app will be deployed to production.
 
 ### Deploy
 

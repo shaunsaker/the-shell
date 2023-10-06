@@ -14,11 +14,6 @@ jobs:
     needs: development
     runs-on: ubuntu-latest
 
-    env:
-      VITE_STRIPE_API_KEY: ${{ secrets.VITE_STRIPE_API_KEY_PRODUCTION}}
-      VITE_STRIPE_WEBHOOK_SIGNING_SECRET: ${{ secrets.VITE_STRIPE_WEBHOOK_SIGNING_SECRET_PRODUCTION}}
-      VITE_RESEND_API_KEY: ${{ secrets.VITE_RESEND_API_KEY_PRODUCTION}}
-
     steps:
       - uses: actions/checkout@v4
 
@@ -27,6 +22,12 @@ jobs:
 
       # Install deps
       - run: yarn --frozen-lockfile
+
+      # Create the env files
+      - name: Create env files
+        run: |
+          echo "${{ secrets.ENV_FILE_PRODUCTION }}" > ./packages/app/.env.production
+          echo "${{ secrets.ENV_FILE_PRODUCTION }}" > ./packages/functions/.env.production
 
       # Set the active project
       - run: yarn activate-project production --token ${{ secrets.FIREBASE_TOKEN }}
