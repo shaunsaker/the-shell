@@ -1,7 +1,8 @@
 import { Firestore, Subscription, SubscriptionStatus } from 'types'
 
-import { firebase } from '../firebaseAdmin'
-import { getISOString } from '../utils/getISOString'
+import { firebase } from '@/firebase/admin'
+import { getISOString } from '@/utils/getISOString'
+
 import { Stripe } from './stripe'
 
 const parseSubscriptionStatus = (status: string): SubscriptionStatus => {

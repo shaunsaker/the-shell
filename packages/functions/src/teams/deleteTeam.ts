@@ -1,6 +1,7 @@
 import { Firestore } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
+
 import { deleteTeamMembersForTeam } from './deleteTeamMembersForTeam'
 
 export const deleteTeam = async (teamId: string) => {

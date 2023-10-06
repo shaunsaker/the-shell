@@ -2,8 +2,8 @@ import { onDocumentUpdated } from 'firebase-functions/v2/firestore'
 import { HttpsError } from 'firebase-functions/v2/https'
 import { SubscriptionInfo } from 'types'
 
-import { getSubscriptionInfo } from '../../billing/getSubscriptionInfo'
-import { updateSubscriptionInfo } from '../../billing/updateSubscriptionInfo'
+import { getSubscriptionInfo } from '@/billing/getSubscriptionInfo'
+import { updateSubscriptionInfo } from '@/billing/updateSubscriptionInfo'
 
 console.log('Hello from On Subscription Updated!')
 

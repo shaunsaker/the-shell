@@ -1,6 +1,6 @@
 import { onDocumentDeleted } from 'firebase-functions/v2/firestore'
 
-import { deleteSubscriptionInfo } from '../../billing/deleteSubscriptionInfo'
+import { deleteSubscriptionInfo } from '@/billing/deleteSubscriptionInfo'
 
 console.log('Hello from On Subscription Deleted!')
 

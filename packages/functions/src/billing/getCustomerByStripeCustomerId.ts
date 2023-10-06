@@ -1,6 +1,6 @@
 import { Customer, Firestore } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const getCustomerByStripeCustomerId = async (stripeCustomerId: string) => {
   const doc = await firebase

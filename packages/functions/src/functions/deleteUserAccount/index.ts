@@ -1,16 +1,16 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
 
-import { deleteAuthUser } from '../../auth/deleteAuthUser'
-import { getAuthUser } from '../../auth/getAuthUser'
-import { sendTeamDeletedEmail } from '../../emails/sendTeamDeletedEmail'
-import { deleteTeam } from '../../teams/deleteTeam'
-import { deleteTeamMembersForUser } from '../../teams/deleteTeamMembersForUser'
-import { getTeam } from '../../teams/getTeam'
-import { getTeamMembers } from '../../teams/getTeamMembers'
-import { getTeamMembersForUserEmail } from '../../teams/getTeamMembersForUserEmail'
-import { deleteUser } from '../../users/deleteUser'
-import { formatName } from '../../utils/formatName'
+import { deleteAuthUser } from '@/auth/deleteAuthUser'
+import { getAuthUser } from '@/auth/getAuthUser'
+import { sendTeamDeletedEmail } from '@/emails/sendTeamDeletedEmail'
+import { deleteTeam } from '@/teams/deleteTeam'
+import { deleteTeamMembersForUser } from '@/teams/deleteTeamMembersForUser'
+import { getTeam } from '@/teams/getTeam'
+import { getTeamMembers } from '@/teams/getTeamMembers'
+import { getTeamMembersForUserEmail } from '@/teams/getTeamMembersForUserEmail'
+import { deleteUser } from '@/users/deleteUser'
+import { formatName } from '@/utils/formatName'
 
 console.log('Hello from Delete User Account!')
 

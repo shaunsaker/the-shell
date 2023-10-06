@@ -1,6 +1,7 @@
 import { Firestore, Price, PricingPlanInterval, PricingType } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
+
 import { Stripe } from './stripe'
 
 const parsePriceType = (priceType: string): PricingType => {

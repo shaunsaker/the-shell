@@ -1,6 +1,6 @@
 import { Firestore, TeamMember } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const deleteTeamMembers = async (teamMembers: TeamMember[]) => {
   const batch = firebase.firestore().batch()

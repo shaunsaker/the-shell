@@ -1,12 +1,12 @@
 import { onDocumentCreated } from 'firebase-functions/v2/firestore'
 import { TeamMemberStatus, User } from 'types'
 
-import { deleteSubscriptionSeats } from '../../billing/deleteSubscriptionSeats'
-import { getUnclaimedSubscriptionSeats } from '../../billing/getUnclaimedSubscriptionSeats'
-import { updateSubscriptionSeats } from '../../billing/updateSubscriptionSeats'
-import { deleteTeamMembers } from '../../teams/deleteTeamMembers'
-import { getUnclaimedTeamMembers } from '../../teams/getUnclaimedTeamMembers'
-import { updateTeamMembers } from '../../teams/updateTeamMembers'
+import { deleteSubscriptionSeats } from '@/billing/deleteSubscriptionSeats'
+import { getUnclaimedSubscriptionSeats } from '@/billing/getUnclaimedSubscriptionSeats'
+import { updateSubscriptionSeats } from '@/billing/updateSubscriptionSeats'
+import { deleteTeamMembers } from '@/teams/deleteTeamMembers'
+import { getUnclaimedTeamMembers } from '@/teams/getUnclaimedTeamMembers'
+import { updateTeamMembers } from '@/teams/updateTeamMembers'
 
 console.log('Hello from On User Created!')
 

@@ -1,4 +1,5 @@
-import { updateUser } from '../users/updateUser'
+import { updateUser } from '@/users/updateUser'
+
 import { Stripe, stripe } from './stripe'
 
 /**

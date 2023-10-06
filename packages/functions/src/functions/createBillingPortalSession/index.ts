@@ -1,10 +1,10 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
 
-import { getAuthUser } from '../../auth/getAuthUser'
-import { createBillingPortalSession } from '../../billing/createBillingPortalSession'
-import { createCustomer } from '../../billing/createCustomer'
-import { getCustomer } from '../../billing/getCustomer'
+import { getAuthUser } from '@/auth/getAuthUser'
+import { createBillingPortalSession } from '@/billing/createBillingPortalSession'
+import { createCustomer } from '@/billing/createCustomer'
+import { getCustomer } from '@/billing/getCustomer'
 
 console.log('Hello from Create Billing Portal Session!')
 

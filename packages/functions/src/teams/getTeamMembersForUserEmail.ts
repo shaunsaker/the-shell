@@ -1,6 +1,6 @@
 import { TeamMember } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const getTeamMembersForUserEmail = async (email: string) => {
   // NOTE: we use email because the user may not have signed up yet

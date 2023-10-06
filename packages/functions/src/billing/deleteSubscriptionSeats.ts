@@ -1,6 +1,6 @@
 import { SubscriptionSeat } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const deleteSubscriptionSeats = async (subscriptionSeats: SubscriptionSeat[]) => {
   const batch = firebase.firestore().batch()

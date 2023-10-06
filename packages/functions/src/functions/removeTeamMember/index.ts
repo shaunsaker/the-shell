@@ -1,13 +1,13 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
 
-import { getAuthUser } from '../../auth/getAuthUser'
-import { sendRemovedFromTeamEmail } from '../../emails/sendRemovedFromTeamEmail'
-import { deleteTeamMembers } from '../../teams/deleteTeamMembers'
-import { getTeam } from '../../teams/getTeam'
-import { getTeamMembers } from '../../teams/getTeamMembers'
-import { verifyTeamAdmin } from '../../teams/verifyTeamAdmin'
-import { formatName } from '../../utils/formatName'
+import { getAuthUser } from '@/auth/getAuthUser'
+import { sendRemovedFromTeamEmail } from '@/emails/sendRemovedFromTeamEmail'
+import { deleteTeamMembers } from '@/teams/deleteTeamMembers'
+import { getTeam } from '@/teams/getTeam'
+import { getTeamMembers } from '@/teams/getTeamMembers'
+import { verifyTeamAdmin } from '@/teams/verifyTeamAdmin'
+import { formatName } from '@/utils/formatName'
 
 console.log('Hello from Remove Team Member!')
 

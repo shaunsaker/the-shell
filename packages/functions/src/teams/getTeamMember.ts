@@ -1,6 +1,6 @@
 import { Firestore, TeamMember } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const getTeamMember = async ({ teamId, teamMemberId }: { teamId: string; teamMemberId: string }) => {
   const doc = await firebase

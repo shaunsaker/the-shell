@@ -1,6 +1,6 @@
 import { TeamMember, TeamMemberStatus } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const getUnclaimedTeamMembers = async (email: string) => {
   const docs = await firebase
