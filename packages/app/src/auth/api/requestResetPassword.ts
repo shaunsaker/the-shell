@@ -1,7 +1,8 @@
 import { Functions } from 'types'
 
-import { routes } from '../../router/routes'
-import { invokeFunction } from '../../utils/invokeFunction'
+import { routes } from '@/router/routes'
+import { invokeFunction } from '@/utils/invokeFunction'
+
 import { signOut } from './signOut'
 
 const requestResetPasswordFunction = invokeFunction(Functions.requestResetPassword)

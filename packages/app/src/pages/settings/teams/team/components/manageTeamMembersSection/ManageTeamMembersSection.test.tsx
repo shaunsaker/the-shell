@@ -2,12 +2,13 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { TeamMemberRole } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
-import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../router/routes'
-import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
-import { useTeam } from '../../../../../../teams/hooks/useTeam'
-import { makeTeamWithMembers } from '../../../../../../teams/mocks/makeTeamWithMembers'
-import { cleanUpAfterEach } from '../../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../../test/MockAppProvider'
+import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
+import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
+import { useTeam } from '@/teams/hooks/useTeam'
+import { makeTeamWithMembers } from '@/teams/mocks/makeTeamWithMembers'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { ManageTeamMembersSection } from './ManageTeamMembersSection'
 
 const mocks = vi.hoisted(() => {
@@ -24,11 +25,11 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin', () => ({
+vi.mock('@/teams/hooks/useIsLoggedInUserTeamAdmin', () => ({
   useIsLoggedInUserTeamAdmin: mocks.useIsLoggedInUserTeamAdmin,
 }))
 
-vi.mock('../../../../../../teams/hooks/useTeam', () => ({
+vi.mock('@/teams/hooks/useTeam', () => ({
   useTeam: mocks.useTeam,
 }))
 

@@ -2,12 +2,13 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { TeamMemberRole } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useIsTeamMemberLastAdmin } from '../../../../../../teams/hooks/useIsTeamMemberLastAdmin'
-import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
-import { makeTeamMember } from '../../../../../../teams/mocks/makeTeamMember'
-import { cleanUpAfterEach } from '../../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../../test/MockAppProvider'
-import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRole'
+import { useIsTeamMemberLastAdmin } from '@/teams/hooks/useIsTeamMemberLastAdmin'
+import { useTeamMember } from '@/teams/hooks/useTeamMember'
+import { makeTeamMember } from '@/teams/mocks/makeTeamMember'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { formatTeamMemberRole } from '@/utils/formatTeamMemberRole'
+
 import { ChangeTeamMemberRoleSection } from './ChangeTeamMemberRoleSection'
 
 const mocks = vi.hoisted(() => {
@@ -21,15 +22,15 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../../../teams/hooks/useIsTeamMemberLastAdmin', () => ({
+vi.mock('@/teams/hooks/useIsTeamMemberLastAdmin', () => ({
   useIsTeamMemberLastAdmin: mocks.useIsTeamMemberLastAdmin,
 }))
 
-vi.mock('../../../../../../teams/hooks/useTeamMember', () => ({
+vi.mock('@/teams/hooks/useTeamMember', () => ({
   useTeamMember: mocks.useTeamMember,
 }))
 
-vi.mock('../../../../../../teams/hooks/useUpdateTeamMemberRole', () => ({
+vi.mock('@/teams/hooks/useUpdateTeamMemberRole', () => ({
   useUpdateTeamMemberRole: () => ({
     mutate: mocks.updateTeamMemberRole,
   }),

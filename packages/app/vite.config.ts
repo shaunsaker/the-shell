@@ -4,6 +4,7 @@ import colors from 'tailwindcss/colors'
 import { defineConfig, loadEnv } from 'vite'
 import handlebars from 'vite-plugin-handlebars'
 import svgr from 'vite-plugin-svgr'
+import viteTsconfigPaths from 'vite-tsconfig-paths'
 
 import app from '../common/app.json'
 
@@ -21,6 +22,7 @@ const config = ({ mode }) => {
       sourcemap: SHOULD_USE_SENTRY,
     },
     plugins: [
+      viteTsconfigPaths(),
       react({
         // disable fastRefresh while testing to fix https://stackoverflow.com/questions/73815639/how-to-use-jsx-in-a-web-worker-with-vite
         fastRefresh: !process.env.TEST,

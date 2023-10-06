@@ -1,4 +1,5 @@
-import { useAuthUser } from '../../auth/hooks/useAuthUser'
+import { useAuthUser } from '@/auth/hooks/useAuthUser'
+
 import { useTeam } from './useTeam'
 
 export const useIsLoggedInUserTeamAdmin = () => {

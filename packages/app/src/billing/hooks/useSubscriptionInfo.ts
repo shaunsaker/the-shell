@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { QueryKeys } from '../../types'
+import { QueryKeys } from '@/types'
+
 import { getSubscriptionInfo } from '../api/getSubscriptionInfo'
 import { useSubscriptionSeats } from './useSubscriptionSeats'
 

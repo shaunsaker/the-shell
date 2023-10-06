@@ -1,8 +1,9 @@
 import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import { NavigationItem } from '@/types'
+
 import app from '../../../../common/app.json'
-import { NavigationItem } from '../../types'
 import { Button } from '../button/Button'
 
 type Props = {

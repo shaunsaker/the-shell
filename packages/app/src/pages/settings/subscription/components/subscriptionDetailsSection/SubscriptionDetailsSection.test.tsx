@@ -1,12 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { usePrices } from '../../../../../billing/hooks/usePrices'
-import { useProducts } from '../../../../../billing/hooks/useProducts'
-import { useSubscriptions } from '../../../../../billing/hooks/useSubscriptions'
-import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../test/MockAppProvider'
-import { useUser } from '../../../../../user/hooks/useUser'
+import { usePrices } from '@/billing/hooks/usePrices'
+import { useProducts } from '@/billing/hooks/useProducts'
+import { useSubscriptions } from '@/billing/hooks/useSubscriptions'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { useUser } from '@/user/hooks/useUser'
+
 import { SubscriptionDetailsSection } from './SubscriptionDetailsSection'
 
 const mocks = vi.hoisted(() => {
@@ -22,27 +23,27 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../../billing/hooks/useProducts', () => ({
+vi.mock('@/billing/hooks/useProducts', () => ({
   useProducts: mocks.useProducts,
 }))
 
-vi.mock('../../../../../billing/hooks/usePrices', () => ({
+vi.mock('@/billing/hooks/usePrices', () => ({
   usePrices: mocks.usePrices,
 }))
 
-vi.mock('../../../../../billing/hooks/useSubscriptionsListener', () => ({
+vi.mock('@/billing/hooks/useSubscriptionsListener', () => ({
   useSubscriptionsListener: vi.fn(),
 }))
 
-vi.mock('../../../../../billing/hooks/useSubscriptions', () => ({
+vi.mock('@/billing/hooks/useSubscriptions', () => ({
   useSubscriptions: mocks.useSubscriptions,
 }))
 
-vi.mock('../../../../../user/hooks/useUser', () => ({
+vi.mock('@/user/hooks/useUser', () => ({
   useUser: mocks.useUser,
 }))
 
-vi.mock('../../../../../billing/hooks/useCreateBillingPortalSession', () => ({
+vi.mock('@/billing/hooks/useCreateBillingPortalSession', () => ({
   useCreateBillingPortalSession: () => ({
     mutate: mocks.createBillingPortalSession,
   }),

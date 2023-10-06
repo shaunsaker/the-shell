@@ -2,13 +2,13 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { Badge } from '../../../../../../components/badge/Badge'
-import { Button } from '../../../../../../components/button/Button'
-import { Card } from '../../../../../../components/card/Card'
-import { Heading } from '../../../../../../components/heading/Heading'
-import { Text } from '../../../../../../components/text/Text'
-import { Title } from '../../../../../../components/title/Title'
-import { formatCurrency } from '../../../../../../utils/formatCurrency'
+import { Badge } from '@/components/badge/Badge'
+import { Button } from '@/components/button/Button'
+import { Card } from '@/components/card/Card'
+import { Heading } from '@/components/heading/Heading'
+import { Text } from '@/components/text/Text'
+import { Title } from '@/components/title/Title'
+import { formatCurrency } from '@/utils/formatCurrency'
 
 type PricingCardProps = {
   title: string

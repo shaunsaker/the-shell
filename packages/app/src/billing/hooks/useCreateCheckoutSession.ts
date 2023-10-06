@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { createCheckoutSession } from '../../billing/api/createCheckoutSession'
-import { useLink } from '../../utils/useLink'
+import { useLink } from '@/utils/useLink'
+
+import { createCheckoutSession } from '../api/createCheckoutSession'
 
 export const useCreateCheckoutSession = () => {
   const link = useLink()

@@ -1,12 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useHasActiveSubscription } from '../../billing/hooks/useHasActiveSubscription'
-import { useHasTeamPlan } from '../../billing/hooks/useHasTeamPlan'
-import { useTeams } from '../../teams/hooks/useTeams'
-import { makeTeamWithMembers } from '../../teams/mocks/makeTeamWithMembers'
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../test/MockAppProvider'
+import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
+import { useHasTeamPlan } from '@/billing/hooks/useHasTeamPlan'
+import { useTeams } from '@/teams/hooks/useTeams'
+import { makeTeamWithMembers } from '@/teams/mocks/makeTeamWithMembers'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { SettingsNavbar } from './SettingsNavbar'
 
 const mocks = vi.hoisted(() => ({
@@ -20,19 +21,19 @@ const mocks = vi.hoisted(() => ({
   navigate: vi.fn(),
 }))
 
-vi.mock('../../billing/hooks/useHasActiveSubscription', () => ({
+vi.mock('@/billing/hooks/useHasActiveSubscription', () => ({
   useHasActiveSubscription: mocks.useHasActiveSubscription,
 }))
 
-vi.mock('../../billing/hooks/useHasTeamPlan', () => ({
+vi.mock('@/billing/hooks/useHasTeamPlan', () => ({
   useHasTeamPlan: mocks.useHasTeamPlan,
 }))
 
-vi.mock('../../teams/hooks/useTeams', () => ({
+vi.mock('@/teams/hooks/useTeams', () => ({
   useTeams: mocks.useTeams,
 }))
 
-vi.mock('../../auth/hooks/useSignOut', () => ({
+vi.mock('@/auth/hooks/useSignOut', () => ({
   useSignOut: () => ({
     mutate: mocks.signOut,
   }),

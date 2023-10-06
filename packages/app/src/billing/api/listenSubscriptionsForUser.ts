@@ -1,7 +1,7 @@
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { Firestore, Subscription } from 'types'
 
-import { db } from '../../firebase'
+import { db } from '@/firebase'
 
 // listen for the user's subscriptions
 export const listenSubscriptionsForUser = (uid: string, cb: (data: Subscription[]) => void) => {

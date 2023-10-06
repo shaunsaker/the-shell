@@ -2,9 +2,10 @@ import { Cog6ToothIcon, HomeModernIcon } from '@heroicons/react/24/outline'
 import React, { ReactElement } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
-import { useHasActiveSubscription } from '../../billing/hooks/useHasActiveSubscription'
-import { routes } from '../../router/routes'
-import { NavigationItem } from '../../types'
+import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
+import { routes } from '@/router/routes'
+import { NavigationItem } from '@/types'
+
 import { Sidebar } from '../sidebar/Sidebar'
 
 export const MainLayout = (): ReactElement => {

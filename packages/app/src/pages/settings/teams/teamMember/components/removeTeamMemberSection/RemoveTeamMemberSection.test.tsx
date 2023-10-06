@@ -1,12 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../router/routes'
-import { useIsTeamMemberLastAdmin } from '../../../../../../teams/hooks/useIsTeamMemberLastAdmin'
-import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
-import { makeTeamMember } from '../../../../../../teams/mocks/makeTeamMember'
-import { cleanUpAfterEach } from '../../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../../test/MockAppProvider'
+import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
+import { useIsTeamMemberLastAdmin } from '@/teams/hooks/useIsTeamMemberLastAdmin'
+import { useTeamMember } from '@/teams/hooks/useTeamMember'
+import { makeTeamMember } from '@/teams/mocks/makeTeamMember'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { RemoveTeamMemberSection } from './RemoveTeamMemberSection'
 
 const mocks = vi.hoisted(() => {
@@ -20,11 +21,11 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../../../teams/hooks/useIsTeamMemberLastAdmin', () => ({
+vi.mock('@/teams/hooks/useIsTeamMemberLastAdmin', () => ({
   useIsTeamMemberLastAdmin: mocks.useIsTeamMemberLastAdmin,
 }))
 
-vi.mock('../../../../../../teams/hooks/useTeamMember', () => ({
+vi.mock('@/teams/hooks/useTeamMember', () => ({
   useTeamMember: mocks.useTeamMember,
 }))
 

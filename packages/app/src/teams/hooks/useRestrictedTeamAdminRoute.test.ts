@@ -1,9 +1,10 @@
 import { renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { routes, TEAM_ID_PARAM } from '../../router/routes'
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../test/MockAppProvider'
+import { routes, TEAM_ID_PARAM } from '@/router/routes'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { makeTeamWithMembers } from '../mocks/makeTeamWithMembers'
 import { useIsLoggedInUserTeamAdmin } from './useIsLoggedInUserTeamAdmin'
 import { useRestrictedTeamAdminRoute } from './useRestrictedTeamAdminRoute'

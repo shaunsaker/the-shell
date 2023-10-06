@@ -1,7 +1,7 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { Firestore, Subscription } from 'types'
 
-import { db } from '../../firebase'
+import { db } from '@/firebase'
 
 // fetch the subscriptions that the user owns
 export const getSubscriptionsForUser = async (uid: string) => {

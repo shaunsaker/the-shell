@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
-import { Button } from '../../../../../components/button/Button'
-import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
-import { TextInput } from '../../../../../components/textInput/TextInput'
-import { useUpdateUser } from '../../../../../user/hooks/useUpdateUser'
-import { useUser } from '../../../../../user/hooks/useUser'
+import { Button } from '@/components/button/Button'
+import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { TextInput } from '@/components/textInput/TextInput'
+import { useUpdateUser } from '@/user/hooks/useUpdateUser'
+import { useUser } from '@/user/hooks/useUser'
 
 export const ChangeNameSection = (): ReactElement => {
   const { data: user } = useUser()

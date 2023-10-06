@@ -1,8 +1,9 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../test/MockAppProvider'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { DeleteAccountSection } from './DeleteAccountSection'
 
 const getDeleteMyAccountButton = () => screen.getByRole('button', { name: 'Yes, delete my account' })
@@ -18,11 +19,11 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../../billing/hooks/useHasActiveSubscription', () => ({
+vi.mock('@/billing/hooks/useHasActiveSubscription', () => ({
   useHasActiveSubscription: mocks.useHasActiveSubscription,
 }))
 
-vi.mock('../../../../../auth/hooks/useDeleteUserAccount', () => ({
+vi.mock('@/auth/hooks/useDeleteUserAccount', () => ({
   useDeleteUserAccount: () => ({
     mutate: mocks.deleteUserAccount,
   }),

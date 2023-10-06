@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { useRestrictedSubscriptionRoute } from '../../billing/hooks/useRestrictedSubscriptionRoute'
-import { Headerbar } from '../../components/headerbar/Headerbar'
-import { Heading } from '../../components/heading/Heading'
-import { Loading } from '../../components/loading/Loading'
-import { PageLayout } from '../../components/pageLayout/PageLayout'
-import { Text } from '../../components/text/Text'
+import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
+import { Headerbar } from '@/components/headerbar/Headerbar'
+import { Heading } from '@/components/heading/Heading'
+import { Loading } from '@/components/loading/Loading'
+import { PageLayout } from '@/components/pageLayout/PageLayout'
+import { Text } from '@/components/text/Text'
 
 export const Dashboard = () => {
   const { data: hasActiveSubscription, isLoading } = useRestrictedSubscriptionRoute()

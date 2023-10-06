@@ -1,6 +1,6 @@
 import { Functions } from 'types'
 
-import { invokeFunction } from '../../utils/invokeFunction'
+import { invokeFunction } from '@/utils/invokeFunction'
 
 const changeUserEmailFunction = invokeFunction(Functions.changeUserEmail)
 

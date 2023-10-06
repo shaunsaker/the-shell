@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react'
 
-import { useHasActiveSubscription } from '../../../billing/hooks/useHasActiveSubscription'
-import { useIsSubscriptionOwner } from '../../../billing/hooks/useIsSubscriptionOwner'
-import { Loading } from '../../../components/loading/Loading'
-import { SettingsList } from '../../../components/settingsList/SettingsList'
+import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
+import { useIsSubscriptionOwner } from '@/billing/hooks/useIsSubscriptionOwner'
+import { Loading } from '@/components/loading/Loading'
+import { SettingsList } from '@/components/settingsList/SettingsList'
+
 import { ManagedSubscriptionSection } from './components/managedSubscriptionSection/ManagedSubscriptionSection'
 import { Pricing } from './components/pricing/Pricing'
 import { SubscriptionDetailsSection } from './components/subscriptionDetailsSection/SubscriptionDetailsSection'

@@ -1,7 +1,7 @@
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { Firestore, TeamMember } from 'types'
 
-import { db } from '../../firebase'
+import { db } from '@/firebase'
 
 export const getTeamMembers = async (teamId: string) => {
   const ref = collection(db, Firestore.Teams, teamId, Firestore.TeamMembers)

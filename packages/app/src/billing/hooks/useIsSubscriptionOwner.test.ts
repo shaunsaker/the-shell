@@ -1,7 +1,8 @@
 import { renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+
 import { makeSubscriptionSeat } from '../mocks/makeSubscriptionSeat'
 import { useIsSubscriptionOwner } from './useIsSubscriptionOwner'
 import { useSubscriptionSeats } from './useSubscriptionSeats'

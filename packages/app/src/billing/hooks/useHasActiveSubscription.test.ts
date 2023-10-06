@@ -2,7 +2,8 @@ import { renderHook } from '@testing-library/react'
 import { SubscriptionStatus } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+
 import { makeSubscriptionInfo } from '../mocks/makeSubscriptionInfo'
 import { useHasActiveSubscription } from './useHasActiveSubscription'
 import { useSubscriptionInfo } from './useSubscriptionInfo'

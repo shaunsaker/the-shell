@@ -1,11 +1,11 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
-import { useSendChangeEmailVerification } from '../../../../../auth/hooks/useSendChangeEmailVerification'
-import { Button } from '../../../../../components/button/Button'
-import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
-import { TextInput } from '../../../../../components/textInput/TextInput'
-import { useUser } from '../../../../../user/hooks/useUser'
-import { validateEmail } from '../../../../../utils/validateEmail'
+import { useSendChangeEmailVerification } from '@/auth/hooks/useSendChangeEmailVerification'
+import { Button } from '@/components/button/Button'
+import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { TextInput } from '@/components/textInput/TextInput'
+import { useUser } from '@/user/hooks/useUser'
+import { validateEmail } from '@/utils/validateEmail'
 
 export const ChangeEmailSection = (): ReactElement => {
   const { data: user } = useUser()

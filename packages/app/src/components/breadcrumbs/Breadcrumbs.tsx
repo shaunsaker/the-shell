@@ -1,7 +1,8 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 
+import { NavigationItem } from '@/types'
+
 import app from '../../../../common/app.json'
-import { NavigationItem } from '../../types'
 import { Button } from '../button/Button'
 import { Text } from '../text/Text'
 

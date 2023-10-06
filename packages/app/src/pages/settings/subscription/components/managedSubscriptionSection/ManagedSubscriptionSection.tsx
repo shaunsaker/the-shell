@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 
-import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
+import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 
 export const ManagedSubscriptionSection = (): ReactElement => {
   return (

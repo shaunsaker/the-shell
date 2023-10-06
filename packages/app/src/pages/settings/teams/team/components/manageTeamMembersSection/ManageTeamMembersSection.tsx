@@ -1,24 +1,17 @@
 import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Button } from '../../../../../../components/button/Button'
-import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
-import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeaderCell,
-  TableRow,
-} from '../../../../../../components/table/Table'
-import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../router/routes'
-import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
-import { useTeam } from '../../../../../../teams/hooks/useTeam'
-import { formatDate } from '../../../../../../utils/formatDate'
-import { formatTeamMemberName } from '../../../../../../utils/formatTeamMemberName'
-import { formatTeamMemberRole } from '../../../../../../utils/formatTeamMemberRole'
-import { formatTeamMemberStatus } from '../../../../../../utils/formatTeamMemberStatus'
+import { Button } from '@/components/button/Button'
+import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { SkeletonLoader } from '@/components/skeletonLoader/SkeletonLoader'
+import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@/components/table/Table'
+import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
+import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
+import { useTeam } from '@/teams/hooks/useTeam'
+import { formatDate } from '@/utils/formatDate'
+import { formatTeamMemberName } from '@/utils/formatTeamMemberName'
+import { formatTeamMemberRole } from '@/utils/formatTeamMemberRole'
+import { formatTeamMemberStatus } from '@/utils/formatTeamMemberStatus'
 
 export const ManageTeamMembersSection = (): ReactElement => {
   const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()

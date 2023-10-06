@@ -1,16 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useRestrictedSubscriptionRoute } from '../../../../../billing/hooks/useRestrictedSubscriptionRoute'
-import { useRestrictedTeamPlanRoute } from '../../../../../billing/hooks/useRestrictedTeamPlanRoute'
-import { routes } from '../../../../../router/routes'
-import { useRestrictedTeamAdminRoute } from '../../../../../teams/hooks/useRestrictedTeamAdminRoute'
-import { useTeam } from '../../../../../teams/hooks/useTeam'
-import { useTeamMember } from '../../../../../teams/hooks/useTeamMember'
-import { makeTeamMember } from '../../../../../teams/mocks/makeTeamMember'
-import { makeTeamWithMembers } from '../../../../../teams/mocks/makeTeamWithMembers'
-import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../test/MockAppProvider'
+import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
+import { useRestrictedTeamPlanRoute } from '@/billing/hooks/useRestrictedTeamPlanRoute'
+import { routes } from '@/router/routes'
+import { useRestrictedTeamAdminRoute } from '@/teams/hooks/useRestrictedTeamAdminRoute'
+import { useTeam } from '@/teams/hooks/useTeam'
+import { useTeamMember } from '@/teams/hooks/useTeamMember'
+import { makeTeamMember } from '@/teams/mocks/makeTeamMember'
+import { makeTeamWithMembers } from '@/teams/mocks/makeTeamWithMembers'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { SettingsRemoveTeamMember } from '.'
 
 const mocks = vi.hoisted(() => {
@@ -34,27 +35,27 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../../billing/hooks/useRestrictedSubscriptionRoute', () => ({
+vi.mock('@/billing/hooks/useRestrictedSubscriptionRoute', () => ({
   useRestrictedSubscriptionRoute: mocks.useRestrictedSubscriptionRoute,
 }))
 
-vi.mock('../../../../../billing/hooks/useRestrictedTeamPlanRoute', () => ({
+vi.mock('@/billing/hooks/useRestrictedTeamPlanRoute', () => ({
   useRestrictedTeamPlanRoute: mocks.useRestrictedTeamPlanRoute,
 }))
 
-vi.mock('../../../../../teams/hooks/useRestrictedTeamAdminRoute', () => ({
+vi.mock('@/teams/hooks/useRestrictedTeamAdminRoute', () => ({
   useRestrictedTeamAdminRoute: mocks.useRestrictedTeamAdminRoute,
 }))
 
-vi.mock('../../../../../teams/hooks/useTeam', () => ({
+vi.mock('@/teams/hooks/useTeam', () => ({
   useTeam: mocks.useTeam,
 }))
 
-vi.mock('../../../../../teams/hooks/useTeamMember', () => ({
+vi.mock('@/teams/hooks/useTeamMember', () => ({
   useTeamMember: mocks.useTeamMember,
 }))
 
-vi.mock('../../../../../teams/hooks/useRemoveTeamMember', () => ({
+vi.mock('@/teams/hooks/useRemoveTeamMember', () => ({
   useRemoveTeamMember: () => ({
     mutate: mocks.removeTeamMember,
   }),

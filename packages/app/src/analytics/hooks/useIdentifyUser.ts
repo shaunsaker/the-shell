@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 
-import { useAuthUser } from '../../auth/hooks/useAuthUser'
+import { useAuthUser } from '@/auth/hooks/useAuthUser'
+
 import { identifyUser } from '../api/identifyUser'
 
 export const useIdentifyUser = () => {

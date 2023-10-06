@@ -1,13 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useHasTeamPlan } from '../../../../../billing/hooks/useHasTeamPlan'
-import { usePrices } from '../../../../../billing/hooks/usePrices'
-import { useSubscriptionInfo } from '../../../../../billing/hooks/useSubscriptionInfo'
-import { makePrice } from '../../../../../billing/mocks/makePrice'
-import { makeSubscriptionInfo } from '../../../../../billing/mocks/makeSubscriptionInfo'
-import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../test/MockAppProvider'
+import { useHasTeamPlan } from '@/billing/hooks/useHasTeamPlan'
+import { usePrices } from '@/billing/hooks/usePrices'
+import { useSubscriptionInfo } from '@/billing/hooks/useSubscriptionInfo'
+import { makePrice } from '@/billing/mocks/makePrice'
+import { makeSubscriptionInfo } from '@/billing/mocks/makeSubscriptionInfo'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { SubscriptionSeatsSection } from './SubscriptionSeatsSection'
 
 const mocks = vi.hoisted(() => {
@@ -25,19 +26,19 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../../billing/hooks/usePrices', () => ({
+vi.mock('@/billing/hooks/usePrices', () => ({
   usePrices: mocks.usePrices,
 }))
 
-vi.mock('../../../../../billing/hooks/useHasTeamPlan', () => ({
+vi.mock('@/billing/hooks/useHasTeamPlan', () => ({
   useHasTeamPlan: mocks.useHasTeamPlan,
 }))
 
-vi.mock('../../../../../billing/hooks/useSubscriptionInfo', () => ({
+vi.mock('@/billing/hooks/useSubscriptionInfo', () => ({
   useSubscriptionInfo: mocks.useSubscriptionInfo,
 }))
 
-vi.mock('../../../../../billing/hooks/useUpdateSubscriptionQuantity', () => ({
+vi.mock('@/billing/hooks/useUpdateSubscriptionQuantity', () => ({
   useUpdateSubscriptionQuantity: () => ({
     mutate: mocks.updateSubscriptionQuantity,
   }),

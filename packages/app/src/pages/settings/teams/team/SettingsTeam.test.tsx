@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../test/MockAppProvider'
-import { TestIds } from '../../../../types'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { TestIds } from '@/types'
+
 import { SettingsTeam } from '.'
 
 enum MockTestIds {
@@ -12,7 +13,7 @@ enum MockTestIds {
 
 // mock the components so that we don't have to mock the entire firebase
 vi.mock(
-  '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs',
+  '@/components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs',
   vi.fn(() => ({
     SettingsTeamsBreadcrumbs: () => <div data-testid={MockTestIds.SettingsTeamsBreadcrumbs} />,
   })),
@@ -39,11 +40,11 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../billing/hooks/useRestrictedSubscriptionRoute', () => ({
+vi.mock('@/billing/hooks/useRestrictedSubscriptionRoute', () => ({
   useRestrictedSubscriptionRoute: mocks.useRestrictedSubscriptionRoute,
 }))
 
-vi.mock('../../../../billing/hooks/useRestrictedTeamPlanRoute', () => ({
+vi.mock('@/billing/hooks/useRestrictedTeamPlanRoute', () => ({
   useRestrictedTeamPlanRoute: mocks.useRestrictedTeamPlanRoute,
 }))
 

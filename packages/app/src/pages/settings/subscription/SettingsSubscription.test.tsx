@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useHasActiveSubscription } from '../../../billing/hooks/useHasActiveSubscription'
-import { useIsSubscriptionOwner } from '../../../billing/hooks/useIsSubscriptionOwner'
-import { cleanUpAfterEach } from '../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../test/MockAppProvider'
-import { TestIds } from '../../../types'
+import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
+import { useIsSubscriptionOwner } from '@/billing/hooks/useIsSubscriptionOwner'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { TestIds } from '@/types'
+
 import { SettingsSubscription } from '.'
 
 enum MockTestIds {
@@ -56,11 +57,11 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../billing/hooks/useHasActiveSubscription', () => ({
+vi.mock('@/billing/hooks/useHasActiveSubscription', () => ({
   useHasActiveSubscription: mocks.useHasActiveSubscription,
 }))
 
-vi.mock('../../../billing/hooks/useIsSubscriptionOwner', () => ({
+vi.mock('@/billing/hooks/useIsSubscriptionOwner', () => ({
   useIsSubscriptionOwner: mocks.useIsSubscriptionOwner,
 }))
 

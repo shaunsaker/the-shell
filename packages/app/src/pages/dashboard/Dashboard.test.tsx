@@ -1,16 +1,17 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../test/MockAppProvider'
-import { TestIds } from '../../types'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { TestIds } from '@/types'
+
 import { Dashboard } from '.'
 
 const mocks = vi.hoisted(() => ({
   useRestrictedSubscriptionRoute: vi.fn(() => ({ data: false, isLoading: false })),
 }))
 
-vi.mock('../../billing/hooks/useRestrictedSubscriptionRoute', () => ({
+vi.mock('@/billing/hooks/useRestrictedSubscriptionRoute', () => ({
   useRestrictedSubscriptionRoute: mocks.useRestrictedSubscriptionRoute,
 }))
 

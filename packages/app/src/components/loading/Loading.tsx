@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 import React, { ReactElement } from 'react'
 
-import { TestIds } from '../../types'
+import { TestIds } from '@/types'
+
 import { Logo } from '../logo/Logo'
 
 export const Loading = (): ReactElement => {

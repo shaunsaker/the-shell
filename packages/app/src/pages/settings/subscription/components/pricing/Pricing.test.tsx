@@ -2,13 +2,14 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { PricingPlanInterval } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
-import { usePrices } from '../../../../../billing/hooks/usePrices'
-import { useProducts } from '../../../../../billing/hooks/useProducts'
-import { makePrice } from '../../../../../billing/mocks/makePrice'
-import { makeProduct } from '../../../../../billing/mocks/makeProduct'
-import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../test/MockAppProvider'
-import { formatBillingInterval } from '../../../../../utils/formatBillingInterval'
+import { usePrices } from '@/billing/hooks/usePrices'
+import { useProducts } from '@/billing/hooks/useProducts'
+import { makePrice } from '@/billing/mocks/makePrice'
+import { makeProduct } from '@/billing/mocks/makeProduct'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { formatBillingInterval } from '@/utils/formatBillingInterval'
+
 import { Pricing } from './Pricing'
 
 const mocks = vi.hoisted(() => {
@@ -19,15 +20,15 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../../billing/hooks/usePrices', () => ({
+vi.mock('@/billing/hooks/usePrices', () => ({
   usePrices: mocks.usePrices,
 }))
 
-vi.mock('../../../../../billing/hooks/useProducts', () => ({
+vi.mock('@/billing/hooks/useProducts', () => ({
   useProducts: mocks.useProducts,
 }))
 
-vi.mock('../../../../../billing/hooks/useCreateCheckoutSession', () => ({
+vi.mock('@/billing/hooks/useCreateCheckoutSession', () => ({
   useCreateCheckoutSession: () => ({
     mutate: mocks.createCheckoutSession,
   }),

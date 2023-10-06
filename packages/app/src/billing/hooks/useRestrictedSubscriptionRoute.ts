@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { routes } from '../../router/routes'
+import { routes } from '@/router/routes'
+
 import { useHasActiveSubscription } from './useHasActiveSubscription'
 
 export const useRestrictedSubscriptionRoute = () => {

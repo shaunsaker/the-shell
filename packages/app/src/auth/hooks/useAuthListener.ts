@@ -1,8 +1,9 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 
-import { onAuthStateChanged } from '../../auth/api/onAuthStateChanged'
-import { QueryKeys } from '../../types'
+import { QueryKeys } from '@/types'
+
+import { onAuthStateChanged } from '../api/onAuthStateChanged'
 
 export const useAuthListener = () => {
   const queryClient = useQueryClient()

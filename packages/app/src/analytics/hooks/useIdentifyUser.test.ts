@@ -1,9 +1,10 @@
 import { renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useAuthUser } from '../../auth/hooks/useAuthUser'
-import { makeAuthUser } from '../../auth/mocks/makeAuthUser'
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
+import { useAuthUser } from '@/auth/hooks/useAuthUser'
+import { makeAuthUser } from '@/auth/mocks/makeAuthUser'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+
 import { useIdentifyUser } from './useIdentifyUser'
 
 const mocks = vi.hoisted(() => ({
@@ -11,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   identifyUser: vi.fn(),
 }))
 
-vi.mock('../../auth/hooks/useAuthUser', () => ({
+vi.mock('@/auth/hooks/useAuthUser', () => ({
   useAuthUser: mocks.useAuthUser,
 }))
 

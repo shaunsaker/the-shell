@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { useAuthUser } from '../../auth/hooks/useAuthUser'
-import { QueryKeys } from '../../types'
+import { useAuthUser } from '@/auth/hooks/useAuthUser'
+import { QueryKeys } from '@/types'
+
 import { getSubscriptionSeatsForUser } from '../api/getSubscriptionSeatsForUser'
 
 export const useSubscriptionSeats = () => {
