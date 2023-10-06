@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
 
-import { Description } from '../components/Description'
-import { Layout } from '../components/Layout'
-import { Title } from '../components/Title'
+import { Description } from '@/components/Description'
+import { Layout } from '@/components/Layout'
+import { Title } from '@/components/Title'
 
 type Props = {
   siteUrl: string

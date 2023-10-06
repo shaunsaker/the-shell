@@ -1,6 +1,10 @@
 {
   "extends": "tsconfig/base.json",
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["*"]
+    },
     // this is necessary for react-email to export jsx components
     "jsx": "react"
   },
