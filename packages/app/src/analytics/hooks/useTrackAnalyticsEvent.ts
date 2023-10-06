@@ -1,9 +1,11 @@
 import { useCallback } from 'react'
 
+import { trackAnalyticsEvent } from '../api/trackAnalyticsEvent'
+
 export const useTrackAnalyticsEvent = () => {
-  const trackAnalyticsEvent = useCallback((event: string, data: any) => {
+  const trackAnalyticsEventCb = useCallback((event: string, data: any) => {
     trackAnalyticsEvent(event, data)
   }, [])
 
-  return trackAnalyticsEvent
+  return trackAnalyticsEventCb
 }
