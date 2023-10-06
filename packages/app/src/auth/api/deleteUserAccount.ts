@@ -1,6 +1,7 @@
 import { Functions } from 'types'
 
-import { invokeFunction } from '../../utils/invokeFunction'
+import { invokeFunction } from '@/utils/invokeFunction'
+
 import { signOut } from './signOut'
 
 const deleteUserAccountFunction = invokeFunction(Functions.deleteUserAccount)

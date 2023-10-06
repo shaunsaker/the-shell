@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 
-import { SettingsList } from '../../../components/settingsList/SettingsList'
+import { SettingsList } from '@/components/settingsList/SettingsList'
+
 import { ChangeEmailSection } from './components/changeEmailSection/ChangeEmailSection'
 import { ChangeNameSection } from './components/changeNameSection/ChangeNameSection'
 import { ChangePasswordSection } from './components/changePasswordSection/ChangePasswordSection'

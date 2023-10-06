@@ -1,11 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
-import { useTeam } from '../../../../../../teams/hooks/useTeam'
-import { makeTeamWithMembers } from '../../../../../../teams/mocks/makeTeamWithMembers'
-import { cleanUpAfterEach } from '../../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../../test/MockAppProvider'
+import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
+import { useTeam } from '@/teams/hooks/useTeam'
+import { makeTeamWithMembers } from '@/teams/mocks/makeTeamWithMembers'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { ChangeTeamNameSection } from './ChangeTeamNameSection'
 
 const mocks = vi.hoisted(() => {
@@ -19,15 +20,15 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin', () => ({
+vi.mock('@/teams/hooks/useIsLoggedInUserTeamAdmin', () => ({
   useIsLoggedInUserTeamAdmin: mocks.useIsLoggedInUserTeamAdmin,
 }))
 
-vi.mock('../../../../../../teams/hooks/useTeam', () => ({
+vi.mock('@/teams/hooks/useTeam', () => ({
   useTeam: mocks.useTeam,
 }))
 
-vi.mock('../../../../../../teams/hooks/useUpdateTeam', () => ({
+vi.mock('@/teams/hooks/useUpdateTeam', () => ({
   useUpdateTeam: () => ({
     mutate: mocks.updateTeam,
   }),

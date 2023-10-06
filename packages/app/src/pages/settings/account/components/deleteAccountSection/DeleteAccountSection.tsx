@@ -1,10 +1,10 @@
 import React, { ReactElement, useState } from 'react'
 
-import { useDeleteUserAccount } from '../../../../../auth/hooks/useDeleteUserAccount'
-import { useHasActiveSubscription } from '../../../../../billing/hooks/useHasActiveSubscription'
-import { Button } from '../../../../../components/button/Button'
-import { Dialog } from '../../../../../components/dialog/Dialog'
-import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
+import { useDeleteUserAccount } from '@/auth/hooks/useDeleteUserAccount'
+import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
+import { Button } from '@/components/button/Button'
+import { Dialog } from '@/components/dialog/Dialog'
+import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 
 export const DeleteAccountSection = (): ReactElement => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()

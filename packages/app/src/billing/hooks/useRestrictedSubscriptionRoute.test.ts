@@ -1,9 +1,10 @@
 import { renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { routes } from '../../router/routes'
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../test/MockAppProvider'
+import { routes } from '@/router/routes'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { useHasActiveSubscription } from './useHasActiveSubscription'
 import { useRestrictedSubscriptionRoute } from './useRestrictedSubscriptionRoute'
 

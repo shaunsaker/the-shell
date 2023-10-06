@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
-import { makePrice } from '../billing/mocks/makePrice'
-import { makeProduct } from '../billing/mocks/makeProduct'
+import { makePrice } from '@/billing/mocks/makePrice'
+import { makeProduct } from '@/billing/mocks/makeProduct'
+
 import { sortProductsByPrice } from './sortProductsByPrice'
 
 describe('sortProductsByPrice', () => {

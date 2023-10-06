@@ -1,12 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 
-import { Button } from '../../../../../../components/button/Button'
-import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
-import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
-import { TextInput } from '../../../../../../components/textInput/TextInput'
-import { useIsLoggedInUserTeamAdmin } from '../../../../../../teams/hooks/useIsLoggedInUserTeamAdmin'
-import { useTeam } from '../../../../../../teams/hooks/useTeam'
-import { useUpdateTeam } from '../../../../../../teams/hooks/useUpdateTeam'
+import { Button } from '@/components/button/Button'
+import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { SkeletonLoader } from '@/components/skeletonLoader/SkeletonLoader'
+import { TextInput } from '@/components/textInput/TextInput'
+import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
+import { useTeam } from '@/teams/hooks/useTeam'
+import { useUpdateTeam } from '@/teams/hooks/useUpdateTeam'
 
 export const ChangeTeamNameSection = (): ReactElement => {
   const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()

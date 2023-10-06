@@ -1,8 +1,8 @@
 import { collectionGroup, doc, getDoc, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { Firestore, Team } from 'types'
 
-import { getAuthUser } from '../../auth/api/getAuthUser'
-import { db } from '../../firebase'
+import { getAuthUser } from '@/auth/api/getAuthUser'
+import { db } from '@/firebase'
 
 export const getTeams = async () => {
   const authUser = await getAuthUser()

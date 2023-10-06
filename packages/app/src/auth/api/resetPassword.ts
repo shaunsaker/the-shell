@@ -1,6 +1,6 @@
 import { confirmPasswordReset, verifyPasswordResetCode } from 'firebase/auth'
 
-import { auth } from '../../firebase'
+import { auth } from '@/firebase'
 
 export const resetPassword = async ({ actionCode, newPassword }: { actionCode: string; newPassword: string }) => {
   await verifyPasswordResetCode(auth, actionCode)

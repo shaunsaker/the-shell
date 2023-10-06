@@ -9,7 +9,7 @@ import { FirebaseError } from 'firebase/app'
 import { ReactElement, ReactNode } from 'react'
 import { toast } from 'react-hot-toast'
 
-import { captureException } from '../../errors/api/captureException'
+import { captureException } from '@/errors/api/captureException'
 
 const handleError = (error: unknown) => {
   console.error(error)

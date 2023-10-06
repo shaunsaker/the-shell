@@ -1,17 +1,18 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useIsSubscriptionOwner } from '../../../../billing/hooks/useIsSubscriptionOwner'
-import { useRestrictedSubscriptionRoute } from '../../../../billing/hooks/useRestrictedSubscriptionRoute'
-import { useRestrictedTeamPlanRoute } from '../../../../billing/hooks/useRestrictedTeamPlanRoute'
-import { useSubscriptionInfo } from '../../../../billing/hooks/useSubscriptionInfo'
-import { makeSubscriptionInfo } from '../../../../billing/mocks/makeSubscriptionInfo'
-import { routes } from '../../../../router/routes'
-import { useRestrictedTeamAdminRoute } from '../../../../teams/hooks/useRestrictedTeamAdminRoute'
-import { useTeam } from '../../../../teams/hooks/useTeam'
-import { makeTeamWithMembers } from '../../../../teams/mocks/makeTeamWithMembers'
-import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../test/MockAppProvider'
+import { useIsSubscriptionOwner } from '@/billing/hooks/useIsSubscriptionOwner'
+import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
+import { useRestrictedTeamPlanRoute } from '@/billing/hooks/useRestrictedTeamPlanRoute'
+import { useSubscriptionInfo } from '@/billing/hooks/useSubscriptionInfo'
+import { makeSubscriptionInfo } from '@/billing/mocks/makeSubscriptionInfo'
+import { routes } from '@/router/routes'
+import { useRestrictedTeamAdminRoute } from '@/teams/hooks/useRestrictedTeamAdminRoute'
+import { useTeam } from '@/teams/hooks/useTeam'
+import { makeTeamWithMembers } from '@/teams/mocks/makeTeamWithMembers'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { SettingsInviteTeamMembers } from '.'
 
 enum MockTestIds {
@@ -20,7 +21,7 @@ enum MockTestIds {
 
 // mock the components so that we don't have to mock the entire firebase
 vi.mock(
-  '../../../../components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs',
+  '@/components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs',
   vi.fn(() => ({
     SettingsTeamsBreadcrumbs: () => <div data-testid={MockTestIds.SettingsTeamsBreadcrumbs} />,
   })),
@@ -54,31 +55,31 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../../../billing/hooks/useRestrictedSubscriptionRoute', () => ({
+vi.mock('@/billing/hooks/useRestrictedSubscriptionRoute', () => ({
   useRestrictedSubscriptionRoute: mocks.useRestrictedSubscriptionRoute,
 }))
 
-vi.mock('../../../../billing/hooks/useRestrictedTeamPlanRoute', () => ({
+vi.mock('@/billing/hooks/useRestrictedTeamPlanRoute', () => ({
   useRestrictedTeamPlanRoute: mocks.useRestrictedTeamPlanRoute,
 }))
 
-vi.mock('../../../../teams/hooks/useRestrictedTeamAdminRoute', () => ({
+vi.mock('@/teams/hooks/useRestrictedTeamAdminRoute', () => ({
   useRestrictedTeamAdminRoute: mocks.useRestrictedTeamAdminRoute,
 }))
 
-vi.mock('../../../../teams/hooks/useTeam', () => ({
+vi.mock('@/teams/hooks/useTeam', () => ({
   useTeam: mocks.useTeam,
 }))
 
-vi.mock('../../../../billing/hooks/useSubscriptionInfo', () => ({
+vi.mock('@/billing/hooks/useSubscriptionInfo', () => ({
   useSubscriptionInfo: mocks.useSubscriptionInfo,
 }))
 
-vi.mock('../../../../billing/hooks/useIsSubscriptionOwner', () => ({
+vi.mock('@/billing/hooks/useIsSubscriptionOwner', () => ({
   useIsSubscriptionOwner: mocks.useIsSubscriptionOwner,
 }))
 
-vi.mock('../../../../teams/hooks/useInviteTeamMember', () => ({
+vi.mock('@/teams/hooks/useInviteTeamMember', () => ({
   useInviteTeamMembers: () => ({
     mutate: mocks.inviteTeamMembers,
   }),

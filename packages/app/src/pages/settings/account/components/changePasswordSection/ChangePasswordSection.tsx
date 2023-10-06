@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 
-import { ResetPassword } from '../../../../../components/resetPassword/ResetPassword'
-import { SettingsSection } from '../../../../../components/settingsSection/SettingsSection'
+import { ResetPassword } from '@/components/resetPassword/ResetPassword'
+import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 
 export const ChangePasswordSection = (): ReactElement => {
   return (

@@ -2,11 +2,11 @@ import React, { ReactElement, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
-import { useChangeUserEmail } from '../../../../auth/hooks/useChangeUserEmail'
-import { useVerifyEmail } from '../../../../auth/hooks/useVerifyEmail'
-import { Loading } from '../../../../components/loading/Loading'
-import { routes } from '../../../../router/routes'
-import { UserManagementParams } from '../../../../types'
+import { useChangeUserEmail } from '@/auth/hooks/useChangeUserEmail'
+import { useVerifyEmail } from '@/auth/hooks/useVerifyEmail'
+import { Loading } from '@/components/loading/Loading'
+import { routes } from '@/router/routes'
+import { UserManagementParams } from '@/types'
 
 export const VerifyAndChangeEmail = (): ReactElement => {
   const [searchParams] = useSearchParams()

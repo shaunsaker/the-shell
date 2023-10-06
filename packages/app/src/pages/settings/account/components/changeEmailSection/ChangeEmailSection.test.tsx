@@ -1,10 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../test/MockAppProvider'
-import { useUser } from '../../../../../user/hooks/useUser'
-import { makeUser } from '../../../../../user/mocks/makeUser'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { useUser } from '@/user/hooks/useUser'
+import { makeUser } from '@/user/mocks/makeUser'
+
 import { ChangeEmailSection } from './ChangeEmailSection'
 
 const getEmailInput = () => screen.getByLabelText('New email address')
@@ -22,13 +23,13 @@ const mocks = vi.hoisted(() => {
 
 const OLD_EMAIL = 'frank.gallagher@gmail.com'
 
-vi.mock('../../../../../user/hooks/useUser', () => ({
+vi.mock('@/user/hooks/useUser', () => ({
   useUser: vi.fn<any, Partial<ReturnType<typeof useUser>>>(() => ({
     data: makeUser({ email: OLD_EMAIL }),
   })),
 }))
 
-vi.mock('../../../../../auth/hooks/useSendChangeEmailVerification', () => ({
+vi.mock('@/auth/hooks/useSendChangeEmailVerification', () => ({
   useSendChangeEmailVerification: () => ({
     mutate: mocks.sendChangeEmailVerification,
   }),

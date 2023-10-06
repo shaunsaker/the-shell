@@ -1,8 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast'
 
-import { signUp } from '../../auth/api/signUp'
-import { QueryKeys } from '../../types'
+import { QueryKeys } from '@/types'
+
+import { signUp } from '../api/signUp'
 
 export const useSignUpWithPassword = () => {
   const queryClient = useQueryClient()

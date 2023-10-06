@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Alert } from '../../../../../../components/alert/Alert'
-import { Button } from '../../../../../../components/button/Button'
-import { SettingsSection } from '../../../../../../components/settingsSection/SettingsSection'
-import { SkeletonLoader } from '../../../../../../components/skeletonLoader/SkeletonLoader'
-import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '../../../../../../router/routes'
-import { useIsTeamMemberLastAdmin } from '../../../../../../teams/hooks/useIsTeamMemberLastAdmin'
-import { useTeamMember } from '../../../../../../teams/hooks/useTeamMember'
+import { Alert } from '@/components/alert/Alert'
+import { Button } from '@/components/button/Button'
+import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { SkeletonLoader } from '@/components/skeletonLoader/SkeletonLoader'
+import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
+import { useIsTeamMemberLastAdmin } from '@/teams/hooks/useIsTeamMemberLastAdmin'
+import { useTeamMember } from '@/teams/hooks/useTeamMember'
 
 export const RemoveTeamMemberSection = (): ReactElement => {
   const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()

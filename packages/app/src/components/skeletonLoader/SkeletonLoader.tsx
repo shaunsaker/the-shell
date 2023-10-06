@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { TestIds } from '../../types'
+import { TestIds } from '@/types'
 
 type SkeletonLoaderProps = {
   className?: string

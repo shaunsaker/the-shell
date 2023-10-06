@@ -1,9 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import app from '../../../../common/app.json'
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../test/MockAppProvider'
 import { SignUp } from '.'
 
 const mocks = vi.hoisted(() => {
@@ -12,7 +13,7 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('../../auth/hooks/useSignUpWithPassword', () => ({
+vi.mock('@/auth/hooks/useSignUpWithPassword', () => ({
   useSignUpWithPassword: () => ({
     mutate: mocks.signUpWithPassword,
   }),

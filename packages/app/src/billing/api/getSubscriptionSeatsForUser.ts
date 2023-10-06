@@ -1,7 +1,7 @@
 import { collectionGroup, getDocs, query, where } from 'firebase/firestore'
 import { SubscriptionSeat } from 'types'
 
-import { db } from '../../firebase'
+import { db } from '@/firebase'
 
 // fetch the users subscription seats
 export const getSubscriptionSeatsForUser = async (uid: string) => {

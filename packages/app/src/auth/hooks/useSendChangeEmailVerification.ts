@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
 import toast from 'react-hot-toast'
 
-import { useUserEmail } from '../../user/hooks/useUserEmail'
+import { useUserEmail } from '@/user/hooks/useUserEmail'
+
 import { sendChangeEmailVerification } from '../api/sendChangeEmailVerification'
 
 export const useSendChangeEmailVerification = () => {

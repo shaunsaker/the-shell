@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { routes, TEAM_ID_PARAM } from '../../router/routes'
+import { routes, TEAM_ID_PARAM } from '@/router/routes'
+
 import { useIsLoggedInUserTeamAdmin } from './useIsLoggedInUserTeamAdmin'
 import { useTeam } from './useTeam'
 

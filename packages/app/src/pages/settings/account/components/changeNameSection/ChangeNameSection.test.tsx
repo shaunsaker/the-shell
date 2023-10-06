@@ -1,10 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../../test/MockAppProvider'
-import { useUser } from '../../../../../user/hooks/useUser'
-import { makeUser } from '../../../../../user/mocks/makeUser'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { useUser } from '@/user/hooks/useUser'
+import { makeUser } from '@/user/mocks/makeUser'
+
 import { ChangeNameSection } from './ChangeNameSection'
 
 const getFirstNameInput = () => screen.getByLabelText('First name')
@@ -26,7 +27,7 @@ const UID = '12345678'
 const OLD_FIRST_NAME = 'Frank'
 const OLD_LAST_NAME = 'Gallagher'
 
-vi.mock('../../../../../user/hooks/useUser', () => ({
+vi.mock('@/user/hooks/useUser', () => ({
   useUser: vi.fn<any, Partial<ReturnType<typeof useUser>>>(() => ({
     data: makeUser({
       id: UID,
@@ -36,7 +37,7 @@ vi.mock('../../../../../user/hooks/useUser', () => ({
   })),
 }))
 
-vi.mock('../../../../../user/hooks/useUpdateUser', () => ({
+vi.mock('@/user/hooks/useUpdateUser', () => ({
   useUpdateUser: () => ({
     mutate: mocks.updateUser,
   }),

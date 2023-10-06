@@ -1,7 +1,7 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { Firestore, Price } from 'types'
 
-import { db } from '../../firebase'
+import { db } from '@/firebase'
 
 // fetch the active prices
 export const getPrices = async () => {

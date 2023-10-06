@@ -1,8 +1,9 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useEffect } from 'react'
 
-import { useAuthUser } from '../../auth/hooks/useAuthUser'
-import { QueryKeys } from '../../types'
+import { useAuthUser } from '@/auth/hooks/useAuthUser'
+import { QueryKeys } from '@/types'
+
 import { listenSubscriptionsForUser } from '../api/listenSubscriptionsForUser'
 
 export const useSubscriptionsListener = () => {

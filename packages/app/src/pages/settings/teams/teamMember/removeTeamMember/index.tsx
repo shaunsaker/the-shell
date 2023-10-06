@@ -1,15 +1,15 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useRestrictedSubscriptionRoute } from '../../../../../billing/hooks/useRestrictedSubscriptionRoute'
-import { useRestrictedTeamPlanRoute } from '../../../../../billing/hooks/useRestrictedTeamPlanRoute'
-import { Dialog } from '../../../../../components/dialog/Dialog'
-import { routes } from '../../../../../router/routes'
-import { useRemoveTeamMember } from '../../../../../teams/hooks/useRemoveTeamMember'
-import { useRestrictedTeamAdminRoute } from '../../../../../teams/hooks/useRestrictedTeamAdminRoute'
-import { useTeam } from '../../../../../teams/hooks/useTeam'
-import { useTeamMember } from '../../../../../teams/hooks/useTeamMember'
-import { formatTeamMemberName } from '../../../../../utils/formatTeamMemberName'
+import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
+import { useRestrictedTeamPlanRoute } from '@/billing/hooks/useRestrictedTeamPlanRoute'
+import { Dialog } from '@/components/dialog/Dialog'
+import { routes } from '@/router/routes'
+import { useRemoveTeamMember } from '@/teams/hooks/useRemoveTeamMember'
+import { useRestrictedTeamAdminRoute } from '@/teams/hooks/useRestrictedTeamAdminRoute'
+import { useTeam } from '@/teams/hooks/useTeam'
+import { useTeamMember } from '@/teams/hooks/useTeamMember'
+import { formatTeamMemberName } from '@/utils/formatTeamMemberName'
 
 export const SettingsRemoveTeamMember = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()

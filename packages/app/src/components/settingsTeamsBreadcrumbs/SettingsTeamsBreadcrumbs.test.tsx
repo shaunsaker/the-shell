@@ -1,14 +1,15 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useTeam } from '../../teams/hooks/useTeam'
-import { useTeamMember } from '../../teams/hooks/useTeamMember'
-import { makeTeamMember } from '../../teams/mocks/makeTeamMember'
-import { makeTeamWithMembers } from '../../teams/mocks/makeTeamWithMembers'
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../test/MockAppProvider'
-import { TestIds } from '../../types'
-import { formatTeamMemberName } from '../../utils/formatTeamMemberName'
+import { useTeam } from '@/teams/hooks/useTeam'
+import { useTeamMember } from '@/teams/hooks/useTeamMember'
+import { makeTeamMember } from '@/teams/mocks/makeTeamMember'
+import { makeTeamWithMembers } from '@/teams/mocks/makeTeamWithMembers'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { TestIds } from '@/types'
+import { formatTeamMemberName } from '@/utils/formatTeamMemberName'
+
 import { SettingsTeamsBreadcrumbs } from './SettingsTeamsBreadcrumbs'
 
 const mocks = vi.hoisted(() => ({
@@ -17,11 +18,11 @@ const mocks = vi.hoisted(() => ({
   navigate: vi.fn(),
 }))
 
-vi.mock('../../teams/hooks/useTeam', () => ({
+vi.mock('@/teams/hooks/useTeam', () => ({
   useTeam: mocks.useTeam,
 }))
 
-vi.mock('../../teams/hooks/useTeamMember', () => ({
+vi.mock('@/teams/hooks/useTeamMember', () => ({
   useTeamMember: mocks.useTeamMember,
 }))
 

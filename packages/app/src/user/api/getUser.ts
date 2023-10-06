@@ -1,7 +1,7 @@
 import { doc, getDoc } from 'firebase/firestore'
 import { Firestore, User } from 'types'
 
-import { db } from '../../firebase'
+import { db } from '@/firebase'
 
 export const getUser = async (uid: string) => {
   const ref = doc(db, Firestore.Users, uid)

@@ -1,10 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { routes } from '../../../../router/routes'
-import { cleanUpAfterEach } from '../../../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../../../test/MockAppProvider'
-import { TestIds, UserManagementParams } from '../../../../types'
+import { routes } from '@/router/routes'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+import { TestIds, UserManagementParams } from '@/types'
+
 import { VerifyEmail } from './VerifyEmail'
 
 const mocks = vi.hoisted(() => {
@@ -33,7 +34,7 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-vi.mock('../../../../auth/hooks/useVerifyEmail', () => ({
+vi.mock('@/auth/hooks/useVerifyEmail', () => ({
   useVerifyEmail: () => ({
     mutate: mocks.verifyEmail,
   }),

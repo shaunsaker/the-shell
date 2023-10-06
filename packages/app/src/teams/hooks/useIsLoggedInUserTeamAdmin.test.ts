@@ -2,9 +2,10 @@ import { renderHook } from '@testing-library/react'
 import { TeamMemberRole } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useAuthUser } from '../../auth/hooks/useAuthUser'
-import { makeAuthUser } from '../../auth/mocks/makeAuthUser'
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
+import { useAuthUser } from '@/auth/hooks/useAuthUser'
+import { makeAuthUser } from '@/auth/mocks/makeAuthUser'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+
 import { makeTeamWithMembers } from '../mocks/makeTeamWithMembers'
 import { useIsLoggedInUserTeamAdmin } from './useIsLoggedInUserTeamAdmin'
 import { useTeam } from './useTeam'
@@ -20,7 +21,7 @@ const mocks = vi.hoisted(() => ({
   })),
 }))
 
-vi.mock('../../auth/hooks/useAuthUser', () => ({
+vi.mock('@/auth/hooks/useAuthUser', () => ({
   useAuthUser: mocks.useAuthUser,
 }))
 

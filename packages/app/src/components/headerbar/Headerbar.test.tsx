@@ -1,7 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+
 import { Headerbar } from './Headerbar'
 
 const mocks = vi.hoisted(() => ({

@@ -2,7 +2,8 @@ import { renderHook } from '@testing-library/react'
 import { TeamMemberRole } from 'types'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+
 import { makeTeamMember } from '../mocks/makeTeamMember'
 import { makeTeamWithMembers } from '../mocks/makeTeamWithMembers'
 import { useIsTeamMemberLastAdmin } from './useIsTeamMemberLastAdmin'

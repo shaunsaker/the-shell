@@ -1,7 +1,8 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 
-import { auth } from '../../firebase'
-import { updateUser } from '../../user/api/updateUser'
+import { auth } from '@/firebase'
+import { updateUser } from '@/user/api/updateUser'
+
 import { sendEmailVerification } from './sendEmailVerification'
 import { signOut } from './signOut'
 

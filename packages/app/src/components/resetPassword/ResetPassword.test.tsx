@@ -1,8 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
-import { MockAppProvider } from '../../test/MockAppProvider'
+import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
+import { MockAppProvider } from '@/test/MockAppProvider'
+
 import { ResetPassword } from './ResetPassword'
 
 const getEmailInput = () => screen.getByLabelText('Email address')
@@ -18,7 +19,7 @@ const mocks = vi.hoisted(() => ({
   requestResetPassword: vi.fn(),
 }))
 
-vi.mock('../../auth/hooks/useRequestResetPassword', () => ({
+vi.mock('@/auth/hooks/useRequestResetPassword', () => ({
   useRequestResetPassword: () => ({
     mutate: mocks.requestResetPassword,
   }),
