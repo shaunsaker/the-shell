@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react'
 
-import { Button } from '@/components/Button'
-import { Description } from '@/components/Description'
-import { Layout } from '@/components/Layout'
-import { Title } from '@/components/Title'
-
 import app from '../../common/app.json'
+import { Button } from '../components/Button'
+import { Description } from '../components/Description'
+import { Layout } from '../components/Layout'
+import { Title } from '../components/Title'
 
 type Props = {
   siteUrl: string
