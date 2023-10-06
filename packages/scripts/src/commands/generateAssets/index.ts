@@ -1,10 +1,10 @@
 import * as path from 'path'
 
-import { copyFile } from '../utils/copyFile'
-import { createFavicon } from '../utils/createFavicon'
-import { createPng } from '../utils/createPng'
-import { ensureFileDirExists } from '../utils/ensureFileDirExists'
-import { log } from '../utils/log'
+import { copyFile } from '@/utils/copyFile'
+import { createFavicon } from '@/utils/createFavicon'
+import { createPng } from '@/utils/createPng'
+import { ensureFileDirExists } from '@/utils/ensureFileDirExists'
+import { log } from '@/utils/log'
 
 const CURRENT_WORKING_DIRECTORY = process.env.PWD || __dirname
 const ROOT_PATH = path.join(CURRENT_WORKING_DIRECTORY, '..')
