@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>
 export const Info: Story = {
   args: {
     kind: 'info',
-    children: 'Alert',
+    children: 'Info Alert',
     onClose: undefined,
   },
 }
@@ -26,7 +26,7 @@ export const Info: Story = {
 export const Success: Story = {
   args: {
     kind: 'success',
-    children: 'Alert',
+    children: 'Success Alert',
     onClose: undefined,
   },
 }
@@ -34,7 +34,7 @@ export const Success: Story = {
 export const Warning: Story = {
   args: {
     kind: 'warning',
-    children: 'Alert',
+    children: 'Warning Alert',
     onClose: undefined,
   },
 }
@@ -42,7 +42,7 @@ export const Warning: Story = {
 export const Error: Story = {
   args: {
     kind: 'error',
-    children: 'Alert',
+    children: 'Error Alert',
     onClose: undefined,
   },
 }
