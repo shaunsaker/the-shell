@@ -2,9 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import colors from 'tailwindcss/colors'
 
-import app from '../../common/app.json'
-import themeColors from '../../common/themeColors.json'
-import { log } from '../utils/log'
+import { log } from '@/utils/log'
+
+import app from '../../../../common/app.json'
+import themeColors from '../../../../common/themeColors.json'
 import { args } from './args'
 import { themeColorShadeMap } from './themeColorShadeMap'
 
@@ -92,15 +93,15 @@ async function main(): Promise<void> {
   }
 
   // finally, write the new themeColors to themeColors.json
-  fs.writeFileSync(path.join(__dirname, '../../common/themeColors.json'), JSON.stringify(themeColors, null, 2))
+  fs.writeFileSync(path.join(__dirname, '../../../../common/themeColors.json'), JSON.stringify(themeColors, null, 2))
 
   // and themeColor and neutralColor to app.json
   fs.writeFileSync(
-    path.join(__dirname, '../../common/app.json'),
+    path.join(__dirname, '../../../../common/app.json'),
     JSON.stringify({ ...app, themeColor, neutralColor }, null, 2),
   )
 
-  fs.writeFileSync(path.join(__dirname, '../../common/figmaColors.json'), JSON.stringify(figmaColors, null, 2))
+  fs.writeFileSync(path.join(__dirname, '../../../../common/figmaColors.json'), JSON.stringify(figmaColors, null, 2))
 
   log('Done ✅')
 }

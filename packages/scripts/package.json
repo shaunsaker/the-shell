@@ -9,8 +9,8 @@
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
     "lint:ts": "tsc",
     "lint": "npm-run-all --parallel lint:*",
-    "build:theme": "yarn dev:node ./generateTheme",
-    "build:assets": "yarn dev:node ./generateAssets",
+    "build:theme": "yarn dev:node ./src/commands/generateTheme",
+    "build:assets": "yarn dev:node ./src/commands/generateAssets",
     "build": "npm-run-all --parallel build:*"
   },
   "dependencies": {

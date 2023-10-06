@@ -424,7 +424,7 @@ yarn dev:emails
 
 ### Figma
 
-When updating your theme using the [scripts/generateTheme](./packages/scripts/generateTheme) script, you'll need to update your color styles in Figma.
+When updating your theme using the [generateTheme](./packages/scripts/src/commands/generateTheme/index.ts) script, you'll need to update your color styles in Figma.
 
 1. Copy the contents of [common/figmaColors.json](./packages/common/figmaColors.json) into this [tool](https://varundevpro.github.io/tailwind-plugin-helper-ui/).
 
