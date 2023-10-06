@@ -1,7 +1,7 @@
 import { onDocumentUpdated } from 'firebase-functions/v2/firestore'
 import { User } from 'types'
 
-import { firebase } from '../../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 console.log('Hello from On User Updated!')
 

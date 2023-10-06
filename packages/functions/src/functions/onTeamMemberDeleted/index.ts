@@ -2,9 +2,9 @@ import { onDocumentDeleted } from 'firebase-functions/v2/firestore'
 import { HttpsError } from 'firebase-functions/v2/https'
 import { TeamMember } from 'types'
 
-import { deleteAssignedSubscriptionSeatsByEmail } from '../../billing/deleteAssignedSubscriptionSeatsByEmail'
-import { getSubscriptionSeats } from '../../billing/getSubscriptionSeats'
-import { getTeamMembersForUserEmail } from '../../teams/getTeamMembersForUserEmail'
+import { deleteAssignedSubscriptionSeatsByEmail } from '@/billing/deleteAssignedSubscriptionSeatsByEmail'
+import { getSubscriptionSeats } from '@/billing/getSubscriptionSeats'
+import { getTeamMembersForUserEmail } from '@/teams/getTeamMembersForUserEmail'
 
 console.log('Hello from On Team Member Deleted!')
 

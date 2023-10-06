@@ -2,8 +2,8 @@ import { onDocumentCreated } from 'firebase-functions/v2/firestore'
 import { HttpsError } from 'firebase-functions/v2/https'
 import { SubscriptionSeat, TeamMember } from 'types'
 
-import { getSubscriptionSeats } from '../../billing/getSubscriptionSeats'
-import { updateSubscriptionSeats } from '../../billing/updateSubscriptionSeats'
+import { getSubscriptionSeats } from '@/billing/getSubscriptionSeats'
+import { updateSubscriptionSeats } from '@/billing/updateSubscriptionSeats'
 
 console.log('Hello from On Team Member Created!')
 

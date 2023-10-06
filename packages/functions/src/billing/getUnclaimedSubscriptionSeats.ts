@@ -1,6 +1,6 @@
 import { SubscriptionSeat } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const getUnclaimedSubscriptionSeats = async (email: string) => {
   const docs = await firebase.firestore().collectionGroup('seats').where('email', '==', email).get()

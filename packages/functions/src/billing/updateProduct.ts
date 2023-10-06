@@ -1,6 +1,7 @@
 import { Firestore, Product } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
+
 import { Stripe } from './stripe'
 
 export const updateProduct = async (product: Stripe.Product) => {

@@ -1,6 +1,6 @@
 import { Firestore, Subscription } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const getSubscriptionByOwnerId = async (ownerId: string) => {
   const docs = await firebase.firestore().collection(Firestore.Subscriptions).where('ownerId', '==', ownerId).get()

@@ -1,9 +1,9 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
 
-import { getAuthUser } from '../../auth/getAuthUser'
-import { getSubscriptionByOwnerId } from '../../billing/getSubscriptionByOwnerId'
-import { updateSubscriptionQuantity } from '../../billing/updateSubscriptionQuantity'
+import { getAuthUser } from '@/auth/getAuthUser'
+import { getSubscriptionByOwnerId } from '@/billing/getSubscriptionByOwnerId'
+import { updateSubscriptionQuantity } from '@/billing/updateSubscriptionQuantity'
 
 console.log('Hello from Update Subscription Quantity!')
 

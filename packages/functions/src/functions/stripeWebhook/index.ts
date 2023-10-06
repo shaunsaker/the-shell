@@ -1,10 +1,10 @@
 import { onRequest } from 'firebase-functions/v2/https'
 
-import { deleteProduct } from '../../billing/deleteProduct'
-import { manageSubscriptionStatusChange } from '../../billing/manageSubscriptionStatusChange'
-import { Stripe, stripe } from '../../billing/stripe'
-import { updatePrice } from '../../billing/updatePrice'
-import { updateProduct } from '../../billing/updateProduct'
+import { deleteProduct } from '@/billing/deleteProduct'
+import { manageSubscriptionStatusChange } from '@/billing/manageSubscriptionStatusChange'
+import { Stripe, stripe } from '@/billing/stripe'
+import { updatePrice } from '@/billing/updatePrice'
+import { updateProduct } from '@/billing/updateProduct'
 
 // This is needed in order to use the Web Crypto API in Deno.
 const cryptoProvider = Stripe.createNodeCryptoProvider()

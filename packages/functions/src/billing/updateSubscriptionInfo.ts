@@ -1,6 +1,6 @@
 import { SubscriptionInfo } from 'types'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const updateSubscriptionInfo = async (subscriptionInfo: SubscriptionInfo) => {
   await firebase

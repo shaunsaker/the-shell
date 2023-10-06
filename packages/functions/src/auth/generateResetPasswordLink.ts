@@ -1,6 +1,6 @@
 import { ActionCodeSettings } from 'firebase-admin/auth'
 
-import { firebase } from '../firebaseAdmin'
+import { firebase } from '@/firebase/admin'
 
 export const generateResetPasswordLink = async ({
   email,
