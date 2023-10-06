@@ -68,7 +68,11 @@ export const Alert = ({ className, kind = 'success', children, onClose }: Props)
       <Text className="w-full text-inherit dark:text-inherit">{children}</Text>
 
       {onClose && (
-        <Button className="p-0 text-inherit dark:text-inherit" variant="light" onClick={onClose}>
+        <Button
+          className="p-0 text-inherit hover:text-inherit dark:text-inherit dark:hover:text-inherit"
+          variant="light"
+          onClick={onClose}
+        >
           <XMarkIcon className="h-5 w-5" />
         </Button>
       )}
