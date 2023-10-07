@@ -6,7 +6,7 @@ import handlebars from 'vite-plugin-handlebars'
 import svgr from 'vite-plugin-svgr'
 import viteTsconfigPaths from 'vite-tsconfig-paths'
 
-import app from '../common/app.json'
+import app from '../config/app.json'
 
 // https://vitejs.dev/config/
 const config = ({ mode }) => {

@@ -10,7 +10,7 @@ const CURRENT_WORKING_DIRECTORY = process.env.PWD || __dirname
 const ROOT_PATH = path.join(CURRENT_WORKING_DIRECTORY, '..')
 const APP_PATH = path.join(ROOT_PATH, './app')
 const APP_PUBLIC_PATH = path.join(APP_PATH, './public')
-const LOGO_PATH = path.join(ROOT_PATH, './common/logo.svg')
+const LOGO_PATH = path.join(ROOT_PATH, './config/logo.svg')
 
 async function main(): Promise<void> {
   log('Generating assets...')

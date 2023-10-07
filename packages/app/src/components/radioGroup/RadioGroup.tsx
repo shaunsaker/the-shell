@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import app from '../../../../common/app.json'
+import app from '../../../../config/app.json'
 import { Button } from '../button/Button'
 
 type Option = {

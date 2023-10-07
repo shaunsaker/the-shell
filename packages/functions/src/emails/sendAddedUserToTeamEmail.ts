@@ -1,6 +1,6 @@
 import { AddedToTeam } from 'emails'
 
-import app from '../../../common/app.json'
+import app from '../../../config/app.json'
 import { resend } from './resend'
 
 export const sendAddedUserToTeamEmail = async ({

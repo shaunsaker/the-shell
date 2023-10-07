@@ -2,7 +2,7 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline'
 
 import { NavigationItem } from '@/types'
 
-import app from '../../../../common/app.json'
+import app from '../../../../config/app.json'
 import { Button } from '../button/Button'
 import { Text } from '../text/Text'
 

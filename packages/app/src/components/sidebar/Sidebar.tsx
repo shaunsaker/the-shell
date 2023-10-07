@@ -9,7 +9,7 @@ import { useKeyPress } from '@/utils/useKeyPress'
 import { useLink } from '@/utils/useLink'
 import { useOutsideClick } from '@/utils/useOutsideClick'
 
-import app from '../../../../common/app.json'
+import app from '../../../../config/app.json'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 import { Logo } from '../logo/Logo'
