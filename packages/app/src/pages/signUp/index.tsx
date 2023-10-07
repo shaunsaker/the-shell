@@ -10,7 +10,7 @@ import { routes } from '@/router/routes'
 import { useUserEmail } from '@/user/hooks/useUserEmail'
 import { validateEmail } from '@/utils/validateEmail'
 
-import app from '../../../../common/app.json'
+import app from '../../../../config/app.json'
 
 export const SignUp = () => {
   const [firstName, setFirstName] = useState('')

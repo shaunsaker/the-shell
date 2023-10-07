@@ -1,6 +1,6 @@
 import { ChangeEmailVerification } from 'emails'
 
-import app from '../../../common/app.json'
+import app from '../../../config/app.json'
 import { resend } from './resend'
 
 export const sendChangeEmailVerificationEmail = async ({

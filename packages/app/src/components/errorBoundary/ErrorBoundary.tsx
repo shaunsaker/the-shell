@@ -6,7 +6,7 @@ import { useCaptureException } from '@/errors/hooks/useCaptureException'
 import { routes } from '@/router/routes'
 import { useLink } from '@/utils/useLink'
 
-import app from '../../../../common/app.json'
+import app from '../../../../config/app.json'
 import { BlankState } from '../blankState/BlankState'
 import { Button } from '../button/Button'
 
