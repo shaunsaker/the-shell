@@ -1,4 +1,4 @@
-import themeColors from '../config/themeColors.json'
+import { themeColors } from 'config'
 
 export const tailwindConfig = {
   theme: {

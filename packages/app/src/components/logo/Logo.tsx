@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import LogoSvg from '../../../../config/logo-inverted.svg'
+import LogoSvg from '../../assets/logo.svg'
 
 type Props = {
   className?: string

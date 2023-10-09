@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { NavigationItem } from '@/types'
 
-import app from '../../../../config/app.json'
+import { app } from '../../../../config'
 import { Button } from '../button/Button'
 
 type Props = {

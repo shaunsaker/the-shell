@@ -1,7 +1,7 @@
 import { Container, Img, Tailwind, Text } from '@react-email/components'
+import { app } from 'config'
 import React, { ReactElement, ReactNode } from 'react'
 
-import app from '../../config/app.json'
 import { tailwindConfig } from '../tailwind.config'
 import { Description } from './Description'
 

@@ -1,6 +1,6 @@
+import { app } from 'config'
 import React, { ReactElement } from 'react'
 
-import app from '../../config/app.json'
 import { Button } from '../components/Button'
 import { Description } from '../components/Description'
 import { Layout } from '../components/Layout'

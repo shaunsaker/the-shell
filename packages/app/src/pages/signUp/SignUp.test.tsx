@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 import { MockAppProvider } from '@/test/MockAppProvider'
 
-import app from '../../../../config/app.json'
+import { app } from '../../../../config'
 import { SignUp } from '.'
 
 const mocks = vi.hoisted(() => {

@@ -1,6 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme'
 
-import themeColors from '../config/themeColors.json'
+import { themeColors } from '../config'
 
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
