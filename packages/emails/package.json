@@ -2,6 +2,7 @@
   "name": "emails",
   "version": "0.0.0",
   "private": true,
+  "main": "index.ts",
   "scripts": {
     "dev:emails": "email dev --port 3000",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",

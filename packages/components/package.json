@@ -1,0 +1,48 @@
+{
+  "name": "components",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "dev:storybook": "storybook dev -p 6006",
+    "dev": "npm-run-all --parallel dev:*",
+    "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
+    "lint:eslint": "eslint --ext [.ts,.tsx] .",
+    "lint:ts": "tsc --noEmit",
+    "lint": "npm-run-all --parallel lint:*",
+    "build:storybook": "storybook build",
+    "build": "npm-run-all --parallel build:*"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.0.8",
+    "@heroicons/react": "^2.0.18",
+    "config": "*",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.4.6",
+    "@storybook/addon-interactions": "^7.4.6",
+    "@storybook/addon-links": "^7.4.6",
+    "@storybook/addon-styling-webpack": "^0.0.4",
+    "@storybook/blocks": "^7.4.6",
+    "@storybook/react": "^7.4.6",
+    "@storybook/react-vite": "^7.4.6",
+    "@types/react": "^18.2.21",
+    "eslint": "^8.48.0",
+    "eslint-config-custom": "*",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-tailwindcss": "^3.12.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.24",
+    "prettier": "^2.8.1",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.4.6",
+    "tailwind-merge": "^1.13.2",
+    "tailwindcss": "^3.3.3",
+    "tsconfig": "*",
+    "typescript": "^5.1.6"
+  }
+}
