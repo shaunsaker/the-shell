@@ -1,14 +1,15 @@
+import { app, themeColors } from 'config'
 import fs from 'fs'
 import path from 'path'
 import colors from 'tailwindcss/colors'
 
 import { log } from '@/utils/log'
 
-import app from '../../../../config/app.json'
-import themeColors from '../../../../config/themeColors.json'
 import { args } from './args'
 import { themeColorShadeMap } from './themeColorShadeMap'
 
+const PATH_TO_CONFIG_MODULE = require.resolve('config')
+const PATH_TO_CONFIG_FOLDER = path.join(PATH_TO_CONFIG_MODULE, '..')
 const INVALID_COLORS = ['inherit', 'current', 'transparent', 'black', 'white']
 
 const getHexColorFromThemeColor = (
@@ -93,15 +94,15 @@ async function main(): Promise<void> {
   }
 
   // finally, write the new themeColors to themeColors.json
-  fs.writeFileSync(path.join(__dirname, '../../../../config/themeColors.json'), JSON.stringify(themeColors, null, 2))
+  fs.writeFileSync(path.join(PATH_TO_CONFIG_FOLDER, `themeColors.json`), JSON.stringify(themeColors, null, 2))
 
   // and themeColor and neutralColor to app.json
   fs.writeFileSync(
-    path.join(__dirname, '../../../../config/app.json'),
+    path.join(PATH_TO_CONFIG_FOLDER, `app.json`),
     JSON.stringify({ ...app, themeColor, neutralColor }, null, 2),
   )
 
-  fs.writeFileSync(path.join(__dirname, '../../../../config/figmaColors.json'), JSON.stringify(figmaColors, null, 2))
+  fs.writeFileSync(path.join(PATH_TO_CONFIG_FOLDER, `figmaColors.json`), JSON.stringify(figmaColors, null, 2))
 
   log('Done ✅')
 }

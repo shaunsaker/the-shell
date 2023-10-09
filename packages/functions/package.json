@@ -14,7 +14,6 @@
     "lint": "npm-run-all --parallel lint:*",
     "prebuild": "rm -rf ./dist",
     "build": "vite build --mode=$MODE",
-    "predev:emulator": "npx kill-port 4000 8080 9099",
     "dev:emulator": "firebase emulators:start --only auth,firestore,functions --import ./emulator --export-on-exit ./emulator",
     "dev:functions": "yarn build --watch --mode development",
     "dev:stripe": "stripe listen --forward-to http://127.0.0.1:5001/the-shell-development/us-central1/stripeWebhookFunction",
@@ -23,6 +22,7 @@
   "dependencies": {
     "@react-email/components": "^0.0.7",
     "@react-email/render": "^0.0.7",
+    "config": "*",
     "dayjs": "^1.11.9",
     "emails": "*",
     "firebase-admin": "^11.8.0",

@@ -4,7 +4,7 @@ import React, { ReactElement, ReactNode, useRef } from 'react'
 import { useKeyPress } from '@/utils/useKeyPress'
 import { useOutsideClick } from '@/utils/useOutsideClick'
 
-import app from '../../../../config/app.json'
+import { app } from '../../../../config'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 import { Card } from '../card/Card'

@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "predev:app": "npx kill-port 5173 6006",
     "dev:app": "vite --open --port 5173",
     "dev:app:staging": "yarn dev:app --mode staging",
     "dev:app:production": "yarn dev:app --mode production",

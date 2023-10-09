@@ -5,9 +5,3 @@ dist
 build-storybook.log
 storybook-static
 coverage
-
-# auto-generated assets
-public/apple-touch-icon.png
-public/favicon.ico
-public/icon-emails.png
-public/icon.svg

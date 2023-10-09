@@ -6,7 +6,7 @@ import handlebars from 'vite-plugin-handlebars'
 import svgr from 'vite-plugin-svgr'
 import viteTsconfigPaths from 'vite-tsconfig-paths'
 
-import app from '../config/app.json'
+import { app } from '../config'
 
 // https://vitejs.dev/config/
 const config = ({ mode }) => {
@@ -30,6 +30,11 @@ const config = ({ mode }) => {
       svgr({
         exportAsDefault: true,
         svgrOptions: {
+          svgoConfig: {
+            attributes: {
+              fill: 'currentColor',
+            },
+          },
           // enables us to size svg's with the css font-size property
           icon: '1em',
         },

@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import React, { ComponentPropsWithoutRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import app from '../../../../config/app.json'
+import { app } from '../../../../config'
 import { Button } from '../button/Button'
 import { Menu } from './Menu'
 

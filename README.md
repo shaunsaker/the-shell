@@ -108,7 +108,7 @@ git push -u origin develop
 
 ### Make it your own
 
-1. Update [app.json](./packages/config/app.json) with your app name, description and from or support email.
+1. Update [app.json](./packages/config/src/app.json) with your app name, description and from or support email.
 
 2. Generate your theme colors where `themeColor` and `neutralColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
 
@@ -117,7 +117,7 @@ cd ./packages/scripts
 yarn build:theme --themeColor teal --neutralColor gray
 ```
 
-3. Update [logo.svg](./packages/config/logo.svg) and [logo-inverted.svg](./packages/config/logo-inverted.svg) with your logos. [logo-inverted.svg](./packages/config/logo-inverted.svg) is simply a white version of your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+3. Update [logo.svg](./packages/config/src/logo.svg) with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
 
 4. Run the script:
 
@@ -424,7 +424,7 @@ yarn dev:emails
 
 ### Figma
 
-When updating your theme using the [generateTheme](./packages/scripts/src/commands/generateTheme/index.ts) script, you'll need to update your color styles in Figma.
+When updating your theme using the [generateTheme](./packages/scripts/src/generateTheme/index.ts) script, you'll need to update your color styles in Figma.
 
 1. Copy the contents of [config/figmaColors.json](./packages/config/figmaColors.json) into this [tool](https://varundevpro.github.io/tailwind-plugin-helper-ui/).
 

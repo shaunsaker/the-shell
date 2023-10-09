@@ -4,21 +4,23 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "dev:node": "tsx",
+    "dev:node": "vite-node",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
     "lint:ts": "tsc",
     "lint": "npm-run-all --parallel lint:*",
-    "build:theme": "yarn dev:node ./src/commands/generateTheme",
-    "build:assets": "yarn dev:node ./src/commands/generateAssets",
+    "build:theme": "yarn dev:node ./src/generateTheme",
+    "build:assets": "yarn dev:node ./src/generateAssets",
     "build": "npm-run-all --parallel build:*"
   },
   "dependencies": {
     "@expo/spawn-async": "^1.7.2",
+    "config": "*",
     "consola": "^3.2.3",
     "png-to-ico": "^2.1.8",
     "sharp": "^0.32.4",
     "tailwindcss": "^3.3.3",
+    "vite-node": "^0.34.6",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
@@ -28,7 +30,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.1",
     "tsconfig": "*",
-    "tsx": "^3.12.7",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vite-tsconfig-paths": "^4.2.1"
   }
 }
