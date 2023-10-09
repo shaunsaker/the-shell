@@ -11,6 +11,8 @@ const ROOT_PATH = path.join(CURRENT_WORKING_DIRECTORY, '..')
 const APP_PATH = path.join(ROOT_PATH, './app')
 const APP_PUBLIC_PATH = path.join(APP_PATH, './public')
 const APP_ASSETS_PATH = path.join(APP_PATH, './src/assets')
+const COMPONENTS_PATH = path.join(ROOT_PATH, './components')
+const COMPONENTS_ASSETS_PATH = path.join(COMPONENTS_PATH, './src/assets')
 const WEBSITE_PATH = path.join(ROOT_PATH, './website')
 const WEBSITE_PUBLIC_PATH = path.join(WEBSITE_PATH, './src/app')
 const PATH_TO_CONFIG_MODULE = require.resolve('config')
@@ -49,6 +51,11 @@ async function main(): Promise<void> {
   await copyFile({
     inputPath: LOGO_PATH,
     outputPath: path.join(APP_ASSETS_PATH, './logo.svg'),
+  })
+
+  await copyFile({
+    inputPath: LOGO_PATH,
+    outputPath: path.join(COMPONENTS_ASSETS_PATH, './logo.svg'),
   })
 
   await copyFile({
