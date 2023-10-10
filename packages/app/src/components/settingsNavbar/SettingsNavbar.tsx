@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react'
+import { Button, Navbar } from 'components'
+import React, { ComponentProps, ReactElement } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useSignOut } from '@/auth/hooks/useSignOut'
@@ -6,11 +7,10 @@ import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscripti
 import { useHasTeamPlan } from '@/billing/hooks/useHasTeamPlan'
 import { routes, TEAM_ID_PARAM } from '@/router/routes'
 import { useTeams } from '@/teams/hooks/useTeams'
-import { NavigationItem } from '@/types'
 
-import { Button } from '../button/Button'
-import { Headerbar } from '../headerbar/Headerbar'
-import { Navbar } from '../navbar/Navbar'
+import { CustomHeaderbar } from '../customHeaderbar/CustomHeaderbar'
+
+type NavigationItem = ComponentProps<typeof Navbar>['items'][0]
 
 export const SettingsNavbar = (): ReactElement => {
   const location = useLocation()
@@ -50,7 +50,7 @@ export const SettingsNavbar = (): ReactElement => {
   ]
 
   return (
-    <Headerbar>
+    <CustomHeaderbar>
       <Navbar
         items={items}
         onClick={href => {
@@ -68,6 +68,6 @@ export const SettingsNavbar = (): ReactElement => {
           Sign out
         </Button>
       </Navbar>
-    </Headerbar>
+    </CustomHeaderbar>
   )
 }

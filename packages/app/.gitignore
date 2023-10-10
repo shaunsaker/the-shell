@@ -2,6 +2,4 @@ dist
 .env.development
 .env.staging
 .env.production
-build-storybook.log
-storybook-static
 coverage

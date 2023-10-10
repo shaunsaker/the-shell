@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react'
+import { Loading } from 'components'
+import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
 import { useIsSubscriptionOwner } from '@/billing/hooks/useIsSubscriptionOwner'
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 import { MockAppProvider } from '@/test/MockAppProvider'
-import { TestIds } from '@/types'
 
 import { SettingsSubscription } from '.'
 
@@ -78,7 +79,7 @@ describe('SettingsSubscription', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.getByTestId(TestIds.Loading)).toBeInTheDocument()
+    expect(screen.getByTestId(Loading.TestId)).toBeInTheDocument()
   })
 
   it('renders pricing for users without an active subscription', () => {

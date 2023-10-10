@@ -1,4 +1,6 @@
 import { render, screen } from '@testing-library/react'
+import { Loading } from 'components'
+import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
@@ -6,7 +8,6 @@ import { useRestrictedTeamPlanRoute } from '@/billing/hooks/useRestrictedTeamPla
 import { useRestrictedTeamAdminRoute } from '@/teams/hooks/useRestrictedTeamAdminRoute'
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 import { MockAppProvider } from '@/test/MockAppProvider'
-import { TestIds } from '@/types'
 
 import { SettingsTeamMember } from '.'
 
@@ -79,7 +80,7 @@ describe('SettingsTeamMember', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.getByTestId(TestIds.Loading)).toBeInTheDocument()
+    expect(screen.getByTestId(Loading.TestId)).toBeInTheDocument()
   })
 
   it('renders', () => {

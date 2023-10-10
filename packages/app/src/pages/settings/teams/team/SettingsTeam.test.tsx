@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react'
+import { Loading } from 'components'
+import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 import { MockAppProvider } from '@/test/MockAppProvider'
-import { TestIds } from '@/types'
 
 import { SettingsTeam } from '.'
 
@@ -61,7 +62,7 @@ describe('SettingsTeam', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.getByTestId(TestIds.Loading)).toBeInTheDocument()
+    expect(screen.getByTestId(Loading.TestId)).toBeInTheDocument()
   })
 
   it('restricts the route to users without a subscription', () => {
@@ -73,7 +74,7 @@ describe('SettingsTeam', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.queryByTestId(TestIds.Loading)).not.toBeInTheDocument()
+    expect(screen.queryByTestId(Loading.TestId)).not.toBeInTheDocument()
     expect(screen.queryByTestId(MockTestIds.SettingsTeamsBreadcrumbs)).not.toBeInTheDocument()
   })
 
@@ -86,7 +87,7 @@ describe('SettingsTeam', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.queryByTestId(TestIds.Loading)).not.toBeInTheDocument()
+    expect(screen.queryByTestId(Loading.TestId)).not.toBeInTheDocument()
     expect(screen.queryByTestId(MockTestIds.SettingsTeamsBreadcrumbs)).not.toBeInTheDocument()
   })
 
@@ -100,7 +101,7 @@ describe('SettingsTeam', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.queryByTestId(TestIds.Loading)).not.toBeInTheDocument()
+    expect(screen.queryByTestId(Loading.TestId)).not.toBeInTheDocument()
     expect(screen.queryByTestId(MockTestIds.SettingsTeamsBreadcrumbs)).toBeInTheDocument()
   })
 })

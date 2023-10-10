@@ -1,11 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import React from 'react'
+import React, { ComponentProps } from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
-import { NavigationItem } from '@/types'
-
+import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { Navbar } from './Navbar'
+
+type NavigationItem = ComponentProps<typeof Navbar>['items'][0]
 
 const ITEMS: NavigationItem[] = [
   {

@@ -1,4 +1,6 @@
 import { render, screen } from '@testing-library/react'
+import { SkeletonLoader } from 'components'
+import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useTeam } from '@/teams/hooks/useTeam'
@@ -7,7 +9,6 @@ import { makeTeamMember } from '@/teams/mocks/makeTeamMember'
 import { makeTeamWithMembers } from '@/teams/mocks/makeTeamWithMembers'
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 import { MockAppProvider } from '@/test/MockAppProvider'
-import { TestIds } from '@/types'
 import { formatTeamMemberName } from '@/utils/formatTeamMemberName'
 
 import { SettingsTeamsBreadcrumbs } from './SettingsTeamsBreadcrumbs'
@@ -48,7 +49,7 @@ describe('SettingsTeamsBreadcrumbs', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.getByTestId(TestIds.SkeletonLoader)).toBeInTheDocument()
+    expect(screen.getByTestId(SkeletonLoader.TestId)).toBeInTheDocument()
   })
 
   it('renders the team', () => {

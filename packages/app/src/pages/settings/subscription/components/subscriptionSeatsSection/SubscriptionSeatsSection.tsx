@@ -1,14 +1,11 @@
+import { Alert, Button, Text, TextInput } from 'components'
 import React, { ReactElement, useEffect, useState } from 'react'
 
 import { useHasTeamPlan } from '@/billing/hooks/useHasTeamPlan'
 import { usePrices } from '@/billing/hooks/usePrices'
 import { useSubscriptionInfo } from '@/billing/hooks/useSubscriptionInfo'
 import { useUpdateSubscriptionQuantity } from '@/billing/hooks/useUpdateSubscriptionQuantity'
-import { Alert } from '@/components/alert/Alert'
-import { Button } from '@/components/button/Button'
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
-import { Text } from '@/components/text/Text'
-import { TextInput } from '@/components/textInput/TextInput'
 import { getSubscriptionSeatsButtonLabel } from '@/utils/getSubscriptionSeatsButtonLabel'
 
 const MIN_SEATS = 1

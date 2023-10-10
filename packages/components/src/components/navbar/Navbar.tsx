@@ -1,13 +1,17 @@
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-
-import { NavigationItem } from '@/types'
 
 import { app } from '../../../../config'
 import { Button } from '../button/Button'
 
 type Props = {
-  items: NavigationItem[]
+  items: {
+    name: string
+    href: string
+    icon?: ReactNode
+    active?: boolean
+    disabled?: boolean
+  }[]
   onClick?: (href: string) => void
 } & Omit<ComponentPropsWithoutRef<'ul'>, 'onClick'>
 

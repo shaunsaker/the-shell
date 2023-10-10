@@ -1,11 +1,9 @@
+import { Heading, Loading, Text } from 'components'
 import React from 'react'
 
 import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
-import { Headerbar } from '@/components/headerbar/Headerbar'
-import { Heading } from '@/components/heading/Heading'
-import { Loading } from '@/components/loading/Loading'
+import { CustomHeaderbar } from '@/components/customHeaderbar/CustomHeaderbar'
 import { PageLayout } from '@/components/pageLayout/PageLayout'
-import { Text } from '@/components/text/Text'
 
 export const Dashboard = () => {
   const { data: hasActiveSubscription, isLoading } = useRestrictedSubscriptionRoute()
@@ -20,7 +18,7 @@ export const Dashboard = () => {
 
   return (
     <>
-      <Headerbar />
+      <CustomHeaderbar />
 
       <PageLayout>
         <Heading>Dashboard</Heading>

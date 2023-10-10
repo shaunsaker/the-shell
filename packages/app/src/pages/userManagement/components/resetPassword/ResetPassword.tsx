@@ -1,9 +1,9 @@
+import { Loading } from 'components'
 import React, { ReactElement, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { useResetPassword } from '@/auth/hooks/useResetPassword'
-import { Loading } from '@/components/loading/Loading'
 import { routes } from '@/router/routes'
 import { UserManagementParams } from '@/types'
 

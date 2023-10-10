@@ -1,19 +1,20 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
+import { Button, Headerbar } from 'components'
 import React, { ReactElement, ReactNode } from 'react'
 
+import { useSidebarOpen } from '@/sidebar/hooks/useSidebarOpen'
+
 import { app } from '../../../../config'
-import { useSidebarOpen } from '../../sidebar/hooks/useSidebarOpen'
-import { Button } from '../button/Button'
 
 type Props = {
   children?: ReactNode
 }
 
-export const Headerbar = ({ children }: Props): ReactElement => {
+export const CustomHeaderbar = ({ children }: Props): ReactElement => {
   const [_, setSidebarOpen] = useSidebarOpen()
 
   return (
-    <header className="border-theme-border bg-theme-background dark:border-dark-theme-border dark:bg-dark-theme-background flex h-16 w-full shrink-0 items-center border-b shadow-sm lg:pl-8">
+    <Headerbar>
       <Button
         variant="light"
         color={app.neutralColor}
@@ -27,7 +28,7 @@ export const Headerbar = ({ children }: Props): ReactElement => {
         <Bars3Icon className="h-6 w-6" aria-hidden="true" />
       </Button>
 
-      <div className="flex h-full w-full justify-end overflow-hidden">{children}</div>
-    </header>
+      {children}
+    </Headerbar>
   )
 }

@@ -1,10 +1,8 @@
+import { Button, SkeletonLoader, Table } from 'components'
 import React, { ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Button } from '@/components/button/Button'
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
-import { SkeletonLoader } from '@/components/skeletonLoader/SkeletonLoader'
-import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from '@/components/table/Table'
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
 import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '@/teams/hooks/useTeam'
@@ -45,63 +43,63 @@ export const ManageTeamMembersSection = (): ReactElement => {
       fullWidth
     >
       <Table className="max-h-[20rem]">
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Name</TableHeaderCell>
+        <Table.Head>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
 
-            <TableHeaderCell>Email</TableHeaderCell>
+            <Table.HeaderCell>Email</Table.HeaderCell>
 
-            <TableHeaderCell>Status</TableHeaderCell>
+            <Table.HeaderCell>Status</Table.HeaderCell>
 
-            <TableHeaderCell>Role</TableHeaderCell>
+            <Table.HeaderCell>Role</Table.HeaderCell>
 
-            <TableHeaderCell>Date added</TableHeaderCell>
-          </TableRow>
-        </TableHead>
+            <Table.HeaderCell>Date added</Table.HeaderCell>
+          </Table.Row>
+        </Table.Head>
 
-        <TableBody>
+        <Table.Body>
           {loading ? (
-            <TableRow>
-              <TableCell>
+            <Table.Row>
+              <Table.Cell>
                 <SkeletonLoader />
-              </TableCell>
+              </Table.Cell>
 
-              <TableCell>
+              <Table.Cell>
                 <SkeletonLoader />
-              </TableCell>
+              </Table.Cell>
 
-              <TableCell>
+              <Table.Cell>
                 <SkeletonLoader />
-              </TableCell>
+              </Table.Cell>
 
-              <TableCell>
+              <Table.Cell>
                 <SkeletonLoader />
-              </TableCell>
+              </Table.Cell>
 
-              <TableCell>
+              <Table.Cell>
                 <SkeletonLoader />
-              </TableCell>
+              </Table.Cell>
 
-              <TableCell>
+              <Table.Cell>
                 <SkeletonLoader />
-              </TableCell>
-            </TableRow>
+              </Table.Cell>
+            </Table.Row>
           ) : (
             <>
               {team?.members?.map(teamMember => {
                 return (
-                  <TableRow key={teamMember.id}>
-                    <TableCell>{formatTeamMemberName(teamMember)}</TableCell>
+                  <Table.Row key={teamMember.id}>
+                    <Table.Cell>{formatTeamMemberName(teamMember)}</Table.Cell>
 
-                    <TableCell>{teamMember.email}</TableCell>
+                    <Table.Cell>{teamMember.email}</Table.Cell>
 
-                    <TableCell>{formatTeamMemberStatus(teamMember.status)}</TableCell>
+                    <Table.Cell>{formatTeamMemberStatus(teamMember.status)}</Table.Cell>
 
-                    <TableCell>{formatTeamMemberRole(teamMember.role)}</TableCell>
+                    <Table.Cell>{formatTeamMemberRole(teamMember.role)}</Table.Cell>
 
-                    <TableCell>{formatDate(teamMember.createdAt)}</TableCell>
+                    <Table.Cell>{formatDate(teamMember.createdAt)}</Table.Cell>
 
-                    <TableCell>
+                    <Table.Cell>
                       <Button
                         variant="light"
                         disabled={!isLoggedInUserTeamAdmin}
@@ -117,13 +115,13 @@ export const ManageTeamMembersSection = (): ReactElement => {
                       >
                         Manage
                       </Button>
-                    </TableCell>
-                  </TableRow>
+                    </Table.Cell>
+                  </Table.Row>
                 )
               })}
             </>
           )}
-        </TableBody>
+        </Table.Body>
       </Table>
     </SettingsSection>
   )

@@ -1,11 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import React from 'react'
+import React, { ComponentProps } from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
-import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
-import { NavigationItem } from '@/types'
-
+import { cleanUpAfterEach } from '../../test/cleanUpAfterEach'
 import { Sidebar } from './Sidebar'
+
+type NavigationItem = ComponentProps<typeof Sidebar>['items'][0]
 
 const ITEMS: NavigationItem[] = [
   {
@@ -27,24 +27,25 @@ const ITEMS: NavigationItem[] = [
 ]
 
 const onItemClick = vi.fn()
+const onClose = vi.fn()
 
 describe('Sidebar', () => {
   cleanUpAfterEach()
 
-  it('renders', () => {
-    render(<Sidebar items={ITEMS} onItemClick={onItemClick} />)
+  it('renders', async () => {
+    render(<Sidebar items={ITEMS} onItemClick={onItemClick} onClose={onClose} />)
 
     expect(screen.getByRole('button', { name: ITEMS[0].name })).toBeInTheDocument()
   })
 
   it('disables the button if the item is disabled', () => {
-    render(<Sidebar items={ITEMS} onItemClick={onItemClick} />)
+    render(<Sidebar items={ITEMS} onItemClick={onItemClick} onClose={onClose} />)
 
     expect(screen.getByRole('button', { name: ITEMS[1].name })).toBeDisabled()
   })
 
   it('allows click if the item is not disabled and the route is not active', () => {
-    render(<Sidebar items={ITEMS} onItemClick={onItemClick} />)
+    render(<Sidebar items={ITEMS} onItemClick={onItemClick} onClose={onClose} />)
 
     const button = screen.getByRole('button', { name: ITEMS[2].name })
     expect(button).not.toBeDisabled()
@@ -53,6 +54,4 @@ describe('Sidebar', () => {
 
     expect(onItemClick).toHaveBeenCalledWith(ITEMS[2].href)
   })
-
-  // TODO: SS test onClose
 })

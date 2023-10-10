@@ -1,9 +1,9 @@
+import { Dialog } from 'components'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
 import { useRestrictedTeamPlanRoute } from '@/billing/hooks/useRestrictedTeamPlanRoute'
-import { Dialog } from '@/components/dialog/Dialog'
 import { routes } from '@/router/routes'
 import { useRemoveTeamMember } from '@/teams/hooks/useRemoveTeamMember'
 import { useRestrictedTeamAdminRoute } from '@/teams/hooks/useRestrictedTeamAdminRoute'

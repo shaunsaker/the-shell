@@ -1,9 +1,7 @@
+import { Button, SkeletonLoader, TextInput } from 'components'
 import React, { ReactElement, useEffect, useState } from 'react'
 
-import { Button } from '@/components/button/Button'
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
-import { SkeletonLoader } from '@/components/skeletonLoader/SkeletonLoader'
-import { TextInput } from '@/components/textInput/TextInput'
 import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '@/teams/hooks/useTeam'
 import { useUpdateTeam } from '@/teams/hooks/useUpdateTeam'

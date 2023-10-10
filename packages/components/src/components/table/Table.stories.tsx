@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
 import { Button } from '../button/Button'
-import { Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow } from './Table'
+import { Table } from './Table'
 
 const meta = {
   title: 'Table',
@@ -21,47 +21,47 @@ export const Default: Story = {
   args: {
     children: (
       <>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Name</TableHeaderCell>
+        <Table.Head>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
 
-            <TableHeaderCell>Created By</TableHeaderCell>
+            <Table.HeaderCell>Created By</Table.HeaderCell>
 
-            <TableHeaderCell>Team Members</TableHeaderCell>
+            <Table.HeaderCell>Team Members</Table.HeaderCell>
 
-            <TableHeaderCell>Date Created</TableHeaderCell>
-          </TableRow>
-        </TableHead>
+            <Table.HeaderCell>Date Created</Table.HeaderCell>
+          </Table.Row>
+        </Table.Head>
 
-        <TableBody>
-          <TableRow>
-            <TableCell>Frank's A Team</TableCell>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>Frank's A Team</Table.Cell>
 
-            <TableCell>Frank Gallagher</TableCell>
+            <Table.Cell>Frank Gallagher</Table.Cell>
 
-            <TableCell>1</TableCell>
+            <Table.Cell>1</Table.Cell>
 
-            <TableCell>23 June 1988</TableCell>
+            <Table.Cell>23 June 1988</Table.Cell>
 
-            <TableCell>
+            <Table.Cell>
               <Button variant="light">Edit</Button>
-            </TableCell>
-          </TableRow>
+            </Table.Cell>
+          </Table.Row>
 
-          <TableRow>
-            <TableCell>Frank's B Team</TableCell>
+          <Table.Row>
+            <Table.Cell>Frank's B Team</Table.Cell>
 
-            <TableCell>Frank Gallagher</TableCell>
+            <Table.Cell>Frank Gallagher</Table.Cell>
 
-            <TableCell>6</TableCell>
+            <Table.Cell>6</Table.Cell>
 
-            <TableCell>23 June 1988</TableCell>
+            <Table.Cell>23 June 1988</Table.Cell>
 
-            <TableCell>
+            <Table.Cell>
               <Button variant="light">Edit</Button>
-            </TableCell>
-          </TableRow>
-        </TableBody>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
       </>
     ),
   },

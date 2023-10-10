@@ -1,22 +1,26 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { NavigationItem } from '@/types'
-import { useKeyPress } from '@/utils/useKeyPress'
-import { useOutsideClick } from '@/utils/useOutsideClick'
-
+import { useKeyPress } from '../../utils/useKeyPress'
+import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 import { Logo } from '../logo/Logo'
 
 type Props = {
-  open?: boolean
-  items: NavigationItem[]
-  onItemClick?: (href: string) => void
-  onClose?: () => void
+  open?: boolean // only applicable to mobile
+  items: {
+    name: string
+    href: string
+    icon?: ReactNode
+    active?: boolean
+    disabled?: boolean
+  }[]
+  onItemClick: (href: string) => void
+  onClose?: () => void // only applicable to mobile
 }
 
 export const Sidebar = ({ open, items, onItemClick, onClose }: Props) => {
@@ -56,7 +60,7 @@ export const Sidebar = ({ open, items, onItemClick, onClose }: Props) => {
                   disabled={item.disabled}
                   onClick={() => {
                     // navigate to the route if we're not already on that route
-                    if (!item.active && onItemClick) {
+                    if (!item.active) {
                       onItemClick(item.href)
 
                       if (open && onClose) {

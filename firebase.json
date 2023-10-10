@@ -24,8 +24,8 @@
     },
     {
       "target": "storybook",
-      "predeploy": "cd ./packages/scripts && yarn build && cd ../app && yarn build:storybook",
-      "public": "./packages/app/storybook-static",
+      "predeploy": "cd ./packages/scripts && yarn build && cd ../components && yarn build:storybook",
+      "public": "./packages/components/storybook-static",
       "rewrites": [
         {
           "source": "**",

@@ -1,9 +1,9 @@
 import { ErrorBoundary } from '@sentry/react'
+import { Loading } from 'components'
 import React, { ReactElement } from 'react'
 import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
 
 import { useAuthUser } from '@/auth/hooks/useAuthUser'
-import { Loading } from '@/components/loading/Loading'
 import { MainLayout } from '@/components/mainLayout/MainLayout'
 import { SettingsLayout } from '@/components/settingsLayout/SettingsLayout'
 import { Dashboard } from '@/pages/dashboard'
