@@ -9,7 +9,7 @@ import { useSidebarOpen } from '@/sidebar/hooks/useSidebarOpen'
 import { isExternalLink } from '@/utils/isExternalLink'
 import { useLink } from '@/utils/useLink'
 
-import { app } from '../../../../config/src'
+import { app } from '../../../../config'
 
 type NavigationItem = ComponentProps<typeof Sidebar>['items'][0]
 
