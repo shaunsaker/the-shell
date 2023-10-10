@@ -17,6 +17,7 @@ import { RadioGroup } from './components/radioGroup/RadioGroup'
 import { Select } from './components/select/Select'
 import { Sidebar } from './components/sidebar/Sidebar'
 import { SkeletonLoader } from './components/skeletonLoader/SkeletonLoader'
+import { SlimLayout } from './components/slimLayout/SlimLayout'
 import { Snackbar } from './components/snackbar/Snackbar'
 import { Table } from './components/table/Table'
 import { Text } from './components/text/Text'
@@ -43,6 +44,7 @@ export {
   Select,
   Sidebar,
   SkeletonLoader,
+  SlimLayout,
   Snackbar,
   Table,
   Text,
