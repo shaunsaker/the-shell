@@ -14,6 +14,7 @@
     "lint": "npm-run-all --parallel lint:*",
     "prebuild": "rm -rf ./dist",
     "build": "vite build --mode=$MODE",
+    "predev:emulator": "npx kill-port 8080",
     "dev:emulator": "firebase emulators:start --only auth,firestore,functions --import ./emulator --export-on-exit ./emulator",
     "dev:functions": "yarn build --watch --mode development",
     "dev:stripe": "stripe listen --forward-to http://127.0.0.1:5001/the-shell-development/us-central1/stripeWebhookFunction",
