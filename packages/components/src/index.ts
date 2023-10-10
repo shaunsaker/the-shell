@@ -6,6 +6,7 @@ import { Breadcrumbs } from './components/breadcrumbs/Breadcrumbs'
 import { Button } from './components/button/Button'
 import { Card } from './components/card/Card'
 import { Dialog } from './components/dialog/Dialog'
+import { ErrorPage } from './components/errorPage/ErrorPage'
 import { Headerbar } from './components/headerbar/Headerbar'
 import { Heading } from './components/heading/Heading'
 import { Label } from './components/label/Label'
@@ -33,6 +34,7 @@ export {
   Button,
   Card,
   Dialog,
+  ErrorPage,
   Headerbar,
   Heading,
   Label,
