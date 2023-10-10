@@ -42,42 +42,25 @@ export const SignUp = () => {
   )
 
   return (
-    <AuthLayout
-      title={`Sign up to ${app.displayName}`}
-      footer={
-        <Text>
-          Already a member?{' '}
-          <Button
-            variant="light"
-            onClick={() => {
-              navigate(routes.signIn)
-            }}
-          >
-            Sign in instead
-          </Button>
-        </Text>
-      }
-    >
+    <AuthLayout title={`Sign up to ${app.displayName}`}>
       <form className="space-y-6" onSubmit={onSubmit}>
-        <div className="mt-2 flex flex-wrap gap-6 lg:flex-nowrap">
-          <TextInput
-            className="flex-1"
-            label="First name"
-            placeholder="Enter your first name..."
-            required
-            value={firstName}
-            onChange={event => setFirstName(event.target.value)}
-          />
+        <TextInput
+          className="flex-1"
+          label="First name"
+          placeholder="Enter your first name..."
+          required
+          value={firstName}
+          onChange={event => setFirstName(event.target.value)}
+        />
 
-          <TextInput
-            className="flex-1"
-            label="Last name"
-            placeholder="Enter your last name..."
-            required
-            value={lastName}
-            onChange={event => setLastName(event.target.value)}
-          />
-        </div>
+        <TextInput
+          className="flex-1"
+          label="Last name"
+          placeholder="Enter your last name..."
+          required
+          value={lastName}
+          onChange={event => setLastName(event.target.value)}
+        />
 
         <TextInput
           type="email"
@@ -102,6 +85,19 @@ export const SignUp = () => {
         <Button type="submit" disabled={disabled} loading={isLoading}>
           Sign up
         </Button>
+
+        <Text className="flex items-center">
+          Already a member?{' '}
+          <Button
+            className="-ml-2"
+            variant="light"
+            onClick={() => {
+              navigate(routes.signIn)
+            }}
+          >
+            Sign in instead.
+          </Button>
+        </Text>
       </form>
     </AuthLayout>
   )
