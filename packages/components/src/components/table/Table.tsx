@@ -1,9 +1,15 @@
 import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import { TableBody } from './TableBody'
+import { TableCell } from './TableCell'
+import { TableHead } from './TableHead'
+import { TableHeaderCell } from './TableHeaderCell'
+import { TableRow } from './TableRow'
+
 type Props = ComponentPropsWithoutRef<'table'>
 
-export const Table = ({ className = '', ...props }: Props): ReactElement => {
+const Table = ({ className = '', ...props }: Props): ReactElement => {
   return (
     <div className="overflow-auto">
       <table className={twMerge('w-full table-auto', className)} {...props} />
@@ -11,8 +17,10 @@ export const Table = ({ className = '', ...props }: Props): ReactElement => {
   )
 }
 
-export { TableBody } from './TableBody'
-export { TableCell } from './TableCell'
-export { TableHead } from './TableHead'
-export { TableHeaderCell } from './TableHeaderCell'
-export { TableRow } from './TableRow'
+Table.Head = TableHead
+Table.HeaderCell = TableHeaderCell
+Table.Body = TableBody
+Table.Row = TableRow
+Table.Cell = TableCell
+
+export { Table }

@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'div'>

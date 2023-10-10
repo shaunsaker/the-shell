@@ -3,13 +3,7 @@ const OFF = 'off'
 
 module.exports = {
   root: true,
-  extends: [
-    'react-app',
-    'plugin:react-hooks/recommended',
-    'plugin:tailwindcss/recommended',
-    'plugin:storybook/recommended',
-    'custom',
-  ],
+  extends: ['react-app', 'plugin:react-hooks/recommended', 'plugin:tailwindcss/recommended', 'custom'],
   plugins: ['react', 'react-hooks', 'tailwindcss'],
   rules: {
     'react/no-unescaped-entities': OFF,

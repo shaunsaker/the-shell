@@ -1,9 +1,7 @@
+import { Card, Logo, Title } from 'components'
 import React, { ReactNode } from 'react'
 
-import { Card } from '../card/Card'
-import { Logo } from '../logo/Logo'
 import { PageLayout } from '../pageLayout/PageLayout'
-import { Title } from '../title/Title'
 
 type Props = {
   title: string

@@ -1,18 +1,25 @@
-import { Cog6ToothIcon, HomeModernIcon } from '@heroicons/react/24/outline'
-import React, { ReactElement } from 'react'
+import { Cog6ToothIcon, EnvelopeOpenIcon, HomeModernIcon } from '@heroicons/react/24/outline'
+import { Sidebar } from 'components'
+import React, { ComponentProps, ReactElement } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
 import { routes } from '@/router/routes'
-import { NavigationItem } from '@/types'
+import { useSidebarOpen } from '@/sidebar/hooks/useSidebarOpen'
+import { isExternalLink } from '@/utils/isExternalLink'
+import { useLink } from '@/utils/useLink'
 
-import { Sidebar } from '../sidebar/Sidebar'
+import { app } from '../../../../config/src'
+
+type NavigationItem = ComponentProps<typeof Sidebar>['items'][0]
 
 export const MainLayout = (): ReactElement => {
   const location = useLocation()
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
+  const [sidebarOpen, setSidebarOpen] = useSidebarOpen()
 
   const navigate = useNavigate()
+  const link = useLink()
 
   const navigationItems: NavigationItem[] = [
     {
@@ -28,14 +35,30 @@ export const MainLayout = (): ReactElement => {
       icon: <Cog6ToothIcon />,
       active: location.pathname.startsWith(routes.settings),
     },
+    {
+      name: 'Support',
+      href: `mailto:${app.supportEmail}`,
+      icon: <EnvelopeOpenIcon />,
+      active: false,
+    },
   ]
 
   return (
     <div className="flex h-full">
       <Sidebar
+        open={sidebarOpen}
         items={navigationItems}
-        onClick={href => {
+        onItemClick={href => {
+          if (isExternalLink(href)) {
+            link(href, '_blank')
+
+            return
+          }
+
           navigate(href)
+        }}
+        onClose={() => {
+          setSidebarOpen(false)
         }}
       />
 

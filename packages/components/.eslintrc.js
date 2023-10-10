@@ -2,7 +2,7 @@ const OFF = 'off'
 
 module.exports = {
   root: true,
-  extends: ['react-app', 'plugin:tailwindcss/recommended', 'custom', 'plugin:storybook/recommended'],
+  extends: ['react-app', 'plugin:tailwindcss/recommended', 'plugin:storybook/recommended', 'custom'],
   plugins: ['react', 'tailwindcss'],
   rules: {
     'react/no-unescaped-entities': OFF,

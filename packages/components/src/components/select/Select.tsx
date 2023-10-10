@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge'
 import { app } from '../../../../config'
 import { Button } from '../button/Button'
 import { Menu } from './Menu'
+import { SelectItem } from './SelectItem'
 
 export type SelectOption = {
   value: string
@@ -19,7 +20,7 @@ type Props = ComponentPropsWithoutRef<'div'> & {
   onValueChange: (option: SelectOption) => void
 }
 
-export const Select = ({ className = '', value, options, disabled, onValueChange, ...props }: Props) => {
+const Select = ({ className = '', value, options, disabled, onValueChange, ...props }: Props) => {
   const [open, setOpen] = useState(false)
 
   const label = options.find(option => option.value === value)?.label || ''
@@ -57,3 +58,7 @@ export const Select = ({ className = '', value, options, disabled, onValueChange
     </div>
   )
 }
+
+Select.Item = SelectItem
+
+export { Select }

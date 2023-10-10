@@ -1,8 +1,6 @@
+import { Heading, Text } from 'components'
 import React, { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
-
-import { Heading } from '../heading/Heading'
-import { Text } from '../text/Text'
 
 type Props = {
   className?: string

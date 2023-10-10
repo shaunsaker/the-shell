@@ -1,11 +1,9 @@
+import { RadioGroup, Text, Title } from 'components'
 import React, { ReactElement, useEffect, useMemo, useState } from 'react'
 
 import { useCreateCheckoutSession } from '@/billing/hooks/useCreateCheckoutSession'
 import { usePrices } from '@/billing/hooks/usePrices'
 import { useProducts } from '@/billing/hooks/useProducts'
-import { RadioGroup } from '@/components/radioGroup/RadioGroup'
-import { Text } from '@/components/text/Text'
-import { Title } from '@/components/title/Title'
 import { formatBillingInterval } from '@/utils/formatBillingInterval'
 import { parseProductMetadata } from '@/utils/parseProductMetadata'
 import { sortProductsByPrice } from '@/utils/sortProductsByPrice'

@@ -3,7 +3,13 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import { themeColors } from '../config'
 
 module.exports = {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+
+    // Path to the components module
+    '../../node_modules/components/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     transparent: 'transparent',
     current: 'currentColor',

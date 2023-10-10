@@ -1,10 +1,12 @@
 import { render, screen, waitFor } from '@testing-library/react'
+import { Loading } from 'components'
+import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { routes } from '@/router/routes'
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 import { MockAppProvider } from '@/test/MockAppProvider'
-import { TestIds, UserManagementParams } from '@/types'
+import { UserManagementParams } from '@/types'
 
 import { ResetPassword } from './ResetPassword'
 
@@ -49,7 +51,7 @@ describe('ResetPassword', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.getByTestId(TestIds.Loading)).toBeInTheDocument()
+    expect(screen.getByTestId(Loading.TestId)).toBeInTheDocument()
 
     await waitFor(() =>
       expect(mocks.resetPassword).toHaveBeenCalledWith({

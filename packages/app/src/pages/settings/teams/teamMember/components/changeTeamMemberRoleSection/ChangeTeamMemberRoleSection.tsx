@@ -1,11 +1,8 @@
+import { Alert, Button, Select, SkeletonLoader } from 'components'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { TeamMemberRole } from 'types'
 
-import { Alert } from '@/components/alert/Alert'
-import { Button } from '@/components/button/Button'
-import { Select } from '@/components/select/Select'
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
-import { SkeletonLoader } from '@/components/skeletonLoader/SkeletonLoader'
 import { useIsTeamMemberLastAdmin } from '@/teams/hooks/useIsTeamMemberLastAdmin'
 import { useTeamMember } from '@/teams/hooks/useTeamMember'
 import { useUpdateTeamMemberRole } from '@/teams/hooks/useUpdateTeamMemberRole'

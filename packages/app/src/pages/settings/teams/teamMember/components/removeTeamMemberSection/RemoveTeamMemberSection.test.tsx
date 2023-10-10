@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
 
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'

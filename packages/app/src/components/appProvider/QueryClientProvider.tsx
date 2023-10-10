@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { FirebaseError } from 'firebase/app'
-import { ReactElement, ReactNode } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { captureException } from '@/errors/api/captureException'
