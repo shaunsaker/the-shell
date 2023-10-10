@@ -33,22 +33,7 @@ export const SignIn = () => {
   )
 
   return (
-    <AuthLayout
-      title="Sign in to your account"
-      footer={
-        <Text>
-          Not a member?{' '}
-          <Button
-            variant="light"
-            onClick={() => {
-              navigate(routes.signUp)
-            }}
-          >
-            Sign up instead
-          </Button>
-        </Text>
-      }
-    >
+    <AuthLayout title="Sign in to your account">
       <form className="space-y-6" onSubmit={onSubmit}>
         <TextInput
           type="email"
@@ -60,30 +45,45 @@ export const SignIn = () => {
           onChange={event => setEmail(event.target.value)}
         />
 
-        <TextInput
-          label="Password"
-          placeholder="Enter your password..."
-          type="password"
-          autoComplete="current-password"
-          required
-          value={password}
-          onChange={event => setPassword(event.target.value)}
-        />
+        <div className="space-y-2">
+          <TextInput
+            label="Password"
+            placeholder="Enter your password..."
+            type="password"
+            autoComplete="current-password"
+            required
+            value={password}
+            onChange={event => setPassword(event.target.value)}
+          />
 
-        <Button
-          className="-ml-3.5 block"
-          type="button"
-          variant="light"
-          onClick={() => {
-            navigate(routes.forgotPassword)
-          }}
-        >
-          Forgot password?
-        </Button>
+          <Button
+            className="-ml-3.5 block"
+            type="button"
+            variant="light"
+            onClick={() => {
+              navigate(routes.forgotPassword)
+            }}
+          >
+            Forgot password?
+          </Button>
+        </div>
 
         <Button type="submit" disabled={disabled} loading={isLoading}>
           Sign in
         </Button>
+
+        <Text className="flex items-center">
+          Not a member?
+          <Button
+            className="-ml-2"
+            variant="light"
+            onClick={() => {
+              navigate(routes.signUp)
+            }}
+          >
+            Sign up instead.
+          </Button>
+        </Text>
       </form>
     </AuthLayout>
   )

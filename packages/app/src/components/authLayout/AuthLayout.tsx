@@ -1,26 +1,20 @@
-import { Card, Logo, Title } from 'components'
-import React, { ReactNode } from 'react'
-
-import { PageLayout } from '../pageLayout/PageLayout'
+import { Heading, Logo, SlimLayout } from 'components'
+import React, { ComponentPropsWithoutRef } from 'react'
 
 type Props = {
   title: string
-  children?: ReactNode
-  footer?: ReactNode
-}
+} & ComponentPropsWithoutRef<'div'>
 
-export const AuthLayout = ({ title, children, footer }: Props) => {
+export const AuthLayout = ({ title, children, ...props }: Props) => {
   return (
-    <PageLayout className="bg-theme-background-muted dark:bg-dark-theme-background-muted flex flex-col items-center justify-center gap-y-8">
-      <div className="flex flex-col items-center gap-y-4">
+    <SlimLayout {...props}>
+      <div className="space-y-10">
         <Logo />
 
-        <Title className="text-center">{title}</Title>
+        <Heading>{title}</Heading>
+
+        {children}
       </div>
-
-      <Card className="w-full max-w-lg space-y-6">{children}</Card>
-
-      {footer && <div className="text-center">{footer}</div>}
-    </PageLayout>
+    </SlimLayout>
   )
 }
