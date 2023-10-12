@@ -16,7 +16,8 @@
     "build": "npm-run-all --parallel build:*"
   },
   "dependencies": {
-    "@fontsource/inter": "^5.0.8",
+    "@fontsource-variable/lexend": "^5.0.15",
+    "@fontsource-variable/inter": "^5.0.13",
     "@heroicons/react": "^2.0.18",
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
