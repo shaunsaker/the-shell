@@ -29,7 +29,7 @@ export const Footer = (): ReactElement => {
   return (
     <footer className="flex flex-col items-center bg-theme-background-muted px-4 dark:bg-dark-theme-background-muted">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center sm:px-6 lg:px-8">
-        <div className="py-16">
+        <div className="flex flex-col items-center py-16">
           <Logo />
 
           <nav className="mt-8 flex items-center">
