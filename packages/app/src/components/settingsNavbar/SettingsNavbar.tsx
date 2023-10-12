@@ -8,7 +8,7 @@ import { useHasTeamPlan } from '@/billing/hooks/useHasTeamPlan'
 import { routes, TEAM_ID_PARAM } from '@/router/routes'
 import { useTeams } from '@/teams/hooks/useTeams'
 
-import { CustomHeaderbar } from '../customHeaderbar/CustomHeaderbar'
+import { Header } from '../header/Header'
 
 type NavigationItem = ComponentProps<typeof Navbar>['items'][0]
 
@@ -50,7 +50,7 @@ export const SettingsNavbar = (): ReactElement => {
   ]
 
   return (
-    <CustomHeaderbar>
+    <Header>
       <Navbar
         items={items}
         onClick={href => {
@@ -68,6 +68,6 @@ export const SettingsNavbar = (): ReactElement => {
           Sign out
         </Button>
       </Navbar>
-    </CustomHeaderbar>
+    </Header>
   )
 }

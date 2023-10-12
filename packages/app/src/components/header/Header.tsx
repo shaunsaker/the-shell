@@ -8,7 +8,7 @@ type Props = {
   children?: ReactNode
 }
 
-export const CustomHeaderbar = ({ children }: Props): ReactElement => {
+export const Header = ({ children }: Props): ReactElement => {
   const [_, setSidebarOpen] = useSidebarOpen()
 
   return (
