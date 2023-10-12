@@ -137,7 +137,7 @@ export const themeColorShadeMap = {
       },
       DEFAULT: {
         color: 'neutral',
-        shade: '500',
+        shade: '400',
       },
       emphasis: {
         color: 'neutral',
