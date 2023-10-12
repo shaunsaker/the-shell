@@ -7,7 +7,7 @@ export const tailwindTheme = {
   current: 'currentColor',
   extend: {
     fontFamily: {
-      sans: ['Nunito Variable', ...defaultTheme.fontFamily.sans],
+      sans: ['Inter Variable', ...defaultTheme.fontFamily.sans],
       display: ['Lexend Variable', ...defaultTheme.fontFamily.sans],
     },
     // we extract the colors to themeColors so that we can change them easily using our helper script
