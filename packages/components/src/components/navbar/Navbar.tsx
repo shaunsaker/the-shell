@@ -1,7 +1,6 @@
 import React, { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { app } from '../../../../config'
 import { Button } from '../button/Button'
 
 type Props = {
@@ -27,8 +26,7 @@ export const Navbar = ({ className, items, onClick, children, ...props }: Props)
                 : 'hover:border-theme-border dark:hover:border-dark-theme-border',
               'h-full rounded-none border-b-2 border-l-0 border-r-0 border-t-0',
             )}
-            variant="light"
-            color={app.neutralColor}
+            variant="lightNeutral"
             disabled={item.disabled}
             onClick={() => {
               // navigate to the route if we're not already on that route

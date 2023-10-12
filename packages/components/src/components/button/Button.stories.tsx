@@ -31,6 +31,13 @@ export const Secondary: Story = {
   },
 }
 
+export const SecondaryNeutral: Story = {
+  args: {
+    variant: 'secondaryNeutral',
+    children: 'Button',
+  },
+}
+
 export const Light: Story = {
   args: {
     variant: 'light',
@@ -38,10 +45,17 @@ export const Light: Story = {
   },
 }
 
+export const LightNeutral: Story = {
+  args: {
+    variant: 'lightNeutral',
+    children: 'Button',
+  },
+}
+
 export const PrimaryCustomColor: Story = {
   args: {
     variant: 'primary',
-    color: 'gray',
+    color: 'red',
     icon: <HomeIcon />,
     children: 'Button',
   },
@@ -50,7 +64,7 @@ export const PrimaryCustomColor: Story = {
 export const SecondaryCustomColor: Story = {
   args: {
     variant: 'secondary',
-    color: 'gray',
+    color: 'red',
     icon: <HomeIcon />,
     children: 'Button',
   },
@@ -59,7 +73,7 @@ export const SecondaryCustomColor: Story = {
 export const LightCustomColor: Story = {
   args: {
     variant: 'light',
-    color: 'gray',
+    color: 'red',
     icon: <HomeIcon />,
     children: 'Button',
   },

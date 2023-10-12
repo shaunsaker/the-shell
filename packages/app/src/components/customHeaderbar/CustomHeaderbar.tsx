@@ -4,8 +4,6 @@ import React, { ReactElement, ReactNode } from 'react'
 
 import { useSidebarOpen } from '@/sidebar/hooks/useSidebarOpen'
 
-import { app } from '../../../../config'
-
 type Props = {
   children?: ReactNode
 }
@@ -14,10 +12,9 @@ export const CustomHeaderbar = ({ children }: Props): ReactElement => {
   const [_, setSidebarOpen] = useSidebarOpen()
 
   return (
-    <Headerbar>
+    <Headerbar className="border-theme-border dark:border-dark-theme-border border-b shadow-sm">
       <Button
-        variant="light"
-        color={app.neutralColor}
+        variant="lightNeutral"
         className="mr-2 lg:hidden"
         onClick={() => {
           setSidebarOpen(true)

@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import React, { ComponentPropsWithoutRef, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { app } from '../../../../config'
 import { useKeyPress } from '../../utils/useKeyPress'
 import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Button } from '../button/Button'
@@ -42,8 +41,7 @@ export const Menu = ({ className = '', options, onValueChange, onClose, ...props
             <li key={option.value}>
               <Button
                 className={`w-full justify-start px-4 py-2`}
-                variant="light"
-                color={app.neutralColor}
+                variant="lightNeutral"
                 onClick={() => {
                   onValueChange(option)
                 }}
