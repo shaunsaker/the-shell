@@ -117,7 +117,7 @@ cd ./packages/scripts
 yarn build:theme --themeColor teal --neutralColor gray
 ```
 
-3. Update [logo.svg](./packages/config/src/logo.svg) with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉
+3. Update [logo.svg](./packages/config/src/logo.svg) with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉 The outermost `fill` or `stroke` attribute should be set to `currentColor`.
 
 4. Run the script:
 
