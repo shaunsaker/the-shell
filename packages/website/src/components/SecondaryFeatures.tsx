@@ -138,7 +138,7 @@ function SingleFeature({
       >
         {feature.name}
       </h3>
-      <p className="font-display mt-2 text-xl text-slate-900">
+      <p className="mt-2 font-display text-xl text-slate-900">
         {feature.summary}
       </p>
       <p className="mt-4 text-sm text-slate-600">{feature.description}</p>
