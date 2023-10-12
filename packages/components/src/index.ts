@@ -11,6 +11,7 @@ import { Dialog } from './components/dialog/Dialog'
 import { ErrorPage } from './components/errorPage/ErrorPage'
 import { Headerbar } from './components/headerbar/Headerbar'
 import { Heading } from './components/heading/Heading'
+import { HugeText } from './components/hugeText/HugeText'
 import { Label } from './components/label/Label'
 import { List } from './components/list/List'
 import { Loading } from './components/loading/Loading'
@@ -40,6 +41,7 @@ export {
   ErrorPage,
   Headerbar,
   Heading,
+  HugeText,
   Label,
   List,
   Loading,
