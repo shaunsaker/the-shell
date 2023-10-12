@@ -1,4 +1,4 @@
-# Ultimate B2B SAAS Boilerplate
+# Launchpad
 
 [![Development](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml/badge.svg?branch=develop)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml)
 
