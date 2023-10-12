@@ -1,5 +1,5 @@
-import { ArrowRightIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
-import { BlankState, Button } from 'components'
+import { ArrowRightIcon } from '@heroicons/react/24/outline'
+import { Button, ErrorPage } from 'components'
 import React, { ReactElement, useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
@@ -17,8 +17,8 @@ export const ErrorBoundary = (): ReactElement => {
 
   const errorIsError = error instanceof Error
   const status = errorIsError ? 500 : error ? error.status : '500'
-  const statusText = errorIsError || !error ? 'Internal Server Error' : error.statusText
   const errorMessage = errorIsError ? error.message : error ? error.error?.message : ''
+  const statusText = errorIsError || !error ? 'Internal Server Error' : error.statusText
 
   useEffect(() => {
     if (error) {
@@ -27,27 +27,25 @@ export const ErrorBoundary = (): ReactElement => {
   }, [captureException, error])
 
   return (
-    <div className="flex h-full flex-col items-center justify-center">
-      <BlankState Icon={ExclamationCircleIcon} title={String(status)} description={errorMessage || statusText}>
-        <div className="mt-8 flex gap-8">
-          <Button
-            onClick={() => {
-              navigate(routes.dashboard)
-            }}
-          >
-            Go back home
-          </Button>
+    <ErrorPage title={String(status)} description={errorMessage || statusText}>
+      <div className="mt-8 flex gap-8">
+        <Button
+          onClick={() => {
+            navigate(routes.dashboard)
+          }}
+        >
+          Go back home
+        </Button>
 
-          <Button
-            variant="light"
-            icon={<ArrowRightIcon />}
-            iconPosition="right"
-            onClick={() => link(`mailto:${app.supportEmail}`, '_blank')}
-          >
-            Contact support
-          </Button>
-        </div>
-      </BlankState>
-    </div>
+        <Button
+          variant="light"
+          icon={<ArrowRightIcon />}
+          iconPosition="right"
+          onClick={() => link(`mailto:${app.supportEmail}`, '_blank')}
+        >
+          Contact support
+        </Button>
+      </div>
+    </ErrorPage>
   )
 }
