@@ -1,12 +1,18 @@
-import React, { ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import LogoSvg from '../../assets/logo.svg'
+import { app } from '../../../../config'
+import { Heading } from '../heading/Heading'
+import { Logomark } from '../logomark/Logomark'
 
-type Props = {
-  className?: string
-}
+type Props = ComponentPropsWithoutRef<'div'>
 
-export const Logo = ({ className }: Props): ReactElement => {
-  return <LogoSvg className={twMerge('fill-theme-brand dark:fill-dark-theme-brand h-8 w-auto', className)} />
+export const Logo = ({ className, ...props }: Props): ReactElement => {
+  return (
+    <div className={twMerge('flex items-center gap-x-2', className)} {...props}>
+      <Logomark className={className} />
+
+      <Heading className={twMerge('font-display', className)}>{app.displayName}</Heading>
+    </div>
+  )
 }

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import React, { ReactElement } from 'react'
 
-import { Logo } from '../logo/Logo'
+import { Logomark } from '../logomark/Logomark'
 
 const TEST_ID = 'loading'
 
@@ -19,7 +19,7 @@ const Loading = (): ReactElement => {
             ease: 'backInOut',
           }}
         >
-          <Logo />
+          <Logomark />
         </motion.div>
       </div>
     </motion.div>
