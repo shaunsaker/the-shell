@@ -9,8 +9,8 @@ import { app } from '../../../config'
 
 export const metadata: Metadata = {
   title: {
-    template: `%s - ${app.displayName}`,
-    default: `${app.displayName}`,
+    template: `%s - ${app.name}`,
+    default: `${app.name}`,
   },
   description: `${app.description}`,
 }

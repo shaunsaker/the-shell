@@ -15,7 +15,7 @@ export const sendResetPasswordEmail = async ({
   const data = await resend.emails.send({
     from: app.fromEmail,
     to: [email],
-    subject: `Reset your password for ${app.displayName}`,
+    subject: `Reset your password for ${app.name}`,
     react: ResetPassword({ siteUrl, link }),
   })
 
