@@ -108,7 +108,7 @@ git push -u origin develop
 
 ### Make it your own
 
-1. Update [app.json](./packages/config/src/app.json) with your app name, description and from or support email.
+1. Update [app.json](./packages/config/src/app.json).
 
 2. Generate your theme colors where `themeColor` and `neutralColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
 
