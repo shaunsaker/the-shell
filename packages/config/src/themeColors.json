@@ -51,7 +51,7 @@
     },
     "content": {
       "subtle": "#4b5563",
-      "DEFAULT": "#6b7280",
+      "DEFAULT": "#9ca3af",
       "emphasis": "#e5e7eb",
       "strong": "#f9fafb",
       "inverted": "#111827"
