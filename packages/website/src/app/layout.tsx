@@ -1,15 +1,15 @@
 import '@/styles/index.css'
 
-import clsx from 'clsx'
 import { type Metadata } from 'next'
+
+import { app } from '../../../config'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - TaxPal',
-    default: 'TaxPal - Accounting made simple for small businesses',
+    template: `%s - ${app.displayName}`,
+    default: `${app.displayName}`,
   },
-  description:
-    'Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.',
+  description: `${app.description}`,
 }
 
 export default function RootLayout({
@@ -18,11 +18,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={clsx('h-full scroll-smooth bg-white antialiased')}
-    >
-      <body className="flex h-full flex-col">{children}</body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   )
 }
