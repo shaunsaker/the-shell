@@ -4,5 +4,8 @@
   "themeColor": "teal",
   "neutralColor": "gray",
   "fromEmail": "Shaun <shaun@fatbuck.app>",
-  "supportEmail": "sakershaun@gmail.com"
+  "supportEmail": "sakershaun@gmail.com",
+  "twitterLink": "https://twitter.com",
+  "githubLink": "https://github.com",
+  "linkedInLink": "https://linkedin.com"
 }
