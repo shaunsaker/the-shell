@@ -194,6 +194,16 @@ touch ./packages/app/.env.production
 
 15. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell-development" with your PROJECT_NAME.
 
+16. Create your website env files:
+
+```
+touch ./packages/website/.env.development
+touch ./packages/website/.env.staging
+touch ./packages/website/.env.production
+```
+
+17. Add the relavant app hosting url's to [website/.env.development](./packages/website/.env.development), [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_APP_SIGN_IN_URL` and `NEXT_PUBLIC_APP_SIGN_UP_URL`.
+
 ---
 
 ### Setup Stripe
