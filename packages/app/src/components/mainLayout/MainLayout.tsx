@@ -1,5 +1,5 @@
 import { Cog6ToothIcon, EnvelopeOpenIcon, HomeModernIcon } from '@heroicons/react/24/outline'
-import { Sidebar } from 'components'
+import { Popover, Sidebar } from 'components'
 import React, { ComponentProps, ReactElement } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
@@ -43,24 +43,39 @@ export const MainLayout = (): ReactElement => {
     },
   ]
 
+  const sidebar = (
+    <Sidebar
+      items={navigationItems}
+      onItemClick={href => {
+        if (isExternalLink(href)) {
+          link(href, '_blank')
+
+          return
+        }
+
+        navigate(href)
+
+        if (sidebarOpen) {
+          setSidebarOpen(false)
+        }
+      }}
+    />
+  )
+
   return (
     <div className="flex h-full">
-      <Sidebar
-        open={sidebarOpen}
-        items={navigationItems}
-        onItemClick={href => {
-          if (isExternalLink(href)) {
-            link(href, '_blank')
+      <div className="lg:hidden">
+        <Popover
+          open={sidebarOpen}
+          onClose={() => {
+            setSidebarOpen(false)
+          }}
+        >
+          {sidebar}
+        </Popover>
+      </div>
 
-            return
-          }
-
-          navigate(href)
-        }}
-        onClose={() => {
-          setSidebarOpen(false)
-        }}
-      />
+      <div className="hidden shrink-0 lg:flex lg:w-72 lg:flex-col">{sidebar}</div>
 
       <div className="bg-theme-background dark:bg-dark-theme-background flex flex-1 flex-col overflow-hidden">
         <Outlet />
