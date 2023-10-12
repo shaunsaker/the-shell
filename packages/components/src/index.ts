@@ -1,3 +1,5 @@
+'use client'
+
 import { Alert } from './components/alert/Alert'
 import { Backdrop } from './components/backdrop/Backdrop'
 import { Badge } from './components/badge/Badge'
