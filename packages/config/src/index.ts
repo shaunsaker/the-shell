@@ -1,5 +1,5 @@
 import app from './app.json'
 import figmaColors from './figmaColors.json'
-import themeColors from './themeColors.json'
+import { tailwindTheme } from './tailwindTheme'
 
-export { app, figmaColors, themeColors }
+export { app, figmaColors, tailwindTheme }

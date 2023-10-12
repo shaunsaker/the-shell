@@ -1,9 +1,5 @@
-import { themeColors } from 'config'
+import { tailwindTheme } from 'config'
 
 export const tailwindConfig = {
-  theme: {
-    extend: {
-      colors: themeColors,
-    },
-  },
+  theme: tailwindTheme,
 }
