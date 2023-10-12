@@ -1,4 +1,4 @@
-import { app, themeColors } from 'config'
+import { app, tailwindTheme } from 'config'
 import fs from 'fs'
 import path from 'path'
 import colors from 'tailwindcss/colors'
@@ -8,6 +8,7 @@ import { log } from '@/utils/log'
 import { args } from './args'
 import { themeColorShadeMap } from './themeColorShadeMap'
 
+const THEME_COLORS = { ...tailwindTheme.extend.colors }
 const PATH_TO_CONFIG_MODULE = require.resolve('config')
 const PATH_TO_CONFIG_FOLDER = path.join(PATH_TO_CONFIG_MODULE, '..')
 const INVALID_COLORS = ['inherit', 'current', 'transparent', 'black', 'white']
@@ -64,22 +65,22 @@ async function main(): Promise<void> {
   let figmaColors: any = {}
 
   // for each color in themeColorShadeMap, convert it to tailwind's color
-  Object.keys(themeColors).forEach(themeKey => {
-    type ThemeKey = keyof typeof themeColors
+  Object.keys(THEME_COLORS).forEach(themeKey => {
+    type ThemeKey = keyof typeof THEME_COLORS
 
-    Object.keys(themeColors[themeKey as ThemeKey]).forEach(usageKey => {
-      type UsageKey = keyof (typeof themeColors)[ThemeKey]
+    Object.keys(THEME_COLORS[themeKey as ThemeKey]).forEach(usageKey => {
+      type UsageKey = keyof (typeof THEME_COLORS)[ThemeKey]
 
       const figmaKey = `${themeKey}/${usageKey}`
       figmaColors[figmaKey] = {}
 
-      Object.keys(themeColors[themeKey as ThemeKey][usageKey as UsageKey]).forEach(variantKey => {
-        type VariantKey = keyof (typeof themeColors)[ThemeKey][UsageKey]
+      Object.keys(THEME_COLORS[themeKey as ThemeKey][usageKey as UsageKey]).forEach(variantKey => {
+        type VariantKey = keyof (typeof THEME_COLORS)[ThemeKey][UsageKey]
 
         const themeColor = themeColorShadeMap[themeKey as ThemeKey][usageKey as UsageKey][variantKey as VariantKey]
         const color = getHexColorFromThemeColor(themeColor.color === 'base' ? baseColors : neutralColors, themeColor)
 
-        themeColors[themeKey as ThemeKey][usageKey as UsageKey][variantKey as VariantKey] = color
+        THEME_COLORS[themeKey as ThemeKey][usageKey as UsageKey][variantKey as VariantKey] = color
 
         // set the Figma color where the theme and usage keys are joined by a slash
         figmaColors[figmaKey][variantKey] = color
@@ -94,7 +95,7 @@ async function main(): Promise<void> {
   }
 
   // finally, write the new themeColors to themeColors.json
-  fs.writeFileSync(path.join(PATH_TO_CONFIG_FOLDER, `themeColors.json`), JSON.stringify(themeColors, null, 2))
+  fs.writeFileSync(path.join(PATH_TO_CONFIG_FOLDER, `themeColors.json`), JSON.stringify(THEME_COLORS, null, 2))
 
   // and themeColor and neutralColor to app.json
   fs.writeFileSync(
