@@ -1,10 +1,31 @@
+'use client'
+
 import { Button, Logo, Text } from 'components'
+import { useRouter } from 'next/navigation'
 import React, { ReactElement } from 'react'
+
+import { routes } from '@/routes'
 
 import { app } from '../../../../config'
 
-// TODO: SS add navigation
+const NAV_LINKS = [
+  {
+    label: 'Features',
+    href: routes.features,
+  },
+  {
+    label: 'Testimonials',
+    href: routes.testimonials,
+  },
+  {
+    label: 'Pricing',
+    href: routes.pricing,
+  },
+]
+
 export const Footer = (): ReactElement => {
+  const router = useRouter()
+
   return (
     <footer className="flex flex-col items-center bg-theme-background-muted px-4 dark:bg-dark-theme-background-muted">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center sm:px-6 lg:px-8">
@@ -12,11 +33,17 @@ export const Footer = (): ReactElement => {
           <Logo />
 
           <nav className="mt-8 flex items-center">
-            <Button variant="lightNeutral">Features</Button>
-
-            <Button variant="lightNeutral">Testimonials</Button>
-
-            <Button variant="lightNeutral">Pricing</Button>
+            {NAV_LINKS.map((link) => (
+              <Button
+                key={link.href}
+                variant="lightNeutral"
+                onClick={() => {
+                  router.push(link.href)
+                }}
+              >
+                {link.label}
+              </Button>
+            ))}
           </nav>
         </div>
 
