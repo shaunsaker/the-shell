@@ -1,15 +1,13 @@
-import { ArrowRightIcon } from '@heroicons/react/24/outline'
-import { Button, Heading, Logo, SlimLayout, Text } from 'components'
-import React, { ReactElement } from 'react'
+import { Heading, Logo, SlimLayout, Text } from 'components'
+import React, { ReactElement, ReactNode } from 'react'
 
 type Props = {
   title: string
   description: string
-  onGoHomeClick: () => void
-  onContactSupportClick: () => void
+  children?: ReactNode
 }
 
-export const ErrorPage = ({ title, description, onGoHomeClick, onContactSupportClick }: Props): ReactElement => {
+export const ErrorPage = ({ title, description, children }: Props): ReactElement => {
   return (
     <SlimLayout>
       <div className="flex flex-col items-start gap-y-10">
@@ -21,13 +19,7 @@ export const ErrorPage = ({ title, description, onGoHomeClick, onContactSupportC
           <Text>{description}</Text>
         </div>
 
-        <div className="flex gap-x-8">
-          <Button onClick={onGoHomeClick}>Go back home</Button>
-
-          <Button variant="light" icon={<ArrowRightIcon />} iconPosition="right" onClick={onContactSupportClick}>
-            Contact support
-          </Button>
-        </div>
+        {children}
       </div>
     </SlimLayout>
   )
