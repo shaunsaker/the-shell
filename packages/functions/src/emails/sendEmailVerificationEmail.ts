@@ -15,7 +15,7 @@ export const sendEmailVerificationEmail = async ({
   const data = await resend.emails.send({
     from: app.fromEmail,
     to: [email],
-    subject: `Verify your email for ${app.displayName}`,
+    subject: `Verify your email for ${app.name}`,
     react: VerificationEmail({ siteUrl, emailVerificationLink }),
   })
 

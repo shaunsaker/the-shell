@@ -53,7 +53,7 @@ describe('SignUp', () => {
       </MockAppProvider>,
     )
 
-    expect(screen.getByText(`Sign up to ${app.displayName}`)).toBeInTheDocument()
+    expect(screen.getByText(`Sign up to ${app.name}`)).toBeInTheDocument()
     expect(getFirstNameInput()).toBeInTheDocument()
     expect(getLastNameInput()).toBeInTheDocument()
     expect(getEmailInput()).toBeInTheDocument()

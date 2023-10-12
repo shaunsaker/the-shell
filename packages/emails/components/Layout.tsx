@@ -20,10 +20,10 @@ export const Layout = ({ siteUrl, children }: LayoutProps): ReactElement => {
           {children}
 
           <Description>Cheers,</Description>
-          <Description>The {app.displayName} team</Description>
+          <Description>The {app.name} team</Description>
         </Container>
 
-        <Text className="text-theme-content m-0 mt-8 text-center text-sm">{app.displayName}</Text>
+        <Text className="text-theme-content m-0 mt-8 text-center text-sm">{app.name}</Text>
       </div>
     </Tailwind>
   )

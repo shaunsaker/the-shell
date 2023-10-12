@@ -41,7 +41,7 @@ const config = ({ mode }) => {
       }),
       handlebars({
         context: {
-          title: app.displayName,
+          title: app.name,
           description: app.description,
           themeColor: colors[app.themeColor as keyof typeof colors][500],
         },

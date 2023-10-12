@@ -42,7 +42,7 @@ export const SignUp = () => {
   )
 
   return (
-    <AuthLayout title={`Sign up to ${app.displayName}`}>
+    <AuthLayout title={`Sign up to ${app.name}`}>
       <form className="space-y-6" onSubmit={onSubmit}>
         <TextInput
           className="flex-1"

@@ -49,8 +49,8 @@ export const Footer = (): ReactElement => {
 
         <div className="flex w-full items-center border-t border-theme-border py-10 dark:border-dark-theme-border">
           <Text>
-            Copyright &copy; {new Date().getFullYear()} {app.displayName}. All
-            rights reserved.
+            Copyright &copy; {new Date().getFullYear()} {app.name}. All rights
+            reserved.
           </Text>
 
           <div className="flex flex-1 items-center justify-end">

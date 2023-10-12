@@ -28,7 +28,7 @@ export const AddedToTeam = ({
       <Title>Hi{userName ? ` ${userName}` : ''},</Title>
 
       <Description>
-        You've been added to team "{teamName}" on {app.displayName} by {adminTeamMemberName}.
+        You've been added to team "{teamName}" on {app.name} by {adminTeamMemberName}.
       </Description>
 
       <Button href={buttonUrl}>{buttonText}</Button>
