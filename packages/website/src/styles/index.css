@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 html {
-  @apply font-sans;
+  @apply scroll-smooth font-sans antialiased;
 }
 
 html,
