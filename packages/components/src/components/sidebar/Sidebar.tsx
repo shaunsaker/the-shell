@@ -41,7 +41,7 @@ export const Sidebar = ({ open, items, onItemClick, onClose }: Props) => {
   const sidebar = (
     <div ref={ref} className="bg-theme-brand dark:bg-dark-theme-brand flex grow flex-col gap-y-6 overflow-y-auto p-6">
       <div className="flex items-center">
-        <Logo className="fill-theme-brand-inverted dark:fill-dark-theme-brand-inverted" />
+        <Logo className="fill-theme-brand-inverted text-theme-brand-inverted dark:text-dark-theme-brand-inverted dark:fill-dark-theme-brand-inverted" />
       </div>
 
       <nav className="flex flex-1 flex-col">
