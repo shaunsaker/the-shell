@@ -1,27 +1,39 @@
-import Link from 'next/link'
+'use client'
 
-import { Button } from '@/components/Button'
-import { Logo } from '@/components/Logo'
-import { SlimLayout } from '@/components/SlimLayout'
+import { ArrowRightIcon } from '@heroicons/react/24/outline'
+import { Button, ErrorPage } from 'components'
+import { useRouter } from 'next/navigation'
+
+import { routes } from '@/routes'
+
+import { app } from '../../../config'
 
 export default function NotFound() {
+  const router = useRouter()
+
   return (
-    <SlimLayout>
-      <div className="flex">
-        <Link href="/" aria-label="Home">
-          <Logo className="h-10 w-auto" />
-        </Link>
+    <ErrorPage
+      title="Page not found"
+      description="Sorry, we couldn’t find the page you’re looking for."
+    >
+      <div className="mt-8 flex gap-8">
+        <Button
+          onClick={() => {
+            router.push(routes.home)
+          }}
+        >
+          Go back home
+        </Button>
+
+        <Button
+          variant="light"
+          icon={<ArrowRightIcon />}
+          iconPosition="right"
+          onClick={() => window.open(`mailto:${app.supportEmail}`, '_blank')}
+        >
+          Contact support
+        </Button>
       </div>
-      <p className="mt-20 text-sm font-medium text-gray-700">404</p>
-      <h1 className="mt-3 text-lg font-semibold text-gray-900">
-        Page not found
-      </h1>
-      <p className="mt-3 text-sm text-gray-700">
-        Sorry, we couldn’t find the page you’re looking for.
-      </p>
-      <Button href="/" className="mt-10">
-        Go back home
-      </Button>
-    </SlimLayout>
+    </ErrorPage>
   )
 }
