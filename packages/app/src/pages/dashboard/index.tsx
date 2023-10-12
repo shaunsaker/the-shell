@@ -2,7 +2,7 @@ import { Heading, Loading, Text } from 'components'
 import React from 'react'
 
 import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
-import { CustomHeaderbar } from '@/components/customHeaderbar/CustomHeaderbar'
+import { Header } from '@/components/header/Header'
 import { PageLayout } from '@/components/pageLayout/PageLayout'
 
 export const Dashboard = () => {
@@ -18,7 +18,7 @@ export const Dashboard = () => {
 
   return (
     <>
-      <CustomHeaderbar />
+      <Header />
 
       <PageLayout>
         <Heading>Dashboard</Heading>
