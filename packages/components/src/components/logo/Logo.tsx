@@ -12,7 +12,7 @@ export const Logo = ({ className, ...props }: Props): ReactElement => {
     <div className={twMerge('flex items-center gap-x-2', className)} {...props}>
       <Logomark className={className} />
 
-      <Heading className={twMerge('font-display', className)}>{app.displayName}</Heading>
+      <Heading className={twMerge('font-display whitespace-nowrap', className)}>{app.displayName}</Heading>
     </div>
   )
 }
