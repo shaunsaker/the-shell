@@ -1,7 +1,6 @@
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import React, { ReactNode } from 'react'
 
-import { app } from '../../../../config'
 import { Button } from '../button/Button'
 import { Text } from '../text/Text'
 
@@ -28,8 +27,7 @@ export const Breadcrumbs = ({ items, onClick }: Props) => {
             <li key={item.name}>
               <div className="flex items-center space-x-4">
                 <Button
-                  variant="light"
-                  color={app.neutralColor}
+                  variant="lightNeutral"
                   disabled={active || item.disabled}
                   onClick={() => {
                     // navigate to the route if we're not already on that route

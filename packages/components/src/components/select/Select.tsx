@@ -3,7 +3,6 @@ import { AnimatePresence } from 'framer-motion'
 import React, { ComponentPropsWithoutRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { app } from '../../../../config'
 import { Button } from '../button/Button'
 import { Menu } from './Menu'
 import { SelectItem } from './SelectItem'
@@ -29,8 +28,7 @@ const Select = ({ className = '', value, options, disabled, onValueChange, ...pr
     <div className={twMerge('relative', className)} {...props}>
       <Button
         className="min-w-[10rem] justify-between"
-        variant="secondary"
-        color={app.neutralColor}
+        variant="secondaryNeutral"
         icon={<ChevronDownIcon />}
         iconPosition="right"
         disabled={disabled}

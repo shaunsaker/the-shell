@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { Spinner } from './Spinner'
 
-type Variant = 'primary' | 'secondary' | 'light'
+type Variant = 'primary' | 'secondary' | 'secondaryNeutral' | 'light' | 'lightNeutral'
 type Color = string
 type Size = 'sm' | 'md'
 
@@ -12,8 +12,12 @@ const variantToButtonClassNames: Record<Variant, string> = {
     'shadow bg-theme-brand dark:bg-dark-theme-brand border-theme-brand dark:border-dark-theme-brand text-theme-brand-inverted dark:text-dark-theme-brand-inverted hover:bg-theme-brand-emphasis dark:hover:bg-dark-theme-brand-emphasis hover:border-theme-brand-emphasis dark:hover:border-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle',
   secondary:
     'shadow border-theme-brand dark:border-dark-theme-brand text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis hover:border-theme-brand-emphasis dark:hover:border-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle',
+  secondaryNeutral:
+    'shadow border-theme-content dark:border-dark-theme-content text-theme-content dark:text-dark-theme-content hover:text-theme-content-emphasis dark:hover:text-dark-theme-content-emphasis hover:border-theme-content-emphasis dark:hover:border-dark-theme-content-emphasis focus-visible:outline-theme-content-subtle dark:focus-visible:outline-dark-theme-content-subtle',
   light:
     'border-transparent text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle',
+  lightNeutral:
+    'border-transparent text-theme-content dark:text-dark-theme-content hover:text-theme-content-emphasis dark:hover:text-dark-theme-content-emphasis focus-visible:outline-theme-content-subtle dark:focus-visible:outline-dark-theme-content-subtle',
 }
 
 export const getButtonColorClassNames = (variant: Variant, color?: Color): string => {

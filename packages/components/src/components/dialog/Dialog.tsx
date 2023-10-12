@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactElement, ReactNode, useRef } from 'react'
 
-import { app } from '../../../../config'
 import { useKeyPress } from '../../utils/useKeyPress'
 import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Backdrop } from '../backdrop/Backdrop'
@@ -79,7 +78,7 @@ export const Dialog = ({
                   {children}
 
                   <div className="flex justify-end gap-x-4">
-                    <Button color={app.neutralColor} variant="secondary" disabled={confirmLoading} onClick={onClose}>
+                    <Button variant="secondaryNeutral" disabled={confirmLoading} onClick={onClose}>
                       {cancelText}
                     </Button>
 
