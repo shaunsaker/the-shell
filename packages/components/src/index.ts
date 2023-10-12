@@ -16,6 +16,7 @@ import { List } from './components/list/List'
 import { Loading } from './components/loading/Loading'
 import { Logo } from './components/logo/Logo'
 import { Navbar } from './components/navbar/Navbar'
+import { Popover } from './components/popover/Popover'
 import { RadioGroup } from './components/radioGroup/RadioGroup'
 import { Select } from './components/select/Select'
 import { Sidebar } from './components/sidebar/Sidebar'
@@ -44,6 +45,7 @@ export {
   Loading,
   Logo,
   Navbar,
+  Popover,
   RadioGroup,
   Select,
   Sidebar,
