@@ -7,7 +7,7 @@ export const HugeText = ({ className = '', children, ...props }: Props): ReactEl
   return (
     <h1
       className={twMerge(
-        'text-theme-content-emphasis dark:text-dark-theme-content-emphasis text-6xl font-semibold',
+        'text-theme-content-emphasis dark:text-dark-theme-content-emphasis text-4xl font-semibold lg:text-6xl',
         className,
       )}
       {...props}
