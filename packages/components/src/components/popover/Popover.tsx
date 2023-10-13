@@ -10,7 +10,7 @@ import { Button } from '../button/Button'
 
 type Props = {
   open: boolean
-  children: ReactNode
+  children?: ReactNode
   onClose: () => void
 }
 
