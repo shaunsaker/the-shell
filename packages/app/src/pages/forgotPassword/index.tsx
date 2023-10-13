@@ -11,21 +11,18 @@ export const ForgotPassword = () => {
   const navigate = useNavigate()
 
   return (
-    <AuthLayout
-      title="Forgot your password?"
-      footer={
-        <Button
-          icon={<ArrowLeftIcon />}
-          variant="light"
-          onClick={() => {
-            navigate(routes.signIn)
-          }}
-        >
-          Back to sign in
-        </Button>
-      }
-    >
+    <AuthLayout title="Forgot your password?">
       <ResetPassword />
+
+      <Button
+        icon={<ArrowLeftIcon />}
+        variant="light"
+        onClick={() => {
+          navigate(routes.signIn)
+        }}
+      >
+        Back to sign in
+      </Button>
     </AuthLayout>
   )
 }
