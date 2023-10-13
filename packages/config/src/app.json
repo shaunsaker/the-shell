@@ -9,7 +9,9 @@
     "from": "Shaun <shaun@fatbuck.app>",
     "email": "shaun@fatbuck.app"
   },
-  "twitterLink": "https://twitter.com",
-  "githubLink": "https://github.com",
-  "linkedInLink": "https://linkedin.com"
+  "social": {
+    "twitter": "https://twitter.com",
+    "github": "https://github.com",
+    "linkedIn": "https://linkedin.com"
+  }
 }
