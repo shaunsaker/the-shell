@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { app } from '../../../../config'
 import { Button } from '../button/Button'
 
 type Option = {
@@ -31,8 +30,7 @@ export const RadioGroup = ({ className, value, options, onValueChange }: Props):
           <Button
             key={option.value}
             className={twMerge('rounded-full')}
-            variant={isSelected ? 'primary' : 'light'}
-            color={isSelected ? '' : app.neutralColor}
+            variant={isSelected ? 'primary' : 'lightNeutral'}
             size="sm"
             onClick={() => {
               onValueChange(option)
