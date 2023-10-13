@@ -40,7 +40,7 @@ const getHexColorFromThemeColor = (
 async function main(): Promise<void> {
   log('Generating theme...')
 
-  const { themeColor = app.themeColor, neutralColor = app.neutralColor } = await args()
+  const { themeColor = app.colors.theme, neutralColor = app.colors.neutral } = await args()
 
   if (INVALID_COLORS.includes(themeColor)) {
     throw new Error(`themeColor ${themeColor} is not a valid color`)
