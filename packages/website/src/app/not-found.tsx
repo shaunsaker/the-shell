@@ -29,7 +29,7 @@ export default function NotFound() {
           variant="light"
           icon={<ArrowRightIcon />}
           iconPosition="right"
-          onClick={() => window.open(`mailto:${app.supportEmail}`, '_blank')}
+          onClick={() => window.open(`mailto:${app.support.email}`, '_blank')}
         >
           Contact support
         </Button>

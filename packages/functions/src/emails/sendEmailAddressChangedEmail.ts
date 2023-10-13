@@ -13,7 +13,7 @@ export const sendEmailAddressChangedEmail = async ({
   newEmail: string
 }) => {
   const data = await resend.emails.send({
-    from: app.fromEmail,
+    from: app.support.from,
     to: [newEmail],
     subject: `Email address changed`,
     react: EmailAddressChanged({ siteUrl, oldEmail, newEmail }),
