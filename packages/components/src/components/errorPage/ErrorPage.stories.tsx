@@ -19,11 +19,5 @@ export const Default: Story = {
   args: {
     title: 'No data',
     description: 'There is no data to display.',
-    onGoHomeClick: () => {
-      console.log('Go home clicked')
-    },
-    onContactSupportClick: () => {
-      console.log('Contact support clicked')
-    },
   },
 }
