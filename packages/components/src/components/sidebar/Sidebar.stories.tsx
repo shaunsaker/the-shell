@@ -19,7 +19,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    open: true,
     items: [
       {
         name: 'Dashboard',
@@ -36,9 +35,6 @@ export const Default: Story = {
     ],
     onItemClick: href => {
       console.log(href)
-    },
-    onClose: () => {
-      console.log('Close')
     },
   },
 }

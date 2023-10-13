@@ -27,25 +27,24 @@ const ITEMS: NavigationItem[] = [
 ]
 
 const onItemClick = vi.fn()
-const onClose = vi.fn()
 
 describe('Sidebar', () => {
   cleanUpAfterEach()
 
   it('renders', async () => {
-    render(<Sidebar items={ITEMS} onItemClick={onItemClick} onClose={onClose} />)
+    render(<Sidebar items={ITEMS} onItemClick={onItemClick} />)
 
     expect(screen.getByRole('button', { name: ITEMS[0].name })).toBeInTheDocument()
   })
 
   it('disables the button if the item is disabled', () => {
-    render(<Sidebar items={ITEMS} onItemClick={onItemClick} onClose={onClose} />)
+    render(<Sidebar items={ITEMS} onItemClick={onItemClick} />)
 
     expect(screen.getByRole('button', { name: ITEMS[1].name })).toBeDisabled()
   })
 
   it('allows click if the item is not disabled and the route is not active', () => {
-    render(<Sidebar items={ITEMS} onItemClick={onItemClick} onClose={onClose} />)
+    render(<Sidebar items={ITEMS} onItemClick={onItemClick} />)
 
     const button = screen.getByRole('button', { name: ITEMS[2].name })
     expect(button).not.toBeDisabled()
