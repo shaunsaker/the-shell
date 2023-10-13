@@ -5,8 +5,10 @@
     "theme": "teal",
     "neutral": "gray"
   },
-  "fromEmail": "Shaun <shaun@fatbuck.app>",
-  "supportEmail": "sakershaun@gmail.com",
+  "support": {
+    "from": "Shaun <shaun@fatbuck.app>",
+    "email": "shaun@fatbuck.app"
+  },
   "twitterLink": "https://twitter.com",
   "githubLink": "https://github.com",
   "linkedInLink": "https://linkedin.com"
