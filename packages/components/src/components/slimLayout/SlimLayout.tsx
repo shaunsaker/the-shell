@@ -7,7 +7,7 @@ export const SlimLayout = ({ className, children, ...props }: Props) => {
   return (
     <div className={twMerge('relative flex min-h-full justify-center md:px-12 lg:px-0', className)} {...props}>
       <div className="bg-theme-background dark:bg-dark-theme-background relative z-10 flex flex-1 flex-col justify-center px-4 py-10 shadow-2xl md:flex-none md:px-28">
-        <main className="mx-auto w-full max-w-md sm:px-4 md:w-96 md:max-w-sm md:px-0">{children}</main>
+        <div className="mx-auto w-full max-w-md sm:px-4 md:w-96 md:max-w-sm md:px-0">{children}</div>
       </div>
 
       <div className="hidden sm:contents lg:relative lg:block lg:flex-1">

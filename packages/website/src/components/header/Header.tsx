@@ -2,8 +2,14 @@
 
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button, Headerbar, Logo, Popover, Sidebar } from 'components'
+import { app } from 'config'
 import { useRouter } from 'next/navigation'
-import React, { ComponentProps, ReactElement, useState } from 'react'
+import React, {
+  ComponentProps,
+  ComponentPropsWithoutRef,
+  ReactElement,
+  useState,
+} from 'react'
 
 import { routes } from '@/routes'
 
@@ -29,14 +35,16 @@ const SIGN_IN_NAVIGATION_ITEM: NavigationItem = {
   href: process.env.NEXT_PUBLIC_APP_SIGN_IN_URL,
 }
 
-export const Header = (): ReactElement => {
+type Props = ComponentPropsWithoutRef<'header'>
+
+export const Header = ({ ...props }: Props): ReactElement => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const router = useRouter()
 
   return (
     <>
-      <Headerbar>
+      <Headerbar {...props}>
         <Button
           className="-ml-3 lg:hidden"
           variant="lightNeutral"
@@ -47,9 +55,15 @@ export const Header = (): ReactElement => {
           <Bars3Icon className="h-6 w-6" />
         </Button>
 
-        <button className="mr-4 flex items-center">
+        <Button
+          className="-ml-3"
+          variant="lightNeutral"
+          onClick={() => {
+            router.push(routes.home)
+          }}
+        >
           <Logo />
-        </button>
+        </Button>
 
         <div className="hidden items-center gap-x-2 lg:flex">
           {NAVIGATION_ITEMS.map((link) => (
@@ -79,10 +93,10 @@ export const Header = (): ReactElement => {
 
           <Button
             onClick={() => {
-              router.push(process.env.NEXT_PUBLIC_APP_SIGN_UP_URL)
+              router.push(app.website.primaryAction.link)
             }}
           >
-            Get started today
+            {app.website.primaryAction.label}
           </Button>
         </div>
       </Headerbar>

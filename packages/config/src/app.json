@@ -13,5 +13,11 @@
     "twitter": "https://twitter.com",
     "github": "https://github.com",
     "linkedIn": "https://linkedin.com"
+  },
+  "website": {
+    "primaryAction": {
+      "label": "Book a demo",
+      "link": "https://calendly.com"
+    }
   }
 }
