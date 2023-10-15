@@ -2,6 +2,7 @@ import { HomeIcon } from '@heroicons/react/24/outline'
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
+import { Background } from '../background/Background'
 import { Button } from './Button'
 
 const meta = {
@@ -38,6 +39,23 @@ export const SecondaryNeutral: Story = {
   },
 }
 
+export const SecondaryInverted: Story = {
+  args: {
+    variant: 'secondaryInverted',
+    children: 'Button',
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
+  decorators: [
+    Story => (
+      <Background>
+        <Story />
+      </Background>
+    ),
+  ],
+}
+
 export const Light: Story = {
   args: {
     variant: 'light',
@@ -50,6 +68,23 @@ export const LightNeutral: Story = {
     variant: 'lightNeutral',
     children: 'Button',
   },
+}
+
+export const LightInverted: Story = {
+  args: {
+    variant: 'lightInverted',
+    children: 'Button',
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
+  decorators: [
+    Story => (
+      <Background>
+        <Story />
+      </Background>
+    ),
+  ],
 }
 
 export const PrimaryCustomColor: Story = {
