@@ -18,7 +18,7 @@ export const BlankState = ({ Icon, title, description, children }: Props): React
       <div className="text-center">
         <Heading>{title}</Heading>
 
-        <Text className="mt-1">{description}</Text>
+        <Text className="mt-2">{description}</Text>
       </div>
 
       {children}
