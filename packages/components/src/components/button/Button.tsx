@@ -21,13 +21,12 @@ const variantToClassNames: Record<Variant, string> = {
     'shadow-md border-theme-brand dark:border-dark-theme-brand text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis hover:border-theme-brand-emphasis dark:hover:border-dark-theme-brand-emphasis',
   secondaryNeutral:
     'shadow-md border-theme-content dark:border-dark-theme-content text-theme-content dark:text-dark-theme-content hover:text-theme-content-emphasis dark:hover:text-dark-theme-content-emphasis hover:border-theme-content-emphasis dark:hover:border-dark-theme-content-emphasis',
-  secondaryInverted: 'shadow-md border-theme-white text-theme-brand-inverted hover:bg-theme-brand-inverted/10',
+  secondaryInverted: 'shadow-md text-white dark:text-white hover:bg-theme-brand-inverted/10',
   light:
     'border-transparent text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis',
   lightNeutral:
     'border-transparent text-theme-content dark:text-dark-theme-content hover:text-theme-content-emphasis dark:hover:text-dark-theme-content-emphasis',
-  lightInverted:
-    'border-transparent text-theme-content-inverted dark:text-dark-theme-content-inverted hover:bg-theme-brand-inverted/10',
+  lightInverted: 'border-transparent text-theme-content-inverted dark:text-white hover:bg-theme-brand-inverted/10',
 }
 
 const getColorClassNames = (variant: Variant, color?: Color): string => {
