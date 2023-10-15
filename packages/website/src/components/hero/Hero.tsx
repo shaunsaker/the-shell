@@ -37,7 +37,7 @@ export const Hero = () => {
   const router = useRouter()
 
   return (
-    <Section className="flex min-h-full flex-col pb-8">
+    <Section className="flex min-h-full flex-col pb-8 lg:pb-8">
       <Container className="flex-1 justify-center">
         <HugeText>
           {app.website.hero.title.replace(
