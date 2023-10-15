@@ -3,4 +3,5 @@ export const routes = {
   features: '/#features',
   testimonials: '/#testimonials',
   pricing: '/#pricing',
+  faq: '/#faq',
 }
