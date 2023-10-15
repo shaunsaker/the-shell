@@ -77,24 +77,26 @@ export const Hero = () => {
         </Button>
       </Container>
 
-      <div className="mt-8 flex flex-col items-center">
-        <Heading>Trusted by the best</Heading>
+      {app.website.hero.trustedByCompanies.length && (
+        <div className="mt-8 flex flex-col items-center">
+          <Heading>Trusted by the best</Heading>
 
-        <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:gap-6">
-          {app.website.hero.trustedByCompanies.map((company) => (
-            <li key={company.label}>
-              <Button
-                variant="lightNeutral"
-                onClick={() => {
-                  window.open(company.link, '_blank')
-                }}
-              >
-                {getCompanyLogo(company.label)}
-              </Button>
-            </li>
-          ))}
-        </ul>
-      </div>
+          <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:gap-6">
+            {app.website.hero.trustedByCompanies.map((company) => (
+              <li key={company.label}>
+                <Button
+                  variant="lightNeutral"
+                  onClick={() => {
+                    window.open(company.link, '_blank')
+                  }}
+                >
+                  {getCompanyLogo(company.label)}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </Section>
   )
 }
