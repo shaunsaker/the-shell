@@ -30,7 +30,14 @@ export const Footer = (): ReactElement => {
     <footer className="flex flex-col items-center bg-theme-background-muted px-4 dark:bg-dark-theme-background-muted">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center sm:px-6 lg:px-8">
         <div className="flex flex-col items-center py-16">
-          <Logo />
+          <Button
+            variant="lightNeutral"
+            onClick={() => {
+              router.push(routes.home)
+            }}
+          >
+            <Logo />
+          </Button>
 
           <nav className="mt-8 flex items-center">
             {NAV_LINKS.map((link) => (
