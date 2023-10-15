@@ -3,31 +3,33 @@ import { twMerge } from 'tailwind-merge'
 
 import { Spinner } from './Spinner'
 
-type Variant = 'primary' | 'secondary' | 'secondaryNeutral' | 'light' | 'lightNeutral'
+type Variant = 'primary' | 'secondary' | 'secondaryNeutral' | 'secondaryInverted' | 'light' | 'lightNeutral'
 type Color = string
-type Size = 'sm' | 'md'
+type Size = 'sm' | 'md' | 'lg'
 
-const variantToButtonClassNames: Record<Variant, string> = {
+const variantToClassNames: Record<Variant, string> = {
   primary:
-    'shadow bg-theme-brand dark:bg-dark-theme-brand border-theme-brand dark:border-dark-theme-brand text-theme-brand-inverted dark:text-dark-theme-brand-inverted hover:bg-theme-brand-emphasis dark:hover:bg-dark-theme-brand-emphasis hover:border-theme-brand-emphasis dark:hover:border-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle',
+    'shadow-md bg-theme-brand dark:bg-dark-theme-brand border-theme-brand dark:border-dark-theme-brand text-theme-brand-inverted dark:text-dark-theme-brand-inverted hover:bg-theme-brand-emphasis dark:hover:bg-dark-theme-brand-emphasis hover:border-theme-brand-emphasis dark:hover:border-dark-theme-brand-emphasis',
   secondary:
-    'shadow border-theme-brand dark:border-dark-theme-brand text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis hover:border-theme-brand-emphasis dark:hover:border-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle',
+    'shadow-md border-theme-brand dark:border-dark-theme-brand text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis hover:border-theme-brand-emphasis dark:hover:border-dark-theme-brand-emphasis',
   secondaryNeutral:
-    'shadow border-theme-content dark:border-dark-theme-content text-theme-content dark:text-dark-theme-content hover:text-theme-content-emphasis dark:hover:text-dark-theme-content-emphasis hover:border-theme-content-emphasis dark:hover:border-dark-theme-content-emphasis focus-visible:outline-theme-content-subtle dark:focus-visible:outline-dark-theme-content-subtle',
+    'shadow-md border-theme-content dark:border-dark-theme-content text-theme-content dark:text-dark-theme-content hover:text-theme-content-emphasis dark:hover:text-dark-theme-content-emphasis hover:border-theme-content-emphasis dark:hover:border-dark-theme-content-emphasis',
+  secondaryInverted:
+    'shadow-md border-theme-white text-theme-brand-inverted hover:text-theme-brand-inverted/70 hover:border-theme-brand-inverted/70',
   light:
-    'border-transparent text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle',
+    'border-transparent text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis',
   lightNeutral:
-    'border-transparent text-theme-content dark:text-dark-theme-content hover:text-theme-content-emphasis dark:hover:text-dark-theme-content-emphasis focus-visible:outline-theme-content-subtle dark:focus-visible:outline-dark-theme-content-subtle',
+    'border-transparent text-theme-content dark:text-dark-theme-content hover:text-theme-content-emphasis dark:hover:text-dark-theme-content-emphasis',
 }
 
-export const getButtonColorClassNames = (variant: Variant, color?: Color): string => {
+const getColorClassNames = (variant: Variant, color?: Color): string => {
   if (color) {
     if (variant === 'primary') {
-      return `shadow bg-${color}-500 border-${color}-500 text-theme-content-inverted hover:bg-${color}-700 dark:hover:bg-${color}-400 hover:border-${color}-700 dark:hover:border-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-400`
+      return `shadow-md bg-${color}-500 border-${color}-500 text-theme-content-inverted hover:bg-${color}-700 dark:hover:bg-${color}-400 hover:border-${color}-700 dark:hover:border-${color}-400 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-400`
     }
 
     if (variant === 'secondary') {
-      return `shadow border-${color}-500 dark:border-${color}-400 text-${color}-500 dark:text-${color}-400 hover:text-${color}-700 dark:hover:text-${color}-300 hover:border-${color}-700 dark:hover:border-${color}-300 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-400`
+      return `shadow-md border-${color}-500 dark:border-${color}-400 text-${color}-500 dark:text-${color}-400 hover:text-${color}-700 dark:hover:text-${color}-300 hover:border-${color}-700 dark:hover:border-${color}-300 focus-visible:outline-${color}-400 dark:focus-visible:outline-${color}-400`
     }
 
     if (variant === 'light') {
@@ -35,12 +37,13 @@ export const getButtonColorClassNames = (variant: Variant, color?: Color): strin
     }
   }
 
-  return variantToButtonClassNames[variant]
+  return variantToClassNames[variant]
 }
 
 const sizeToButtonClassNames: Record<Size, string> = {
   sm: 'px-2 py-1 text-xs rounded',
   md: 'px-4 py-2 text-sm rounded-lg',
+  lg: 'px-6 py-3 text-base rounded-lg',
 }
 
 type Props = ComponentPropsWithoutRef<'button'> & {
@@ -69,10 +72,10 @@ export const Button = ({
   return (
     <button
       className={twMerge(
-        'flex items-center justify-center gap-x-2 whitespace-nowrap border font-medium outline-2 outline-offset-4 transition-all focus-visible:outline',
+        'focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle flex items-center justify-center gap-x-2 whitespace-nowrap border font-medium outline-2 outline-offset-4 transition-all focus-visible:outline',
         sizeToButtonClassNames[size],
-        getButtonColorClassNames(variant, color),
-        disabled || loading ? 'pointer-events-none opacity-60 shadow-none' : '',
+        getColorClassNames(variant, color),
+        disabled || loading ? 'shadow-md-none pointer-events-none opacity-60' : '',
         className,
       )}
       disabled={disabled || loading}
