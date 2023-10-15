@@ -15,9 +15,11 @@ export function CallToAction() {
       <Background className="absolute inset-0" />
 
       <Container>
-        <Title className="text-white">{app.website.cta.title}</Title>
+        <Title className="text-white dark:text-white">
+          {app.website.cta.title}
+        </Title>
 
-        <ParagraphText className="text-white">
+        <ParagraphText className="text-white dark:text-white">
           {app.website.cta.subtitle}
         </ParagraphText>
 
