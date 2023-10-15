@@ -2,6 +2,7 @@
 
 import { Alert } from './components/alert/Alert'
 import { Backdrop } from './components/backdrop/Backdrop'
+import { Background } from './components/background/Background'
 import { Badge } from './components/badge/Badge'
 import { BlankState } from './components/blankState/BlankState'
 import { Breadcrumbs } from './components/breadcrumbs/Breadcrumbs'
@@ -17,6 +18,7 @@ import { List } from './components/list/List'
 import { Loading } from './components/loading/Loading'
 import { Logo } from './components/logo/Logo'
 import { Navbar } from './components/navbar/Navbar'
+import { ParagraphText } from './components/paragraphText/ParagraphText'
 import { Popover } from './components/popover/Popover'
 import { RadioGroup } from './components/radioGroup/RadioGroup'
 import { Select } from './components/select/Select'
@@ -32,6 +34,7 @@ import { Title } from './components/title/Title'
 export {
   Alert,
   Backdrop,
+  Background,
   Badge,
   BlankState,
   Breadcrumbs,
@@ -47,6 +50,7 @@ export {
   Loading,
   Logo,
   Navbar,
+  ParagraphText,
   Popover,
   RadioGroup,
   Select,
