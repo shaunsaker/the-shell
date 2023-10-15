@@ -1,3 +1,5 @@
+import { app } from 'config'
+
 import { CallToAction } from '@/components/callToAction/CallToAction'
 import { Faqs } from '@/components/faqs/Faqs'
 import { Hero } from '@/components/hero/Hero'
@@ -11,17 +13,17 @@ export default function Home() {
     <>
       <Hero />
 
-      <PrimaryFeatures />
+      {app.website.primaryFeatures.features.length && <PrimaryFeatures />}
 
-      <SecondaryFeatures />
+      {app.website.secondaryFeatures.features.length && <SecondaryFeatures />}
 
       <CallToAction />
 
-      <Testimonials />
+      {app.website.testimonials.testimonials.length && <Testimonials />}
 
       <Pricing />
 
-      <Faqs />
+      {app.website.faqs.questions.length && <Faqs />}
     </>
   )
 }

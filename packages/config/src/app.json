@@ -72,6 +72,28 @@
         }
       ]
     },
+    "secondaryFeatures": {
+      "title": "Features",
+      "subtitle": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.",
+      "features": [
+        {
+          "title": "Feature 1",
+          "description": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
+        },
+        {
+          "title": "Feature 2",
+          "description": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
+        },
+        {
+          "title": "Feature 3",
+          "description": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
+        },
+        {
+          "title": "Feature 4",
+          "description": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
+        }
+      ]
+    },
     "cta": {
       "title": "Get started today",
       "subtitle": "The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
