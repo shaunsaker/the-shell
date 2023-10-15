@@ -6,7 +6,6 @@ import screenshotExpenses from '@/images/screenshots/expenses.png'
 import screenshotPayroll from '@/images/screenshots/payroll.png'
 import screenshotReporting from '@/images/screenshots/reporting.png'
 import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
-import { routes } from '@/routes'
 
 import { Features } from '../features/Features'
 
@@ -25,13 +24,13 @@ const getFeatureScreenshot = (feature: string) => {
   }
 }
 
-export const PrimaryFeatures = () => {
+export const SecondaryFeatures = () => {
   return (
     <Features
-      id={routes.features.replace('/#', '')}
-      title={app.website.primaryFeatures.title}
-      subtitle={app.website.primaryFeatures.subtitle}
-      features={app.website.primaryFeatures.features.map((feature) => ({
+      variant="inverted"
+      title={app.website.secondaryFeatures.title}
+      subtitle={app.website.secondaryFeatures.subtitle}
+      features={app.website.secondaryFeatures.features.map((feature) => ({
         title: feature.title,
         description: feature.description,
         image: getFeatureScreenshot(feature.title),

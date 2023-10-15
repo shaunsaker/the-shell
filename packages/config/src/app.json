@@ -51,7 +51,7 @@
       ]
     },
     "primaryFeatures": {
-      "title": "Features",
+      "title": "Primary Features",
       "subtitle": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.",
       "features": [
         {
@@ -73,23 +73,23 @@
       ]
     },
     "secondaryFeatures": {
-      "title": "Features",
+      "title": "Secondary Features",
       "subtitle": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.",
       "features": [
         {
-          "title": "Feature 1",
+          "title": "Feature 5",
           "description": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
         },
         {
-          "title": "Feature 2",
+          "title": "Feature 6",
           "description": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
         },
         {
-          "title": "Feature 3",
+          "title": "Feature 7",
           "description": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
         },
         {
-          "title": "Feature 4",
+          "title": "Feature 8",
           "description": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
         }
       ]
@@ -110,14 +110,14 @@
           "image": "https://gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"
         },
         {
-          "name": "John Doe",
+          "name": "John Doe 2",
           "title": "CEO",
           "company": "Company",
           "testimonial": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.",
           "image": "https://gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"
         },
         {
-          "name": "John Doe",
+          "name": "John Doe 3",
           "title": "CEO",
           "company": "Company",
           "testimonial": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.",
