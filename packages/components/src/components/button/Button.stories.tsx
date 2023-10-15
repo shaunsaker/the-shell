@@ -88,6 +88,15 @@ export const Small: Story = {
   },
 }
 
+export const Large: Story = {
+  args: {
+    variant: 'primary',
+    size: 'lg',
+    icon: <HomeIcon />,
+    children: 'Button',
+  },
+}
+
 export const Disabled: Story = {
   args: {
     variant: 'primary',
