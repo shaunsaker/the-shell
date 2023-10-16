@@ -1,5 +1,5 @@
-import { RadioGroup, Text, Title } from 'components'
-import React, { ReactElement, useEffect, useMemo, useState } from 'react'
+import { PricingCards, Text, Title } from 'components'
+import React, { ComponentProps, ReactElement, useEffect, useMemo, useState } from 'react'
 
 import { useCreateCheckoutSession } from '@/billing/hooks/useCreateCheckoutSession'
 import { usePrices } from '@/billing/hooks/usePrices'
@@ -8,8 +8,12 @@ import { formatBillingInterval } from '@/utils/formatBillingInterval'
 import { parseProductMetadata } from '@/utils/parseProductMetadata'
 import { sortProductsByPrice } from '@/utils/sortProductsByPrice'
 
-import { PricingCard } from './pricingCard/PricingCard'
 import { ProductsNotFound } from './productsNotFound/ProductsNotFound'
+
+const DEFAULT_QUANTITY = 1
+
+type BillingIntervalOption = ComponentProps<typeof PricingCards>['billingIntervalOptions'][0]
+type BillingIntervalValue = BillingIntervalOption['value']
 
 export const Pricing = (): ReactElement => {
   const { data: products } = useProducts()
@@ -17,8 +21,8 @@ export const Pricing = (): ReactElement => {
   const { mutate: createCheckoutSession, isLoading: createCheckoutSessionLoading } = useCreateCheckoutSession()
 
   // Note: we set the billingInterval in a useEffect when the prices updates
-  const [billingInterval, setBillingInterval] = useState<string>('')
-  const [billingIntervalOptions, setBillingIntervalOptions] = useState<{ label: string; value: string }[]>([])
+  const [billingInterval, setBillingInterval] = useState<BillingIntervalValue>('')
+  const [billingIntervalOptions, setBillingIntervalOptions] = useState<BillingIntervalOption[]>([])
 
   // filter the prices by the selected billing interval
   const pricesForBillingInterval = useMemo(
@@ -26,10 +30,33 @@ export const Pricing = (): ReactElement => {
     [billingInterval, prices],
   )
 
-  const sortedProducts = useMemo(
-    () => sortProductsByPrice({ products, prices: pricesForBillingInterval }),
-    [pricesForBillingInterval, products],
-  )
+  const pricingCardsProducts = useMemo(() => {
+    const sortedProducts = sortProductsByPrice({ products, prices: pricesForBillingInterval })
+    const pricingCardsProducts = sortedProducts.map((product, index) => {
+      // get the price for the current billing interval
+      const price = pricesForBillingInterval?.filter(price => price.productId === product.id)[0]
+
+      // highlight the second product
+      const highlight = index === 1
+
+      const { features, freeTrialDays } = parseProductMetadata(product.metadata)
+
+      return {
+        id: price?.id || '',
+        title: product.name,
+        description: product.description,
+        currency: price?.currency || '',
+        price: price?.unitAmount || 0,
+        interval: price?.interval || '',
+        features,
+        freeTrialDays,
+        highlight,
+        loading: createCheckoutSessionLoading,
+      }
+    })
+
+    return pricingCardsProducts
+  }, [createCheckoutSessionLoading, pricesForBillingInterval, products])
 
   useEffect(() => {
     // when the prices update, set the selected billing interval and billing interval options
@@ -64,46 +91,17 @@ export const Pricing = (): ReactElement => {
         </Text>
       </div>
 
-      <RadioGroup
-        className="mt-8"
-        value={billingInterval}
-        options={billingIntervalOptions}
-        onValueChange={option => setBillingInterval(option.value)}
+      <PricingCards
+        billingInterval={billingInterval}
+        billingIntervalOptions={billingIntervalOptions}
+        products={pricingCardsProducts}
+        onBillingIntervalClick={newBillingIntervalValue => {
+          setBillingInterval(newBillingIntervalValue)
+        }}
+        onProductClick={id => {
+          createCheckoutSession({ priceId: id, quantity: DEFAULT_QUANTITY })
+        }}
       />
-
-      <div className="mt-8 flex w-full flex-wrap gap-4 lg:flex-nowrap">
-        {sortedProducts.map((product, index) => {
-          // get the price for the current billing interval
-          const price = pricesForBillingInterval?.filter(price => price.productId === product.id)[0]
-
-          // highlight the second product
-          const highlight = index === 1
-
-          const { features, freeTrialDays } = parseProductMetadata(product.metadata)
-
-          return (
-            <PricingCard
-              key={product.id}
-              title={product.name || ''}
-              description={product.description || ''}
-              price={price?.unitAmount || 0}
-              currency={price?.currency || ''}
-              interval={price?.interval || ''}
-              features={features}
-              freeTrialDays={freeTrialDays}
-              highlight={highlight}
-              loading={createCheckoutSessionLoading}
-              onClick={() => {
-                if (!price) {
-                  return
-                }
-
-                createCheckoutSession({ priceId: price.id, quantity: 1 })
-              }}
-            />
-          )
-        })}
-      </div>
     </main>
   )
 }
