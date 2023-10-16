@@ -20,6 +20,7 @@ import { Logo } from './components/logo/Logo'
 import { Navbar } from './components/navbar/Navbar'
 import { ParagraphText } from './components/paragraphText/ParagraphText'
 import { Popover } from './components/popover/Popover'
+import { PricingCards } from './components/pricingCards/PricingCards'
 import { RadioGroup } from './components/radioGroup/RadioGroup'
 import { Select } from './components/select/Select'
 import { Sidebar } from './components/sidebar/Sidebar'
@@ -52,6 +53,7 @@ export {
   Navbar,
   ParagraphText,
   Popover,
+  PricingCards,
   RadioGroup,
   Select,
   Sidebar,
