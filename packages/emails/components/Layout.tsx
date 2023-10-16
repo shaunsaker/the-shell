@@ -16,7 +16,7 @@ export const Layout = ({ siteUrl, children }: LayoutProps): ReactElement => {
       <div className="bg-theme-background-muted px-8 py-16 font-sans">
         <Img className="mx-auto mb-8 h-8 w-8" src={`${siteUrl}/icon-emails.png`} />
 
-        <Container className="border-theme-border bg-theme-background w-full max-w-xl rounded-lg border border-solid p-6 shadow-sm">
+        <Container className="border-theme-border bg-theme-background w-full max-w-xl rounded-xl border border-solid p-6 shadow-sm">
           {children}
 
           <Description>Cheers,</Description>

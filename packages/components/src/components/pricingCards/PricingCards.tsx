@@ -1,5 +1,5 @@
 import { RadioGroup } from 'components'
-import React, { ComponentProps, ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentProps, ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { PricingCard, Product } from './PricingCard'
@@ -18,24 +18,30 @@ type Props = {
 export const PricingCards = ({
   className = '',
   billingInterval,
-  billingIntervalOptions = [],
+  billingIntervalOptions,
   products,
   onBillingIntervalClick,
   onProductClick,
   ...props
-}: Props): ReactElement => {
+}: Props) => {
+  if (!products.length) {
+    return null
+  }
+
   return (
     <div className={twMerge('flex flex-col items-center', className)} {...props}>
-      <RadioGroup
-        className="mb-8"
-        value={billingInterval}
-        options={billingIntervalOptions}
-        onValueChange={option => {
-          onBillingIntervalClick(option.value)
-        }}
-      />
+      {billingIntervalOptions.length ? (
+        <RadioGroup
+          className="mb-8"
+          value={billingInterval}
+          options={billingIntervalOptions}
+          onValueChange={option => {
+            onBillingIntervalClick(option.value)
+          }}
+        />
+      ) : null}
 
-      <div className="w-full gap-4 lg:flex">
+      <div className="flex w-full flex-col gap-x-6 gap-y-8 lg:flex-row">
         {products?.map(product => {
           return (
             <PricingCard
