@@ -27,7 +27,7 @@ export const Footer = (): ReactElement => {
   const router = useRouter()
 
   return (
-    <footer className="flex flex-col items-center bg-theme-background-muted px-4 dark:bg-dark-theme-background-muted">
+    <footer className="flex flex-col items-center bg-theme-background px-4 dark:bg-dark-theme-background">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center sm:px-6 lg:px-8">
         <div className="flex flex-col items-center py-16">
           <Button

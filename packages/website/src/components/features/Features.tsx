@@ -52,7 +52,7 @@ export const Features = ({
   return (
     <Section
       aria-label={title}
-      className={twMerge('relative overflow-hidden lg:pr-0', className)}
+      className={twMerge('relative lg:pr-0', className)}
       {...props}
     >
       <Background className="absolute inset-0" variant={variant} />
