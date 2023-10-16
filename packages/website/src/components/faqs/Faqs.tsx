@@ -20,13 +20,13 @@ export function Faqs() {
           <Title>Frequently asked questions</Title>
 
           <ParagraphText className="mt-4">
-            If you can’t find what you’re looking for, email our support team
-            and if you’re lucky someone will get back to you.
+            If you can’t find what you’re looking for, email our support team and if you’re lucky someone will get back
+            to you.
           </ParagraphText>
         </div>
 
         <Columns className="mt-16">
-          {app.website.faqs.questions.map((faq) => (
+          {app.website.faqs.questions.map(faq => (
             <li key={faq.question} className="mb-8">
               <Heading>{faq.question}</Heading>
 

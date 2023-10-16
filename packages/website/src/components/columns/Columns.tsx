@@ -3,11 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'ul'>
 
-export const Columns = ({
-  className = '',
-  children,
-  ...props
-}: Props): ReactElement => {
+export const Columns = ({ className = '', children, ...props }: Props): ReactElement => {
   return (
     <ul className={twMerge(className, 'lg:columns-3')} {...props}>
       {children}

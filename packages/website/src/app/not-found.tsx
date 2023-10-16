@@ -12,10 +12,7 @@ export default function NotFound() {
   const router = useRouter()
 
   return (
-    <ErrorPage
-      title="Page not found"
-      description="Sorry, we couldn’t find the page you’re looking for."
-    >
+    <ErrorPage title="Page not found" description="Sorry, we couldn’t find the page you’re looking for.">
       <div className="mt-8 flex gap-8">
         <Button
           onClick={() => {

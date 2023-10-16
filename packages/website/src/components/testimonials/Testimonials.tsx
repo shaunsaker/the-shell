@@ -25,7 +25,7 @@ export function Testimonials() {
         </Container>
 
         <Columns className="mt-16">
-          {app.website.testimonials.testimonials.map((testimonial) => (
+          {app.website.testimonials.testimonials.map(testimonial => (
             <li key={testimonial.name} className="mb-8">
               <Testimonial
                 name={testimonial.name}
