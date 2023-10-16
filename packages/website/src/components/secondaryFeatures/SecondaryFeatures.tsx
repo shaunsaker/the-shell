@@ -30,7 +30,7 @@ export const SecondaryFeatures = () => {
       variant="inverted"
       title={app.website.secondaryFeatures.title}
       subtitle={app.website.secondaryFeatures.subtitle}
-      features={app.website.secondaryFeatures.features.map((feature) => ({
+      features={app.website.secondaryFeatures.features.map(feature => ({
         title: feature.title,
         description: feature.description,
         image: getFeatureScreenshot(feature.title),

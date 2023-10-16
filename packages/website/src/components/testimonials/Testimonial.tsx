@@ -34,13 +34,7 @@ export const Testimonial = ({
         </div>
 
         <div className="overflow-hidden rounded-full bg-theme-background dark:bg-dark-theme-background">
-          <Image
-            className="h-14 w-14 object-cover"
-            src={image}
-            alt={name}
-            width={56}
-            height={56}
-          />
+          <Image className="h-14 w-14 object-cover" src={image} alt={name} width={56} height={56} />
         </div>
       </div>
     </Card>

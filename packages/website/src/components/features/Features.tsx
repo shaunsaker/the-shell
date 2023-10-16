@@ -1,13 +1,6 @@
 'use client'
 
-import {
-  Background,
-  Button,
-  Heading,
-  ParagraphText,
-  Text,
-  Title,
-} from 'components'
+import { Background, Button, Heading, ParagraphText, Text, Title } from 'components'
 import Image from 'next/image'
 import { ComponentPropsWithoutRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -29,14 +22,7 @@ type Props = {
   features: Feature[]
 } & ComponentPropsWithoutRef<'section'>
 
-export const Features = ({
-  className,
-  variant = 'default',
-  title,
-  subtitle,
-  features,
-  ...props
-}: Props) => {
+export const Features = ({ className, variant = 'default', title, subtitle, features, ...props }: Props) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
 
   const activeFeature = features[activeTabIndex]
@@ -50,28 +36,14 @@ export const Features = ({
   )
 
   return (
-    <Section
-      aria-label={title}
-      className={twMerge('relative lg:pr-0', className)}
-      {...props}
-    >
+    <Section aria-label={title} className={twMerge('relative lg:pr-0', className)} {...props}>
       <Background className="absolute inset-0" variant={variant} />
 
       <div className="relative">
         <Container className="mb-16">
-          <Title
-            className={
-              variant === 'default' ? 'text-white dark:text-white' : ''
-            }
-          >
-            {title}
-          </Title>
+          <Title className={variant === 'default' ? 'text-white dark:text-white' : ''}>{title}</Title>
 
-          <ParagraphText
-            className={
-              variant === 'default' ? 'text-white dark:text-white' : ''
-            }
-          >
+          <ParagraphText className={variant === 'default' ? 'text-white dark:text-white' : ''}>
             {subtitle}
           </ParagraphText>
         </Container>
@@ -84,11 +56,7 @@ export const Features = ({
                 <li key={feature.title}>
                   <Button
                     className="rounded-full"
-                    variant={
-                      activeTabIndex === index
-                        ? 'secondaryInverted'
-                        : 'lightInverted'
-                    }
+                    variant={activeTabIndex === index ? 'secondaryInverted' : 'lightInverted'}
                     size="lg"
                     onClick={() => {
                       setActiveTabIndex(index)
@@ -105,9 +73,7 @@ export const Features = ({
             </ParagraphText>
           </div>
 
-          <div className="mt-4 overflow-hidden rounded-xl">
-            {imageComponent}
-          </div>
+          <div className="mt-4 overflow-hidden rounded-xl">{imageComponent}</div>
         </div>
 
         {/* DESKTOP */}
@@ -132,20 +98,11 @@ export const Features = ({
                     setActiveTabIndex(index)
                   }}
                 >
-                  <Heading
-                    className={
-                      variant === 'default' ? 'text-white dark:text-white' : ''
-                    }
-                  >
+                  <Heading className={variant === 'default' ? 'text-white dark:text-white' : ''}>
                     {feature.title}
                   </Heading>
 
-                  <Text
-                    className={twMerge(
-                      variant === 'default' ? 'text-white dark:text-white' : '',
-                      'mt-2',
-                    )}
-                  >
+                  <Text className={twMerge(variant === 'default' ? 'text-white dark:text-white' : '', 'mt-2')}>
                     {feature.description}
                   </Text>
                 </Button>
@@ -153,9 +110,7 @@ export const Features = ({
             ))}
           </ul>
 
-          <div className="col-span-7 overflow-hidden rounded-l-xl shadow-xl">
-            {imageComponent}
-          </div>
+          <div className="col-span-7 overflow-hidden rounded-l-xl shadow-xl">{imageComponent}</div>
         </div>
       </div>
     </Section>

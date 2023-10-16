@@ -31,7 +31,7 @@ export const PrimaryFeatures = () => {
       id={routes.features.replace('/#', '')}
       title={app.website.primaryFeatures.title}
       subtitle={app.website.primaryFeatures.subtitle}
-      features={app.website.primaryFeatures.features.map((feature) => ({
+      features={app.website.primaryFeatures.features.map(feature => ({
         title: feature.title,
         description: feature.description,
         image: getFeatureScreenshot(feature.title),

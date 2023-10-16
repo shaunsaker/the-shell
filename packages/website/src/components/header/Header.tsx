@@ -4,12 +4,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button, Headerbar, Logo, Popover, Sidebar } from 'components'
 import { app } from 'config'
 import { useRouter } from 'next/navigation'
-import React, {
-  ComponentProps,
-  ComponentPropsWithoutRef,
-  ReactElement,
-  useState,
-} from 'react'
+import React, { ComponentProps, ComponentPropsWithoutRef, ReactElement, useState } from 'react'
 
 import { routes } from '@/routes'
 
@@ -66,7 +61,7 @@ export const Header = ({ ...props }: Props): ReactElement => {
         </Button>
 
         <div className="hidden items-center gap-x-2 lg:flex">
-          {NAVIGATION_ITEMS.map((link) => (
+          {NAVIGATION_ITEMS.map(link => (
             <Button
               key={link.href}
               variant="lightNeutral"
@@ -110,7 +105,7 @@ export const Header = ({ ...props }: Props): ReactElement => {
         >
           <Sidebar
             items={[...NAVIGATION_ITEMS, SIGN_IN_NAVIGATION_ITEM]}
-            onItemClick={(href) => {
+            onItemClick={href => {
               router.push(href)
 
               setSidebarOpen(false)

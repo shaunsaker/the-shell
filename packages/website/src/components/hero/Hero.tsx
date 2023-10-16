@@ -1,12 +1,6 @@
 'use client'
 
-import {
-  Background,
-  Button,
-  Heading,
-  HugeText,
-  ParagraphText,
-} from 'components'
+import { Background, Button, Heading, HugeText, ParagraphText } from 'components'
 import { app } from 'config/src'
 import { useRouter } from 'next/navigation'
 
@@ -49,21 +43,12 @@ export const Hero = () => {
 
       <Container className="flex-1 justify-center">
         <HugeText>
-          {app.website.hero.title.replace(
-            app.website.hero.titleHighlighted,
-            '',
-          )}
+          {app.website.hero.title.replace(app.website.hero.titleHighlighted, '')}
 
-          {app.website.hero.titleHighlighted && (
-            <HighlightedText>
-              {app.website.hero.titleHighlighted}
-            </HighlightedText>
-          )}
+          {app.website.hero.titleHighlighted && <HighlightedText>{app.website.hero.titleHighlighted}</HighlightedText>}
         </HugeText>
 
-        <ParagraphText className="text-center">
-          {app.website.hero.subtitle}
-        </ParagraphText>
+        <ParagraphText className="text-center">{app.website.hero.subtitle}</ParagraphText>
 
         <Button
           size="lg"
@@ -80,7 +65,7 @@ export const Hero = () => {
           <Heading>Trusted by the best</Heading>
 
           <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:gap-6">
-            {app.website.hero.trustedByCompanies.map((company) => (
+            {app.website.hero.trustedByCompanies.map(company => (
               <li key={company.label}>
                 <Button
                   variant="lightNeutral"

@@ -3,17 +3,10 @@ import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'span'>
 
-export const HighlightedText = ({
-  className = '',
-  children,
-  ...props
-}: Props): ReactElement => {
+export const HighlightedText = ({ className = '', children, ...props }: Props): ReactElement => {
   return (
     <span
-      className={twMerge(
-        'relative whitespace-nowrap text-theme-brand dark:text-dark-theme-brand',
-        className,
-      )}
+      className={twMerge('relative whitespace-nowrap text-theme-brand dark:text-dark-theme-brand', className)}
       {...props}
     >
       <svg

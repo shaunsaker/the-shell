@@ -4,8 +4,7 @@ import Link from 'next/link'
 const baseStyles = {
   solid:
     'group inline-flex items-center justify-center rounded-full py-2 px-4 text-sm font-semibold focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2',
-  outline:
-    'group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none',
+  outline: 'group inline-flex ring-1 items-center justify-center rounded-full py-2 px-4 text-sm focus:outline-none',
 }
 
 const variantStyles = {
@@ -25,13 +24,9 @@ const variantStyles = {
 }
 
 type VariantKey = keyof typeof variantStyles
-type ColorKey<Variant extends VariantKey> =
-  keyof (typeof variantStyles)[Variant]
+type ColorKey<Variant extends VariantKey> = keyof (typeof variantStyles)[Variant]
 
-type ButtonProps<
-  Variant extends VariantKey,
-  Color extends ColorKey<Variant>,
-> = {
+type ButtonProps<Variant extends VariantKey, Color extends ColorKey<Variant>> = {
   variant?: Variant
   color?: Color
 } & (
@@ -41,10 +36,12 @@ type ButtonProps<
     })
 )
 
-export function Button<
-  Color extends ColorKey<Variant>,
-  Variant extends VariantKey = 'solid',
->({ variant, color, className, ...props }: ButtonProps<Variant, Color>) {
+export function Button<Color extends ColorKey<Variant>, Variant extends VariantKey = 'solid'>({
+  variant,
+  color,
+  className,
+  ...props
+}: ButtonProps<Variant, Color>) {
   variant = variant ?? ('solid' as Variant)
   color = color ?? ('slate' as Color)
 

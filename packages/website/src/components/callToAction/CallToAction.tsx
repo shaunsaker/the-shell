@@ -15,13 +15,9 @@ export function CallToAction() {
       <Background className="absolute inset-0" />
 
       <Container>
-        <Title className="text-white dark:text-white">
-          {app.website.cta.title}
-        </Title>
+        <Title className="text-white dark:text-white">{app.website.cta.title}</Title>
 
-        <ParagraphText className="text-white dark:text-white">
-          {app.website.cta.subtitle}
-        </ParagraphText>
+        <ParagraphText className="text-white dark:text-white">{app.website.cta.subtitle}</ParagraphText>
 
         <Button
           variant="secondaryInverted"
