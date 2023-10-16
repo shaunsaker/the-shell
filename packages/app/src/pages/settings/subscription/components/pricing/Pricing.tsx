@@ -80,9 +80,7 @@ export const Pricing = (): ReactElement => {
 
   return (
     <main className="flex flex-col items-center">
-      <div className="w-full max-w-lg text-center">
-        <Text className="text-theme-brand dark:text-dark-theme-brand">Pricing</Text>
-
+      <div className="mb-8 w-full max-w-lg text-center">
         <Title className="mt-4">Pricing plans for teams of all sizes</Title>
 
         <Text className="mt-4">

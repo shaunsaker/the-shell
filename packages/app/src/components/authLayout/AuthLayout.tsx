@@ -8,7 +8,7 @@ type Props = {
 export const AuthLayout = ({ title, children, ...props }: Props) => {
   return (
     <SlimLayout {...props}>
-      <div className="space-y-10">
+      <div className="space-y-8">
         <Logo />
 
         <Heading>{title}</Heading>

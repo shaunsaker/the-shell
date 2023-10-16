@@ -19,7 +19,7 @@ export const RadioGroup = ({ className, value, options, onValueChange }: Props):
   return (
     <div
       className={twMerge(
-        'ring-theme-border dark:ring-dark-theme-border flex gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset',
+        'ring-theme-border dark:ring-dark-theme-border bg-theme-background dark:bg-dark-theme-background flex gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 shadow-md ring-1 ring-inset',
         className,
       )}
     >
