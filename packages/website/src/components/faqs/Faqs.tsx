@@ -4,6 +4,7 @@ import { app } from 'config'
 import { routes } from '@/routes'
 
 import { Columns } from '../columns/Columns'
+import { Container } from '../container/Container'
 import { Section } from '../section/Section'
 
 export function Faqs() {
@@ -16,14 +17,14 @@ export function Faqs() {
       <Background className="absolute inset-0" variant="inverted" />
 
       <div className="relative">
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <Container>
           <Title>Frequently asked questions</Title>
 
           <ParagraphText className="mt-4">
             If you can’t find what you’re looking for, email our support team and if you’re lucky someone will get back
             to you.
           </ParagraphText>
-        </div>
+        </Container>
 
         <Columns className="mt-16">
           {app.website.faqs.questions.map(faq => (
