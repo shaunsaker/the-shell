@@ -25,28 +25,24 @@
       "subtitle": "Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.",
       "trustedByCompanies": [
         {
-          "label": "Laravel",
-          "link": "https://laravel.com/"
+          "label": "Logoipsum 1",
+          "link": ""
         },
         {
-          "label": "Mirage",
-          "link": "https://miragejs.com/"
+          "label": "Logoipsum 2",
+          "link": ""
         },
         {
-          "label": "Statamic",
-          "link": "https://statamic.com/"
+          "label": "Logoipsum 3",
+          "link": ""
         },
         {
-          "label": "Statickit",
-          "link": "https://vercel.com/integrations/statickit"
+          "label": "Logoipsum 4",
+          "link": ""
         },
         {
-          "label": "Transistor",
-          "link": "https://transistor.fm/"
-        },
-        {
-          "label": "Tuple",
-          "link": "https://tuple.app/"
+          "label": "Logoipsum 5",
+          "link": ""
         }
       ]
     },
