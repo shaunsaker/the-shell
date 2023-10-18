@@ -3,15 +3,10 @@ import { User } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
-console.log('Hello from On User Updated!')
-
 export const onUserUpdated = onDocumentUpdated('users/{userId}', async event => {
   const after = event.data?.after.data() as User | undefined
 
-  // FIXME: this will only be true for onDocumentDeleted
-  const isUserDeleted = !after
-
-  if (isUserDeleted) {
+  if (!after) {
     return
   }
 

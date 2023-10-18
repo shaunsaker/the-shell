@@ -59,7 +59,7 @@ describe('Pricing', () => {
     )
 
     expect(screen.queryByText('No products found')).not.toBeInTheDocument()
-    expect(screen.getByText('Pricing')).toBeInTheDocument()
+    expect(screen.getByText('Pricing plans for teams of all sizes')).toBeInTheDocument()
   })
 
   it('renders the correct prices', () => {
@@ -80,31 +80,37 @@ describe('Pricing', () => {
     mocks.usePrices.mockReturnValue({
       data: [
         makePrice({
+          id: '1',
           productId: '1',
           interval: PricingPlanInterval.Month,
           unitAmount: 1000,
         }),
         makePrice({
+          id: '2',
           productId: '2',
           interval: PricingPlanInterval.Month,
           unitAmount: 2000,
         }),
         makePrice({
+          id: '3',
           productId: '3',
           interval: PricingPlanInterval.Month,
           unitAmount: 3000,
         }),
         makePrice({
+          id: '4',
           productId: '1',
           interval: PricingPlanInterval.Year,
           unitAmount: 10000,
         }),
         makePrice({
+          id: '5',
           productId: '2',
           interval: PricingPlanInterval.Year,
           unitAmount: 20000,
         }),
         makePrice({
+          id: '6',
           productId: '3',
           interval: PricingPlanInterval.Year,
           unitAmount: 30000,

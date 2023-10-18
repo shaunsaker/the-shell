@@ -9,11 +9,14 @@ import { getUser } from '@/users/getUser'
 import { getISOString } from '@/utils/getISOString'
 import { getUuid } from '@/utils/getUuid'
 
-console.log('Hello from On Subscription Created!')
-
 export const onSubscriptionCreated = onDocumentCreated('subscriptions/{subscriptionId}', async event => {
   const subscription = event.data?.data() as Subscription
   const uid = subscription.ownerId
+
+  // guest users from the website won't have a uid
+  if (!uid) {
+    return
+  }
 
   const user = await getUser(uid)
 

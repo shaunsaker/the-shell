@@ -1,7 +1,7 @@
 import { Stripe, stripe } from './stripe'
 import { updateCustomer } from './updateCustomer'
 
-export const createCustomer = async ({ email, uid }: { email: string; uid: string }): Promise<string> => {
+export const createCustomer = async ({ email, uid }: { email?: string; uid: string | null }): Promise<string> => {
   const customerData: Stripe.CustomerCreateParams = {
     metadata: {
       uid,
@@ -11,9 +11,13 @@ export const createCustomer = async ({ email, uid }: { email: string; uid: strin
 
   // Create the customer in Stripe
   const customer = await stripe.customers.create(customerData)
+  const stripeCustomerId = customer.id
 
   // Save the customer in the db
-  await updateCustomer(uid, { id: uid, stripeCustomerId: customer.id })
+  await updateCustomer({
+    id: stripeCustomerId,
+    ownerId: uid,
+  })
 
-  return customer.id
+  return stripeCustomerId
 }

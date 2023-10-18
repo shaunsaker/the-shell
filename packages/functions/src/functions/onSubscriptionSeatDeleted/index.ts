@@ -6,8 +6,6 @@ import { getSubscription } from '@/billing/getSubscription'
 import { getSubscriptionInfo } from '@/billing/getSubscriptionInfo'
 import { updateSubscriptionInfo } from '@/billing/updateSubscriptionInfo'
 
-console.log('Hello from On Subscription Seat Deleted!')
-
 export const onSubscriptionSeatDeleted = onDocumentDeleted(
   'subscriptions/{subscriptionId}/seats/{seatId}',
   async event => {

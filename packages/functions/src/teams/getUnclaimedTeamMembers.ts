@@ -6,6 +6,7 @@ export const getUnclaimedTeamMembers = async (email: string) => {
   const docs = await firebase
     .firestore()
     .collectionGroup('members')
+    .where('userId', '==', null)
     .where('email', '==', email)
     .where('status', '==', TeamMemberStatus.Invited)
     .get()

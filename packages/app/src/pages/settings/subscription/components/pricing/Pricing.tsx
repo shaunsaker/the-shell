@@ -31,6 +31,10 @@ export const Pricing = (): ReactElement => {
   )
 
   const pricingCardsProducts = useMemo(() => {
+    if (!pricesForBillingInterval?.length) {
+      return []
+    }
+
     const sortedProducts = sortProductsByPrice({ products, prices: pricesForBillingInterval })
     const pricingCardsProducts = sortedProducts.map((product, index) => {
       // get the price for the current billing interval

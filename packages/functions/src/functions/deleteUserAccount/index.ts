@@ -12,8 +12,6 @@ import { getTeamMembersForUserEmail } from '@/teams/getTeamMembersForUserEmail'
 import { deleteUser } from '@/users/deleteUser'
 import { formatName } from '@/utils/formatName'
 
-console.log('Hello from Delete User Account!')
-
 export const deleteUserAccountFunction = onCall<
   FunctionsMap[Functions.deleteUserAccount]['data'],
   Promise<FunctionsMap[Functions.deleteUserAccount]['response']>

@@ -22,6 +22,7 @@ export type User = {
   id: UserId
   createdAt: string
   email: UserEmail
+  emailVerified: boolean
   firstName: string
   lastName: string
   billingAddress?: BillingAddress
@@ -29,9 +30,11 @@ export type User = {
 }
 
 /* BILLING */
+type StripeCustomerId = string
+
 export type Customer = {
-  id: UserId
-  stripeCustomerId: string
+  id: StripeCustomerId
+  ownerId: UserId | null // this will be null for guest users from the website
 }
 
 export type ProductMetadata = {
@@ -91,7 +94,9 @@ export type SubscriptionId = string
 
 export type Subscription = {
   id: SubscriptionId
-  ownerId: UserId
+  stripeCustomerId: StripeCustomerId
+  ownerId: UserId | null // this will be null for guest users from the website
+  email: string | null // the email is used to find unowned subscriptions of guest users from the website
   priceId: PriceId
   quantity: number
   status: SubscriptionStatus
@@ -188,6 +193,7 @@ export enum Functions {
   sendChangeEmailVerification = 'sendChangeEmailVerificationFunction',
   sendEmailVerification = 'sendEmailVerificationFunction',
   updateSubscriptionQuantity = 'updateSubscriptionQuantityFunction',
+  verifyEmail = 'verifyEmailFunction',
 }
 
 export type FunctionsMap = {
@@ -276,6 +282,14 @@ export type FunctionsMap = {
   }
   [Functions.updateSubscriptionQuantity]: {
     data: { quantity: number }
+    response: {
+      ok: true
+    }
+  }
+  [Functions.verifyEmail]: {
+    data: {
+      actionCode: string
+    }
     response: {
       ok: true
     }

@@ -1,39 +1,39 @@
+import { UserRecord } from 'firebase-admin/auth'
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
 
 import { getAuthUser } from '@/auth/getAuthUser'
 import { createCheckoutSession } from '@/billing/createCheckoutSession'
 import { createCustomer } from '@/billing/createCustomer'
-import { getCustomer } from '@/billing/getCustomer'
+import { getCustomerByUid } from '@/billing/getCustomerByUid'
 import { getProductByPriceId } from '@/billing/getProductByPriceId'
-
-console.log('Hello from Create Checkout Session!')
 
 export const createCheckoutSessionFunction = onCall<
   FunctionsMap[Functions.createCheckoutSession]['data'],
   Promise<FunctionsMap[Functions.createCheckoutSession]['response']>
 >(async request => {
   try {
-    // Authorized api requests only
-    if (!request.auth) {
-      throw new HttpsError('unauthenticated', 'Unauthorized')
+    let customerId: string | undefined
+    let user: UserRecord | undefined
+
+    // try and find a customer for the logged in user
+    if (request.auth?.uid) {
+      user = await getAuthUser(request.auth.uid)
+
+      if (user) {
+        const customer = await getCustomerByUid(user.uid)
+
+        if (customer) {
+          customerId = customer.id
+        }
+      }
     }
 
-    // Get the user from the request
-    const user = await getAuthUser(request.auth.uid)
-
-    if (!user) {
-      throw new HttpsError('not-found', 'User not found')
-    }
-
-    // Get or create the customer in Stripe
-    const customer = await getCustomer(user.uid)
-    let customerId = customer?.stripeCustomerId
-
+    // if a customer does not exist, create one
     if (!customerId) {
       customerId = await createCustomer({
-        uid: user.uid,
-        email: user.email || '',
+        email: user?.email,
+        uid: user?.uid || null,
       })
     }
 

@@ -7,8 +7,6 @@ import { getAuthUserByEmail } from '@/auth/getAuthUserByEmail'
 import { sendEmailVerificationEmail } from '@/emails/sendEmailVerificationEmail'
 import { validateEmail } from '@/utils/validateEmail'
 
-console.log('Hello from Send Email Verification!')
-
 export const sendEmailVerificationFunction = onCall<
   FunctionsMap[Functions.sendEmailVerification]['data'],
   Promise<FunctionsMap[Functions.sendEmailVerification]['response']>

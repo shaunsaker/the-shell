@@ -28,10 +28,22 @@ const parseSubscriptionStatus = (status: string): SubscriptionStatus => {
   }
 }
 
-export const updateSubscription = async (uid: string, stripeSubscription: Stripe.Subscription) => {
+export const updateSubscription = async ({
+  stripeSubscription,
+  customerId,
+  uid,
+}: {
+  stripeSubscription: Stripe.Subscription
+  customerId: string
+  uid: string | null
+}) => {
+  const email = (stripeSubscription.customer as Stripe.Customer)?.email || null
+
   const subscriptionData: Subscription = {
     id: stripeSubscription.id,
+    stripeCustomerId: customerId,
     ownerId: uid,
+    email,
     priceId: stripeSubscription.items.data[0].price.id,
     quantity: stripeSubscription.items.data[0].quantity || 1,
     status: parseSubscriptionStatus(stripeSubscription.status),

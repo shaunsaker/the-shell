@@ -6,8 +6,6 @@ import { deleteAssignedSubscriptionSeatsByEmail } from '@/billing/deleteAssigned
 import { getSubscriptionSeats } from '@/billing/getSubscriptionSeats'
 import { getTeamMembersForUserEmail } from '@/teams/getTeamMembersForUserEmail'
 
-console.log('Hello from On Team Member Deleted!')
-
 export const onTeamMemberDeleted = onDocumentDeleted('teams/{teamsId}/members/{memberId}', async event => {
   const teamMember = event.data?.data() as TeamMember | undefined
 

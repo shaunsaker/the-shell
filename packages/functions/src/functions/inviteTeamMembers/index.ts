@@ -14,8 +14,6 @@ import { formatName } from '@/utils/formatName'
 import { getISOString } from '@/utils/getISOString'
 import { getUuid } from '@/utils/getUuid'
 
-console.log('Hello from Invite Team Members!')
-
 export const inviteTeamMembersFunction = onCall<
   FunctionsMap[Functions.inviteTeamMembers]['data'],
   Promise<FunctionsMap[Functions.inviteTeamMembers]['response']>
