@@ -9,8 +9,6 @@ import { getTeamMembers } from '@/teams/getTeamMembers'
 import { verifyTeamAdmin } from '@/teams/verifyTeamAdmin'
 import { formatName } from '@/utils/formatName'
 
-console.log('Hello from Remove Team Member!')
-
 export const removeTeamMemberFunction = onCall<
   FunctionsMap[Functions.removeTeamMember]['data'],
   Promise<FunctionsMap[Functions.removeTeamMember]['response']>

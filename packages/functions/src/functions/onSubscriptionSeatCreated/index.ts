@@ -6,8 +6,6 @@ import { getSubscription } from '@/billing/getSubscription'
 import { getSubscriptionInfo } from '@/billing/getSubscriptionInfo'
 import { updateSubscriptionInfo } from '@/billing/updateSubscriptionInfo'
 
-console.log('Hello from On Subscription Seat Created!')
-
 export const onSubscriptionSeatCreated = onDocumentCreated(
   'subscriptions/{subscriptionId}/seats/{seatId}',
   async event => {

@@ -38,10 +38,6 @@ service cloud.firestore {
       allow read, write: if isSignedIn() && isDocumentOwner(userId);
     }
 
-    match /customers/{userId} {
-      allow read, create: if isSignedIn() && isDocumentOwner(userId);
-    }
-
     match /products/{productId} {
       allow read: if isSignedIn();
     }

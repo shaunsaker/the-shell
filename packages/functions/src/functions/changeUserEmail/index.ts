@@ -6,8 +6,6 @@ import { sendEmailAddressChangedEmail } from '@/emails/sendEmailAddressChangedEm
 import { updateUser } from '@/users/updateUser'
 import { validateEmail } from '@/utils/validateEmail'
 
-console.log('Hello from Change User Email!')
-
 export const changeUserEmailFunction = onCall<
   FunctionsMap[Functions.changeUserEmail]['data'],
   Promise<FunctionsMap[Functions.changeUserEmail]['response']>

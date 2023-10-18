@@ -172,15 +172,18 @@ gh auth login
 gh secret set FIREBASE_TOKEN --body VALUE
 ```
 
-8. Create your app env files:
+8. Create your `app` and `website` env files:
 
 ```
 touch ./packages/app/.env.development
 touch ./packages/app/.env.staging
 touch ./packages/app/.env.production
+touch ./packages/website/.env.development
+touch ./packages/website/.env.staging
+touch ./packages/website/.env.production
 ```
 
-9. Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [app/.env.staging](./packages/app/.env.staging) and [app/.env.production](./packages/app/.env.production).
+9. Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/wesbite/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
 
 10. [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
 
@@ -194,15 +197,11 @@ touch ./packages/app/.env.production
 
 15. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell-development" with your PROJECT_NAME.
 
-16. Create your website env files:
+16. Download your Firebase service account for each project and add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`.
 
-```
-touch ./packages/website/.env.development
-touch ./packages/website/.env.staging
-touch ./packages/website/.env.production
-```
+17. Add the paths to the service accounts to [website/.env.development](./packages/website/.env.development), [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `GOOGLE_APPLICATION_CREDENTIALS`.
 
-17. Add the relavant app hosting url's to [website/.env.development](./packages/website/.env.development), [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_APP_SIGN_IN_URL` and `NEXT_PUBLIC_APP_SIGN_UP_URL`.
+18. Add the relavant app hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_APP_URL`, `NEXT_PUBLIC_APP_SIGN_IN_URL` and `NEXT_PUBLIC_APP_SIGN_UP_URL`. Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_URL` to `http://localhost:5173`, ie. the url you're serving the local `app` on.
 
 ---
 

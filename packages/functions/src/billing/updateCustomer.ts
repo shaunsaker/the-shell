@@ -2,6 +2,6 @@ import { Customer, Firestore } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
-export const updateCustomer = async (uid: string, data: Customer) => {
-  await firebase.firestore().collection(Firestore.Customers).doc(uid).set(data, { merge: true })
+export const updateCustomer = async (data: Customer) => {
+  await firebase.firestore().collection(Firestore.Customers).doc(data.id).set(data, { merge: true })
 }

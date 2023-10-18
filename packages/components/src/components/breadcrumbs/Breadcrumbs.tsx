@@ -24,27 +24,25 @@ export const Breadcrumbs = ({ items, onClick }: Props) => {
           const isLastBreadcrumb = index === items.length - 1
 
           return (
-            <li key={item.name}>
-              <div className="flex items-center space-x-4">
-                <Button
-                  variant="lightNeutral"
-                  disabled={active || item.disabled}
-                  onClick={() => {
-                    // navigate to the route if we're not already on that route
-                    if (!active && onClick) {
-                      onClick(item.href)
-                    }
-                  }}
-                >
-                  {item.name}
-                </Button>
+            <li key={item.name} className="flex items-center space-x-4">
+              <Button
+                variant="lightNeutral"
+                disabled={active || item.disabled}
+                onClick={() => {
+                  // navigate to the route if we're not already on that route
+                  if (!active && onClick) {
+                    onClick(item.href)
+                  }
+                }}
+              >
+                {item.name}
+              </Button>
 
-                {!isLastBreadcrumb && (
-                  <Text>
-                    <ChevronRightIcon className="h-4 w-4" />
-                  </Text>
-                )}
-              </div>
+              {!isLastBreadcrumb && (
+                <Text>
+                  <ChevronRightIcon className="h-4 w-4" />
+                </Text>
+              )}
             </li>
           )
         })}

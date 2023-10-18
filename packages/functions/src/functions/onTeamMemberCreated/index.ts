@@ -5,8 +5,6 @@ import { SubscriptionSeat, TeamMember } from 'types'
 import { getSubscriptionSeats } from '@/billing/getSubscriptionSeats'
 import { updateSubscriptionSeats } from '@/billing/updateSubscriptionSeats'
 
-console.log('Hello from On Team Member Created!')
-
 export const onTeamMemberCreated = onDocumentCreated('teams/{teamsId}/members/{uid}', async event => {
   const { uid } = event.params
   const teamMember = event.data?.data() as TeamMember | undefined

@@ -8,8 +8,6 @@ import { sendEmailVerificationEmail } from '@/emails/sendEmailVerificationEmail'
 import { updateUser } from '@/users/updateUser'
 import { validateEmail } from '@/utils/validateEmail'
 
-console.log('Hello from Send Change Email Verification!')
-
 export const sendChangeEmailVerificationFunction = onCall<
   FunctionsMap[Functions.sendChangeEmailVerification]['data'],
   Promise<FunctionsMap[Functions.sendChangeEmailVerification]['response']>

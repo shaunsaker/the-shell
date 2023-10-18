@@ -21,8 +21,6 @@ const relevantEvents = new Set([
   'customer.subscription.deleted',
 ])
 
-console.log('Hello from Stripe Webhook!')
-
 export const stripeWebhookFunction = onRequest(async (request, response) => {
   const signature = String(request.headers['stripe-signature'])
 

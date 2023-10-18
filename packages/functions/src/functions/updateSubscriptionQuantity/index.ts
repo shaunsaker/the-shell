@@ -2,10 +2,8 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
 
 import { getAuthUser } from '@/auth/getAuthUser'
-import { getSubscriptionByOwnerId } from '@/billing/getSubscriptionByOwnerId'
+import { getSubscriptionByUid } from '@/billing/getSubscriptionByUid'
 import { updateSubscriptionQuantity } from '@/billing/updateSubscriptionQuantity'
-
-console.log('Hello from Update Subscription Quantity!')
 
 export const updateSubscriptionQuantityFunction = onCall<
   FunctionsMap[Functions.updateSubscriptionQuantity]['data'],
@@ -29,7 +27,7 @@ export const updateSubscriptionQuantityFunction = onCall<
 
     // Get the Stripe subscriptionId using the userId
     // NOTE: this infers that only the subscription owner can update the subscription quantity
-    const { id: subscriptionId } = await getSubscriptionByOwnerId(user.uid)
+    const { id: subscriptionId } = await getSubscriptionByUid(user.uid)
 
     // Update the subscription quantity in Stripe
     await updateSubscriptionQuantity({ subscriptionId, quantity: Number(quantity) })

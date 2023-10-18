@@ -5,8 +5,6 @@ import { SubscriptionInfo } from 'types'
 import { getSubscriptionInfo } from '@/billing/getSubscriptionInfo'
 import { updateSubscriptionInfo } from '@/billing/updateSubscriptionInfo'
 
-console.log('Hello from On Subscription Updated!')
-
 export const onSubscriptionUpdated = onDocumentUpdated('subscriptions/{subscriptionId}', async event => {
   const subscriptionId = event.params?.subscriptionId
   const subscription = event.data?.after.data()
@@ -17,8 +15,9 @@ export const onSubscriptionUpdated = onDocumentUpdated('subscriptions/{subscript
 
   const subscriptionInfo = await getSubscriptionInfo(subscriptionId)
 
+  // subscription info won't be created for guest users from the website
   if (!subscriptionInfo) {
-    throw new HttpsError('not-found', 'Subscription info not found')
+    return
   }
 
   const id = subscription.id

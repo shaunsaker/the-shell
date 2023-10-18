@@ -1,4 +1,4 @@
-import { Button, Text, TextInput } from 'components'
+import { Alert, Button, Text, TextInput } from 'components'
 import { FormEvent, useCallback, useState } from 'react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -22,6 +22,7 @@ export const SignUp = () => {
 
   const isEmailValid = validateEmail(email)
   const disabled = !email || !password || !isEmailValid || !firstName || !lastName
+  const hasSubscriptionSuccess = new URLSearchParams(window.location.search).get('success') === 'true'
 
   const onSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
@@ -42,63 +43,69 @@ export const SignUp = () => {
   )
 
   return (
-    <AuthLayout title={`Sign up to ${app.name}`}>
-      <form className="space-y-6" onSubmit={onSubmit}>
-        <TextInput
-          className="flex-1"
-          label="First name"
-          placeholder="Enter your first name..."
-          required
-          value={firstName}
-          onChange={event => setFirstName(event.target.value)}
-        />
+    <>
+      <AuthLayout title={`Sign up to ${app.name}`}>
+        {hasSubscriptionSuccess && (
+          <Alert kind="success">Your subscription was purchased successfully. Please sign up to continue.</Alert>
+        )}
 
-        <TextInput
-          className="flex-1"
-          label="Last name"
-          placeholder="Enter your last name..."
-          required
-          value={lastName}
-          onChange={event => setLastName(event.target.value)}
-        />
+        <form className="space-y-6" onSubmit={onSubmit}>
+          <TextInput
+            className="flex-1"
+            label="First name"
+            placeholder="Enter your first name..."
+            required
+            value={firstName}
+            onChange={event => setFirstName(event.target.value)}
+          />
 
-        <TextInput
-          type="email"
-          label="Email address"
-          placeholder="Enter your email..."
-          autoComplete="email"
-          required
-          value={email}
-          onChange={event => setEmail(event.target.value)}
-        />
+          <TextInput
+            className="flex-1"
+            label="Last name"
+            placeholder="Enter your last name..."
+            required
+            value={lastName}
+            onChange={event => setLastName(event.target.value)}
+          />
 
-        <TextInput
-          label="Password"
-          placeholder="Enter your password..."
-          type="password"
-          autoComplete="current-password"
-          required
-          value={password}
-          onChange={event => setPassword(event.target.value)}
-        />
+          <TextInput
+            type="email"
+            label="Email address"
+            placeholder="Enter your email..."
+            autoComplete="email"
+            required
+            value={email}
+            onChange={event => setEmail(event.target.value)}
+          />
 
-        <Button type="submit" disabled={disabled} loading={isLoading}>
-          Sign up
-        </Button>
+          <TextInput
+            label="Password"
+            placeholder="Enter your password..."
+            type="password"
+            autoComplete="current-password"
+            required
+            value={password}
+            onChange={event => setPassword(event.target.value)}
+          />
 
-        <Text className="flex items-center">
-          Already a member?{' '}
-          <Button
-            className="-ml-2"
-            variant="light"
-            onClick={() => {
-              navigate(routes.signIn)
-            }}
-          >
-            Sign in instead.
+          <Button type="submit" disabled={disabled} loading={isLoading}>
+            Sign up
           </Button>
-        </Text>
-      </form>
-    </AuthLayout>
+
+          <Text className="flex items-center">
+            Already a member?{' '}
+            <Button
+              className="-ml-2"
+              variant="light"
+              onClick={() => {
+                navigate(routes.signIn)
+              }}
+            >
+              Sign in instead.
+            </Button>
+          </Text>
+        </form>
+      </AuthLayout>
+    </>
   )
 }

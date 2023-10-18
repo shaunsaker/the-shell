@@ -1,4 +1,4 @@
-import { stripe } from './stripe'
+import { Stripe, stripe } from './stripe'
 
 export const createCheckoutSession = async ({
   customerId,
@@ -9,21 +9,17 @@ export const createCheckoutSession = async ({
   successUrl,
   cancelUrl,
 }: {
-  customerId: string
+  customerId?: string
   priceId: string
   quantity?: number
   freeTrialDays?: number
   metadata?: Record<string, string>
   successUrl: string
   cancelUrl: string
-}) =>
-  await stripe.checkout.sessions.create({
+}) => {
+  const params: Stripe.Checkout.SessionCreateParams = {
     payment_method_types: ['card'],
     billing_address_collection: 'required',
-    customer: customerId,
-    customer_update: {
-      address: 'auto',
-    },
     line_items: [
       {
         price: priceId,
@@ -41,4 +37,15 @@ export const createCheckoutSession = async ({
     },
     success_url: successUrl,
     cancel_url: cancelUrl,
-  })
+  }
+
+  // we may not have a customerId if it's a guest session
+  if (customerId) {
+    params.customer = customerId
+    params.customer_update = {
+      address: 'auto',
+    }
+  }
+
+  return await stripe.checkout.sessions.create(params)
+}

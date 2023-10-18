@@ -6,8 +6,6 @@ import { getAuthUserByEmail } from '@/auth/getAuthUserByEmail'
 import { sendResetPasswordEmail } from '@/emails/sendResetPasswordEmail'
 import { validateEmail } from '@/utils/validateEmail'
 
-console.log('Hello from Request Reset Password!')
-
 export const requestResetPasswordFunction = onCall<
   FunctionsMap[Functions.requestResetPassword]['data'],
   Promise<FunctionsMap[Functions.requestResetPassword]['response']>

@@ -1,11 +1,11 @@
-import { initializeApp } from 'firebase/app'
+import { FirebaseOptions, initializeApp } from 'firebase/app'
 import { connectAuthEmulator, getAuth } from 'firebase/auth'
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
 import { connectFunctionsEmulator, getFunctions } from 'firebase/functions'
 
 import firebaseConfig from '../../../../firebase.json'
 
-const config = {
+const config: FirebaseOptions = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
@@ -20,9 +20,14 @@ export const db = getFirestore(app)
 export const functions = getFunctions(app)
 
 if (import.meta.env.MODE === 'development') {
-  connectAuthEmulator(auth, `http://localhost:${firebaseConfig.emulators.auth.port}`, {
-    disableWarnings: true,
-  })
-  connectFirestoreEmulator(db, '127.0.0.1', firebaseConfig.emulators.firestore.port)
-  connectFunctionsEmulator(functions, '127.0.0.1', firebaseConfig.emulators.functions.port)
+  try {
+    connectAuthEmulator(auth, `http://localhost:${firebaseConfig.emulators.auth.port}`, {
+      disableWarnings: true,
+    })
+    connectFirestoreEmulator(db, '127.0.0.1', firebaseConfig.emulators.firestore.port)
+    connectFunctionsEmulator(functions, '127.0.0.1', firebaseConfig.emulators.functions.port)
+  } catch (error) {
+    // silent error in case the emulators are not running
+    console.error(error)
+  }
 }

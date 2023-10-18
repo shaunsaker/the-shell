@@ -4,9 +4,7 @@ import { Functions, FunctionsMap } from 'types'
 import { getAuthUser } from '@/auth/getAuthUser'
 import { createBillingPortalSession } from '@/billing/createBillingPortalSession'
 import { createCustomer } from '@/billing/createCustomer'
-import { getCustomer } from '@/billing/getCustomer'
-
-console.log('Hello from Create Billing Portal Session!')
+import { getCustomerByUid } from '@/billing/getCustomerByUid'
 
 export const createBillingPortalSessionFunction = onCall<
   FunctionsMap[Functions.createBillingPortalSession]['data'],
@@ -26,8 +24,8 @@ export const createBillingPortalSessionFunction = onCall<
     }
 
     // Get or create the customer in Stripe
-    const customer = await getCustomer(user.uid)
-    let customerId = customer?.stripeCustomerId
+    const customer = await getCustomerByUid(user.uid)
+    let customerId = customer?.id
 
     if (!customerId) {
       customerId = await createCustomer({
