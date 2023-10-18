@@ -4,12 +4,11 @@ import { Background, Button, Heading, HugeText, ParagraphText } from 'components
 import { app } from 'config/src'
 import { useRouter } from 'next/navigation'
 
-import LaravelLogo from '@/assets/logos/laravel.svg'
-import MirageLogo from '@/assets/logos/mirage.svg'
-import StatamicLogo from '@/assets/logos/statamic.svg'
-import StatickitLogo from '@/assets/logos/statickit.svg'
-import TransistorLogo from '@/assets/logos/transistor.svg'
-import TupleLogo from '@/assets/logos/tuple.svg'
+import Logoipsum1Logo from '@/assets/logos/logoipsum-1.svg'
+import Logoipsum2Logo from '@/assets/logos/logoipsum-2.svg'
+import Logoipsum3Logo from '@/assets/logos/logoipsum-3.svg'
+import Logoipsum4Logo from '@/assets/logos/logoipsum-4.svg'
+import Logoipsum5Logo from '@/assets/logos/logoipsum-5.svg'
 
 import { Container } from '../container/Container'
 import { HighlightedText } from '../highlightedText/HighlightedText'
@@ -17,20 +16,19 @@ import { Section } from '../section/Section'
 
 const getCompanyLogo = (company: string) => {
   switch (company) {
-    case 'Laravel':
-      return <LaravelLogo />
-    case 'Mirage':
-      return <MirageLogo />
-    case 'Statamic':
-      return <StatamicLogo />
-    case 'Statickit':
-      return <StatickitLogo />
-    case 'Transistor':
-      return <TransistorLogo />
-    case 'Tuple':
-      return <TupleLogo />
+    case 'Logoipsum 1':
+      return <Logoipsum1Logo />
+    case 'Logoipsum 2':
+      return <Logoipsum2Logo />
+    case 'Logoipsum 3':
+      return <Logoipsum3Logo />
+    case 'Logoipsum 4':
+      return <Logoipsum4Logo />
+    case 'Logoipsum 5':
+      return <Logoipsum5Logo />
     default:
-      return <LaravelLogo />
+      // TODO: SS maybe add a bg here
+      return <div />
   }
 }
 

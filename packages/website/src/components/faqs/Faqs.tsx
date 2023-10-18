@@ -9,21 +9,14 @@ import { Section } from '../section/Section'
 
 export function Faqs() {
   return (
-    <Section
-      id={routes.faq.replace('/#', '')}
-      aria-label={app.website.primaryFeatures.title}
-      className="relative overflow-hidden"
-    >
+    <Section id={routes.faq.replace('/#', '')} aria-label={app.website.faqs.title} className="relative overflow-hidden">
       <Background className="absolute inset-0" variant="inverted" />
 
       <div className="relative">
         <Container>
-          <Title>Frequently asked questions</Title>
+          <Title>{app.website.faqs.title}</Title>
 
-          <ParagraphText className="mt-4">
-            If you can’t find what you’re looking for, email our support team and if you’re lucky someone will get back
-            to you.
-          </ParagraphText>
+          <ParagraphText className="mt-4">{app.website.faqs.subtitle}</ParagraphText>
         </Container>
 
         <Columns className="mt-16">
