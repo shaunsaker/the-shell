@@ -2,10 +2,10 @@
 
 import { app } from 'config'
 
-import screenshotExpenses from '@/images/screenshots/expenses.png'
-import screenshotPayroll from '@/images/screenshots/payroll.png'
-import screenshotReporting from '@/images/screenshots/reporting.png'
-import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
+import screenshotExpenses from '@/assets/screenshots/expenses.png'
+import screenshotPayroll from '@/assets/screenshots/payroll.png'
+import screenshotReporting from '@/assets/screenshots/reporting.png'
+import screenshotVatReturns from '@/assets/screenshots/vat-returns.png'
 import { routes } from '@/routes'
 
 import { Features } from '../features/Features'
