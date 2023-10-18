@@ -4,12 +4,12 @@ import { Background, Button, Heading, HugeText, ParagraphText } from 'components
 import { app } from 'config/src'
 import { useRouter } from 'next/navigation'
 
-import LaravelLogo from '@/images/logos/laravel.svg'
-import MirageLogo from '@/images/logos/mirage.svg'
-import StatamicLogo from '@/images/logos/statamic.svg'
-import StatickitLogo from '@/images/logos/statickit.svg'
-import TransistorLogo from '@/images/logos/transistor.svg'
-import TupleLogo from '@/images/logos/tuple.svg'
+import LaravelLogo from '@/assets/logos/laravel.svg'
+import MirageLogo from '@/assets/logos/mirage.svg'
+import StatamicLogo from '@/assets/logos/statamic.svg'
+import StatickitLogo from '@/assets/logos/statickit.svg'
+import TransistorLogo from '@/assets/logos/transistor.svg'
+import TupleLogo from '@/assets/logos/tuple.svg'
 
 import { Container } from '../container/Container'
 import { HighlightedText } from '../highlightedText/HighlightedText'
