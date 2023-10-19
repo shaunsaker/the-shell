@@ -2,7 +2,7 @@ import '@/styles/index.css'
 
 import { Snackbar } from 'components'
 import { type Metadata } from 'next'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 import { AppProvider } from '@/components/appProvider/AppProvider'
 import { MainLayout } from '@/components/mainLayout/MainLayout'

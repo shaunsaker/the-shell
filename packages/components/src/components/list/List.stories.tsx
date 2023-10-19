@@ -16,28 +16,35 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+const LIST_ITEMS = [
+  {
+    label: 'Label 1',
+    value: 'Value 1',
+  },
+  {
+    label: 'Label 2',
+    value: 'Value 2',
+  },
+  {
+    label: 'Label 3',
+    value: 'Value 3',
+  },
+]
+
 export const Default: Story = {
   args: {
-    children: [<ListItem>List Item 1</ListItem>, <ListItem>List Item 2</ListItem>, <ListItem>List Item 3</ListItem>],
+    children: LIST_ITEMS.map(({ label, value }) => <ListItem key={value}>{label}</ListItem>),
   },
 }
 
 export const MultipleChildren: Story = {
   args: {
-    children: [
-      <ListItem>
-        <span>LabelText 1</span>
-        <span>Value 1</span>
-      </ListItem>,
-      <ListItem>
-        <span>LabelText 2</span>
-        <span>Value 2</span>
-      </ListItem>,
-      <ListItem>
-        <span>LabelText 3</span>
-        <span>Value 3</span>
-      </ListItem>,
-    ],
+    children: LIST_ITEMS.map(({ label, value }) => (
+      <ListItem key={value}>
+        <span>{label}</span>
+        <span>{value}</span>
+      </ListItem>
+    )),
   },
   parameters: {
     layout: 'padded',

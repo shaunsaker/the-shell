@@ -1,5 +1,6 @@
 import { Background, ParagraphText, TitleText } from 'components'
 import { app } from 'config'
+import React from 'react'
 
 import { routes } from '@/routes'
 

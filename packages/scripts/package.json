@@ -14,23 +14,23 @@
     "build": "npm-run-all --parallel build:*"
   },
   "dependencies": {
-    "@expo/spawn-async": "^1.7.2",
+    "@expo/spawn-async": "1.7.2",
     "config": "*",
-    "consola": "^3.2.3",
-    "png-to-ico": "^2.1.8",
-    "sharp": "^0.32.6",
-    "tailwindcss": "^3.3.3",
-    "vite-node": "^0.34.6",
-    "yargs": "^17.7.2"
+    "consola": "3.2.3",
+    "png-to-ico": "2.1.8",
+    "sharp": "0.32.6",
+    "tailwindcss": "3.3.3",
+    "vite-node": "0.34.6",
+    "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@types/sharp": "^0.31.1",
-    "@types/yargs": "^17.0.24",
+    "@types/sharp": "0.31.1",
+    "@types/yargs": "17.0.24",
     "eslint-config-custom": "*",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.1",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.8.1",
     "tsconfig": "*",
-    "typescript": "^5.1.6",
-    "vite-tsconfig-paths": "^4.2.1"
+    "typescript": "5.1.6",
+    "vite-tsconfig-paths": "4.2.1"
   }
 }

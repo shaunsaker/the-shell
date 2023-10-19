@@ -72,13 +72,13 @@ async function main(): Promise<void> {
     type ThemeKey = keyof typeof newThemeColors
 
     Object.keys(newThemeColors[themeKey as ThemeKey]).forEach(usageKey => {
-      type UsageKey = keyof (typeof newThemeColors)[ThemeKey]
+      type UsageKey = keyof typeof newThemeColors[ThemeKey]
 
       const figmaKey = `${themeKey}/${usageKey}`
       figmaColors[figmaKey] = {}
 
       Object.keys(newThemeColors[themeKey as ThemeKey][usageKey as UsageKey]).forEach(variantKey => {
-        type VariantKey = keyof (typeof newThemeColors)[ThemeKey][UsageKey]
+        type VariantKey = keyof typeof newThemeColors[ThemeKey][UsageKey]
 
         const themeColor = themeColorShadeMap[themeKey as ThemeKey][usageKey as UsageKey][variantKey as VariantKey]
         const color = getHexColorFromThemeColor(themeColor.color === 'base' ? baseColors : neutralColors, themeColor)
