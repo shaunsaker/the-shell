@@ -42,6 +42,7 @@ export const Header = ({ ...props }: Props): ReactElement => {
       <Headerbar {...props}>
         <Button
           className="-ml-3 lg:hidden"
+          aria-label="Open sidebar"
           variant="lightNeutral"
           onClick={() => {
             setSidebarOpen(true)
