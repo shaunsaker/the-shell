@@ -2,9 +2,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactElement } from 'react'
 import toast, { resolveValue, ToastType, useToaster } from 'react-hot-toast'
 
-import { Alert, AlertKind } from '../alert/Alert'
+import { Alert, AlertVariant } from '../alert/Alert'
 
-const mapTypeToKind: Record<ToastType, AlertKind> = {
+const mapTypeToKind: Record<ToastType, AlertVariant> = {
   success: 'success',
   error: 'error',
   loading: 'info',
@@ -39,7 +39,7 @@ export const Snackbar = (): ReactElement => {
               >
                 <Alert
                   className="mb-4 shadow-lg"
-                  kind={mapTypeToKind[toastInstance.type]}
+                  variant={mapTypeToKind[toastInstance.type]}
                   onClose={() => {
                     toast.dismiss(toastInstance.id)
                   }}
