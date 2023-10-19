@@ -1,4 +1,4 @@
-import { Firestore } from 'types'
+import { FirestoreCollection } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
@@ -14,5 +14,5 @@ export const deleteProduct = async (id: string) => {
 
   await Promise.all(pricePromises)
 
-  await firebase.firestore().collection(Firestore.Products).doc(id).delete()
+  await firebase.firestore().collection(FirestoreCollection.Products).doc(id).delete()
 }

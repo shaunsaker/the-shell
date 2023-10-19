@@ -1,5 +1,5 @@
 import { collectionGroup, doc, getDoc, getDocs, orderBy, query, where } from 'firebase/firestore'
-import { Firestore, Team } from 'types'
+import { FirestoreCollection, Team } from 'types'
 
 import { getAuthUser } from '@/auth/api/getAuthUser'
 import { db } from '@/firebase'
@@ -12,7 +12,7 @@ export const getTeams = async () => {
   }
 
   // first we need to fetch the user's team members
-  const ref = collectionGroup(db, Firestore.TeamMembers)
+  const ref = collectionGroup(db, FirestoreCollection.TeamMembers)
   const queryRef = query(ref, where('userId', '==', authUser.uid), orderBy('createdAt', 'asc'))
 
   const snapshot = await getDocs(queryRef)
@@ -23,7 +23,7 @@ export const getTeams = async () => {
       const teamId = teamMemberDoc.data().teamId
 
       if (teamId) {
-        const teamRef = doc(db, Firestore.Teams, teamId)
+        const teamRef = doc(db, FirestoreCollection.Teams, teamId)
         const teamDoc = await getDoc(teamRef)
 
         return teamDoc

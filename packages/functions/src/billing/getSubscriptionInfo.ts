@@ -1,9 +1,9 @@
-import { Firestore, SubscriptionInfo } from 'types'
+import { FirestoreCollection, SubscriptionInfo } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
 export const getSubscriptionInfo = async (subscriptionId: string) => {
-  const doc = await firebase.firestore().collection(Firestore.SubscriptionInfo).doc(subscriptionId).get()
+  const doc = await firebase.firestore().collection(FirestoreCollection.SubscriptionInfo).doc(subscriptionId).get()
 
   if (!doc.exists) {
     return undefined

@@ -1,4 +1,4 @@
-import { Firestore, Product } from 'types'
+import { FirestoreCollection, Product } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
@@ -14,5 +14,5 @@ export const updateProduct = async (product: Stripe.Product) => {
     metadata: product.metadata,
   }
 
-  await firebase.firestore().collection(Firestore.Products).doc(product.id).set(productData)
+  await firebase.firestore().collection(FirestoreCollection.Products).doc(product.id).set(productData)
 }

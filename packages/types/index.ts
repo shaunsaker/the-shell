@@ -169,7 +169,7 @@ export type TeamWithMembers = Team & {
 }
 
 /* FIRESTORE */
-export enum Firestore {
+export enum FirestoreCollection {
   Customers = 'customers',
   Prices = 'prices',
   Products = 'products',
