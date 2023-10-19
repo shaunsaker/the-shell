@@ -9,6 +9,7 @@ import Logoipsum2Logo from '@/assets/logos/logoipsum-2.svg'
 import Logoipsum3Logo from '@/assets/logos/logoipsum-3.svg'
 import Logoipsum4Logo from '@/assets/logos/logoipsum-4.svg'
 import Logoipsum5Logo from '@/assets/logos/logoipsum-5.svg'
+import { useLink } from '@/utils/useLInk'
 
 import { Container } from '../container/Container'
 import { HighlightedText } from '../highlightedText/HighlightedText'
@@ -34,6 +35,7 @@ const getCompanyLogo = (company: string) => {
 
 export const Hero = () => {
   const router = useRouter()
+  const link = useLink()
 
   return (
     <Section className="relative flex min-h-full flex-col pb-8 lg:pb-8">
@@ -69,7 +71,7 @@ export const Hero = () => {
                   aria-label={company.label}
                   variant="lightNeutral"
                   onClick={() => {
-                    window.open(company.link, '_blank')
+                    link(company.link, '_blank')
                   }}
                 >
                   {getCompanyLogo(company.label)}

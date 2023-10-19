@@ -5,11 +5,13 @@ import { Button, ErrorPage } from 'components'
 import { useRouter } from 'next/navigation'
 
 import { routes } from '@/routes'
+import { useLink } from '@/utils/useLInk'
 
 import { app } from '../../../config'
 
 export default function NotFound() {
   const router = useRouter()
+  const link = useLink()
 
   return (
     <ErrorPage title="Page not found" description="Sorry, we couldn’t find the page you’re looking for.">
@@ -26,7 +28,9 @@ export default function NotFound() {
           variant="light"
           icon={<ArrowRightIcon />}
           iconPosition="right"
-          onClick={() => window.open(`mailto:${app.support.email}`, '_blank')}
+          onClick={() => {
+            link(`mailto:${app.support.email}`, '_blank')
+          }}
         >
           Contact support
         </Button>
