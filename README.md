@@ -371,15 +371,9 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 3. Update the Logo component in Figma with your new logo.
 
-### Setup automated releases
+### Setup automated deploys
 
-1. Create a [Github personal access token](https://github.com/settings/tokens/new) with the `repo` scope and push it to Github:
-
-```
-gh secret set GH_TOKEN --body VALUE
-```
-
-2. Send your env files to Github so that the deploy workflows can deploy to Firebase:
+1. Send your env files to Github so that the deploy workflows can deploy to Firebase:
 
 ```
 cat ./packages/app/.env.staging > .env.staging
@@ -393,6 +387,16 @@ cat ./packages/website/env/.env.production >> .env.production
 gh secret set ENV_FILE_STAGING < .env.staging
 gh secret set ENV_FILE_PRODUCTION < .env.production
 rm .env.staging .env.production
+```
+
+Every time you push to `develop`, the app will be deployed to staging.
+
+### Setup automated releases
+
+1. Create a [Github personal access token](https://github.com/settings/tokens/new) with the `repo` scope and push it to Github:
+
+```
+gh secret set GH_TOKEN --body VALUE
 ```
 
 That's it, you're done! Every time you push to `master`, a release will automatically be created and the app will be deployed to production.
