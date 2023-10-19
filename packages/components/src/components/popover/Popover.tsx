@@ -42,7 +42,7 @@ export const Popover = ({ open, children, onClose }: Props) => {
               animate={{ opacity: 1, transform: 'translateX(0%)' }}
               exit={{ opacity: 0, transform: 'translateX(-100%)' }}
             >
-              <div className="relative mr-16 flex w-full max-w-xs flex-1">
+              <div ref={ref} className="relative mr-16 flex w-full max-w-xs flex-1">
                 <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
                   <Button
                     variant="light"
