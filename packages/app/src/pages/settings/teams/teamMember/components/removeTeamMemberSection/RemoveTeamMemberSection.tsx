@@ -27,7 +27,7 @@ export const RemoveTeamMemberSection = (): ReactElement => {
       ) : (
         <>
           {isTeamMemberLastAdmin && (
-            <Alert kind="info">
+            <Alert variant="info">
               You are the last admin of the team and there are other team members. To remove yourself from the team,
               first assign another team member as admin.
             </Alert>

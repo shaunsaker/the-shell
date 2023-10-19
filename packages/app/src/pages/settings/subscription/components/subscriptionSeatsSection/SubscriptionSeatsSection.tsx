@@ -61,7 +61,7 @@ export const SubscriptionSeatsSection = (): ReactElement | null => {
       />
 
       {newSeatsLessThanAssignedSeats && (
-        <Alert kind="error">
+        <Alert variant="error">
           You cannot remove seats below the number of available seats. Please remove assigned seats first.
         </Alert>
       )}

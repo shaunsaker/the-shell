@@ -37,7 +37,7 @@ export const ChangeTeamMemberRoleSection = (): ReactElement => {
       ) : (
         <>
           {isTeamMemberLastAdmin && (
-            <Alert kind="info">You are the last admin of the team and cannot change your role to member.</Alert>
+            <Alert variant="info">You are the last admin of the team and cannot change your role to member.</Alert>
           )}
 
           <Select

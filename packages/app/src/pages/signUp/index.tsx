@@ -46,7 +46,7 @@ export const SignUp = () => {
     <>
       <AuthLayout title={`Sign up to ${app.name}`}>
         {hasSubscriptionSuccess && (
-          <Alert kind="success">Your subscription was purchased successfully. Please sign up to continue.</Alert>
+          <Alert variant="success">Your subscription was purchased successfully. Please sign up to continue.</Alert>
         )}
 
         <form className="space-y-6" onSubmit={onSubmit}>
