@@ -2,7 +2,7 @@
 
 import { Background, Button, HeadingText, ParagraphText, Text, TitleText } from 'components'
 import Image from 'next/image'
-import { ComponentPropsWithoutRef, useState } from 'react'
+import React, { ComponentPropsWithoutRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Container } from '@/components/container/Container'

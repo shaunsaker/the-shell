@@ -1,6 +1,7 @@
 'use client'
 
 import { app } from 'config'
+import React from 'react'
 
 import screenshotExpenses from '@/assets/screenshots/expenses.png'
 import screenshotPayroll from '@/assets/screenshots/payroll.png'

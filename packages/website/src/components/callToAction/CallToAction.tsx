@@ -3,6 +3,7 @@
 import { Background, Button, ParagraphText, TitleText } from 'components'
 import { app } from 'config'
 import { useRouter } from 'next/navigation'
+import React from 'react'
 
 import { Container } from '../container/Container'
 import { Section } from '../section/Section'

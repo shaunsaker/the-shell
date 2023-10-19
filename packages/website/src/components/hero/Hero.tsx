@@ -3,6 +3,7 @@
 import { Background, Button, HeadingText, HugeText, ParagraphText } from 'components'
 import { app } from 'config/src'
 import { useRouter } from 'next/navigation'
+import React from 'react'
 
 import Logoipsum1Logo from '@/assets/logos/logoipsum-1.svg'
 import Logoipsum2Logo from '@/assets/logos/logoipsum-2.svg'

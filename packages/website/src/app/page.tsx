@@ -1,4 +1,5 @@
 import { app } from 'config'
+import React from 'react'
 
 import { getPrices } from '@/billing/api/getPrices'
 import { getProducts } from '@/billing/api/getProducts'
