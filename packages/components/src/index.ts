@@ -13,7 +13,7 @@ import { ErrorPage } from './components/errorPage/ErrorPage'
 import { Headerbar } from './components/headerbar/Headerbar'
 import { HeadingText } from './components/headingText/HeadingText'
 import { HugeText } from './components/hugeText/HugeText'
-import { Label } from './components/label/Label'
+import { LabelText } from './components/labelText/LabelText'
 import { List } from './components/list/List'
 import { Loading } from './components/loading/Loading'
 import { Logo } from './components/logo/Logo'
@@ -46,7 +46,7 @@ export {
   Headerbar,
   HeadingText,
   HugeText,
-  Label,
+  LabelText,
   List,
   Loading,
   Logo,

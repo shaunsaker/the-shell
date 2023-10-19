@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'label'>
 
-export const Label = ({ className = '', children, ...props }: Props) => {
+export const LabelText = ({ className = '', children, ...props }: Props) => {
   return (
     <label
       className={twMerge('text-theme-content dark:text-dark-theme-content text-sm font-normal', className)}
