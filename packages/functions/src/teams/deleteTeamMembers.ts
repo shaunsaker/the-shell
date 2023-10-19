@@ -1,4 +1,4 @@
-import { Firestore, TeamMember } from 'types'
+import { FirestoreCollection, TeamMember } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
@@ -8,9 +8,9 @@ export const deleteTeamMembers = async (teamMembers: TeamMember[]) => {
   teamMembers.forEach(teamMember => {
     const ref = firebase
       .firestore()
-      .collection(Firestore.Teams)
+      .collection(FirestoreCollection.Teams)
       .doc(teamMember.teamId)
-      .collection(Firestore.TeamMembers)
+      .collection(FirestoreCollection.TeamMembers)
       .doc(teamMember.id)
 
     batch.delete(ref)

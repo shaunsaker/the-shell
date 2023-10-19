@@ -1,16 +1,16 @@
-import { Customer, Firestore } from 'types'
+import { Customer, FirestoreCollection } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
 export const getUnclaimedCustomers = async (ids: string[]) => {
-  // we can't use the Firestore in operator on an empty array
+  // we can't use the FirestoreCollection in operator on an empty array
   if (!ids.length) {
     return []
   }
 
   const docs = await firebase
     .firestore()
-    .collection(Firestore.Customers)
+    .collection(FirestoreCollection.Customers)
     .where('id', 'in', ids)
     .where('ownerId', '==', null)
     .get()

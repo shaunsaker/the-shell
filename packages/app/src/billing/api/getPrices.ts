@@ -1,11 +1,11 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { Firestore, Price } from 'types'
+import { FirestoreCollection, Price } from 'types'
 
 import { db } from '@/firebase'
 
 // fetch the active prices
 export const getPrices = async () => {
-  const ref = collection(db, Firestore.Prices)
+  const ref = collection(db, FirestoreCollection.Prices)
   const queryRef = query(ref, where('active', '==', true))
 
   const snapshot = await getDocs(queryRef)

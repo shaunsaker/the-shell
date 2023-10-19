@@ -1,9 +1,9 @@
-import { Firestore, Price, Product } from 'types'
+import { FirestoreCollection, Price, Product } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
 export const getProductByPriceId = async (priceId: string) => {
-  const priceDoc = await firebase.firestore().collection(Firestore.Prices).doc(priceId).get()
+  const priceDoc = await firebase.firestore().collection(FirestoreCollection.Prices).doc(priceId).get()
 
   if (!priceDoc.exists) {
     throw new Error('Price not found')
@@ -15,7 +15,7 @@ export const getProductByPriceId = async (priceId: string) => {
     throw new Error('Price not found')
   }
 
-  const productDoc = await firebase.firestore().collection(Firestore.Products).doc(priceData.productId).get()
+  const productDoc = await firebase.firestore().collection(FirestoreCollection.Products).doc(priceData.productId).get()
 
   if (!productDoc.exists) {
     throw new Error('Product not found')

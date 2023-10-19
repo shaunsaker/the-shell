@@ -1,4 +1,4 @@
-import { Firestore } from 'types'
+import { FirestoreCollection } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
@@ -9,5 +9,5 @@ export const deleteTeam = async (teamId: string) => {
   await deleteTeamMembersForTeam(teamId)
 
   // Then delete the team
-  await firebase.firestore().collection(Firestore.Teams).doc(teamId.toString()).delete()
+  await firebase.firestore().collection(FirestoreCollection.Teams).doc(teamId.toString()).delete()
 }

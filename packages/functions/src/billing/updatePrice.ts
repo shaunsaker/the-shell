@@ -1,4 +1,4 @@
-import { Firestore, Price, PricingPlanInterval, PricingType } from 'types'
+import { FirestoreCollection, Price, PricingPlanInterval, PricingType } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
@@ -44,5 +44,5 @@ export const updatePrice = async (price: Stripe.Price) => {
     metadata: price.metadata,
   }
 
-  await firebase.firestore().collection(Firestore.Prices).doc(price.id).set(priceData)
+  await firebase.firestore().collection(FirestoreCollection.Prices).doc(price.id).set(priceData)
 }

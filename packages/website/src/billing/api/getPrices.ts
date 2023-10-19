@@ -1,10 +1,10 @@
-import { Firestore, Price } from 'types'
+import { FirestoreCollection, Price } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
 // fetch the active prices
 export const getPrices = async () => {
-  const ref = firebase.firestore().collection(Firestore.Prices).where('active', '==', true)
+  const ref = firebase.firestore().collection(FirestoreCollection.Prices).where('active', '==', true)
   const snapshot = await ref.get()
 
   return snapshot.docs.map(price => ({
