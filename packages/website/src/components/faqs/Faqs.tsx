@@ -1,4 +1,4 @@
-import { Background, Heading, ParagraphText, Text, Title } from 'components'
+import { Background, HeadingText, ParagraphText, Text, Title } from 'components'
 import { app } from 'config'
 
 import { routes } from '@/routes'
@@ -22,7 +22,7 @@ export function Faqs() {
         <Columns className="mt-16">
           {app.website.faqs.questions.map(faq => (
             <li key={faq.question} className="mb-8">
-              <Heading>{faq.question}</Heading>
+              <HeadingText>{faq.question}</HeadingText>
 
               <Text className="mt-4">{faq.answer}</Text>
             </li>

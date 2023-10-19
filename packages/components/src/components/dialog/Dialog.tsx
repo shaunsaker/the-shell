@@ -6,7 +6,7 @@ import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 import { Card } from '../card/Card'
-import { Heading } from '../heading/Heading'
+import { HeadingText } from '../headingText/HeadingText'
 import { Text } from '../text/Text'
 
 type Props = {
@@ -70,7 +70,7 @@ export const Dialog = ({
               >
                 <Card ref={ref} className="flex max-w-lg flex-col gap-y-6">
                   <div>
-                    <Heading>{title}</Heading>
+                    <HeadingText>{title}</HeadingText>
 
                     <Text className="mt-1">{description}</Text>
                   </div>

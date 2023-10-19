@@ -1,4 +1,4 @@
-import { Heading, Logo, SlimLayout } from 'components'
+import { HeadingText, Logo, SlimLayout } from 'components'
 import React, { ComponentPropsWithoutRef } from 'react'
 
 type Props = {
@@ -11,7 +11,7 @@ export const AuthLayout = ({ title, children, ...props }: Props) => {
       <div className="space-y-8">
         <Logo />
 
-        <Heading>{title}</Heading>
+        <HeadingText>{title}</HeadingText>
 
         {children}
       </div>
