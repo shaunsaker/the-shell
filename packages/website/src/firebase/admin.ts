@@ -8,7 +8,7 @@ if (!getApps().length) {
   firebase.initializeApp()
 }
 
-// if we're running in development, use the firebase emulator
+// if we're running in development, use the firebase emulator (if available)
 if (process.env.NODE_ENV === 'development') {
   process.env['FIREBASE_AUTH_EMULATOR_HOST'] = `localhost:${firebaseConfig.emulators.auth.port}`
   process.env['FIRESTORE_EMULATOR_HOST'] = `localhost:${firebaseConfig.emulators.firestore.port}`
