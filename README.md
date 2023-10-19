@@ -76,7 +76,7 @@ We support 3 environments out of the box:
 
 - Development: Local development (Firebase emulator)
 - Staging (`develop` branch): Remote development
-- Production (releases from `master` branch): Live environment
+- Production (`master` branch): Live environment
 
 ### Basic Setup
 
@@ -165,7 +165,7 @@ firebase use --add PROJECT_NAME-production --alias production
 firebase login:ci
 ```
 
-7. Push your Firebase token to Github so that Github Actions can deploy your app and functions to staging and production:
+7. Push your Firebase token to Github so that Github Actions can deploy your app and functions to `staging` and `production`:
 
 ```
 gh auth login
@@ -383,11 +383,13 @@ gh secret set GH_TOKEN --body VALUE
 
 ```
 cat ./packages/app/.env.staging > .env.staging
-echo >> .env.staging
-cat ./packages/functions/.env.staging >> .env.staging
 cat ./packages/app/.env.production > .env.production
+echo >> .env.staging
 echo >> .env.production
+cat ./packages/functions/.env.staging >> .env.staging
 cat ./packages/functions/.env.production >> .env.production
+cat ./packages/website/env/.env.staging >> .env.staging
+cat ./packages/website/env/.env.production >> .env.production
 gh secret set ENV_FILE_STAGING < .env.staging
 gh secret set ENV_FILE_PRODUCTION < .env.production
 rm .env.staging .env.production

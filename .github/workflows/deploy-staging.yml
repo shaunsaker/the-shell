@@ -28,6 +28,7 @@ jobs:
         run: |
           echo "${{ secrets.ENV_FILE_STAGING }}" > ./packages/app/.env.staging
           echo "${{ secrets.ENV_FILE_STAGING }}" > ./packages/functions/.env.staging
+          echo "${{ secrets.ENV_FILE_STAGING }}" > ./packages/website/env/.env.staging
 
       # Set the active project
       - run: yarn activate-project staging --token ${{ secrets.FIREBASE_TOKEN }}
