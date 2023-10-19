@@ -1,6 +1,6 @@
 import { Container, Img, Tailwind, Text } from '@react-email/components'
 import { app } from 'config'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 import { tailwindConfig } from '../tailwind.config'
 import { Description } from './Description'
@@ -10,7 +10,7 @@ type LayoutProps = {
   children?: ReactNode
 }
 
-export const Layout = ({ siteUrl, children }: LayoutProps): ReactElement => {
+export const Layout = ({ siteUrl, children }: LayoutProps) => {
   return (
     <Tailwind config={tailwindConfig}>
       <div className="bg-theme-background-muted px-8 py-16 font-sans">

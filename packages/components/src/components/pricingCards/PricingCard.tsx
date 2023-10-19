@@ -1,6 +1,6 @@
 import { CheckIcon } from '@heroicons/react/24/outline'
 import { Badge, Button, Card, Heading, Text, Title } from 'components'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { formatCurrency } from '../../utils/formatCurrency'
@@ -33,7 +33,7 @@ export const PricingCard = ({
   highlight,
   loading,
   onClick,
-}: PricingCardProps): ReactElement => {
+}: PricingCardProps) => {
   return (
     <Card
       className={twMerge(

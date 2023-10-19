@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { TableBody } from './TableBody'
@@ -9,7 +9,7 @@ import { TableRow } from './TableRow'
 
 type Props = ComponentPropsWithoutRef<'table'>
 
-const Table = ({ className = '', ...props }: Props): ReactElement => {
+const Table = ({ className = '', ...props }: Props) => {
   return (
     <div className="overflow-auto">
       <table className={twMerge('w-full table-auto', className)} {...props} />

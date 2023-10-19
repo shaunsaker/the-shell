@@ -1,11 +1,11 @@
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Text } from '../text/Text'
 
 type Props = ComponentPropsWithoutRef<'div'>
 
-export const Badge = ({ className = '', children, ...props }: Props): ReactElement => {
+export const Badge = ({ className = '', children, ...props }: Props) => {
   return (
     <div
       {...props}

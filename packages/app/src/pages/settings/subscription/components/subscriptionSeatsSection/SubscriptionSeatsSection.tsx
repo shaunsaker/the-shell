@@ -1,5 +1,5 @@
 import { Alert, Button, Text, TextInput } from 'components'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useHasTeamPlan } from '@/billing/hooks/useHasTeamPlan'
 import { usePrices } from '@/billing/hooks/usePrices'
@@ -10,7 +10,7 @@ import { getSubscriptionSeatsButtonLabel } from '@/utils/getSubscriptionSeatsBut
 
 const MIN_SEATS = 1
 
-export const SubscriptionSeatsSection = (): ReactElement | null => {
+export const SubscriptionSeatsSection = () => {
   const { data: prices } = usePrices()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useHasTeamPlan()
   const { data: subscriptionInfo, isLoading: subscriptionInfoLoading } = useSubscriptionInfo()

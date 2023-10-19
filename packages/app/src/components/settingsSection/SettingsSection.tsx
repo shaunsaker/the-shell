@@ -1,5 +1,5 @@
 import { Heading, Text } from 'components'
-import React, { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = {
@@ -11,15 +11,7 @@ type Props = {
   fullWidth?: boolean
 } & ComponentPropsWithoutRef<'section'>
 
-export const SettingsSection = ({
-  className,
-  title,
-  description,
-  action,
-  children,
-  fullWidth,
-  ...props
-}: Props): ReactElement => {
+export const SettingsSection = ({ className, title, description, action, children, fullWidth, ...props }: Props) => {
   return (
     <section
       className={twMerge(

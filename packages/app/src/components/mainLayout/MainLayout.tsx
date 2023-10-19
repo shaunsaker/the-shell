@@ -1,6 +1,6 @@
 import { Cog6ToothIcon, EnvelopeOpenIcon, HomeModernIcon } from '@heroicons/react/24/outline'
 import { Popover, Sidebar } from 'components'
-import React, { ComponentProps, ReactElement } from 'react'
+import React, { ComponentProps } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
@@ -13,7 +13,7 @@ import { app } from '../../../../config'
 
 type NavigationItem = ComponentProps<typeof Sidebar>['items'][0]
 
-export const MainLayout = (): ReactElement => {
+export const MainLayout = () => {
   const location = useLocation()
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
   const [sidebarOpen, setSidebarOpen] = useSidebarOpen()

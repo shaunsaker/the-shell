@@ -1,5 +1,5 @@
 import { Alert, Button, SkeletonLoader } from 'components'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
@@ -7,7 +7,7 @@ import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
 import { useIsTeamMemberLastAdmin } from '@/teams/hooks/useIsTeamMemberLastAdmin'
 import { useTeamMember } from '@/teams/hooks/useTeamMember'
 
-export const RemoveTeamMemberSection = (): ReactElement => {
+export const RemoveTeamMemberSection = () => {
   const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
   const { data: isTeamMemberLastAdmin, isLoading: isTeamMemberLastAdminLoading } = useIsTeamMemberLastAdmin()
 

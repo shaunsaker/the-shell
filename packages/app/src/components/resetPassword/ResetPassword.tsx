@@ -1,5 +1,5 @@
 import { Button, TextInput } from 'components'
-import React, { FormEvent, ReactElement, useCallback, useState } from 'react'
+import React, { FormEvent, useCallback, useState } from 'react'
 
 import { useRequestResetPassword } from '@/auth/hooks/useRequestResetPassword'
 import { useUserEmail } from '@/user/hooks/useUserEmail'
@@ -9,7 +9,7 @@ type Props = {
   emailDisabled?: boolean // when signed in, we don't want the user to change their email here
 }
 
-export const ResetPassword = ({ emailDisabled = false }: Props): ReactElement => {
+export const ResetPassword = ({ emailDisabled = false }: Props) => {
   const [email, setEmail] = useUserEmail()
   const [newPassword, setNewPassword] = useState('')
   const { mutate: requestResetPassword, isLoading } = useRequestResetPassword()

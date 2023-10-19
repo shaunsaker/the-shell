@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { Description } from '../components/Description'
 import { Layout } from '../components/Layout'
@@ -11,7 +11,7 @@ type Props = {
   adminTeamMemberName: string
 }
 
-export const TeamDeleted = ({ siteUrl, userName = '', teamName, adminTeamMemberName }: Props): ReactElement => {
+export const TeamDeleted = ({ siteUrl, userName = '', teamName, adminTeamMemberName }: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
       <Title>Hi{userName ? ` ${userName}` : ''},</Title>

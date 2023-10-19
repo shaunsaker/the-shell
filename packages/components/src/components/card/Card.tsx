@@ -1,9 +1,9 @@
-import React, { ComponentPropsWithoutRef, forwardRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef, forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'div'>
 
-export const Card = forwardRef(({ className = '', ...props }: Props, ref: any): ReactElement => {
+export const Card = forwardRef(({ className = '', ...props }: Props, ref: any) => {
   return (
     <div
       ref={ref}

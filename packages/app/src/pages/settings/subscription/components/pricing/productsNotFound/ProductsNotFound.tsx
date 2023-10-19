@@ -1,10 +1,10 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { BlankState, Button } from 'components'
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { useLink } from '@/utils/useLink'
 
-export const ProductsNotFound = (): ReactElement => {
+export const ProductsNotFound = () => {
   const link = useLink()
 
   return (

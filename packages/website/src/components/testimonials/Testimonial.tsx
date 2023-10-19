@@ -1,6 +1,6 @@
 import { Card, Heading, ParagraphText, Text } from 'components'
 import Image from 'next/image'
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'div'> & {
@@ -11,15 +11,7 @@ type Props = ComponentPropsWithoutRef<'div'> & {
   image: string
 }
 
-export const Testimonial = ({
-  className = '',
-  name,
-  title,
-  company,
-  testimonial,
-  image,
-  ...props
-}: Props): ReactElement => {
+export const Testimonial = ({ className = '', name, title, company, testimonial, image, ...props }: Props) => {
   return (
     <Card className={twMerge('', className)} {...props}>
       <ParagraphText>{testimonial}</ParagraphText>

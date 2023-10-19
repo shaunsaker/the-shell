@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Button } from '../button/Button'
@@ -14,7 +14,7 @@ type Props = {
   onClick?: (href: string) => void
 } & Omit<ComponentPropsWithoutRef<'ul'>, 'onClick'>
 
-export const Navbar = ({ className, items, onClick, children, ...props }: Props): ReactElement => {
+export const Navbar = ({ className, items, onClick, children, ...props }: Props) => {
   return (
     <ul className={twMerge(`flex flex-1 gap-x-2 overflow-x-auto lg:gap-x-4`, className)} {...props}>
       {items.map(item => (

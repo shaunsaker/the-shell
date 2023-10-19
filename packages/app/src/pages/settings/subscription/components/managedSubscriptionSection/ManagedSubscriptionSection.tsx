@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 
-export const ManagedSubscriptionSection = (): ReactElement => {
+export const ManagedSubscriptionSection = () => {
   return (
     <SettingsSection
       className="border-b-0"

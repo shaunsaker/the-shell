@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import toast, { resolveValue, ToastType, useToaster } from 'react-hot-toast'
 
 import { Alert, AlertVariant } from '../alert/Alert'
@@ -12,7 +12,7 @@ const mapTypeToKind: Record<ToastType, AlertVariant> = {
   custom: 'info',
 }
 
-export const Snackbar = (): ReactElement => {
+export const Snackbar = () => {
   const { toasts, handlers } = useToaster({ duration: 5000 })
   const { startPause, endPause } = handlers
 

@@ -1,6 +1,6 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button, Headerbar } from 'components'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 import { useSidebarOpen } from '@/sidebar/hooks/useSidebarOpen'
 
@@ -8,7 +8,7 @@ type Props = {
   children?: ReactNode
 }
 
-export const Header = ({ children }: Props): ReactElement => {
+export const Header = ({ children }: Props) => {
   const [_, setSidebarOpen] = useSidebarOpen()
 
   return (

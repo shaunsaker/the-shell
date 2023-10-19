@@ -1,11 +1,11 @@
 import { Button, TextInput } from 'components'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 import { useUpdateUser } from '@/user/hooks/useUpdateUser'
 import { useUser } from '@/user/hooks/useUser'
 
-export const ChangeNameSection = (): ReactElement => {
+export const ChangeNameSection = () => {
   const { data: user } = useUser()
 
   const firstName = user?.firstName || ''

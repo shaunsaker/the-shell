@@ -1,6 +1,6 @@
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import { Button, ErrorPage } from 'components'
-import React, { ReactElement, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
 
 import { useCaptureException } from '@/errors/hooks/useCaptureException'
@@ -9,7 +9,7 @@ import { useLink } from '@/utils/useLink'
 
 import { app } from '../../../../config'
 
-export const ErrorBoundary = (): ReactElement => {
+export const ErrorBoundary = () => {
   const error = useRouteError() as { status: number; statusText: string; error: Error } | Error | undefined
   const { mutate: captureException } = useCaptureException()
   const navigate = useNavigate()

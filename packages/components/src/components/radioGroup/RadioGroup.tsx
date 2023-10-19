@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Button } from '../button/Button'
@@ -15,7 +15,7 @@ type Props = {
   onValueChange: (option: Option) => void
 }
 
-export const RadioGroup = ({ className, value, options, onValueChange }: Props): ReactElement => {
+export const RadioGroup = ({ className, value, options, onValueChange }: Props) => {
   return (
     <div
       className={twMerge(

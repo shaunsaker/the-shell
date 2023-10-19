@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { Button } from '../components/Button'
 import { Description } from '../components/Description'
@@ -10,7 +10,7 @@ type Props = {
   link: string
 }
 
-export const ResetPassword = ({ siteUrl, link }: Props): ReactElement => {
+export const ResetPassword = ({ siteUrl, link }: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
       <Title>Reset password</Title>

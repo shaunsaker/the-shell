@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Variant = 'default' | 'inverted'
@@ -13,7 +13,7 @@ type Props = ComponentPropsWithoutRef<'div'> & {
   variant?: Variant
 }
 
-export const Background = ({ className = '', variant = 'default', children, ...props }: Props): ReactElement => {
+export const Background = ({ className = '', variant = 'default', children, ...props }: Props) => {
   return (
     <div
       className={twMerge(

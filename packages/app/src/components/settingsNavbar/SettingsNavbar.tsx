@@ -1,5 +1,5 @@
 import { Button, Navbar } from 'components'
-import React, { ComponentProps, ReactElement } from 'react'
+import React, { ComponentProps } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useSignOut } from '@/auth/hooks/useSignOut'
@@ -12,7 +12,7 @@ import { Header } from '../header/Header'
 
 type NavigationItem = ComponentProps<typeof Navbar>['items'][0]
 
-export const SettingsNavbar = (): ReactElement => {
+export const SettingsNavbar = () => {
   const location = useLocation()
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
   const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useHasTeamPlan()

@@ -4,7 +4,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button, Headerbar, Logo, Popover, Sidebar } from 'components'
 import { app } from 'config'
 import { useRouter } from 'next/navigation'
-import React, { ComponentProps, ComponentPropsWithoutRef, ReactElement, useState } from 'react'
+import React, { ComponentProps, ComponentPropsWithoutRef, useState } from 'react'
 
 import { routes } from '@/routes'
 
@@ -32,7 +32,7 @@ const SIGN_IN_NAVIGATION_ITEM: NavigationItem = {
 
 type Props = ComponentPropsWithoutRef<'header'>
 
-export const Header = ({ ...props }: Props): ReactElement => {
+export const Header = ({ ...props }: Props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const router = useRouter()

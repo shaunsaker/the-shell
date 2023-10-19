@@ -1,9 +1,9 @@
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'span'>
 
-export const HighlightedText = ({ className = '', children, ...props }: Props): ReactElement => {
+export const HighlightedText = ({ className = '', children, ...props }: Props) => {
   return (
     <span
       className={twMerge('relative whitespace-nowrap text-theme-brand dark:text-dark-theme-brand', className)}

@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { FirebaseError } from 'firebase/app'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { captureException } from '@/errors/api/captureException'
@@ -48,7 +48,7 @@ const queryClient = new QueryClient({
 
 type Props = { children: ReactNode }
 
-export const QueryClientProvider = ({ children }: Props): ReactElement => {
+export const QueryClientProvider = ({ children }: Props) => {
   return (
     <QueryClientProviderPrimitive client={queryClient}>
       {children}
