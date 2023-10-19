@@ -12,6 +12,9 @@
         ],
         "storybook": [
           "the-shell-development-storybook-ui"
+        ],
+        "website": [
+          "the-shell-development-website"
         ]
       }
     }

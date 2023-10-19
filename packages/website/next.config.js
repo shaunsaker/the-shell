@@ -13,6 +13,8 @@ const nextConfig = {
   },
 
   images: {
+    // fixes static export of images
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -20,6 +22,9 @@ const nextConfig = {
       },
     ],
   },
+
+  // creates a static export when building
+  output: 'export',
 }
 
 module.exports = nextConfig

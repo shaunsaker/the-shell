@@ -13,7 +13,7 @@
   "hosting": [
     {
       "target": "app",
-      "predeploy": "cd ./packages/scripts && yarn build && cd ../app && yarn build:app",
+      "predeploy": "cd ./packages/scripts && yarn build && cd ../app && yarn build",
       "public": "./packages/app/dist",
       "rewrites": [
         {
@@ -24,14 +24,13 @@
     },
     {
       "target": "storybook",
-      "predeploy": "cd ./packages/scripts && yarn build && cd ../components && yarn build:storybook",
-      "public": "./packages/components/storybook-static",
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+      "predeploy": "cd ./packages/scripts && yarn build && cd ../components && yarn build",
+      "public": "./packages/components/storybook-static"
+    },
+    {
+      "target": "website",
+      "predeploy": "cd ./packages/scripts && yarn build && cd ../website && yarn build",
+      "public": "./packages/website/out"
     }
   ],
   "emulators": {

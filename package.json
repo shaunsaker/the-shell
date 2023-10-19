@@ -11,8 +11,8 @@
     "test": "turbo run test",
     "activate-project": "firebase use",
     "deploy": "firebase deploy --only firestore,functions,hosting",
-    "deploy:staging": "cross-env MODE=staging && yarn deploy",
-    "deploy:production": "cross-env MODE=production && yarn deploy"
+    "deploy:staging": "export MODE=staging && yarn deploy",
+    "deploy:production": "export MODE=production && yarn deploy"
   },
   "packageManager": "yarn@1.22.19",
   "workspaces": {
@@ -22,7 +22,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "semantic-release": "^22.0.5",

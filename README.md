@@ -193,15 +193,17 @@ touch ./packages/website/.env.production
 
 13. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
 
-14. Create another site for your Storybook by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `PROJECT_NAME-storybook-ui`.
+14. Create another site for your Storybook by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `PROJECT_NAME-storybook`.
 
-15. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell-development" with your PROJECT_NAME.
+15. Create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `PROJECT_NAME-website`.
 
-16. Download your Firebase service account for each project and add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`.
+16. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell-development" with your PROJECT_NAME.
 
-17. Add the paths to the service accounts to [website/.env.development](./packages/website/.env.development), [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `GOOGLE_APPLICATION_CREDENTIALS`.
+17. Download your Firebase service account for each project and add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`.
 
-18. Add the relavant app hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_APP_URL`, `NEXT_PUBLIC_APP_SIGN_IN_URL` and `NEXT_PUBLIC_APP_SIGN_UP_URL`. Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_URL` to `http://localhost:5173`, ie. the url you're serving the local `app` on.
+18. Add the paths to the service accounts to [website/.env.development](./packages/website/.env.development), [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `GOOGLE_APPLICATION_CREDENTIALS`.
+
+19. Add the relavant app hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_APP_URL`, `NEXT_PUBLIC_APP_SIGN_IN_URL` and `NEXT_PUBLIC_APP_SIGN_UP_URL`. Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_URL` to `http://localhost:5173`, ie. the url you're serving the local `app` on.
 
 ---
 
