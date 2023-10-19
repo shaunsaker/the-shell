@@ -30,7 +30,7 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
     <Image
       className="h-full w-full object-cover object-left-top"
       src={activeFeature.image}
-      alt={activeFeature.image}
+      alt={activeFeature.title}
       priority
     />
   )
@@ -50,30 +50,38 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
 
         {/* MOBILE */}
         <div className="flex flex-col rounded-lg bg-white/10 ring-1 ring-inset ring-white/10 lg:hidden">
-          <div className="p-6">
-            <ul className="flex items-center gap-x-4 overflow-x-auto">
-              {features.map((feature, index) => (
-                <li key={feature.title}>
-                  <Button
-                    className="rounded-full"
-                    variant={activeTabIndex === index ? 'secondaryInverted' : 'lightInverted'}
-                    size="lg"
-                    onClick={() => {
-                      setActiveTabIndex(index)
-                    }}
-                  >
-                    {feature.title}
-                  </Button>
-                </li>
-              ))}
-            </ul>
+          <ul className="flex items-center gap-x-4 overflow-x-auto p-6">
+            {features.map((feature, index) => (
+              <li key={feature.title}>
+                <Button
+                  className="rounded-full"
+                  variant={
+                    variant === 'default'
+                      ? activeTabIndex === index
+                        ? 'secondaryInverted'
+                        : 'lightInverted'
+                      : activeTabIndex === index
+                      ? 'secondary'
+                      : 'light'
+                  }
+                  size="lg"
+                  onClick={() => {
+                    setActiveTabIndex(index)
+                  }}
+                >
+                  {feature.title}
+                </Button>
+              </li>
+            ))}
+          </ul>
 
-            <ParagraphText className="mt-8 text-center text-white dark:text-white">
-              {activeFeature.description}
-            </ParagraphText>
-          </div>
+          <ParagraphText
+            className={twMerge('px-6 py-4 text-center', variant === 'default' ? 'text-white dark:text-white' : '')}
+          >
+            {activeFeature.description}
+          </ParagraphText>
 
-          <div className="mt-4 overflow-hidden rounded-xl">{imageComponent}</div>
+          <div className="mt-4 overflow-hidden rounded-xl shadow-xl">{imageComponent}</div>
         </div>
 
         {/* DESKTOP */}
