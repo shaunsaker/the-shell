@@ -28,6 +28,7 @@ You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.ap
 - Automatic light and dark modes 🌓
 - Mobile friendly 📱
 - Looks ~~good~~ **farking beautiful** out of the box ✨
+- Almost perfect [Lighthouse](https://github.com/GoogleChrome/lighthouse) scores 🏆
 - [framer-motion](framer.com/motion/) animations 🎬
 - [Resend](https://resend.com/) for transactional emails ⚡️
 - [React Email](https://react.email/) for quick and easy email staging ✉️❤️
@@ -74,9 +75,9 @@ You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.ap
 
 We support 3 environments out of the box:
 
-- Development: Local development
-- Staging: Remote development
-- Production: Live environment
+- Development: Local development (Firebase emulator)
+- Staging (`develop` branch): Remote development
+- Production (releases from `master` branch): Live environment
 
 ### Basic Setup
 
