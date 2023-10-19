@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { Button } from '../components/Button'
-import { Description } from '../components/Description'
+import { DescriptionText } from '../components/DescriptionText'
 import { Layout } from '../components/Layout'
-import { Title } from '../components/Title'
+import { TitleText } from '../components/TitleText'
 
 type Props = {
   siteUrl: string
@@ -13,9 +13,9 @@ type Props = {
 export const ResetPassword = ({ siteUrl, link }: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
-      <Title>Reset password</Title>
+      <TitleText>Reset password</TitleText>
 
-      <Description>Follow this link to reset the password for your user:</Description>
+      <DescriptionText>Follow this link to reset the password for your user:</DescriptionText>
 
       <Button href={link}>Reset password</Button>
     </Layout>

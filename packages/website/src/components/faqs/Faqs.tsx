@@ -1,4 +1,4 @@
-import { Background, HeadingText, ParagraphText, Text, Title } from 'components'
+import { Background, HeadingText, ParagraphText, Text, TitleText } from 'components'
 import { app } from 'config'
 
 import { routes } from '@/routes'
@@ -14,7 +14,7 @@ export function Faqs() {
 
       <div className="relative">
         <Container>
-          <Title>{app.website.faqs.title}</Title>
+          <TitleText>{app.website.faqs.title}</TitleText>
 
           <ParagraphText className="mt-4">{app.website.faqs.subtitle}</ParagraphText>
         </Container>

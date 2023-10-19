@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'h1'>
 
-export const Title = ({ className = '', children, ...props }: Props) => {
+export const TitleText = ({ className = '', children, ...props }: Props) => {
   return (
     <h1
       className={twMerge(

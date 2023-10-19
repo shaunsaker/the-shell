@@ -1,6 +1,6 @@
 'use client'
 
-import { Background, Button, ParagraphText, Title } from 'components'
+import { Background, Button, ParagraphText, TitleText } from 'components'
 import { app } from 'config'
 import { useRouter } from 'next/navigation'
 
@@ -15,7 +15,7 @@ export function CallToAction() {
       <Background className="absolute inset-0" />
 
       <Container>
-        <Title className="text-white dark:text-white">{app.website.cta.title}</Title>
+        <TitleText className="text-white dark:text-white">{app.website.cta.title}</TitleText>
 
         <ParagraphText className="text-white dark:text-white">{app.website.cta.subtitle}</ParagraphText>
 

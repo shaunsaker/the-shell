@@ -2,9 +2,9 @@ import { app } from 'config'
 import React from 'react'
 
 import { Button } from '../components/Button'
-import { Description } from '../components/Description'
+import { DescriptionText } from '../components/DescriptionText'
 import { Layout } from '../components/Layout'
-import { Title } from '../components/Title'
+import { TitleText } from '../components/TitleText'
 
 type Props = {
   siteUrl: string
@@ -25,11 +25,11 @@ export const AddedToTeam = ({
 }: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
-      <Title>Hi{userName ? ` ${userName}` : ''},</Title>
+      <TitleText>Hi{userName ? ` ${userName}` : ''},</TitleText>
 
-      <Description>
+      <DescriptionText>
         You've been added to team "{teamName}" on {app.name} by {adminTeamMemberName}.
-      </Description>
+      </DescriptionText>
 
       <Button href={buttonUrl}>{buttonText}</Button>
     </Layout>

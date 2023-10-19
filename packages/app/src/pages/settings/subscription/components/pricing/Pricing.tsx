@@ -1,4 +1,4 @@
-import { PricingCards, Text, Title } from 'components'
+import { PricingCards, Text, TitleText } from 'components'
 import React, { ComponentProps, useEffect, useMemo, useState } from 'react'
 
 import { useCreateCheckoutSession } from '@/billing/hooks/useCreateCheckoutSession'
@@ -84,7 +84,7 @@ export const Pricing = () => {
   return (
     <main className="flex flex-col items-center">
       <div className="mb-8 w-full max-w-lg text-center">
-        <Title className="mt-4">Pricing plans for teams of all sizes</Title>
+        <TitleText className="mt-4">Pricing plans for teams of all sizes</TitleText>
 
         <Text className="mt-4">
           Choose an affordable plan that&apos;s packed with the best features for engaging your audience, creating
