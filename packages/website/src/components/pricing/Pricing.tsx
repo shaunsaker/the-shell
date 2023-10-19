@@ -1,6 +1,6 @@
 'use client'
 
-import { Background, ParagraphText, PricingCards, Title } from 'components'
+import { Background, ParagraphText, PricingCards, TitleText } from 'components'
 import { app } from 'config'
 import React, { ComponentProps, ComponentPropsWithoutRef, useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -100,7 +100,7 @@ export const Pricing = ({ className = '', products, prices, ...props }: Props) =
 
       <div className="relative">
         <Container className="mb-16">
-          <Title className="text-white dark:text-white">
+          <TitleText className="text-white dark:text-white">
             {app.website.pricing.title.replace(app.website.pricing.titleHighlighted, '')}
 
             {app.website.pricing.titleHighlighted && (
@@ -108,7 +108,7 @@ export const Pricing = ({ className = '', products, prices, ...props }: Props) =
                 {app.website.pricing.titleHighlighted}
               </HighlightedText>
             )}
-          </Title>
+          </TitleText>
 
           <ParagraphText className="text-white dark:text-white">{app.website.pricing.subtitle}</ParagraphText>
         </Container>

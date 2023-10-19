@@ -7,7 +7,7 @@ type TitleProps = {
   children?: ReactNode
 }
 
-export const Title = ({ className = '', children }: TitleProps) => {
+export const TitleText = ({ className = '', children }: TitleProps) => {
   return (
     <Text className={twMerge(`text-theme-content-emphasis m-0 mb-2 text-lg font-medium ${className}`)}>{children}</Text>
   )

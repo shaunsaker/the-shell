@@ -1,5 +1,5 @@
 import { CheckIcon } from '@heroicons/react/24/outline'
-import { Badge, Button, Card, HeadingText, Text, Title } from 'components'
+import { Badge, Button, Card, HeadingText, Text, TitleText } from 'components'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -50,7 +50,7 @@ export const PricingCard = ({
       <Text>{description}</Text>
 
       <div className="flex items-end">
-        <Title>{currency && formatCurrency(price / 100, currency)}</Title>
+        <TitleText>{currency && formatCurrency(price / 100, currency)}</TitleText>
 
         <Text className="mb-1 ml-1">/ {interval}</Text>
       </div>

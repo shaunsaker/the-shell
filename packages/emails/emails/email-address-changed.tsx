@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { Button } from '../components/Button'
-import { Description } from '../components/Description'
+import { DescriptionText } from '../components/DescriptionText'
 import { Layout } from '../components/Layout'
 import { Link } from '../components/Link'
-import { Title } from '../components/Title'
+import { TitleText } from '../components/TitleText'
 
 type Props = {
   siteUrl: string
@@ -15,12 +15,12 @@ type Props = {
 export const EmailAddressChanged = ({ siteUrl, oldEmail, newEmail }: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
-      <Title>Email address was changed</Title>
+      <TitleText>Email address was changed</TitleText>
 
-      <Description>
+      <DescriptionText>
         Your email address was changed from <Link href={`mailto:${oldEmail}`}>{oldEmail}</Link> to{' '}
         <Link href={`mailto:${newEmail}`}>{newEmail}</Link>.
-      </Description>
+      </DescriptionText>
 
       <Button href={siteUrl}>Go to your dashboard</Button>
     </Layout>

@@ -30,7 +30,7 @@ import { Snackbar } from './components/snackbar/Snackbar'
 import { Table } from './components/table/Table'
 import { Text } from './components/text/Text'
 import { TextInput } from './components/textInput/TextInput'
-import { Title } from './components/title/Title'
+import { TitleText } from './components/titleText/TitleText'
 
 export {
   Alert,
@@ -63,5 +63,5 @@ export {
   Table,
   Text,
   TextInput,
-  Title,
+  TitleText,
 }

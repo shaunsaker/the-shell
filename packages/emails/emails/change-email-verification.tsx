@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { Button } from '../components/Button'
-import { Description } from '../components/Description'
+import { DescriptionText } from '../components/DescriptionText'
 import { Layout } from '../components/Layout'
-import { Title } from '../components/Title'
+import { TitleText } from '../components/TitleText'
 
 type Props = {
   siteUrl: string
@@ -13,9 +13,9 @@ type Props = {
 export const ChangeEmailVerification = ({ siteUrl, emailVerificationLink }: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
-      <Title>Confirm your new email</Title>
+      <TitleText>Confirm your new email</TitleText>
 
-      <Description>Follow this link to confirm your new email:</Description>
+      <DescriptionText>Follow this link to confirm your new email:</DescriptionText>
 
       <Button href={emailVerificationLink}>Confirm your mail</Button>
     </Layout>

@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Description } from '../components/Description'
+import { DescriptionText } from '../components/DescriptionText'
 import { Layout } from '../components/Layout'
-import { Title } from '../components/Title'
+import { TitleText } from '../components/TitleText'
 
 type Props = {
   siteUrl: string
@@ -14,11 +14,11 @@ type Props = {
 export const RemovedFromTeam = ({ siteUrl, userName = '', teamName, adminTeamMemberName }: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
-      <Title>Hi{userName ? ` ${userName}` : ''},</Title>
+      <TitleText>Hi{userName ? ` ${userName}` : ''},</TitleText>
 
-      <Description className="mb-8">
+      <DescriptionText className="mb-8">
         You've been removed from team "{teamName}" by {adminTeamMemberName}.
-      </Description>
+      </DescriptionText>
     </Layout>
   )
 }

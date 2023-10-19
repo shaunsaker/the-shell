@@ -3,7 +3,7 @@ import { app } from 'config'
 import React, { ReactNode } from 'react'
 
 import { tailwindConfig } from '../tailwind.config'
-import { Description } from './Description'
+import { DescriptionText } from './DescriptionText'
 
 type LayoutProps = {
   siteUrl: string
@@ -19,8 +19,8 @@ export const Layout = ({ siteUrl, children }: LayoutProps) => {
         <Container className="border-theme-border bg-theme-background w-full max-w-xl rounded-xl border border-solid p-6 shadow-sm">
           {children}
 
-          <Description>Cheers,</Description>
-          <Description>The {app.name} team</Description>
+          <DescriptionText>Cheers,</DescriptionText>
+          <DescriptionText>The {app.name} team</DescriptionText>
         </Container>
 
         <Text className="text-theme-content m-0 mt-8 text-center text-sm">{app.name}</Text>

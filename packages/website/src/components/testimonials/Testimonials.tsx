@@ -1,4 +1,4 @@
-import { Background, ParagraphText, Title } from 'components'
+import { Background, ParagraphText, TitleText } from 'components'
 import { app } from 'config'
 
 import { routes } from '@/routes'
@@ -19,7 +19,7 @@ export function Testimonials() {
 
       <div className="relative">
         <Container>
-          <Title>{app.website.testimonials.title}</Title>
+          <TitleText>{app.website.testimonials.title}</TitleText>
 
           <ParagraphText>{app.website.testimonials.subtitle}</ParagraphText>
         </Container>
