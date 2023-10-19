@@ -48,7 +48,7 @@ You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.ap
 - [vite-plugin-svgr](https://github.com/pd4d10/vite-plugin-svgr) for svg support 🔗
 - [react-hot-toast](https://react-hot-toast.com/) for easy to use toast notifications 🍞
 - [heroicons](https://heroicons.com/) for beautiful icons 🙂
-- [Storybook](https://storybook.js.org/) deployed to [Chromatic](https://www.chromatic.com/) for UI staging
+- [Storybook](https://storybook.js.org/)
 
 ---
 
@@ -68,7 +68,6 @@ You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.ap
 - [Sentry account](https://sentry.io/signup/)
 - 2x [Resend accounts](https://resend.com/signup), one for staging and one for production
 - [Mixpanel account](https://mixpanel.com/) with 2x projects, one for staging and one for production
-- [Chromatic account](https://www.chromatic.com/)
 - [Figma account](https://www.figma.com/)
 
 ### Environments
@@ -363,16 +362,6 @@ gh secret set SENTRY_PROJECT --body VALUE
 1. Grab your staging and production project tokens and them to the respective files at [app/.env.staging](./packages/app/.env.staging) and [app/.env.production](./packages/app/.env.production).
 
 ---
-
-### Setup Chromatic
-
-1. Setup your project at [Chromatic](https://www.chromatic.com/).
-
-2. Push your Chromatic Project Token to Github so that the deploy workflows can deploy to Chromatic:
-
-```
-gh secret set CHROMATIC_PROJECT_TOKEN --body VALUE
-```
 
 ### Setup Figma
 
