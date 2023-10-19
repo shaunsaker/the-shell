@@ -66,6 +66,7 @@ export const Hero = () => {
             {app.website.hero.trustedByCompanies.map(company => (
               <li key={company.label}>
                 <Button
+                  aria-label={company.label}
                   variant="lightNeutral"
                   onClick={() => {
                     window.open(company.link, '_blank')
