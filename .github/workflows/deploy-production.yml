@@ -28,6 +28,7 @@ jobs:
         run: |
           echo "${{ secrets.ENV_FILE_PRODUCTION }}" > ./packages/app/.env.production
           echo "${{ secrets.ENV_FILE_PRODUCTION }}" > ./packages/functions/.env.production
+          echo "${{ secrets.ENV_FILE_PRODUCTION }}" > ./packages/website/env/.env.production
 
       # Set the active project
       - run: yarn activate-project production --token ${{ secrets.FIREBASE_TOKEN }}
