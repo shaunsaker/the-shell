@@ -40,11 +40,16 @@ export const Pricing = ({ className = '', products, prices, ...props }: Props): 
   )
 
   const pricingCardsProducts = useMemo(() => {
+    if (!pricesForBillingInterval?.length) {
+      return []
+    }
+
     const sortedProducts = sortProductsByPrice({
       products,
       prices: pricesForBillingInterval,
     })
-    const pricingCardsProducts = sortedProducts.map((product, index) => {
+
+    return sortedProducts.map((product, index) => {
       // get the price for the current billing interval
       const price = pricesForBillingInterval?.filter(price => price.productId === product.id)[0]
 
@@ -66,8 +71,6 @@ export const Pricing = ({ className = '', products, prices, ...props }: Props): 
         loading: createCheckoutSessionLoading,
       }
     })
-
-    return pricingCardsProducts
   }, [createCheckoutSessionLoading, pricesForBillingInterval, products])
 
   useEffect(() => {
