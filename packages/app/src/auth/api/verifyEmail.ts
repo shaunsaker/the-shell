@@ -13,7 +13,6 @@ export const verifyEmail = async (actionCode: string | null) => {
   }
 
   if (actionCode) {
-    // TODO: SS call the verify email function => but we don't have an actionCode in development so that function won't update the user in development
     await applyActionCode(auth, actionCode)
   }
 }

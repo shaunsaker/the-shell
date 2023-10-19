@@ -19,8 +19,6 @@ const handleError = (error: unknown) => {
   } else {
     toast.error((error as Error).message)
   }
-
-  // TODO: SS capture the exception
 }
 
 const queryClient = new QueryClient({

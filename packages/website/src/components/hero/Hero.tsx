@@ -27,7 +27,7 @@ const getCompanyLogo = (company: string) => {
     case 'Logoipsum 5':
       return <Logoipsum5Logo />
     default:
-      // TODO: SS maybe add a bg here
+      // FIXME: add a bg colour to indicate logo placeholder
       return <div />
   }
 }
