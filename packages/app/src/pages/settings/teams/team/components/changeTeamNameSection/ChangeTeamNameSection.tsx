@@ -1,12 +1,12 @@
 import { Button, SkeletonLoader, TextInput } from 'components'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '@/teams/hooks/useTeam'
 import { useUpdateTeam } from '@/teams/hooks/useUpdateTeam'
 
-export const ChangeTeamNameSection = (): ReactElement => {
+export const ChangeTeamNameSection = () => {
   const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()
   const { data: team, isLoading: teamsLoading } = useTeam()
   const { mutate: updateTeam, isLoading: updateTeamLoading } = useUpdateTeam()

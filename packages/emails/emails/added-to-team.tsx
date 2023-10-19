@@ -1,5 +1,5 @@
 import { app } from 'config'
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { Button } from '../components/Button'
 import { Description } from '../components/Description'
@@ -22,7 +22,7 @@ export const AddedToTeam = ({
   adminTeamMemberName,
   buttonUrl,
   buttonText,
-}: Props): ReactElement => {
+}: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
       <Title>Hi{userName ? ` ${userName}` : ''},</Title>

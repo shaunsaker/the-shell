@@ -1,5 +1,5 @@
 import { Button as ButtonPrimitive } from '@react-email/components'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type ButtonProps = {
@@ -8,7 +8,7 @@ type ButtonProps = {
   children?: ReactNode
 }
 
-export const Button = ({ className = '', href, children }: ButtonProps): ReactElement => {
+export const Button = ({ className = '', href, children }: ButtonProps) => {
   return (
     <ButtonPrimitive
       className={twMerge(

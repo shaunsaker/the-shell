@@ -1,7 +1,7 @@
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 
 type Props = ComponentPropsWithoutRef<'li'>
 
-export const SelectItem = ({ ...props }: Props): ReactElement => {
+export const SelectItem = ({ ...props }: Props) => {
   return <li {...props} />
 }

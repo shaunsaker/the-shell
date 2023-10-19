@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { PageLayout } from '../pageLayout/PageLayout'
 import { SettingsNavbar } from '../settingsNavbar/SettingsNavbar'
 
-export const SettingsLayout = (): ReactElement => {
+export const SettingsLayout = () => {
   return (
     <>
       <SettingsNavbar />

@@ -1,5 +1,5 @@
 import { Breadcrumbs, SkeletonLoader } from 'components'
-import React, { ComponentProps, ReactElement } from 'react'
+import React, { ComponentProps } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
@@ -9,7 +9,7 @@ import { formatTeamMemberName } from '@/utils/formatTeamMemberName'
 
 type NavigationItem = ComponentProps<typeof Breadcrumbs>['items'][0]
 
-export const SettingsTeamsBreadcrumbs = (): ReactElement => {
+export const SettingsTeamsBreadcrumbs = () => {
   const location = useLocation()
   const { data: team, isLoading: teamLoading } = useTeam()
   const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()

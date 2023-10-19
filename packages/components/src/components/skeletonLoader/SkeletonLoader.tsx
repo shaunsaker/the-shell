@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const TEST_ID = 'skeleton-loader'
@@ -7,7 +7,7 @@ type SkeletonLoaderProps = {
   className?: string
 }
 
-const SkeletonLoader = ({ className }: SkeletonLoaderProps): ReactElement => {
+const SkeletonLoader = ({ className }: SkeletonLoaderProps) => {
   return (
     <div
       className={twMerge(

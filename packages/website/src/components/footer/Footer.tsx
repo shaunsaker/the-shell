@@ -2,7 +2,7 @@
 
 import { Button, Logo, Text } from 'components'
 import { useRouter } from 'next/navigation'
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { routes } from '@/routes'
 
@@ -23,7 +23,7 @@ const NAV_LINKS = [
   },
 ]
 
-export const Footer = (): ReactElement => {
+export const Footer = () => {
   const router = useRouter()
 
   return (

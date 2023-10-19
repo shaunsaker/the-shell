@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 import { Heading } from '../heading/Heading'
 import { Text } from '../text/Text'
@@ -10,7 +10,7 @@ type Props = {
   children: ReactNode
 }
 
-export const BlankState = ({ Icon, title, description, children }: Props): ReactElement => {
+export const BlankState = ({ Icon, title, description, children }: Props) => {
   return (
     <div className="mx-auto flex max-w-lg flex-1 flex-col items-center justify-center gap-y-6">
       <Icon className="text-theme-content-subtle dark:text-dark-theme-content-subtle h-16 w-16" />

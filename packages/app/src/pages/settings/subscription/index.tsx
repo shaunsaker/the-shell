@@ -1,5 +1,5 @@
 import { Loading } from 'components'
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
 import { useIsSubscriptionOwner } from '@/billing/hooks/useIsSubscriptionOwner'
@@ -10,7 +10,7 @@ import { Pricing } from './components/pricing/Pricing'
 import { SubscriptionDetailsSection } from './components/subscriptionDetailsSection/SubscriptionDetailsSection'
 import { SubscriptionSeatsSection } from './components/subscriptionSeatsSection/SubscriptionSeatsSection'
 
-export const SettingsSubscription = (): ReactElement => {
+export const SettingsSubscription = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
   const { data: isSubscriptionOwner, isLoading: isSubscriptionOwnerLoading } = useIsSubscriptionOwner()
 

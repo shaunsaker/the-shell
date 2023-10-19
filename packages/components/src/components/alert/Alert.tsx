@@ -5,7 +5,7 @@ import {
   InformationCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Button } from '../button/Button'
@@ -48,7 +48,7 @@ type Props = {
   onClose?: () => void
 }
 
-export const Alert = ({ className, variant = 'success', children, onClose }: Props): ReactElement => {
+export const Alert = ({ className, variant = 'success', children, onClose }: Props) => {
   const Icon = variantToIcon[variant]
 
   return (

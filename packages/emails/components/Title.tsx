@@ -1,5 +1,5 @@
 import { Text } from '@react-email/components'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type TitleProps = {
@@ -7,7 +7,7 @@ type TitleProps = {
   children?: ReactNode
 }
 
-export const Title = ({ className = '', children }: TitleProps): ReactElement => {
+export const Title = ({ className = '', children }: TitleProps) => {
   return (
     <Text className={twMerge(`text-theme-content-emphasis m-0 mb-2 text-lg font-medium ${className}`)}>{children}</Text>
   )

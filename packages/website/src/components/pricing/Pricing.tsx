@@ -2,7 +2,7 @@
 
 import { Background, ParagraphText, PricingCards, Title } from 'components'
 import { app } from 'config'
-import React, { ComponentProps, ComponentPropsWithoutRef, ReactElement, useEffect, useMemo, useState } from 'react'
+import React, { ComponentProps, ComponentPropsWithoutRef, useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { Price, Product } from 'types'
 
@@ -26,7 +26,7 @@ type Props = ComponentPropsWithoutRef<'section'> & {
   prices: Price[]
 }
 
-export const Pricing = ({ className = '', products, prices, ...props }: Props): ReactElement => {
+export const Pricing = ({ className = '', products, prices, ...props }: Props) => {
   // Note: we set the billingInterval in a useEffect when the prices updates
   const [billingInterval, setBillingInterval] = useState<BillingIntervalValue>('')
   const [billingIntervalOptions, setBillingIntervalOptions] = useState<BillingIntervalOption[]>([])

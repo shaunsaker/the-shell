@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { Button } from '../components/Button'
 import { Description } from '../components/Description'
@@ -10,7 +10,7 @@ type Props = {
   emailVerificationLink: string
 }
 
-export const VerificationEmail = ({ siteUrl, emailVerificationLink }: Props): ReactElement => {
+export const VerificationEmail = ({ siteUrl, emailVerificationLink }: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
       <Title>Confirm your signup</Title>

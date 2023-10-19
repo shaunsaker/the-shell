@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { Button } from '../components/Button'
 import { Description } from '../components/Description'
@@ -12,7 +12,7 @@ type Props = {
   newEmail: string
 }
 
-export const EmailAddressChanged = ({ siteUrl, oldEmail, newEmail }: Props): ReactElement => {
+export const EmailAddressChanged = ({ siteUrl, oldEmail, newEmail }: Props) => {
   return (
     <Layout siteUrl={siteUrl}>
       <Title>Email address was changed</Title>

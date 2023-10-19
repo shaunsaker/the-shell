@@ -1,6 +1,6 @@
 import { Button, List } from 'components'
 import { ListItem } from 'components/src/components/list/ListItem'
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { useCreateBillingPortalSession } from '@/billing/hooks/useCreateBillingPortalSession'
 import { usePrices } from '@/billing/hooks/usePrices'
@@ -15,7 +15,7 @@ import { formatDate } from '@/utils/formatDate'
 import { formatSubscriptionStatus } from '@/utils/formatSubscriptionStatus'
 import { parsePaymentMethod } from '@/utils/parsePaymentMethod'
 
-export const SubscriptionDetailsSection = (): ReactElement | null => {
+export const SubscriptionDetailsSection = () => {
   useSubscriptionsListener()
   const { data: products } = useProducts()
   const { data: prices } = usePrices()

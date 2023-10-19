@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 type SpinnerProps = {
   loading?: boolean
 }
 
-export const Spinner = ({ loading }: SpinnerProps): ReactElement => {
+export const Spinner = ({ loading }: SpinnerProps) => {
   return (
     <AnimatePresence>
       {loading && (

@@ -1,5 +1,5 @@
 import { Button, SkeletonLoader, Table } from 'components'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
@@ -11,7 +11,7 @@ import { formatTeamMemberName } from '@/utils/formatTeamMemberName'
 import { formatTeamMemberRole } from '@/utils/formatTeamMemberRole'
 import { formatTeamMemberStatus } from '@/utils/formatTeamMemberStatus'
 
-export const ManageTeamMembersSection = (): ReactElement => {
+export const ManageTeamMembersSection = () => {
   const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()
   const { data: team, isLoading: isTeamLoading } = useTeam()
 

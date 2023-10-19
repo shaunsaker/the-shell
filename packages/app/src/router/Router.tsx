@@ -1,6 +1,6 @@
 import { ErrorBoundary } from '@sentry/react'
 import { Loading } from 'components'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
 
 import { useAuthUser } from '@/auth/hooks/useAuthUser'
@@ -107,7 +107,7 @@ const authorisedRoutes: RouteObject[] = [
 const unauthorisedRouter = createBrowserRouter(unauthorisedRoutes)
 const authorisedRouter = createBrowserRouter(authorisedRoutes)
 
-export const Router = (): ReactElement => {
+export const Router = () => {
   const { data: authUser, isLoading: authUserLoading } = useAuthUser()
 
   const isLoading = authUserLoading

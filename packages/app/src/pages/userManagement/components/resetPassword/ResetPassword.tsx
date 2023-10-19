@@ -1,5 +1,5 @@
 import { Loading } from 'components'
-import React, { ReactElement, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ import { useResetPassword } from '@/auth/hooks/useResetPassword'
 import { routes } from '@/router/routes'
 import { UserManagementParams } from '@/types'
 
-export const ResetPassword = (): ReactElement => {
+export const ResetPassword = () => {
   const [searchParams] = useSearchParams()
 
   const { mutate: resetPassword } = useResetPassword()

@@ -1,11 +1,11 @@
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import LogoSvg from '../../assets/logo.svg'
 
 type Props = ComponentPropsWithoutRef<'svg'>
 
-export const Logomark = ({ className, ...props }: Props): ReactElement => {
+export const Logomark = ({ className, ...props }: Props) => {
   return (
     <LogoSvg
       className={twMerge(

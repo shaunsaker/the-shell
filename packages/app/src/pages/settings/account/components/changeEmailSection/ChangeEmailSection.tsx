@@ -1,12 +1,12 @@
 import { Button, TextInput } from 'components'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useSendChangeEmailVerification } from '@/auth/hooks/useSendChangeEmailVerification'
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 import { useUser } from '@/user/hooks/useUser'
 import { validateEmail } from '@/utils/validateEmail'
 
-export const ChangeEmailSection = (): ReactElement => {
+export const ChangeEmailSection = () => {
   const { data: user } = useUser()
   const { mutate: sendChangeEmailVerification, isLoading } = useSendChangeEmailVerification()
 

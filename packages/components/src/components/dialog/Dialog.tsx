@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import React, { ReactElement, ReactNode, useRef } from 'react'
+import React, { ReactNode, useRef } from 'react'
 
 import { useKeyPress } from '../../utils/useKeyPress'
 import { useOutsideClick } from '../../utils/useOutsideClick'
@@ -35,7 +35,7 @@ export const Dialog = ({
   children,
   onConfirmClick,
   onClose,
-}: Props): ReactElement | null => {
+}: Props) => {
   const ref = useRef<HTMLDivElement>(null)
 
   useOutsideClick(ref, () => {

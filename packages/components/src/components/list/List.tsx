@@ -1,9 +1,9 @@
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'ul'>
 
-export const List = ({ className = '', children }: Props): ReactElement => {
+export const List = ({ className = '', children }: Props) => {
   return (
     <ul className={twMerge('divide-theme-border dark:divide-dark-theme-border divide-y', className)}>{children}</ul>
   )

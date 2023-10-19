@@ -1,9 +1,9 @@
-import React, { ComponentPropsWithoutRef, ReactElement } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = ComponentPropsWithoutRef<'h2'>
 
-export const Heading = ({ className = '', children, ...props }: Props): ReactElement => {
+export const Heading = ({ className = '', children, ...props }: Props) => {
   return (
     <h2
       className={twMerge(

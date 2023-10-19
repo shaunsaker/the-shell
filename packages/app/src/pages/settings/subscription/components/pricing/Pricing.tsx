@@ -1,5 +1,5 @@
 import { PricingCards, Text, Title } from 'components'
-import React, { ComponentProps, ReactElement, useEffect, useMemo, useState } from 'react'
+import React, { ComponentProps, useEffect, useMemo, useState } from 'react'
 
 import { useCreateCheckoutSession } from '@/billing/hooks/useCreateCheckoutSession'
 import { usePrices } from '@/billing/hooks/usePrices'
@@ -15,7 +15,7 @@ const DEFAULT_QUANTITY = 1
 type BillingIntervalOption = ComponentProps<typeof PricingCards>['billingIntervalOptions'][0]
 type BillingIntervalValue = BillingIntervalOption['value']
 
-export const Pricing = (): ReactElement => {
+export const Pricing = () => {
   const { data: products } = useProducts()
   const { data: prices } = usePrices()
   const { mutate: createCheckoutSession, isLoading: createCheckoutSessionLoading } = useCreateCheckoutSession()

@@ -1,5 +1,5 @@
 import { Alert, Button, Select, SkeletonLoader } from 'components'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TeamMemberRole } from 'types'
 
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
@@ -15,7 +15,7 @@ const TEAM_MEMBER_ROLE_OPTIONS = TEAM_MEMBER_ROLES.map(role => ({
   value: role,
 }))
 
-export const ChangeTeamMemberRoleSection = (): ReactElement => {
+export const ChangeTeamMemberRoleSection = () => {
   const { data: teamMember, isLoading: teamMemberLoading } = useTeamMember()
   const { data: isTeamMemberLastAdmin, isLoading: isTeamMemberLastAdminLoading } = useIsTeamMemberLastAdmin()
 

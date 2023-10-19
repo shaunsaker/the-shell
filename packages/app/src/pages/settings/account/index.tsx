@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 
 import { SettingsList } from '@/components/settingsList/SettingsList'
 
@@ -7,7 +7,7 @@ import { ChangeNameSection } from './components/changeNameSection/ChangeNameSect
 import { ChangePasswordSection } from './components/changePasswordSection/ChangePasswordSection'
 import { DeleteAccountSection } from './components/deleteAccountSection/DeleteAccountSection'
 
-export const SettingsAccount = (): ReactElement => {
+export const SettingsAccount = () => {
   return (
     <SettingsList>
       <ChangeNameSection />

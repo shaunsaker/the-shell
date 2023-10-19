@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, ReactElement, ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Spinner } from './Spinner'
@@ -73,7 +73,7 @@ export const Button = ({
   iconPosition = 'left',
   children,
   ...props
-}: Props): ReactElement => {
+}: Props) => {
   const iconComponent = icon && <span className={twMerge('h-4 w-4')}>{icon}</span>
 
   return (

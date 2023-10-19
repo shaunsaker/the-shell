@@ -1,5 +1,5 @@
 import { Heading, SlimLayout, Text } from 'components'
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 type Props = {
   title: string
@@ -7,7 +7,7 @@ type Props = {
   children?: ReactNode
 }
 
-export const ErrorPage = ({ title, description, children }: Props): ReactElement => {
+export const ErrorPage = ({ title, description, children }: Props) => {
   return (
     <SlimLayout>
       <div className="flex flex-col items-start gap-y-10">
