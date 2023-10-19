@@ -26,15 +26,15 @@ export const MultipleChildren: Story = {
   args: {
     children: [
       <ListItem>
-        <span>Label 1</span>
+        <span>LabelText 1</span>
         <span>Value 1</span>
       </ListItem>,
       <ListItem>
-        <span>Label 2</span>
+        <span>LabelText 2</span>
         <span>Value 2</span>
       </ListItem>,
       <ListItem>
-        <span>Label 3</span>
+        <span>LabelText 3</span>
         <span>Value 3</span>
       </ListItem>,
     ],
