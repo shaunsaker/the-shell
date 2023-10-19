@@ -1,4 +1,4 @@
-import { Card, Heading, ParagraphText, Text } from 'components'
+import { Card, HeadingText, ParagraphText, Text } from 'components'
 import Image from 'next/image'
 import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -18,7 +18,7 @@ export const Testimonial = ({ className = '', name, title, company, testimonial,
 
       <div className="relative mt-6 flex items-center justify-between border-t border-theme-border pt-6 dark:border-dark-theme-border">
         <div>
-          <Heading>{name}</Heading>
+          <HeadingText>{name}</HeadingText>
 
           <Text className="mt-1">
             {title} at {company}

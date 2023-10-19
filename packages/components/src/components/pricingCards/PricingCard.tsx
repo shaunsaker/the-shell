@@ -1,5 +1,5 @@
 import { CheckIcon } from '@heroicons/react/24/outline'
-import { Badge, Button, Card, Heading, Text, Title } from 'components'
+import { Badge, Button, Card, HeadingText, Text, Title } from 'components'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -42,7 +42,7 @@ export const PricingCard = ({
       )}
     >
       <div className="flex justify-between gap-x-4">
-        <Heading className={highlight ? 'text-theme-brand dark:text-theme-brand' : ''}>{title}</Heading>
+        <HeadingText className={highlight ? 'text-theme-brand dark:text-theme-brand' : ''}>{title}</HeadingText>
 
         {highlight && <Badge>Most popular</Badge>}
       </div>

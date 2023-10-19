@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 
-import { Heading } from '../heading/Heading'
+import { HeadingText } from '../headingText/HeadingText'
 import { Text } from '../text/Text'
 
 type Props = {
@@ -16,7 +16,7 @@ export const BlankState = ({ Icon, title, description, children }: Props) => {
       <Icon className="text-theme-content-subtle dark:text-dark-theme-content-subtle h-16 w-16" />
 
       <div className="text-center">
-        <Heading>{title}</Heading>
+        <HeadingText>{title}</HeadingText>
 
         <Text className="mt-2">{description}</Text>
       </div>

@@ -1,4 +1,4 @@
-import { Heading, Text } from 'components'
+import { HeadingText, Text } from 'components'
 import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -23,7 +23,7 @@ export const SettingsSection = ({ className, title, description, action, childre
       <div className={`flex w-full flex-col gap-y-6 ${fullWidth ? '' : 'max-w-lg'}`}>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <Heading>{title}</Heading>
+            <HeadingText>{title}</HeadingText>
 
             <Text className="mt-2">{description}</Text>
           </div>

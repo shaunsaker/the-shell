@@ -1,6 +1,6 @@
 'use client'
 
-import { Background, Button, Heading, HugeText, ParagraphText } from 'components'
+import { Background, Button, HeadingText, HugeText, ParagraphText } from 'components'
 import { app } from 'config/src'
 import { useRouter } from 'next/navigation'
 
@@ -62,7 +62,7 @@ export const Hero = () => {
 
       {app.website.hero.trustedByCompanies.length && (
         <div className="relative mt-8 flex flex-col items-center">
-          <Heading>Trusted by the best</Heading>
+          <HeadingText>Trusted by the best</HeadingText>
 
           <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:gap-6">
             {app.website.hero.trustedByCompanies.map(company => (

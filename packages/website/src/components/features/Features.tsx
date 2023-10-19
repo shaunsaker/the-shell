@@ -1,6 +1,6 @@
 'use client'
 
-import { Background, Button, Heading, ParagraphText, Text, Title } from 'components'
+import { Background, Button, HeadingText, ParagraphText, Text, Title } from 'components'
 import Image from 'next/image'
 import { ComponentPropsWithoutRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -106,9 +106,9 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
                     setActiveTabIndex(index)
                   }}
                 >
-                  <Heading className={variant === 'default' ? 'text-white dark:text-white' : ''}>
+                  <HeadingText className={variant === 'default' ? 'text-white dark:text-white' : ''}>
                     {feature.title}
-                  </Heading>
+                  </HeadingText>
 
                   <Text className={twMerge(variant === 'default' ? 'text-white dark:text-white' : '', 'mt-2')}>
                     {feature.description}

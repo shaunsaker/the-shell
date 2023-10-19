@@ -11,7 +11,7 @@ import { Card } from './components/card/Card'
 import { Dialog } from './components/dialog/Dialog'
 import { ErrorPage } from './components/errorPage/ErrorPage'
 import { Headerbar } from './components/headerbar/Headerbar'
-import { Heading } from './components/heading/Heading'
+import { HeadingText } from './components/headingText/HeadingText'
 import { HugeText } from './components/hugeText/HugeText'
 import { Label } from './components/label/Label'
 import { List } from './components/list/List'
@@ -44,7 +44,7 @@ export {
   Dialog,
   ErrorPage,
   Headerbar,
-  Heading,
+  HeadingText,
   HugeText,
   Label,
   List,
