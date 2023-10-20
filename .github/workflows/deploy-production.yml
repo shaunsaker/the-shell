@@ -18,7 +18,8 @@ jobs:
       - uses: actions/checkout@v4
 
       # Install firebase-tools
-      - run: yarn global add firebase-tools
+      # Note: we fix the version to avoid 12.6.2 which is broken
+      - run: yarn global add firebase-tools@12.5.2
 
       # Install deps
       - run: yarn --frozen-lockfile
@@ -30,8 +31,14 @@ jobs:
           echo "${{ secrets.ENV_FILE_PRODUCTION }}" > ./packages/functions/.env.production
           echo "${{ secrets.ENV_FILE_PRODUCTION }}" > ./packages/website/env/.env.production
 
+      # Authenticate with Google Cloud to fetch admin data and deploy website
+      - name: 'Authenticate with Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_STAGING }}'
+
       # Set the active project
-      - run: yarn activate-project production --token ${{ secrets.FIREBASE_TOKEN }}
+      - run: yarn firebase:use production --token ${{ secrets.FIREBASE_TOKEN }}
 
       # Deploy production
       - run: yarn deploy:production --token ${{ secrets.FIREBASE_TOKEN }}
