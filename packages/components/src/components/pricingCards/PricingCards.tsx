@@ -1,8 +1,9 @@
 import { RadioGroup } from 'components'
 import React, { ComponentProps, ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { PricingCardProduct } from 'types'
 
-import { PricingCard, Product } from './PricingCard'
+import { PricingCard } from './PricingCard'
 
 type BillingIntervalOption = ComponentProps<typeof RadioGroup>['options'][0]
 type BillingIntervalValue = BillingIntervalOption['value']
@@ -10,9 +11,9 @@ type BillingIntervalValue = BillingIntervalOption['value']
 type Props = {
   billingInterval: BillingIntervalValue
   billingIntervalOptions: BillingIntervalOption[]
-  products: Product[]
+  products: PricingCardProduct[]
   onBillingIntervalClick: (value: BillingIntervalValue) => void
-  onProductClick: (productId: Product['id']) => void
+  onProductClick: (productId: PricingCardProduct['id']) => void
 } & ComponentPropsWithoutRef<'div'>
 
 export const PricingCards = ({

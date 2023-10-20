@@ -2,6 +2,7 @@ import { XCircleIcon } from '@heroicons/react/24/outline'
 import { Button, Text, TextInput } from 'components'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { validateEmail } from 'utils'
 
 import { useIsSubscriptionOwner } from '@/billing/hooks/useIsSubscriptionOwner'
 import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
@@ -14,7 +15,6 @@ import { routes } from '@/router/routes'
 import { useInviteTeamMembers } from '@/teams/hooks/useInviteTeamMember'
 import { useRestrictedTeamAdminRoute } from '@/teams/hooks/useRestrictedTeamAdminRoute'
 import { useTeam } from '@/teams/hooks/useTeam'
-import { validateEmail } from '@/utils/validateEmail'
 
 export const SettingsInviteTeamMembers = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()

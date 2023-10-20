@@ -1,7 +1,5 @@
 import { Price } from 'types'
-
-import { formatCurrency } from './formatCurrency'
-import { maybePluralise } from './maybePluralise'
+import { formatCurrency, maybePluralise } from 'utils'
 
 export const getSubscriptionSeatsButtonLabel = (numberOfNewSeats: number, activePrice: Price): string => {
   if (numberOfNewSeats === 0) {

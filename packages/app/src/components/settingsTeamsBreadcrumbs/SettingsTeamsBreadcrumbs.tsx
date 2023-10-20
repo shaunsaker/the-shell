@@ -1,11 +1,11 @@
 import { Breadcrumbs, SkeletonLoader } from 'components'
 import React, { ComponentProps } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { formatTeamMemberName } from 'utils'
 
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
 import { useTeam } from '@/teams/hooks/useTeam'
 import { useTeamMember } from '@/teams/hooks/useTeamMember'
-import { formatTeamMemberName } from '@/utils/formatTeamMemberName'
 
 type NavigationItem = ComponentProps<typeof Breadcrumbs>['items'][0]
 

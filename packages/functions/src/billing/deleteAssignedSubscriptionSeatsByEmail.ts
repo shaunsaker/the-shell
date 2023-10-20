@@ -1,5 +1,5 @@
 import { firebase } from '@/firebase/admin'
-import { deleteDocs } from '@/utils/deleteDocs'
+import { deleteDocs } from '@/firebase/deleteDocs'
 
 export const deleteAssignedSubscriptionSeatsByEmail = async ({
   subscriptionId,

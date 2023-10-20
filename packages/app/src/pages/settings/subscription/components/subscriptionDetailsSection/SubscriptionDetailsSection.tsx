@@ -1,6 +1,7 @@
 import { Button, List } from 'components'
 import { ListItem } from 'components/src/components/list/ListItem'
 import React from 'react'
+import { formatBillingAddress, formatCurrency, formatDate, formatSubscriptionStatus, parsePaymentMethod } from 'utils'
 
 import { useCreateBillingPortalSession } from '@/billing/hooks/useCreateBillingPortalSession'
 import { usePrices } from '@/billing/hooks/usePrices'
@@ -9,11 +10,6 @@ import { useSubscriptions } from '@/billing/hooks/useSubscriptions'
 import { useSubscriptionsListener } from '@/billing/hooks/useSubscriptionsListener'
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 import { useUser } from '@/user/hooks/useUser'
-import { formatBillingAddress } from '@/utils/formatBillingAddress'
-import { formatCurrency } from '@/utils/formatCurrency'
-import { formatDate } from '@/utils/formatDate'
-import { formatSubscriptionStatus } from '@/utils/formatSubscriptionStatus'
-import { parsePaymentMethod } from '@/utils/parsePaymentMethod'
 
 export const SubscriptionDetailsSection = () => {
   useSubscriptionsListener()

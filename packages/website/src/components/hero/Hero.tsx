@@ -4,13 +4,13 @@ import { Background, Button, HeadingText, HugeText, ParagraphText } from 'compon
 import { app } from 'config/src'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import { useLink } from 'utils'
 
 import Logoipsum1Logo from '@/assets/logos/logoipsum-1.svg'
 import Logoipsum2Logo from '@/assets/logos/logoipsum-2.svg'
 import Logoipsum3Logo from '@/assets/logos/logoipsum-3.svg'
 import Logoipsum4Logo from '@/assets/logos/logoipsum-4.svg'
 import Logoipsum5Logo from '@/assets/logos/logoipsum-5.svg'
-import { useLink } from '@/utils/useLInk'
 
 import { Container } from '../container/Container'
 import { HighlightedText } from '../highlightedText/HighlightedText'

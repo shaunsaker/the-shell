@@ -1,12 +1,12 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
+import { validateEmail } from 'utils'
 
 import { generateVerifyAndChangeEmailLink } from '@/auth/generateVerifyAndChangeEmailLink'
 import { getAuthUser } from '@/auth/getAuthUser'
 import { updateAuthUser } from '@/auth/updateAuthUser'
 import { sendEmailVerificationEmail } from '@/emails/sendEmailVerificationEmail'
 import { updateUser } from '@/users/updateUser'
-import { validateEmail } from '@/utils/validateEmail'
 
 export const sendChangeEmailVerificationFunction = onCall<
   FunctionsMap[Functions.sendChangeEmailVerification]['data'],

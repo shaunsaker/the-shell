@@ -1,6 +1,7 @@
 import { Dialog } from 'components'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { formatTeamMemberName } from 'utils'
 
 import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
 import { useRestrictedTeamPlanRoute } from '@/billing/hooks/useRestrictedTeamPlanRoute'
@@ -9,7 +10,6 @@ import { useRemoveTeamMember } from '@/teams/hooks/useRemoveTeamMember'
 import { useRestrictedTeamAdminRoute } from '@/teams/hooks/useRestrictedTeamAdminRoute'
 import { useTeam } from '@/teams/hooks/useTeam'
 import { useTeamMember } from '@/teams/hooks/useTeamMember'
-import { formatTeamMemberName } from '@/utils/formatTeamMemberName'
 
 export const SettingsRemoveTeamMember = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()

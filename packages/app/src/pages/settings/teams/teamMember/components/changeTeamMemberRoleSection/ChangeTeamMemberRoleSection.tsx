@@ -1,13 +1,12 @@
 import { Alert, Button, Select, SkeletonLoader } from 'components'
 import React, { useEffect, useState } from 'react'
 import { TeamMemberRole } from 'types'
+import { formatTeamMemberRole, parseTeamMemberRole } from 'utils'
 
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 import { useIsTeamMemberLastAdmin } from '@/teams/hooks/useIsTeamMemberLastAdmin'
 import { useTeamMember } from '@/teams/hooks/useTeamMember'
 import { useUpdateTeamMemberRole } from '@/teams/hooks/useUpdateTeamMemberRole'
-import { formatTeamMemberRole } from '@/utils/formatTeamMemberRole'
-import { parseTeamMemberRole } from '@/utils/parseTeamMemberRole'
 
 const TEAM_MEMBER_ROLES: TeamMemberRole[] = [TeamMemberRole.Admin, TeamMemberRole.Member]
 const TEAM_MEMBER_ROLE_OPTIONS = TEAM_MEMBER_ROLES.map(role => ({

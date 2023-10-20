@@ -1,7 +1,7 @@
 import { FirestoreCollection, Subscription, SubscriptionStatus } from 'types'
+import { getISOString } from 'utils'
 
 import { firebase } from '@/firebase/admin'
-import { getISOString } from '@/utils/getISOString'
 
 import { Stripe } from './stripe'
 

@@ -1,10 +1,9 @@
 import { renderHook } from '@testing-library/react'
+import { makePrice, makeProduct } from 'utils'
 import { describe, expect, it, vi } from 'vitest'
 
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 
-import { makePrice } from '../mocks/makePrice'
-import { makeProduct } from '../mocks/makeProduct'
 import { makeSubscriptionInfo } from '../mocks/makeSubscriptionInfo'
 import { useHasTeamPlan } from './useHasTeamPlan'
 import { usePrices } from './usePrices'

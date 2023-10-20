@@ -2,12 +2,12 @@ import { Button, Text, TextInput } from 'components'
 import { FormEvent, useCallback, useState } from 'react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { validateEmail } from 'utils'
 
 import { useSignInWithPassword } from '@/auth/hooks/useSignInWithPassword'
 import { AuthLayout } from '@/components/authLayout/AuthLayout'
 import { routes } from '@/router/routes'
 import { useUserEmail } from '@/user/hooks/useUserEmail'
-import { validateEmail } from '@/utils/validateEmail'
 
 export const SignIn = () => {
   const [email, setEmail] = useUserEmail()

@@ -1,10 +1,10 @@
 import { Button, TextInput } from 'components'
 import React, { useEffect, useState } from 'react'
+import { validateEmail } from 'utils'
 
 import { useSendChangeEmailVerification } from '@/auth/hooks/useSendChangeEmailVerification'
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 import { useUser } from '@/user/hooks/useUser'
-import { validateEmail } from '@/utils/validateEmail'
 
 export const ChangeEmailSection = () => {
   const { data: user } = useUser()

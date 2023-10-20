@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ComponentProps } from 'react'
+import { BillingInterval, PricingCardProduct } from 'types'
 
 import { PricingCards } from './PricingCards'
 
@@ -17,24 +18,23 @@ export default meta
 type BillingIntervalOption = ComponentProps<typeof PricingCards>['billingIntervalOptions'][0]
 const billingIntervalOptions: BillingIntervalOption[] = [
   {
-    value: 'monthly',
+    value: BillingInterval.Month,
     label: 'Monthly',
   },
   {
-    value: 'yearly',
+    value: BillingInterval.Year,
     label: 'Yearly',
   },
 ]
 
-type Product = ComponentProps<typeof PricingCards>['products'][0]
-const products: Product[] = [
+const products: PricingCardProduct[] = [
   {
     id: '1',
     title: 'Starter',
     description: 'For small teams',
     currency: 'USD',
     price: 1000,
-    interval: 'month',
+    interval: BillingInterval.Month,
     features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
     freeTrialDays: 30,
   },
@@ -44,7 +44,7 @@ const products: Product[] = [
     description: 'For medium teams',
     currency: 'USD',
     price: 2000,
-    interval: 'month',
+    interval: BillingInterval.Month,
     features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
     highlight: true,
   },
@@ -54,7 +54,7 @@ const products: Product[] = [
     description: 'For large teams',
     currency: 'USD',
     price: 3000,
-    interval: 'month',
+    interval: BillingInterval.Month,
     features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
   },
 ]

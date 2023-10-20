@@ -1,4 +1,4 @@
-import { Price, PricingPlanInterval, PricingType } from 'types'
+import { BillingInterval, Price, PricingType } from 'types'
 
 export const makePrice = ({
   id = '1',
@@ -6,7 +6,7 @@ export const makePrice = ({
   active = true,
   currency = 'USD',
   type = PricingType.Recurring,
-  interval = PricingPlanInterval.Month,
+  interval = BillingInterval.Month,
   intervalCount = 1,
   trialPeriodDays = 0,
   unitAmount = 100,

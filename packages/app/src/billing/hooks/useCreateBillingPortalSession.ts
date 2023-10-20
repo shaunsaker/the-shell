@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-
-import { useLink } from '@/utils/useLink'
+import { useLink } from 'utils'
 
 import { createBillingPortalSession } from '../api/createBillingPortalSession'
 

@@ -3,9 +3,9 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import { Button, ErrorPage } from 'components'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import { useLink } from 'utils'
 
 import { routes } from '@/routes'
-import { useLink } from '@/utils/useLInk'
 
 import { app } from '../../../config'
 

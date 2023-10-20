@@ -57,7 +57,7 @@ export enum PricingType {
   Recurring = 'recurring',
 }
 
-export enum PricingPlanInterval {
+export enum BillingInterval {
   Day = 'day',
   Week = 'week',
   Month = 'month',
@@ -72,11 +72,25 @@ export type Price = {
   active: boolean
   currency: string
   type: PricingType
-  interval: PricingPlanInterval
+  interval: BillingInterval
   intervalCount: number
   trialPeriodDays: number
   unitAmount: number
   metadata: Record<string, string>
+}
+
+// ui type shared between app and website
+export type PricingCardProduct = {
+  id: PriceId
+  title: string
+  description: string
+  currency: string
+  price: number
+  interval: BillingInterval
+  features: string[]
+  freeTrialDays?: number
+  highlight?: boolean
+  loading?: boolean
 }
 
 export enum SubscriptionStatus {

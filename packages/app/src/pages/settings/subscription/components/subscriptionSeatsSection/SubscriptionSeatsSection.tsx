@@ -6,7 +6,7 @@ import { usePrices } from '@/billing/hooks/usePrices'
 import { useSubscriptionInfo } from '@/billing/hooks/useSubscriptionInfo'
 import { useUpdateSubscriptionQuantity } from '@/billing/hooks/useUpdateSubscriptionQuantity'
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
-import { getSubscriptionSeatsButtonLabel } from '@/utils/getSubscriptionSeatsButtonLabel'
+import { getSubscriptionSeatsButtonLabel } from '@/pages/settings/subscription/components/subscriptionSeatsSection/getSubscriptionSeatsButtonLabel'
 
 const MIN_SEATS = 1
 

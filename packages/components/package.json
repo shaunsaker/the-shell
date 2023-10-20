@@ -21,7 +21,8 @@
     "framer-motion": "10.16.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hot-toast": "2.4.1"
+    "react-hot-toast": "2.4.1",
+    "types": "*"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "7.4.6",
@@ -46,6 +47,7 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-storybook": "0.6.15",
     "eslint-plugin-tailwindcss": "3.12.1",
+    "happy-dom": "12.1.6",
     "npm-run-all": "4.1.5",
     "postcss": "8.4.24",
     "prettier": "2.8.1",

@@ -2,12 +2,11 @@ import { Cog6ToothIcon, EnvelopeOpenIcon, HomeModernIcon } from '@heroicons/reac
 import { Popover, Sidebar } from 'components'
 import React, { ComponentProps } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { isExternalLink, useLink } from 'utils'
 
 import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
 import { routes } from '@/router/routes'
 import { useSidebarOpen } from '@/sidebar/hooks/useSidebarOpen'
-import { isExternalLink } from '@/utils/isExternalLink'
-import { useLink } from '@/utils/useLink'
 
 import { app } from '../../../../config'
 

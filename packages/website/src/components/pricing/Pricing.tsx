@@ -4,13 +4,11 @@ import { Background, ParagraphText, PricingCards, TitleText } from 'components'
 import { app } from 'config'
 import React, { ComponentProps, ComponentPropsWithoutRef, useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { Price, Product } from 'types'
+import { BillingInterval, Price, Product } from 'types'
+import { formatBillingInterval, getPricingCardProducts, parseBillingInterval } from 'utils'
 
 import { useCreateCheckoutSession } from '@/billing/hooks/useCreateCheckoutSession'
 import { routes } from '@/routes'
-import { formatBillingInterval } from '@/utils/formatBillingInterval'
-import { parseProductMetadata } from '@/utils/parseProductMetadata'
-import { sortProductsByPrice } from '@/utils/sortProductsByPrice'
 
 import { Container } from '../container/Container'
 import { HighlightedText } from '../highlightedText/HighlightedText'
@@ -19,7 +17,6 @@ import { Section } from '../section/Section'
 const DEFAULT_QUANTITY = 1
 
 type BillingIntervalOption = ComponentProps<typeof PricingCards>['billingIntervalOptions'][0]
-type BillingIntervalValue = BillingIntervalOption['value']
 
 type Props = ComponentPropsWithoutRef<'section'> & {
   products: Product[]
@@ -28,50 +25,15 @@ type Props = ComponentPropsWithoutRef<'section'> & {
 
 export const Pricing = ({ className = '', products, prices, ...props }: Props) => {
   // Note: we set the billingInterval in a useEffect when the prices updates
-  const [billingInterval, setBillingInterval] = useState<BillingIntervalValue>('')
+  const [billingInterval, setBillingInterval] = useState<BillingInterval>(BillingInterval.Month)
   const [billingIntervalOptions, setBillingIntervalOptions] = useState<BillingIntervalOption[]>([])
 
   const { mutate: createCheckoutSession, isLoading: createCheckoutSessionLoading } = useCreateCheckoutSession()
 
-  // filter the prices by the selected billing interval
-  const pricesForBillingInterval = useMemo(
-    () => prices?.filter(price => price.interval === billingInterval),
-    [billingInterval, prices],
+  const pricingCardsProducts = useMemo(
+    () => getPricingCardProducts({ billingInterval, products, prices, loading: createCheckoutSessionLoading }),
+    [billingInterval, createCheckoutSessionLoading, prices, products],
   )
-
-  const pricingCardsProducts = useMemo(() => {
-    if (!pricesForBillingInterval?.length) {
-      return []
-    }
-
-    const sortedProducts = sortProductsByPrice({
-      products,
-      prices: pricesForBillingInterval,
-    })
-
-    return sortedProducts.map((product, index) => {
-      // get the price for the current billing interval
-      const price = pricesForBillingInterval?.filter(price => price.productId === product.id)[0]
-
-      // highlight the second product
-      const highlight = index === 1
-
-      const { features, freeTrialDays } = parseProductMetadata(product.metadata)
-
-      return {
-        id: price?.id || '',
-        title: product.name,
-        description: product.description,
-        currency: price?.currency || '',
-        price: price?.unitAmount || 0,
-        interval: price?.interval || '',
-        features,
-        freeTrialDays,
-        highlight,
-        loading: createCheckoutSessionLoading,
-      }
-    })
-  }, [createCheckoutSessionLoading, pricesForBillingInterval, products])
 
   useEffect(() => {
     // when the prices update, set the selected billing interval and billing interval options
@@ -118,7 +80,7 @@ export const Pricing = ({ className = '', products, prices, ...props }: Props) =
           billingIntervalOptions={billingIntervalOptions}
           products={pricingCardsProducts}
           onBillingIntervalClick={newBillingIntervalValue => {
-            setBillingInterval(newBillingIntervalValue)
+            setBillingInterval(parseBillingInterval(newBillingIntervalValue))
           }}
           onProductClick={id => {
             createCheckoutSession({
