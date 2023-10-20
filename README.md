@@ -203,6 +203,13 @@ touch ./packages/website/.env.production
 
 18. Add the paths to the service accounts to [website/.env.development](./packages/website/.env.development), [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `GOOGLE_APPLICATION_CREDENTIALS`.
 
+19. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
+
+```
+gh secret set GOOGLE_APPLICATION_CREDENTIALS_STAGING < service-account-staging.json
+gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < service-account-production.json
+```
+
 19. Add the relavant app hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_APP_URL`, `NEXT_PUBLIC_APP_SIGN_IN_URL` and `NEXT_PUBLIC_APP_SIGN_UP_URL`. Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_URL` to `http://localhost:5173`, ie. the url you're serving the local `app` on.
 
 ---
@@ -406,7 +413,7 @@ That's it, you're done! Every time you push to `master`, a release will automati
 Run an initial deploy to staging.
 
 ```
-yarn activate-project staging
+yarn firebase:use staging
 yarn deploy:staging
 ```
 

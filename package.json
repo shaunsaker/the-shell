@@ -9,7 +9,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "activate-project": "firebase use",
+    "firebase:use": "firebase use",
     "deploy": "firebase deploy --only firestore,functions,hosting",
     "deploy:staging": "export MODE=staging && yarn deploy",
     "deploy:production": "export MODE=production && yarn deploy"
