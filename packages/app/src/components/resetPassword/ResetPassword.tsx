@@ -1,9 +1,9 @@
 import { Button, TextInput } from 'components'
 import React, { FormEvent, useCallback, useState } from 'react'
+import { validateEmail } from 'utils'
 
 import { useRequestResetPassword } from '@/auth/hooks/useRequestResetPassword'
 import { useUserEmail } from '@/user/hooks/useUserEmail'
-import { validateEmail } from '@/utils/validateEmail'
 
 type Props = {
   emailDisabled?: boolean // when signed in, we don't want the user to change their email here

@@ -2,25 +2,13 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 import { Badge, Button, Card, HeadingText, Text, TitleText } from 'components'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
+import { PricingCardProduct } from 'types'
 
 import { formatCurrency } from '../../utils/formatCurrency'
 
-export type Product = {
-  id: string
-  title: string
-  description: string
-  currency: string
-  price: number
-  interval: string
-  features: string[]
-  freeTrialDays?: number
-  highlight?: boolean
-  loading?: boolean
-}
-
 type PricingCardProps = {
   onClick: () => void
-} & Product
+} & PricingCardProduct
 
 export const PricingCard = ({
   title,

@@ -1,7 +1,7 @@
 import { httpsCallable } from 'firebase/functions'
 import { FunctionsMap } from 'types'
 
-import { functions } from '@/firebase'
+import { functions } from '.'
 
 export const invokeFunction = <T extends keyof FunctionsMap>(functionName: T) => {
   const functionRef = httpsCallable<FunctionsMap[T]['data'], FunctionsMap[T]['response']>(functions, functionName)

@@ -1,5 +1,6 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
+import { formatTeamMemberName } from 'utils'
 
 import { getAuthUser } from '@/auth/getAuthUser'
 import { sendRemovedFromTeamEmail } from '@/emails/sendRemovedFromTeamEmail'
@@ -7,7 +8,6 @@ import { deleteTeamMembers } from '@/teams/deleteTeamMembers'
 import { getTeam } from '@/teams/getTeam'
 import { getTeamMembers } from '@/teams/getTeamMembers'
 import { verifyTeamAdmin } from '@/teams/verifyTeamAdmin'
-import { formatName } from '@/utils/formatName'
 
 export const removeTeamMemberFunction = onCall<
   FunctionsMap[Functions.removeTeamMember]['data'],
@@ -53,9 +53,9 @@ export const removeTeamMemberFunction = onCall<
     await sendRemovedFromTeamEmail({
       siteUrl: request.rawRequest.headers.origin || '',
       userEmail: teamMember.email || '',
-      userName: formatName(teamMember),
+      userName: formatTeamMemberName(teamMember),
       teamName: team.name,
-      adminTeamMemberName: formatName(adminTeamMember),
+      adminTeamMemberName: formatTeamMemberName(adminTeamMember),
     })
 
     return {

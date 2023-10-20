@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-
-import { useLink } from '@/utils/useLInk'
+import { useLink } from 'utils'
 
 import { createCheckoutSession } from '../api/createCheckoutSession'
 

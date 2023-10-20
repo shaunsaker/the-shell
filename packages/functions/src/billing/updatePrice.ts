@@ -1,4 +1,4 @@
-import { FirestoreCollection, Price, PricingPlanInterval, PricingType } from 'types'
+import { BillingInterval, FirestoreCollection, Price, PricingType } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
@@ -15,18 +15,18 @@ const parsePriceType = (priceType: string): PricingType => {
   }
 }
 
-const parsePricingPlanInterval = (pricingPlanInterval: string): PricingPlanInterval => {
+const parsePricingPlanInterval = (pricingPlanInterval: string): BillingInterval => {
   switch (pricingPlanInterval) {
     case 'day':
-      return PricingPlanInterval.Day
+      return BillingInterval.Day
     case 'week':
-      return PricingPlanInterval.Week
+      return BillingInterval.Week
     case 'month':
-      return PricingPlanInterval.Month
+      return BillingInterval.Month
     case 'year':
-      return PricingPlanInterval.Year
+      return BillingInterval.Year
     default:
-      return PricingPlanInterval.Month
+      return BillingInterval.Month
   }
 }
 

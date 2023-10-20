@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { TeamMemberRole } from 'types'
+import { formatTeamMemberRole } from 'utils'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useIsTeamMemberLastAdmin } from '@/teams/hooks/useIsTeamMemberLastAdmin'
@@ -8,7 +9,6 @@ import { useTeamMember } from '@/teams/hooks/useTeamMember'
 import { makeTeamMember } from '@/teams/mocks/makeTeamMember'
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 import { MockAppProvider } from '@/test/MockAppProvider'
-import { formatTeamMemberRole } from '@/utils/formatTeamMemberRole'
 
 import { ChangeTeamMemberRoleSection } from './ChangeTeamMemberRoleSection'
 

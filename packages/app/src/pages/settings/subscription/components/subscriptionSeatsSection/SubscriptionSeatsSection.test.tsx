@@ -1,11 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
+import { makePrice } from 'utils'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useHasTeamPlan } from '@/billing/hooks/useHasTeamPlan'
 import { usePrices } from '@/billing/hooks/usePrices'
 import { useSubscriptionInfo } from '@/billing/hooks/useSubscriptionInfo'
-import { makePrice } from '@/billing/mocks/makePrice'
 import { makeSubscriptionInfo } from '@/billing/mocks/makeSubscriptionInfo'
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 import { MockAppProvider } from '@/test/MockAppProvider'

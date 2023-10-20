@@ -1,15 +1,12 @@
 import { Button, SkeletonLoader, Table } from 'components'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { formatDate, formatTeamMemberName, formatTeamMemberRole, formatTeamMemberStatus } from 'utils'
 
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
 import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '@/teams/hooks/useTeam'
-import { formatDate } from '@/utils/formatDate'
-import { formatTeamMemberName } from '@/utils/formatTeamMemberName'
-import { formatTeamMemberRole } from '@/utils/formatTeamMemberRole'
-import { formatTeamMemberStatus } from '@/utils/formatTeamMemberStatus'
 
 export const ManageTeamMembersSection = () => {
   const { data: isLoggedInUserTeamAdmin, isLoading: isLoggedInUserTeamAdminLoading } = useIsLoggedInUserTeamAdmin()

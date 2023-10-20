@@ -1,5 +1,6 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap, SubscriptionStatus, TeamMember, TeamMemberRole, TeamMemberStatus } from 'types'
+import { formatTeamMemberName, getISOString, getUuid } from 'utils'
 
 import { getAuthUser } from '@/auth/getAuthUser'
 import { getSubscriptionInfo } from '@/billing/getSubscriptionInfo'
@@ -10,9 +11,6 @@ import { getTeamMembers } from '@/teams/getTeamMembers'
 import { updateTeamMembers } from '@/teams/updateTeamMembers'
 import { verifyTeamAdmin } from '@/teams/verifyTeamAdmin'
 import { getUsersByEmails } from '@/users/getUsersByEmails'
-import { formatName } from '@/utils/formatName'
-import { getISOString } from '@/utils/getISOString'
-import { getUuid } from '@/utils/getUuid'
 
 export const inviteTeamMembersFunction = onCall<
   FunctionsMap[Functions.inviteTeamMembers]['data'],
@@ -105,9 +103,9 @@ export const inviteTeamMembersFunction = onCall<
       return sendAddedUserToTeamEmail({
         siteUrl,
         userEmail: teamMember.email,
-        userName: formatName(teamMember),
+        userName: formatTeamMemberName(teamMember),
         teamName: team.name,
-        adminTeamMemberName: formatName(adminTeamMember),
+        adminTeamMemberName: formatTeamMemberName(adminTeamMember),
         buttonUrl: isNewUser ? signUpUrl : siteUrl,
         buttonText: isNewUser ? 'Sign up' : 'Go to dashboard',
       })

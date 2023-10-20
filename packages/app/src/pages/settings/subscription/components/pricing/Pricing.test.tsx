@@ -1,15 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
-import { PricingPlanInterval } from 'types'
+import { BillingInterval } from 'types'
+import { formatBillingInterval, makePrice, makeProduct } from 'utils'
 import { describe, expect, it, vi } from 'vitest'
 
 import { usePrices } from '@/billing/hooks/usePrices'
 import { useProducts } from '@/billing/hooks/useProducts'
-import { makePrice } from '@/billing/mocks/makePrice'
-import { makeProduct } from '@/billing/mocks/makeProduct'
 import { cleanUpAfterEach } from '@/test/cleanUpAfterEach'
 import { MockAppProvider } from '@/test/MockAppProvider'
-import { formatBillingInterval } from '@/utils/formatBillingInterval'
 
 import { Pricing } from './Pricing'
 
@@ -82,37 +80,37 @@ describe('Pricing', () => {
         makePrice({
           id: '1',
           productId: '1',
-          interval: PricingPlanInterval.Month,
+          interval: BillingInterval.Month,
           unitAmount: 1000,
         }),
         makePrice({
           id: '2',
           productId: '2',
-          interval: PricingPlanInterval.Month,
+          interval: BillingInterval.Month,
           unitAmount: 2000,
         }),
         makePrice({
           id: '3',
           productId: '3',
-          interval: PricingPlanInterval.Month,
+          interval: BillingInterval.Month,
           unitAmount: 3000,
         }),
         makePrice({
           id: '4',
           productId: '1',
-          interval: PricingPlanInterval.Year,
+          interval: BillingInterval.Year,
           unitAmount: 10000,
         }),
         makePrice({
           id: '5',
           productId: '2',
-          interval: PricingPlanInterval.Year,
+          interval: BillingInterval.Year,
           unitAmount: 20000,
         }),
         makePrice({
           id: '6',
           productId: '3',
-          interval: PricingPlanInterval.Year,
+          interval: BillingInterval.Year,
           unitAmount: 30000,
         }),
       ],
@@ -135,7 +133,7 @@ describe('Pricing', () => {
     expect(screen.queryByText('$300')).not.toBeInTheDocument()
 
     // change the billing interval to Yearly
-    fireEvent.click(screen.getByText(formatBillingInterval(PricingPlanInterval.Year)))
+    fireEvent.click(screen.getByText(formatBillingInterval(BillingInterval.Year)))
 
     // test that the Yearly prices are visible
     expect(screen.getByText('$100')).toBeInTheDocument()
@@ -165,13 +163,13 @@ describe('Pricing', () => {
         makePrice({
           id: '1',
           productId: '1',
-          interval: PricingPlanInterval.Month,
+          interval: BillingInterval.Month,
           unitAmount: 1000,
         }),
         makePrice({
           id: '2',
           productId: '2',
-          interval: PricingPlanInterval.Month,
+          interval: BillingInterval.Month,
           unitAmount: 1000,
         }),
       ],

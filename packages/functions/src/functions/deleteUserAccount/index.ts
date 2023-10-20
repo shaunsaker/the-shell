@@ -1,5 +1,6 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
+import { formatTeamMemberName } from 'utils'
 
 import { deleteAuthUser } from '@/auth/deleteAuthUser'
 import { getAuthUser } from '@/auth/getAuthUser'
@@ -10,7 +11,6 @@ import { getTeam } from '@/teams/getTeam'
 import { getTeamMembers } from '@/teams/getTeamMembers'
 import { getTeamMembersForUserEmail } from '@/teams/getTeamMembersForUserEmail'
 import { deleteUser } from '@/users/deleteUser'
-import { formatName } from '@/utils/formatName'
 
 export const deleteUserAccountFunction = onCall<
   FunctionsMap[Functions.deleteUserAccount]['data'],
@@ -66,9 +66,9 @@ export const deleteUserAccountFunction = onCall<
             sendTeamDeletedEmail({
               siteUrl: request.rawRequest.headers.origin || '',
               userEmail: teamMember.email,
-              userName: formatName(teamMember),
+              userName: formatTeamMemberName(teamMember),
               teamName: team.name,
-              adminTeamMemberName: formatName(adminTeamMember),
+              adminTeamMemberName: formatTeamMemberName(adminTeamMember),
             }),
           )
 

@@ -1,6 +1,6 @@
+import { makePrice } from 'utils'
 import { describe, expect, it } from 'vitest'
 
-import { makePrice } from '../billing/mocks/makePrice'
 import { getSubscriptionSeatsButtonLabel } from './getSubscriptionSeatsButtonLabel'
 
 describe('getSubscriptionSeatsButtonLabel', () => {

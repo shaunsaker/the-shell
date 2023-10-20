@@ -1,7 +1,7 @@
 import { Functions } from 'types'
 
+import { invokeFunction } from '@/firebase/invokeFunction'
 import { routes } from '@/router/routes'
-import { invokeFunction } from '@/utils/invokeFunction'
 
 const sendEmailVerificationFunction = invokeFunction(Functions.sendEmailVerification)
 

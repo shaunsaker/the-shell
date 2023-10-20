@@ -1,8 +1,7 @@
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import { BlankState, Button } from 'components'
 import React from 'react'
-
-import { useLink } from '@/utils/useLink'
+import { useLink } from 'utils'
 
 export const ProductsNotFound = () => {
   const link = useLink()

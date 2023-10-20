@@ -1,10 +1,10 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap } from 'types'
+import { validateEmail } from 'utils'
 
 import { generateResetPasswordLink } from '@/auth/generateResetPasswordLink'
 import { getAuthUserByEmail } from '@/auth/getAuthUserByEmail'
 import { sendResetPasswordEmail } from '@/emails/sendResetPasswordEmail'
-import { validateEmail } from '@/utils/validateEmail'
 
 export const requestResetPasswordFunction = onCall<
   FunctionsMap[Functions.requestResetPassword]['data'],

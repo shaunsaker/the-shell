@@ -2,10 +2,10 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import { Button, ErrorPage } from 'components'
 import React, { useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'
+import { useLink } from 'utils'
 
 import { useCaptureException } from '@/errors/hooks/useCaptureException'
 import { routes } from '@/router/routes'
-import { useLink } from '@/utils/useLink'
 
 import { app } from '../../../../config'
 

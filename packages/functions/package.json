@@ -24,14 +24,13 @@
     "@react-email/components": "0.0.7",
     "@react-email/render": "0.0.7",
     "config": "*",
-    "dayjs": "1.11.9",
     "emails": "*",
     "firebase-admin": "11.8.0",
     "firebase-functions": "4.3.1",
     "resend": "1.0.0",
     "stripe": "12.18.0",
     "tailwind-merge": "1.14.0",
-    "uuid": "9.0.0"
+    "utils": "*"
   },
   "devDependencies": {
     "eslint-config-custom": "*",
