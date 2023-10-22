@@ -8,7 +8,7 @@
 
 The ultimate boilerplate for building SAAS applications with React, Typescript, Tailwind CSS, Firebase and Stripe 😛 Set up your next project/prototype with minimal input, so you can do what you do best, build and test amazing new products 🔥
 
-Transform `8 weeks` of staging into `1 hour` 🚀
+Transform `8 weeks` of development into `1 hour` 🚀
 
 You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.app/). // TODO: SS update this when we add the custom domain
 
