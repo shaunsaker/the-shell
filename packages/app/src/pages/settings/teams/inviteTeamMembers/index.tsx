@@ -1,5 +1,5 @@
 import { XCircleIcon } from '@heroicons/react/24/outline'
-import { Button, Text, TextInput } from 'components'
+import { Button, SmallText, TextInput } from 'components'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { validateEmail } from 'utils'
@@ -75,9 +75,9 @@ export const SettingsInviteTeamMembers = () => {
         fullWidth
       >
         <div className="flex items-center gap-x-4">
-          <Text>
+          <SmallText>
             Available Seats: {availableSeats} / {subscriptionInfo?.totalSeats}
-          </Text>
+          </SmallText>
 
           <Button
             variant="light"

@@ -1,4 +1,4 @@
-import { HeadingText, Loading, Text } from 'components'
+import { HeadingText, Loading, SmallText } from 'components'
 import React from 'react'
 
 import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
@@ -23,7 +23,7 @@ export const Dashboard = () => {
       <PageLayout>
         <HeadingText>Dashboard</HeadingText>
 
-        <Text className="mt-2">Insert your app here 🚀</Text>
+        <SmallText className="mt-2">Insert your app here 🚀</SmallText>
       </PageLayout>
     </>
   )

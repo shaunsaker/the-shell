@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 
 import { HeadingText } from '../headingText/HeadingText'
-import { Text } from '../text/Text'
+import { SmallText } from '../smallText/SmallText'
 
 type Props = {
   Icon: any
@@ -18,7 +18,7 @@ export const BlankState = ({ Icon, title, description, children }: Props) => {
       <div className="text-center">
         <HeadingText>{title}</HeadingText>
 
-        <Text className="mt-2">{description}</Text>
+        <SmallText className="mt-2">{description}</SmallText>
       </div>
 
       {children}

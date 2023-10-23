@@ -1,5 +1,5 @@
 import { CheckIcon } from '@heroicons/react/24/outline'
-import { Badge, Button, Card, HeadingText, Text, TitleText } from 'components'
+import { Badge, Button, Card, HeadingText, SmallText, TitleText } from 'components'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import { PricingCardProduct } from 'types'
@@ -35,12 +35,12 @@ export const PricingCard = ({
         {highlight && <Badge>Most popular</Badge>}
       </div>
 
-      <Text>{description}</Text>
+      <SmallText>{description}</SmallText>
 
       <div className="flex items-end">
         <TitleText>{currency && formatCurrency(price / 100, currency)}</TitleText>
 
-        <Text className="mb-1 ml-1">/ {interval}</Text>
+        <SmallText className="mb-1 ml-1">/ {interval}</SmallText>
       </div>
 
       <Button variant={highlight ? 'primary' : 'secondary'} disabled={loading} loading={loading} onClick={onClick}>
@@ -52,7 +52,7 @@ export const PricingCard = ({
           <li key={feature} className="flex items-center gap-x-2">
             <CheckIcon className="text-theme-brand dark:text-dark-theme-brand h-4 w-4" />
 
-            <Text>{feature}</Text>
+            <SmallText>{feature}</SmallText>
           </li>
         ))}
       </ul>

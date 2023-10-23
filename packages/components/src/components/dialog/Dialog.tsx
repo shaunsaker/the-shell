@@ -7,7 +7,7 @@ import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 import { Card } from '../card/Card'
 import { HeadingText } from '../headingText/HeadingText'
-import { Text } from '../text/Text'
+import { SmallText } from '../smallText/SmallText'
 
 type Props = {
   open?: boolean
@@ -72,7 +72,7 @@ export const Dialog = ({
                   <div>
                     <HeadingText>{title}</HeadingText>
 
-                    <Text className="mt-1">{description}</Text>
+                    <SmallText className="mt-1">{description}</SmallText>
                   </div>
 
                   {children}

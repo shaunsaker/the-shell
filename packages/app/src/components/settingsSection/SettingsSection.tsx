@@ -1,4 +1,4 @@
-import { HeadingText, Text } from 'components'
+import { HeadingText, SmallText } from 'components'
 import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -25,7 +25,7 @@ export const SettingsSection = ({ className, title, description, action, childre
           <div>
             <HeadingText>{title}</HeadingText>
 
-            <Text className="mt-2">{description}</Text>
+            <SmallText className="mt-2">{description}</SmallText>
           </div>
 
           {action}

@@ -1,5 +1,5 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
-import { Button, Text } from 'components'
+import { Button, SmallText } from 'components'
 import { app } from 'config'
 import Link from 'next/link'
 import React from 'react'
@@ -24,7 +24,7 @@ export default async function Page({ params: { slug } }: { params: { slug: strin
         </Link>
 
         <div className="mb-8">
-          <Text>{post.data.date}</Text>
+          <SmallText>{post.data.date}</SmallText>
 
           <Author image={post.data.authorImage} name={post.data.authorName} title={post.data.authorTitle} />
         </div>

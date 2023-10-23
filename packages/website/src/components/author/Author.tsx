@@ -1,4 +1,4 @@
-import { Text } from 'components'
+import { SmallText } from 'components'
 import Image from 'next/image'
 import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -15,11 +15,11 @@ export const Author = ({ className = '', image, name, title }: Props) => {
       <Image className="rounded-full" src={image} alt={name} width={40} height={40} />
 
       <div className="flex flex-col">
-        <Text>
+        <SmallText>
           <b>{name}</b>
-        </Text>
+        </SmallText>
 
-        <Text>{title}</Text>
+        <SmallText>{title}</SmallText>
       </div>
     </div>
   )

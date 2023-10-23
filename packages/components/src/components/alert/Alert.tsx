@@ -9,7 +9,7 @@ import React, { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Button } from '../button/Button'
-import { Text } from '../text/Text'
+import { SmallText } from '../smallText/SmallText'
 
 export type AlertVariant = 'info' | 'success' | 'warning' | 'error'
 
@@ -65,7 +65,7 @@ export const Alert = ({ className, variant = 'success', children, onClose }: Pro
         <Icon className={`h-5 w-5 text-inherit`} />
       </div>
 
-      <Text className="w-full text-inherit dark:text-inherit">{children}</Text>
+      <SmallText className="w-full text-inherit dark:text-inherit">{children}</SmallText>
 
       {onClose && (
         <Button

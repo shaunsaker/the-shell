@@ -1,4 +1,4 @@
-import { Background, HeadingText, ParagraphText, Text, TitleText } from 'components'
+import { Background, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
 import { app } from 'config'
 import React from 'react'
 
@@ -25,7 +25,7 @@ export function Faqs() {
             <li key={faq.question} className="mb-8">
               <HeadingText>{faq.question}</HeadingText>
 
-              <Text className="mt-4">{faq.answer}</Text>
+              <SmallText className="mt-4">{faq.answer}</SmallText>
             </li>
           ))}
         </Columns>

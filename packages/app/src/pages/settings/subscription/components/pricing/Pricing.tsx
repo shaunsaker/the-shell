@@ -1,4 +1,4 @@
-import { PricingCards, Text, TitleText } from 'components'
+import { PricingCards, SmallText, TitleText } from 'components'
 import React, { ComponentProps, useEffect, useMemo, useState } from 'react'
 import { BillingInterval } from 'types'
 import { formatBillingInterval, getPricingCardProducts, parseBillingInterval } from 'utils'
@@ -53,10 +53,10 @@ export const Pricing = () => {
       <div className="mb-8 w-full max-w-lg text-center">
         <TitleText className="mt-4">Pricing plans for teams of all sizes</TitleText>
 
-        <Text className="mt-4">
+        <SmallText className="mt-4">
           Choose an affordable plan that&apos;s packed with the best features for engaging your audience, creating
           customer loyalty, and driving sales.
-        </Text>
+        </SmallText>
       </div>
 
       <PricingCards

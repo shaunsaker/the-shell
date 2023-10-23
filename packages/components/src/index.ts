@@ -26,9 +26,9 @@ import { Select } from './components/select/Select'
 import { Sidebar } from './components/sidebar/Sidebar'
 import { SkeletonLoader } from './components/skeletonLoader/SkeletonLoader'
 import { SlimLayout } from './components/slimLayout/SlimLayout'
+import { SmallText } from './components/smallText/SmallText'
 import { Snackbar } from './components/snackbar/Snackbar'
 import { Table } from './components/table/Table'
-import { Text } from './components/text/Text'
 import { TextInput } from './components/textInput/TextInput'
 import { TitleText } from './components/titleText/TitleText'
 
@@ -59,9 +59,9 @@ export {
   Sidebar,
   SkeletonLoader,
   SlimLayout,
+  SmallText,
   Snackbar,
   Table,
-  Text,
   TextInput,
   TitleText,
 }
