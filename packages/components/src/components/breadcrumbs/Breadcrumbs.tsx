@@ -2,7 +2,7 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import React, { ReactNode } from 'react'
 
 import { Button } from '../button/Button'
-import { Text } from '../text/Text'
+import { SmallText } from '../smallText/SmallText'
 
 type Props = {
   items: {
@@ -39,9 +39,9 @@ export const Breadcrumbs = ({ items, onClick }: Props) => {
               </Button>
 
               {!isLastBreadcrumb && (
-                <Text>
+                <SmallText>
                   <ChevronRightIcon className="h-4 w-4" />
-                </Text>
+                </SmallText>
               )}
             </li>
           )

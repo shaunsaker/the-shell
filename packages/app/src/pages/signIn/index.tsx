@@ -1,4 +1,4 @@
-import { Button, Text, TextInput } from 'components'
+import { Button, SmallText, TextInput } from 'components'
 import { FormEvent, useCallback, useState } from 'react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -72,7 +72,7 @@ export const SignIn = () => {
           Sign in
         </Button>
 
-        <Text className="flex items-center">
+        <SmallText className="flex items-center">
           Not a member?
           <Button
             className="-ml-2"
@@ -83,7 +83,7 @@ export const SignIn = () => {
           >
             Sign up instead.
           </Button>
-        </Text>
+        </SmallText>
       </form>
     </AuthLayout>
   )

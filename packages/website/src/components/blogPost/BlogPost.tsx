@@ -1,4 +1,4 @@
-import { Card, HeadingText, Text } from 'components'
+import { Card, HeadingText, SmallText } from 'components'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -21,21 +21,21 @@ export const BlogPost = ({
         <Image className="mb-6 rounded-xl" src={image} alt={title} width={672} height={336} />
 
         <div className="flex flex-col w-full gap-y-2">
-          <Text>{date}</Text>
+          <SmallText>{date}</SmallText>
 
           <HeadingText>{title}</HeadingText>
 
-          <Text className="line-clamp-3">{description}</Text>
+          <SmallText className="line-clamp-3">{description}</SmallText>
 
           <div className="mt-4 flex items-center gap-x-4">
             <Image className="rounded-full" src={authorImage} alt={authorName} width={40} height={40} />
 
             <div className="flex flex-col">
-              <Text>
+              <SmallText>
                 <b>{authorName}</b>
-              </Text>
+              </SmallText>
 
-              <Text>{authorTitle}</Text>
+              <SmallText>{authorTitle}</SmallText>
             </div>
           </div>
         </div>

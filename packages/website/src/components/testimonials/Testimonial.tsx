@@ -1,4 +1,4 @@
-import { Card, HeadingText, ParagraphText, Text } from 'components'
+import { Card, HeadingText, ParagraphText, SmallText } from 'components'
 import Image from 'next/image'
 import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -20,9 +20,9 @@ export const Testimonial = ({ className = '', name, title, company, testimonial,
         <div>
           <HeadingText>{name}</HeadingText>
 
-          <Text className="mt-1">
+          <SmallText className="mt-1">
             {title} at {company}
-          </Text>
+          </SmallText>
         </div>
 
         <div className="overflow-hidden rounded-full bg-theme-background dark:bg-dark-theme-background">

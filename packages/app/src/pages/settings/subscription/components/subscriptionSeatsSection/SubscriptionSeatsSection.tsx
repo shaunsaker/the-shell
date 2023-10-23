@@ -1,4 +1,4 @@
-import { Alert, Button, Text, TextInput } from 'components'
+import { Alert, Button, SmallText, TextInput } from 'components'
 import React, { useEffect, useState } from 'react'
 
 import { useHasTeamPlan } from '@/billing/hooks/useHasTeamPlan'
@@ -44,9 +44,9 @@ export const SubscriptionSeatsSection = () => {
           : 'Adding seats to your subscription is only available on the team plan.'
       }
     >
-      <Text>
+      <SmallText>
         Available Seats: {subscriptionInfo?.availableSeats} / {subscriptionInfo?.totalSeats}
-      </Text>
+      </SmallText>
 
       <TextInput
         className="w-20"

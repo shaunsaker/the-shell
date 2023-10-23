@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Logo, Text } from 'components'
+import { Button, Logo, SmallText } from 'components'
 import { app } from 'config'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -58,9 +58,9 @@ export const Footer = () => {
         </div>
 
         <div className="flex w-full items-center border-t border-theme-border py-10 dark:border-dark-theme-border">
-          <Text>
+          <SmallText>
             Copyright &copy; {new Date().getFullYear()} {app.name}. All rights reserved.
-          </Text>
+          </SmallText>
 
           <div className="flex flex-1 items-center justify-end">
             {app.social.twitter && (

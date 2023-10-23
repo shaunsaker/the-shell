@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { Text } from '../text/Text'
+import { SmallText } from '../smallText/SmallText'
 
 type Props = ComponentPropsWithoutRef<'div'>
 
@@ -14,7 +14,9 @@ export const Badge = ({ className = '', children, ...props }: Props) => {
         className,
       )}
     >
-      <Text className="text-theme-brand-emphasis dark:text-dark-theme-brand-emphasis text-xs">{children}</Text>
+      <SmallText className="text-theme-brand-emphasis dark:text-dark-theme-brand-emphasis text-xs">
+        {children}
+      </SmallText>
     </div>
   )
 }

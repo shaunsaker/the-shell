@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
-import { Text } from '../text/Text'
+import { SmallText } from '../smallText/SmallText'
 import { Card } from './Card'
 
 const meta = {
@@ -19,6 +19,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    children: <Text>I'm a Card component</Text>,
+    children: <SmallText>I'm a Card component</SmallText>,
   },
 }
