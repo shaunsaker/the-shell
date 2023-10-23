@@ -49,7 +49,7 @@ export const Hero = () => {
           {app.website.hero.titleHighlighted && <HighlightedText>{app.website.hero.titleHighlighted}</HighlightedText>}
         </HugeText>
 
-        <ParagraphText className="text-center">{app.website.hero.subtitle}</ParagraphText>
+        <ParagraphText>{app.website.hero.subtitle}</ParagraphText>
 
         <Button
           size="lg"

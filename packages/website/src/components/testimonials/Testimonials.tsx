@@ -14,7 +14,7 @@ export function Testimonials() {
     <Section
       id={routes.testimonials.replace('/#', '')}
       aria-label={app.website.testimonials.title}
-      className="relative bg-theme-background-muted dark:bg-dark-theme-background-muted"
+      className="relative"
     >
       <Background variant="inverted" className="absolute inset-0" />
 

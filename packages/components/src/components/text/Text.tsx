@@ -5,8 +5,11 @@ type Props = ComponentPropsWithoutRef<'p'>
 
 export const Text = ({ className = '', children, ...props }: Props) => {
   return (
-    <p className={twMerge('text-theme-content dark:text-dark-theme-content text-sm font-normal', className)} {...props}>
+    <small
+      className={twMerge('text-theme-content dark:text-dark-theme-content text-sm font-normal', className)}
+      {...props}
+    >
       {children}
-    </p>
+    </small>
   )
 }

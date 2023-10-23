@@ -1,14 +1,13 @@
 'use client'
 
 import { Button, Logo, Text } from 'components'
+import { app } from 'config'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
 import { routes } from '@/routes'
 
-import { app } from '../../../../config'
-
-const NAV_LINKS = [
+const NAV_LINKS: Array<{ label: string; href: string }> = [
   {
     label: 'Features',
     href: routes.features,
@@ -20,6 +19,10 @@ const NAV_LINKS = [
   {
     label: 'Pricing',
     href: routes.pricing,
+  },
+  {
+    label: 'Blog',
+    href: routes.blog,
   },
 ]
 

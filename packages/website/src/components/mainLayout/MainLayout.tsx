@@ -12,7 +12,7 @@ export const MainLayout = ({ children }: Props) => {
     <>
       <Header className="fixed inset-x-0 top-0 z-20" />
 
-      <main>{children}</main>
+      <main className="min-h-full">{children}</main>
 
       <Footer />
     </>

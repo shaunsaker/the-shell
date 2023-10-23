@@ -1,0 +1,38 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/lexend';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply scroll-smooth font-sans antialiased;
+}
+
+html,
+body {
+  @apply h-full;
+}
+
+h1 {
+  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-4xl font-semibold tracking-tight lg:text-6xl;
+}
+
+h2 {
+  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-3xl tracking-tight lg:text-4xl;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-lg font-semibold;
+}
+
+p {
+  @apply text-theme-content dark:text-dark-theme-content text-base lg:text-lg;
+}
+
+small {
+  @apply text-theme-content dark:text-dark-theme-content text-sm font-normal;
+}

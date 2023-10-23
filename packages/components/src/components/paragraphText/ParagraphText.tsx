@@ -5,7 +5,7 @@ type Props = ComponentPropsWithoutRef<'p'>
 
 export const ParagraphText = ({ className = '', children, ...props }: Props) => {
   return (
-    <p className={twMerge('text-theme-content dark:text-dark-theme-content text-md lg:text-lg', className)} {...props}>
+    <p className={twMerge(className)} {...props}>
       {children}
     </p>
   )
