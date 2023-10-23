@@ -60,11 +60,11 @@ export const themeColorShadeMap = {
       },
       DEFAULT: {
         color: 'neutral',
-        shade: '500',
+        shade: '700',
       },
       emphasis: {
         color: 'neutral',
-        shade: '700',
+        shade: '800',
       },
       strong: {
         color: 'neutral',
@@ -137,11 +137,11 @@ export const themeColorShadeMap = {
       },
       DEFAULT: {
         color: 'neutral',
-        shade: '400',
+        shade: '200',
       },
       emphasis: {
         color: 'neutral',
-        shade: '200',
+        shade: '100',
       },
       strong: {
         color: 'neutral',
