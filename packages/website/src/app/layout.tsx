@@ -7,7 +7,7 @@ import React, { ReactNode } from 'react'
 import { AppProvider } from '@/components/appProvider/AppProvider'
 import { MainLayout } from '@/components/mainLayout/MainLayout'
 
-import { app } from '../../../config'
+import { app, tailwindTheme } from '../../../config'
 
 export const metadata: Metadata = {
   title: {
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     default: `${app.name}`,
   },
   description: `${app.description}`,
+  themeColor: tailwindTheme.extend.colors.theme.brand.DEFAULT,
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
