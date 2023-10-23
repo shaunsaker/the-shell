@@ -5,11 +5,20 @@ import Link from 'next/link'
 import React from 'react'
 
 import { getPost } from '@/blog/api/getPost'
+import { getPosts } from '@/blog/api/getPosts'
 import { Author } from '@/components/author/Author'
 import { Container } from '@/components/container/Container'
 import { RenderMdx } from '@/components/renderMdx/RenderMdx'
 import { Section } from '@/components/section/Section'
 import { routes } from '@/routes'
+
+export async function generateStaticParams() {
+  const posts = await getPosts()
+
+  return posts.map(post => ({
+    slug: post.slug,
+  }))
+}
 
 export default async function Page({ params: { slug } }: { params: { slug: string } }) {
   const post = await getPost(slug)
