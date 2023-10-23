@@ -453,3 +453,23 @@ Your Figma component library will now be updated to the latest theme colors 🎉
 ### Testing
 
 Our testing approach is to focus on testing user interactions and avoid testing implementation details. Unit tests are added for utils, util hooks and hooks that integrate with other hooks. Integration tests are added for components and their integration with api hooks. E2E tests are added for user flows.
+
+---
+
+### Website blog
+
+To add a new blog post, create a new markdown file in [website/blog](./packages/website/src/blog/posts) and add the following frontmatter:
+
+---
+
+date:
+image:
+title:
+description:
+authorImage:
+authorName:
+authorTitle:
+
+---
+
+It will automatically be added to the blog page.

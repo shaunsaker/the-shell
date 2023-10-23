@@ -5,14 +5,8 @@ type Props = ComponentPropsWithoutRef<'h2'>
 
 export const HeadingText = ({ className = '', children, ...props }: Props) => {
   return (
-    <h2
-      className={twMerge(
-        'text-theme-content-emphasis dark:text-dark-theme-content-emphasis text-md font-display font-semibold lg:text-lg',
-        className,
-      )}
-      {...props}
-    >
+    <h3 className={twMerge(className)} {...props}>
       {children}
-    </h2>
+    </h3>
   )
 }
