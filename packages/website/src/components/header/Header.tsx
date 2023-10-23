@@ -23,6 +23,10 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
     name: 'Pricing',
     href: routes.pricing,
   },
+  {
+    name: 'Blog',
+    href: routes.blog,
+  },
 ]
 
 const SIGN_IN_NAVIGATION_ITEM: NavigationItem = {

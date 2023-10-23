@@ -106,11 +106,11 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
                     setActiveTabIndex(index)
                   }}
                 >
-                  <HeadingText className={variant === 'default' ? 'text-white dark:text-white' : ''}>
+                  <HeadingText className={twMerge(variant === 'default' ? 'text-white dark:text-white' : '', 'mb-2')}>
                     {feature.title}
                   </HeadingText>
 
-                  <Text className={twMerge(variant === 'default' ? 'text-white dark:text-white' : '', 'mt-2')}>
+                  <Text className={twMerge(variant === 'default' ? 'text-white dark:text-white' : '')}>
                     {feature.description}
                   </Text>
                 </Button>

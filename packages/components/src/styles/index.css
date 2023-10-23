@@ -1,10 +1,1 @@
-@import '@fontsource-variable/inter';
-@import '@fontsource-variable/lexend';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html {
-  @apply font-sans;
-}
+@import '../../../styles/index.css';
