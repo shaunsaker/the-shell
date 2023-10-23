@@ -22,8 +22,8 @@
     },
     "content": {
       "subtle": "#9ca3af",
-      "DEFAULT": "#6b7280",
-      "emphasis": "#374151",
+      "DEFAULT": "#374151",
+      "emphasis": "#1f2937",
       "strong": "#111827",
       "inverted": "#fff"
     }
@@ -51,8 +51,8 @@
     },
     "content": {
       "subtle": "#4b5563",
-      "DEFAULT": "#9ca3af",
-      "emphasis": "#e5e7eb",
+      "DEFAULT": "#e5e7eb",
+      "emphasis": "#f3f4f6",
       "strong": "#f9fafb",
       "inverted": "#111827"
     }
