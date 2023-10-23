@@ -32,6 +32,8 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
       src={activeFeature.image}
       alt={activeFeature.title}
       priority
+      width={802}
+      height={696}
     />
   )
 
