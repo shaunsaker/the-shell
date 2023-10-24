@@ -10,8 +10,6 @@ The ultimate boilerplate for building SAAS applications with React, Typescript, 
 
 Transform `8 weeks` of development into `1 hour` 🚀
 
-You can see me in action [here](https://ultimate-b2b-saas-boilerplate.netlify.app/). // TODO: SS update this when we add the custom domain
-
 ---
 
 ## What's in the box?
@@ -210,7 +208,7 @@ gh secret set GOOGLE_APPLICATION_CREDENTIALS_STAGING < service-account-staging.j
 gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < service-account-production.json
 ```
 
-19. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_URL` (your app domain), `NEXT_PUBLIC_APP_SIGN_IN_URL` and `NEXT_PUBLIC_APP_SIGN_UP_URL`. Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_URL` to `http://localhost:5173`, ie. the url you're serving the local `app` on.
+19. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), , `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
 
 ---
 
