@@ -1,6 +1,12 @@
 name: Development
 
-on: [push, pull_request, workflow_call]
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+  workflow_call:
 
 jobs:
   lint:
