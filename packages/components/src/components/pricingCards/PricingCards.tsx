@@ -42,7 +42,7 @@ export const PricingCards = ({
         />
       ) : null}
 
-      <div className="flex w-full flex-col gap-x-6 gap-y-8 overflow-x-auto pb-2 lg:flex-row">
+      <div className="flex w-full flex-col gap-x-6 gap-y-8 overflow-x-auto p-1 pb-6 lg:flex-row">
         {products?.map(product => {
           return (
             <PricingCard
