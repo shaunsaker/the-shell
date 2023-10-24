@@ -24,6 +24,10 @@ const NAV_LINKS: Array<{ label: string; href: string }> = [
     label: 'Blog',
     href: routes.blog,
   },
+  {
+    label: 'Privacy',
+    href: routes.privacy,
+  },
 ]
 
 export const Footer = () => {

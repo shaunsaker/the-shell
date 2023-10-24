@@ -8,4 +8,5 @@ export const routes = {
   faq: '/#faq',
   blog: '/blog',
   blogPost: `/blog/${BLOG_POST_PARAM}`,
+  privacy: '/privacy',
 }
