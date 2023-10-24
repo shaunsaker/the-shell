@@ -10,7 +10,7 @@ export const Badge = ({ className = '', children, ...props }: Props) => {
     <div
       {...props}
       className={twMerge(
-        'bg-theme-brand-muted dark:bg-dark-theme-brand-muted flex items-center rounded-full px-2 py-0.5',
+        'bg-theme-brand-muted dark:bg-dark-theme-brand-muted flex items-center whitespace-nowrap rounded-full px-2 py-0.5',
         className,
       )}
     >
