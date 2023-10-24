@@ -79,7 +79,7 @@ export const Header = ({ ...props }: Props) => {
           ))}
         </div>
 
-        <div className="flex flex-1 items-center justify-end gap-x-2">
+        <div className="flex flex-1 items-center justify-end gap-x-2 pr-4 lg:pr-0">
           <div className="hidden lg:block">
             <Button
               variant="lightNeutral"
