@@ -12,7 +12,7 @@ export default async function Page() {
   const posts = await getPosts()
 
   return (
-    <Section aria-label={app.website.blog.title} className="min-h-screen mt-[63px]">
+    <Section className="min-h-screen mt-[63px]">
       <Container>
         <TitleText>{app.website.blog.title}</TitleText>
 

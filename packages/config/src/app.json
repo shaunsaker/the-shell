@@ -167,6 +167,9 @@
     "blog": {
       "title": "Latest from the blog",
       "subtitle": "The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
+    },
+    "privacy": {
+      "title": "Privacy"
     }
   }
 }
