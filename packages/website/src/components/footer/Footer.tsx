@@ -46,7 +46,7 @@ export const Footer = () => {
             <Logo />
           </Button>
 
-          <nav className="mt-8 flex items-center">
+          <nav className="mt-8 flex items-center flex-wrap justify-center">
             {NAV_LINKS.map(link => (
               <Button
                 key={link.href}

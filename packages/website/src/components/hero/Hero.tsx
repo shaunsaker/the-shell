@@ -39,7 +39,7 @@ export const Hero = () => {
   const link = useLink()
 
   return (
-    <Section className="relative flex min-h-screen flex-col pb-8 lg:pb-8 mt-[63px] lg:mt-0">
+    <Section className="relative flex min-h-screen flex-col pb-[63px] lg:pb-8 mt-[63px] lg:mt-0">
       <Background variant="inverted" className="absolute inset-0" />
 
       <Container className="flex-1 justify-center">
