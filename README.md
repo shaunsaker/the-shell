@@ -199,7 +199,7 @@ touch ./packages/website/.env.production
 
 17. Download your Firebase service account for each project and add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`.
 
-18. Add the paths to the service accounts to [website/.env.development](./packages/website/.env.development), [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `GOOGLE_APPLICATION_CREDENTIALS`.
+18. Add the path of your `development` service account to [website/.env.development](./packages/website/.env.development) as `GOOGLE_APPLICATION_CREDENTIALS`.
 
 19. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
 
