@@ -3,13 +3,15 @@ import Image from 'next/image'
 import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = ComponentPropsWithoutRef<'div'> & {
+export type TestimonialProps = {
   name: string
   title: string
   company: string
   testimonial: string
   image: string
 }
+
+type Props = ComponentPropsWithoutRef<'div'> & TestimonialProps
 
 export const Testimonial = ({ className = '', name, title, company, testimonial, image, ...props }: Props) => {
   return (

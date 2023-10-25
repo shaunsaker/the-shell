@@ -1,5 +1,4 @@
 import { Background, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
-import { app } from 'config'
 import React from 'react'
 
 import { routes } from '@/routes'
@@ -8,20 +7,58 @@ import { Columns } from '../columns/Columns'
 import { Container } from '../container/Container'
 import { Section } from '../section/Section'
 
+const TITLE = 'Frequently asked questions'
+
+const QUESTIONS = [
+  {
+    question: 'Question 1',
+    answer:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+  },
+  {
+    question: 'Question 2',
+    answer:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+  },
+  {
+    question: 'Question 3',
+    answer:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+  },
+  {
+    question: 'Question 4',
+    answer:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+  },
+  {
+    question: 'Question 5',
+    answer:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+  },
+  {
+    question: 'Question 6',
+    answer:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+  },
+]
+
 export function Faqs() {
   return (
-    <Section id={routes.faq.replace('/#', '')} aria-label={app.website.faqs.title} className="relative overflow-hidden">
+    <Section id={routes.faq.replace('/#', '')} aria-label={TITLE} className="relative overflow-hidden">
       <Background className="absolute inset-0" variant="inverted" />
 
       <div className="relative">
         <Container>
-          <TitleText>{app.website.faqs.title}</TitleText>
+          <TitleText>{TITLE}</TitleText>
 
-          <ParagraphText className="mt-4">{app.website.faqs.subtitle}</ParagraphText>
+          <ParagraphText className="mt-4">
+            The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and
+            TypeScript.
+          </ParagraphText>
         </Container>
 
         <Columns className="mt-16">
-          {app.website.faqs.questions.map(faq => (
+          {QUESTIONS.map(faq => (
             <li key={faq.question} className="mb-8">
               <HeadingText>{faq.question}</HeadingText>
 

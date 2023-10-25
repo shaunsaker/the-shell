@@ -1,7 +1,6 @@
 'use client'
 
 import { Background, Button, HeadingText, HugeText, ParagraphText } from 'components'
-import { app } from 'config/src'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useLink } from 'utils'
@@ -11,62 +10,79 @@ import Logoipsum2Logo from '@/assets/logos/logoipsum-2.svg'
 import Logoipsum3Logo from '@/assets/logos/logoipsum-3.svg'
 import Logoipsum4Logo from '@/assets/logos/logoipsum-4.svg'
 import Logoipsum5Logo from '@/assets/logos/logoipsum-5.svg'
+import { BOOK_DEMO_LINK } from '@/constants'
 
 import { Container } from '../container/Container'
 import { HighlightedText } from '../highlightedText/HighlightedText'
 import { Section } from '../section/Section'
 
-const getCompanyLogo = (company: string) => {
-  switch (company) {
-    case 'Logoipsum 1':
-      return <Logoipsum1Logo />
-    case 'Logoipsum 2':
-      return <Logoipsum2Logo />
-    case 'Logoipsum 3':
-      return <Logoipsum3Logo />
-    case 'Logoipsum 4':
-      return <Logoipsum4Logo />
-    case 'Logoipsum 5':
-      return <Logoipsum5Logo />
-    default:
-      // FIXME: add a bg colour to indicate logo placeholder
-      return <div />
-  }
-}
+const TITLE = '0. to 0.5 in no time.'
+const TITLE_HIGHLIGHTED = 'no time.'
+
+const SOCIAL_PROOF_LINKS = [
+  {
+    label: 'Logoipsum 1',
+    link: '',
+    image: <Logoipsum1Logo />,
+  },
+  {
+    label: 'Logoipsum 2',
+    link: '',
+    image: <Logoipsum2Logo />,
+  },
+  {
+    label: 'Logoipsum 3',
+    link: '',
+    image: <Logoipsum3Logo />,
+  },
+  {
+    label: 'Logoipsum 4',
+    link: '',
+    image: <Logoipsum4Logo />,
+  },
+  {
+    label: 'Logoipsum 5',
+    link: '',
+    image: <Logoipsum5Logo />,
+  },
+]
 
 export const Hero = () => {
   const router = useRouter()
   const link = useLink()
 
   return (
-    <Section className="relative flex min-h-screen flex-col pb-[63px] lg:pb-8 mt-[63px] lg:mt-0">
+    <Section aria-label={TITLE} className="relative flex min-h-screen flex-col pb-[63px] lg:pb-8 mt-[63px] lg:mt-0">
       <Background variant="inverted" className="absolute inset-0" />
 
       <Container className="flex-1 justify-center">
         <HugeText>
-          {app.website.hero.title.replace(app.website.hero.titleHighlighted, '')}
+          {TITLE.replace(TITLE_HIGHLIGHTED, '')}
 
-          {app.website.hero.titleHighlighted && <HighlightedText>{app.website.hero.titleHighlighted}</HighlightedText>}
+          {TITLE_HIGHLIGHTED && <HighlightedText>{TITLE_HIGHLIGHTED}</HighlightedText>}
         </HugeText>
 
-        <ParagraphText>{app.website.hero.subtitle}</ParagraphText>
+        <ParagraphText>
+          Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind
+          CSS and TypeScript.
+        </ParagraphText>
 
         <Button
           size="lg"
           onClick={() => {
-            router.push(app.website.primaryAction.link)
+            router.push(BOOK_DEMO_LINK)
           }}
         >
-          {app.website.primaryAction.label}
+          Book a demo
         </Button>
       </Container>
 
-      {app.website.hero.trustedByCompanies.length && (
+      {SOCIAL_PROOF_LINKS.length && (
         <div className="relative mt-8 flex flex-col items-center">
           <HeadingText>Trusted by the best</HeadingText>
 
           <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:gap-6">
-            {app.website.hero.trustedByCompanies.map(company => (
+            {SOCIAL_PROOF_LINKS.map(company => (
               <li key={company.label}>
                 <Button
                   aria-label={company.label}
@@ -75,7 +91,7 @@ export const Hero = () => {
                     link(company.link, '_blank')
                   }}
                 >
-                  {getCompanyLogo(company.label)}
+                  {company.image}
                 </Button>
               </li>
             ))}

@@ -1,5 +1,4 @@
 import { ParagraphText, TitleText } from 'components'
-import { app } from 'config'
 import React from 'react'
 
 import { getPosts } from '@/blog/api/getPosts'
@@ -14,9 +13,12 @@ export default async function Page() {
   return (
     <Section className="min-h-screen mt-[63px]">
       <Container>
-        <TitleText>{app.website.blog.title}</TitleText>
+        <TitleText>Latest from the blog</TitleText>
 
-        <ParagraphText>{app.website.blog.subtitle}</ParagraphText>
+        <ParagraphText>
+          The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and
+          TypeScript.
+        </ParagraphText>
       </Container>
 
       <Columns className="mt-16">

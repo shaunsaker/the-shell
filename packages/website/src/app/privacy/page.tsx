@@ -9,7 +9,7 @@ export default async function Page() {
   return (
     <Section className="min-h-screen mt-[63px]">
       <Container>
-        <TitleText>{app.website.privacy.title}</TitleText>
+        <TitleText>Privacy</TitleText>
 
         <ParagraphText className="mt-16 text-left flex flex-col gap-y-8">
           <HeadingText>1. Introduction</HeadingText>
