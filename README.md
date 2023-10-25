@@ -72,7 +72,7 @@ Transform `8 weeks` of development into `1 hour` 🚀
 
 We support 3 environments out of the box:
 
-- Development: Local development (Firebase emulator)
+- Development: (any branch) Local development using the Firebase emulator
 - Staging (`develop` branch): Remote development
 - Production (`master` branch): Live environment
 
@@ -81,8 +81,8 @@ We support 3 environments out of the box:
 1. Clone the repo and install dependencies:
 
 ```
-git clone https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate.git PROJECT_NAME
-cd PROJECT_NAME
+git clone https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate.git APP_NAME
+cd APP_NAME
 yarn
 ```
 
@@ -132,29 +132,28 @@ And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
 1. Login to the Firebase cli
 
 ```
-cd ./packages/firebase
 firebase login
 ```
 
 2. Create two Firebase projects, one for staging and one for production.
 
 ```
-firebase projects:create PROJECT_NAME-staging
-firebase projects:create PROJECT_NAME-production
+firebase projects:create APP_NAME-staging
+firebase projects:create APP_NAME-production
 ```
 
-3. Enable Cloud Firestore for both projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/firestore and https://console.firebase.google.com/project/PROJECT_NAME-production/firestore and clicking "Create database". Feel free to "Start in production mode", the firebase rules and indices will be deployed automatically when you merge into `develop` (staging) or `master` (production).
+3. For each project, enable Cloud Firestore by visiting https://console.firebase.google.com/project/_/firestore and clicking "Create database". Feel free to "Start in production mode", the firebase rules and indices will be deployed automatically when you merge into `develop` (staging) or `master` (production).
 
-4. [Enable the Blaze plan](https://console.firebase.google.com/project/_/usage/details) for both projects. This is required for Firebase Functions.
+4. For each project, [enable the Blaze plan](https://console.firebase.google.com/project/_/usage/details). This is required for Firebase Functions.
 
 5. Link your Firebase projects to your local repo:
 
 Note the first command is just to help firebase load the correct env variables in development.
 
 ```
-firebase use --add PROJECT_NAME-staging --alias development
-firebase use --add PROJECT_NAME-staging --alias staging
-firebase use --add PROJECT_NAME-production --alias production
+firebase use --add APP_NAME-staging --alias development
+firebase use --add APP_NAME-staging --alias staging
+firebase use --add APP_NAME-production --alias production
 ```
 
 6. Get a Firebase token for Github Actions:
@@ -181,34 +180,35 @@ touch ./packages/website/.env.staging
 touch ./packages/website/.env.production
 ```
 
-9. Create web apps for both of your projects by visiting https://console.firebase.google.com/project/PROJECT_NAME-staging/settings/general/web and https://console.firebase.google.com/project/PROJECT_NAME-production/settings/general/web and clicking "Add app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/wesbite/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
+9. For each project, create web apps by visiting https://console.firebase.google.com/project/_/settings/general/web and clicking "Add app", a good name is simply "app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/wesbite/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
 
-10. [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
+10. For each project, [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
 
-11. Set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, clicking the edit icon, click "Customize action URL" and set it to DOMAIN_NAME/user-management.
+11. For each project, set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://APP_NAME-PROJECT/user-management.
 
-12. Add `localhost` as an Authorized domain to your [projects](https://console.firebase.google.com/u/0/project/_/authentication/settings).
+12. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
 
-13. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
+13. For each project, enable hosting by visiting https://console.firebase.google.com/u/0/project/_/hosting/main and clicking "Get started".
 
-14. Create another site for your Storybook by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `PROJECT_NAME-storybook`.
+14. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/APP_NAME-staging/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-staging-storybook`. FYI you only need a storybook site for your staging environment.
 
-15. Create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `PROJECT_NAME-website`.
+15. For each project, create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-PROJECT-website`.
 
-16. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell-development" with your PROJECT_NAME.
+16. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell" with your APP_NAME.
 
-17. Download your Firebase service account for each project and add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`.
+17. For each project, download your Firebase service account by visiting https://console.firebase.google.com/u/0/project/_/settings/serviceaccounts/adminsdk and clicking "Generate new private key". Add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`. The website needs the service accounts in order to pull pricing data from Firebase before creating a static export.
 
 18. Add the path of your `development` service account to [website/.env.development](./packages/website/.env.development) as `GOOGLE_APPLICATION_CREDENTIALS`.
 
 19. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
 
 ```
+cd ./packages/website
 gh secret set GOOGLE_APPLICATION_CREDENTIALS_STAGING < service-account-staging.json
 gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < service-account-production.json
 ```
 
-19. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), , `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
+20. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
 
 ---
 
@@ -260,7 +260,7 @@ touch ./packages/functions/.env.development
 
 The following steps will setup your Firebase staging environment with your Stripe test environment.
 
-1. In [test Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **staging** stripe-webhook firebase functions url, e.g. https://us-central1-PROJECT_NAME-staging.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+1. In [test Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **staging** stripe-webhook firebase functions url, e.g. https://us-central1-APP_NAME-staging.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
 
 2. Once your Stripe webhook is created, copy the Signing secret.
 
@@ -278,7 +278,7 @@ touch ./packages/functions/.env.staging
 
 The following steps will setup your Firebase production environment with your Stripe live environment.
 
-1. In [live Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **production** stripe-webhook firebase functions url, e.g. https://us-central1-PROJECT_NAME-production.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+1. In [live Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **production** stripe-webhook firebase functions url, e.g. https://us-central1-APP_NAME-production.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
 
 2. Once your Stripe webhook is created, copy the Signing secret.
 
