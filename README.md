@@ -1,6 +1,9 @@
 # Launchpad
 
 [![Development](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml/badge.svg?branch=develop)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml)
+[![Deploy Staging](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-staging.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-staging.yml)
+[![Release](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/release.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/release.yml)
+[![Deploy Production](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-production.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-production.yml)
 
 ---
 
