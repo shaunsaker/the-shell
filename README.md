@@ -185,7 +185,7 @@ touch ./packages/website/.env.production
 
 15. For each project, download your Firebase service account by visiting https://console.firebase.google.com/u/0/project/_/settings/serviceaccounts/adminsdk and clicking "Generate new private key". Add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`. The website needs the service accounts in order to pull pricing data from Firebase before creating a static export.
 
-16. Add the path of your `development` service account to [website/.env.development](./packages/website/.env.development) as `GOOGLE_APPLICATION_CREDENTIALS`.
+16. Add the path of your `staging` service account to [website/.env.development](./packages/website/.env.development) and [website/.env.staging](./packages/website/.env.staging) as `GOOGLE_APPLICATION_CREDENTIALS` and the path to your `production` service account to [website/.env.production](./packages/website/.env.production).
 
 17. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
 
@@ -365,7 +365,7 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 ### Setup automated deploys
 
-1. Send your env files to Github so that the deploy workflows can deploy to Firebase:
+1. Combine your env files:
 
 ```
 cat ./packages/app/.env.staging > .env.staging
@@ -376,6 +376,18 @@ cat ./packages/functions/.env.staging >> .env.staging
 cat ./packages/functions/.env.production >> .env.production
 cat ./packages/website/env/.env.staging >> .env.staging
 cat ./packages/website/env/.env.production >> .env.production
+```
+
+2. Remove the local GOOGLE_APPLICATION_CREDENTIALS env variable:
+
+```
+sed -i '' '/GOOGLE_APPLICATION_CREDENTIALS/d' .env.staging
+sed -i '' '/GOOGLE_APPLICATION_CREDENTIALS/d' .env.production
+```
+
+3. Push the env files to Github:
+
+```
 gh secret set ENV_FILE_STAGING < .env.staging
 gh secret set ENV_FILE_PRODUCTION < .env.production
 rm .env.staging .env.production
