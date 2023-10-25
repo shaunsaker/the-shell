@@ -38,11 +38,10 @@ jobs:
           credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_STAGING }}'
 
       # Set the active project
-      - run: yarn firebase:use staging --token ${{ secrets.FIREBASE_TOKEN }}
+      - run: yarn firebase:use staging
 
       # Deploy staging
-      - run: yarn deploy:staging --token ${{ secrets.FIREBASE_TOKEN }}
-
+      - run: yarn deploy:staging
   deploy-sentry:
     needs: deploy
     runs-on: ubuntu-latest
