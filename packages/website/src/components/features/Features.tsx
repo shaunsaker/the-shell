@@ -9,7 +9,7 @@ import { Container } from '@/components/container/Container'
 
 import { Section } from '../section/Section'
 
-type Feature = {
+export type Feature = {
   title: string
   description: string
   image: string

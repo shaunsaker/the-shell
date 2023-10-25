@@ -1,7 +1,6 @@
 'use client'
 
 import { Background, ParagraphText, PricingCards, TitleText } from 'components'
-import { app } from 'config'
 import React, { ComponentProps, ComponentPropsWithoutRef, useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { BillingInterval, Price, Product } from 'types'
@@ -14,6 +13,8 @@ import { Container } from '../container/Container'
 import { HighlightedText } from '../highlightedText/HighlightedText'
 import { Section } from '../section/Section'
 
+const TITLE = 'Simple pricing, for everyone.'
+const TITLE_HIGHLIGHTED = 'everyone.'
 const DEFAULT_QUANTITY = 1
 
 type BillingIntervalOption = ComponentProps<typeof PricingCards>['billingIntervalOptions'][0]
@@ -54,7 +55,7 @@ export const Pricing = ({ className = '', products, prices, ...props }: Props) =
   return (
     <Section
       id={routes.pricing.replace('/#', '')}
-      aria-label={app.website.pricing.title}
+      aria-label={TITLE}
       className={twMerge('relative', className)}
       {...props}
     >
@@ -63,16 +64,17 @@ export const Pricing = ({ className = '', products, prices, ...props }: Props) =
       <div className="relative">
         <Container className="mb-16">
           <TitleText className="text-white dark:text-white">
-            {app.website.pricing.title.replace(app.website.pricing.titleHighlighted, '')}
+            {TITLE.replace(TITLE_HIGHLIGHTED, '')}
 
-            {app.website.pricing.titleHighlighted && (
-              <HighlightedText className="text-white dark:text-white">
-                {app.website.pricing.titleHighlighted}
-              </HighlightedText>
+            {TITLE_HIGHLIGHTED && (
+              <HighlightedText className="text-white dark:text-white">{TITLE_HIGHLIGHTED}</HighlightedText>
             )}
           </TitleText>
 
-          <ParagraphText className="text-white dark:text-white">{app.website.pricing.subtitle}</ParagraphText>
+          <ParagraphText className="text-white dark:text-white">
+            The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and
+            TypeScript.
+          </ParagraphText>
         </Container>
 
         <PricingCards

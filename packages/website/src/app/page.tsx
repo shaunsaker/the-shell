@@ -1,4 +1,3 @@
-import { app } from 'config'
 import React from 'react'
 
 import { getPrices } from '@/billing/api/getPrices'
@@ -19,17 +18,17 @@ export default async function Page() {
     <>
       <Hero />
 
-      {app.website.primaryFeatures.features.length && <PrimaryFeatures />}
+      <PrimaryFeatures />
 
-      {app.website.secondaryFeatures.features.length && <SecondaryFeatures />}
+      <SecondaryFeatures />
 
       <CallToAction />
 
-      {app.website.testimonials.testimonials.length && <Testimonials />}
+      <Testimonials />
 
       <Pricing products={products} prices={prices} />
 
-      {app.website.faqs.questions.length && <Faqs />}
+      <Faqs />
     </>
   )
 }

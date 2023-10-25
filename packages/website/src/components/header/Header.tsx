@@ -2,10 +2,10 @@
 
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button, Headerbar, Logo, Popover, Sidebar } from 'components'
-import { app } from 'config'
 import { useRouter } from 'next/navigation'
 import React, { ComponentProps, ComponentPropsWithoutRef, useState } from 'react'
 
+import { BOOK_DEMO_LINK } from '@/constants'
 import { routes } from '@/routes'
 
 type NavigationItem = ComponentProps<typeof Sidebar>['items'][0]
@@ -93,10 +93,10 @@ export const Header = ({ ...props }: Props) => {
 
           <Button
             onClick={() => {
-              router.push(app.website.primaryAction.link)
+              router.push(BOOK_DEMO_LINK)
             }}
           >
-            {app.website.primaryAction.label}
+            Book a demo
           </Button>
         </div>
       </Headerbar>

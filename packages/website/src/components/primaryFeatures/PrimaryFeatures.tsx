@@ -1,19 +1,45 @@
 'use client'
 
-import { app } from 'config'
 import React from 'react'
 
 import { routes } from '@/routes'
 
-import { Features } from '../features/Features'
+import { Feature, Features } from '../features/Features'
+
+const FEATURES: Feature[] = [
+  {
+    title: 'Feature 1',
+    description:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+    image: '/screenshots/contacts.png',
+  },
+  {
+    title: 'Feature 2',
+    description:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+    image: '/screenshots/contacts.png',
+  },
+  {
+    title: 'Feature 3',
+    description:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+    image: '/screenshots/contacts.png',
+  },
+  {
+    title: 'Feature 4',
+    description:
+      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+    image: '/screenshots/contacts.png',
+  },
+]
 
 export const PrimaryFeatures = () => {
   return (
     <Features
       id={routes.features.replace('/#', '')}
-      title={app.website.primaryFeatures.title}
-      subtitle={app.website.primaryFeatures.subtitle}
-      features={app.website.primaryFeatures.features.map(feature => ({
+      title="Primary Features"
+      subtitle="Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
+      features={FEATURES.map(feature => ({
         title: feature.title,
         description: feature.description,
         image: feature.image,
