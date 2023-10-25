@@ -1,6 +1,5 @@
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { Button, SmallText } from 'components'
-import { app } from 'config'
 import Link from 'next/link'
 import React from 'react'
 
@@ -24,7 +23,7 @@ export default async function Page({ params: { slug } }: { params: { slug: strin
   const post = await getPost(slug)
 
   return (
-    <Section aria-label={app.website.blog.title} className="min-h-screen mt-[63px]">
+    <Section aria-label={post.data.title} className="min-h-screen mt-[63px]">
       <Container className="items-start text-left">
         <Link href={routes.blog}>
           <Button className="pl-0" variant="light">
