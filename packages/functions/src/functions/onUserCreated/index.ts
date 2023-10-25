@@ -4,8 +4,6 @@ import { User } from 'types'
 import { claimAssignedSeats } from './claimAssignedSeats'
 import { claimGuestSubscriptions } from './claimGuestSubscriptions'
 
-console.log('Hello from On User Created!')
-
 export const onUserCreated = onDocumentCreated('users/{userId}', async event => {
   try {
     // if a new user was created, update all team members with the new user data
