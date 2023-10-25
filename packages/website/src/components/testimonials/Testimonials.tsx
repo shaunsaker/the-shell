@@ -37,7 +37,7 @@ const TESTIMONIALS: TestimonialProps[] = [
   },
 ]
 
-export function Testimonials() {
+export const Testimonials = () => {
   return (
     <Section id={routes.testimonials.replace('/#', '')} aria-label={TITLE} className="relative">
       <Background variant="inverted" className="absolute inset-0" />
