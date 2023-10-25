@@ -6,12 +6,7 @@ on:
       - '*'
 
 jobs:
-  development:
-    name: development
-    uses: ./.github/workflows/development.yml
-
   deploy:
-    needs: development
     runs-on: ubuntu-latest
 
     steps:
