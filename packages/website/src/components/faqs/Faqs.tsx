@@ -42,7 +42,7 @@ const QUESTIONS = [
   },
 ]
 
-export function Faqs() {
+export const Faqs = () => {
   return (
     <Section id={routes.faq.replace('/#', '')} aria-label={TITLE} className="relative overflow-hidden">
       <Background className="absolute inset-0" variant="inverted" />

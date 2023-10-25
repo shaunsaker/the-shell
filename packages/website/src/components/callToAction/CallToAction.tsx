@@ -9,7 +9,7 @@ import { BOOK_DEMO_LINK } from '@/constants'
 import { Container } from '../container/Container'
 import { Section } from '../section/Section'
 
-export function CallToAction() {
+export const CallToAction = () => {
   const router = useRouter()
 
   return (
