@@ -412,6 +412,8 @@ That's it, you're done! Every time you push to `master`, a release will automati
 
 Run an initial deploy to staging.
 
+NOTE: This might fail initially due to Firebase services not initialising yet but if it does, just retry.
+
 ```
 yarn firebase:use staging
 yarn deploy:staging
