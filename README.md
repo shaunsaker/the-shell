@@ -159,7 +159,20 @@ firebase use --add APP_NAME-staging --alias staging
 firebase use --add APP_NAME-production --alias production
 ```
 
-6. Create your `app` and `website` env files:
+6. Get a Firebase token for Github Actions:
+
+```
+firebase login:ci
+```
+
+7. Push your Firebase token to Github so that Github Actions can deploy your app and functions to `staging` and `production`:
+
+```
+gh auth login
+gh secret set FIREBASE_TOKEN --body VALUE
+```
+
+8. Create your `app` and `website` env files:
 
 ```
 touch ./packages/app/.env.development
@@ -170,27 +183,27 @@ touch ./packages/website/.env.staging
 touch ./packages/website/.env.production
 ```
 
-7. For each project, create web apps by visiting https://console.firebase.google.com/project/_/settings/general/web and clicking "Add app", a good name is simply "app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/wesbite/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
+9. For each project, create web apps by visiting https://console.firebase.google.com/project/_/settings/general/web and clicking "Add app", a good name is simply "app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/wesbite/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
 
-8. For each project, [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
+10. For each project, [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
 
-9. For each project, set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://APP_NAME-PROJECT/user-management.
+11. For each project, set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://APP_NAME-PROJECT/user-management.
 
-10. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
+12. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
 
-11. For each project, enable hosting by visiting https://console.firebase.google.com/u/0/project/_/hosting/main and clicking "Get started".
+13. For each project, enable hosting by visiting https://console.firebase.google.com/u/0/project/_/hosting/main and clicking "Get started".
 
-12. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/APP_NAME-staging/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-staging-storybook`. FYI you only need a storybook site for your staging environment.
+14. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/APP_NAME-staging/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-staging-storybook`. FYI you only need a storybook site for your staging environment.
 
-13. For each project, create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-PROJECT-website`.
+15. For each project, create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-PROJECT-website`.
 
-14. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell" with your APP_NAME.
+16. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell" with your APP_NAME.
 
-15. For each project, download your Firebase service account by visiting https://console.firebase.google.com/u/0/project/_/settings/serviceaccounts/adminsdk and clicking "Generate new private key". Add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`. The website needs the service accounts in order to pull pricing data from Firebase before creating a static export.
+17. For each project, download your Firebase service account by visiting https://console.firebase.google.com/u/0/project/_/settings/serviceaccounts/adminsdk and clicking "Generate new private key". Add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`. The website needs the service accounts in order to pull pricing data from Firebase before creating a static export.
 
-16. Add the path of your `staging` service account to [website/.env.development](./packages/website/.env.development) and [website/.env.staging](./packages/website/.env.staging) as `GOOGLE_APPLICATION_CREDENTIALS` and the path to your `production` service account to [website/.env.production](./packages/website/.env.production).
+18. Add the path of your `development` service account to [website/.env.development](./packages/website/.env.development) as `GOOGLE_APPLICATION_CREDENTIALS`.
 
-17. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
+19. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
 
 ```
 cd ./packages/website
@@ -198,7 +211,7 @@ gh secret set GOOGLE_APPLICATION_CREDENTIALS_STAGING < service-account-staging.j
 gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < service-account-production.json
 ```
 
-18. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
+20. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
 
 ---
 
