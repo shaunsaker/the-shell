@@ -390,6 +390,8 @@ echo >> .env.staging
 echo >> .env.production
 cat ./packages/functions/.env.staging >> .env.staging
 cat ./packages/functions/.env.production >> .env.production
+echo >> .env.staging
+echo >> .env.production
 cat ./packages/website/env/.env.staging >> .env.staging
 cat ./packages/website/env/.env.production >> .env.production
 ```
