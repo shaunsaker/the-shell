@@ -42,6 +42,7 @@ jobs:
 
       # Deploy staging
       - run: yarn deploy:staging
+
   deploy-sentry:
     needs: deploy
     runs-on: ubuntu-latest
