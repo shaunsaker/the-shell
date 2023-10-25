@@ -17,6 +17,16 @@
           "the-shell-development-website"
         ]
       }
+    },
+    "the-shell-production": {
+      "hosting": {
+        "app": [
+          "the-shell-production"
+        ],
+        "website": [
+          "the-shell-production-website"
+        ]
+      }
     }
   },
   "etags": {}
