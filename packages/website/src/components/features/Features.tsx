@@ -88,7 +88,7 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
 
         {/* DESKTOP */}
         <div className="hidden grid-cols-12 lg:grid">
-          <ul className="col-span-5 py-24">
+          <ul className="col-span-5 py-24 flex flex-col items-end">
             {features.map((feature, index) => (
               <li key={feature.title}>
                 <Button
