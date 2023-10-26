@@ -47,6 +47,8 @@ export const sendEmailVerificationFunction = onCall<
       ok: true,
     }
   } catch (error) {
+    console.error(error)
+
     throw new HttpsError('internal', (error as Error).message, error)
   }
 })

@@ -62,6 +62,8 @@ export const createCheckoutSessionFunction = onCall<
       throw new HttpsError('internal', 'Unable to create checkout session')
     }
   } catch (error) {
+    console.error(error)
+
     throw new HttpsError('internal', (error as Error).message)
   }
 })

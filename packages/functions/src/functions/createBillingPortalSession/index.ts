@@ -47,6 +47,8 @@ export const createBillingPortalSessionFunction = onCall<
       throw new HttpsError('internal', 'Unable to create billing portal session')
     }
   } catch (error) {
+    console.error(error)
+
     throw new HttpsError('internal', (error as Error).message)
   }
 })
