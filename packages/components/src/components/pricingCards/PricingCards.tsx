@@ -32,7 +32,7 @@ export const PricingCards = ({
 
   return (
     <div className={twMerge('flex flex-col items-center', className)} {...props}>
-      {billingIntervalOptions.length ? (
+      {billingIntervalOptions.length && billingIntervalOptions.length > 1 ? (
         <RadioGroup
           className="mb-8"
           value={billingInterval}
