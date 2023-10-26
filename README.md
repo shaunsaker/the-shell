@@ -149,30 +149,20 @@ firebase projects:create APP_NAME-production
 
 4. For each project, [enable the Blaze plan](https://console.firebase.google.com/project/_/usage/details). This is required for Firebase Functions.
 
-5. Link your Firebase projects to your local repo:
-
-Note the first command is just to help firebase load the correct env variables in development.
-
-```
-firebase use --add APP_NAME-staging --alias development
-firebase use --add APP_NAME-staging --alias staging
-firebase use --add APP_NAME-production --alias production
-```
-
-6. Get a Firebase token for Github Actions:
+5. Get a Firebase token for Github Actions:
 
 ```
 firebase login:ci
 ```
 
-7. Push your Firebase token to Github so that Github Actions can deploy your app and functions to `staging` and `production`:
+6. Push your Firebase token to Github so that Github Actions can deploy your app and functions to `staging` and `production`:
 
 ```
 gh auth login
 gh secret set FIREBASE_TOKEN --body VALUE
 ```
 
-8. Create your `app` and `website` env files:
+7. Create your `app` and `website` env files:
 
 ```
 touch ./packages/app/.env.development
@@ -183,27 +173,27 @@ touch ./packages/website/.env.staging
 touch ./packages/website/.env.production
 ```
 
-9. For each project, create web apps by visiting https://console.firebase.google.com/project/_/settings/general/web and clicking "Add app", a good name is simply "app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/wesbite/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
+8. For each project, create web apps by visiting https://console.firebase.google.com/project/_/settings/general/web and clicking "Add app", a good name is simply "app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/wesbite/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
 
-10. For each project, [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
+9. For each project, [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
 
-11. For each project, set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://APP_NAME-PROJECT/user-management.
+10. For each project, set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://APP_NAME-PROJECT/user-management.
 
-12. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
+11. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
 
-13. For each project, enable hosting by visiting https://console.firebase.google.com/u/0/project/_/hosting/main and clicking "Get started".
+12. For each project, enable hosting by visiting https://console.firebase.google.com/u/0/project/_/hosting/main and clicking "Get started".
 
-14. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/APP_NAME-staging/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-staging-storybook`. FYI you only need a storybook site for your staging environment.
+13. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/APP_NAME-staging/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-staging-storybook`. FYI you only need a storybook site for your staging environment.
 
-15. For each project, create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-PROJECT-website`.
+14. For each project, create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-PROJECT-website`.
 
-16. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell" with your APP_NAME.
+15. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell" with your APP_NAME.
 
-17. For each project, download your Firebase service account by visiting https://console.firebase.google.com/u/0/project/_/settings/serviceaccounts/adminsdk and clicking "Generate new private key". Add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`. The website needs the service accounts in order to pull pricing data from Firebase before creating a static export.
+16. For each project, download your Firebase service account by visiting https://console.firebase.google.com/u/0/project/_/settings/serviceaccounts/adminsdk and clicking "Generate new private key". Add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`. The website needs the service accounts in order to pull pricing data from Firebase before creating a static export.
 
-18. Add the path of your `development` service account to [website/.env.development](./packages/website/.env.development) as `GOOGLE_APPLICATION_CREDENTIALS`.
+17. Add the path of your `development` service account to [website/.env.development](./packages/website/.env.development) as `GOOGLE_APPLICATION_CREDENTIALS`.
 
-19. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
+18. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
 
 ```
 cd ./packages/website
@@ -211,7 +201,7 @@ gh secret set GOOGLE_APPLICATION_CREDENTIALS_STAGING < service-account-staging.j
 gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < service-account-production.json
 ```
 
-20. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
+19. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
 
 ---
 
@@ -231,7 +221,7 @@ stripe login
 
 #### Stripe webhooks
 
-The Stripe webhook will ensure that any activity in Stripe is updated in your Firebase db's, e.g. if a new customer is created in Stripe, add them to the customers collection in the Firebase db's.
+The Stripe webhook will ensure that any activity in Stripe is updated in your Firebase db's, e.g. if a product is created in the Stripe test environment, add it to the products collection in the Firebase development and staging environments and if a product is created in the Stripe live environment, add it to the products collection in the Firebase production environment. The same applies to customer and subscription related activity.
 
 ##### Connect test Stripe webhook to development
 
@@ -423,7 +413,7 @@ gh secret set GH_TOKEN --body VALUE
 
 That's it, you're done! Every time you push to `master`, a release will automatically be created and the app will be deployed to production.
 
-### Deploy
+### Deploy staging
 
 Run an initial deploy to staging.
 
@@ -467,6 +457,24 @@ Your Figma component library will now be updated to the latest theme colors 🎉
 
 ---
 
+### Website blog
+
+To add a new blog post, create a new markdown file in [website/blog](./packages/website/src/blog/posts) and add the following frontmatter:
+
+---
+
+date:
+image:
+title:
+description:
+authorImage:
+authorName:
+authorTitle:
+
+---
+
+It will automatically be added to the blog page.
+
 ### Testing
 
 Our testing approach is to focus on testing user interactions and avoid testing implementation details. Unit tests are added for utils, util hooks and hooks that integrate with other hooks. Integration tests are added for components and their integration with api hooks. E2E tests are added for user flows.
@@ -481,11 +489,10 @@ These are the test cases that we should cover (manually for now):
     - forgot password
       - sign in old password should fail
       - sign in new password
-    - sign in
   - account settings
     - change name
-    - change email
-    - change password => do I need to be signed out first, it's a bit weird?
+    - change email => User not found
+    - change password
     - delete account
   - billing
     - purchase subscription with trial => can access dashboard, can see billing details, can manage plan, cannot add seats, cannot access teams
@@ -505,27 +512,13 @@ These are the test cases that we should cover (manually for now):
     - change team member role to admin
       - team member can add invite, manage team members and change team name
     - remove team member
+  - errors
+    - are errors captured in sentry in the correct env?
+  - analytics
+    - are events captured in mixpanel in the correct project?
 - website
   - billing
     - purchase any subscription (new user)
     - purchase any subscription (existing user)
 
 ---
-
-### Website blog
-
-To add a new blog post, create a new markdown file in [website/blog](./packages/website/src/blog/posts) and add the following frontmatter:
-
----
-
-date:
-image:
-title:
-description:
-authorImage:
-authorName:
-authorTitle:
-
----
-
-It will automatically be added to the blog page.
