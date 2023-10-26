@@ -1,8 +1,9 @@
-import { RadioGroup } from 'components'
 import React, { ComponentProps, ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { PricingCardProduct } from 'types'
 
+import { Columns } from '../columns/Columns'
+import { RadioGroup } from '../radioGroup/RadioGroup'
 import { PricingCard } from './PricingCard'
 
 type BillingIntervalOption = ComponentProps<typeof RadioGroup>['options'][0]
@@ -42,19 +43,20 @@ export const PricingCards = ({
         />
       ) : null}
 
-      <div className="flex w-full flex-col gap-x-6 gap-y-8 overflow-x-auto p-1 pb-6 lg:flex-row">
+      <Columns className="w-full overflow-x-auto p-1 pb-6">
         {products?.map(product => {
           return (
-            <PricingCard
-              key={product.id}
-              {...product}
-              onClick={() => {
-                onProductClick(product.id)
-              }}
-            />
+            <li key={product.id}>
+              <PricingCard
+                {...product}
+                onClick={() => {
+                  onProductClick(product.id)
+                }}
+              />
+            </li>
           )
         })}
-      </div>
+      </Columns>
     </div>
   )
 }

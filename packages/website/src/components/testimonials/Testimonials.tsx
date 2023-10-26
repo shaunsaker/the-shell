@@ -1,9 +1,8 @@
-import { Background, ParagraphText, TitleText } from 'components'
+import { Background, Columns, ParagraphText, TitleText } from 'components'
 import React from 'react'
 
 import { routes } from '@/routes'
 
-import { Columns } from '../columns/Columns'
 import { Container } from '../container/Container'
 import { Section } from '../section/Section'
 import { Testimonial, TestimonialProps } from './Testimonial'
@@ -55,7 +54,7 @@ export const Testimonials = () => {
         <Columns className="mt-16">
           {TESTIMONIALS.length &&
             TESTIMONIALS.map(testimonial => (
-              <li key={testimonial.name} className="mb-8">
+              <li key={testimonial.name}>
                 <Testimonial
                   name={testimonial.name}
                   title={testimonial.title}
