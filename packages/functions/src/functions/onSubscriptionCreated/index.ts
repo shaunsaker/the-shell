@@ -1,12 +1,13 @@
 import { onDocumentCreated } from 'firebase-functions/v2/firestore'
 import { Subscription, SubscriptionSeat, Team, TeamMember, TeamMemberRole, TeamMemberStatus } from 'types'
-import { getISOString, getUuid } from 'utils'
+import { getISOString } from 'utils'
 
 import { getProductByPriceId } from '@/billing/getProductByPriceId'
 import { updateSubscriptionSeats } from '@/billing/updateSubscriptionSeats'
 import { updateTeam } from '@/teams/updateTeam'
 import { updateTeamMembers } from '@/teams/updateTeamMembers'
 import { getUser } from '@/users/getUser'
+import { getUuid } from '@/utils/getUuid/getUuid'
 
 export const onSubscriptionCreated = onDocumentCreated('subscriptions/{subscriptionId}', async event => {
   try {
