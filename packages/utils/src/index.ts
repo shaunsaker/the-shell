@@ -8,7 +8,6 @@ import { formatTeamMemberRole } from './formatTeamMemberRole/formatTeamMemberRol
 import { formatTeamMemberStatus } from './formatTeamMemberStatus/formatTeamMemberStatus'
 import { getISOString } from './getISOString/getISOString'
 import { getPricingCardProducts } from './getPricingCardProducts/getPricingCardProducts'
-import { getUuid } from './getUuid/getUuid'
 import { isExternalLink } from './isExternalLink/isExternalLink'
 import { makePrice } from './makePrice/makePrice'
 import { makeProduct } from './makeProduct/makeProduct'
@@ -30,7 +29,6 @@ export {
   formatTeamMemberStatus,
   getISOString,
   getPricingCardProducts,
-  getUuid,
   isExternalLink,
   makePrice,
   makeProduct,

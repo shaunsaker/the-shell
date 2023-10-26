@@ -1,6 +1,6 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
 import { Functions, FunctionsMap, SubscriptionStatus, TeamMember, TeamMemberRole, TeamMemberStatus } from 'types'
-import { formatTeamMemberName, getISOString, getUuid } from 'utils'
+import { formatTeamMemberName, getISOString } from 'utils'
 
 import { getAuthUser } from '@/auth/getAuthUser'
 import { getSubscriptionInfo } from '@/billing/getSubscriptionInfo'
@@ -11,6 +11,7 @@ import { getTeamMembers } from '@/teams/getTeamMembers'
 import { updateTeamMembers } from '@/teams/updateTeamMembers'
 import { verifyTeamAdmin } from '@/teams/verifyTeamAdmin'
 import { getUsersByEmails } from '@/users/getUsersByEmails'
+import { getUuid } from '@/utils/getUuid/getUuid'
 
 export const inviteTeamMembersFunction = onCall<
   FunctionsMap[Functions.inviteTeamMembers]['data'],
