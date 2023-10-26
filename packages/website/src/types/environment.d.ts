@@ -1,5 +1,6 @@
 declare namespace NodeJS {
   interface ProcessEnv {
+    MODE: 'development' | 'staging' | 'production'
     NEXT_PUBLIC_URL: string
     NEXT_PUBLIC_APP_URL: string
     NEXT_PUBLIC_APP_SIGN_IN_URL: string

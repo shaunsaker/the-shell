@@ -19,7 +19,7 @@ export const auth = getAuth(app)
 export const db = getFirestore(app)
 export const functions = getFunctions(app)
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.MODE === 'development') {
   try {
     connectAuthEmulator(auth, `http://localhost:${firebaseConfig.emulators.auth.port}`, {
       disableWarnings: true,
