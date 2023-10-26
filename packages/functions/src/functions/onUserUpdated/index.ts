@@ -1,5 +1,5 @@
 import { onDocumentUpdated } from 'firebase-functions/v2/firestore'
-import { User } from 'types'
+import { FirestoreCollection, User } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
@@ -23,7 +23,11 @@ export const onUserUpdated = onDocumentUpdated('users/{userId}', async event => 
     const isEmailUpdated = before.email !== after.email
 
     if (isFirstNameUpdated || isLastNameUpdated || isEmailUpdated) {
-      const members = await firebase.firestore().collectionGroup('members').where('userId', '==', after.id).get()
+      const members = await firebase
+        .firestore()
+        .collectionGroup(FirestoreCollection.TeamMembers)
+        .where('userId', '==', after.id)
+        .get()
 
       members.forEach(async member => {
         await member.ref.update({

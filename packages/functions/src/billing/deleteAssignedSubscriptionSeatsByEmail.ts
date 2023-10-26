@@ -1,3 +1,5 @@
+import { FirestoreCollection } from 'types'
+
 import { firebase } from '@/firebase/admin'
 import { deleteDocs } from '@/firebase/deleteDocs'
 
@@ -10,7 +12,7 @@ export const deleteAssignedSubscriptionSeatsByEmail = async ({
 }) => {
   const docs = await firebase
     .firestore()
-    .collection('subscriptions')
+    .collection(FirestoreCollection.Subscriptions)
     .doc(subscriptionId)
     .collection('seats')
     .where('isSubscriptionOwner', '==', false)
