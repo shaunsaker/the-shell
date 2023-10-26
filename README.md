@@ -471,6 +471,45 @@ Your Figma component library will now be updated to the latest theme colors 🎉
 
 Our testing approach is to focus on testing user interactions and avoid testing implementation details. Unit tests are added for utils, util hooks and hooks that integrate with other hooks. Integration tests are added for components and their integration with api hooks. E2E tests are added for user flows.
 
+### Test Cases
+
+These are the test cases that we should cover (manually for now):
+
+- app
+  - auth
+    - sign up
+    - forgot password
+      - sign in old password should fail
+      - sign in new password
+    - sign in
+  - account settings
+    - change name
+    - change email
+    - change password => do I need to be signed out first, it's a bit weird?
+    - delete account
+  - billing
+    - purchase subscription with trial => can access dashboard, can see billing details, can manage plan, cannot add seats, cannot access teams
+    - purchase normal subscription => can access dashboard, can see billing details, can manage plan, cannot add seats, cannot access teams
+    - purchase subscription with team plan => can access dashboard, can manage plan, can see billing details, can add seats, can access teams
+  - teams
+    - change team name
+    - add subscription seats
+    - invite team member (new user)
+      - new user can sign up and view team
+      - should see Subscription managed by another user in Subscriptions page
+      - team member cannot add invite, manage team members or change team name
+    - invite team member (existing user)
+      - existing user can sign in and view team
+      - should see Subscription managed by another user in Subscriptions page
+      - team member cannot add invite, manage team members or change team name
+    - change team member role to admin
+      - team member can add invite, manage team members and change team name
+    - remove team member
+- website
+  - billing
+    - purchase any subscription (new user)
+    - purchase any subscription (existing user)
+
 ---
 
 ### Website blog
