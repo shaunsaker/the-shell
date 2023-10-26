@@ -8,6 +8,7 @@ import { BlankState } from './components/blankState/BlankState'
 import { Breadcrumbs } from './components/breadcrumbs/Breadcrumbs'
 import { Button } from './components/button/Button'
 import { Card } from './components/card/Card'
+import { Columns } from './components/columns/Columns'
 import { Dialog } from './components/dialog/Dialog'
 import { ErrorPage } from './components/errorPage/ErrorPage'
 import { Headerbar } from './components/headerbar/Headerbar'
@@ -41,6 +42,7 @@ export {
   Breadcrumbs,
   Button,
   Card,
+  Columns,
   Dialog,
   ErrorPage,
   Headerbar,

@@ -1,9 +1,8 @@
-import { Background, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
+import { Background, Columns, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
 import React from 'react'
 
 import { routes } from '@/routes'
 
-import { Columns } from '../columns/Columns'
 import { Container } from '../container/Container'
 import { Section } from '../section/Section'
 
@@ -59,7 +58,7 @@ export const Faqs = () => {
 
         <Columns className="mt-16">
           {QUESTIONS.map(faq => (
-            <li key={faq.question} className="mb-8">
+            <li key={faq.question}>
               <HeadingText>{faq.question}</HeadingText>
 
               <SmallText className="mt-4">{faq.answer}</SmallText>

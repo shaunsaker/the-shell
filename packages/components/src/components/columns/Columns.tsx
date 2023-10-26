@@ -5,7 +5,10 @@ type Props = ComponentPropsWithoutRef<'ul'>
 
 export const Columns = ({ className = '', children, ...props }: Props) => {
   return (
-    <ul className={twMerge('max-w-2xl mx-auto lg:max-w-none lg:grid lg:gap-8 lg:grid-cols-3', className)} {...props}>
+    <ul
+      className={twMerge('mx-auto flex max-w-2xl flex-col gap-8 lg:grid lg:max-w-7xl lg:grid-cols-3', className)}
+      {...props}
+    >
       {children}
     </ul>
   )

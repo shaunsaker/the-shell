@@ -1,9 +1,8 @@
-import { ParagraphText, TitleText } from 'components'
+import { Columns, ParagraphText, TitleText } from 'components'
 import React from 'react'
 
 import { getPosts } from '@/blog/api/getPosts'
 import { BlogPost } from '@/components/blogPost/BlogPost'
-import { Columns } from '@/components/columns/Columns'
 import { Container } from '@/components/container/Container'
 import { Section } from '@/components/section/Section'
 
@@ -23,7 +22,7 @@ export default async function Page() {
 
       <Columns className="mt-16">
         {posts.map(post => (
-          <li key={post.slug} className="mb-8">
+          <li key={post.slug}>
             <BlogPost {...post} />
           </li>
         ))}
