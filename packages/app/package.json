@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite --open --port 5173",
-    "dev:app:staging": "yarn dev --mode staging",
-    "dev:app:production": "yarn dev --mode production",
+    "dev:staging": "yarn dev --mode staging",
+    "dev:production": "yarn dev --mode production",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
     "lint:ts": "tsc",

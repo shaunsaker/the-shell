@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "cp env/.env.development .env.local && open http://localhost:3000 && next dev",
+    "start": "open http://localhost:3000 && next dev",
+    "dev": "cp env/.env.development .env.local && yarn start",
+    "dev:staging": "cp env/.env.staging .env.local && yarn start",
+    "dev:production": "cp env/.env.production .env.local && yarn start",
     "lint:prettier": "prettier -c \"**/*.{ts,tsx}\"",
     "lint:eslint": "eslint --ext [.ts,.tsx] .",
     "lint:ts": "tsc",
