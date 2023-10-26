@@ -1,4 +1,4 @@
-import { TeamMember, TeamMemberRole, TeamMemberStatus } from 'types'
+import { FirestoreCollection, TeamMember, TeamMemberRole, TeamMemberStatus } from 'types'
 
 import { firebase } from '@/firebase/admin'
 
@@ -36,7 +36,7 @@ export const updateTeamMembers = async (teamMembers: TeamMember[]) => {
   for (const teamMember of teamMembersData) {
     const teamMemberRef = firebase
       .firestore()
-      .collection('teams')
+      .collection(FirestoreCollection.Teams)
       .doc(teamMember.teamId)
       .collection('members')
       .doc(teamMember.id)
