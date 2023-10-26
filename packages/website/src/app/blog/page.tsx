@@ -1,4 +1,4 @@
-import { Columns, ParagraphText, TitleText } from 'components'
+import { Background, Columns, ParagraphText, TitleText } from 'components'
 import React from 'react'
 
 import { getPosts } from '@/blog/api/getPosts'
@@ -10,7 +10,9 @@ export default async function Page() {
   const posts = await getPosts()
 
   return (
-    <Section className="min-h-screen mt-[63px]">
+    <Section className="min-h-screen mt-[63px] relative">
+      <Background variant="inverted" className="absolute inset-0" />
+
       <Container>
         <TitleText>Latest from the blog</TitleText>
 
@@ -20,7 +22,7 @@ export default async function Page() {
         </ParagraphText>
       </Container>
 
-      <Columns className="mt-16">
+      <Columns className="mt-16 relative">
         {posts.map(post => (
           <li key={post.slug}>
             <BlogPost {...post} />
