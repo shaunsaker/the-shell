@@ -23,7 +23,10 @@ export const claimGuestSubscriptions = async ({ uid, email }: { uid: string; ema
   // first delete the old subscriptions so that we don't trigger the onSubscriptionUpdated function
   await deleteSubscriptions(subscriptions)
 
-  // create the new subscriptions
+  // add a delay to avoid a race condition between onDeleteSubscription and onUpdateSubscription
+  await new Promise(resolve => setTimeout(resolve, 1000))
+
+  // recreate the new subscriptions
   await updateSubscriptions(newSubscriptions)
 
   // claim any unclaimed customers
