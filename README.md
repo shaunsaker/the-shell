@@ -522,3 +522,37 @@ These are the test cases that we should cover (manually for now):
     - purchase any subscription (existing user)
 
 ---
+
+## Docs
+
+### Stripe
+
+#### User flow for existing app users
+
+1. User clicks on Buy Now button in app
+1. BE: createCheckoutSession => creates a checkout session
+1. User is redirected to Stripe Checkout
+1. User enters their credit card details
+1. Purchase is successful
+1. BE: stripeWebhookFunction => manageSubscriptionStatusChange => creates a subscription (ownerId set to userId)
+1. BE: onSubscriptionCreated => creates a subscription seat (and team + team members if on a team plan)
+1. BE: onSubscriptionSeatCreated => creates subscription info
+1. User is redirected to the app dashboard
+
+#### Guest/website user flow for new users
+
+- this is super confusing!
+
+1. User clicks on Buy Now button on website
+1. BE: createCheckoutSession => creates a customer (userId set to null) and a checkout session
+1. User is redirected to Stripe Checkout
+1. User enters their email address and credit card details
+1. Purchase is successful
+1. BE: stripeWebhookFunction => manageSubscriptionStatusChange => creates a subscription (ownerId set to null)
+1. BE: onSubscriptionCreated (nothing happens)
+1. User is redirected to the app sign up success page
+1. User signs up using the same email address
+1. BE: onUserCreated => claimGuestSubscriptions => deletes guest subscription and creates a new one (ownerId set to userId) + tries to get non-existent unclaimed customers + updates user billing details
+1. BE: onSubscriptionCreated => creates a subscription seat (and team + team members if on a team plan)
+1. BE: onSubscriptionSeatCreated => creates subscription info
+1. User is redirected to the app dashboard

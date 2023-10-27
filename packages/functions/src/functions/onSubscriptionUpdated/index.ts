@@ -16,16 +16,11 @@ export const onSubscriptionUpdated = onDocumentUpdated('subscriptions/{subscript
 
     const subscriptionInfo = await getSubscriptionInfo(subscriptionId)
 
-    // subscription info won't be created for guest users from the website
-    if (!subscriptionInfo) {
-      return
-    }
-
     const id = subscription.id
     const priceId = subscription.priceId // the priceId may have changed
     const status = subscription.status // the status may have changed
     const totalSeats = subscription.quantity // the quantity may have changed
-    const assignedSeats = subscriptionInfo.assignedSeats
+    const assignedSeats = subscriptionInfo?.assignedSeats || 1 // can't be lower than 1
     const availableSeats = totalSeats - assignedSeats // we need to update the available seats to reflect the new quantity (if it changed)
 
     const newSubscriptionInfo: SubscriptionInfo = {
