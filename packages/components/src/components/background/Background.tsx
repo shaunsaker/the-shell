@@ -6,7 +6,7 @@ type Variant = 'default' | 'inverted'
 const variantToClassNames: Record<Variant, string> = {
   default:
     'from-theme-brand-subtle dark:from-dark-theme-brand-subtle to-theme-brand-emphasis dark:to-dark-theme-brand-emphasis',
-  inverted: 'from-theme-brand-muted/30 dark:from-dark-theme-muted to-theme-background dark:to-dark-theme-background',
+  inverted: 'from-theme-brand-muted/50 dark:from-dark-theme-muted to-theme-background dark:to-dark-theme-background',
 }
 
 type Props = ComponentPropsWithoutRef<'div'> & {
