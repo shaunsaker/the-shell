@@ -13,7 +13,7 @@ export const sendEmailVerificationEmail = async ({
   emailVerificationLink: string
 }) => {
   const data = await resend.emails.send({
-    from: app.support.from,
+    from: app.emails.support,
     to: [email],
     subject: `Verify your email for ${app.name}`,
     react: VerificationEmail({ siteUrl, emailVerificationLink }),

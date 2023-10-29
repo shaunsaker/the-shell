@@ -36,7 +36,7 @@ export const MainLayout = () => {
     },
     {
       name: 'Support',
-      href: `mailto:${app.support.email}`,
+      href: `mailto:${app.emails.support}`,
       icon: <EnvelopeOpenIcon />,
       active: false,
     },

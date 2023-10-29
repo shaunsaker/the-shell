@@ -18,7 +18,7 @@ export default async function Page() {
           personal data is being communicated to the company. Please read this Privacy Policy carefully as it explains
           how the company uses your personal data and how to exercise your rights. This Privacy Policy supplements the
           Terms & Conditions or any documents or notices that may refer to this Privacy Policy. Should you have any
-          questions, you may directly contact the company by sending an email to {app.support.email}.
+          questions, you may directly contact the company by sending an email to {app.emails.support}.
           <HeadingText>2. Definitions</HeadingText>
           DATA means data about a living individual who can be identified from those data (or from those and other
           information either in our possession or likely to come into our possession). USAGE DATA is data collected
@@ -119,7 +119,7 @@ export default async function Page() {
           You'll be informed either by a special mention on this page or by a personalized warning, by email for
           instance.
           <HeadingText>15. Contact us</HeadingText>
-          If you have any questions about this Privacy Policy, please contact us via email at {app.support.email}.
+          If you have any questions about this Privacy Policy, please contact us via email at {app.emails.support}.
         </ParagraphText>
       </Container>
     </Section>
