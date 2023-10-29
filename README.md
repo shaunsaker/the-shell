@@ -55,6 +55,17 @@ Transform `8 weeks` of development into `1 hour` 🚀
 
 ## Setup
 
+### Definitions
+
+- $TEMPLATE_URL: The url of the template app, e.g. "https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate.git"
+- $TEMPLATE_APP_NAME: The name of the template app, e.g. `the-shell`
+- $APP_NAME: The name of your app, e.g. `cofoundly`
+- $GITHUB_APP_URL: The url of your Github app, e.g. "https://github.com/cofoundly/cofoundly.git"
+- $ENVIRONMENT: The environment, e.g. `development`, `staging` or `production`
+- $VALUE: The value of an environment variable, e.g. `1234567890`
+- $DB_LOCATION: The location of your Firebase db, e.g. `us-central1`
+- $SENTRY_ORG: The Sentry organisation slug, e.g. `cofoundly`
+
 ### Prequisites
 
 - [git](https://git-scm.com/downloads)
@@ -68,7 +79,7 @@ Transform `8 weeks` of development into `1 hour` 🚀
 - [Github cli](https://github.com/cli/cli#installation)
 - [Sentry account](https://sentry.io/signup/)
 - 2x [Resend accounts](https://resend.com/signup), one for staging and one for production
-- [Mixpanel account](https://mixpanel.com/) with 2x projects, one for staging and one for production
+- [Mixpanel account](https://mixpanel.com/) with 2x projects, one for staging and one for production, e.g. $APP_NAME-$ENVIRONMENT
 - [Figma account](https://www.figma.com/)
 
 ### Environments
@@ -79,54 +90,58 @@ We support 3 environments out of the box:
 - Staging (`develop` branch): Remote development
 - Production (`master` branch): Live environment
 
+### Domains
+
+- App (staging) => app.staging.$APP_NAME.com
+- Web (staging) => staging.$APP_NAME.com
+- Storybook (components) => storybook.$APP_NAME.com
+- App (production) => app.$APP_NAME.com
+- Web (production) => $APP_NAME.com
+
 ### Basic Setup
 
-1. Clone the repo and install dependencies:
+1. Clone the repo:
 
 ```
-git clone https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate.git APP_NAME
-cd APP_NAME
+git clone $TEMPLATE_URL $APP_NAME
+cd $APP_NAME
 yarn
 ```
 
-2. Create a new repo in Github and push.
+2. Install dependencies:
+
+```
+yarn
+```
+
+3. Clear the git history:
+
+```
+rm -rf .git
+git init
+```
+
+4. In this file, replace all instances of $TEMPLATE_URL with $GITHUB_APP_URL. This will ensure that your Github Actions status badges are correct.
+
+5. Create a new repo in Github.
+
+6. Push the code to Github:
 
 ```
 git add .
-git commit -m "Init"
-git remote add origin NEW_GITHUB_REMOTE
+git commit -m "feat: initial commit"
+git remote add origin $GITHUB_APP_URL
 git push -u origin master
 ```
 
-3. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
+7. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
 
 ```
 git checkout -b develop
 git push -u origin develop
 ```
 
----
-
-### Make it your own
-
-1. Update [app.json](./packages/config/src/app.json).
-
-2. Generate your theme colors where `themeColor` and `neutralColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
-
-```
-cd ./packages/scripts
-yarn build:theme --themeColor teal --neutralColor gray
-```
-
-3. Update [logo.svg](./packages/config/src/logo.svg) with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉 The outermost `fill` or `stroke` attribute should be set to `currentColor`.
-
-4. Run the script:
-
-```
-yarn build:assets
-```
-
-And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
+At this stage, you should see your Github actions running but the deployments will fail as we haven't setup Firebase yet.
 
 ---
 
@@ -140,14 +155,16 @@ firebase login
 
 2. Create two Firebase projects, one for staging and one for production.
 
+If this is the first project you're creating for this account, you'll need to create the staging project in the Firebase console first so that the Firebase terms are accepted (feel free to disable Google Analytics). Then you can use the cli to create the production project as per the command below. If you already have a project, you can skip this step.
+
 ```
-firebase projects:create APP_NAME-staging
-firebase projects:create APP_NAME-production
+firebase projects:create $APP_NAME-staging
+firebase projects:create $APP_NAME-production
 ```
 
-3. For each project, enable Cloud Firestore by visiting https://console.firebase.google.com/project/_/firestore and clicking "Create database". Feel free to "Start in production mode", the firebase rules and indices will be deployed automatically when you merge into `develop` (staging) or `master` (production).
+3. For each project, enable Cloud Firestore by visiting https://console.firebase.google.com/project/_/firestore and clicking "Create database". It's best to choose a location that is closest to your userbase. Feel free to "Start in production mode", the firebase rules and indices will be deployed automatically when you merge into `develop` (staging) or `master` (production).
 
-4. For each project, [enable the Blaze plan](https://console.firebase.google.com/project/_/usage/details). This is required for Firebase Functions.
+4. For each project, [enable the Blaze plan](https://console.firebase.google.com/project/_/usage/details). This is required for Firebase Functions. You will not be charged unless you exceed the free tier. You can also set a spending limit.
 
 5. Get a Firebase token for Github Actions:
 
@@ -159,49 +176,59 @@ firebase login:ci
 
 ```
 gh auth login
-gh secret set FIREBASE_TOKEN --body VALUE
+gh secret set FIREBASE_TOKEN --body $VALUE
 ```
 
-7. Create your `app` and `website` env files:
+7. Create your `app`, `functions` and `website` env files:
 
 ```
-touch ./packages/app/.env.development
-touch ./packages/app/.env.staging
-touch ./packages/app/.env.production
-touch ./packages/website/.env.development
-touch ./packages/website/.env.staging
-touch ./packages/website/.env.production
+cp ./packages/app/.env.example ./packages/app/.env.development
+cp ./packages/app/.env.example ./packages/app/.env.staging
+cp ./packages/app/.env.example ./packages/app/.env.production
+cp ./packages/functions/.env.example ./packages/functions/.env.development
+cp ./packages/functions/.env.example ./packages/functions/.env.staging
+cp ./packages/functions/.env.example ./packages/functions/.env.production
+cp ./packages/website/env/.env.example ./packages/website/env/.env.development
+cp ./packages/website/env/.env.example ./packages/website/env/.env.staging
+cp ./packages/website/env/.env.example ./packages/website/env/.env.production
 ```
 
-8. For each project, create web apps by visiting https://console.firebase.google.com/project/_/settings/general/web and clicking "Add app", a good name is simply "app". Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/wesbite/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
+8. For each project, create web apps by visiting https://console.firebase.google.com/project/_/settings/general/web and clicking "Add app", a good name is simply "app". Select "Also set up Firebase Hosting for this app". You can use the same config for `development` and `staging`. Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/website/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
 
-9. For each project, [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Add new provider" => "Email/Password" => "Enable".
+9. Set the MODE env var in the website env files to the relevant $ENVIRONMENT, e.g. in [website/.env.development](./packages/website/.env.development) set `MODE=development`.
 
-10. For each project, set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://APP_NAME-PROJECT/user-management.
+10. For each project, [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Get started" => "Add new provider" => "Email/Password" => "Enable".
 
-11. Connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions.
+11. For each project, set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://$APP_NAME-$ENVIRONMENT.web.app/user-management.
 
-12. For each project, enable hosting by visiting https://console.firebase.google.com/u/0/project/_/hosting/main and clicking "Get started".
+12. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/$APP_NAME-staging/hosting/main, scrolling to the bottom of the page, clicking "Add another site" and following the instructions. A good name for this site is `$APP_NAME-staging-storybook`. FYI you only need a storybook site for your staging environment.
 
-13. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/APP_NAME-staging/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-staging-storybook`. FYI you only need a storybook site for your staging environment.
+13. For each project, create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, scrolling to the bottom of the page, clicking "Add another site" and following the instructions. A good name for this site is `$APP_NAME-$ENVIRONMENT-website`.
 
-14. For each project, create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add another site" and following the instructions. A good name for this site is `APP_NAME-PROJECT-website`.
+14. Recreate the [.firebaserc](./.firebaserc) with the following command:
 
-15. Update the [.firebaserc](./.firebaserc) with your project name by replacing "the-shell" with your APP_NAME.
+```
+cp ./.firebaserc.example ./.firebaserc
+```
+
+15. In the [.firebaserc](./.firebaserc), replace all instances of the $TEMPLATE_APP_NAME with your $APP_NAME.
 
 16. For each project, download your Firebase service account by visiting https://console.firebase.google.com/u/0/project/_/settings/serviceaccounts/adminsdk and clicking "Generate new private key". Add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`. The website needs the service accounts in order to pull pricing data from Firebase before creating a static export.
 
-17. Add the path of your `development` service account to [website/.env.development](./packages/website/.env.development) as `GOOGLE_APPLICATION_CREDENTIALS`.
+17. Add the paths of your service accounts to [website/env/.env.development](./packages/website/env/.env.development), [website/env/.env.staging](./packages/website/env/.env.staging) and [website/env/.env.production](./packages/website/env/.env.production) as `GOOGLE_APPLICATION_CREDENTIALS`. You can use the same one for `development` and `staging`.
 
 18. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
 
 ```
-cd ./packages/website
-gh secret set GOOGLE_APPLICATION_CREDENTIALS_STAGING < service-account-staging.json
-gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < service-account-production.json
+gh secret set GOOGLE_APPLICATION_CREDENTIALS_STAGING < ./packages/website/service-account-staging.json
+gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < ./packages/website/service-account-production.json
 ```
 
-19. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
+19. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_URL` to `http://localhost:3000` and the `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
+
+#### Using a custom domain
+
+1. For each project and for each site, connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions. A good system for subdomains can be found in the [Domains](#domains) section.
 
 ---
 
@@ -238,14 +265,7 @@ yarn dev:stripe
 
 3. Grab your [test Stripe API key](https://dashboard.stripe.com/test/apikeys) (Secret key).
 
-4. Create [functions/.env.development](./packages/functions/.env.development).
-
-```
-cd ../../
-touch ./packages/functions/.env.development
-```
-
-5. Add the secrets to [functions/.env.development](./packages/functions/.env.development).
+4. Add the secrets to [functions/.env.development](./packages/functions/.env.development).
 
 ---
 
@@ -253,17 +273,11 @@ touch ./packages/functions/.env.development
 
 The following steps will setup your Firebase staging environment with your Stripe test environment.
 
-1. In [test Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **staging** stripe-webhook firebase functions url, e.g. https://us-central1-APP_NAME-staging.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+1. In [test Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **staging** stripe-webhook firebase functions url, e.g. https://$DB_LOCATION-$APP_NAME-staging.cloudfunctions.net/stripeWebhookFunction, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
 
 2. Once your Stripe webhook is created, copy the Signing secret.
 
-3. Create [functions/.env.staging](./packages/functions/.env.staging).
-
-```
-touch ./packages/functions/.env.staging
-```
-
-4. Add the secrets to [functions/.env.staging](./packages/functions/.env.staging).
+3. Add the secrets to [functions/.env.staging](./packages/functions/.env.staging).
 
 ---
 
@@ -271,19 +285,13 @@ touch ./packages/functions/.env.staging
 
 The following steps will setup your Firebase production environment with your Stripe live environment.
 
-1. In [live Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **production** stripe-webhook firebase functions url, e.g. https://us-central1-APP_NAME-production.cloudfunctions.net/stripe-webhook, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
+1. In [live Stripe webhooks](https://dashboard.stripe.com/test/webhooks/create), paste your **production** stripe-webhook firebase functions url, e.g. https://$DB_LOCATION-$APP_NAME-production.cloudfunctions.net/stripeWebhookFunction, add a description, click "Select Events", check "Select all events", click "Add events" and click "Add endpoint".
 
 2. Once your Stripe webhook is created, copy the Signing secret.
 
 3. Grab your [live Stripe API key](https://dashboard.stripe.com/apikeys) (Secret key).
 
-4. Create [functions/.env.production](./packages/functions/.env.production).
-
-```
-touch ./packages/functions/.env.production
-```
-
-5. Add the secrets to [functions/.env.production](./packages/functions/.env.production).
+4. Add the secrets to [functions/.env.production](./packages/functions/.env.production).
 
 ---
 
@@ -323,35 +331,37 @@ We support free trials out of the box. To add a free trial to a product, simply 
 
 ### Setup Sentry
 
-1. Create a new React project in [Sentry](https://sentry.io/projects/new/).
+1. Create a single project in [Sentry](https://sentry.io/projects/new/) and name it $APP_NAME. Select "React" as the platform.
 
 2. Copy the `dsn` key. This is your `VITE_SENTRY_DSN`.
 
-3. [Create a Sentry Auth Token](https://private-zj.sentry.io/settings/auth-tokens/new-token/). This is your `VITE_SENTRY_AUTH_TOKEN`.
+3. [Create a Sentry Auth Token](https://$SENTRY_ORG.sentry.io/settings/auth-tokens/new-token/). This is your `VITE_SENTRY_AUTH_TOKEN`.
 
 4. Grab your "Organization Slug" from [Settings](https://sentry.io/settings/organization/). This is your `VITE_SENTRY_ORG`.
 
-5. Grab your "Project Slug" from https://sentry.io/settings/projects/ and clicking on the project. In the url that loads next, e.g. https://SENTRY_ORG.sentry.io/settings/projects/X/, X is your `VITE_SENTRY_PROJECT`.
+5. Your `VITE_SENTRY_PROJECT` is simply $APP_NAME (as in Step 1).
 
-6. Add the secrets to [app/.env.staging](./packages/app/.env.staging) and [app/.env.production](./packages/app/.env.production).
+6. Your `VITE_SENTRY_ENV` is simply $ENVIRONMENT.
 
-7. Push the secrets to Github so that the deploy workflows can deploy sentry releases.
+7. Add the secrets to [app/.env.staging](./packages/app/.env.staging) and [app/.env.production](./packages/app/.env.production).
+
+8. Push the secrets to Github so that the deploy workflows can deploy sentry releases.
 
 ```
-gh secret set SENTRY_AUTH_TOKEN --body VALUE
-gh secret set SENTRY_ORG --body VALUE
-gh secret set SENTRY_PROJECT --body VALUE
+gh secret set SENTRY_AUTH_TOKEN --body $VALUE
+gh secret set SENTRY_ORG --body $VALUE
+gh secret set SENTRY_PROJECT --body $VALUE
 ```
 
-8. [Connect your Github repo to Sentry](https://private-zj.sentry.io/settings/integrations/github/).
+9. [Connect your Github repo to Sentry](https://cofoundly.sentry.io/settings/integrations/github/) by clicking "Add Installation".
 
 ### Setup Resend
 
 1. Add an API key to each of your Resend accounts (staging and production).
 
-2. Add the secrets to [functions/.env.development](./packages/functions/.env.development), [functions/.env.staging](./packages/functions/.env.staging) and [functions/.env.production](./packages/functions/.env.production).
+2. Add the secrets to [functions/.env.development](./packages/functions/.env.development), [functions/.env.staging](./packages/functions/.env.staging) and [functions/.env.production](./packages/functions/.env.production). You can use the same one for `development` and `staging`.
 
-3. Add your domain by visiting https://resend.com/domains, clicking "Add domain" and following the instructions.
+3. Add and verify your custom domain with Resend by visiting https://resend.com/domains, clicking "Add domain" and following the instructions. It's good practice to use a subdomain, e.g. `transactional.$APP_NAME.com`.
 
 ---
 
@@ -361,9 +371,18 @@ gh secret set SENTRY_PROJECT --body VALUE
 
 ---
 
+### Test your local setup
+
+At this point, it's a good idea to test that everything is working. Run the following command in the root folder to spin up your `app`, `functions` and `website`.
+
+```
+yarn firebase:use development
+yarn dev
+```
+
 ### Setup Figma
 
-1. [Duplicate](https://help.figma.com/hc/en-us/articles/360038511533-Duplicate-or-copy-files#:~:text=Right%2Dclick%20on%20the%20file,the%20original%20and%20the%20duplicate.) the [Figma component library](https://www.figma.com/file/F26nt2RDzvDTqbwvKbZV8l/Ultimate-B2B-Saas-Boilerplate-UI) to your own workspace.
+1. Duplicate the [Figma component library](https://www.figma.com/file/F26nt2RDzvDTqbwvKbZV8l/Ultimate-B2B-Saas-Boilerplate-UI) to your own workspace by right clicking on the file name and clicking "Duplicate to your drafts".
 
 2. Follow the steps in [Figma Development](#figma).
 
@@ -408,21 +427,45 @@ Every time you push to `develop`, the app will be deployed to staging.
 1. Create a [Github personal access token](https://github.com/settings/tokens/new) with the `repo` scope and push it to Github:
 
 ```
-gh secret set GH_TOKEN --body VALUE
+gh secret set GH_TOKEN --body $VALUE
 ```
 
 That's it, you're done! Every time you push to `master`, a release will automatically be created and the app will be deployed to production.
 
-### Deploy staging
+### Make it your own
 
-Run an initial deploy to staging.
+1. Update [app.json](./packages/config/src/app.json).
 
-NOTE: This might fail initially due to Firebase services not initialising yet but if it does, just retry.
+2. Generate your theme colors where `themeColor` and `neutralColor` are any of the [tailwind colors](https://tailwindcss.com/docs/customizing-colors):
 
 ```
-yarn firebase:use staging
-yarn deploy:staging
+cd ./packages/scripts
+yarn build:theme --themeColor teal --neutralColor gray
 ```
+
+3. Update [logo.svg](./packages/config/src/logo.svg) with your logo. If you don't have a logo, just grab an icon from https://heroicons.com/ and move on with life. It should be a **square svg**, size does not count in this case 😉 The outermost `fill` or `stroke` attribute should be set to `currentColor`.
+
+4. Run the script:
+
+```
+yarn build:assets
+```
+
+And boom 💣🎆, you have all the optimised public assets you'll need 😎✅
+
+---
+
+### Test your remote setup
+
+1. Push your changes to `develop`:
+
+```
+git add .
+git commit -m "feat: initial setup"
+git push -u origin develop
+```
+
+2. Check that your Github Actions are running and that your app is deployed to Firebase.
 
 ---
 
@@ -445,15 +488,7 @@ yarn dev:emails
 
 ### Figma
 
-When updating your theme using the [generateTheme](./packages/scripts/src/generateTheme/index.ts) script, you'll need to update your color styles in Figma.
-
-1. Copy the contents of [config/figmaColors.json](./packages/config/figmaColors.json) into this [tool](https://varundevpro.github.io/tailwind-plugin-helper-ui/).
-
-2. Click "Generate File".
-
-3. Using the Figma [Tailwind Color Palettes plugin](https://www.figma.com/community/plugin/853905984020840743/Tailwind-Color-Palettes), upload this generated file by clicking on the "Custom File" tab and setting the folder name as the existing "Tailwind" folder.
-
-Your Figma component library will now be updated to the latest theme colors 🎉
+When updating your theme using the [generateTheme](./packages/scripts/src/generateTheme/index.ts) script, you'll need to update your color styles in Figma. If you have not updated the `neutral` color, you only need to update the `brand` colors in the `theme` and `dark-theme` folders. You can do this by simply copy and pasting from [the themeColors file](./packages/config/src/themeColors.json) into the Figma color styles.
 
 ---
 
@@ -520,6 +555,8 @@ These are the test cases that we should cover (manually for now):
   - billing
     - purchase any subscription (new user)
     - purchase any subscription (existing user)
+- storybook
+  - are all components rendered correctly?✅
 
 ---
 
