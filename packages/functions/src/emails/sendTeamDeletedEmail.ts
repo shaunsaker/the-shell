@@ -17,7 +17,7 @@ export const sendTeamDeletedEmail = async ({
   adminTeamMemberName: string
 }) => {
   const data = await resend.emails.send({
-    from: app.support.from,
+    from: app.emails.support,
     to: [userEmail],
     subject: `The ${teamName} team has been deleted.`,
     react: TeamDeleted({ siteUrl, userName, teamName, adminTeamMemberName }),

@@ -29,7 +29,7 @@ export default function NotFound() {
           icon={<ArrowRightIcon />}
           iconPosition="right"
           onClick={() => {
-            link(`mailto:${app.support.email}`, '_blank')
+            link(`mailto:${app.emails.support}`, '_blank')
           }}
         >
           Contact support

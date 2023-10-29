@@ -41,7 +41,7 @@ export const ErrorBoundary = () => {
           variant="light"
           icon={<ArrowRightIcon />}
           iconPosition="right"
-          onClick={() => link(`mailto:${app.support.email}`, '_blank')}
+          onClick={() => link(`mailto:${app.emails.support}`, '_blank')}
         >
           Contact support
         </Button>

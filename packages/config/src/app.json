@@ -5,9 +5,9 @@
     "theme": "teal",
     "neutral": "gray"
   },
-  "support": {
-    "from": "Shaun <shaun@fatbuck.app>",
-    "email": "shaun@fatbuck.app"
+  "emails": {
+    "transactional": "noreply@fatbuck.app",
+    "support": "shaun@fatbuck.app"
   },
   "social": {
     "twitter": "https://twitter.com",
