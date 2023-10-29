@@ -103,7 +103,7 @@ async function main(): Promise<void> {
     },
   }
 
-  fs.writeFileSync(path.join(PATH_TO_CONFIG_FOLDER, `app.json`), JSON.stringify(newApp, null, 2))
+  fs.writeFileSync(path.join(PATH_TO_CONFIG_FOLDER, `app.json`), JSON.stringify(newApp, null, 2) + '\n')
 
   // append the default tailwind colors to the figmaColors
   figmaColors = {
