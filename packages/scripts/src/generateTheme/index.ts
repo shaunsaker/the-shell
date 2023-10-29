@@ -62,7 +62,6 @@ async function main(): Promise<void> {
     throw new Error(`neutralColor ${neutralColor} is not a valid color`)
   }
 
-  let figmaColors: any = {}
   const newThemeColors = {
     ...THEME_COLORS,
   }
@@ -74,9 +73,6 @@ async function main(): Promise<void> {
     Object.keys(newThemeColors[themeKey as ThemeKey]).forEach(usageKey => {
       type UsageKey = keyof typeof newThemeColors[ThemeKey]
 
-      const figmaKey = `${themeKey}/${usageKey}`
-      figmaColors[figmaKey] = {}
-
       Object.keys(newThemeColors[themeKey as ThemeKey][usageKey as UsageKey]).forEach(variantKey => {
         type VariantKey = keyof typeof newThemeColors[ThemeKey][UsageKey]
 
@@ -84,9 +80,6 @@ async function main(): Promise<void> {
         const color = getHexColorFromThemeColor(themeColor.color === 'base' ? baseColors : neutralColors, themeColor)
 
         newThemeColors[themeKey as ThemeKey][usageKey as UsageKey][variantKey as VariantKey] = color
-
-        // set the Figma color where the theme and usage keys are joined by a slash
-        figmaColors[figmaKey][variantKey] = color
       })
     })
   })
@@ -104,14 +97,6 @@ async function main(): Promise<void> {
   }
 
   fs.writeFileSync(path.join(PATH_TO_CONFIG_FOLDER, `app.json`), JSON.stringify(newApp, null, 2) + '\n')
-
-  // append the default tailwind colors to the figmaColors
-  figmaColors = {
-    ...figmaColors,
-    ...colors,
-  }
-
-  fs.writeFileSync(path.join(PATH_TO_CONFIG_FOLDER, `figmaColors.json`), JSON.stringify(figmaColors, null, 2))
 
   log('Done ✅')
 }
