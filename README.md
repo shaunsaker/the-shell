@@ -11,7 +11,7 @@
 
 The ultimate boilerplate for building SAAS applications with React, Typescript, Tailwind CSS, Firebase and Stripe 😛 Set up your next project/prototype with minimal input, so you can do what you do best, build and test amazing new products 🔥
 
-Transform `8 weeks` of development into `1 hour` 🚀
+Transform `8 weeks` of development a few hours 🚀
 
 ---
 
@@ -105,27 +105,34 @@ We support 3 environments out of the box:
 ```
 git clone $TEMPLATE_URL $APP_NAME
 cd $APP_NAME
-yarn
 ```
 
-2. Install dependencies:
-
-```
-yarn
-```
-
-3. Clear the git history:
+2. Reset the git history:
 
 ```
 rm -rf .git
 git init
 ```
 
-4. In this file, replace all instances of $TEMPLATE_URL with $GITHUB_APP_URL. This will ensure that your Github Actions status badges are correct.
+3. Setup future upgrades:
 
-5. Create a new repo in Github.
+```
+git remote add template $TEMPLATE_URL
+```
 
-6. Push the code to Github:
+To apply future upgrades, see [Upgrading](#upgrading).
+
+4. Install dependencies:
+
+```
+yarn
+```
+
+6. In this file, replace all instances of $TEMPLATE_URL with $GITHUB_APP_URL. This will ensure that your Github Actions status badges are correct.
+
+7. Create a new repo in Github.
+
+8. Push the code to Github:
 
 ```
 git add .
@@ -134,7 +141,7 @@ git remote add origin $GITHUB_APP_URL
 git push -u origin master
 ```
 
-7. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
+9. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
 
 ```
 git checkout -b develop
@@ -578,8 +585,6 @@ These are the test cases that we should cover (manually for now):
 
 #### Guest/website user flow for new users
 
-- this is super confusing!
-
 1. User clicks on Buy Now button on website
 1. BE: createCheckoutSession => creates a customer (userId set to null) and a checkout session
 1. User is redirected to Stripe Checkout
@@ -593,3 +598,12 @@ These are the test cases that we should cover (manually for now):
 1. BE: onSubscriptionCreated => creates a subscription seat (and team + team members if on a team plan)
 1. BE: onSubscriptionSeatCreated => creates subscription info
 1. User is redirected to the app dashboard
+
+## Upgrading
+
+To upgrade your project to the latest version of the template, run the following command:
+
+```
+git fetch template master
+git merge template/master --allow-unrelated-histories
+```
