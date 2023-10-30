@@ -1,4 +1,4 @@
-# Launchpad
+# The Shell
 
 [![Development](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml/badge.svg?branch=develop)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml)
 [![Deploy Staging](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-staging.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-staging.yml)
@@ -218,7 +218,7 @@ cp ./packages/website/env/.env.example ./packages/website/env/.env.production
 cp ./.firebaserc.example ./.firebaserc
 ```
 
-15. In the [.firebaserc](./.firebaserc), replace all instances of the $TEMPLATE_APP_NAME with your $APP_NAME.
+15. Replace all instances of the $TEMPLATE_APP_NAME with your $APP_NAME.
 
 16. For each project, download your Firebase service account by visiting https://console.firebase.google.com/u/0/project/_/settings/serviceaccounts/adminsdk and clicking "Generate new private key". Add them to the [website](./packages/website) package as `service-account-staging.json` and `service-account-production.json`. The website needs the service accounts in order to pull pricing data from Firebase before creating a static export.
 
