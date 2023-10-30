@@ -1,4 +1,4 @@
-import { AnchorText, HeadingText, ParagraphText, TitleText } from 'components'
+import { AnchorText, Background, HeadingText, ParagraphText, TitleText } from 'components'
 import { app } from 'config'
 import React from 'react'
 
@@ -7,8 +7,10 @@ import { Section } from '@/components/section/Section'
 
 export default async function Page() {
   return (
-    <Section className="min-h-screen mt-[63px]">
-      <Container>
+    <Section className="min-h-screen mt-[63px] relative">
+      <Background variant="inverted" className="absolute inset-0" />
+
+      <Container className="relative">
         <TitleText>Privacy</TitleText>
 
         <ParagraphText className="mt-16 text-left flex flex-col gap-y-8">
