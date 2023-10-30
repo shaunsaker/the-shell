@@ -1,8 +1,8 @@
 'use client'
 
 import { Background, Button, ParagraphText, TitleText } from 'components'
-import { useRouter } from 'next/navigation'
 import React from 'react'
+import { useLink } from 'utils'
 
 import { PRIMARY_ACTION_LINK, PRIMARY_ACTION_TEXT } from '@/constants'
 
@@ -10,7 +10,7 @@ import { Container } from '../container/Container'
 import { Section } from '../section/Section'
 
 export const CallToAction = () => {
-  const router = useRouter()
+  const link = useLink()
 
   return (
     <Section className="relative">
@@ -28,7 +28,7 @@ export const CallToAction = () => {
           variant="secondaryInverted"
           size="lg"
           onClick={() => {
-            router.push(PRIMARY_ACTION_LINK)
+            link(PRIMARY_ACTION_LINK, '_blank')
           }}
         >
           {PRIMARY_ACTION_TEXT}
