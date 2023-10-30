@@ -1,10 +1,10 @@
 import mixpanel from 'mixpanel-browser'
 
-export const ANALYTICS_ENABLED = !import.meta.env.DEV && import.meta.env.VITE_MIXPANEL_TOKEN
+export const ANALYTICS_ENABLED = process.env.MODE !== 'development' && process.env.NEXT_PUBLIC_MIXPANEL_TOKEN
 
 const initMixpanel = () => {
   if (ANALYTICS_ENABLED) {
-    mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
+    mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN, {
       track_pageview: true,
       persistence: 'localStorage',
     })

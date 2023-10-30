@@ -374,7 +374,7 @@ gh secret set SENTRY_PROJECT --body $VALUE
 
 ### Setup Mixpanel
 
-1. Grab your staging and production project tokens and them to the respective files at [app/.env.staging](./packages/app/.env.staging) and [app/.env.production](./packages/app/.env.production).
+1. Grab your staging and production project tokens and them to the respective files at [app/.env.staging](./packages/app/.env.staging), [app/.env.production](./packages/app/.env.production), [website/.env.staging](./packages/website/env/.env.staging), [website/.env.production](./packages/website/env/.env.production).
 
 ---
 

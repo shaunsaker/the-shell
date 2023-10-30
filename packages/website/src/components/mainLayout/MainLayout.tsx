@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import { Footer } from '../footer/Footer'
 import { Header } from '../header/Header'
 
 type Props = {
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 export const MainLayout = ({ children }: Props) => {
