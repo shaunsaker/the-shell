@@ -30,11 +30,11 @@ h6 {
 }
 
 p {
-  @apply text-theme-content dark:text-dark-theme-content text-base lg:text-lg;
+  @apply text-theme-content dark:text-dark-theme-content text-base;
 }
 
 small {
-  @apply text-theme-content dark:text-dark-theme-content text-sm font-normal lg:text-base;
+  @apply text-theme-content dark:text-dark-theme-content text-sm font-normal;
 }
 
 a {
