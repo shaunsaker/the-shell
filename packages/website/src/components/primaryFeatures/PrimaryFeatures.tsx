@@ -10,25 +10,25 @@ const FEATURES: Feature[] = [
   {
     title: 'Feature 1',
     description:
-      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     image: '/screenshots/contacts.png',
   },
   {
     title: 'Feature 2',
     description:
-      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     image: '/screenshots/contacts.png',
   },
   {
     title: 'Feature 3',
     description:
-      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     image: '/screenshots/contacts.png',
   },
   {
     title: 'Feature 4',
     description:
-      'Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     image: '/screenshots/contacts.png',
   },
 ]
@@ -38,7 +38,7 @@ export const PrimaryFeatures = () => {
     <Features
       id={getRoutePartialId(routes.features)}
       title="Primary Features"
-      subtitle="Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
+      subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       features={FEATURES.map(feature => ({
         title: feature.title,
         description: feature.description,

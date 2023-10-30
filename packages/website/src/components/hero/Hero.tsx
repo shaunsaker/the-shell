@@ -1,6 +1,7 @@
 'use client'
 
 import { Background, Button, HeadingText, HugeText, ParagraphText } from 'components'
+import { app } from 'config'
 import React from 'react'
 import { useLink } from 'utils'
 
@@ -60,10 +61,7 @@ export const Hero = () => {
           {TITLE_HIGHLIGHTED && <HighlightedText>{TITLE_HIGHLIGHTED}</HighlightedText>}
         </HugeText>
 
-        <ParagraphText>
-          Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind
-          CSS and TypeScript.
-        </ParagraphText>
+        <ParagraphText>{app.description}</ParagraphText>
 
         <Button
           size="lg"
