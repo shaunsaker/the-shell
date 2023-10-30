@@ -1,4 +1,4 @@
-import { Alert, Button, SmallText, TextInput } from 'components'
+import { Alert, AnchorText, Button, SmallText, TextInput } from 'components'
 import { FormEvent, useCallback, useState } from 'react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -92,17 +92,15 @@ export const SignUp = () => {
             Sign up
           </Button>
 
-          <SmallText className="flex items-center">
-            Already a member?{' '}
-            <Button
-              className="-ml-2"
-              variant="light"
+          <SmallText className="flex items-center gap-x-2">
+            Already a member?
+            <AnchorText
               onClick={() => {
                 navigate(routes.signIn)
               }}
             >
               Sign in instead.
-            </Button>
+            </AnchorText>
           </SmallText>
         </form>
       </AuthLayout>

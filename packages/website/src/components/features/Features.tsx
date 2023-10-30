@@ -1,8 +1,8 @@
 'use client'
 
-import { Background, Button, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
+import { Background, Button, HeadingText, ParagraphText, TitleText } from 'components'
 import Image from 'next/image'
-import React, { ComponentPropsWithoutRef, useState } from 'react'
+import React, { ComponentPropsWithoutRef, ReactNode, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Container } from '@/components/container/Container'
@@ -17,10 +17,10 @@ export type Feature = {
 
 type Props = {
   variant?: 'default' | 'inverted'
-  title: string
-  subtitle: string
+  title: ReactNode
+  subtitle: ReactNode
   features: Feature[]
-} & ComponentPropsWithoutRef<'section'>
+} & Omit<ComponentPropsWithoutRef<'section'>, 'title'>
 
 export const Features = ({ className, variant = 'default', title, subtitle, features, ...props }: Props) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
@@ -38,7 +38,7 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
   )
 
   return (
-    <Section aria-label={title} className={twMerge('relative lg:pr-0', className)} {...props}>
+    <Section className={twMerge('relative lg:pr-0', className)} {...props}>
       <Background className="absolute inset-0" variant={variant} />
 
       <div className="relative">
@@ -112,9 +112,9 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
                     {feature.title}
                   </HeadingText>
 
-                  <SmallText className={twMerge(variant === 'default' ? 'text-white dark:text-white' : '')}>
+                  <ParagraphText className={twMerge(variant === 'default' ? 'text-white dark:text-white' : '')}>
                     {feature.description}
-                  </SmallText>
+                  </ParagraphText>
                 </Button>
               </li>
             ))}
