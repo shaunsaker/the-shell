@@ -4,7 +4,7 @@ import { Background, Button, ParagraphText, TitleText } from 'components'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
-import { BOOK_DEMO_LINK } from '@/constants'
+import { PRIMARY_ACTION_LINK, PRIMARY_ACTION_TEXT } from '@/constants'
 
 import { Container } from '../container/Container'
 import { Section } from '../section/Section'
@@ -28,10 +28,10 @@ export const CallToAction = () => {
           variant="secondaryInverted"
           size="lg"
           onClick={() => {
-            router.push(BOOK_DEMO_LINK)
+            router.push(PRIMARY_ACTION_LINK)
           }}
         >
-          Book a demo
+          {PRIMARY_ACTION_TEXT}
         </Button>
       </Container>
     </Section>

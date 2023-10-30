@@ -4,8 +4,9 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button, Headerbar, Logo, Popover, Sidebar } from 'components'
 import { useRouter } from 'next/navigation'
 import React, { ComponentProps, ComponentPropsWithoutRef, useState } from 'react'
+import { useLink } from 'utils'
 
-import { BOOK_DEMO_LINK } from '@/constants'
+import { PRIMARY_ACTION_LINK, PRIMARY_ACTION_TEXT, SECONDARY_ACTION_LINK, SECONDARY_ACTION_TEXT } from '@/constants'
 import { routes } from '@/routes'
 
 type NavigationItem = ComponentProps<typeof Sidebar>['items'][0]
@@ -29,9 +30,9 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
   },
 ]
 
-const SIGN_IN_NAVIGATION_ITEM: NavigationItem = {
-  name: 'Sign in',
-  href: process.env.NEXT_PUBLIC_APP_SIGN_IN_URL,
+const SECONDARY_ACTION: NavigationItem = {
+  name: SECONDARY_ACTION_TEXT,
+  href: SECONDARY_ACTION_LINK,
 }
 
 type Props = ComponentPropsWithoutRef<'header'>
@@ -40,6 +41,7 @@ export const Header = ({ ...props }: Props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const router = useRouter()
+  const link = useLink()
 
   return (
     <>
@@ -82,21 +84,21 @@ export const Header = ({ ...props }: Props) => {
         <div className="flex flex-1 items-center justify-end gap-x-2 pr-4 lg:pr-0">
           <div className="hidden lg:block">
             <Button
-              variant="lightNeutral"
+              variant="secondary"
               onClick={() => {
-                router.push(SIGN_IN_NAVIGATION_ITEM.href)
+                link(SECONDARY_ACTION.href, '_blank')
               }}
             >
-              {SIGN_IN_NAVIGATION_ITEM.name}
+              {SECONDARY_ACTION.name}
             </Button>
           </div>
 
           <Button
             onClick={() => {
-              router.push(BOOK_DEMO_LINK)
+              link(PRIMARY_ACTION_LINK, '_blank')
             }}
           >
-            Book a demo
+            {PRIMARY_ACTION_TEXT}
           </Button>
         </div>
       </Headerbar>
@@ -109,7 +111,7 @@ export const Header = ({ ...props }: Props) => {
           }}
         >
           <Sidebar
-            items={[...NAVIGATION_ITEMS, SIGN_IN_NAVIGATION_ITEM]}
+            items={[...NAVIGATION_ITEMS, SECONDARY_ACTION]}
             onItemClick={href => {
               router.push(href)
 
