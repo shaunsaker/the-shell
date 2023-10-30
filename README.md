@@ -128,11 +128,11 @@ To apply future upgrades, see [Upgrading](#upgrading).
 yarn
 ```
 
-6. In this file, replace all instances of $TEMPLATE_URL with $GITHUB_APP_URL. This will ensure that your Github Actions status badges are correct.
+5. In this file, replace all instances of $TEMPLATE_URL with $GITHUB_APP_URL. This will ensure that your Github Actions status badges are correct.
 
-7. Create a new repo in Github.
+6. Create a new repo in Github.
 
-8. Push the code to Github:
+7. Push the code to Github:
 
 ```
 git add .
@@ -141,7 +141,7 @@ git remote add origin $GITHUB_APP_URL
 git push -u origin master
 ```
 
-9. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
+8. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
 
 ```
 git checkout -b develop
