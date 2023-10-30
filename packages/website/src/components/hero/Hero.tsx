@@ -10,7 +10,7 @@ import Logoipsum2Logo from '@/assets/logos/logoipsum-2.svg'
 import Logoipsum3Logo from '@/assets/logos/logoipsum-3.svg'
 import Logoipsum4Logo from '@/assets/logos/logoipsum-4.svg'
 import Logoipsum5Logo from '@/assets/logos/logoipsum-5.svg'
-import { BOOK_DEMO_LINK } from '@/constants'
+import { PRIMARY_ACTION_LINK, PRIMARY_ACTION_TEXT } from '@/constants'
 
 import { Container } from '../container/Container'
 import { HighlightedText } from '../highlightedText/HighlightedText'
@@ -70,10 +70,10 @@ export const Hero = () => {
         <Button
           size="lg"
           onClick={() => {
-            router.push(BOOK_DEMO_LINK)
+            router.push(PRIMARY_ACTION_LINK)
           }}
         >
-          Book a demo
+          {PRIMARY_ACTION_TEXT}
         </Button>
       </Container>
 
