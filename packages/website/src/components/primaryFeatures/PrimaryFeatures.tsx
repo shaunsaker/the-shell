@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { routes } from '@/routes'
+import { getRoutePartialId, routes } from '@/routes'
 
 import { Feature, Features } from '../features/Features'
 
@@ -36,7 +36,7 @@ const FEATURES: Feature[] = [
 export const PrimaryFeatures = () => {
   return (
     <Features
-      id={routes.features.replace('/#', '')}
+      id={getRoutePartialId(routes.features)}
       title="Primary Features"
       subtitle="Launchpad is the ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and TypeScript."
       features={FEATURES.map(feature => ({

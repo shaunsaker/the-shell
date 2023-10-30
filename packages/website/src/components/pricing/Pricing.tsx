@@ -7,7 +7,7 @@ import { BillingInterval, Price, Product } from 'types'
 import { formatBillingInterval, getPricingCardProducts, parseBillingInterval } from 'utils'
 
 import { useCreateCheckoutSession } from '@/billing/hooks/useCreateCheckoutSession'
-import { routes } from '@/routes'
+import { getRoutePartialId, routes } from '@/routes'
 
 import { Container } from '../container/Container'
 import { HighlightedText } from '../highlightedText/HighlightedText'
@@ -54,7 +54,7 @@ export const Pricing = ({ className = '', products, prices, ...props }: Props) =
 
   return (
     <Section
-      id={routes.pricing.replace('/#', '')}
+      id={getRoutePartialId(routes.pricing)}
       aria-label={TITLE}
       className={twMerge('relative', className)}
       {...props}

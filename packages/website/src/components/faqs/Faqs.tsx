@@ -1,7 +1,7 @@
 import { Background, Columns, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
 import React from 'react'
 
-import { routes } from '@/routes'
+import { getRoutePartialId, routes } from '@/routes'
 
 import { Container } from '../container/Container'
 import { Section } from '../section/Section'
@@ -43,7 +43,7 @@ const QUESTIONS = [
 
 export const Faqs = () => {
   return (
-    <Section id={routes.faq.replace('/#', '')} aria-label={TITLE} className="relative overflow-hidden">
+    <Section id={getRoutePartialId(routes.faq)} aria-label={TITLE} className="relative overflow-hidden">
       <Background className="absolute inset-0" variant="inverted" />
 
       <div className="relative">
