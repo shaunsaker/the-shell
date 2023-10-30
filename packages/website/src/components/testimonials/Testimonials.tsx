@@ -1,7 +1,7 @@
 import { Background, Columns, ParagraphText, TitleText } from 'components'
 import React from 'react'
 
-import { routes } from '@/routes'
+import { getRoutePartialId, routes } from '@/routes'
 
 import { Container } from '../container/Container'
 import { Section } from '../section/Section'
@@ -38,7 +38,7 @@ const TESTIMONIALS: TestimonialProps[] = [
 
 export const Testimonials = () => {
   return (
-    <Section id={routes.testimonials.replace('/#', '')} aria-label={TITLE} className="relative">
+    <Section id={getRoutePartialId(routes.testimonials)} aria-label={TITLE} className="relative">
       <Background variant="inverted" className="absolute inset-0" />
 
       <div className="relative">
