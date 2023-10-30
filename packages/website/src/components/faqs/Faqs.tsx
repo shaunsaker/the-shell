@@ -59,9 +59,9 @@ export const Faqs = () => {
         <Columns className="mt-16">
           {QUESTIONS.map(faq => (
             <li key={faq.question}>
-              <HeadingText>{faq.question}</HeadingText>
+              <HeadingText className="mb-4">{faq.question}</HeadingText>
 
-              <SmallText className="mt-4">{faq.answer}</SmallText>
+              <SmallText>{faq.answer}</SmallText>
             </li>
           ))}
         </Columns>
