@@ -1,7 +1,6 @@
 'use client'
 
 import { Background, Button, HeadingText, HugeText, ParagraphText } from 'components'
-import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useLink } from 'utils'
 
@@ -48,7 +47,6 @@ const SOCIAL_PROOF_LINKS = [
 ]
 
 export const Hero = () => {
-  const router = useRouter()
   const link = useLink()
 
   return (
@@ -70,7 +68,7 @@ export const Hero = () => {
         <Button
           size="lg"
           onClick={() => {
-            router.push(PRIMARY_ACTION_LINK)
+            link(PRIMARY_ACTION_LINK, '_blank')
           }}
         >
           {PRIMARY_ACTION_TEXT}
