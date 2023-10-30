@@ -1,6 +1,7 @@
 'use client'
 
 import { Alert } from './components/alert/Alert'
+import { AnchorText } from './components/anchorText/AnchorText'
 import { Backdrop } from './components/backdrop/Backdrop'
 import { Background } from './components/background/Background'
 import { Badge } from './components/badge/Badge'
@@ -35,6 +36,7 @@ import { TitleText } from './components/titleText/TitleText'
 
 export {
   Alert,
+  AnchorText,
   Backdrop,
   Background,
   Badge,
