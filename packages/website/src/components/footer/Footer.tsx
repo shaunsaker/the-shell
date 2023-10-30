@@ -7,25 +7,25 @@ import React from 'react'
 
 import { routes } from '@/routes'
 
-const NAV_LINKS: Array<{ label: string; href: string }> = [
+const NAV_LINKS: Array<{ name: string; href: string }> = [
   {
-    label: 'Features',
+    name: 'Features',
     href: routes.features,
   },
   {
-    label: 'Testimonials',
+    name: 'Testimonials',
     href: routes.testimonials,
   },
   {
-    label: 'Pricing',
+    name: 'Pricing',
     href: routes.pricing,
   },
   {
-    label: 'Blog',
+    name: 'Blog',
     href: routes.blog,
   },
   {
-    label: 'Privacy',
+    name: 'Privacy',
     href: routes.privacy,
   },
 ]
@@ -55,7 +55,7 @@ export const Footer = () => {
                   router.push(link.href)
                 }}
               >
-                {link.label}
+                {link.name}
               </Button>
             ))}
           </nav>
