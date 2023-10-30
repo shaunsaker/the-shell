@@ -1,4 +1,4 @@
-import { Background, Columns, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
+import { Background, Card, Columns, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
 import React from 'react'
 
 import { getRoutePartialId, routes } from '@/routes'
@@ -59,9 +59,11 @@ export const Faqs = () => {
         <Columns className="mt-16">
           {QUESTIONS.map(faq => (
             <li key={faq.question}>
-              <HeadingText className="mb-4">{faq.question}</HeadingText>
+              <Card>
+                <HeadingText className="mb-4">{faq.question}</HeadingText>
 
-              <SmallText>{faq.answer}</SmallText>
+                <SmallText>{faq.answer}</SmallText>
+              </Card>
             </li>
           ))}
         </Columns>
