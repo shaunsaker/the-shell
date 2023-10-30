@@ -19,14 +19,14 @@ h1 {
 }
 
 h2 {
-  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-3xl tracking-tight lg:text-4xl;
+  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-3xl leading-normal tracking-tight lg:text-4xl lg:leading-normal;
 }
 
 h3,
 h4,
 h5,
 h6 {
-  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-lg font-semibold;
+  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-lg font-semibold leading-loose;
 }
 
 p {
@@ -34,5 +34,9 @@ p {
 }
 
 small {
-  @apply text-theme-content dark:text-dark-theme-content text-sm font-normal;
+  @apply text-theme-content dark:text-dark-theme-content text-sm font-normal lg:text-base;
+}
+
+a {
+  @apply text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle inline-block cursor-pointer whitespace-nowrap rounded-xl font-medium outline-2 outline-offset-4 transition-all focus-visible:outline;
 }
