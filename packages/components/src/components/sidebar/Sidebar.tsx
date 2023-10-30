@@ -31,7 +31,7 @@ export const Sidebar = ({ items, onItemClick }: Props) => {
                 <Button
                   icon={item.icon}
                   className={twMerge(
-                    'w-full justify-start border-none shadow-none outline-offset-0',
+                    'w-full justify-start border-none font-semibold shadow-none outline-offset-0',
                     item.active
                       ? 'bg-theme-brand-emphasis text-theme-brand-inverted dark:bg-dark-theme-brand-emphasis dark:text-dark-theme-brand-inverted'
                       : 'text-theme-brand-inverted hover:bg-theme-brand-emphasis dark:text-dark-theme-brand-inverted dark:hover:bg-dark-theme-brand-emphasis',
