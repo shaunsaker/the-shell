@@ -88,13 +88,13 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
 
         {/* DESKTOP */}
         <div className="hidden grid-cols-12 lg:grid">
-          <ul className="col-span-5 py-24 flex flex-col items-end">
+          <ul className="col-span-5 py-24 flex flex-col">
             {features.map((feature, index) => (
               <li key={feature.title}>
                 <Button
                   variant="light"
                   className={twMerge(
-                    'flex-col items-start whitespace-normal rounded-r-none bg-transparent p-6 text-left',
+                    'flex-col items-start whitespace-normal rounded-r-none bg-transparent p-6 text-left w-full',
                     variant === 'default'
                       ? 'hover:bg-white/10 dark:hover:bg-white/10'
                       : 'hover:bg-theme-brand/10 dark:hover:bg-dark-theme-brand/10',
