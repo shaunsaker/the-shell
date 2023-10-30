@@ -12,7 +12,7 @@
     "firebase:use": "firebase use",
     "deploy:staging": "export MODE=staging && firebase deploy --only firestore,functions,hosting:app,hosting:storybook,hosting:website",
     "deploy:production": "export MODE=production && firebase deploy --only firestore,functions,hosting:app,hosting:website",
-    "upgrade:template": "git fetch template master && git rebase template/master --allow-unrelated-histories -X theirs"
+    "upgrade:template": "git fetch template master && git rebase template/master"
   },
   "packageManager": "yarn@1.22.19",
   "workspaces": {
