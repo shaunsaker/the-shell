@@ -50,7 +50,7 @@ export const Hero = () => {
   const link = useLink()
 
   return (
-    <Section aria-label={TITLE} className="relative flex min-h-screen flex-col pb-[63px] lg:pb-8 mt-[63px] lg:mt-0">
+    <Section aria-label={TITLE} className="relative flex min-h-screen flex-col pb-[95px] mt-[63px]">
       <Background variant="inverted" className="absolute inset-0" />
 
       <Container className="flex-1 justify-center">
@@ -76,7 +76,7 @@ export const Hero = () => {
       </Container>
 
       {SOCIAL_PROOF_LINKS.length && (
-        <div className="relative mt-8 flex flex-col items-center">
+        <div className="relative mt-16 flex flex-col items-center">
           <HeadingText>Trusted by the best</HeadingText>
 
           <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 lg:gap-6">
