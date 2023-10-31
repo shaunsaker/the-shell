@@ -10,6 +10,7 @@ import { Breadcrumbs } from './components/breadcrumbs/Breadcrumbs'
 import { Button } from './components/button/Button'
 import { Card } from './components/card/Card'
 import { Columns } from './components/columns/Columns'
+import { CopyableText } from './components/copyableText/CopyableText'
 import { Dialog } from './components/dialog/Dialog'
 import { ErrorPage } from './components/errorPage/ErrorPage'
 import { Headerbar } from './components/headerbar/Headerbar'
@@ -45,6 +46,7 @@ export {
   Button,
   Card,
   Columns,
+  CopyableText,
   Dialog,
   ErrorPage,
   Headerbar,
