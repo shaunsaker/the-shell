@@ -23,12 +23,7 @@ export const SettingsNavbar = () => {
 
   const defaultTeamId = (teams?.length && teams[0].id) || ''
   const teamsPageDisabled =
-    hasActiveSubscriptionLoading ||
-    !hasActiveSubscription ||
-    hasTeamPlanLoading ||
-    !hasTeamPlan ||
-    teamsLoading ||
-    !defaultTeamId
+    hasActiveSubscriptionLoading || !hasActiveSubscription || hasTeamPlanLoading || !hasTeamPlan || teamsLoading
 
   const items: NavigationItem[] = [
     {

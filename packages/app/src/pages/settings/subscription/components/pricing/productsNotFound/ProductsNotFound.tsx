@@ -13,7 +13,9 @@ export const ProductsNotFound = () => {
         title="No products found"
         description="Create them in your Stripe dashboard."
       >
-        <Button onClick={() => link('https://dashboard.stripe.com/dashboard', '_blank')}>Go to Stripe dashboard</Button>
+        <Button onClick={() => link('https://dashboard.stripe.com/test/dashboard', '_blank')}>
+          Go to Stripe dashboard
+        </Button>
       </BlankState>
     </main>
   )
