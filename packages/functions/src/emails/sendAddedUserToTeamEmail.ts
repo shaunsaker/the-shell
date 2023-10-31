@@ -21,7 +21,7 @@ export const sendAddedUserToTeamEmail = async ({
   buttonText: string
 }) => {
   const data = await resend.emails.send({
-    from: app.emails.support,
+    from: app.emails.transactional,
     to: [userEmail],
     subject: `Welcome to the ${teamName} team!`,
     react: AddedToTeam({ siteUrl, userName, teamName, adminTeamMemberName, buttonUrl, buttonText }),

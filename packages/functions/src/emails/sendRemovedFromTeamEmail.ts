@@ -17,7 +17,7 @@ export const sendRemovedFromTeamEmail = async ({
   adminTeamMemberName: string
 }) => {
   const data = await resend.emails.send({
-    from: app.emails.support,
+    from: app.emails.transactional,
     to: [userEmail],
     subject: `You've been removed from the ${teamName} team.`,
     react: RemovedFromTeam({ siteUrl, userName, teamName, adminTeamMemberName }),

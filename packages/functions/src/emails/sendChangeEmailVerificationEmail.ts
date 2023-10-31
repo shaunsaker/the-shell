@@ -13,7 +13,7 @@ export const sendChangeEmailVerificationEmail = async ({
   emailVerificationLink: string
 }) => {
   const data = await resend.emails.send({
-    from: app.emails.support,
+    from: app.emails.transactional,
     to: [email],
     subject: `Verify your email for ${app.name}`,
     react: ChangeEmailVerification({ siteUrl, emailVerificationLink }),
