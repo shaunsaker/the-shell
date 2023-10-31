@@ -237,6 +237,8 @@ gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < ./packages/website/ser
 
 1. For each project and for each site, connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions. A good system for subdomains can be found in the [Domains](#domains) section.
 
+2. Don't forget to about the website urls in [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) push your env files to Github again.
+
 ---
 
 ### Setup Stripe
