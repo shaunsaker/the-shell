@@ -35,7 +35,7 @@ export const CopyableText = ({ className = '', children, ...props }: Props) => {
       <AnimatePresence>
         {isHovered && (
           <motion.span
-            className="absolute -right-5 -top-5 h-5 w-5"
+            className="bg-theme-background dark:bg-dark-theme-background absolute -right-5 -top-5 flex h-5 w-5 items-center justify-center rounded-full"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
