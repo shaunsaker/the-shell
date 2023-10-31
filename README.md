@@ -237,11 +237,13 @@ gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < ./packages/website/ser
 
 1. For each project and for each site, connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions. A good system for subdomains can be found in the [Domains](#domains) section.
 
-2. Don't forget to about the website urls in [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) push your env files to Github again.
+2. Update the website urls in [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) and push your env files to Github again.
 
 3. For each project, add your domain to the whitelisted domains by visiting https://console.firebase.google.com/u/0/project/_/authentication/settings, clicking "Authorized domains" and adding your domain.
 
-4. If you already deployed your Firebase functions before adding your custom domain, you'll need to delete them and redeploy (I know right 😅).
+4. For each project, update the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://$CUSTOM_DOMAIN/user-management.
+
+5. If you already deployed your Firebase functions before adding your custom domain, you'll need to delete them and redeploy (I know right 😅).
 
 ---
 
