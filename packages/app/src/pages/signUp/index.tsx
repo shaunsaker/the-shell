@@ -45,6 +45,11 @@ export const SignUp = () => {
   return (
     <>
       <AuthLayout title={`Sign up to ${app.name}`}>
+        <Alert variant="info">
+          Attention, Innovators! 🚀 Welcome to our Demo! This is a safe space to explore what we do. No spam, no hassle.
+          Feel free to play around! You're in control - delete your account anytime. Happy experimenting! 🌟
+        </Alert>
+
         {hasSubscriptionSuccess && (
           <Alert variant="success">Your subscription was purchased successfully. Please sign up to continue.</Alert>
         )}
