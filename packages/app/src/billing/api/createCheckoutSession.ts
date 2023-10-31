@@ -8,7 +8,7 @@ export const createCheckoutSession = async ({ priceId, quantity }: { priceId: st
   const response = await createCheckoutSessionFunction({
     priceId,
     quantity,
-    successUrl: window.location.href,
+    successUrl: `${window.location.href}?success=true`,
     cancelUrl: window.location.href,
   })
 

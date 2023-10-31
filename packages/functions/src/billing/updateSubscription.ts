@@ -63,5 +63,5 @@ export const updateSubscription = async ({
     .firestore()
     .collection(FirestoreCollection.Subscriptions)
     .doc(stripeSubscription.id)
-    .set(subscriptionData)
+    .set(subscriptionData, { merge: true })
 }
