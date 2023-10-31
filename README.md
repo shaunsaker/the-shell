@@ -541,7 +541,7 @@ These are the test cases that we should cover (manually for now):
       - sign in new password
   - account settings
     - change name
-    - change email => User not found
+    - change email
     - change password
     - delete account
   - billing
