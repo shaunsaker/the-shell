@@ -1,4 +1,4 @@
-import { PricingCards, SmallText, TitleText } from 'components'
+import { Alert, PricingCards, SmallText, TitleText } from 'components'
 import React, { ComponentProps, useEffect, useMemo, useState } from 'react'
 import { BillingInterval } from 'types'
 import { formatBillingInterval, getPricingCardProducts, parseBillingInterval } from 'utils'
@@ -50,6 +50,12 @@ export const Pricing = () => {
 
   return (
     <main className="flex flex-col items-center">
+      <Alert variant="info" className="mb-4">
+        Hey Trailblazers! 💳 This is our Test Zone! Feel free to play around. For credit card details, use 4242 4242
+        4242 4242, any CVV, and billing address. No real transactions here, just exploration and fun! Happy tinkering!
+        🎉
+      </Alert>
+
       <div className="mb-8 w-full max-w-lg text-center">
         <TitleText className="my-4">Pricing plans for teams of all sizes</TitleText>
 
