@@ -19,14 +19,14 @@ h1 {
 }
 
 h2 {
-  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-3xl leading-normal tracking-tight lg:text-4xl lg:leading-normal;
+  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-3xl leading-[1.25] tracking-tight lg:text-4xl lg:leading-[1.25];
 }
 
 h3,
 h4,
 h5,
 h6 {
-  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-lg font-semibold leading-loose;
+  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-lg font-semibold;
 }
 
 p {
