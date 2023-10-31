@@ -239,6 +239,10 @@ gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < ./packages/website/ser
 
 2. Don't forget to about the website urls in [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) push your env files to Github again.
 
+3. For each project, add your domain to the whitelisted domains by visiting https://console.firebase.google.com/u/0/project/_/authentication/settings, clicking "Authorized domains" and adding your domain.
+
+4. If you already deployed your Firebase functions before adding your custom domain, you'll need to delete them and redeploy (I know right 😅).
+
 ---
 
 ### Setup Stripe
