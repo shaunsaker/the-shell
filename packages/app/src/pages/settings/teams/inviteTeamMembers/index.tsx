@@ -5,21 +5,15 @@ import { useNavigate } from 'react-router-dom'
 import { validateEmail } from 'utils'
 
 import { useIsSubscriptionOwner } from '@/billing/hooks/useIsSubscriptionOwner'
-import { useRestrictedSubscriptionRoute } from '@/billing/hooks/useRestrictedSubscriptionRoute'
-import { useRestrictedTeamPlanRoute } from '@/billing/hooks/useRestrictedTeamPlanRoute'
 import { useSubscriptionInfo } from '@/billing/hooks/useSubscriptionInfo'
 import { SettingsList } from '@/components/settingsList/SettingsList'
 import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 import { SettingsTeamsBreadcrumbs } from '@/components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
 import { routes } from '@/router/routes'
 import { useInviteTeamMembers } from '@/teams/hooks/useInviteTeamMember'
-import { useRestrictedTeamAdminRoute } from '@/teams/hooks/useRestrictedTeamAdminRoute'
 import { useTeam } from '@/teams/hooks/useTeam'
 
 export const SettingsInviteTeamMembers = () => {
-  const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useRestrictedSubscriptionRoute()
-  const { data: hasTeamPlan, isLoading: hasTeamPlanLoading } = useRestrictedTeamPlanRoute()
-  const { data: isTeamAdmin, isLoading: isTeamAdminLoading } = useRestrictedTeamAdminRoute()
   const { data: team, isLoading: teamLoading } = useTeam()
   const { data: subscriptionInfo, isLoading: subscriptionInfoLoading } = useSubscriptionInfo()
   const { data: isSubscriptionOwner, isLoading: isSubscriptionOwnerLoading } = useIsSubscriptionOwner()
@@ -32,20 +26,10 @@ export const SettingsInviteTeamMembers = () => {
 
   const availableSeats = (subscriptionInfo?.availableSeats || 0) - emails.length
   const hasAvailableSeats = availableSeats > 0
-  const isLoading =
-    hasActiveSubscriptionLoading ||
-    hasTeamPlanLoading ||
-    isTeamAdminLoading ||
-    teamLoading ||
-    subscriptionInfoLoading ||
-    isSubscriptionOwnerLoading
+  const isLoading = teamLoading || subscriptionInfoLoading || isSubscriptionOwnerLoading
   const inputDisabled = isLoading || !hasAvailableSeats
   const submitDisabled = isLoading || !validateEmail(email)
   const sendInvitesDisabled = isLoading || emails.length === 0
-
-  if (!hasActiveSubscription || !hasTeamPlan || !isTeamAdmin) {
-    return null
-  }
 
   return (
     <SettingsList>

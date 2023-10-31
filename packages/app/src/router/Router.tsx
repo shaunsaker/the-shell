@@ -1,11 +1,14 @@
 import { ErrorBoundary } from '@sentry/react'
-import { Loading } from 'components'
 import React from 'react'
-import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router-dom'
 
-import { useAuthUser } from '@/auth/hooks/useAuthUser'
+import { AuthenticatedLayout } from '@/components/authenticatedLayout/AuthenticatedLayout'
 import { MainLayout } from '@/components/mainLayout/MainLayout'
 import { SettingsLayout } from '@/components/settingsLayout/SettingsLayout'
+import { SubscriptionLayout } from '@/components/subscriptionLayout/SubscriptionLayout'
+import { TeamAdminLayout } from '@/components/teamAdminLayout/TeamAdminLayout'
+import { TeamPlanLayout } from '@/components/teamPlanLayout/TeamPlanLayout'
+import { UnauthenticatedLayout } from '@/components/unauthenticatedLayout/UnauthenticatedLayout'
 import { Dashboard } from '@/pages/dashboard'
 import { ForgotPassword } from '@/pages/forgotPassword'
 import { SettingsAccount } from '@/pages/settings/account'
@@ -22,102 +25,70 @@ import { routes } from './routes'
 
 const errorElement = <ErrorBoundary />
 
-const unauthorisedRoutes: RouteObject[] = [
-  {
-    path: routes.signUp,
-    element: <SignUp />,
-    errorElement,
-  },
-  {
-    path: routes.signIn,
-    element: <SignIn />,
-    errorElement,
-  },
-  {
-    path: routes.forgotPassword,
-    element: <ForgotPassword />,
-    errorElement,
-  },
-  {
-    path: routes.userManagement,
-    element: <UserManagement />,
-    errorElement,
-  },
-  { path: '*', element: <Navigate to={routes.signIn} /> },
-]
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route element={<UnauthenticatedLayout />} errorElement={errorElement}>
+        <Route path={routes.signUp} element={<SignUp />} errorElement={errorElement} />
 
-const authorisedRoutes: RouteObject[] = [
-  {
-    element: <MainLayout />,
-    children: [
-      {
-        path: routes.dashboard,
-        element: <Dashboard />,
-        errorElement,
-      },
-      {
-        element: <SettingsLayout />,
-        children: [
-          {
-            path: routes.settings,
-            element: <Navigate to={routes.settingsAccount} />,
-            errorElement,
-          },
-          {
-            path: routes.settingsAccount,
-            element: <SettingsAccount />,
-            errorElement,
-          },
-          {
-            path: routes.settingsSubscription,
-            element: <SettingsSubscription />,
-            errorElement,
-          },
-          {
-            path: routes.settingsTeam,
-            element: <SettingsTeam />,
-            errorElement,
-          },
-          {
-            path: routes.settingsInviteTeamMembers,
-            element: <SettingsInviteTeamMembers />,
-            errorElement,
-          },
-          {
-            path: routes.settingsTeamMember,
-            element: <SettingsTeamMember />,
-            children: [
-              {
-                path: routes.settingsRemoveTeamMember,
-                element: <SettingsRemoveTeamMember />,
-                errorElement,
-              },
-            ],
-            errorElement,
-          },
-          { path: '*', element: <Navigate to={routes.settingsAccount} /> },
-        ],
-        errorElement,
-      },
-      { path: '*', element: <Navigate to={routes.dashboard} /> },
-    ],
-  },
-]
+        <Route path={routes.signIn} element={<SignIn />} errorElement={errorElement} />
 
-const unauthorisedRouter = createBrowserRouter(unauthorisedRoutes)
-const authorisedRouter = createBrowserRouter(authorisedRoutes)
+        <Route path={routes.forgotPassword} element={<ForgotPassword />} errorElement={errorElement} />
+
+        <Route path={routes.userManagement} element={<UserManagement />} errorElement={errorElement} />
+
+        <Route path="*" element={<Navigate to={routes.signIn} />} />
+      </Route>
+
+      <Route element={<AuthenticatedLayout />} errorElement={errorElement}>
+        <Route element={<MainLayout />} errorElement={errorElement}>
+          <Route element={<SubscriptionLayout />} errorElement={errorElement}>
+            <Route path={routes.dashboard} element={<Dashboard />} errorElement={errorElement} />
+          </Route>
+
+          <Route element={<SettingsLayout />} errorElement={errorElement}>
+            <Route
+              path={routes.settings}
+              element={<Navigate to={routes.settingsAccount} />}
+              errorElement={errorElement}
+            />
+
+            <Route path={routes.settingsAccount} element={<SettingsAccount />} errorElement={errorElement} />
+
+            <Route path={routes.settingsSubscription} element={<SettingsSubscription />} errorElement={errorElement} />
+
+            <Route element={<SubscriptionLayout />} errorElement={errorElement}>
+              <Route element={<TeamPlanLayout />} errorElement={errorElement}>
+                <Route path={routes.settingsTeam} element={<SettingsTeam />} errorElement={errorElement} />
+
+                <Route element={<TeamAdminLayout />} errorElement={errorElement}>
+                  <Route
+                    path={routes.settingsInviteTeamMembers}
+                    element={<SettingsInviteTeamMembers />}
+                    errorElement={errorElement}
+                  />
+
+                  <Route path={routes.settingsTeamMember} element={<SettingsTeamMember />} errorElement={errorElement}>
+                    <Route
+                      path={routes.settingsRemoveTeamMember}
+                      element={<SettingsRemoveTeamMember />}
+                      errorElement={errorElement}
+                    />
+                  </Route>
+                </Route>
+              </Route>
+            </Route>
+
+            <Route path="*" element={<Navigate to={routes.settingsAccount} />} />
+          </Route>
+
+          <Route path="*" element={<Navigate to={routes.dashboard} />} />
+        </Route>
+      </Route>
+    </>,
+  ),
+)
 
 export const Router = () => {
-  const { data: authUser, isLoading: authUserLoading } = useAuthUser()
-
-  const isLoading = authUserLoading
-
-  // the user can view the authenticated stack if they have auth and their email is verified
-  const isAuthenticated = authUser && authUser.emailVerified
-
-  if (isLoading) {
-    return <Loading />
-  }
-
-  return <RouterProvider router={isAuthenticated ? authorisedRouter : unauthorisedRouter} />
+  return <RouterProvider router={router} />
 }
