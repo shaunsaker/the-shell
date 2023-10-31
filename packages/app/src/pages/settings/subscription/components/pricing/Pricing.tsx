@@ -51,9 +51,9 @@ export const Pricing = () => {
   return (
     <main className="flex flex-col items-center">
       <div className="mb-8 w-full max-w-lg text-center">
-        <TitleText className="mt-4">Pricing plans for teams of all sizes</TitleText>
+        <TitleText className="my-4">Pricing plans for teams of all sizes</TitleText>
 
-        <SmallText className="mt-4">
+        <SmallText>
           Choose an affordable plan that&apos;s packed with the best features for engaging your audience, creating
           customer loyalty, and driving sales.
         </SmallText>

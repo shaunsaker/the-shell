@@ -26,10 +26,10 @@ export const PricingCard = ({
     <Card
       className={twMerge(
         highlight ? 'ring-theme-brand dark:ring-theme-brand ring' : '',
-        'mx-auto flex max-w-lg flex-col gap-y-4',
+        'mx-auto flex h-full max-w-lg flex-col gap-y-4',
       )}
     >
-      <div className="flex justify-between gap-x-4">
+      <div className="flex flex-wrap justify-between gap-x-4 gap-y-2">
         <HeadingText className={highlight ? 'text-theme-brand dark:text-theme-brand' : ''}>{title}</HeadingText>
 
         {highlight && <Badge>Most popular</Badge>}
