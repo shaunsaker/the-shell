@@ -2,9 +2,11 @@
 
 import { Alert } from './components/alert/Alert'
 import { AnchorText } from './components/anchorText/AnchorText'
+import { AreaChart } from './components/areaChart/AreaChart'
 import { Backdrop } from './components/backdrop/Backdrop'
 import { Background } from './components/background/Background'
 import { Badge } from './components/badge/Badge'
+import { BarChart } from './components/barChart/BarChart'
 import { BlankState } from './components/blankState/BlankState'
 import { Breadcrumbs } from './components/breadcrumbs/Breadcrumbs'
 import { Button } from './components/button/Button'
@@ -12,6 +14,7 @@ import { Card } from './components/card/Card'
 import { Columns } from './components/columns/Columns'
 import { CopyableText } from './components/copyableText/CopyableText'
 import { Dialog } from './components/dialog/Dialog'
+import { DonutChart } from './components/donutChart/DonutChart'
 import { ErrorPage } from './components/errorPage/ErrorPage'
 import { Headerbar } from './components/headerbar/Headerbar'
 import { HeadingText } from './components/headingText/HeadingText'
@@ -38,9 +41,11 @@ import { TitleText } from './components/titleText/TitleText'
 export {
   Alert,
   AnchorText,
+  AreaChart,
   Backdrop,
   Background,
   Badge,
+  BarChart,
   BlankState,
   Breadcrumbs,
   Button,
@@ -48,6 +53,7 @@ export {
   Columns,
   CopyableText,
   Dialog,
+  DonutChart,
   ErrorPage,
   Headerbar,
   HeadingText,

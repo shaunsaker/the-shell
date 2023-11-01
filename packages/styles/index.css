@@ -30,7 +30,7 @@ h6 {
 }
 
 p {
-  @apply text-theme-content dark:text-dark-theme-content text-base;
+  @apply text-theme-content dark:text-dark-theme-content;
 }
 
 small {
@@ -39,4 +39,9 @@ small {
 
 a {
   @apply text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis focus-visible:outline-theme-brand-subtle dark:focus-visible:outline-dark-theme-brand-subtle inline-block cursor-pointer whitespace-nowrap rounded-xl font-medium outline-2 outline-offset-4 transition-all focus-visible:outline;
+}
+
+/* added for components charts - not ideal but it means we don't need to use the @tremor theme */
+.recharts-tooltip-wrapper > div {
+  @apply bg-theme-background dark:bg-dark-theme-background;
 }
