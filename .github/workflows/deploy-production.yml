@@ -26,17 +26,17 @@ jobs:
           echo "${{ secrets.ENV_FILE_PRODUCTION }}" > ./packages/functions/.env.production
           echo "${{ secrets.ENV_FILE_PRODUCTION }}" > ./packages/website/env/.env.production
 
-      # Authenticate with Google Cloud to fetch admin data and deploy website
+      # Authenticate with Google Cloud for firebase
       - name: 'Authenticate with Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION }}'
 
       # Set the active project
-      - run: yarn firebase:use production --token ${{ secrets.FIREBASE_TOKEN }}
+      - run: yarn firebase:use production
 
       # Deploy production
-      - run: yarn deploy:production --token ${{ secrets.FIREBASE_TOKEN }}
+      - run: yarn deploy:production
 
   deploy-sentry:
     needs: deploy

@@ -31,17 +31,17 @@ jobs:
           echo "${{ secrets.ENV_FILE_STAGING }}" > ./packages/functions/.env.staging
           echo "${{ secrets.ENV_FILE_STAGING }}" > ./packages/website/env/.env.staging
 
-      # Authenticate with Google Cloud to fetch admin data and deploy website
+      # Authenticate with Google Cloud for firebase
       - name: 'Authenticate with Google Cloud'
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_STAGING }}'
 
       # Set the active project
-      - run: yarn firebase:use staging --token ${{ secrets.FIREBASE_TOKEN }}
+      - run: yarn firebase:use staging
 
       # Deploy staging
-      - run: yarn deploy:staging --token ${{ secrets.FIREBASE_TOKEN }}
+      - run: yarn deploy:staging
 
   deploy-sentry:
     needs: deploy
