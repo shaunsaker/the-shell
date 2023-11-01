@@ -8,7 +8,7 @@ import { usePrices } from '@/billing/hooks/usePrices'
 import { useProducts } from '@/billing/hooks/useProducts'
 import { useSubscriptions } from '@/billing/hooks/useSubscriptions'
 import { useSubscriptionsListener } from '@/billing/hooks/useSubscriptionsListener'
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 import { useUser } from '@/user/hooks/useUser'
 
 export const SubscriptionDetailsSection = () => {
@@ -31,9 +31,11 @@ export const SubscriptionDetailsSection = () => {
   const activeProduct = products?.find(product => product.id === activePrice?.productId)
 
   return (
-    <SettingsSection
+    <PageSection
+      className="pt-0 lg:pt-0"
       title="Subscription details"
       description="Update your subscription details by clicking on the 'Manage plan' button."
+      fullWidth={false}
     >
       <List>
         <ListItem>
@@ -142,6 +144,6 @@ export const SubscriptionDetailsSection = () => {
           Manage plan
         </Button>
       </div>
-    </SettingsSection>
+    </PageSection>
   )
 }

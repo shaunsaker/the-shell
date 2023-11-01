@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { validateEmail } from 'utils'
 
 import { useSendChangeEmailVerification } from '@/auth/hooks/useSendChangeEmailVerification'
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 import { useUser } from '@/user/hooks/useUser'
 
 export const ChangeEmailSection = () => {
@@ -22,7 +22,11 @@ export const ChangeEmailSection = () => {
   }, [email])
 
   return (
-    <SettingsSection title="Change email" description="Update your email address associated with your account.">
+    <PageSection
+      title="Change email"
+      description="Update your email address associated with your account."
+      fullWidth={false}
+    >
       <TextInput
         label="New email address"
         type="email"
@@ -43,6 +47,6 @@ export const ChangeEmailSection = () => {
           Save
         </Button>
       </div>
-    </SettingsSection>
+    </PageSection>
   )
 }

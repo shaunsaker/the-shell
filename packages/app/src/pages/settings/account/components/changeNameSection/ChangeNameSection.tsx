@@ -1,7 +1,7 @@
 import { Button, TextInput } from 'components'
 import React, { useEffect, useState } from 'react'
 
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 import { useUpdateUser } from '@/user/hooks/useUpdateUser'
 import { useUser } from '@/user/hooks/useUser'
 
@@ -26,7 +26,12 @@ export const ChangeNameSection = () => {
   }, [firstName, lastName])
 
   return (
-    <SettingsSection title="Change name" description="Update your personal details associated with your account.">
+    <PageSection
+      className="pt-0 lg:pt-0"
+      title="Change name"
+      description="Update your personal details associated with your account."
+      fullWidth={false}
+    >
       <div className="flex flex-wrap gap-6 lg:flex-nowrap">
         <TextInput
           className="flex-1"
@@ -64,6 +69,6 @@ export const ChangeNameSection = () => {
           Save
         </Button>
       </div>
-    </SettingsSection>
+    </PageSection>
   )
 }

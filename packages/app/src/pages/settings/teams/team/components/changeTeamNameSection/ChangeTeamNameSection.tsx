@@ -1,7 +1,7 @@
 import { Button, SkeletonLoader, TextInput } from 'components'
 import React, { useEffect, useState } from 'react'
 
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '@/teams/hooks/useTeam'
 import { useUpdateTeam } from '@/teams/hooks/useUpdateTeam'
@@ -24,7 +24,7 @@ export const ChangeTeamNameSection = () => {
   }, [team?.name])
 
   return (
-    <SettingsSection className="border-b-0" title="Change team name" description="Update your team name.">
+    <PageSection className="border-b-0" title="Change team name" description="Update your team name.">
       {teamsLoading ? (
         <SkeletonLoader />
       ) : (
@@ -51,6 +51,6 @@ export const ChangeTeamNameSection = () => {
           Save
         </Button>
       </div>
-    </SettingsSection>
+    </PageSection>
   )
 }

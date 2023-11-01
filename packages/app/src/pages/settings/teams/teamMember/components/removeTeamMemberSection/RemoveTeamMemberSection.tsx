@@ -2,7 +2,7 @@ import { Alert, Button, SkeletonLoader } from 'components'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
 import { useIsTeamMemberLastAdmin } from '@/teams/hooks/useIsTeamMemberLastAdmin'
 import { useTeamMember } from '@/teams/hooks/useTeamMember'
@@ -17,7 +17,7 @@ export const RemoveTeamMemberSection = () => {
   const disabled = isLoading || isTeamMemberLastAdmin
 
   return (
-    <SettingsSection
+    <PageSection
       className="border-b-0"
       title="Remove team member"
       description="Remove this team member from your team. This action cannot be undone."
@@ -52,6 +52,6 @@ export const RemoveTeamMemberSection = () => {
           </div>
         </>
       )}
-    </SettingsSection>
+    </PageSection>
   )
 }
