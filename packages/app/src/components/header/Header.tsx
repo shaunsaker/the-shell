@@ -1,18 +1,17 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button, Headerbar } from 'components'
-import React, { ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { useSidebarOpen } from '@/sidebar/hooks/useSidebarOpen'
 
-type Props = {
-  children?: ReactNode
-}
+type Props = ComponentPropsWithoutRef<'header'>
 
-export const Header = ({ children }: Props) => {
+export const Header = ({ className = '', children }: Props) => {
   const [_, setSidebarOpen] = useSidebarOpen()
 
   return (
-    <Headerbar>
+    <Headerbar className={twMerge(className)}>
       <Button
         variant="lightNeutral"
         className="mr-2 lg:hidden"
