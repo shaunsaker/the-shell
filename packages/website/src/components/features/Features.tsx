@@ -83,7 +83,7 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
             {activeFeature.description}
           </ParagraphText>
 
-          <div className="mt-4 overflow-hidden rounded-xl shadow-xl">{imageComponent}</div>
+          <div className="mt-4 overflow-hidden rounded-md shadow-xl">{imageComponent}</div>
         </div>
 
         {/* DESKTOP */}
@@ -120,7 +120,9 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
             ))}
           </ul>
 
-          <div className="col-span-7 overflow-hidden rounded-l-xl shadow-xl">{imageComponent}</div>
+          <div className="col-span-7 overflow-hidden rounded-l-xl shadow-xl border-2 border-r-0 border-theme-brand-subtle dark-border-dark-theme-brand-subtle">
+            {imageComponent}
+          </div>
         </div>
       </div>
     </Section>
