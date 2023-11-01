@@ -15,7 +15,7 @@ export const BlogPost = ({
   return (
     <Link
       href={routes.blogPost.replace(BLOG_POST_PARAM, slug)}
-      className="outline-theme-brand-subtle dark:outline-dark-theme-brand-subtle outline-2 outline-offset-8 transition-colors rounded-xl"
+      className="outline-theme-brand-subtle dark:outline-dark-theme-brand-subtle outline-2 outline-offset-8 transition-colors rounded-xl w-full"
     >
       <Card>
         <Image className="mb-6 rounded-xl" src={image} alt={title} width={672} height={336} />
