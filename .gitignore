@@ -3,5 +3,10 @@ node_modules
 yarn-error.log
 .turbo
 tsconfig.tsbuildinfo
+
+# firebase
 firebase-debug.log
 .firebase
+
+# secrets
+service-account-*.json
