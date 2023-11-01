@@ -6,6 +6,7 @@ const IGNORED_SENTRY_ERRORS: string[] = [
   'auth/wrong-password',
   'auth/network-request-failed',
   'auth/email-already-in-use',
+  'auth/invalid-login-credentials',
 ]
 
 if (!import.meta.env.DEV && SENTRY_DSN && ENVIRONMENT) {
