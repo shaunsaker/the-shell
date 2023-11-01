@@ -52,7 +52,7 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
 
         {/* MOBILE */}
         <div className="flex flex-col rounded-lg bg-white/10 ring-1 ring-inset ring-white/10 lg:hidden">
-          <ul className="flex items-center gap-x-4 overflow-x-auto p-6">
+          <ul className="flex items-center gap-x-4 overflow-x-auto p-4">
             {features.map((feature, index) => (
               <li key={feature.title}>
                 <Button
