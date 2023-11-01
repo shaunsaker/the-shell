@@ -2,6 +2,7 @@
 
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button, Headerbar, Logo, Popover, Sidebar } from 'components'
+import { Logomark } from 'components/src/components/logomark/Logomark'
 import { useRouter } from 'next/navigation'
 import React, { ComponentProps, ComponentPropsWithoutRef, useState } from 'react'
 import { useLink } from 'utils'
@@ -58,13 +59,19 @@ export const Header = ({ ...props }: Props) => {
         </Button>
 
         <Button
-          className="-ml-3"
+          className="-ml-6 lg:-ml-3"
           variant="lightNeutral"
           onClick={() => {
             router.push(routes.home)
           }}
         >
-          <Logo />
+          <span className="hidden sm:block">
+            <Logo />
+          </span>
+
+          <span className="sm:hidden">
+            <Logomark />
+          </span>
         </Button>
 
         <div className="hidden items-center gap-x-2 lg:flex">
