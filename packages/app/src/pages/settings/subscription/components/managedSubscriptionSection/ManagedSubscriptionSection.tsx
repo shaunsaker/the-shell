@@ -1,13 +1,14 @@
 import React from 'react'
 
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 
 export const ManagedSubscriptionSection = () => {
   return (
-    <SettingsSection
+    <PageSection
       className="border-b-0"
       title="Subscription managed by another user"
       description="You're not the owner of this subscription. Please contact the subscription owner to manage your subscription."
+      fullWidth={false}
     />
   )
 }

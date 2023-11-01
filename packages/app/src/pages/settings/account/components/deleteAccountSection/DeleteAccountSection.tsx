@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 import { useDeleteUserAccount } from '@/auth/hooks/useDeleteUserAccount'
 import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 
 export const DeleteAccountSection = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
@@ -14,7 +14,7 @@ export const DeleteAccountSection = () => {
   const isDisabled = hasActiveSubscriptionLoading || hasActiveSubscription
 
   return (
-    <SettingsSection
+    <PageSection
       className="border-b-0"
       title="Delete account"
       description={
@@ -22,6 +22,7 @@ export const DeleteAccountSection = () => {
           ? 'You cannot delete your account while you have an active subscription. Please cancel your subscription first.'
           : 'No longer want to use our service? You can delete your account here. This action is not reversible. All information related to this account will be deleted permanently.'
       }
+      fullWidth={false}
     >
       <div>
         <Button
@@ -50,6 +51,6 @@ export const DeleteAccountSection = () => {
           setDialogOpen(false)
         }}
       />
-    </SettingsSection>
+    </PageSection>
   )
 }

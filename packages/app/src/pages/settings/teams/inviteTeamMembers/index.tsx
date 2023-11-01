@@ -6,8 +6,7 @@ import { validateEmail } from 'utils'
 
 import { useIsSubscriptionOwner } from '@/billing/hooks/useIsSubscriptionOwner'
 import { useSubscriptionInfo } from '@/billing/hooks/useSubscriptionInfo'
-import { SettingsList } from '@/components/settingsList/SettingsList'
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 import { SettingsTeamsBreadcrumbs } from '@/components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
 import { routes } from '@/router/routes'
 import { useInviteTeamMembers } from '@/teams/hooks/useInviteTeamMember'
@@ -32,10 +31,10 @@ export const SettingsInviteTeamMembers = () => {
   const sendInvitesDisabled = isLoading || emails.length === 0
 
   return (
-    <SettingsList>
+    <div>
       <SettingsTeamsBreadcrumbs />
 
-      <SettingsSection
+      <PageSection
         className="border-b-0"
         title="Invite team members"
         description="Add members to your team by entering their email addresses."
@@ -110,7 +109,7 @@ export const SettingsInviteTeamMembers = () => {
             </Button>
           ))}
         </div>
-      </SettingsSection>
-    </SettingsList>
+      </PageSection>
+    </div>
   )
 }

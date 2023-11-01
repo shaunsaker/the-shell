@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { TeamMemberRole } from 'types'
 import { formatTeamMemberRole, parseTeamMemberRole } from 'utils'
 
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 import { useIsTeamMemberLastAdmin } from '@/teams/hooks/useIsTeamMemberLastAdmin'
 import { useTeamMember } from '@/teams/hooks/useTeamMember'
 import { useUpdateTeamMemberRole } from '@/teams/hooks/useUpdateTeamMemberRole'
@@ -30,7 +30,7 @@ export const ChangeTeamMemberRoleSection = () => {
   }, [teamMember?.role])
 
   return (
-    <SettingsSection title="Change role" description="Change the team member's role.">
+    <PageSection title="Change role" description="Change the team member's role.">
       {isLoading ? (
         <SkeletonLoader />
       ) : (
@@ -66,6 +66,6 @@ export const ChangeTeamMemberRoleSection = () => {
           Save
         </Button>
       </div>
-    </SettingsSection>
+    </PageSection>
   )
 }

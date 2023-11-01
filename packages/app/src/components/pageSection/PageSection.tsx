@@ -5,17 +5,17 @@ import { twMerge } from 'tailwind-merge'
 type Props = {
   className?: string
   title: string
-  description: string
+  description?: string
   action?: ReactNode
   children?: ReactNode
   fullWidth?: boolean
 } & ComponentPropsWithoutRef<'section'>
 
-export const SettingsSection = ({ className, title, description, action, children, fullWidth, ...props }: Props) => {
+export const PageSection = ({ className, title, description, action, children, fullWidth = true, ...props }: Props) => {
   return (
     <section
       className={twMerge(
-        'border-b-theme-border dark:border-b-dark-theme-border flex w-full border-b pb-8 lg:pb-12',
+        'border-b-theme-border dark:border-b-dark-theme-border flex w-full border-b py-8 lg:py-12',
         className,
       )}
       {...props}
@@ -25,7 +25,7 @@ export const SettingsSection = ({ className, title, description, action, childre
           <div>
             <HeadingText>{title}</HeadingText>
 
-            <SmallText className="mt-2">{description}</SmallText>
+            {description && <SmallText className="mt-2">{description}</SmallText>}
           </div>
 
           {action}

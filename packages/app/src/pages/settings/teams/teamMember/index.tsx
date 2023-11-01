@@ -1,7 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { SettingsList } from '@/components/settingsList/SettingsList'
 import { SettingsTeamsBreadcrumbs } from '@/components/settingsTeamsBreadcrumbs/SettingsTeamsBreadcrumbs'
 
 import { ChangeTeamMemberRoleSection } from './components/changeTeamMemberRoleSection/ChangeTeamMemberRoleSection'
@@ -9,7 +8,7 @@ import { RemoveTeamMemberSection } from './components/removeTeamMemberSection/Re
 
 export const SettingsTeamMember = () => {
   return (
-    <SettingsList>
+    <div>
       <SettingsTeamsBreadcrumbs />
 
       <ChangeTeamMemberRoleSection />
@@ -17,6 +16,6 @@ export const SettingsTeamMember = () => {
       <RemoveTeamMemberSection />
 
       <Outlet />
-    </SettingsList>
+    </div>
   )
 }

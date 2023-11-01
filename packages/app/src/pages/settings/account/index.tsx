@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { SettingsList } from '@/components/settingsList/SettingsList'
-
 import { ChangeEmailSection } from './components/changeEmailSection/ChangeEmailSection'
 import { ChangeNameSection } from './components/changeNameSection/ChangeNameSection'
 import { ChangePasswordSection } from './components/changePasswordSection/ChangePasswordSection'
@@ -9,7 +7,7 @@ import { DeleteAccountSection } from './components/deleteAccountSection/DeleteAc
 
 export const SettingsAccount = () => {
   return (
-    <SettingsList>
+    <div>
       <ChangeNameSection />
 
       <ChangeEmailSection />
@@ -17,6 +15,6 @@ export const SettingsAccount = () => {
       <ChangePasswordSection />
 
       <DeleteAccountSection />
-    </SettingsList>
+    </div>
   )
 }

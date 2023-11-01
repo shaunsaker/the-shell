@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formatDate, formatTeamMemberName, formatTeamMemberRole, formatTeamMemberStatus } from 'utils'
 
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 import { routes, TEAM_ID_PARAM, TEAM_MEMBER_ID_PARAM } from '@/router/routes'
 import { useIsLoggedInUserTeamAdmin } from '@/teams/hooks/useIsLoggedInUserTeamAdmin'
 import { useTeam } from '@/teams/hooks/useTeam'
@@ -18,7 +18,7 @@ export const ManageTeamMembersSection = () => {
   const disabled = !isLoggedInUserTeamAdmin || loading
 
   return (
-    <SettingsSection
+    <PageSection
       title={isLoggedInUserTeamAdmin ? 'Manage team members' : 'View team members'}
       description={
         isLoggedInUserTeamAdmin
@@ -120,6 +120,6 @@ export const ManageTeamMembersSection = () => {
           )}
         </Table.Body>
       </Table>
-    </SettingsSection>
+    </PageSection>
   )
 }

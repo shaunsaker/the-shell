@@ -5,7 +5,7 @@ import { useHasTeamPlan } from '@/billing/hooks/useHasTeamPlan'
 import { usePrices } from '@/billing/hooks/usePrices'
 import { useSubscriptionInfo } from '@/billing/hooks/useSubscriptionInfo'
 import { useUpdateSubscriptionQuantity } from '@/billing/hooks/useUpdateSubscriptionQuantity'
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
+import { PageSection } from '@/components/pageSection/PageSection'
 import { getSubscriptionSeatsButtonLabel } from '@/pages/settings/subscription/components/subscriptionSeatsSection/getSubscriptionSeatsButtonLabel'
 
 const MIN_SEATS = 1
@@ -35,7 +35,7 @@ export const SubscriptionSeatsSection = () => {
   }, [subscriptionInfo])
 
   return (
-    <SettingsSection
+    <PageSection
       className="border-b-0"
       title="Subscription seats"
       description={
@@ -43,6 +43,7 @@ export const SubscriptionSeatsSection = () => {
           ? 'Add or remove seats from your subscription.'
           : 'Adding seats to your subscription is only available on the team plan.'
       }
+      fullWidth={false}
     >
       <SmallText>
         Available Seats: {subscriptionInfo?.availableSeats} / {subscriptionInfo?.totalSeats}
@@ -79,6 +80,6 @@ export const SubscriptionSeatsSection = () => {
           </Button>
         </div>
       )}
-    </SettingsSection>
+    </PageSection>
   )
 }

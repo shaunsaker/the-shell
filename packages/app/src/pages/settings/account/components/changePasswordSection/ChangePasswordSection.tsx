@@ -1,12 +1,16 @@
 import React from 'react'
 
+import { PageSection } from '@/components/pageSection/PageSection'
 import { ResetPassword } from '@/components/resetPassword/ResetPassword'
-import { SettingsSection } from '@/components/settingsSection/SettingsSection'
 
 export const ChangePasswordSection = () => {
   return (
-    <SettingsSection title="Change password" description="Update your password associated with your account.">
+    <PageSection
+      title="Change password"
+      description="Update your password associated with your account."
+      fullWidth={false}
+    >
       <ResetPassword emailDisabled />
-    </SettingsSection>
+    </PageSection>
   )
 }
