@@ -1,4 +1,5 @@
-import { Background, Card, Columns, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
+import { AnchorText, Background, Card, Columns, HeadingText, ParagraphText, SmallText, TitleText } from 'components'
+import { app } from 'config'
 import React from 'react'
 
 import { getRoutePartialId, routes } from '@/routes'
@@ -51,8 +52,11 @@ export const Faqs = () => {
           <TitleText>{TITLE}</TitleText>
 
           <ParagraphText className="mt-4">
-            The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and
-            TypeScript.
+            Here are some of the most common questions we get asked. If you have any other questions, please{' '}
+            <AnchorText href={`mailto:${app.emails.support}`} target="_blank">
+              contact us
+            </AnchorText>
+            .
           </ParagraphText>
         </Container>
 
