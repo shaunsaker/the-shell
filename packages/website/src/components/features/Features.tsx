@@ -20,9 +20,18 @@ type Props = {
   title: ReactNode
   subtitle: ReactNode
   features: Feature[]
+  asScreenshots?: boolean
 } & Omit<ComponentPropsWithoutRef<'section'>, 'title'>
 
-export const Features = ({ className, variant = 'default', title, subtitle, features, ...props }: Props) => {
+export const Features = ({
+  className,
+  variant = 'default',
+  title,
+  subtitle,
+  features,
+  asScreenshots = true,
+  ...props
+}: Props) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
 
   const activeFeature = features[activeTabIndex]
@@ -83,7 +92,9 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
             {activeFeature.description}
           </ParagraphText>
 
-          <div className="mt-4 overflow-hidden rounded-md shadow-xl">{imageComponent}</div>
+          <div className={twMerge('mt-4 overflow-hidden', asScreenshots ? 'rounded-md shadow-xl' : '')}>
+            {imageComponent}
+          </div>
         </div>
 
         {/* DESKTOP */}
@@ -94,7 +105,7 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
                 <Button
                   variant="light"
                   className={twMerge(
-                    'flex-col items-start whitespace-normal rounded-r-none bg-transparent p-6 text-left w-full',
+                    'flex-col items-start whitespace-normal bg-transparent p-6 text-left w-full',
                     variant === 'default'
                       ? 'hover:bg-white/10 dark:hover:bg-white/10'
                       : 'hover:bg-theme-brand/10 dark:hover:bg-dark-theme-brand/10',
@@ -103,6 +114,7 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
                         ? 'bg-white/10 ring-1 ring-inset ring-white/10 dark:bg-white/10 dark:ring-white/10'
                         : 'bg-theme-brand/10 ring-1 ring-inset ring-theme-brand/10 dark:bg-dark-theme-brand/10 dark:ring-dark-theme-brand/10'
                       : '',
+                    asScreenshots ? 'rounded-r-none' : '',
                   )}
                   onClick={() => {
                     setActiveTabIndex(index)
@@ -120,7 +132,14 @@ export const Features = ({ className, variant = 'default', title, subtitle, feat
             ))}
           </ul>
 
-          <div className="col-span-7 overflow-hidden rounded-l-xl shadow-xl border-2 border-r-0 border-theme-brand-subtle dark-border-dark-theme-brand-subtle">
+          <div
+            className={twMerge(
+              'col-span-7 overflow-hidden',
+              asScreenshots
+                ? 'rounded-l-xl shadow-xl border-2 border-r-0 border-theme-brand-subtle dark-border-dark-theme-brand-subtle'
+                : '',
+            )}
+          >
             {imageComponent}
           </div>
         </div>
