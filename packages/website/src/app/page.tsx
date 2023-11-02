@@ -8,6 +8,7 @@ import { Hero } from '@/components/hero/Hero'
 import { Pricing } from '@/components/pricing/Pricing'
 import { PrimaryFeatures } from '@/components/primaryFeatures/PrimaryFeatures'
 import { SecondaryFeatures } from '@/components/secondaryFeatures/SecondaryFeatures'
+import { SocialProof } from '@/components/socialProof/SocialProof'
 import { Testimonials } from '@/components/testimonials/Testimonials'
 
 export default async function Page() {
@@ -17,6 +18,8 @@ export default async function Page() {
   return (
     <>
       <Hero />
+
+      <SocialProof />
 
       <PrimaryFeatures />
 
