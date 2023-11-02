@@ -86,7 +86,7 @@ export const Features = ({
 
         {/* DESKTOP */}
         <div className="hidden grid-cols-12 lg:grid">
-          <ul className="col-span-5 py-24 flex flex-col">
+          <ul className="col-span-5 py-24 flex flex-col justify-center">
             {features.map((feature, index) => (
               <li key={feature.title}>
                 <Button
@@ -128,7 +128,7 @@ export const Features = ({
             )}
           >
             <Image
-              className="h-full w-full object-cover object-left-top"
+              className={twMerge(asScreenshots ? 'h-full w-full object-cover object-left-top' : '')}
               src={activeFeature.image}
               alt={activeFeature.title}
               priority
