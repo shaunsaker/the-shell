@@ -17,12 +17,13 @@ export default async function Page() {
           <HeadingText>1. Introduction</HeadingText>
 
           <span>
-            This Privacy Policy applies to the website {process.env.NEXT_PUBLIC_URL} (hereinafter the “website”)
-            published by the company {app.name} (hereinafter “the company” or “we”) and its other services and products
-            for which personal data is being communicated to the company. Please read this Privacy Policy carefully as
-            it explains how the company uses your personal data and how to exercise your rights. This Privacy Policy
-            supplements the Terms & Conditions or any documents or notices that may refer to this Privacy Policy. Should
-            you have any questions, you may directly contact the company by sending an email to{' '}
+            This Privacy Policy applies to the websites, {process.env.NEXT_PUBLIC_URL} and{' '}
+            {process.env.NEXT_PUBLIC_APP_URL}, (hereinafter the “website”) published by the company {app.name}{' '}
+            (hereinafter “the company” or “we”) and its other services and products for which personal data is being
+            communicated to the company. Please read this Privacy Policy carefully as it explains how the company uses
+            your personal data and how to exercise your rights. This Privacy Policy supplements the Terms & Conditions
+            or any documents or notices that may refer to this Privacy Policy. Should you have any questions, you may
+            directly contact the company by sending an email to{' '}
             <AnchorText href={`mailto:${app.emails.support}`} target="_blank">
               {app.emails.support}
             </AnchorText>

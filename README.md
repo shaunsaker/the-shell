@@ -219,7 +219,7 @@ gh secret set GOOGLE_APPLICATION_CREDENTIALS_STAGING < ./service-account-staging
 gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < ./service-account-production.json
 ```
 
-17. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_URL` to `http://localhost:3000` and the `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
+17. Add the relavant hosting url's to [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) as `NEXT_PUBLIC_URL` (your website domain), `NEXT_PUBLIC_APP_URL` (your app url), `NEXT_PUBLIC_APP_SIGN_IN_URL` (your app sign in page) and `NEXT_PUBLIC_APP_SIGN_UP_URL` (your app sign up page). Set the [website/.env.development](<(./packages/website/.env.development)>) `NEXT_PUBLIC_URL` to `http://localhost:3000` and the `NEXT_PUBLIC_APP_*` urls to `http://localhost:5173`, ie. the url you're serving the local `app` on.
 
 #### Using a custom domain
 
