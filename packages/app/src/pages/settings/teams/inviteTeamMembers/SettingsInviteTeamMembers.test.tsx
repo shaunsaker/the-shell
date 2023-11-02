@@ -163,7 +163,13 @@ describe('SettingsInviteTeamMembers', () => {
     mocks.useRestrictedTeamPlanRoute.mockReturnValue({ data: true, isLoading: false })
     mocks.useRestrictedTeamAdminRoute.mockReturnValue({ data: true, isLoading: false })
     mocks.useTeam.mockReturnValue({ data: makeTeamWithMembers({ team: {}, members: [] }), isLoading: true })
-    mocks.useSubscriptionInfo.mockReturnValue({ data: makeSubscriptionInfo({ availableSeats: 1 }), isLoading: true })
+    mocks.useSubscriptionInfo.mockReturnValue(
+      // @ts-expect-error FIXME: mock types seem to be incorrect
+      {
+        data: makeSubscriptionInfo({ availableSeats: 1 }),
+        isLoading: true,
+      },
+    )
     mocks.useIsSubscriptionOwner.mockReturnValue({ data: true, isLoading: true })
 
     render(

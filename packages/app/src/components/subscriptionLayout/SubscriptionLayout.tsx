@@ -6,13 +6,13 @@ import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscripti
 import { routes } from '@/router/routes'
 
 export const SubscriptionLayout = () => {
-  const { data: hasActiveSubscription, isLoading, isFetched } = useHasActiveSubscription()
+  const { data: hasActiveSubscription, isLoading } = useHasActiveSubscription()
 
   if (isLoading) {
     return <Loading />
   }
 
-  if (isFetched && !hasActiveSubscription) {
+  if (!hasActiveSubscription) {
     return <Navigate to={routes.settingsSubscription} />
   }
 
