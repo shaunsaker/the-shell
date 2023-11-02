@@ -19,7 +19,7 @@ export const Hero = () => {
   const link = useLink()
 
   return (
-    <Section aria-label={TITLE} className="relative flex h-screen flex-col pt-[63px]">
+    <Section aria-label={TITLE} className="relative flex h-screen flex-col">
       <Background variant="inverted" className="absolute inset-0" />
 
       <Container className="flex-1 justify-center">
