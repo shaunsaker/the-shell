@@ -53,7 +53,7 @@ export const Faqs = () => {
 
           <ParagraphText className="mt-4">
             Here are some of the most common questions we get asked. If you have any other questions, please{' '}
-            <AnchorText href={`mailto:${app.emails.support}`} target="_blank">
+            <AnchorText href={`mailto:${app.emails.support}`} target="_blank" rel="noopener noreferer">
               contact us
             </AnchorText>
             .

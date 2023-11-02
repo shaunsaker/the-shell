@@ -18,11 +18,11 @@ export default async function Page() {
 
           <span>
             This Privacy Policy applies to the websites,{' '}
-            <AnchorText href={process.env.NEXT_PUBLIC_URL} target="_blank">
+            <AnchorText href={process.env.NEXT_PUBLIC_URL} target="_blank" rel="noopener noreferer">
               {process.env.NEXT_PUBLIC_URL}
             </AnchorText>{' '}
             and{' '}
-            <AnchorText href={process.env.NEXT_PUBLIC_APP_URL} target="_blank">
+            <AnchorText href={process.env.NEXT_PUBLIC_APP_URL} target="_blank" rel="noopener noreferer">
               {process.env.NEXT_PUBLIC_APP_URL}
             </AnchorText>
             , (hereinafter the “website”) published by the company <b>{app.name}</b> (hereinafter “the company” or “we”)
@@ -30,7 +30,7 @@ export default async function Page() {
             Policy carefully as it explains how the company uses your personal data and how to exercise your rights.
             This Privacy Policy supplements the Terms & Conditions or any documents or notices that may refer to this
             Privacy Policy. Should you have any questions, you may directly contact the company by sending an email to{' '}
-            <AnchorText href={`mailto:${app.emails.support}`} target="_blank">
+            <AnchorText href={`mailto:${app.emails.support}`} target="_blank" rel="noopener noreferer">
               {app.emails.support}
             </AnchorText>
             .
@@ -288,7 +288,7 @@ export default async function Page() {
 
           <span>
             If you have any questions about this Privacy Policy, please contact us via email at{' '}
-            <AnchorText href={`mailto:${app.emails.support}`} target="_blank">
+            <AnchorText href={`mailto:${app.emails.support}`} target="_blank" rel="noopener noreferer">
               {app.emails.support}
             </AnchorText>
             .
