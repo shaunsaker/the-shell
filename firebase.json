@@ -30,7 +30,8 @@
     {
       "target": "website",
       "predeploy": "cd ./packages/scripts && yarn build && cd ../website && yarn build",
-      "public": "./packages/website/out"
+      "public": "./packages/website/out",
+      "cleanUrls": true
     }
   ],
   "emulators": {
