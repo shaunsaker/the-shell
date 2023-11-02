@@ -53,13 +53,21 @@ const SOCIAL_PROOF_LINKS = [
 
 export const SocialProof = () => {
   return (
-    <Section aria-label={TITLE} className="flex flex-col items-center">
+    <Section
+      aria-label={TITLE}
+      className="flex flex-col items-center bg-theme-background dark:bg-dark-theme-background"
+    >
       <HeadingText>{TITLE}</HeadingText>
 
       <ul className="mt-4 flex flex-wrap items-center justify-center gap-8">
         {SOCIAL_PROOF_LINKS.map(company => (
           <li key={company.label}>
-            <AnchorText className="text-inherit" aria-label={company.label} href={company.link} target="_blank50">
+            <AnchorText
+              className="text-theme-content dark:text-theme-content-inverted"
+              aria-label={company.label}
+              href={company.link}
+              target="_blank50"
+            >
               {company.image}
             </AnchorText>
           </li>
