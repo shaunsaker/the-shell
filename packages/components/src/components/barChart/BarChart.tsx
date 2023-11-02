@@ -16,7 +16,7 @@ export const BarChart = ({ className = '', title, ...props }: Props) => {
       {title && <HeadingText className="mb-4">{title}</HeadingText>}
 
       <BarChartPrimitive
-        className={twMerge('font-sans text-xs', className)}
+        className={twMerge('fill-theme-content dark:fill-dark-theme-content font-sans text-xs', className)}
         colors={COLORS}
         showAnimation
         showGridLines={false}
