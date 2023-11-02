@@ -35,16 +35,6 @@ export const Features = ({
   const [activeTabIndex, setActiveTabIndex] = useState(0)
 
   const activeFeature = features[activeTabIndex]
-  const imageComponent = (
-    <Image
-      className="h-full w-full object-cover object-left-top"
-      src={activeFeature.image}
-      alt={activeFeature.title}
-      priority
-      width={800}
-      height={800}
-    />
-  )
 
   return (
     <Section className={twMerge('relative lg:pr-0', className)} {...props}>
@@ -60,42 +50,39 @@ export const Features = ({
         </Container>
 
         {/* MOBILE */}
-        <div className="flex flex-col rounded-lg bg-white/10 ring-1 ring-inset ring-white/10 lg:hidden">
-          <ul className="flex items-center gap-x-4 overflow-x-auto p-4">
-            {features.map((feature, index) => (
-              <li key={feature.title}>
-                <Button
-                  className="rounded-full"
-                  variant={
-                    variant === 'default'
-                      ? activeTabIndex === index
-                        ? 'secondaryInverted'
-                        : 'lightInverted'
-                      : activeTabIndex === index
-                      ? 'secondary'
-                      : 'light'
-                  }
-                  size="lg"
-                  onClick={() => {
-                    setActiveTabIndex(index)
-                  }}
-                >
+        <ul
+          className={twMerge(
+            'flex flex-col rounded-lg bg-white/10 ring-1 ring-inset ring-white/10 lg:hidden pb-6',
+            asScreenshots ? 'gap-y-12' : '',
+          )}
+        >
+          {features.map(feature => (
+            <li key={feature.title} className="flex flex-col items-center">
+              <div className={twMerge('', asScreenshots ? 'rounded-md shadow-xl overflow-hidden mb-12' : '')}>
+                <Image
+                  className={twMerge('w-full', asScreenshots ? '' : 'max-w-xs')}
+                  src={feature.image}
+                  alt={feature.title}
+                  priority
+                  width={320}
+                  height={320}
+                />
+              </div>
+
+              <Container className="px-4 pb-0 flex flex-col items-center gap-y-4">
+                <HeadingText className={variant === 'default' ? 'text-white dark:text-white' : ''}>
                   {feature.title}
-                </Button>
-              </li>
-            ))}
-          </ul>
+                </HeadingText>
 
-          <ParagraphText
-            className={twMerge('px-6 py-4 text-center', variant === 'default' ? 'text-white dark:text-white' : '')}
-          >
-            {activeFeature.description}
-          </ParagraphText>
-
-          <div className={twMerge('mt-4 overflow-hidden', asScreenshots ? 'rounded-md shadow-xl' : '')}>
-            {imageComponent}
-          </div>
-        </div>
+                <ParagraphText
+                  className={twMerge('text-center', variant === 'default' ? 'text-white dark:text-white' : '')}
+                >
+                  {feature.description}
+                </ParagraphText>
+              </Container>
+            </li>
+          ))}
+        </ul>
 
         {/* DESKTOP */}
         <div className="hidden grid-cols-12 lg:grid">
@@ -140,7 +127,14 @@ export const Features = ({
                 : '',
             )}
           >
-            {imageComponent}
+            <Image
+              className="h-full w-full object-cover object-left-top"
+              src={activeFeature.image}
+              alt={activeFeature.title}
+              priority
+              width={800}
+              height={800}
+            />
           </div>
         </div>
       </div>
