@@ -9,7 +9,7 @@ import { Pricing } from './components/pricing/Pricing'
 import { SubscriptionDetailsSection } from './components/subscriptionDetailsSection/SubscriptionDetailsSection'
 import { SubscriptionSeatsSection } from './components/subscriptionSeatsSection/SubscriptionSeatsSection'
 
-const WAITING_FOR_SUBSCRIPTION_TIMEOUT = 3000
+const WAITING_FOR_SUBSCRIPTION_TIMEOUT = 5000
 
 export const SettingsSubscription = () => {
   const { data: hasActiveSubscription, isLoading: hasActiveSubscriptionLoading } = useHasActiveSubscription()
