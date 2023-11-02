@@ -41,8 +41,8 @@ export const Features = ({
       src={activeFeature.image}
       alt={activeFeature.title}
       priority
-      width={802}
-      height={696}
+      width={800}
+      height={800}
     />
   )
 
