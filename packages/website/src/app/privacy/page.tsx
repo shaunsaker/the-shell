@@ -23,7 +23,7 @@ export default async function Page() {
             it explains how the company uses your personal data and how to exercise your rights. This Privacy Policy
             supplements the Terms & Conditions or any documents or notices that may refer to this Privacy Policy. Should
             you have any questions, you may directly contact the company by sending an email to{' '}
-            <AnchorText href={app.emails.support} target="_blank">
+            <AnchorText href={`mailto:${app.emails.support}`} target="_blank">
               {app.emails.support}
             </AnchorText>
             .
@@ -185,7 +185,7 @@ export default async function Page() {
 
           <span>
             If you have any questions about this Privacy Policy, please contact us via email at{' '}
-            <AnchorText href={app.emails.support} target="_blank">
+            <AnchorText href={`mailto:${app.emails.support}`} target="_blank">
               {app.emails.support}
             </AnchorText>
             .
