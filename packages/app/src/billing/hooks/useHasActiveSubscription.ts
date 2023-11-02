@@ -11,5 +11,8 @@ export const useHasActiveSubscription = () => {
   return {
     ...query,
     data: hasActiveSubscription,
+
+    // for the loading state we use isFetching because the query may not be enabled yet if the user is not logged in
+    isLoading: query.isFetching,
   }
 }
