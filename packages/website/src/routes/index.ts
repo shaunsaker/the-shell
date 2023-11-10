@@ -7,7 +7,7 @@ export const routes = {
   features: '/#features',
   testimonials: '/#testimonials',
   pricing: '/#pricing',
-  faq: '/#faq',
+  faqs: '/#faqs',
   blog: '/blog',
   blogPost: `/blog/${BLOG_POST_PARAM}`,
   privacy: '/privacy',

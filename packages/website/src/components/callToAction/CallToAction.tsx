@@ -1,38 +1,33 @@
-'use client'
-
-import { Background, Button, ParagraphText, TitleText } from 'components'
+import { SmallText } from 'components'
+import Image from 'next/image'
 import React from 'react'
-import { useLink } from 'utils'
 
-import { PRIMARY_ACTION_LINK, PRIMARY_ACTION_TEXT } from '@/constants'
+import { constants } from '@/constants'
 
 import { Container } from '../container/Container'
+import { PrimaryActionButton } from '../primaryActionButton/PrimaryActionButton'
 import { Section } from '../section/Section'
 
 export const CallToAction = () => {
-  const link = useLink()
-
   return (
-    <Section className="relative">
-      <Background className="absolute inset-0" />
-
+    <Section title={constants.cta.title} highlighted={constants.cta.highlighted} subtitle={constants.cta.description}>
       <Container>
-        <TitleText className="text-white dark:text-white">Get started today</TitleText>
+        <div className="flex flex-col items-center gap-y-4">
+          <PrimaryActionButton variant="secondaryInverted" size="lg" name={constants.cta.button.name}>
+            {constants.cta.button.text}
+          </PrimaryActionButton>
 
-        <ParagraphText className="text-white dark:text-white">
-          The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and
-          TypeScript.
-        </ParagraphText>
+          <SmallText>{constants.cta.footer}</SmallText>
+        </div>
 
-        <Button
-          variant="secondaryInverted"
-          size="lg"
-          onClick={() => {
-            link(PRIMARY_ACTION_LINK, '_blank')
-          }}
-        >
-          {PRIMARY_ACTION_TEXT}
-        </Button>
+        <Image
+          className="-mb-24"
+          src={constants.cta.image.src}
+          alt={constants.cta.image.alt}
+          priority
+          width={200}
+          height={200}
+        />
       </Container>
     </Section>
   )

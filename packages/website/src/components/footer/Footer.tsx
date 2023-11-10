@@ -7,6 +7,8 @@ import React from 'react'
 
 import { routes } from '@/routes'
 
+import { Container } from '../container/Container'
+
 const NAV_LINKS: Array<{ name: string; href: string }> = [
   {
     name: 'Features',
@@ -15,6 +17,10 @@ const NAV_LINKS: Array<{ name: string; href: string }> = [
   {
     name: 'Testimonials',
     href: routes.testimonials,
+  },
+  {
+    name: 'Faqs',
+    href: routes.faqs,
   },
   {
     name: 'Pricing',
@@ -35,7 +41,7 @@ export const Footer = () => {
 
   return (
     <footer className="flex flex-col items-center bg-theme-background px-4 dark:bg-dark-theme-background">
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center sm:px-6 lg:px-8">
+      <Container className="w-full">
         <div className="flex flex-col items-center py-16">
           <Button
             variant="lightNeutral"
@@ -92,7 +98,7 @@ export const Footer = () => {
             )}
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   )
 }

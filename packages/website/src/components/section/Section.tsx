@@ -1,14 +1,53 @@
-import React, { ComponentPropsWithoutRef } from 'react'
+import { Background, ParagraphText } from 'components'
+import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = ComponentPropsWithoutRef<'section'>
+import { Container } from '../container/Container'
+import { HugeHighlightedText } from '../hugeHighlightedText/HugeHighlightedText'
 
-export const Section = ({ className = '', children, ...props }: Props) => {
+type Props = Omit<ComponentPropsWithoutRef<'section'>, 'prefix'> & {
+  variant?: 'default' | 'inverted'
+  prefix?: ReactNode
+  title: string
+  highlighted?: string
+  subtitle?: string
+}
+
+export const Section = ({
+  className = '',
+  variant = 'default',
+  prefix,
+  title,
+  highlighted,
+  subtitle,
+  children,
+  ...props
+}: Props) => {
   return (
-    // 63px is the height of the Header
-    // 95px is the height of the Header + pt-12
-    <section className={twMerge('px-4 sm:px-8 py-12 lg:px-16 lg:py-24 pt-[95px] lg:pt-[63px]', className)} {...props}>
-      {children}
+    <section
+      className={twMerge('relative px-4 sm:px-8 py-24 lg:px-16 flex flex-col justify-center', className)}
+      {...props}
+    >
+      <Background className="absolute inset-0" variant={variant} />
+
+      <div
+        className={twMerge(
+          'relative flex flex-col gap-y-24',
+          variant === 'inverted' ? '' : 'text-theme-content-inverted dark:text-dark-theme-content',
+        )}
+      >
+        <Container>
+          {prefix}
+
+          <HugeHighlightedText variant={variant} highlighted={highlighted}>
+            {title}
+          </HugeHighlightedText>
+
+          {subtitle && <ParagraphText>{subtitle}</ParagraphText>}
+        </Container>
+
+        {children}
+      </div>
     </section>
   )
 }
