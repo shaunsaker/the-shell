@@ -11,6 +11,7 @@ import { BlankState } from './components/blankState/BlankState'
 import { Breadcrumbs } from './components/breadcrumbs/Breadcrumbs'
 import { Button } from './components/button/Button'
 import { Card } from './components/card/Card'
+import { ColorPicker } from './components/colorPicker/ColorPicker'
 import { Columns } from './components/columns/Columns'
 import { CopyableText } from './components/copyableText/CopyableText'
 import { Dialog } from './components/dialog/Dialog'
@@ -19,6 +20,8 @@ import { ErrorPage } from './components/errorPage/ErrorPage'
 import { Headerbar } from './components/headerbar/Headerbar'
 import { HeadingText } from './components/headingText/HeadingText'
 import { HugeText } from './components/hugeText/HugeText'
+import { Icon } from './components/icon/Icon'
+import { IconPicker } from './components/iconPicker/IconPicker'
 import { LabelText } from './components/labelText/LabelText'
 import { List } from './components/list/List'
 import { Loading } from './components/loading/Loading'
@@ -26,6 +29,7 @@ import { Logo } from './components/logo/Logo'
 import { Navbar } from './components/navbar/Navbar'
 import { ParagraphText } from './components/paragraphText/ParagraphText'
 import { Popover } from './components/popover/Popover'
+import { PricingCard } from './components/pricingCard/PricingCard'
 import { PricingCards } from './components/pricingCards/PricingCards'
 import { RadioGroup } from './components/radioGroup/RadioGroup'
 import { Select } from './components/select/Select'
@@ -50,6 +54,7 @@ export {
   Breadcrumbs,
   Button,
   Card,
+  ColorPicker,
   Columns,
   CopyableText,
   Dialog,
@@ -58,6 +63,8 @@ export {
   Headerbar,
   HeadingText,
   HugeText,
+  Icon,
+  IconPicker,
   LabelText,
   List,
   Loading,
@@ -65,6 +72,7 @@ export {
   Navbar,
   ParagraphText,
   Popover,
+  PricingCard,
   PricingCards,
   RadioGroup,
   Select,
