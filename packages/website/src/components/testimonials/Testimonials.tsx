@@ -1,71 +1,26 @@
-import { Background, Columns, ParagraphText, TitleText } from 'components'
+import { Columns } from 'components'
 import React from 'react'
 
-import { getRoutePartialId, routes } from '@/routes'
+import { constants } from '@/constants'
+import { SectionId } from '@/routes'
 
-import { Container } from '../container/Container'
 import { Section } from '../section/Section'
-import { Testimonial, TestimonialProps } from './Testimonial'
-
-const TITLE = 'Loved by businesses worldwide.'
-
-const TESTIMONIALS: TestimonialProps[] = [
-  {
-    name: 'John Doe',
-    title: 'CEO',
-    company: 'Company',
-    testimonial:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: 'https://gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-  },
-  {
-    name: 'John Doe 2',
-    title: 'CEO',
-    company: 'Company',
-    testimonial:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: 'https://gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-  },
-  {
-    name: 'John Doe 3',
-    title: 'CEO',
-    company: 'Company',
-    testimonial:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image: 'https://gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
-  },
-]
+import { Testimonial } from './Testimonial'
 
 export const Testimonials = () => {
   return (
-    <Section id={getRoutePartialId(routes.testimonials)} aria-label={TITLE} className="relative">
-      <Background variant="inverted" className="absolute inset-0" />
-
-      <div className="relative">
-        <Container>
-          <TitleText>{TITLE}</TitleText>
-
-          <ParagraphText>
-            The ultimate boilerplate for building SAAS applications with React, Firebase, Stripe, Tailwind CSS and
-            TypeScript.
-          </ParagraphText>
-        </Container>
-
-        <Columns className="mt-16">
-          {TESTIMONIALS.length &&
-            TESTIMONIALS.map(testimonial => (
-              <li key={testimonial.name}>
-                <Testimonial
-                  name={testimonial.name}
-                  title={testimonial.title}
-                  company={testimonial.company}
-                  testimonial={testimonial.testimonial}
-                  image={testimonial.image}
-                />
-              </li>
-            ))}
-        </Columns>
-      </div>
+    <Section
+      id={SectionId.Testimonials}
+      title={constants.testimonials.title}
+      highlighted={constants.testimonials.highlighted}
+    >
+      <Columns>
+        {constants.testimonials.sections.map(testimonial => (
+          <li key={testimonial.name}>
+            <Testimonial {...testimonial} />
+          </li>
+        ))}
+      </Columns>
     </Section>
   )
 }

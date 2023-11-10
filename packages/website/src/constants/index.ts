@@ -114,7 +114,40 @@ export const constants = {
     highlighted: 'technologies',
     subtitle: 'Build on a foundation trusted by experts worldwide.',
   },
-
+  pricing: {
+    title: 'Simple pricing, for everyone.',
+    highlighted: 'everyone',
+  },
+  testimonials: {
+    title: 'Loved by businesses worldwide.',
+    highlighted: 'worldwide',
+    sections: [
+      {
+        name: 'John Doe',
+        title: 'CEO',
+        company: 'Company',
+        testimonial:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        image: 'https://gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
+      },
+      {
+        name: 'John Doe 2',
+        title: 'CEO',
+        company: 'Company',
+        testimonial:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        image: 'https://gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
+      },
+      {
+        name: 'John Doe 3',
+        title: 'CEO',
+        company: 'Company',
+        testimonial:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        image: 'https://gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
+      },
+    ],
+  },
   faqs: {
     title: 'Your questions, answered.',
     highlighted: 'answered',
