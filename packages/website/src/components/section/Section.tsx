@@ -36,7 +36,7 @@ export const Section = ({
           variant === 'inverted' ? '' : 'text-theme-content-inverted dark:text-dark-theme-content',
         )}
       >
-        <Container>
+        <Container className="text-center items-center">
           {prefix}
 
           <HugeHighlightedText variant={variant} highlighted={highlighted}>
