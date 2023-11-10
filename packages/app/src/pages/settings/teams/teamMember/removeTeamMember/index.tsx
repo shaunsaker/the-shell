@@ -21,24 +21,33 @@ export const SettingsRemoveTeamMember = () => {
   return (
     <Dialog
       open
-      title="Remove team member"
-      description={`Are you sure you want to remove ${formatTeamMemberName(teamMember) || teamMember?.email} from the ${
-        team?.name
-      } team? This action cannot be undone.`}
-      confirmDisabled={disabled}
-      confirmLoading={removeTeamMemberLoading}
-      confirmIsDangerous
-      onConfirmClick={() => {
-        if (team?.id && teamMember) {
-          removeTeamMember({
-            teamId: teamMember.teamId,
-            teamMemberId: teamMember.id,
-          })
-        }
-      }}
       onClose={() => {
         navigate(routes.back)
       }}
-    />
+    >
+      <Dialog.Header
+        title="Remove team member"
+        description={`Are you sure you want to remove ${
+          formatTeamMemberName(teamMember) || teamMember?.email
+        } from the ${team?.name} team? This action cannot be undone.`}
+      />
+
+      <Dialog.Actions
+        confirmDisabled={disabled}
+        confirmLoading={removeTeamMemberLoading}
+        confirmIsDangerous
+        onCancelClick={() => {
+          navigate(routes.back)
+        }}
+        onConfirmClick={() => {
+          if (team?.id && teamMember) {
+            removeTeamMember({
+              teamId: teamMember.teamId,
+              teamMemberId: teamMember.id,
+            })
+          }
+        }}
+      />
+    </Dialog>
   )
 }

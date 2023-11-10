@@ -9,33 +9,65 @@ import { Card } from '../card/Card'
 import { HeadingText } from '../headingText/HeadingText'
 import { SmallText } from '../smallText/SmallText'
 
-type Props = {
-  open?: boolean
+type HeaderProps = {
   title?: string
   description?: string
+}
+
+const Header = ({ title, description }: HeaderProps) => {
+  return (
+    <div>
+      <HeadingText>{title}</HeadingText>
+
+      <SmallText className="mt-1">{description}</SmallText>
+    </div>
+  )
+}
+
+type ActionsProps = {
   confirmText?: string
   confirmDisabled?: boolean
   confirmLoading?: boolean
   confirmIsDangerous?: boolean
   cancelText?: string
-  children?: ReactNode
+  onCancelClick?: () => void
   onConfirmClick?: () => void
-  onClose: () => void
 }
 
-export const Dialog = ({
-  open,
-  title,
-  description,
+const Actions = ({
   confirmText = 'Confirm',
   confirmDisabled,
   confirmLoading,
   confirmIsDangerous,
   cancelText = 'Cancel',
-  children,
+  onCancelClick,
   onConfirmClick,
-  onClose,
-}: Props) => {
+}: ActionsProps) => {
+  return (
+    <div className="flex justify-end gap-x-4">
+      <Button variant="secondaryNeutral" disabled={confirmLoading} onClick={onCancelClick}>
+        {cancelText}
+      </Button>
+
+      <Button
+        color={confirmIsDangerous ? 'red' : undefined}
+        disabled={confirmDisabled}
+        loading={confirmLoading}
+        onClick={onConfirmClick}
+      >
+        {confirmText}
+      </Button>
+    </div>
+  )
+}
+
+type Props = {
+  open?: boolean
+  children?: ReactNode
+  onClose: () => void
+}
+
+const Dialog = ({ open, children, onClose }: Props) => {
   const ref = useRef<HTMLDivElement>(null)
 
   useOutsideClick(ref, () => {
@@ -53,7 +85,7 @@ export const Dialog = ({
   return (
     <AnimatePresence>
       {open && (
-        <div className="z-50">
+        <>
           <Backdrop />
 
           <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -69,34 +101,18 @@ export const Dialog = ({
                 exit={{ opacity: 0, transform: 'translateY(4px)', scale: 0.95 }}
               >
                 <Card ref={ref} className="flex max-w-lg flex-col gap-y-6">
-                  <div>
-                    <HeadingText>{title}</HeadingText>
-
-                    <SmallText className="mt-1">{description}</SmallText>
-                  </div>
-
                   {children}
-
-                  <div className="flex justify-end gap-x-4">
-                    <Button variant="secondaryNeutral" disabled={confirmLoading} onClick={onClose}>
-                      {cancelText}
-                    </Button>
-
-                    <Button
-                      color={confirmIsDangerous ? 'red' : undefined}
-                      disabled={confirmDisabled}
-                      loading={confirmLoading}
-                      onClick={onConfirmClick}
-                    >
-                      {confirmText}
-                    </Button>
-                  </div>
                 </Card>
               </motion.div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </AnimatePresence>
   )
 }
+
+Dialog.Header = Header
+Dialog.Actions = Actions
+
+export { Dialog }
