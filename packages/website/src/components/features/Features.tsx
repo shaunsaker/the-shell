@@ -21,7 +21,7 @@ export const Features = () => {
         const isOdd = index % 2 === 1
 
         return (
-          <div key={section.title} className={twMerge('lg:grid-cols-12 lg:grid mt-24 gap-8 lg:gap-16')}>
+          <div key={section.title} className={twMerge('lg:grid-cols-12 lg:grid gap-8 lg:gap-16')}>
             <Image
               className={twMerge('lg:col-span-7 w-full shadow-xl rounded-xl', isOdd ? 'order-1' : '')}
               src={section.image?.src || ''}

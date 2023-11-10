@@ -20,7 +20,7 @@ export const Hero = () => {
       subtitle={constants.hero.subtitle}
     >
       <Container className="flex-1 justify-center">
-        <div className="flex flex-col gap-y-2">
+        <div className="flex flex-col gap-y-2 text-center">
           <HeadingText>{constants.hero.heading}</HeadingText>
 
           <ParagraphText>{constants.hero.description}</ParagraphText>
