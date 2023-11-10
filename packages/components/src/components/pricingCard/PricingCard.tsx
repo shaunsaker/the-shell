@@ -50,7 +50,9 @@ export const PricingCard = ({
       <ul className="flex flex-col gap-y-2">
         {features.map(feature => (
           <li key={feature} className="flex items-center gap-x-2">
-            <CheckBadgeIcon className="text-theme-brand dark:text-dark-theme-brand h-5 w-5" />
+            <div>
+              <CheckBadgeIcon className="text-theme-brand dark:text-dark-theme-brand h-5" />
+            </div>
 
             <SmallText>{feature}</SmallText>
           </li>
