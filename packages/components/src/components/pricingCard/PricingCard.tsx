@@ -15,9 +15,9 @@ export const PricingCard = ({
   description,
   currency,
   price,
-  interval,
+  priceInfo,
   features,
-  freeTrialDays,
+  buttonText = 'Buy plan',
   highlight,
   loading,
   onClick,
@@ -35,16 +35,16 @@ export const PricingCard = ({
         {highlight && <Badge>Most popular</Badge>}
       </div>
 
-      <SmallText>{description}</SmallText>
+      {description && <SmallText>{description}</SmallText>}
 
       <div className="flex items-end">
-        <TitleText>{currency && formatCurrency(price / 100, currency)}</TitleText>
+        <TitleText>{currency && typeof price === 'number' ? formatCurrency(price, currency) : price}</TitleText>
 
-        <SmallText className="mb-1 ml-1">/ {interval}</SmallText>
+        {priceInfo && <SmallText className="mb-1 ml-2">{priceInfo}</SmallText>}
       </div>
 
       <Button variant={highlight ? 'primary' : 'secondary'} disabled={loading} loading={loading} onClick={onClick}>
-        {freeTrialDays ? `Start ${freeTrialDays} day free trial` : 'Buy plan'}
+        {buttonText}
       </Button>
 
       <ul className="flex flex-col gap-y-2">

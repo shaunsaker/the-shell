@@ -37,10 +37,10 @@ export const getPricingCardProducts = ({
       title: product.name,
       description: product.description,
       currency: price?.currency || '',
-      price: price?.unitAmount || 0,
-      interval: price?.interval || '',
+      price: price?.unitAmount / 100 || 0,
+      priceInfo: `/ ${price?.interval}` || '',
       features,
-      freeTrialDays,
+      buttonText: freeTrialDays ? `Start ${freeTrialDays}-day free trial` : 'Buy plan',
       highlight,
       loading,
     }

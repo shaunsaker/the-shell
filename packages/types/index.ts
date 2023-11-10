@@ -83,12 +83,12 @@ export type Price = {
 export type PricingCardProduct = {
   id: PriceId
   title: string
-  description: string
-  currency: string
-  price: number
-  interval: BillingInterval
+  description?: string
+  currency?: string
+  price: number | string
+  priceInfo?: string
   features: string[]
-  freeTrialDays?: number
+  buttonText?: string
   highlight?: boolean
   loading?: boolean
 }
