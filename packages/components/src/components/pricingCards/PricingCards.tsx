@@ -3,8 +3,8 @@ import { twMerge } from 'tailwind-merge'
 import { PricingCardProduct } from 'types'
 
 import { Columns } from '../columns/Columns'
+import { PricingCard } from '../pricingCard/PricingCard'
 import { RadioGroup } from '../radioGroup/RadioGroup'
-import { PricingCard } from './PricingCard'
 
 type BillingIntervalOption = ComponentProps<typeof RadioGroup>['options'][0]
 type BillingIntervalValue = BillingIntervalOption['value']
