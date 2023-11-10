@@ -8,7 +8,7 @@ export const Card = forwardRef(({ className = '', ...props }: Props, ref: any) =
     <div
       ref={ref}
       className={twMerge(
-        'bg-theme-background dark:bg-dark-theme-background border-theme-border dark:border-dark-theme-border hover:bg-theme-background-muted dark:hover:bg-dark-theme-background-muted w-full cursor-pointer rounded-2xl border p-6 shadow-md',
+        'bg-theme-background dark:bg-dark-theme-background border-theme-border dark:border-dark-theme-border w-full rounded-2xl border p-6 shadow-md',
         className,
       )}
       {...props}
