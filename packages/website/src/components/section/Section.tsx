@@ -32,7 +32,7 @@ export const Section = ({
 
       <div
         className={twMerge(
-          'relative flex flex-col gap-y-24',
+          'relative flex flex-col gap-y-12 lg:gap-y-24',
           variant === 'inverted' ? '' : 'text-theme-content-inverted dark:text-dark-theme-content',
         )}
       >

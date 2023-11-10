@@ -19,8 +19,8 @@ export const Hero = () => {
       highlighted={constants.hero.highlighted}
       subtitle={constants.hero.subtitle}
     >
-      <Container className="flex-1 justify-center">
-        <div className="flex flex-col gap-y-2 text-center">
+      <Container className="flex-1 justify-center text-center">
+        <div className="flex flex-col gap-y-2">
           <HeadingText>{constants.hero.heading}</HeadingText>
 
           <ParagraphText>{constants.hero.description}</ParagraphText>
