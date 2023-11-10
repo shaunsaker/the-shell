@@ -30,13 +30,13 @@ export const Section = ({
     >
       <Background className="absolute inset-0" variant={variant} />
 
-      <div
-        className={twMerge(
-          'relative flex flex-col gap-y-12 lg:gap-y-24',
-          variant === 'inverted' ? '' : 'text-theme-content-inverted dark:text-dark-theme-content',
-        )}
-      >
-        <Container className="text-center items-center">
+      <div className="relative flex flex-col gap-y-12 lg:gap-y-24">
+        <Container
+          className={twMerge(
+            'text-center items-center',
+            variant === 'inverted' ? '' : 'text-theme-content-inverted dark:text-dark-theme-content',
+          )}
+        >
           {prefix}
 
           <HugeHighlightedText variant={variant} highlighted={highlighted}>

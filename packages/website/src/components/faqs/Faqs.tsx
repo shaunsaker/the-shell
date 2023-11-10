@@ -2,16 +2,14 @@ import { Card, Columns, HeadingText, SmallText } from 'components'
 import React from 'react'
 
 import { constants } from '@/constants'
+import { SectionId } from '@/routes'
 
-// import { SectionId } from '@/routes'
 import { Section } from '../section/Section'
 
 export const Faqs = () => {
   return (
     <Section
-      // TODO: SS fix this
-      // id={SectionId.Faqs}
-      variant="inverted"
+      id={SectionId.Faqs}
       title={constants.faqs.title}
       highlighted={constants.faqs.highlighted}
       subtitle={constants.faqs.subtitle}

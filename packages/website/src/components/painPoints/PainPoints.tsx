@@ -11,7 +11,7 @@ import { Section } from '../section/Section'
 export const PainPoints = () => {
   return (
     <Section title={constants.painPoints.title} highlighted={constants.painPoints.highlighted}>
-      <Container className="gap-y-24">
+      <Container className="gap-y-24 text-theme-content-inverted dark:text-dark-theme-content">
         {constants.painPoints.sections.map((section, index) => {
           const isEven = index % 2 === 0
 
