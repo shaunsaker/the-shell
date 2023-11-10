@@ -4,7 +4,6 @@ import { Snackbar } from 'components'
 import { type Metadata } from 'next'
 import React, { ReactNode } from 'react'
 
-import { initMixpanel } from '@/analytics/api/mixpanel'
 import { AppProvider } from '@/components/appProvider/AppProvider'
 import { MainLayout } from '@/components/mainLayout/MainLayout'
 
@@ -18,8 +17,6 @@ export const metadata: Metadata = {
   description: `${app.description}`,
   themeColor: tailwindTheme.extend.colors.theme.brand.DEFAULT,
 }
-
-initMixpanel()
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
