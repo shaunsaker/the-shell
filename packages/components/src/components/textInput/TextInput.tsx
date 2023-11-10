@@ -7,7 +7,7 @@ type Props = ComponentProps<'input'> & { label?: string }
 
 export const TextInput = ({ className = '', label, ...props }: Props) => {
   return (
-    <div className={twMerge('flex flex-col gap-y-2', className)}>
+    <div className={twMerge('flex flex-col gap-y-2 text-left', className)}>
       {label && <LabelText htmlFor={label}>{label}</LabelText>}
 
       <input
