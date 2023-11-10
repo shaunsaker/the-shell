@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 html {
-  @apply scroll-smooth font-sans antialiased;
+  @apply text-theme-content dark:text-dark-theme-content scroll-smooth font-sans antialiased;
 }
 
 html,
@@ -15,26 +15,26 @@ body {
 }
 
 h1 {
-  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-4xl font-semibold tracking-tight lg:text-6xl;
+  @apply font-display text-4xl font-semibold tracking-tight lg:text-6xl lg:leading-[1.25];
 }
 
 h2 {
-  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-3xl leading-[1.25] tracking-tight lg:text-4xl lg:leading-[1.25];
+  @apply font-display text-3xl leading-[1.25] tracking-tight lg:text-4xl lg:leading-[1.25];
 }
 
 h3,
 h4,
 h5,
 h6 {
-  @apply text-theme-content-emphasis dark:text-dark-theme-content-emphasis font-display text-lg font-semibold;
+  @apply font-display text-lg font-semibold;
 }
 
 p {
-  @apply text-theme-content dark:text-dark-theme-content;
+  @apply text-base lg:text-lg;
 }
 
 small {
-  @apply text-theme-content dark:text-dark-theme-content text-sm font-normal;
+  @apply text-sm font-normal;
 }
 
 a {
