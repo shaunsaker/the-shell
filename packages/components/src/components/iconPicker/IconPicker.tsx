@@ -30,6 +30,7 @@ export const IconPicker = ({
 
       <Button
         className="h-12 w-12 rounded-full p-0"
+        name={selected}
         variant="secondaryNeutral"
         onClick={() => {
           setDialogOpen(true)

@@ -19,6 +19,7 @@ const Color = ({ className = '', name, selected, children, ...props }: ColorProp
       selected ? `border-${name}-400 dark:border-${name}-700` : '',
       className,
     )}
+    name={`${name}-color`}
     {...props}
   >
     {children}
