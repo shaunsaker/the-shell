@@ -1,14 +1,18 @@
 import mixpanel from 'mixpanel-browser'
 
+import { AnalyticsEvent, AnalyticsEventData } from '../models'
+
 export const ANALYTICS_ENABLED = process.env.MODE !== 'development' && process.env.NEXT_PUBLIC_MIXPANEL_TOKEN
 
-const initMixpanel = () => {
-  if (ANALYTICS_ENABLED) {
-    mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN, {
-      track_pageview: true,
-      persistence: 'localStorage',
-    })
-  }
+if (ANALYTICS_ENABLED) {
+  mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN || '', {
+    track_pageview: true,
+    persistence: 'localStorage',
+  })
 }
 
-export { initMixpanel, mixpanel }
+export const trackAnalyticsEvent = <T extends AnalyticsEvent>(event: T, data?: AnalyticsEventData[T]) => {
+  if (ANALYTICS_ENABLED) {
+    mixpanel.track(event, data)
+  }
+}
