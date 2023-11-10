@@ -12,7 +12,7 @@ export const CallToAction = () => {
   return (
     <Section title={constants.cta.title} highlighted={constants.cta.highlighted} subtitle={constants.cta.description}>
       <Container className="text-center items-center">
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col items-center gap-y-4">
           <PrimaryActionButton variant="secondaryInverted" size="lg" name={constants.cta.button.name}>
             {constants.cta.button.text}
           </PrimaryActionButton>
