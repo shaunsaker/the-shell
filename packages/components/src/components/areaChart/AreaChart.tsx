@@ -1,8 +1,8 @@
 import { AreaChart as AreaChartPrimitive, AreaChartProps } from '@tremor/react'
+import { colors } from 'colors'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { COLORS } from '../../constants/colors'
 import { Card } from '../card/Card'
 import { HeadingText } from '../headingText/HeadingText'
 
@@ -19,7 +19,7 @@ export const AreaChart = ({ className = '', title, ...props }: Props) => {
         className={twMerge('fill-theme-content dark:fill-dark-theme-content font-sans text-xs', className)}
         showAnimation
         showGridLines={false}
-        colors={COLORS}
+        colors={colors}
         {...props}
       />
     </Card>

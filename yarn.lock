@@ -4667,6 +4667,20 @@
   resolved "https://registry.yarnpkg.com/@total-typescript/ts-reset/-/ts-reset-0.4.2.tgz#c564c173ba09973968e1046c93965b7a257878a4"
   integrity sha512-vqd7ZUDSrXFVT1n8b2kc3LnklncDQFPvR58yUS1kEP23/nHPAO9l1lMjUfnPrXYYk4Hj54rrLKMW5ipwk7k09A==
 
+"@tremor/react@3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@tremor/react/-/react-3.11.0.tgz#88d4a00663ef148063b79b7ea5357b1a0e944107"
+  integrity sha512-ItGx8Q3uzG3JOqTLb92Ximx6p/opIc7AIY5ALialtOAA7kGA3DSQMHeChRRhxLIRD7SYOmiwUhOgLFjjoffwnw==
+  dependencies:
+    "@floating-ui/react" "^0.19.1"
+    "@headlessui/react" "^1.7.14"
+    "@headlessui/tailwindcss" "^0.1.3"
+    date-fns "^2.28.0"
+    react-day-picker "^8.7.1"
+    react-transition-group "^4.4.5"
+    recharts "^2.9.0"
+    tailwind-merge "^1.9.1"
+
 "@tremor/react@^3.10.1":
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/@tremor/react/-/react-3.10.1.tgz#0c4a9868b6e715828b4832ad6ed76b0c7f3c1ca4"
@@ -10492,6 +10506,11 @@ jotai@1.12.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.12.0.tgz#2e22760289458f636f689ae0aa71cc4a089aa312"
   integrity sha512-IhyBmjxU1sE2Ni/MUK7gQAb8QvCM6yd1/K5jtQzgQBmmjCjgfXZkkk1rYlQAIRp2KoQk0Y+yzhm1f5cZ7kegnw==
+
+jotai@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.5.1.tgz#eed05a32a4ac1264c531a77e86478f7ad3197ca3"
+  integrity sha512-vanPCCSuHczUXNbVh/iUunuMfrWRL4FdBtAbTRmrfqezJcKb8ybBTg8iivyYuUHapjcDETyJe1E4inlo26bVHA==
 
 js-beautify@^1.6.12:
   version "1.14.9"

@@ -1,8 +1,8 @@
 import { DonutChart as DonutChartPrimitive, DonutChartProps } from '@tremor/react'
+import { colors } from 'colors'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { COLORS } from '../../constants/colors'
 import { Card } from '../card/Card'
 import { HeadingText } from '../headingText/HeadingText'
 
@@ -18,7 +18,7 @@ export const DonutChart = ({ className = '', title, ...props }: Props) => {
       <DonutChartPrimitive
         className={twMerge('font-sans text-xs', className)}
         variant="pie"
-        colors={COLORS}
+        colors={colors}
         showAnimation
         {...props}
       />

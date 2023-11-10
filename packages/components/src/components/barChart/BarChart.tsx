@@ -1,8 +1,8 @@
 import { BarChart as BarChartPrimitive, BarChartProps } from '@tremor/react'
+import { colors } from 'colors'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { COLORS } from '../../constants/colors'
 import { Card } from '../card/Card'
 import { HeadingText } from '../headingText/HeadingText'
 
@@ -17,7 +17,7 @@ export const BarChart = ({ className = '', title, ...props }: Props) => {
 
       <BarChartPrimitive
         className={twMerge('fill-theme-content dark:fill-dark-theme-content font-sans text-xs', className)}
-        colors={COLORS}
+        colors={colors}
         showAnimation
         showGridLines={false}
         {...props}
