@@ -53,7 +53,7 @@ const sizeToButtonClassNames: Record<Size, string> = {
   lg: 'px-4 py-2 lg:px-6 lg:py-3 text-base rounded-xl',
 }
 
-type Props = ComponentPropsWithoutRef<'button'> & {
+export type ButtonProps = ComponentPropsWithoutRef<'button'> & {
   variant?: Variant
   color?: Color
   size?: Size
@@ -73,7 +73,7 @@ export const Button = ({
   iconPosition = 'left',
   children,
   ...props
-}: Props) => {
+}: ButtonProps) => {
   const iconComponent = icon && <span className={twMerge('h-4 w-4')}>{icon}</span>
 
   return (
