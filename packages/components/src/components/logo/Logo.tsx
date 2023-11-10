@@ -12,7 +12,7 @@ export const Logo = ({ className, ...props }: Props) => {
     <div className={twMerge('flex items-center gap-x-2', className)} {...props}>
       <Logomark className={className} />
 
-      <HeadingText className={twMerge('font-display whitespace-nowrap', className)}>{app.name}</HeadingText>
+      <HeadingText className={twMerge('whitespace-nowrap', className)}>{app.name}</HeadingText>
     </div>
   )
 }
