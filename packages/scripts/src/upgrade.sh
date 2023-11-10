@@ -12,24 +12,30 @@ REMOTE_BRANCH="$1"
 # Fetch the latest changes from the remote
 git fetch $(echo $REMOTE_BRANCH | cut -d '/' -f 1)
 
-# Get commit messages from the current branch
-CURRENT_BRANCH_COMMITS=$(git log --format="%s")
+# Get the latest commit message from the remote branch that's also in the current branch
+LATEST_COMMON_COMMIT_MESSAGE=$(git log --format="%s" "$REMOTE_BRANCH" | grep -F -x -f <(git log --format="%s") | head -n 1)
 
-# Initialize an array to hold the commit hashes for cherry-picking
+# Initialize an array to hold the commit hashes and messages for cherry-picking
 declare -a commits_to_pick
 
-# Compare and gather commit hashes from the remote branch
-# that are not in the current branch and do not contain "custom" in their message
+# Compare and gather commit hashes and messages from the remote branch
+# Exclude commits containing "custom" in their message
 while IFS= read -r line; do
   commit_hash=$(echo $line | awk '{print $1}')
   commit_message=$(echo $line | cut -d ' ' -f 2-)
 
-  if echo "$CURRENT_BRANCH_COMMITS" | grep -Fxq "$commit_message"; then
-    continue
+  if [[ "$commit_message" == "$LATEST_COMMON_COMMIT_MESSAGE" ]]; then
+    break
   elif [[ "$commit_message" != *"custom"* ]]; then
     commits_to_pick+=("$commit_hash - $commit_message")
   fi
 done < <(git log "$REMOTE_BRANCH" --format="%H %s")
+
+# Check if there are commits to cherry-pick
+if [ ${#commits_to_pick[@]} -eq 0 ]; then
+  echo "No commits selected for cherry-picking."
+  exit 0
+fi
 
 # Log the commit hashes and messages to be cherry-picked
 echo "Commits to be cherry-picked from $REMOTE_BRANCH:"
@@ -45,9 +51,9 @@ if [[ "$confirmation" != "yes" ]]; then
 fi
 
 # Cherry-pick commits one by one
-for ((idx = ${#commits_to_pick[@]} - 1; idx >= 0; idx--)); do
-  commit_hash="$(echo "${commits_to_pick[idx]}" | cut -d ' ' -f 1)"
-  echo "Cherry-picking $commit_hash..."
+for commit_info in "${commits_to_pick[@]}"; do
+  commit_hash=$(echo "$commit_info" | cut -d ' ' -f 1)
+  echo "Cherry-picking $commit_info..."
   git cherry-pick $commit_hash
 
   # Check if cherry-pick is successful
