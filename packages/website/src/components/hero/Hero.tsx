@@ -1,46 +1,38 @@
-'use client'
-
-import { Background, Button, HugeText, ParagraphText } from 'components'
-import { app } from 'config'
+import { HeadingText, ParagraphText, SmallText } from 'components'
 import Image from 'next/image'
 import React from 'react'
-import { useLink } from 'utils'
 
-import { PRIMARY_ACTION_LINK, PRIMARY_ACTION_TEXT } from '@/constants'
+import { AnalyticsPrimaryButtonName } from '@/analytics/models'
+import { constants } from '@/constants'
 
 import { Container } from '../container/Container'
-import { HighlightedText } from '../highlightedText/HighlightedText'
+import { PrimaryActionButton } from '../primaryActionButton/PrimaryActionButton'
 import { Section } from '../section/Section'
 
-const TITLE = '0. to 0.5 in no time.'
-const TITLE_HIGHLIGHTED = 'no time.'
-
 export const Hero = () => {
-  const link = useLink()
-
   return (
-    <Section aria-label={TITLE} className="relative flex h-screen flex-col">
-      <Background variant="inverted" className="absolute inset-0" />
-
+    <Section
+      className="pt-[95px]"
+      variant="inverted"
+      prefix={<Image src={constants.hero.image.src} alt={constants.hero.image.alt} priority width={200} height={200} />}
+      title={constants.hero.title}
+      highlighted={constants.hero.highlighted}
+      subtitle={constants.hero.subtitle}
+    >
       <Container className="flex-1 justify-center">
-        <Image src="/rocket-shuttle.png" alt="rocket shuttle" priority width={240} height={240} />
+        <div className="flex flex-col gap-y-2">
+          <HeadingText>{constants.hero.heading}</HeadingText>
 
-        <HugeText>
-          {TITLE.replace(TITLE_HIGHLIGHTED, '')}
+          <ParagraphText>{constants.hero.description}</ParagraphText>
+        </div>
 
-          {TITLE_HIGHLIGHTED && <HighlightedText>{TITLE_HIGHLIGHTED}</HighlightedText>}
-        </HugeText>
+        <div className="flex flex-col items-center gap-y-4">
+          <PrimaryActionButton size="lg" name={AnalyticsPrimaryButtonName.Hero}>
+            {constants.hero.button.text}
+          </PrimaryActionButton>
 
-        <ParagraphText>{app.description}</ParagraphText>
-
-        <Button
-          size="lg"
-          onClick={() => {
-            link(PRIMARY_ACTION_LINK, '_blank')
-          }}
-        >
-          {PRIMARY_ACTION_TEXT}
-        </Button>
+          <SmallText>*{constants.hero.footer}</SmallText>
+        </div>
       </Container>
     </Section>
   )

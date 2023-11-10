@@ -4,10 +4,10 @@ import { getPrices } from '@/billing/api/getPrices'
 import { getProducts } from '@/billing/api/getProducts'
 import { CallToAction } from '@/components/callToAction/CallToAction'
 import { Faqs } from '@/components/faqs/Faqs'
+import { Features } from '@/components/features/Features'
 import { Hero } from '@/components/hero/Hero'
+import { PainPoints } from '@/components/painPoints/PainPoints'
 import { Pricing } from '@/components/pricing/Pricing'
-import { PrimaryFeatures } from '@/components/primaryFeatures/PrimaryFeatures'
-import { SecondaryFeatures } from '@/components/secondaryFeatures/SecondaryFeatures'
 import { SocialProof } from '@/components/socialProof/SocialProof'
 import { Testimonials } from '@/components/testimonials/Testimonials'
 
@@ -19,11 +19,13 @@ export default async function Page() {
     <>
       <Hero />
 
+      <PainPoints />
+
+      <Features />
+
       <SocialProof />
 
-      <PrimaryFeatures />
-
-      <SecondaryFeatures />
+      <Faqs />
 
       <CallToAction />
 

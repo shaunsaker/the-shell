@@ -5,10 +5,11 @@ import { Button, Headerbar, Logo, Popover, Sidebar } from 'components'
 import { Logomark } from 'components/src/components/logomark/Logomark'
 import { useRouter } from 'next/navigation'
 import React, { ComponentProps, ComponentPropsWithoutRef, useState } from 'react'
-import { useLink } from 'utils'
 
-import { PRIMARY_ACTION_LINK, PRIMARY_ACTION_TEXT, SECONDARY_ACTION_LINK, SECONDARY_ACTION_TEXT } from '@/constants'
+import { constants } from '@/constants'
 import { routes } from '@/routes'
+
+import { PrimaryActionButton } from '../primaryActionButton/PrimaryActionButton'
 
 type NavigationItem = ComponentProps<typeof Sidebar>['items'][0]
 
@@ -31,35 +32,31 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
   },
 ]
 
-const SECONDARY_ACTION: NavigationItem = {
-  name: SECONDARY_ACTION_TEXT,
-  href: SECONDARY_ACTION_LINK,
-}
-
 type Props = ComponentPropsWithoutRef<'header'>
 
 export const Header = ({ ...props }: Props) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const router = useRouter()
-  const link = useLink()
 
   return (
     <>
       <Headerbar {...props}>
-        <Button
-          className="-ml-3 lg:hidden"
-          aria-label="Open sidebar"
-          variant="lightNeutral"
-          onClick={() => {
-            setSidebarOpen(true)
-          }}
-        >
-          <Bars3Icon className="h-6 w-6" />
-        </Button>
+        {NAVIGATION_ITEMS.length ? (
+          <Button
+            className="-ml-3 lg:hidden"
+            aria-label="Open sidebar"
+            variant="lightNeutral"
+            onClick={() => {
+              setSidebarOpen(true)
+            }}
+          >
+            <Bars3Icon className="h-6 w-6" />
+          </Button>
+        ) : null}
 
         <Button
-          className="-ml-6 lg:-ml-3"
+          className="-ml-3"
           variant="lightNeutral"
           onClick={() => {
             router.push(routes.home)
@@ -89,44 +86,29 @@ export const Header = ({ ...props }: Props) => {
         </div>
 
         <div className="flex flex-1 items-center justify-end gap-x-2 pr-4 lg:pr-0">
-          <div className="hidden lg:block">
-            <Button
-              variant="secondary"
-              onClick={() => {
-                link(SECONDARY_ACTION.href, '_blank')
-              }}
-            >
-              {SECONDARY_ACTION.name}
-            </Button>
-          </div>
-
-          <Button
-            onClick={() => {
-              link(PRIMARY_ACTION_LINK, '_blank')
-            }}
-          >
-            {PRIMARY_ACTION_TEXT}
-          </Button>
+          <PrimaryActionButton name={constants.header.button.name}>{constants.header.button.text}</PrimaryActionButton>
         </div>
       </Headerbar>
 
-      <div className="lg:hidden">
-        <Popover
-          open={sidebarOpen}
-          onClose={() => {
-            setSidebarOpen(false)
-          }}
-        >
-          <Sidebar
-            items={[...NAVIGATION_ITEMS, SECONDARY_ACTION]}
-            onItemClick={href => {
-              router.push(href)
-
+      {NAVIGATION_ITEMS.length ? (
+        <div className="lg:hidden">
+          <Popover
+            open={sidebarOpen}
+            onClose={() => {
               setSidebarOpen(false)
             }}
-          />
-        </Popover>
-      </div>
+          >
+            <Sidebar
+              items={NAVIGATION_ITEMS}
+              onItemClick={href => {
+                router.push(href)
+
+                setSidebarOpen(false)
+              }}
+            />
+          </Popover>
+        </div>
+      ) : null}
     </>
   )
 }

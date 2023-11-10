@@ -1,4 +1,15 @@
-export enum AnalyticsEvent {}
+export enum AnalyticsEvent {
+  PrimaryActionClicked = 'primaryActionClicked',
+}
 
-// eslint-disable-next-line
-export type AnalyticsEventData = {}
+export enum AnalyticsPrimaryButtonName {
+  Header = 'header',
+  Hero = 'hero',
+  Cta = 'cta',
+}
+
+export type AnalyticsEventData = {
+  [AnalyticsEvent.PrimaryActionClicked]: {
+    buttonName: AnalyticsPrimaryButtonName
+  }
+}
