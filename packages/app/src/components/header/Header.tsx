@@ -1,5 +1,5 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import { Button, Headerbar } from 'components'
+import { Button, Headerbar, Logo } from 'components'
 import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -11,10 +11,10 @@ export const Header = ({ className = '', children }: Props) => {
   const [_, setSidebarOpen] = useSidebarOpen()
 
   return (
-    <Headerbar className={twMerge(className)}>
+    <Headerbar className={twMerge('lg:hidden', className)}>
       <Button
-        variant="lightNeutral"
-        className="mr-2 lg:hidden"
+        variant="lightInverted"
+        className="lg:hidden"
         onClick={() => {
           setSidebarOpen(true)
         }}
@@ -23,6 +23,8 @@ export const Header = ({ className = '', children }: Props) => {
 
         <Bars3Icon className="h-6 w-6" aria-hidden="true" />
       </Button>
+
+      <Logo className="lg:hidden" variant="inverted" />
 
       {children}
     </Headerbar>
