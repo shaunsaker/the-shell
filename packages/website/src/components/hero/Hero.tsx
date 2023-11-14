@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 
 import { AnalyticsPrimaryButtonName } from '@/analytics/models'
-import { constants } from '@/constants'
+import constants from '@/constants.json'
 
 import { Container } from '../container/Container'
 import { PrimaryActionButton } from '../primaryActionButton/PrimaryActionButton'
@@ -28,7 +28,7 @@ export const Hero = () => {
 
         <div className="flex flex-col items-center gap-y-4">
           <PrimaryActionButton size="lg" name={AnalyticsPrimaryButtonName.Hero}>
-            {constants.hero.button.text}
+            {constants.hero.buttonText}
           </PrimaryActionButton>
 
           <SmallText>*{constants.hero.footer}</SmallText>

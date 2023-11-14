@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { constants } from '@/constants'
+import constants from '@/constants.json'
 import { SectionId } from '@/routes'
 
 import { FeatureText } from '../featureText/FeatureText'

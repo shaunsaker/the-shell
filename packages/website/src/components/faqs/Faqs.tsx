@@ -1,7 +1,7 @@
 import { Card, Columns, HeadingText, SmallText } from 'components'
 import React from 'react'
 
-import { constants } from '@/constants'
+import constants from '@/constants.json'
 import { SectionId } from '@/routes'
 
 import { Section } from '../section/Section'

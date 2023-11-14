@@ -2,7 +2,8 @@ import { SmallText } from 'components'
 import Image from 'next/image'
 import React from 'react'
 
-import { constants } from '@/constants'
+import { AnalyticsPrimaryButtonName } from '@/analytics/models'
+import constants from '@/constants.json'
 
 import { Container } from '../container/Container'
 import { PrimaryActionButton } from '../primaryActionButton/PrimaryActionButton'
@@ -18,8 +19,8 @@ export const CallToAction = () => {
     >
       <Container className="text-center items-center">
         <div className="flex flex-col items-center gap-y-4">
-          <PrimaryActionButton size="lg" name={constants.cta.button.name}>
-            {constants.cta.button.text}
+          <PrimaryActionButton size="lg" name={AnalyticsPrimaryButtonName.Cta}>
+            {constants.cta.buttonText}
           </PrimaryActionButton>
 
           <SmallText>{constants.cta.footer}</SmallText>

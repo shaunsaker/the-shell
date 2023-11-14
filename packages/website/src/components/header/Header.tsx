@@ -6,7 +6,8 @@ import { Logomark } from 'components/src/components/logomark/Logomark'
 import { useRouter } from 'next/navigation'
 import React, { ComponentProps, ComponentPropsWithoutRef, useState } from 'react'
 
-import { constants } from '@/constants'
+import { AnalyticsPrimaryButtonName } from '@/analytics/models'
+import constants from '@/constants.json'
 import { routes } from '@/routes'
 
 import { PrimaryActionButton } from '../primaryActionButton/PrimaryActionButton'
@@ -86,7 +87,9 @@ export const Header = ({ ...props }: Props) => {
         </div>
 
         <div className="flex flex-1 items-center justify-end gap-x-2 pr-4 lg:pr-0">
-          <PrimaryActionButton name={constants.header.button.name}>{constants.header.button.text}</PrimaryActionButton>
+          <PrimaryActionButton name={AnalyticsPrimaryButtonName.Header}>
+            {constants.header.buttonText}
+          </PrimaryActionButton>
         </div>
       </Headerbar>
 
