@@ -6,7 +6,7 @@ import { BillingInterval, Price, Product } from 'types'
 import { formatBillingInterval, getPricingCardProducts, parseBillingInterval } from 'utils'
 
 import { useCreateCheckoutSession } from '@/billing/hooks/useCreateCheckoutSession'
-import { constants } from '@/constants'
+import constants from '@/constants.json'
 import { SectionId } from '@/routes'
 
 import { Section } from '../section/Section'
