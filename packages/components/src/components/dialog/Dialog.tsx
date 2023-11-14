@@ -1,8 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { ReactNode, useRef } from 'react'
+import { useKeyPress, useOutsideClick } from 'utils'
 
-import { useKeyPress } from '../../utils/useKeyPress'
-import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 import { Card } from '../card/Card'

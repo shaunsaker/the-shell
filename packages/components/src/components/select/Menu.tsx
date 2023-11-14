@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion'
 import React, { ComponentPropsWithoutRef, useRef } from 'react'
 import { twMerge } from 'tailwind-merge'
+import { useKeyPress, useOutsideClick } from 'utils'
 
-import { useKeyPress } from '../../utils/useKeyPress'
-import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Button } from '../button/Button'
 import { Card } from '../card/Card'
 import { SelectOption } from './Select'

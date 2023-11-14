@@ -2,8 +2,7 @@ import { Badge, Button, Card, CheckIcon, HeadingText, SmallText, TitleText } fro
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import { PricingCardProduct } from 'types'
-
-import { formatCurrency } from '../../utils/formatCurrency'
+import { formatCurrency } from 'utils'
 
 type PricingCardProps = {
   onClick: () => void
