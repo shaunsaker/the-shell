@@ -11,6 +11,7 @@ import { BlankState } from './components/blankState/BlankState'
 import { Breadcrumbs } from './components/breadcrumbs/Breadcrumbs'
 import { Button } from './components/button/Button'
 import { Card } from './components/card/Card'
+import { CheckIcon } from './components/checkIcon/CheckIcon'
 import { ColorPicker } from './components/colorPicker/ColorPicker'
 import { Columns } from './components/columns/Columns'
 import { CopyableText } from './components/copyableText/CopyableText'
@@ -54,6 +55,7 @@ export {
   Breadcrumbs,
   Button,
   Card,
+  CheckIcon,
   ColorPicker,
   Columns,
   CopyableText,
