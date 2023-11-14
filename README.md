@@ -130,9 +130,11 @@ yarn
 
 5. In this file, replace all instances of $TEMPLATE_URL with $GITHUB_APP_URL. This will ensure that your Github Actions status badges are correct.
 
-6. [Create a new repo in Github](https://github.com/new).
+6. In [LICENSE.md](./LICENSE.md), replace $COPYRIGHT_HOLDER with your $APP_NAME.
 
-7. Push the code to Github:
+7. [Create a new repo in Github](https://github.com/new).
+
+8. Push the code to Github:
 
 ```
 git add .
@@ -141,7 +143,7 @@ git remote add origin $GITHUB_APP_URL
 git push -u origin master
 ```
 
-8. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
+9. The default branch, `master` will be used for production deployments. Therefore, we need to create a branch for staging, e.g. `develop`:
 
 ```
 git checkout -b develop
