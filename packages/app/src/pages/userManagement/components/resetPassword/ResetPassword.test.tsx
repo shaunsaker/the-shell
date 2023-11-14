@@ -61,6 +61,6 @@ describe('ResetPassword', () => {
       }),
     )
 
-    expect(mocks.navigate).toHaveBeenCalledWith(routes.signIn)
+    expect(mocks.navigate).toHaveBeenCalledWith(routes.signIn, { replace: true })
   })
 })

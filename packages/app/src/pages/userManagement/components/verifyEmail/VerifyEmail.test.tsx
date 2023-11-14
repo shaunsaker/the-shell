@@ -57,6 +57,6 @@ describe('VerifyEmail', () => {
     // our mock function simply returns the param that was passed in
     await waitFor(() => expect(mocks.verifyEmail).toHaveBeenCalledWith(UserManagementParams.ActionCode))
 
-    expect(mocks.navigate).toHaveBeenCalledWith(routes.signIn)
+    expect(mocks.navigate).toHaveBeenCalledWith(routes.signIn, { replace: true })
   })
 })
