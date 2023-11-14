@@ -22,7 +22,9 @@ export const VerifyEmail = () => {
       toast.success('Email verified successfully. Please sign in to continue.')
 
       // navigate to the sign in page
-      navigate(routes.signIn)
+      navigate(routes.signIn, {
+        replace: true,
+      })
     }
 
     // NOTE: in development, this runs twice because React.StrictMode mounts the app twice
