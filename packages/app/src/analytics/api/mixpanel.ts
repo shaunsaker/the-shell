@@ -1,14 +1,26 @@
 import mixpanel from 'mixpanel-browser'
 
-export const ANALYTICS_ENABLED = !import.meta.env.DEV && import.meta.env.VITE_MIXPANEL_TOKEN
+import { AnalyticsEvent, AnalyticsEventData } from '../models'
 
-const initMixpanel = () => {
+export const ANALYTICS_ENABLED = import.meta.env.MODE !== 'development' && import.meta.env.VITE_MIXPANEL_TOKEN
+
+if (ANALYTICS_ENABLED) {
+  mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN || '', {
+    track_pageview: true,
+    persistence: 'localStorage',
+  })
+}
+
+export const identifyUser = (uid: string) => {
   if (ANALYTICS_ENABLED) {
-    mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {
-      track_pageview: true,
-      persistence: 'localStorage',
-    })
+    mixpanel.identify(uid)
   }
 }
 
-export { initMixpanel, mixpanel }
+export const trackAnalyticsEvent = <T extends AnalyticsEvent>(event: T, data?: AnalyticsEventData[T]) => {
+  if (ANALYTICS_ENABLED) {
+    mixpanel.track(event, data)
+  }
+}
+
+export { mixpanel }

@@ -11,8 +11,16 @@ if (ANALYTICS_ENABLED) {
   })
 }
 
+export const identifyUser = (uid: string) => {
+  if (ANALYTICS_ENABLED) {
+    mixpanel.identify(uid)
+  }
+}
+
 export const trackAnalyticsEvent = <T extends AnalyticsEvent>(event: T, data?: AnalyticsEventData[T]) => {
   if (ANALYTICS_ENABLED) {
     mixpanel.track(event, data)
   }
 }
+
+export { mixpanel }
