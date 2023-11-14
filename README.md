@@ -383,6 +383,12 @@ yarn firebase:use development
 yarn dev
 ```
 
+You can also test if you're able to deploy at this stage. The functions deployment usually fails the first time but if it does, just retry.
+
+```
+yarn deploy:staging
+```
+
 ### Setup Figma
 
 1. Duplicate the [Figma component library](https://www.figma.com/file/F26nt2RDzvDTqbwvKbZV8l/Ultimate-B2B-Saas-Boilerplate-UI) to your own workspace by right clicking on the file name and clicking "Duplicate to your drafts".
