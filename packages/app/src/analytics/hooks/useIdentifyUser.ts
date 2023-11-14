@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { useAuthUser } from '@/auth/hooks/useAuthUser'
 
-import { identifyUser } from '../api/identifyUser'
+import { identifyUser } from '../api/mixpanel'
 
 export const useIdentifyUser = () => {
   const { data: authUser } = useAuthUser()
