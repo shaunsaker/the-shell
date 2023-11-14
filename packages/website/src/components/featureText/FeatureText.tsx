@@ -1,5 +1,4 @@
-import { CheckBadgeIcon } from '@heroicons/react/24/solid'
-import { ParagraphText, SmallText, TitleText } from 'components'
+import { CheckIcon, ParagraphText, SmallText, TitleText } from 'components'
 import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -31,7 +30,7 @@ export const FeatureText = ({ className = '', title, description, features, foot
           {features?.map(feature => (
             <li key={feature} className="flex items-center gap-x-2">
               <div>
-                <CheckBadgeIcon className="text-theme-brand dark:text-dark-theme-brand h-5" />
+                <CheckIcon />
               </div>
 
               <ParagraphText>{feature}</ParagraphText>

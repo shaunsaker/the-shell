@@ -1,5 +1,4 @@
-import { CheckBadgeIcon } from '@heroicons/react/24/solid'
-import { Badge, Button, Card, HeadingText, SmallText, TitleText } from 'components'
+import { Badge, Button, Card, CheckIcon, HeadingText, SmallText, TitleText } from 'components'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import { PricingCardProduct } from 'types'
@@ -51,7 +50,7 @@ export const PricingCard = ({
         {features.map(feature => (
           <li key={feature} className="flex items-center gap-x-2">
             <div>
-              <CheckBadgeIcon className="text-theme-brand dark:text-dark-theme-brand h-5" />
+              <CheckIcon />
             </div>
 
             <SmallText>{feature}</SmallText>
