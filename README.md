@@ -130,7 +130,7 @@ yarn
 
 5. In this file, replace all instances of $TEMPLATE_URL with $GITHUB_APP_URL. This will ensure that your Github Actions status badges are correct.
 
-6. Create a new repo in Github.
+6. [Create a new repo in Github](https://github.com/new).
 
 7. Push the code to Github:
 
@@ -195,7 +195,7 @@ cp ./packages/website/env/.env.example ./packages/website/env/.env.production
 
 9. For each project, set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://$APP_NAME-$ENVIRONMENT.web.app/user-management.
 
-10. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/$APP_NAME-staging/hosting/main, scrolling to the bottom of the page, clicking "Add another site" and following the instructions. A good name for this site is `$APP_NAME-staging-storybook`. FYI you only need a storybook site for your staging environment.
+10. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/$APP_NAME-staging/hosting/main, scrolling to the bottom of the page, clicking "Add another site" and following the instructions. A good name for this site is `$APP_NAME-storybook`. FYI you only need a storybook site for your staging environment.
 
 11. For each project, create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, scrolling to the bottom of the page, clicking "Add another site" and following the instructions. A good name for this site is `$APP_NAME-$ENVIRONMENT-website`.
 
@@ -370,7 +370,7 @@ gh secret set SENTRY_PROJECT --body $VALUE
 
 ### Setup Mixpanel
 
-1. Grab your staging and production project tokens and them to the respective files at [app/.env.staging](./packages/app/.env.staging), [app/.env.production](./packages/app/.env.production), [website/.env.staging](./packages/website/env/.env.staging), [website/.env.production](./packages/website/env/.env.production).
+1. Grab your staging and production project tokens from your "Project Settings" - "Access Keys" - "Project Token" and them to the respective files at [app/.env.staging](./packages/app/.env.staging), [app/.env.production](./packages/app/.env.production), [website/.env.staging](./packages/website/env/.env.staging), [website/.env.production](./packages/website/env/.env.production).
 
 ---
 
@@ -565,7 +565,7 @@ These are the test cases that we should cover (manually for now):
 
 ### Upgrading
 
-To upgrade your project with commits from the template, run the following command where $REMOTE_BRANCH is the branch you'd like to pull from, e.g. `${TEMPLATE_APP_NAME}/master`:
+To upgrade your project with commits from the template, run the following command where $REMOTE_BRANCH is the branch you'd like to pull from, e.g. $TEMPLATE_APP_NAME/master:
 
 ```
 ./packages/scripts/src/upgrade.sh $REMOTE_BRANCH
