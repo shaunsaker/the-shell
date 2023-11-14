@@ -57,6 +57,7 @@ export const Header = ({ ...props }: Props) => {
         ) : null}
 
         <Button
+          name="Logo"
           className="-ml-3"
           variant="lightNeutral"
           onClick={() => {
