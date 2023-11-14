@@ -2,9 +2,8 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ReactNode, useRef } from 'react'
 import React from 'react'
+import { useKeyPress, useOutsideClick } from 'utils'
 
-import { useKeyPress } from '../../utils/useKeyPress'
-import { useOutsideClick } from '../../utils/useOutsideClick'
 import { Backdrop } from '../backdrop/Backdrop'
 import { Button } from '../button/Button'
 

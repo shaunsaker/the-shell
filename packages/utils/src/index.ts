@@ -15,7 +15,9 @@ import { maybePluralise } from './maybePluralise/maybePluralise'
 import { parseBillingInterval } from './parseBillingInterval/parseBillingInterval'
 import { parsePaymentMethod } from './parsePaymentMethod/parsePaymentMethod'
 import { parseTeamMemberRole } from './parseTeamMemberRole/parseTeamMemberRole'
+import { useKeyPress } from './useKeyPress/useKeyPress'
 import { useLink } from './useLink/useLink'
+import { useOutsideClick } from './useOutsideClick/useOutsideClick'
 import { validateEmail } from './validateEmail/validateEmail'
 
 export {
@@ -36,6 +38,8 @@ export {
   parseBillingInterval,
   parsePaymentMethod,
   parseTeamMemberRole,
+  useKeyPress,
   useLink,
+  useOutsideClick,
   validateEmail,
 }
