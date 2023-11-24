@@ -1,9 +1,9 @@
 # The Shell
 
-[![Development](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml/badge.svg?branch=develop)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/development.yml)
-[![Deploy Staging](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-staging.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-staging.yml)
-[![Release](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/release.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/release.yml)
-[![Deploy Production](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-production.yml/badge.svg)](https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate/actions/workflows/deploy-production.yml)
+[![Development](https://github.com/shaunsaker/the-shell/actions/workflows/development.yml/badge.svg?branch=develop)](https://github.com/shaunsaker/the-shell/actions/workflows/development.yml)
+[![Deploy Staging](https://github.com/shaunsaker/the-shell/actions/workflows/deploy-staging.yml/badge.svg)](https://github.com/shaunsaker/the-shell/actions/workflows/deploy-staging.yml)
+[![Release](https://github.com/shaunsaker/the-shell/actions/workflows/release.yml/badge.svg)](https://github.com/shaunsaker/the-shell/actions/workflows/release.yml)
+[![Deploy Production](https://github.com/shaunsaker/the-shell/actions/workflows/deploy-production.yml/badge.svg)](https://github.com/shaunsaker/the-shell/actions/workflows/deploy-production.yml)
 
 ---
 
@@ -57,7 +57,7 @@ Transform `8 weeks` of development a few hours 🚀
 
 ### Definitions
 
-- $TEMPLATE_URL: The url of the template app, e.g. "https://github.com/shaunsaker/ultimate-b2b-saas-boilerplate.git"
+- $TEMPLATE_URL: The url of the template app, e.g. "https://github.com/shaunsaker/the-shell.git"
 - $TEMPLATE_APP_NAME: The name of the template app, e.g. `the-shell`
 - $APP_NAME: The name of your app, e.g. `cofoundly`
 - $GITHUB_APP_URL: The url of your Github app, e.g. "https://github.com/cofoundly/cofoundly.git"
