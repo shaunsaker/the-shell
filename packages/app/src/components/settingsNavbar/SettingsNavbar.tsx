@@ -32,27 +32,27 @@ export const SettingsNavbar = () => {
     active: location.pathname.includes(routes.settingsSubscription),
   }
 
+  const teamItem: NavigationItem = {
+    name: 'Team',
+    href: routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId),
+    active: location.pathname.includes(routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId)),
+    disabled: teamsPageDisabled,
+  }
+
   const items: NavigationItem[] = [
     {
       name: 'Account',
       href: routes.settingsAccount,
       active: location.pathname.includes(routes.settingsAccount),
     },
-    {
-      name: 'Subscription',
-      href: routes.settingsSubscription,
-      active: location.pathname.includes(routes.settingsSubscription),
-    },
-    {
-      name: 'Team',
-      href: routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId),
-      active: location.pathname.includes(routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId)),
-      disabled: teamsPageDisabled,
-    },
   ]
 
   if (features.subscriptions) {
     items.splice(1, 0, subscriptionItem)
+  }
+
+  if (features.teams) {
+    items.splice(2, 0, teamItem)
   }
 
   return (
