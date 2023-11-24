@@ -26,7 +26,13 @@ export const SettingsNavbar = () => {
   const teamsPageDisabled =
     hasActiveSubscriptionLoading || !hasActiveSubscription || hasTeamPlanLoading || !hasTeamPlan || teamsLoading
 
-  const subscriptionItem: NavigationItem = {
+  const accountItem = {
+    name: 'Account',
+    href: routes.settingsAccount,
+    active: location.pathname.includes(routes.settingsAccount),
+  }
+
+  const subscriptionItem = {
     name: 'Subscription',
     href: routes.settingsSubscription,
     active: location.pathname.includes(routes.settingsSubscription),
@@ -39,13 +45,11 @@ export const SettingsNavbar = () => {
     disabled: teamsPageDisabled,
   }
 
-  const items: NavigationItem[] = [
-    {
-      name: 'Account',
-      href: routes.settingsAccount,
-      active: location.pathname.includes(routes.settingsAccount),
-    },
-  ]
+  const items: NavigationItem[] = []
+
+  if (features.auth) {
+    items.splice(0, 0, accountItem)
+  }
 
   if (features.subscriptions) {
     items.splice(1, 0, subscriptionItem)
@@ -63,16 +67,18 @@ export const SettingsNavbar = () => {
           navigate(href)
         }}
       >
-        <Button
-          className="rounded-none"
-          variant="light"
-          loading={signOutLoading}
-          onClick={() => {
-            signOut()
-          }}
-        >
-          Sign out
-        </Button>
+        {features.auth && (
+          <Button
+            className="rounded-none"
+            variant="light"
+            loading={signOutLoading}
+            onClick={() => {
+              signOut()
+            }}
+          >
+            Sign out
+          </Button>
+        )}
       </Navbar>
     </Header>
   )
