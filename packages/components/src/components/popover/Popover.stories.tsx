@@ -47,3 +47,34 @@ export const Default: Story = {
     },
   },
 }
+
+export const Right: Story = {
+  args: {
+    open: true,
+    position: 'right',
+    children: (
+      <Sidebar
+        items={[
+          {
+            name: 'Dashboard',
+            href: '/dashboard',
+            icon: <HomeModernIcon />,
+            active: true,
+          },
+          {
+            name: 'Settings',
+            href: '/settings',
+            icon: <Cog6ToothIcon />,
+            active: false,
+          },
+        ]}
+        onItemClick={href => {
+          console.log(href)
+        }}
+      />
+    ),
+    onClose: () => {
+      console.log('Close')
+    },
+  },
+}
