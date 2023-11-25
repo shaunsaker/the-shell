@@ -11,7 +11,7 @@
           "the-shell-staging"
         ],
         "storybook": [
-          "the-shell-staging-storybook"
+          "the-shell-storybook"
         ],
         "website": [
           "the-shell-staging-website"
