@@ -5,8 +5,10 @@ import { twMerge } from 'tailwind-merge'
 import { Container } from '../container/Container'
 import { HugeHighlightedText } from '../hugeHighlightedText/HugeHighlightedText'
 
-type Props = Omit<ComponentPropsWithoutRef<'section'>, 'prefix'> & {
-  variant?: 'default' | 'inverted'
+export type SectionVariant = 'default' | 'inverted'
+
+export type SectionProps = Omit<ComponentPropsWithoutRef<'section'>, 'prefix'> & {
+  variant?: SectionVariant
   prefix?: ReactNode
   title: string
   highlighted?: string
@@ -22,7 +24,7 @@ export const Section = ({
   subtitle,
   children,
   ...props
-}: Props) => {
+}: SectionProps) => {
   return (
     <section
       className={twMerge('relative px-4 sm:px-8 py-24 lg:px-16 flex flex-col justify-center', className)}

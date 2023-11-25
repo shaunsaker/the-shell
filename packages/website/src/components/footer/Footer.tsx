@@ -1,5 +1,6 @@
 'use client'
 
+import { EnvelopeIcon } from '@heroicons/react/24/solid'
 import { Button, Logo, SmallText } from 'components'
 import { app } from 'config'
 import { useRouter } from 'next/navigation'
@@ -7,30 +8,13 @@ import React from 'react'
 import { useLink } from 'utils'
 
 import { routes } from '@/routes'
+import { getDynamicNavItems } from '@/routes/getDynamicNavItems'
 
+import constants from '../../constants.json'
 import { Container } from '../container/Container'
 
 const NAV_LINKS: Array<{ name: string; href: string }> = [
-  {
-    name: 'Features',
-    href: routes.features,
-  },
-  {
-    name: 'Testimonials',
-    href: routes.testimonials,
-  },
-  {
-    name: 'Faqs',
-    href: routes.faqs,
-  },
-  {
-    name: 'Pricing',
-    href: routes.pricing,
-  },
-  {
-    name: 'Blog',
-    href: routes.blog,
-  },
+  ...getDynamicNavItems(),
   {
     name: 'Privacy',
     href: routes.privacy,
@@ -71,16 +55,16 @@ export const Footer = () => {
 
         <div className="flex w-full items-center border-t border-theme-border py-10 dark:border-dark-theme-border">
           <SmallText>
-            &copy; {new Date().getFullYear()} {app.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {app.name}.
           </SmallText>
 
           <div className="flex flex-1 items-center justify-end">
-            {app.social.twitter && (
+            {constants.footer.social.twitter && (
               <Button
                 aria-label="Twitter"
                 variant="lightNeutral"
                 onClick={() => {
-                  link(app.social.twitter)
+                  link(constants.footer.social.twitter, '_blank')
                 }}
               >
                 <svg aria-hidden="true" className="h-6 w-6 fill-current">
@@ -89,12 +73,12 @@ export const Footer = () => {
               </Button>
             )}
 
-            {app.social.github && (
+            {constants.footer.social.github && (
               <Button
                 aria-label="Github"
                 variant="lightNeutral"
                 onClick={() => {
-                  link(app.social.github)
+                  link(constants.footer.social.github, '_blank')
                 }}
               >
                 <svg aria-hidden="true" className="h-6 w-6 fill-current">
@@ -103,12 +87,12 @@ export const Footer = () => {
               </Button>
             )}
 
-            {app.social.linkedIn && (
+            {constants.footer.social.linkedIn && (
               <Button
                 aria-label="LinkedIn"
                 variant="lightNeutral"
                 onClick={() => {
-                  link(app.social.linkedIn)
+                  link(constants.footer.social.linkedIn, '_blank')
                 }}
               >
                 <svg aria-hidden="true" className="h-6 w-6 fill-current">
@@ -116,6 +100,16 @@ export const Footer = () => {
                 </svg>
               </Button>
             )}
+
+            <Button
+              aria-label="LinkedIn"
+              variant="lightNeutral"
+              onClick={() => {
+                link(`mailto:${app.emails.support}`, '_blank')
+              }}
+            >
+              <EnvelopeIcon className="w-6 h-6" />
+            </Button>
           </div>
         </div>
       </Container>
