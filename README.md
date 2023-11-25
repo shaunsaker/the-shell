@@ -79,7 +79,7 @@ Transform `8 weeks` of development a few hours 🚀
 - [Github cli](https://github.com/cli/cli#installation)
 - [Sentry account](https://sentry.io/signup/)
 - 2x [Resend accounts](https://resend.com/signup), one for staging and one for production
-- [Mixpanel account](https://mixpanel.com/) with 2x projects, one for staging and one for production, e.g. $APP_NAME-$ENVIRONMENT
+- [Mixpanel account](https://mixpanel.com/)
 - [Figma account](https://www.figma.com/)
 
 ### Environments
@@ -128,11 +128,11 @@ To apply future upgrades, see [Upgrading](#upgrading).
 yarn
 ```
 
-5. In this file, replace all instances of $TEMPLATE_URL with $GITHUB_APP_URL. This will ensure that your Github Actions status badges are correct.
+5. In [LICENSE.md](./LICENSE.md), replace $COPYRIGHT_HOLDER with your $APP_NAME.
 
-6. In [LICENSE.md](./LICENSE.md), replace $COPYRIGHT_HOLDER with your $APP_NAME.
+6. [Create a new repo in Github](https://github.com/new).
 
-7. [Create a new repo in Github](https://github.com/new).
+7. Do a search and replace for all instances of $TEMPLATE_URL and replace them with $GITHUB_APP_URL.
 
 8. Push the code to Github:
 
@@ -189,17 +189,17 @@ cp ./packages/website/env/.env.example ./packages/website/env/.env.staging
 cp ./packages/website/env/.env.example ./packages/website/env/.env.production
 ```
 
-6. For each project, create web apps by visiting https://console.firebase.google.com/project/_/settings/general/web and clicking "Add app", a good name is simply "app". Select "Also set up Firebase Hosting for this app". You can use the same config for `development` and `staging`. Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/website/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
+6. For each project, create web apps by visiting https://console.firebase.google.com/project/_/overview and clicking "Add app", a good name is simply "app". Select "Also set up Firebase Hosting for this app". You can use the same config for `development` and `staging`. Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/website/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
 
 7. Set the MODE env var in the website env files to the relevant $ENVIRONMENT, e.g. in [website/.env.development](./packages/website/.env.development) set `MODE=development`.
 
-8. For each project, [Enable Email/Password Sign-in](https://console.firebase.google.com/u/0/project/_/authentication/providers) by clicking on "Get started" => "Add new provider" => "Email/Password" => "Enable".
+8. For each project, [Enable Email/Password Sign-in](https://console.firebase.google.com/project/_/authentication/providers) by clicking on "Get started" => "Add new provider" => "Email/Password" => "Enable".
 
-9. For each project, set the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://$APP_NAME-$ENVIRONMENT.web.app/user-management.
+9. For each project, set the emails Action URL by vising https://console.firebase.google.com/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://$APP_NAME-$ENVIRONMENT.web.app/user-management. If you're planning on adding a custom domain, you can skip this step for now and come back to it later.
 
-10. Create a site for your Storybook by visiting https://console.firebase.google.com/u/0/project/$APP_NAME-staging/hosting/main, scrolling to the bottom of the page, clicking "Add another site" and following the instructions. A good name for this site is `$APP_NAME-storybook`. FYI you only need a storybook site for your staging environment.
+10. Create a site for your Storybook by visiting https://console.firebase.google.com/project/$APP_NAME-staging/hosting/main, scrolling to the bottom of the page, clicking "Add another site" and following the instructions. A good name for this site is `$APP_NAME-storybook`. FYI you only need a storybook site for your staging environment.
 
-11. For each project, create another site for your Website by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, scrolling to the bottom of the page, clicking "Add another site" and following the instructions. A good name for this site is `$APP_NAME-$ENVIRONMENT-website`.
+11. For each project, create another site for your Website by visiting https://console.firebase.google.com/project/_/hosting/main, scrolling to the bottom of the page, clicking "Add another site" and following the instructions. A good name for this site is `$APP_NAME-$ENVIRONMENT-website`.
 
 12. Recreate the [.firebaserc](./.firebaserc) with the following command:
 
@@ -211,7 +211,7 @@ cp ./.firebaserc.example ./.firebaserc
 
 14. For each project, create a new service account at https://console.cloud.google.com/iam-admin/serviceaccounts. Select your project, click "CREATE SERVICE ACCOUNT", add a name, e.g. "github-actions", click "CREATE AND CONTINUE", select the "Owner" role, click "CONTINUE", click "DONE", click on the service account you just created, click "KEYS", click "ADD KEY", click "Create new key", select "JSON", click "CREATE" and download to the root as `service-account-staging.json` and `service-account-production.json`.
 
-15. Add the paths of your service accounts to [website/env/.env.development](./packages/website/env/.env.development), [website/env/.env.staging](./packages/website/env/.env.staging) and [website/env/.env.production](./packages/website/env/.env.production) as `GOOGLE_APPLICATION_CREDENTIALS`. You can use the same one for `development` and `staging`.
+15. Add the paths of your service accounts to [website/env/.env.development](./packages/website/env/.env.development), [website/env/.env.staging](./packages/website/env/.env.staging) and [website/env/.env.production](./packages/website/env/.env.production), relative to the [website package](./packages/website), as `GOOGLE_APPLICATION_CREDENTIALS`. You can use the same one for `development` and `staging`.
 
 16. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
 
@@ -225,13 +225,13 @@ gh secret set GOOGLE_APPLICATION_CREDENTIALS_PRODUCTION < ./service-account-prod
 
 #### Using a custom domain
 
-1. For each project and for each site, connect your custom domain by visiting https://console.firebase.google.com/u/0/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions. A good system for subdomains can be found in the [Domains](#domains) section.
+1. For each project and for each site, connect your custom domain by visiting https://console.firebase.google.com/project/_/hosting/main, clicking "Add custom domain", adding your domain and following the instructions. A good system for subdomains can be found in the [Domains](#domains) section.
 
-2. Update the website urls in [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) and push your env files to Github again.
+2. Update the website urls in [website/.env.staging](./packages/website/.env.staging) and [website/.env.production](./packages/website/.env.production) and push your env files to Github if you haven't done so already.
 
-3. For each project, add your domain to the whitelisted domains by visiting https://console.firebase.google.com/u/0/project/_/authentication/settings, clicking "Authorized domains" and adding your domain.
+3. For each project, add your `app.$APP_NAME` domain to the whitelisted domains by visiting https://console.firebase.google.com/project/*/authentication/settings, clicking "Authorized domains" and adding your domain.
 
-4. For each project, update the emails Action URL by vising https://console.firebase.google.com/u/0/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://$CUSTOM_DOMAIN/user-management.
+4. For each project, update the emails Action URL by vising https://console.firebase.google.com/project/_/authentication/emails, click any email template, click the edit icon, click "Customize action URL" at the bottom and set it to https://$CUSTOM_DOMAIN/user-management.
 
 5. If you already deployed your Firebase functions before adding your custom domain, you'll need to delete them and redeploy (I know right 😅).
 
@@ -297,6 +297,14 @@ The following steps will setup your Firebase production environment with your St
 3. Grab your [live Stripe API key](https://dashboard.stripe.com/apikeys) (Secret key).
 
 4. Add the secrets to [functions/.env.production](./packages/functions/.env.production).
+
+---
+
+##### Troubleshooting
+
+###### 403 Forbidden
+
+If you're getting a 403 Forbidden error when testing the webhooks, try deleting and redeploying the function.
 
 ---
 
@@ -372,7 +380,9 @@ gh secret set SENTRY_PROJECT --body $VALUE
 
 ### Setup Mixpanel
 
-1. Grab your staging and production project tokens from your "Project Settings" - "Access Keys" - "Project Token" and them to the respective files at [app/.env.staging](./packages/app/.env.staging), [app/.env.production](./packages/app/.env.production), [website/.env.staging](./packages/website/env/.env.staging), [website/.env.production](./packages/website/env/.env.production).
+1. Create staging and production projects in [Mixpanel](https://mixpanel.com) with the names $APP_NAME-$ENVIRONMENT.
+
+2. Grab your staging and production project tokens from your "Project Settings" - "Access Keys" - "Project Token" and them to the respective files at [app/.env.staging](./packages/app/.env.staging), [app/.env.production](./packages/app/.env.production), [website/.env.staging](./packages/website/env/.env.staging), [website/.env.production](./packages/website/env/.env.production).
 
 ---
 
