@@ -9,10 +9,6 @@ permissions:
   contents: read # for checkout
 
 jobs:
-  development:
-    name: development
-    uses: ./.github/workflows/development.yml
-
   release:
     needs: development
     permissions:
