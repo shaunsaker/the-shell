@@ -13,11 +13,11 @@ import constants from '../constants.json'
 export default async function Page() {
   return (
     <>
-      {constants.sections.map((section, index) => {
+      {constants.sections.map(({ navTitle, ...section }, index) => {
         const isEven = index % 2 === 0
         const variant: SectionVariant = isEven ? 'inverted' : 'default'
         const defaultProps = {
-          id: section.navTitle,
+          id: navTitle,
           variant,
         }
 
