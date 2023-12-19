@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
 
 import { Navbar } from './Navbar'
 
@@ -17,22 +18,14 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    items: [
-      {
-        name: 'Home',
-        href: '/',
-        active: false,
-      },
-      {
-        name: 'Settings',
-        href: '/settings',
-        active: false,
-      },
-      {
-        name: 'Teams',
-        href: '/teams',
-        active: true,
-      },
-    ],
+    children: (
+      <>
+        <Navbar.Item active>Home</Navbar.Item>
+
+        <Navbar.Item>Settings</Navbar.Item>
+
+        <Navbar.Item>Teams</Navbar.Item>
+      </>
+    ),
   },
 }
