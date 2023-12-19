@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Button } from '../button/Button'
 
 type Option = {
   value: string
-  label: string
+  label: ReactNode
 }
 
 type Props = {
