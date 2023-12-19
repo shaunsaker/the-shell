@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import LogoSvg from '../../assets/logo.svg'
+import Logo from '../../assets/logo.svg'
 
 type Props = ComponentPropsWithoutRef<'svg'> & {
   variant?: 'default' | 'inverted'
@@ -9,12 +9,12 @@ type Props = ComponentPropsWithoutRef<'svg'> & {
 
 export const Logomark = ({ className, variant = 'default', ...props }: Props) => {
   return (
-    <LogoSvg
+    <Logo
       className={twMerge(
         'h-8 w-auto',
         variant === 'default'
-          ? 'fill-theme-brand stroke-fill-theme-brand dark:fill-dark-theme-brand dark:stroke-dark-theme-brand'
-          : 'fill-theme-brand-inverted stroke-fill-theme-brand-inverted dark:fill-dark-theme-brand-inverted dark:stroke-dark-theme-brand-inverted',
+          ? 'stroke-fill-theme-brand fill-theme-brand dark:fill-dark-theme-brand dark:stroke-dark-theme-brand'
+          : 'stroke-fill-theme-brand-inverted fill-theme-brand-inverted dark:fill-dark-theme-brand-inverted dark:stroke-dark-theme-brand-inverted',
         className,
       )}
       {...props}
