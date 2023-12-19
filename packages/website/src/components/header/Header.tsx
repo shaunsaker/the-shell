@@ -4,7 +4,7 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import { Button, Headerbar, Logo, Popover, Sidebar } from 'components'
 import { Logomark } from 'components/src/components/logomark/Logomark'
 import { useRouter } from 'next/navigation'
-import React, { ComponentProps, ComponentPropsWithoutRef, useState } from 'react'
+import React, { ComponentPropsWithoutRef, useState } from 'react'
 
 import { AnalyticsPrimaryButtonName } from '@/analytics/models'
 import constants from '@/constants.json'
@@ -13,9 +13,7 @@ import { getDynamicNavItems } from '@/routes/getDynamicNavItems'
 
 import { PrimaryActionButton } from '../primaryActionButton/PrimaryActionButton'
 
-type NavigationItem = ComponentProps<typeof Sidebar>['items'][0]
-
-const NAVIGATION_ITEMS: NavigationItem[] = getDynamicNavItems()
+const NAVIGATION_ITEMS = getDynamicNavItems()
 
 type Props = ComponentPropsWithoutRef<'header'>
 
@@ -86,14 +84,22 @@ export const Header = ({ ...props }: Props) => {
               setSidebarOpen(false)
             }}
           >
-            <Sidebar
-              items={NAVIGATION_ITEMS}
-              onItemClick={href => {
-                router.push(href)
+            <Sidebar>
+              {NAVIGATION_ITEMS.map(navItem => (
+                <Sidebar.Item
+                  key={navItem.href}
+                  onClick={() => {
+                    router.push(navItem.href)
 
-                setSidebarOpen(false)
-              }}
-            />
+                    if (sidebarOpen) {
+                      setSidebarOpen(false)
+                    }
+                  }}
+                >
+                  {navItem.name}
+                </Sidebar.Item>
+              ))}
+            </Sidebar>
           </Popover>
         </div>
       ) : null}
