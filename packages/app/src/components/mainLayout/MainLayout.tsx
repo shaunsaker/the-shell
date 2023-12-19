@@ -1,8 +1,8 @@
 import { Cog6ToothIcon, EnvelopeOpenIcon, HomeModernIcon } from '@heroicons/react/24/outline'
 import { Popover, Sidebar } from 'components'
-import React, { ComponentProps } from 'react'
+import React from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { isExternalLink, useLink } from 'utils'
+import { useLink } from 'utils'
 
 import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscription'
 import { features } from '@/features'
@@ -10,8 +10,6 @@ import { routes } from '@/router/routes'
 import { useSidebarOpen } from '@/sidebar/hooks/useSidebarOpen'
 
 import { app } from '../../../../config'
-
-type NavigationItem = ComponentProps<typeof Sidebar>['items'][0]
 
 export const MainLayout = () => {
   const location = useLocation()
@@ -21,50 +19,52 @@ export const MainLayout = () => {
   const navigate = useNavigate()
   const link = useLink()
 
-  const settingsItem: NavigationItem = {
-    name: 'Settings',
-    href: routes.settings,
-    icon: <Cog6ToothIcon />,
-    active: location.pathname.startsWith(routes.settings),
-  }
-
-  const navigationItems: NavigationItem[] = [
-    {
-      name: 'Dashboard',
-      href: routes.dashboard,
-      icon: <HomeModernIcon />,
-      active: location.pathname === routes.dashboard,
-      disabled: features.subscriptions && (hasActiveSubscriptionLoading || !hasActiveSubscription),
-    },
-    {
-      name: 'Support',
-      href: `mailto:${app.emails.support}`,
-      icon: <EnvelopeOpenIcon />,
-      active: false,
-    },
-  ]
-
-  if (features.auth || features.subscriptions) {
-    navigationItems.splice(1, 0, settingsItem)
-  }
-
   const sidebar = (
-    <Sidebar
-      items={navigationItems}
-      onItemClick={href => {
-        if (isExternalLink(href)) {
-          link(href, '_blank')
+    <Sidebar>
+      <Sidebar.Item
+        icon={<HomeModernIcon />}
+        active={location.pathname === routes.dashboard}
+        disabled={features.subscriptions && (hasActiveSubscriptionLoading || !hasActiveSubscription)}
+        onClick={() => {
+          navigate(routes.dashboard)
 
-          return
-        }
+          if (sidebarOpen) {
+            setSidebarOpen(false)
+          }
+        }}
+      >
+        Dashboard
+      </Sidebar.Item>
 
-        navigate(href)
+      {(features.auth || features.subscriptions) && (
+        <Sidebar.Item
+          icon={<Cog6ToothIcon />}
+          active={location.pathname.startsWith(routes.settings)}
+          onClick={() => {
+            navigate(routes.settings)
 
-        if (sidebarOpen) {
-          setSidebarOpen(false)
-        }
-      }}
-    />
+            if (sidebarOpen) {
+              setSidebarOpen(false)
+            }
+          }}
+        >
+          Settings
+        </Sidebar.Item>
+      )}
+
+      <Sidebar.Item
+        icon={<EnvelopeOpenIcon />}
+        onClick={() => {
+          link(`mailto:${app.emails.support}`, '_blank')
+
+          if (sidebarOpen) {
+            setSidebarOpen(false)
+          }
+        }}
+      >
+        Support
+      </Sidebar.Item>
+    </Sidebar>
   )
 
   return (

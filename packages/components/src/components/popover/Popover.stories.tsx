@@ -18,30 +18,20 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+const sidebar = (
+  <Sidebar>
+    <Sidebar.Item icon={<HomeModernIcon />} active>
+      Dashboard
+    </Sidebar.Item>
+
+    <Sidebar.Item icon={<Cog6ToothIcon />}>Settings</Sidebar.Item>
+  </Sidebar>
+)
+
 export const Default: Story = {
   args: {
     open: true,
-    children: (
-      <Sidebar
-        items={[
-          {
-            name: 'Dashboard',
-            href: '/dashboard',
-            icon: <HomeModernIcon />,
-            active: true,
-          },
-          {
-            name: 'Settings',
-            href: '/settings',
-            icon: <Cog6ToothIcon />,
-            active: false,
-          },
-        ]}
-        onItemClick={href => {
-          console.log(href)
-        }}
-      />
-    ),
+    children: sidebar,
     onClose: () => {
       console.log('Close')
     },
@@ -52,27 +42,7 @@ export const Right: Story = {
   args: {
     open: true,
     position: 'right',
-    children: (
-      <Sidebar
-        items={[
-          {
-            name: 'Dashboard',
-            href: '/dashboard',
-            icon: <HomeModernIcon />,
-            active: true,
-          },
-          {
-            name: 'Settings',
-            href: '/settings',
-            icon: <Cog6ToothIcon />,
-            active: false,
-          },
-        ]}
-        onItemClick={href => {
-          console.log(href)
-        }}
-      />
-    ),
+    children: sidebar,
     onClose: () => {
       console.log('Close')
     },

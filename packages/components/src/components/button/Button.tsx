@@ -78,7 +78,7 @@ export const Button = ({
   children,
   ...props
 }: ButtonProps) => {
-  const iconComponent = icon && <span className="h-4 w-4">{icon}</span>
+  const iconComponent = icon && <span className="h-4 min-w-[1rem]">{icon}</span>
 
   return (
     <button
@@ -96,7 +96,7 @@ export const Button = ({
 
       {icon && iconPosition === 'left' && iconComponent}
 
-      <span className="w-full truncate">{children}</span>
+      <span className="truncate">{children}</span>
 
       {icon && iconPosition === 'right' && iconComponent}
     </button>

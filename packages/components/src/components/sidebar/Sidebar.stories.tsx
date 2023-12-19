@@ -19,22 +19,14 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    items: [
-      {
-        name: 'Dashboard',
-        href: '/dashboard',
-        icon: <HomeModernIcon />,
-        active: true,
-      },
-      {
-        name: 'Settings',
-        href: '/settings',
-        icon: <Cog6ToothIcon />,
-        active: false,
-      },
-    ],
-    onItemClick: href => {
-      console.log(href)
-    },
+    children: (
+      <>
+        <Sidebar.Item icon={<HomeModernIcon />} active>
+          Dashboard
+        </Sidebar.Item>
+
+        <Sidebar.Item icon={<Cog6ToothIcon />}>Settings</Sidebar.Item>
+      </>
+    ),
   },
 }
