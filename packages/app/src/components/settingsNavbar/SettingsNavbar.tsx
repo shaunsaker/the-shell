@@ -54,7 +54,7 @@ export const SettingsNavbar = () => {
             active={location.pathname.includes(routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId))}
             disabled={teamsPageDisabled}
             onClick={() => {
-              routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId)
+              navigate(routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId))
             }}
           >
             Team
