@@ -386,6 +386,12 @@ gh secret set SENTRY_PROJECT --body $VALUE
 
 ---
 
+### Enable the relevant features
+
+We use features flags to enable auth, subscriptions and teams. By default these features are disabled. You can enable them in [packages/app/src/features/index.ts](./packages/app/src/features/index.ts) as needed.
+
+---
+
 ### Test your local setup
 
 At this point, it's a good idea to test that everything is working. Run the following command in the root folder to spin up your `app`, `functions` and `website`.
