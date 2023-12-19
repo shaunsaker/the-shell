@@ -12,14 +12,14 @@ type Props = ComponentPropsWithoutRef<'div'> & {
 export const Logo = ({ className, variant = 'default', ...props }: Props) => {
   return (
     <div className={twMerge('flex items-center gap-x-2', className)} {...props}>
-      <Logomark className={className} variant={variant === 'inverted' ? 'default' : 'inverted'} />
+      <Logomark className={className} variant={variant} />
 
       <HeadingText
         className={twMerge(
           'whitespace-nowrap',
           variant === 'inverted'
-            ? 'text-theme-content-inverted dark:text-dark-theme-content'
-            : 'text-theme-content dark:text-dark-theme-content-inverted',
+            ? 'text-theme-content-inverted dark:text-dark-theme-content-inverted'
+            : 'text-theme-content dark:text-dark-theme-content',
           className,
         )}
       >
