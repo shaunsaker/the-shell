@@ -1,4 +1,4 @@
-import { Dialog } from 'components'
+import { Button, Dialog } from 'components'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formatTeamMemberName } from 'utils'
@@ -32,22 +32,32 @@ export const SettingsRemoveTeamMember = () => {
         } from the ${team?.name} team? This action cannot be undone.`}
       />
 
-      <Dialog.Actions
-        confirmDisabled={disabled}
-        confirmLoading={removeTeamMemberLoading}
-        confirmIsDangerous
-        onCancelClick={() => {
-          navigate(routes.back)
-        }}
-        onConfirmClick={() => {
-          if (team?.id && teamMember) {
-            removeTeamMember({
-              teamId: teamMember.teamId,
-              teamMemberId: teamMember.id,
-            })
-          }
-        }}
-      />
+      <Dialog.Actions>
+        <Button
+          variant="secondaryNeutral"
+          onClick={() => {
+            navigate(routes.back)
+          }}
+        >
+          Cancel
+        </Button>
+
+        <Button
+          color="red"
+          loading={removeTeamMemberLoading}
+          disabled={disabled}
+          onClick={() => {
+            if (team?.id && teamMember) {
+              removeTeamMember({
+                teamId: teamMember.teamId,
+                teamMemberId: teamMember.id,
+              })
+            }
+          }}
+        >
+          Confirm
+        </Button>
+      </Dialog.Actions>
     </Dialog>
   )
 }
