@@ -21,6 +21,13 @@ export const MainLayout = () => {
   const navigate = useNavigate()
   const link = useLink()
 
+  const settingsItem: NavigationItem = {
+    name: 'Settings',
+    href: routes.settings,
+    icon: <Cog6ToothIcon />,
+    active: location.pathname.startsWith(routes.settings),
+  }
+
   const navigationItems: NavigationItem[] = [
     {
       name: 'Dashboard',
@@ -30,18 +37,16 @@ export const MainLayout = () => {
       disabled: features.subscriptions && (hasActiveSubscriptionLoading || !hasActiveSubscription),
     },
     {
-      name: 'Settings',
-      href: routes.settings,
-      icon: <Cog6ToothIcon />,
-      active: location.pathname.startsWith(routes.settings),
-    },
-    {
       name: 'Support',
       href: `mailto:${app.emails.support}`,
       icon: <EnvelopeOpenIcon />,
       active: false,
     },
   ]
+
+  if (features.auth || features.subscriptions) {
+    navigationItems.splice(1, 0, settingsItem)
+  }
 
   const sidebar = (
     <Sidebar

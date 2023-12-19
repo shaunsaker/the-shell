@@ -56,53 +56,58 @@ const router = createBrowserRouter(
             <Route path={routes.dashboard} element={<Dashboard />} errorElement={errorElement} />
           </Route>
 
-          <Route element={<SettingsLayout />} errorElement={errorElement}>
-            <Route
-              path={routes.settings}
-              element={<Navigate to={features.auth ? routes.settingsAccount : routes.settingsCalendars} />}
-              errorElement={errorElement}
-            />
-
-            {features.auth && (
-              <Route path={routes.settingsAccount} element={<SettingsAccount />} errorElement={errorElement} />
-            )}
-
-            {features.subscriptions && (
+          {(features.auth || features.subscriptions) && (
+            <Route element={<SettingsLayout />} errorElement={errorElement}>
               <Route
-                path={routes.settingsSubscription}
-                element={<SettingsSubscription />}
+                path={routes.settings}
+                element={<Navigate to={routes.settingsAccount} />}
                 errorElement={errorElement}
               />
-            )}
 
-            {features.teams && (
-              <Route element={features.subscriptions ? <SubscriptionLayout /> : <Outlet />} errorElement={errorElement}>
-                <Route element={<TeamPlanLayout />} errorElement={errorElement}>
-                  <Route path={routes.settingsTeam} element={<SettingsTeam />} errorElement={errorElement} />
+              {features.auth && (
+                <Route path={routes.settingsAccount} element={<SettingsAccount />} errorElement={errorElement} />
+              )}
 
-                  <Route element={<TeamAdminLayout />} errorElement={errorElement}>
-                    <Route
-                      path={routes.settingsInviteTeamMembers}
-                      element={<SettingsInviteTeamMembers />}
-                      errorElement={errorElement}
-                    />
+              {features.subscriptions && (
+                <Route
+                  path={routes.settingsSubscription}
+                  element={<SettingsSubscription />}
+                  errorElement={errorElement}
+                />
+              )}
 
-                    <Route
-                      path={routes.settingsTeamMember}
-                      element={<SettingsTeamMember />}
-                      errorElement={errorElement}
-                    >
+              {features.teams && (
+                <Route
+                  element={features.subscriptions ? <SubscriptionLayout /> : <Outlet />}
+                  errorElement={errorElement}
+                >
+                  <Route element={<TeamPlanLayout />} errorElement={errorElement}>
+                    <Route path={routes.settingsTeam} element={<SettingsTeam />} errorElement={errorElement} />
+
+                    <Route element={<TeamAdminLayout />} errorElement={errorElement}>
                       <Route
-                        path={routes.settingsRemoveTeamMember}
-                        element={<SettingsRemoveTeamMember />}
+                        path={routes.settingsInviteTeamMembers}
+                        element={<SettingsInviteTeamMembers />}
                         errorElement={errorElement}
                       />
+
+                      <Route
+                        path={routes.settingsTeamMember}
+                        element={<SettingsTeamMember />}
+                        errorElement={errorElement}
+                      >
+                        <Route
+                          path={routes.settingsRemoveTeamMember}
+                          element={<SettingsRemoveTeamMember />}
+                          errorElement={errorElement}
+                        />
+                      </Route>
                     </Route>
                   </Route>
                 </Route>
-              </Route>
-            )}
-          </Route>
+              )}
+            </Route>
+          )}
 
           <Route path="*" element={<Navigate to={routes.dashboard} />} />
         </Route>
