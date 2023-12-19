@@ -1,5 +1,5 @@
 import { Button, Navbar } from 'components'
-import React, { ComponentProps } from 'react'
+import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useSignOut } from '@/auth/hooks/useSignOut'
@@ -10,8 +10,6 @@ import { routes, TEAM_ID_PARAM } from '@/router/routes'
 import { useTeams } from '@/teams/hooks/useTeams'
 
 import { Header } from '../header/Header'
-
-type NavigationItem = ComponentProps<typeof Navbar>['items'][0]
 
 export const SettingsNavbar = () => {
   const location = useLocation()
@@ -26,58 +24,56 @@ export const SettingsNavbar = () => {
   const teamsPageDisabled =
     hasActiveSubscriptionLoading || !hasActiveSubscription || hasTeamPlanLoading || !hasTeamPlan || teamsLoading
 
-  const accountItem = {
-    name: 'Account',
-    href: routes.settingsAccount,
-    active: location.pathname.includes(routes.settingsAccount),
-  }
-
-  const subscriptionItem = {
-    name: 'Subscription',
-    href: routes.settingsSubscription,
-    active: location.pathname.includes(routes.settingsSubscription),
-  }
-
-  const teamItem: NavigationItem = {
-    name: 'Team',
-    href: routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId),
-    active: location.pathname.includes(routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId)),
-    disabled: teamsPageDisabled,
-  }
-
-  const items: NavigationItem[] = []
-
-  if (features.auth) {
-    items.splice(0, 0, accountItem)
-  }
-
-  if (features.subscriptions) {
-    items.splice(1, 0, subscriptionItem)
-  }
-
-  if (features.teams) {
-    items.splice(2, 0, teamItem)
-  }
-
   return (
     <Header>
-      <Navbar
-        items={items}
-        onClick={href => {
-          navigate(href)
-        }}
-      >
+      <Navbar>
         {features.auth && (
-          <Button
-            className="rounded-none"
-            variant="light"
-            loading={signOutLoading}
+          <Navbar.Item
+            active={location.pathname.includes(routes.settingsAccount)}
             onClick={() => {
-              signOut()
+              navigate(routes.settingsAccount)
             }}
           >
-            Sign out
-          </Button>
+            Account
+          </Navbar.Item>
+        )}
+
+        {features.subscriptions && (
+          <Navbar.Item
+            active={location.pathname.includes(routes.settingsSubscription)}
+            onClick={() => {
+              navigate(routes.settingsSubscription)
+            }}
+          >
+            Subscription
+          </Navbar.Item>
+        )}
+
+        {features.teams && (
+          <Navbar.Item
+            active={location.pathname.includes(routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId))}
+            disabled={teamsPageDisabled}
+            onClick={() => {
+              routes.settingsTeam.replace(TEAM_ID_PARAM, defaultTeamId)
+            }}
+          >
+            Team
+          </Navbar.Item>
+        )}
+
+        {features.auth && (
+          <div className="flex flex-1 justify-end">
+            <Button
+              className="rounded-none"
+              variant="light"
+              loading={signOutLoading}
+              onClick={() => {
+                signOut()
+              }}
+            >
+              Sign out
+            </Button>
+          </div>
         )}
       </Navbar>
     </Header>
