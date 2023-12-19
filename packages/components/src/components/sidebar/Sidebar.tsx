@@ -29,7 +29,7 @@ const Sidebar = ({ children }: Props) => {
   return (
     <div className="bg-theme-brand dark:bg-dark-theme-brand flex w-64 flex-1 flex-col gap-y-6 overflow-y-auto p-6">
       <div className="flex items-center">
-        <Logo className="text-theme-content-inverted" />
+        <Logo className="text-theme-content-inverted fill-theme-content-inverted dark:fill-dark-theme-content-inverted dark:text-dark-theme-content-inverted" />
       </div>
 
       <nav className="flex flex-1 flex-col">
