@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
+import { Button } from '../button/Button'
 import { Dialog } from './Dialog'
 
 const meta = {
@@ -36,7 +37,11 @@ export const Dangerous: Story = {
       <>
         <Dialog.Header title="Dialog Title" description="Dialog Description" />
 
-        <Dialog.Actions confirmIsDangerous />
+        <Dialog.Actions>
+          <Button variant="secondaryNeutral">Cancel</Button>
+
+          <Button color="red">Confirm</Button>
+        </Dialog.Actions>
       </>
     ),
   },
@@ -49,7 +54,13 @@ export const Loading: Story = {
       <>
         <Dialog.Header title="Dialog Title" description="Dialog Description" />
 
-        <Dialog.Actions confirmLoading />
+        <Dialog.Actions>
+          <Button variant="secondaryNeutral">Cancel</Button>
+
+          <Button color="red" loading>
+            Confirm
+          </Button>
+        </Dialog.Actions>
       </>
     ),
   },

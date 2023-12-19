@@ -47,18 +47,28 @@ export const DeleteAccountSection = () => {
           description="This action is not reversible. All information related to this account will be deleted permanently."
         />
 
-        <Dialog.Actions
-          confirmIsDangerous
-          confirmLoading={deleteUserAccountLoading}
-          onCancelClick={() => {
-            setDialogOpen(false)
-          }}
-          onConfirmClick={async () => {
-            await deleteUserAccount()
+        <Dialog.Actions>
+          <Button
+            variant="secondaryNeutral"
+            onClick={() => {
+              setDialogOpen(false)
+            }}
+          >
+            Cancel
+          </Button>
 
-            setDialogOpen(false)
-          }}
-        />
+          <Button
+            color="red"
+            loading={deleteUserAccountLoading}
+            onClick={async () => {
+              await deleteUserAccount()
+
+              setDialogOpen(false)
+            }}
+          >
+            Confirm
+          </Button>
+        </Dialog.Actions>
       </Dialog>
     </PageSection>
   )

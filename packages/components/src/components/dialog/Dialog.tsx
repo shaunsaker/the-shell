@@ -3,7 +3,6 @@ import React, { ReactNode, useRef } from 'react'
 import { useKeyPress, useOutsideClick } from 'utils'
 
 import { Backdrop } from '../backdrop/Backdrop'
-import { Button } from '../button/Button'
 import { Card } from '../card/Card'
 import { HeadingText } from '../headingText/HeadingText'
 import { SmallText } from '../smallText/SmallText'
@@ -24,40 +23,11 @@ const Header = ({ title, description }: HeaderProps) => {
 }
 
 type ActionsProps = {
-  confirmText?: string
-  confirmDisabled?: boolean
-  confirmLoading?: boolean
-  confirmIsDangerous?: boolean
-  cancelText?: string
-  onCancelClick?: () => void
-  onConfirmClick?: () => void
+  children?: ReactNode
 }
 
-const Actions = ({
-  confirmText = 'Confirm',
-  confirmDisabled,
-  confirmLoading,
-  confirmIsDangerous,
-  cancelText = 'Cancel',
-  onCancelClick,
-  onConfirmClick,
-}: ActionsProps) => {
-  return (
-    <div className="flex justify-end gap-x-4">
-      <Button variant="secondaryNeutral" disabled={confirmLoading} onClick={onCancelClick}>
-        {cancelText}
-      </Button>
-
-      <Button
-        color={confirmIsDangerous ? 'red' : undefined}
-        disabled={confirmDisabled}
-        loading={confirmLoading}
-        onClick={onConfirmClick}
-      >
-        {confirmText}
-      </Button>
-    </div>
-  )
+const Actions = ({ children }: ActionsProps) => {
+  return <div className="flex justify-end gap-x-4">{children}</div>
 }
 
 type Props = {
