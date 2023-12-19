@@ -54,6 +54,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        # Fixes "Could not find the SHA of the previous release in the git history"
+        with:
+          fetch-depth: 0
 
       # This is necessary for the Create Sentry release step
       - name: Get package version
