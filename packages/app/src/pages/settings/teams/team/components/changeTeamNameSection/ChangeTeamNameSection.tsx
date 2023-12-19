@@ -24,7 +24,7 @@ export const ChangeTeamNameSection = () => {
   }, [team?.name])
 
   return (
-    <PageSection className="border-b-0" title="Change team name" description="Update your team name.">
+    <PageSection className="border-b-0" title="Change team name" description="Update your team name." fullWidth={false}>
       {teamsLoading ? (
         <SkeletonLoader />
       ) : (
