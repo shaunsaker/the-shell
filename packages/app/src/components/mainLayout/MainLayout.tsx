@@ -62,7 +62,7 @@ export const MainLayout = () => {
           }
         }}
       >
-        Support
+        Send Feedback
       </Sidebar.Item>
     </Sidebar>
   )
