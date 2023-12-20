@@ -1,4 +1,4 @@
-import { ClipboardDocumentCheckIcon, ClipboardDocumentIcon } from '@heroicons/react/24/outline'
+import { ClipboardDocumentCheckIcon, ClipboardDocumentIcon } from '@heroicons/react/24/solid'
 import { useHover } from '@uidotdev/usehooks'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { ComponentPropsWithoutRef, useEffect, useState } from 'react'

@@ -1,4 +1,4 @@
-import { Cog6ToothIcon, DocumentIcon, EnvelopeOpenIcon, HomeModernIcon } from '@heroicons/react/24/outline'
+import { Cog6ToothIcon, DocumentIcon, EnvelopeOpenIcon, HomeModernIcon } from '@heroicons/react/24/solid'
 import { Sidebar } from 'components'
 import { app } from 'config'
 import React from 'react'

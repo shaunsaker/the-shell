@@ -1,4 +1,4 @@
-import { Bars3Icon } from '@heroicons/react/24/outline'
+import { Bars3Icon } from '@heroicons/react/24/solid'
 import { Button, Headerbar } from 'components'
 import React, { ComponentPropsWithoutRef } from 'react'
 import { twMerge } from 'tailwind-merge'

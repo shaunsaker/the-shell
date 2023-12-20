@@ -4,7 +4,7 @@ import {
   ExclamationTriangleIcon,
   InformationCircleIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
+} from '@heroicons/react/24/solid'
 import React, { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 

@@ -1,4 +1,4 @@
-import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import { BlankState, Button } from 'components'
 import React from 'react'
 import { useLink } from 'utils'

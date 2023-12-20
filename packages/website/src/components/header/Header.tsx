@@ -1,6 +1,6 @@
 'use client'
 
-import { Bars3Icon } from '@heroicons/react/24/outline'
+import { Bars3Icon } from '@heroicons/react/24/solid'
 import { Button, Headerbar, Logo, Popover, Sidebar } from 'components'
 import { Logomark } from 'components/src/components/logomark/Logomark'
 import { useRouter } from 'next/navigation'
