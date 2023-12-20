@@ -1,4 +1,4 @@
-import { XCircleIcon } from '@heroicons/react/24/outline'
+import { XCircleIcon } from '@heroicons/react/24/solid'
 import { Button, SmallText, TextInput } from 'components'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'

@@ -1,4 +1,4 @@
-import { ArrowRightIcon } from '@heroicons/react/24/outline'
+import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { Button, ErrorPage } from 'components'
 import React, { useEffect } from 'react'
 import { useNavigate, useRouteError } from 'react-router-dom'

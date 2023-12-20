@@ -1,4 +1,4 @@
-import { ArrowLeftIcon } from '@heroicons/react/24/outline'
+import { ArrowLeftIcon } from '@heroicons/react/24/solid'
 import { Button, SmallText } from 'components'
 import Link from 'next/link'
 import React from 'react'

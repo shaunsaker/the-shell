@@ -1,5 +1,5 @@
 'use client'
-import { ArrowRightIcon } from '@heroicons/react/24/outline'
+import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { Button, ErrorPage } from 'components'
 import { useRouter } from 'next/navigation'
 import React from 'react'
