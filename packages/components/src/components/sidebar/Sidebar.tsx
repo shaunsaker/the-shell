@@ -12,8 +12,9 @@ type SidebarItemProps = {
 const SidebarItem = ({ active, ...props }: SidebarItemProps) => {
   return (
     <Button
+      variant="lightInverted"
       className={twMerge(
-        'hover:bg-theme-brand-inverted/10 dark:hover:bg-dark-theme-brand-inverted/10 dark:focus-visible:outline-dark-theme-brand-subtle w-full justify-start border-none shadow-none',
+        'w-full justify-start',
         active ? 'bg-theme-brand-inverted/10 dark:bg-dark-theme-brand-inverted/10' : '',
       )}
       {...props}

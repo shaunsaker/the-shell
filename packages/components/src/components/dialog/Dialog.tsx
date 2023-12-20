@@ -14,10 +14,10 @@ type HeaderProps = {
 
 const Header = ({ title, description }: HeaderProps) => {
   return (
-    <div>
+    <div className="space-y-2">
       <HeadingText>{title}</HeadingText>
 
-      <SmallText className="mt-1">{description}</SmallText>
+      <SmallText>{description}</SmallText>
     </div>
   )
 }
@@ -30,13 +30,13 @@ const Actions = ({ children }: ActionsProps) => {
   return <div className="flex justify-end gap-x-4">{children}</div>
 }
 
-type Props = {
+export type DialogProps = {
   open?: boolean
   children?: ReactNode
   onClose: () => void
 }
 
-const Dialog = ({ open, children, onClose }: Props) => {
+const Dialog = ({ open, children, onClose }: DialogProps) => {
   const ref = useRef<HTMLDivElement>(null)
 
   useOutsideClick(ref, () => {

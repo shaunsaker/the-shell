@@ -29,7 +29,8 @@ const variantToClassNames: Record<Variant, string> = {
     'border-transparent text-theme-brand dark:text-dark-theme-brand hover:text-theme-brand-emphasis dark:hover:text-dark-theme-brand-emphasis',
   lightNeutral:
     'border-transparent text-theme-content dark:text-dark-theme-content hover:bg-theme-brand-inverted/10 hover:text-theme-content-emphasis dark:hover:text-dark-theme-content-emphasis',
-  lightInverted: 'border-transparent text-theme-content-inverted hover:bg-theme-brand-inverted/10',
+  lightInverted:
+    'border-transparent text-theme-content-inverted dark:text-dark-theme-content-inverted hover:bg-theme-brand-inverted/10 dark:hover:bg-dark-theme-brand-inverted/10',
 }
 
 const getColorClassNames = (variant: Variant, color?: Color): string => {
