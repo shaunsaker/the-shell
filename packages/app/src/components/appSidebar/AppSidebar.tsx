@@ -1,5 +1,5 @@
 import { Cog6ToothIcon, EnvelopeOpenIcon, HomeModernIcon } from '@heroicons/react/24/outline'
-import { Sidebar } from 'components'
+import { Sidebar, SmallText } from 'components'
 import { app } from 'config'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -9,6 +9,8 @@ import { useHasActiveSubscription } from '@/billing/hooks/useHasActiveSubscripti
 import { features } from '@/features'
 import { routes } from '@/router/routes'
 import { useSidebarOpen } from '@/sidebar/hooks/useSidebarOpen'
+
+import pkg from '../../../../../package.json'
 
 export const AppSidebar = () => {
   const location = useLocation()
@@ -63,6 +65,12 @@ export const AppSidebar = () => {
       >
         Send Feedback
       </Sidebar.Item>
+
+      <div className="flex flex-1 flex-col justify-end text-center">
+        <SmallText className="text-theme-content-inverted dark:text-dark-theme-content-inverted">
+          v{pkg.version}
+        </SmallText>
+      </div>
     </Sidebar>
   )
 }
