@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
-import { List, ListItem } from './List'
+import { List } from './List'
 
 const meta = {
   title: 'List',
@@ -33,17 +33,17 @@ const LIST_ITEMS = [
 
 export const Default: Story = {
   args: {
-    children: LIST_ITEMS.map(({ label, value }) => <ListItem key={value}>{label}</ListItem>),
+    children: LIST_ITEMS.map(({ label, value }) => <List.Item key={value}>{label}</List.Item>),
   },
 }
 
 export const MultipleChildren: Story = {
   args: {
     children: LIST_ITEMS.map(({ label, value }) => (
-      <ListItem key={value}>
+      <List.Item key={value}>
         <span>{label}</span>
         <span>{value}</span>
-      </ListItem>
+      </List.Item>
     )),
   },
   parameters: {

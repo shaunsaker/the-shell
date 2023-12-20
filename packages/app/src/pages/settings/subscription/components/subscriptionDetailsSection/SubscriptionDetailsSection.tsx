@@ -1,5 +1,4 @@
 import { Button, List } from 'components'
-import { ListItem } from 'components/src/components/list/ListItem'
 import React from 'react'
 import { formatBillingAddress, formatCurrency, formatDate, formatSubscriptionStatus, parsePaymentMethod } from 'utils'
 
@@ -38,25 +37,25 @@ export const SubscriptionDetailsSection = () => {
       fullWidth={false}
     >
       <List>
-        <ListItem>
+        <List.Item>
           <span>Plan</span>
 
           <span>{activeProduct?.name}</span>
-        </ListItem>
+        </List.Item>
 
-        <ListItem>
+        <List.Item>
           <span>Status</span>
 
           <span>{subscription ? formatSubscriptionStatus(subscription.status) : ''}</span>
-        </ListItem>
+        </List.Item>
 
-        <ListItem>
+        <List.Item>
           <span>Quantity</span>
 
           <span>{subscription?.quantity}</span>
-        </ListItem>
+        </List.Item>
 
-        <ListItem>
+        <List.Item>
           <span>Cost per subscription</span>
 
           <span>
@@ -64,9 +63,9 @@ export const SubscriptionDetailsSection = () => {
               ? `${formatCurrency(activePrice.unitAmount / 100, activePrice.currency)} / ${activePrice?.interval}`
               : ''}
           </span>
-        </ListItem>
+        </List.Item>
 
-        <ListItem>
+        <List.Item>
           <span>Total cost</span>
 
           <span>
@@ -76,61 +75,61 @@ export const SubscriptionDetailsSection = () => {
                 }`
               : ''}
           </span>
-        </ListItem>
+        </List.Item>
 
         {subscription?.status === 'trialing' && (
           <>
-            <ListItem>
+            <List.Item>
               <span>Trial started</span>
 
               <span>{formatDate(subscription.trialStart)}</span>
-            </ListItem>
+            </List.Item>
 
-            <ListItem>
+            <List.Item>
               <span>Trial ends</span>
 
               <span>{formatDate(subscription.trialEnd)}</span>
-            </ListItem>
+            </List.Item>
           </>
         )}
 
         {subscription?.status === 'active' && (
-          <ListItem>
+          <List.Item>
             <span>Previous payment</span>
 
             <span>{formatDate(subscription.currentPeriodStart)}</span>
-          </ListItem>
+          </List.Item>
         )}
 
         {subscription?.cancelAtPeriodEnd ? (
-          <ListItem>
+          <List.Item>
             <span>Cancels on</span>
 
             <span>{formatDate(subscription.cancelAt)}</span>
-          </ListItem>
+          </List.Item>
         ) : (
-          <ListItem>
+          <List.Item>
             <span>Renews on</span>
 
             <span>{subscription ? formatDate(subscription.currentPeriodEnd) : ''}</span>
-          </ListItem>
+          </List.Item>
         )}
 
-        <ListItem>
+        <List.Item>
           <span>Payment card</span>
 
           <span>
             {user && user.paymentMethod ? `**** **** **** ${parsePaymentMethod(user.paymentMethod).last4}` : ''}
           </span>
-        </ListItem>
+        </List.Item>
 
-        <ListItem className="items-start">
+        <List.Item className="items-start">
           <span className="mr-8">Billing address</span>
 
           <span className="whitespace-break-spaces text-right">
             {user && user.billingAddress ? formatBillingAddress(user.billingAddress) : ''}
           </span>
-        </ListItem>
+        </List.Item>
       </List>
 
       <div>

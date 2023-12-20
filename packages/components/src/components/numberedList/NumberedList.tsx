@@ -19,7 +19,7 @@ type Props = ComponentPropsWithoutRef<'ol'>
 
 const NumberedList = ({ className = '', children, ...props }: Props) => {
   return (
-    <ol className={twMerge('flex flex-col gap-y-2', className)} {...props}>
+    <ol className={twMerge('space-y-2', className)} {...props}>
       {children}
     </ol>
   )
