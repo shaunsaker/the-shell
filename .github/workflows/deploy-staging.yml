@@ -69,3 +69,5 @@ jobs:
         with:
           version: ${{ steps.package-version.outputs.current-version}}
           environment: staging
+          ignore_missing: true
+          ignore_empty: true
