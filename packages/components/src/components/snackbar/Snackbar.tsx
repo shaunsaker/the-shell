@@ -17,7 +17,7 @@ export const Snackbar = () => {
   const { startPause, endPause } = handlers
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 flex flex-col items-center">
+    <div className="fixed inset-x-0 bottom-0 z-50 mx-auto max-w-max">
       <AnimatePresence initial={false}>
         {toasts
           .filter(toast => toast.visible)
