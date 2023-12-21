@@ -4,6 +4,7 @@ import * as path from 'path'
 
 import { copyFile } from '@/utils/copyFile'
 import { createFavicon } from '@/utils/createFavicon'
+import { createOgImage } from '@/utils/createOgImage'
 import { createPng } from '@/utils/createPng'
 import { ensureFileDirExists } from '@/utils/ensureFileDirExists'
 import { log } from '@/utils/log'
@@ -21,7 +22,8 @@ const PATH_TO_CONFIG_MODULE = require.resolve('config')
 const PATH_TO_CONFIG_FOLDER = path.join(PATH_TO_CONFIG_MODULE, '..')
 const LOGO_PATH = path.join(PATH_TO_CONFIG_FOLDER, 'logo.svg')
 const BRAND_COLOR = tailwindTheme.extend.colors.theme.brand.DEFAULT
-const BRANDED_LOGO_PATH = path.join(PATH_TO_CONFIG_FOLDER, 'logo-temp.svg')
+const BRANDED_LOGO_PATH = path.join(PATH_TO_CONFIG_FOLDER, 'temp-logo-branded.svg')
+const WHITE_LOGO_PATH = path.join(PATH_TO_CONFIG_FOLDER, 'temp-logo-white.svg')
 
 async function main(): Promise<void> {
   log('Generating assets...')
@@ -35,9 +37,13 @@ async function main(): Promise<void> {
   const svgString = readFileSync(LOGO_PATH, 'utf8')
 
   const svgStringWithBrandColor = svgString.replace(/currentColor/g, BRAND_COLOR)
+  const svgStringWithWhiteColor = svgString.replace(/currentColor/g, '#FFFFFF')
 
   // create temporary file with brand color
   writeFileSync(BRANDED_LOGO_PATH, svgStringWithBrandColor)
+
+  // create temporary file with white color
+  writeFileSync(WHITE_LOGO_PATH, svgStringWithWhiteColor)
 
   await copyFile({
     inputPath: BRANDED_LOGO_PATH,
@@ -71,8 +77,23 @@ async function main(): Promise<void> {
     outputPath: path.join(COMPONENTS_ASSETS_PATH, './logo.svg'),
   })
 
-  // remove temporary file
+  // create the og images
+  const ogOutputPath = path.join(WEBSITE_APP_PATH, './opengraph-image.png')
+
+  await createOgImage({
+    inputPath: WHITE_LOGO_PATH,
+    outputPath: ogOutputPath,
+    themeColor: BRAND_COLOR,
+  })
+
+  await copyFile({
+    inputPath: ogOutputPath,
+    outputPath: path.join(WEBSITE_APP_PATH, './twitter-image.png'),
+  })
+
+  // remove temporary files
   unlinkSync(BRANDED_LOGO_PATH)
+  unlinkSync(WHITE_LOGO_PATH)
 
   log('Done ✅')
 }
