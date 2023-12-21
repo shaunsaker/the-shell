@@ -5,6 +5,6 @@ export const getDynamicNavItems = () => {
     .filter(section => section.navTitle)
     .map(section => ({
       name: section.navTitle || '',
-      href: `#${section.navTitle}`,
+      href: `/#${section.navTitle}`,
     }))
 }
