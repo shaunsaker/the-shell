@@ -1,8 +1,6 @@
-import fs from 'fs'
-import matter from 'gray-matter'
-import { serialize } from 'next-mdx-remote/serialize'
 import path from 'path'
 
+import { getMdx } from '@/mdx/getMdx'
 import { BlogPost } from '@/types'
 
 import { BLOG_POSTS_FOLDER } from './getPosts'
@@ -40,19 +38,16 @@ const validatePostData = (data: any): data is BlogPost['data'] => {
 }
 
 export const getPost = async (slug: string) => {
-  const fileContents = fs.readFileSync(path.join(process.cwd(), `${BLOG_POSTS_FOLDER}/${slug}.mdx`), 'utf8')
-  const { data, content } = matter(fileContents)
+  const mdx = await getMdx(path.join(process.cwd(), `${BLOG_POSTS_FOLDER}/${slug}.mdx`))
 
-  if (!validatePostData(data)) {
-    throw new Error(`Invalid post data: ${JSON.stringify(data)}`)
+  if (!validatePostData(mdx.data)) {
+    throw new Error(`Invalid post data: ${JSON.stringify(mdx.data)}`)
   }
 
-  const source = await serialize(content)
-
   const post: BlogPost = {
+    ...mdx,
     slug,
-    data,
-    source,
+    data: mdx.data,
   }
 
   return post

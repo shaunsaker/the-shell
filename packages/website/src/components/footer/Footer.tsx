@@ -16,8 +16,16 @@ import { Container } from '../container/Container'
 const NAV_LINKS: Array<{ name: string; href: string }> = [
   ...getDynamicNavItems(),
   {
+    name: 'Blog',
+    href: routes.blog,
+  },
+  {
     name: 'Privacy',
     href: routes.privacy,
+  },
+  {
+    name: 'Terms',
+    href: routes.terms,
   },
 ]
 
