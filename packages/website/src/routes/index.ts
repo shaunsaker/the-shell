@@ -5,4 +5,5 @@ export const routes = {
   blog: '/blog',
   blogPost: `/blog/${BLOG_POST_PARAM}`,
   privacy: '/privacy',
+  terms: '/terms',
 }

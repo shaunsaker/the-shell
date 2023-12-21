@@ -11,6 +11,10 @@ module.exports = {
     '../../node_modules/@tremor/**/*.{js,ts,jsx,tsx}',
   ],
   theme: tailwindTheme,
+  plugins: [
+    // enables the usage of tailwind prose - https://tailwindcss.com/docs/typography-plugin#basic-usage
+    require('@tailwindcss/typography'),
+  ],
   // Note: these have been added to handle dynamic tailwind classes, e.g. custom Button colors, chart colors etc.
   safelist: [
     {

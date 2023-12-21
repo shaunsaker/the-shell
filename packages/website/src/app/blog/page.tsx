@@ -10,7 +10,7 @@ export default async function Page() {
 
   return (
     <Section className="min-h-screen mt-[63px]" variant="inverted" title="Latest from the blog">
-      <Columns>
+      <Columns className="mt-16">
         {posts.map(post => (
           <li key={post.slug}>
             <BlogPost {...post} />
