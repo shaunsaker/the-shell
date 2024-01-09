@@ -114,14 +114,6 @@ rm -rf .git
 git init
 ```
 
-3. Setup future upgrades:
-
-```
-git remote add $TEMPLATE_APP_NAME $TEMPLATE_URL
-```
-
-To apply future upgrades, see [Upgrading](#upgrading).
-
 4. Install dependencies:
 
 ```
@@ -586,18 +578,3 @@ These are the test cases that we should cover (manually for now):
   - are all components rendered correctly?✅
 
 ---
-
-### Upgrading
-
-To upgrade your project with commits from the template, run the following command where $REMOTE_BRANCH is the branch you'd like to pull from, e.g. $TEMPLATE_APP_NAME/master:
-
-```
-./packages/scripts/src/upgrade.sh $REMOTE_BRANCH
-```
-
-You can also add another remote to your local repo and pull from that, e.g.:
-
-```
-git remote add cofoundly SOME_URL
-./packages/scripts/src/upgrade.sh cofoundly/master
-```
