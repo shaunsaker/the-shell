@@ -181,7 +181,7 @@ cp ./packages/website/env/.env.example ./packages/website/env/.env.staging
 cp ./packages/website/env/.env.example ./packages/website/env/.env.production
 ```
 
-6. For each project, create web apps by visiting https://console.firebase.google.com/project/_/overview and clicking "Add app", a good name is simply "app". Select "Also set up Firebase Hosting for this app". You can use the same config for `development` and `staging`. Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [wesbite/.env.staging](./packages/website/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/.env.production](./packages/website/.env.production).
+6. For each project, create web apps by visiting https://console.firebase.google.com/project/_/overview and clicking "Add app", a good name is simply "app". Select "Also set up Firebase Hosting for this app". You can use the same config for `development` and `staging`. Copy the config for each app and paste them into [app/.env.development](packages/app/.env.development), [website/.env.development](packages/website/.env.development), [app/.env.staging](./packages/app/.env.staging), [website/env/.env.staging](./packages/website/env/.env.staging), [app/.env.production](./packages/app/.env.production) and [website/env/.env.production](./packages/website/env/.env.production).
 
 7. Set the MODE env var in the website env files to the relevant $ENVIRONMENT, e.g. in [website/.env.development](./packages/website/.env.development) set `MODE=development`.
 
