@@ -203,9 +203,7 @@ cp ./.firebaserc.example ./.firebaserc
 
 14. For each project, create a new service account at https://console.cloud.google.com/iam-admin/serviceaccounts. Select your project, click "CREATE SERVICE ACCOUNT", add a name, e.g. "github-actions", click "CREATE AND CONTINUE", select the "Owner" role, click "CONTINUE", click "DONE", click on the service account you just created, click "KEYS", click "ADD KEY", click "Create new key", select "JSON", click "CREATE" and download to the root as `service-account-staging.json` and `service-account-production.json`.
 
-15. Add the paths of your service accounts to [website/env/.env.development](./packages/website/env/.env.development), [website/env/.env.staging](./packages/website/env/.env.staging) and [website/env/.env.production](./packages/website/env/.env.production), relative to the [website package](./packages/website), as `GOOGLE_APPLICATION_CREDENTIALS`. You can use the same one for `development` and `staging`.
-
-16. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
+15. Push your service accounts to Github so that the deploy workflows can fetch data for the website deployment:
 
 ```
 gh auth login
